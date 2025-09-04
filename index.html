@@ -81,6 +81,30 @@
       body {
         font-family: "Poppins", sans-serif;
       }
+
+      .parallax-bg {
+  position: relative;
+  z-index: 1;
+}
+.parallax-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#parallax-cta::before {
+  background-image: url("https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
+#parallax-cta-contact::before {
+  background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+}
     </style>
 
     <script type="application/ld+json">
@@ -468,40 +492,30 @@
         </div>
       </section>
 
-      <section id="parallax-cta" class="relative overflow-hidden py-24">
-        <div
-          class="absolute top-0 left-0 w-full h-full z-0"
-          style="
-            background-image: url('https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-          "
-        ></div>
-        <div
-          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-60 z-10"
-        ></div>
-        <div
-          class="container mx-auto px-6 relative z-20 text-center text-white"
-          data-aos="fade-up"
-        >
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
-            ¿Listo para Dar el Primer Paso?
-          </h2>
-          <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Nuestro equipo está listo para convertir tu visión en realidad.
-            Contáctanos hoy para una asesoría sin costo y descubre lo fácil que
-            es tener la casa que siempre has querido.
-          </p>
-          <a
-            href="/contacto.html"
-            class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
-          >
-            Solicitar Cotización Gratuita
-          </a>
-        </div>
-      </section>
+     <section id="parallax-cta" class="relative overflow-hidden py-24 parallax-bg">
+  <div
+    class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-60 z-10"
+  ></div>
+  <div
+    class="container mx-auto px-6 relative z-20 text-center text-white"
+    data-aos="fade-up"
+  >
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      ¿Listo para Dar el Primer Paso?
+    </h2>
+    <p class="text-lg mb-8 max-w-2xl mx-auto">
+      Nuestro equipo está listo para convertir tu visión en realidad.
+      Contáctanos hoy para una asesoría sin costo y descubre lo fácil que es
+      tener la casa que siempre has querido.
+    </p>
+    <a
+      href="/contacto.html"
+      class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+    >
+      Solicitar Cotización Gratuita
+    </a>
+  </div>
+</section>
 
       <section id="blog-preview" class="py-20">
         <div class="container mx-auto px-6">
@@ -725,61 +739,54 @@
           </div>
         </div>
       </section>
-      <section id="parallax-cta-contact" class="relative overflow-hidden py-24">
-        <div
-          class="absolute top-0 left-0 w-full h-full z-0"
-          style="
-            background-image: url('https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-          "
-        ></div>
-        <div
-          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
-        ></div>
+      <section
+  id="parallax-cta-contact"
+  class="relative overflow-hidden py-24 parallax-bg"
+>
+  <div
+    class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
+  ></div>
 
-        <div class="container mx-auto px-6 relative z-20">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
-              <img
-                src="https://images.pexels.com/photos/585418/pexels-photo-585418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="rounded-lg shadow-xl w-full h-full object-cover"
-                alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
-              />
-            </div>
-            <div data-aos="fade-left" class="text-white">
-              <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
-              <p class="text-gray-200 mb-6">
-                Desde la idea inicial hasta la entrega de llaves, nuestro equipo
-                de expertos te acompaña en cada etapa del proceso. Te ofrecemos
-                asesoría completa para que tomes la mejor decisión.
-              </p>
-              <ul class="space-y-3 mb-8">
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Asesoría 100% Gratuita y Personalizada
-                </li>
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Adaptamos Diseños a tu Gusto y Presupuesto
-                </li>
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Recibe una Cotización Clara y Detallada
-                </li>
-              </ul>
-              <a
-                href="/contacto.html"
-                class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
-              >
-                Hablar con un Asesor
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
+  <div class="container mx-auto px-6 relative z-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div data-aos="fade-right">
+        <img
+          src="https://images.pexels.com/photos/585418/pexels-photo-585418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          class="rounded-lg shadow-xl w-full h-full object-cover"
+          alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
+        />
+      </div>
+      <div data-aos="fade-left" class="text-white">
+        <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
+        <p class="text-gray-200 mb-6">
+          Desde la idea inicial hasta la entrega de llaves, nuestro equipo de
+          expertos te acompaña en cada etapa del proceso. Te ofrecemos asesoría
+          completa para que tomes la mejor decisión.
+        </p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Asesoría
+            100% Gratuita y Personalizada
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Adaptamos
+            Diseños a tu Gusto y Presupuesto
+          </li>
+          <li class="flex items-center">
+            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Recibe
+            una Cotización Clara y Detallada
+          </li>
+        </ul>
+        <a
+          href="/contacto.html"
+          class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+        >
+          Hablar con un Asesor
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
     </main>
 
     <footer class="bg-dark text-white pt-16 pb-8">
