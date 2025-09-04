@@ -78,34 +78,39 @@
     </script>
 
     <style>
-      body {
-        font-family: "Poppins", sans-serif;
-      }
+  body {
+    font-family: "Poppins", sans-serif;
+  }
 
-      .parallax-bg {
-  position: relative;
-  z-index: 1;
-}
-.parallax-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-#parallax-cta::before {
-  background-image: url("https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-}
-#parallax-cta-contact::before {
-  background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-}
-    </style>
+  .parallax-bg {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .parallax-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform: translateZ(-1px) scale(1.1); /* Crea el efecto parallax y previene bordes blancos */
+    transform-style: preserve-3d;
+  }
+
+  #parallax-cta::before {
+    background-image: url("https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  }
+
+  #parallax-cta-contact::before {
+    background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+  }
+</style>
 
     <script type="application/ld+json">
       {
