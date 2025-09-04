@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacto - CONCASAYA | Solicita tu Cotización</title>
+    <meta
+      name="description"
+      content="Contáctanos para cotizar tu casa prefabricada. Llámanos, visita nuestra oficina en Bogotá o envíanos un mensaje a través de nuestro formulario."
+    />
+    <meta
+      name="keywords"
+      content="contacto CONCASAYA, cotizar casa prefabricada, teléfono CONCASAYA, dirección CONCASAYA"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+       <a href="/" class="flex items-center space-x-3">
+          <img
+            src="/assets/images/logocasah.webp"
+            alt="CONCASAYA Logo"
+            class="h-10 w-auto"
+          />
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a
+            href="/"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Inicio</a
+          >
+          <a
+            href="/modelos.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Modelos</a
+          >
+          <a
+            href="/ventajas.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Ventajas</a
+          >
+          <a
+            href="/galeria.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Galería</a
+          >
+          <a
+            href="/blog.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="/faq.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Preguntas Frecuentes</a
+          >
+          <a
+            href="/nosotros.html"
+            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            >Sobre Nosotros</a
+          >
+          <a
+            href="/contacto.html"
+            class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
+            >Contacto</a
+          >
+        </div>
+        <div class="md:hidden">
+          <button
+            id="menu-btn"
+            class="text-gray-600 hover:text-teal-500 focus:outline-none"
+          >
+            <i class="fas fa-bars fa-lg"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden">
+        <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-100">Inicio</a>
+        <a
+          href="/modelos.html"
+          class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Modelos</a
+        >
+        <a
+          href="/ventajas.html"
+          class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Ventajas</a
+        >
+        <a
+          href="/galeria.html"
+          class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Galería</a
+        >
+        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Blog</a
+        >
+        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Preguntas Frecuentes</a
+        >
+        <a
+          href="/nosotros.html"
+          class="block py-2 px-4 text-sm hover:bg-gray-100"
+          >Sobre Nosotros</a
+        >
+        <a
+          href="/contacto.html"
+          class="block py-2 px-4 text-sm hover:bg-gray-100 bg-gray-100"
+          >Contacto</a
+        >
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
+          <h1 class="text-4xl font-bold text-gray-800">Contáctanos</h1>
+          <p class="text-lg text-gray-600 mt-2">
+            Estamos listos para ayudarte a construir la casa de tus sueños.
+          </p>
+        </div>
+      </section>
+
+      <section id="contact-details" class="py-20">
+        <div class="container mx-auto px-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            <div data-aos="fade-right">
+              <h2 class="text-2xl font-bold mb-6">Envíanos un Mensaje</h2>
+              <form id="contact-form" class="space-y-6">
+                <div>
+                  <label
+                    for="name"
+                    class="block text-sm font-medium text-gray-700"
+                    >Nombre Completo</label
+                  >
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium text-gray-700"
+                    >Correo Electrónico</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="phone"
+                    class="block text-sm font-medium text-gray-700"
+                    >Teléfono</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="message"
+                    class="block text-sm font-medium text-gray-700"
+                    >Mensaje</label
+                  >
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="4"
+                    required
+                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500"
+                  ></textarea>
+                </div>
+                <div>
+                  <button
+                    type="submit"
+                    class="w-full bg-teal-500 text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-teal-600 transition duration-300"
+                  >
+                    Enviar Mensaje
+                  </button>
+                </div>
+              </form>
+              <div id="form-status" class="mt-4 text-center"></div>
+            </div>
+
+            <div data-aos="fade-left" class="space-y-8">
+              <div>
+                <h2 class="text-2xl font-bold mb-4">Información de Contacto</h2>
+                <div class="space-y-4 text-lg">
+                  <p class="flex items-center">
+                    <i
+                      class="fas fa-map-marker-alt fa-fw mr-3 text-teal-500"
+                    ></i>
+                    Cl. 147 #101-56, C.C. Fiesta Suba, Local 64, Bogotá
+                  </p>
+                  <p class="flex items-center">
+                    <i class="fas fa-phone fa-fw mr-3 text-teal-500"></i
+                    ><a href="tel:3142891018" class="hover:text-teal-500"
+                      >314 289 1018</a
+                    >
+                  </p>
+                  <p class="flex items-center">
+                    <i class="fas fa-phone fa-fw mr-3 text-teal-500"></i
+                    ><a href="tel:3165771582" class="hover:text-teal-500"
+                      >316 577 1582</a
+                    >
+                  </p>
+                  <p class="flex items-center">
+                    <i class="fab fa-whatsapp fa-fw mr-3 text-teal-500"></i
+                    ><a
+                      href="https://wa.me/573142891018"
+                      target="_blank"
+                      class="hover:text-teal-500"
+                      >Chatea con nosotros en WhatsApp</a
+                    >
+                  </p>
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-4">Encuéntranos en Redes</h3>
+                <div class="flex space-x-4">
+                  <a
+                    href="https://www.tiktok.com/@KaprecolCasasPrefabricadas"
+                    target="_blank"
+                    class="text-gray-600 hover:text-teal-500 transition duration-300"
+                    ><i class="fab fa-tiktok fa-2x"></i
+                  ></a>
+                  <a
+                    href="https://www.instagram.com/kaprecolcasasprefab"
+                    target="_blank"
+                    class="text-gray-600 hover:text-teal-500 transition duration-300"
+                    ><i class="fab fa-instagram fa-2x"></i
+                  ></a>
+                  <a
+                    href="https://www.facebook.com/Kaprecol"
+                    target="_blank"
+                    class="text-gray-600 hover:text-teal-500 transition duration-300"
+                    ><i class="fab fa-facebook fa-2x"></i
+                  ></a>
+                </div>
+              </div>
+              <div>
+                <div class="w-full h-80 rounded-lg overflow-hidden shadow-lg">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.223842323086!2d-74.0984988852375!3d4.732386896568285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f845d43da221d%3A0x139d6c29125881ce!2sCentro%20Comercial%20Fiesta%20Suba!5e0!3m2!1ses!2sco!4v1662934335432!5m2!1ses!2sco"
+                    width="100%"
+                    height="100%"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white py-10">
+      <div class="container mx-auto px-6 text-center">
+        <div class="flex justify-center space-x-6 mb-6">
+          <a
+            href="https://www.tiktok.com/@KaprecolCasasPrefabricadas"
+            target="_blank"
+            class="hover:text-teal-400 transition duration-300"
+            ><i class="fab fa-tiktok fa-2x"></i
+          ></a>
+          <a
+            href="https://www.instagram.com/kaprecolcasasprefab"
+            target="_blank"
+            class="hover:text-teal-400 transition duration-300"
+            ><i class="fab fa-instagram fa-2x"></i
+          ></a>
+          <a
+            href="https://www.facebook.com/Kaprecol"
+            target="_blank"
+            class="hover:text-teal-400 transition duration-300"
+            ><i class="fab fa-facebook fa-2x"></i
+          ></a>
+        </div>
+        <div class="mb-4">
+          <p><i class="fas fa-phone mr-2"></i>3142891018 - 3165771582</p>
+          <p>
+            <i class="fas fa-map-marker-alt mr-2"></i>Cl. 147 #101-56, C.C.
+            Fiesta Suba, Local 64, Bogotá
+          </p>
+        </div>
+        <p class="text-sm text-gray-400">
+          &copy; 2025 CONCASAYA. Todos los derechos reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module" src="/assets/js/contacto.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+    </script>
+  </body>
+</html>
