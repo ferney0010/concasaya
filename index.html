@@ -25,10 +25,7 @@
       property="og:description"
       content="Construcción rápida, económica y sostenible. Descubre nuestros modelos y cotiza tu proyecto hoy."
     />
-    <meta
-      property="og:image"
-      content="/assets/images/logocasah.webp"
-    />
+    <meta property="og:image" content="/assets/images/logocasah.webp" />
     <meta property="og:url" content="https://www.concasaya.com/" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_CO" />
@@ -78,39 +75,57 @@
     </script>
 
     <style>
-  body {
-    font-family: "Poppins", sans-serif;
-  }
+      body {
+        font-family: "Poppins", sans-serif;
+      }
 
-  .parallax-bg {
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
+      .parallax-bg {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
 
-  .parallax-bg::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    transform: translateZ(-1px) scale(1.1); /* Crea el efecto parallax y previene bordes blancos */
-    transform-style: preserve-3d;
-  }
+      .parallax-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transform: translateZ(-1px) scale(1.1);
+        transform-style: preserve-3d;
+      }
 
-  #parallax-cta::before {
-    background-image: url("https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  }
+      #parallax-cta::before {
+        background-image: url("https://images.pexels.com/photos/1216589/pexels-photo-1216589.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+      }
 
-  #parallax-cta-contact::before {
-    background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
-  }
-</style>
+      #parallax-cta-contact::before {
+        background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+      }
+
+      /* Estilos para el Dropdown en Desktop */
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      }
+
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
 
     <script type="application/ld+json">
       {
@@ -171,25 +186,64 @@
             class="text-dark hover:text-primary transition duration-300"
             >Modelos</a
           >
+
+          <div class="relative dropdown">
+            <button
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+            >
+              <span>Municipios</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul
+              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+            >
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/chia.html"
+                  >Chía</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/cajica.html"
+                  >Cajicá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/mosquera.html"
+                  >Mosquera</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="#"
+                  >La Calera</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="#"
+                  >Sopó</a
+                >
+              </li>
+            </ul>
+          </div>
+
           <a
             href="/ventajas.html"
             class="text-dark hover:text-primary transition duration-300"
             >Ventajas</a
           >
           <a
-            href="/galeria.html"
-            class="text-dark hover:text-primary transition duration-300"
-            >Galería</a
-          >
-          <a
             href="/blog.html"
             class="text-dark hover:text-primary transition duration-300"
             >Blog</a
-          >
-          <a
-            href="/faq.html"
-            class="text-dark hover:text-primary transition duration-300"
-            >Preguntas Frecuentes</a
           >
           <a
             href="/nosotros.html"
@@ -211,6 +265,7 @@
           </button>
         </div>
       </nav>
+      <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
         <a href="/" class="block py-2 px-4 text-sm text-primary font-semibold"
           >Inicio</a
@@ -218,17 +273,40 @@
         <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Modelos</a
         >
+        <div class="relative">
+          <button
+            class="w-full text-left block py-2 px-4 text-sm hover:bg-light"
+            id="mobile-dropdown-btn"
+          >
+            Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+          <div id="mobile-dropdown-menu" class="hidden pl-4">
+            <a
+              href="/pages/chia.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Chía</a
+            >
+            <a
+              href="/pages/cajica.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Cajicá</a
+            >
+            <a
+              href="/pages/mosquera.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Mosquera</a
+            >
+            <a href="#" class="block py-2 px-4 text-sm hover:bg-light"
+              >La Calera</a
+            >
+            <a href="#" class="block py-2 px-4 text-sm hover:bg-light">Sopó</a>
+          </div>
+        </div>
         <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Ventajas</a
         >
-        <a href="/galeria.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Galería</a
-        >
         <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Blog</a
-        >
-        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Preguntas Frecuentes</a
         >
         <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Sobre Nosotros</a
@@ -256,7 +334,8 @@
             </h1>
             <p class="text-xl text-gray-700 mb-8">
               Nuestras casas con <strong>paneles EPS</strong> garantizan un
-              <strong>aislamiento térmico</strong> y <strong>acústico</strong> superior.
+              <strong>aislamiento térmico</strong> y
+              <strong>acústico</strong> superior.
             </p>
             <a
               href="/modelos.html"
@@ -497,30 +576,33 @@
         </div>
       </section>
 
-     <section id="parallax-cta" class="relative overflow-hidden py-24 parallax-bg">
-  <div
-    class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-60 z-10"
-  ></div>
-  <div
-    class="container mx-auto px-6 relative z-20 text-center text-white"
-    data-aos="fade-up"
-  >
-    <h2 class="text-3xl md:text-4xl font-bold mb-4">
-      ¿Listo para Dar el Primer Paso?
-    </h2>
-    <p class="text-lg mb-8 max-w-2xl mx-auto">
-      Nuestro equipo está listo para convertir tu visión en realidad.
-      Contáctanos hoy para una asesoría sin costo y descubre lo fácil que es
-      tener la casa que siempre has querido.
-    </p>
-    <a
-      href="/contacto.html"
-      class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
-    >
-      Solicitar Cotización Gratuita
-    </a>
-  </div>
-</section>
+      <section
+        id="parallax-cta"
+        class="relative overflow-hidden py-24 parallax-bg"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-60 z-10"
+        ></div>
+        <div
+          class="container mx-auto px-6 relative z-20 text-center text-white"
+          data-aos="fade-up"
+        >
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+            ¿Listo para Dar el Primer Paso?
+          </h2>
+          <p class="text-lg mb-8 max-w-2xl mx-auto">
+            Nuestro equipo está listo para convertir tu visión en realidad.
+            Contáctanos hoy para una asesoría sin costo y descubre lo fácil que
+            es tener la casa que siempre has querido.
+          </p>
+          <a
+            href="/contacto.html"
+            class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+          >
+            Solicitar Cotización Gratuita
+          </a>
+        </div>
+      </section>
 
       <section id="blog-preview" class="py-20">
         <div class="container mx-auto px-6">
@@ -745,53 +827,53 @@
         </div>
       </section>
       <section
-  id="parallax-cta-contact"
-  class="relative overflow-hidden py-24 parallax-bg"
->
-  <div
-    class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
-  ></div>
+        id="parallax-cta-contact"
+        class="relative overflow-hidden py-24 parallax-bg"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
+        ></div>
 
-  <div class="container mx-auto px-6 relative z-20">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div data-aos="fade-right">
-        <img
-          src="https://images.pexels.com/photos/585418/pexels-photo-585418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          class="rounded-lg shadow-xl w-full h-full object-cover"
-          alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
-        />
-      </div>
-      <div data-aos="fade-left" class="text-white">
-        <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
-        <p class="text-gray-200 mb-6">
-          Desde la idea inicial hasta la entrega de llaves, nuestro equipo de
-          expertos te acompaña en cada etapa del proceso. Te ofrecemos asesoría
-          completa para que tomes la mejor decisión.
-        </p>
-        <ul class="space-y-3 mb-8">
-          <li class="flex items-center">
-            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Asesoría
-            100% Gratuita y Personalizada
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Adaptamos
-            Diseños a tu Gusto y Presupuesto
-          </li>
-          <li class="flex items-center">
-            <i class="fas fa-check-circle text-primary fa-fw mr-2"></i>Recibe
-            una Cotización Clara y Detallada
-          </li>
-        </ul>
-        <a
-          href="/contacto.html"
-          class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
-        >
-          Hablar con un Asesor
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="container mx-auto px-6 relative z-20">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+              <img
+                src="https://images.pexels.com/photos/585418/pexels-photo-585418.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="rounded-lg shadow-xl w-full h-full object-cover"
+                alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
+              />
+            </div>
+            <div data-aos="fade-left" class="text-white">
+              <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
+              <p class="text-gray-200 mb-6">
+                Desde la idea inicial hasta la entrega de llaves, nuestro equipo
+                de expertos te acompaña en cada etapa del proceso. Te ofrecemos
+                asesoría completa para que tomes la mejor decisión.
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Asesoría 100% Gratuita y Personalizada
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Adaptamos Diseños a tu Gusto y Presupuesto
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Recibe una Cotización Clara y Detallada
+                </li>
+              </ul>
+              <a
+                href="/contacto.html"
+                class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+              >
+                Hablar con un Asesor
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="bg-dark text-white pt-16 pb-8">

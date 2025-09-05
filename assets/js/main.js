@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         once: true
     });
 
+    // Lógica para Menú Principal Móvil (Hamburguesa)
     const menuBtn = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
 
@@ -13,6 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Lógica para el Desplegable de Municipios en Móvil
+    const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
+    const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+    
+    if (mobileDropdownBtn && mobileDropdownMenu) {
+        mobileDropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileDropdownMenu.classList.toggle('hidden');
+        });
+    }
+
+    // Lógica para Acordeón de FAQ
     const faqQuestions = document.querySelectorAll('.faq-question');
     if (faqQuestions.length > 0) {
         faqQuestions.forEach(question => {
@@ -32,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Lógica para el Contador Animado
     const counterSection = document.getElementById('counter-section');
     const counters = document.querySelectorAll('.counter-number');
     let hasAnimated = false;
