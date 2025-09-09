@@ -13,6 +13,13 @@
       content="preguntas frecuentes casas prefabricadas, FAQ, dudas construcción, permisos, financiación, CONCASAYA"
     />
 
+    <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
+    <link
+      rel="apple-touch-icon"
+      href="/assets/images/logoconcasaya.webp"
+    />
+    <meta name="theme-color" content="#0077b6" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,13 +28,26 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0077b6",
+              secondary: "#0d1b2a",
+              dark: "#2D3748",
+              light: "#F8FAFC",
+            },
+          },
+        },
+      };
+    </script>
 
     <style>
       body {
@@ -38,14 +58,28 @@
         overflow: hidden;
         transition: max-height 0.3s ease-in-out;
       }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      }
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body class="bg-white text-dark">
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
-       <a href="/" class="flex items-center space-x-3">
+        <a href="/" class="flex items-center space-x-3">
           <img
             src="/assets/images/logocasah.webp"
             alt="CONCASAYA Logo"
@@ -55,115 +89,122 @@
         <div class="hidden md:flex space-x-6 items-center">
           <a
             href="/"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Inicio</a
           >
           <a
             href="/modelos.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Modelos</a
           >
+          <div class="relative dropdown">
+            <button
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+            >
+              <span>Municipios</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul
+              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+            >
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/chia.html">Chía</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/cajica.html">Cajicá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/mosquera.html">Mosquera</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/zipaquira.html">Zipaquirá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/boyaca.html">Boyacá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/sopo.html">Sopó</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/funza.html">Funza</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/la-vega.html">La Vega</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/madrid.html">Madrid</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/santander.html">Santander</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/tocancipa.html">Tocancipá</a></li>
+            </ul>
+          </div>
           <a
             href="/ventajas.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Ventajas</a
           >
           <a
-            href="/galeria.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
-            >Galería</a
-          >
-          <a
             href="/blog.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Blog</a
           >
           <a
             href="/faq.html"
-            class="text-teal-500 font-bold transition duration-300"
+            class="text-primary font-bold transition duration-300"
             >Preguntas Frecuentes</a
           >
           <a
             href="/nosotros.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Sobre Nosotros</a
           >
           <a
             href="/contacto.html"
-            class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300"
             >Contacto</a
           >
         </div>
         <div class="md:hidden">
           <button
             id="menu-btn"
-            class="text-gray-600 hover:text-teal-500 focus:outline-none"
+            class="text-dark hover:text-primary focus:outline-none"
           >
             <i class="fas fa-bars fa-lg"></i>
           </button>
         </div>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden">
-        <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-100">Inicio</a>
-        <a
-          href="/modelos.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Modelos</a
-        >
-        <a
-          href="/ventajas.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Ventajas</a
-        >
-        <a
-          href="/galeria.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Galería</a
-        >
-        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Blog</a
-        >
-        <a
-          href="/faq.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100 bg-gray-100"
-          >Preguntas Frecuentes</a
-        >
-        <a
-          href="/nosotros.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Sobre Nosotros</a
-        >
-        <a
-          href="/contacto.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Contacto</a
-        >
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
+        <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light">Modelos</a>
+        <div class="relative">
+          <button
+            class="w-full text-left block py-2 px-4 text-sm hover:bg-light"
+            id="mobile-dropdown-btn"
+          >
+            Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+          <div id="mobile-dropdown-menu" class="hidden pl-4">
+             <a href="/pages/chia.html" class="block py-2 px-4 text-sm hover:bg-light">Chía</a>
+             <a href="/pages/cajica.html" class="block py-2 px-4 text-sm hover:bg-light">Cajicá</a>
+             <a href="/pages/mosquera.html" class="block py-2 px-4 text-sm hover:bg-light">Mosquera</a>
+             <a href="/pages/zipaquira.html" class="block py-2 px-4 text-sm hover:bg-light">Zipaquirá</a>
+             <a href="/pages/boyaca.html" class="block py-2 px-4 text-sm hover:bg-light">Boyacá</a>
+             <a href="/pages/sopo.html" class="block py-2 px-4 text-sm hover:bg-light">Sopó</a>
+             <a href="/pages/funza.html" class="block py-2 px-4 text-sm hover:bg-light">Funza</a>
+             <a href="/pages/la-vega.html" class="block py-2 px-4 text-sm hover:bg-light">La Vega</a>
+             <a href="/pages/madrid.html" class="block py-2 px-4 text-sm hover:bg-light">Madrid</a>
+             <a href="/pages/santander.html" class="block py-2 px-4 text-sm hover:bg-light">Santander</a>
+             <a href="/pages/tocancipa.html" class="block py-2 px-4 text-sm hover:bg-light">Tocancipá</a>
+          </div>
+        </div>
+        <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light">Ventajas</a>
+        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light">Blog</a>
+        <a href="/faq.html" class="block py-2 px-4 text-sm bg-light text-primary font-semibold">Preguntas Frecuentes</a>
+        <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light">Sobre Nosotros</a>
+        <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light">Contacto</a>
       </div>
     </header>
 
     <main class="pt-20">
-      <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-          <h1 class="text-4xl font-bold text-gray-800">Preguntas Frecuentes</h1>
-          <p class="text-lg text-gray-600 mt-2">
-            Encuentra respuestas a las dudas más comunes sobre tu futura casa.
-          </p>
+      <section class="relative py-24 bg-cover bg-center" style="background-image: url('https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');">
+        <div class="absolute inset-0 bg-secondary opacity-70"></div>
+        <div class="container relative z-10 mx-auto px-6 text-center" data-aos="fade-up">
+            <h1 class="text-4xl font-bold text-white">Preguntas Frecuentes</h1>
+            <p class="text-lg text-gray-200 mt-2 max-w-3xl mx-auto">
+              Encuentra respuestas a las dudas más comunes sobre tu futura casa.
+            </p>
         </div>
       </section>
 
-      <section id="faq-list" class="py-20">
+      <section id="faq-list" class="py-20 bg-white">
         <div class="container mx-auto px-6 max-w-4xl">
           <div class="space-y-4" data-aos="fade-up">
-            <div class="bg-white rounded-lg shadow-md">
-              <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
-              >
-                <h3 class="text-lg font-semibold">
-                  ¿Qué incluye el precio base de una casa?
-                </h3>
-                <i
-                  class="fas fa-chevron-down transform transition-transform"
-                ></i>
+            <div class="bg-light rounded-lg shadow-sm">
+              <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                <h3 class="text-lg font-semibold text-dark">¿Qué incluye el precio base de una casa?</h3>
+                <i class="fas fa-chevron-down text-primary transform transition-transform"></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
@@ -177,16 +218,10 @@
               </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md">
-              <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
-              >
-                <h3 class="text-lg font-semibold">
-                  ¿En cuánto tiempo se entrega una casa prefabricada?
-                </h3>
-                <i
-                  class="fas fa-chevron-down transform transition-transform"
-                ></i>
+            <div class="bg-light rounded-lg shadow-sm">
+              <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                <h3 class="text-lg font-semibold text-dark">¿En cuánto tiempo se entrega una casa prefabricada?</h3>
+                <i class="fas fa-chevron-down text-primary transform transition-transform"></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
@@ -199,16 +234,10 @@
               </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md">
-              <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
-              >
-                <h3 class="text-lg font-semibold">
-                  ¿Necesito tener un lote propio para construir?
-                </h3>
-                <i
-                  class="fas fa-chevron-down transform transition-transform"
-                ></i>
+            <div class="bg-light rounded-lg shadow-sm">
+              <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                <h3 class="text-lg font-semibold text-dark">¿Necesito tener un lote propio para construir?</h3>
+                <i class="fas fa-chevron-down text-primary transform transition-transform"></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
@@ -220,16 +249,10 @@
               </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md">
-              <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
-              >
-                <h3 class="text-lg font-semibold">
-                  ¿Qué tipo de cimentación se requiere?
-                </h3>
-                <i
-                  class="fas fa-chevron-down transform transition-transform"
-                ></i>
+            <div class="bg-light rounded-lg shadow-sm">
+              <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                <h3 class="text-lg font-semibold text-dark">¿Qué tipo de cimentación se requiere?</h3>
+                <i class="fas fa-chevron-down text-primary transform transition-transform"></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
@@ -243,16 +266,10 @@
               </div>
             </div>
 
-            <div class="bg-white rounded-lg shadow-md">
-              <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
-              >
-                <h3 class="text-lg font-semibold">
-                  ¿Las casas prefabricadas son sismorresistentes?
-                </h3>
-                <i
-                  class="fas fa-chevron-down transform transition-transform"
-                ></i>
+            <div class="bg-light rounded-lg shadow-sm">
+              <button class="faq-question w-full flex justify-between items-center text-left p-6">
+                <h3 class="text-lg font-semibold text-dark">¿Las casas prefabricadas son sismorresistentes?</h3>
+                <i class="fas fa-chevron-down text-primary transform transition-transform"></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
@@ -269,40 +286,89 @@
       </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-10">
-      <div class="container mx-auto px-6 text-center">
-        <div class="flex justify-center space-x-6 mb-6">
-          <a
-            href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-tiktok fa-2x"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/kaprecolcasasprefab"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-instagram fa-2x"></i
-          ></a>
-          <a
-            href="https://www.facebook.com/kprecol"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-facebook fa-2x"></i
-          ></a>
+    <footer class="bg-dark text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-8">
+          <div class="col-span-2 lg:col-span-1">
+            <p class="text-gray-400">
+              Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
+              de alta calidad en Bogotá y Cundinamarca.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Zonas de Cobertura</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/pages/chia.html" class="hover:text-primary">Casas en Chía</a></li>
+              <li><a href="/pages/cajica.html" class="hover:text-primary">Casas en Cajicá</a></li>
+              <li><a href="/pages/mosquera.html" class="hover:text-primary">Casas en Mosquera</a></li>
+              <li><a href="/pages/zipaquira.html" class="hover:text-primary">Casas en Zipaquirá</a></li>
+              <li><a href="/pages/sopo.html" class="hover:text-primary">Casas en Sopó</a></li>
+              <li><a href="/pages/la-vega.html" class="hover:text-primary">Casas en La Vega</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Modelos Populares</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/modelos.html" class="hover:text-primary">Casas Campestres</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Cabañas Modernas</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Diseños de Dos Pisos</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Viviendas Compactas</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Bodegas y Almacenes</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Enlaces de Interés</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/ventajas.html" class="hover:text-primary">Ventajas y Beneficios</a></li>
+              <li><a href="/faq.html" class="hover:text-primary">Preguntas Frecuentes</a></li>
+              <li><a href="/blog.html" class="hover:text-primary">Blog de Construcción</a></li>
+              <li><a href="/nosotros.html" class="hover:text-primary">Sobre Nosotros</a></li>
+              <li><a href="/contacto.html" class="hover:text-primary">Contacto y Cotizaciones</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Contáctanos</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><i class="fas fa-map-marker-alt fa-fw mr-2"></i>Cl. 147 #101-56, Local 64, Bogotá</li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>314 289 1018</li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>316 577 1582</li>
+              <li><i class="fab fa-whatsapp fa-fw mr-2"></i><a href="https://wa.me/573142891018" target="_blank" class="hover:text-primary">Enviar Mensaje</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="mb-4">
-          <p><i class="fas fa-phone mr-2"></i>3142891018 - 3165771582</p>
-          <p>
-            <i class="fas fa-map-marker-alt mr-2"></i>Cl. 147 #101-56, C.C.
-            Fiesta Suba, Local 64, Bogotá
+        <div class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center text-center">
+          <p class="text-sm text-gray-500 mb-4 md:mb-0">
+            &copy; 2025 CONCASAYA. Todos los derechos reservados. Sitio web diseñado para la construcción de casas prefabricadas en Cundinamarca.
           </p>
+          <div class="flex justify-center space-x-6">
+            <a href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-tiktok fa-2x"></i></a>
+            <a href="https://www.instagram.com/kaprecolcasasprefab" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="https://www.facebook.com/Kaprecol" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+          </div>
         </div>
-        <p class="text-sm text-gray-400">
-          &copy; 2025 CONCASAYA. Todos los derechos reservados.
-        </p>
       </div>
     </footer>
+
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-center">
+      <div id="fab-options" class="hidden flex-col items-center space-y-3 mb-3">
+        <a href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1" target="_blank" aria-label="TikTok" class="w-12 h-12 rounded-full flex items-center justify-center bg-black hover:bg-gray-800 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-tiktok text-2xl"></i>
+        </a>
+        <a href="https://www.instagram.com/kaprecolcasasprefab" target="_blank" aria-label="Instagram" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-instagram text-2xl"></i>
+        </a>
+        <a href="https://www.facebook.com/Kaprecol" target="_blank" aria-label="Facebook" class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-facebook-f text-2xl"></i>
+        </a>
+        <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20tengo%20una%20pregunta%20sobre%20sus%20casas%20prefabricadas." target="_blank" aria-label="WhatsApp" class="w-12 h-12 rounded-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+      </div>
+      <button id="fab-main-button" class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg focus:outline-none transition-transform duration-300 transform hover:scale-110">
+        <i id="fab-open-icon" class="fas fa-comment-dots text-2xl"></i>
+        <i id="fab-close-icon" class="fas fa-times text-2xl hidden"></i>
+      </button>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -313,33 +379,60 @@
 
       const menuBtn = document.getElementById("menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
 
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
-      });
+      const mobileDropdownBtn = document.getElementById("mobile-dropdown-btn");
+      const mobileDropdownMenu = document.getElementById("mobile-dropdown-menu");
+      if (mobileDropdownBtn && mobileDropdownMenu) {
+        mobileDropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileDropdownMenu.classList.toggle('hidden');
+        });
+      }
 
       const faqQuestions = document.querySelectorAll(".faq-question");
+      if (faqQuestions) {
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector("i");
+            const isExpanded = answer.style.maxHeight;
 
-      faqQuestions.forEach((question) => {
-        question.addEventListener("click", () => {
-          const answer = question.nextElementSibling;
-          const icon = question.querySelector("i");
+            document.querySelectorAll(".faq-answer").forEach((a) => {
+                if (a !== answer) {
+                    a.style.maxHeight = null;
+                    a.previousElementSibling.querySelector("i").classList.remove("rotate-180");
+                }
+            });
 
-          if (answer.style.maxHeight) {
-            answer.style.maxHeight = null;
-            icon.classList.remove("rotate-180");
-          } else {
-            document
-              .querySelectorAll(".faq-answer")
-              .forEach((a) => (a.style.maxHeight = null));
-            document
-              .querySelectorAll(".faq-question i")
-              .forEach((i) => i.classList.remove("rotate-180"));
-            answer.style.maxHeight = answer.scrollHeight + "px";
-            icon.classList.add("rotate-180");
-          }
+            if (isExpanded) {
+              answer.style.maxHeight = null;
+              icon.classList.remove("rotate-180");
+            } else {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+              icon.classList.add("rotate-180");
+            }
+          });
         });
-      });
+      }
+
+      const fabMainButton = document.getElementById("fab-main-button");
+      const fabOptions = document.getElementById("fab-options");
+      const fabOpenIcon = document.getElementById("fab-open-icon");
+      const fabCloseIcon = document.getElementById("fab-close-icon");
+
+      if (fabMainButton) {
+        fabMainButton.addEventListener("click", () => {
+          fabOptions.classList.toggle("hidden");
+          fabOptions.classList.toggle("flex");
+          fabOpenIcon.classList.toggle("hidden");
+          fabCloseIcon.classList.toggle("hidden");
+        });
+      }
     </script>
   </body>
 </html>

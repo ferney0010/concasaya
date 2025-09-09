@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beneficios del EPS en la Construcción Sostenible | CONCASAYA</title>
+    <meta
+      name="description"
+      content="Descubre por qué el Poliestireno Expandido (EPS) es un material clave en la construcción de casas prefabricadas sostenibles, eficientes y seguras."
+    />
+    <meta
+      name="keywords"
+      content="paneles eps, construcción sostenible, poliestireno expandido, aislamiento térmico, casa prefabricada, CONCASAYA"
+    />
+
+    <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
+    <meta name="theme-color" content="#0077b6" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0077b6",
+              secondary: "#0d1b2a",
+              dark: "#2D3748",
+              light: "#F8FAFC",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      }
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+  <body class="bg-white text-dark">
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto"/>
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="/" class="text-dark hover:text-primary transition duration-300">Inicio</a>
+          <a href="/modelos.html" class="text-dark hover:text-primary transition duration-300">Modelos</a>
+          <div class="relative dropdown">
+            <button class="text-dark hover:text-primary transition duration-300 inline-flex items-center">
+              <span>Municipios</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl">
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/chia.html">Chía</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/cajica.html">Cajicá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/mosquera.html">Mosquera</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/zipaquira.html">Zipaquirá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/boyaca.html">Boyacá</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/sopo.html">Sopó</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/funza.html">Funza</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/la-vega.html">La Vega</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/madrid.html">Madrid</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/santander.html">Santander</a></li>
+              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/tocancipa.html">Tocancipá</a></li>
+            </ul>
+          </div>
+          <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">Ventajas</a>
+          <a href="/blog.html" class="text-primary font-bold transition duration-300">Blog</a>
+          <a href="/nosotros.html" class="text-dark hover:text-primary transition duration-300">Sobre Nosotros</a>
+          <a href="/contacto.html" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300">Contacto</a>
+        </div>
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none">
+            <i class="fas fa-bars fa-lg"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
+        <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light">Modelos</a>
+        <div class="relative">
+          <button class="w-full text-left block py-2 px-4 text-sm hover:bg-light" id="mobile-dropdown-btn">
+            Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+          <div id="mobile-dropdown-menu" class="hidden pl-4">
+             <a href="/pages/chia.html" class="block py-2 px-4 text-sm hover:bg-light">Chía</a>
+             <a href="/pages/cajica.html" class="block py-2 px-4 text-sm hover:bg-light">Cajicá</a>
+             <a href="/pages/mosquera.html" class="block py-2 px-4 text-sm hover:bg-light">Mosquera</a>
+             <a href="/pages/zipaquira.html" class="block py-2 px-4 text-sm hover:bg-light">Zipaquirá</a>
+             <a href="/pages/boyaca.html" class="block py-2 px-4 text-sm hover:bg-light">Boyacá</a>
+             <a href="/pages/sopo.html" class="block py-2 px-4 text-sm hover:bg-light">Sopó</a>
+             <a href="/pages/funza.html" class="block py-2 px-4 text-sm hover:bg-light">Funza</a>
+             <a href="/pages/la-vega.html" class="block py-2 px-4 text-sm hover:bg-light">La Vega</a>
+             <a href="/pages/madrid.html" class="block py-2 px-4 text-sm hover:bg-light">Madrid</a>
+             <a href="/pages/santander.html" class="block py-2 px-4 text-sm hover:bg-light">Santander</a>
+             <a href="/pages/tocancipa.html" class="block py-2 px-4 text-sm hover:bg-light">Tocancipá</a>
+          </div>
+        </div>
+        <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light">Ventajas</a>
+        <a href="/blog.html" class="block py-2 px-4 text-sm bg-light text-primary font-semibold">Blog</a>
+        <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light">Sobre Nosotros</a>
+        <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light">Contacto</a>
+      </div>
+    </header>
+
+    <main class="pt-20">
+      <article class="py-12">
+        <div class="container mx-auto px-6 max-w-4xl">
+          <header class="text-center mb-12" data-aos="fade-up">
+            <p class="text-primary font-semibold">Sostenibilidad</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-dark mt-2">
+              Materiales Sostenibles: El Rol Clave del EPS en la Construcción
+            </h1>
+            <p class="text-gray-500 mt-4">Publicado el 29 de Septiembre, 2025</p>
+          </header>
+
+          <div class="prose lg:prose-xl max-w-none mx-auto text-gray-700" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Panel de EPS para construcción sostenible" class="rounded-lg shadow-lg mb-8 w-full"/>
+            
+            <p class="lead">
+              La <strong>construcción sostenible</strong> ya no es una opción, es una necesidad. En CONCASAYA, hemos adoptado el uso de <strong>paneles de Poliestireno Expandido (EPS)</strong> como uno de nuestros sistemas constructivos principales. Pero, ¿qué es exactamente el EPS y por qué es tan revolucionario para las casas prefabricadas?
+            </p>
+
+            <h2 class="text-2xl font-bold text-dark mt-8">1. Aislamiento Térmico Insuperable</h2>
+            <p>
+              El EPS está compuesto por un 98% de aire atrapado en pequeñas celdas cerradas. Esta estructura lo convierte en un aislante térmico extraordinario. Una casa construida con paneles EPS mantiene una temperatura interior estable, manteniéndose fresca en climas cálidos y cálida en climas fríos. Esto se traduce directamente en una menor necesidad de calefacción o aire acondicionado, generando un ahorro significativo en las facturas de energía y una mayor <strong>eficiencia energética</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-dark mt-8">2. Confort Acústico Garantizado</h2>
+            <p>
+              Además de ser un gran aislante térmico, el EPS también funciona como una excelente barrera acústica. Su estructura celular absorbe las ondas sonoras, reduciendo drásticamente la transmisión de ruido desde el exterior. El resultado es un hogar más tranquilo y silencioso, un verdadero refugio del ajetreo diario.
+            </p>
+
+            <h2 class="text-2xl font-bold text-dark mt-8">3. Ligereza y Resistencia Estructural</h2>
+            <p>
+              Aunque es increíblemente ligero, el sistema constructivo con paneles EPS es extremadamente robusto. Los paneles consisten en un núcleo de EPS reforzado con mallas de acero en ambas caras, que al ser recubiertas con mortero, crean un compuesto monolítico de alta resistencia. Esta combinación de ligereza y fortaleza ofrece un comportamiento excepcional ante eventos sísmicos, cumpliendo con la norma de <strong>sismorresistencia NSR-10</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-dark mt-8">4. Sostenibilidad y Respeto por el Medio Ambiente</h2>
+            <p>
+              El EPS es un material 100% reciclable. Su proceso de fabricación consume menos energía en comparación con otros materiales de construcción. Además, al reducir la demanda energética de la vivienda a lo largo de su vida útil, contribuye activamente a disminuir la huella de carbono. Construir con EPS es una decisión responsable con el planeta.
+            </p>
+            
+            <blockquote class="border-l-4 border-primary pl-4 italic text-gray-800 my-8">
+              Elegir una casa con paneles EPS es invertir en confort, seguridad, ahorro y en un futuro más sostenible.
+            </blockquote>
+
+            <p class="mt-8">
+              En <strong>CONCASAYA</strong>, estamos comprometidos con la innovación que mejora la calidad de vida de nuestros clientes y cuida nuestro entorno. El sistema EPS es un pilar fundamental de esa promesa.
+            </p>
+          </div>
+          
+          <div class="mt-12 text-center" data-aos="fade-up">
+            <a href="/blog.html" class="bg-dark text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition duration-300">
+              &larr; Volver al Blog
+            </a>
+          </div>
+
+        </div>
+      </article>
+    </main>
+
+    <footer class="bg-dark text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-8">
+          <div class="col-span-2 lg:col-span-1">
+            <p class="text-gray-400">
+              Construyendo los hogares del futuro, hoy. Viviendas prefabricadas de alta calidad en Bogotá y Cundinamarca.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Zonas de Cobertura</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/pages/chia.html" class="hover:text-primary">Casas en Chía</a></li>
+              <li><a href="/pages/cajica.html" class="hover:text-primary">Casas en Cajicá</a></li>
+              <li><a href="/pages/mosquera.html" class="hover:text-primary">Casas en Mosquera</a></li>
+              <li><a href="/pages/zipaquira.html" class="hover:text-primary">Casas en Zipaquirá</a></li>
+              <li><a href="/pages/sopo.html" class="hover:text-primary">Casas en Sopó</a></li>
+              <li><a href="/pages/la-vega.html" class="hover:text-primary">Casas en La Vega</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Modelos Populares</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/modelos.html" class="hover:text-primary">Casas Campestres</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Cabañas Modernas</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Diseños de Dos Pisos</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Viviendas Compactas</a></li>
+              <li><a href="/modelos.html" class="hover:text-primary">Bodegas y Almacenes</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Enlaces de Interés</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="/ventajas.html" class="hover:text-primary">Ventajas y Beneficios</a></li>
+              <li><a href="/faq.html" class="hover:text-primary">Preguntas Frecuentes</a></li>
+              <li><a href="/blog.html" class="hover:text-primary">Blog de Construcción</a></li>
+              <li><a href="/nosotros.html" class="hover:text-primary">Sobre Nosotros</a></li>
+              <li><a href="/contacto.html" class="hover:text-primary">Contacto y Cotizaciones</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Contáctanos</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><i class="fas fa-map-marker-alt fa-fw mr-2"></i>Cl. 147 #101-56, Local 64, Bogotá</li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>314 289 1018</li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>316 577 1582</li>
+              <li><i class="fab fa-whatsapp fa-fw mr-2"></i><a href="https://wa.me/573142891018" target="_blank" class="hover:text-primary">Enviar Mensaje</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center text-center">
+          <p class="text-sm text-gray-500 mb-4 md:mb-0">
+            &copy; 2025 CONCASAYA. Todos los derechos reservados. Sitio web diseñado para la construcción de casas prefabricadas en Cundinamarca.
+          </p>
+          <div class="flex justify-center space-x-6">
+            <a href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-tiktok fa-2x"></i></a>
+            <a href="https://www.instagram.com/kaprecolcasasprefab" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-instagram fa-2x"></i></a>
+            <a href="https://www.facebook.com/Kaprecol" target="_blank" class="text-gray-400 hover:text-primary transition duration-300"><i class="fab fa-facebook fa-2x"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-center">
+      <div id="fab-options" class="hidden flex-col items-center space-y-3 mb-3">
+        <a href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1" target="_blank" aria-label="TikTok" class="w-12 h-12 rounded-full flex items-center justify-center bg-black hover:bg-gray-800 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-tiktok text-2xl"></i>
+        </a>
+        <a href="https://www.instagram.com/kaprecolcasasprefab" target="_blank" aria-label="Instagram" class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-instagram text-2xl"></i>
+        </a>
+        <a href="https://www.facebook.com/Kaprecol" target="_blank" aria-label="Facebook" class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-facebook-f text-2xl"></i>
+        </a>
+        <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20le%C3%AD%20su%20art%C3%ADculo%20sobre%20el%20sistema%20EPS%20y%20me%20gustar%C3%ADa%20conocer%20m%C3%A1s." target="_blank" aria-label="WhatsApp" class="w-12 h-12 rounded-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1">
+          <i class="fab fa-whatsapp text-2xl"></i>
+        </a>
+      </div>
+      <button id="fab-main-button" class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg focus:outline-none transition-transform duration-300 transform hover:scale-110">
+        <i id="fab-open-icon" class="fas fa-comment-dots text-2xl"></i>
+        <i id="fab-close-icon" class="fas fa-times text-2xl hidden"></i>
+      </button>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+      }
+
+      const mobileDropdownBtn = document.getElementById("mobile-dropdown-btn");
+      const mobileDropdownMenu = document.getElementById("mobile-dropdown-menu");
+      if (mobileDropdownBtn && mobileDropdownMenu) {
+        mobileDropdownBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            mobileDropdownMenu.classList.toggle('hidden');
+        });
+      }
+
+      const fabMainButton = document.getElementById("fab-main-button");
+      const fabOptions = document.getElementById("fab-options");
+      const fabOpenIcon = document.getElementById("fab-open-icon");
+      const fabCloseIcon = document.getElementById("fab-close-icon");
+
+      if (fabMainButton) {
+        fabMainButton.addEventListener("click", () => {
+          fabOptions.classList.toggle("hidden");
+          fabOptions.classList.toggle("flex");
+          fabOpenIcon.classList.toggle("hidden");
+          fabCloseIcon.classList.toggle("hidden");
+        });
+      }
+    </script>
+  </body>
+</html>
