@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family/Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -49,35 +49,6 @@
     <style>
       body {
         font-family: "Poppins", sans-serif;
-      }
-
-      .parallax-bg {
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-      }
-
-      .parallax-bg::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        transform: translateZ(-1px) scale(1.1);
-        transform-style: preserve-3d;
-      }
-
-      #parallax-cta::before {
-        background-image: url("assets/images/casco.webp");
-      }
-
-      #parallax-cta-contact::before {
-        background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
       }
       .dropdown:hover .dropdown-menu {
         display: block;
@@ -382,9 +353,7 @@
     <main class="pt-20">
       <section
         class="relative py-24 bg-cover bg-center"
-        style="
-          background-image: url('assets/images/casa2.webp');
-        "
+        style="background-image: url('assets/images/casa2.webp')"
       >
         <div class="absolute inset-0 bg-secondary opacity-75"></div>
         <div
@@ -410,81 +379,81 @@
               data-aos-delay="100"
             >
               <img
-                src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Casa campestre prefabricada de un piso"
+                src="assets/images/casa2.webp"
+                alt="Cabaña rústica y acogedora"
                 class="w-full h-56 object-cover"
               />
               <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Casas Campestres</h3>
+                <h3 class="text-xl font-semibold mb-2">Cabañas</h3>
                 <p class="text-gray-700 mb-4 flex-grow">
-                  Diseños que se integran con el paisaje, ideales para lotes
-                  amplios. Recomendadas para familias, con distribuciones
-                  flexibles de 3 a 4 habitaciones.
+                  Diseño rústico y acogedor, ideal para entornos naturales.
+                  Construidas en madera o materiales combinados, ofrecen calidez
+                  y confort para el descanso.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Cabaña Rústica"
+                  data-img="assets/images/casa2.webp"
+                  data-specs="Areá Sugerida: 100m²|Habitaciones: 4|Extras: Balcón Panorámico|Niveles: 2"
+                  data-desc="Un refugio de calidez y confort. Este diseño de dos pisos maximiza las vistas con un balcón panorámico. Ideal como vivienda de descanso o para proyectos turísticos en zonas como Tunja o Boyacá."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img
+                src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa prefabricada en L con patio central"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Casas en L</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Diseño moderno que optimiza el espacio creando áreas privadas
+                  y un patio central. Favorecen la ventilación cruzada y la
+                  iluminación natural.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Casa en L"
+                  data-img="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 160m²|Habitaciones: 3|Baños: 3|Característica: Patio Central"
+                  data-desc="La forma en L permite una separación natural entre las áreas sociales y privadas, creando un patio central perfecto para una piscina o jardín. Este diseño es ideal para la vida familiar, ofreciendo privacidad y espacios luminosos."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <img
+                src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa campestre con terraza y jardín"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Casa Campestre</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Diseñadas para entornos rurales, con terrazas amplias y
+                  conexión con la naturaleza. Combinan estética tradicional y
+                  materiales modernos.
                 </p>
                 <button
                   class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
                   data-model="Casa Campestre"
                   data-img="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 120m²|Habitaciones: 3|Baños: 2|Niveles: 1"
-                  data-desc="Este modelo está pensado para la vida en el campo. Sus amplios ventanales y corredores conectan el interior con la naturaleza. La distribución de un solo nivel ofrece comodidad y accesibilidad. Es totalmente personalizable en acabados y distribución."
-                >
-                  Ver Detalles
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Casa prefabricada moderna de dos pisos"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Diseños de Dos Pisos</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
-                  Maximiza el espacio de tu lote y separa las áreas sociales de
-                  las privadas. Perfectas para familias que buscan mayor
-                  amplitud y vistas panorámicas.
-                </p>
-                <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
-                  data-model="Diseño de Dos Pisos"
-                  data-img="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 150m²|Habitaciones: 4|Baños: 3|Niveles: 2"
-                  data-desc="Nuestros diseños dúplex ofrecen una solución inteligente para lotes compactos sin sacrificar espacio. La primera planta cuenta con una zona social integrada y la segunda alberga las habitaciones para mayor privacidad. Ideal para vistas elevadas."
-                >
-                  Ver Detalles
-                </button>
-              </div>
-            </div>
-
-            <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.pexels.com/photos/2440471/pexels-photo-2440471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Cabaña prefabricada moderna para turismo"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Cabañas Modernas</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
-                  La solución perfecta para proyectos turísticos, glamping o una
-                  escapada personal. Diseños acogedores, eficientes y de rápida
-                  instalación.
-                </p>
-                <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
-                  data-model="Cabaña Moderna"
-                  data-img="https://images.pexels.com/photos/2440471/pexels-photo-2440471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 60m²|Habitaciones: 2|Baños: 1|Niveles: 1"
-                  data-desc="Optimizadas para el confort en espacios compactos. Estas cabañas son perfectas para inversión en el sector turístico o como un refugio privado. Su construcción rápida minimiza el impacto en el entorno natural."
+                  data-specs="Estilo: Moderno y funcional|Ideal para: Terrenos con piscina|Características: Elegancia y conexión exterior"
+                  data-desc="Nuestras casas campestres son la combinación perfecta de elegancia y funcionalidad. Diseñadas para maximizar el disfrute del entorno, son ideales para fincas de recreo o como vivienda principal fuera de la ciudad."
                 >
                   Ver Detalles
                 </button>
@@ -497,23 +466,25 @@
               data-aos-delay="100"
             >
               <img
-                src="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Casa prefabricada de estilo contemporáneo"
+                src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa de diseño cúbico minimalista"
                 class="w-full h-56 object-cover"
               />
               <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Estilo Contemporáneo</h3>
+                <h3 class="text-xl font-semibold mb-2">
+                  Diseño Cúbico / Moderno
+                </h3>
                 <p class="text-gray-700 mb-4 flex-grow">
-                  Líneas limpias, ventanales amplios y una distribución
-                  inteligente que prioriza la luz natural y la funcionalidad
-                  para un estilo de vida moderno.
+                  Estilo minimalista con líneas rectas, grandes ventanales y
+                  acabados modernos. Optimiza el espacio y la entrada de luz
+                  natural.
                 </p>
                 <button
                   class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
-                  data-model="Estilo Contemporáneo"
-                  data-img="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 85m²|Habitaciones: 3|Baños: 2|Niveles: 1"
-                  data-desc="Este diseño se enfoca en la simplicidad y la elegancia. Los espacios abiertos crean una sensación de amplitud, mientras que los acabados de alta calidad aseguran un hogar sofisticado y duradero. Ideal para familias modernas."
+                  data-model="Diseño Cúbico"
+                  data-img="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Estilo: Minimalista|Ventanas: Grandes|Acabados: Modernos|Concepto: Funcionalidad"
+                  data-desc="Para los amantes del diseño contemporáneo, el estilo cúbico ofrece una estética limpia y funcional. Sus grandes ventanales inundan los interiores de luz, creando espacios amplios y visualmente conectados con el exterior."
                 >
                   Ver Detalles
                 </button>
@@ -524,25 +495,112 @@
               class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
               data-aos="fade-up"
               data-aos-delay="200"
+            >
+              <img
+                src="https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Caseta prefabricada para oficina"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Casetas y Oficinas</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Construcciones pequeñas, económicas y versátiles para
+                  oficinas, puntos de vigilancia o almacenamiento. Prácticas y
+                  de rápida instalación.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Caseta Prefabricada"
+                  data-img="https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: Desde 15m²|Uso: Oficina, Vigilancia, Almacenamiento|Instalación: Rápida y sencilla"
+                  data-desc="Ofrecemos soluciones modulares para necesidades comerciales. Desde pequeñas casetas de vigilancia hasta oficinas completas de 230m², nuestras construcciones son una alternativa rápida, económica y eficiente."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="300"
             >
               <img
                 src="https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Bodega o taller prefabricado"
+                alt="Bodega prefabricada industrial"
                 class="w-full h-56 object-cover"
               />
               <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Bodegas y Talleres</h3>
+                <h3 class="text-xl font-semibold mb-2">Bodegas</h3>
                 <p class="text-gray-700 mb-4 flex-grow">
-                  Soluciones rápidas y seguras para almacenaje, talleres o
-                  espacios de trabajo. Estructuras robustas y adaptables a las
-                  necesidades de tu finca o empresa.
+                  Espacios amplios y resistentes diseñados para almacenamiento
+                  industrial, agrícola o comercial, con techos altos y
+                  estructuras metálicas.
                 </p>
                 <button
                   class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
-                  data-model="Bodega y Taller"
+                  data-model="Bodega Prefabricada"
                   data-img="https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 100m²|Espacio: Diáfano|Altura: Personalizable|Uso: Comercial / Agrícola"
-                  data-desc="Construimos espacios funcionales y resistentes para uso comercial, agrícola o industrial. Nuestras bodegas prefabricadas se entregan en tiempo récord y pueden ser personalizadas en altura y accesos según tus requerimientos."
+                  data-specs="Área Sugerida: 200m²+|Estructura: Metálica|Techos: Altos|Uso: Industrial, Agrícola"
+                  data-desc="Nuestras bodegas modulares prefabricadas están diseñadas para soportar grandes cargas y ofrecer la máxima durabilidad. Son la solución ideal para el sector agrícola e industrial, garantizando un montaje rápido y un espacio de trabajo seguro."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <img
+                src="https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa prefabricada de estilo colonial"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Estilo Colonial</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Combina tradición y elegancia con techos inclinados, arcos y
+                  detalles decorativos. Una estética clásica con eficiencia
+                  moderna.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Casa Estilo Colonial"
+                  data-img="https://images.pexels.com/photos/298842/pexels-photo-298842.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Niveles: 1 o 2|Estilo: Clásico con arcos|Techos: Inclinados|Ideal para: Boyacá y Cundinamarca"
+                  data-desc="Revive la elegancia de la arquitectura tradicional con las ventajas de la construcción moderna. Este diseño es perfecto para quienes buscan una vivienda con carácter y encanto, ideal para el entorno de los pueblos patrimonio de Colombia."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img
+                src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Aula de colegio prefabricada y modular"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Aulas para Colegio</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Solución modular rápida y funcional para instituciones
+                  educativas. Cumplen con estándares de seguridad y comodidad, y
+                  son personalizables.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Aula Modular"
+                  data-img="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Uso: Educativo|Seguridad: Cumple normativas|Instalación: Rápida|Diseño: Personalizable"
+                  data-desc="Ofrecemos una solución eficiente para la expansión de instituciones educativas. Nuestras aulas modulares son seguras, cómodas y se instalan en una fracción del tiempo de la construcción tradicional, minimizando la interrupción de las actividades escolares."
                 >
                   Ver Detalles
                 </button>
@@ -555,136 +613,27 @@
               data-aos-delay="300"
             >
               <img
-                src="https://images.pexels.com/photos/2079449/pexels-photo-2079449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Vivienda prefabricada compacta y minimalista"
+                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Tiny house moderna y funcional"
                 class="w-full h-56 object-cover"
               />
               <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Diseños Compactos</h3>
+                <h3 class="text-xl font-semibold mb-2">Tiny House</h3>
                 <p class="text-gray-700 mb-4 flex-grow">
-                  Perfectos como primera vivienda, casa de huéspedes o para
-                  lotes pequeños. Un diseño minimalista que no sacrifica el
-                  estilo ni la comodidad.
+                  Casas pequeñas y compactas diseñadas para maximizar el uso del
+                  espacio. Ideales para un estilo de vida minimalista o
+                  viviendas temporales.
                 </p>
                 <button
                   class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
-                  data-model="Diseño Compacto"
-                  data-img="https://images.pexels.com/photos/2079449/pexels-photo-2079449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                  data-specs="Área Sugerida: 50m²|Habitaciones: 1|Baños: 1|Niveles: 1"
-                  data-desc="La prueba de que el buen diseño no necesita grandes espacios. Esta solución es ideal para quienes buscan eficiencia y un costo asequible. Cada rincón está diseñado para ser funcional, creando un hogar acogedor y completo."
+                  data-model="Tiny House"
+                  data-img="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: Menos de 40m²|Concepto: Minimalista|Uso: Vivienda o Recreo|Ideal para: Cundinamarca"
+                  data-desc="Vive más con menos. Nuestras Tiny Houses son un testimonio de diseño inteligente, donde cada centímetro cuenta. Son una opción sostenible, económica y perfecta para quienes valoran la simplicidad y la libertad."
                 >
                   Ver Detalles
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="gallery-preview" class="py-20">
-        <div class="container mx-auto px-6">
-          <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
-            Proyectos que Inspiran
-          </h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
-            <div
-              class="col-span-2 row-span-2 rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-            >
-              <img
-                src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Cocina moderna en casa prefabricada"
-              />
-            </div>
-            <div
-              class="rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <img
-                src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Fachada de casa prefabricada"
-              />
-            </div>
-            <div
-              class="rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Interior de sala en casa prefabricada"
-              />
-            </div>
-            <div
-              class="col-span-2 rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Exterior con piscina de casa prefabricada"
-              />
-            </div>
-          </div>
-          <div class="text-center mt-12" data-aos="fade-up">
-            <a
-              href="/galeria.html"
-              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
-              >Ver Galería Completa</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="parallax-cta-contact"
-        class="relative overflow-hidden py-24 parallax-bg"
-      >
-        <div
-          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
-        ></div>
-
-        <div class="container mx-auto px-6 relative z-20">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div data-aos="fade-right">
-              <img
-                src="assets/images/herocasa.webp"
-                class="rounded-lg shadow-xl w-full h-full object-cover"
-                alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
-              />
-            </div>
-            <div data-aos="fade-right" class="text-white">
-              <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
-              <p class="text-gray-200 mb-6">
-                Desde la idea inicial hasta la entrega de llaves, nuestro equipo
-                de expertos te acompaña en cada etapa del proceso. Te ofrecemos
-                asesoría completa para que tomes la mejor decisión.
-              </p>
-              <ul class="space-y-3 mb-8">
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Asesoría 100% Gratuita y Personalizada
-                </li>
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Adaptamos Diseños a tu Gusto y Presupuesto
-                </li>
-                <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Recibe una Cotización Clara y Detallada
-                </li>
-              </ul>
-              <a
-                href="/contacto.html"
-                class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
-              >
-                Hablar con un Asesor
-              </a>
             </div>
           </div>
         </div>
@@ -867,7 +816,7 @@
               ><i class="fab fa-instagram fa-2x"></i
             ></a>
             <a
-              href="https://www.facebook.com/kprecol"
+              href="https://www.facebook.com/Kaprecol"
               target="_blank"
               class="text-gray-400 hover:text-primary transition duration-300"
               ><i class="fab fa-facebook fa-2x"></i
@@ -933,19 +882,28 @@
             const specsArray = specsString.split("|");
             const icons = {
               "Área Sugerida": "fa-ruler-combined",
+              "Modelo de Referencia": "fa-ruler-combined",
               Habitaciones: "fa-bed",
               Baños: "fa-bath",
               Niveles: "fa-layer-group",
-              Espacio: "fa-warehouse",
-              Altura: "fa-arrows-alt-v",
+              Extras: "fa-star",
+              Característica: "fa-check-circle",
+              Estilo: "fa-paint-brush",
+              "Ideal para": "fa-map-marker-alt",
+              Concepto: "fa-lightbulb",
               Uso: "fa-tag",
+              Instalación: "fa-shipping-fast",
+              Estructura: "fa-cogs",
+              Techos: "fa-home",
+              Seguridad: "fa-shield-alt",
             };
 
             specsArray.forEach((spec) => {
               const [key, value] = spec.split(":");
-              const iconClass = icons[key.trim()] || "fa-check-circle";
+              const keyTrimmed = key.trim();
+              const iconClass = icons[keyTrimmed] || "fa-check";
               const p = document.createElement("p");
-              p.innerHTML = `<i class="fas ${iconClass} fa-fw mr-2 text-primary"></i><strong>${key}:</strong> ${value}`;
+              p.innerHTML = `<i class="fas ${iconClass} fa-fw mr-2 text-primary"></i><strong>${keyTrimmed}:</strong> ${value.trim()}`;
               modalSpecs.appendChild(p);
             });
 
