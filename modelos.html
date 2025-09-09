@@ -6,12 +6,16 @@
     <title>Modelos de Casas Prefabricadas | CONCASAYA</title>
     <meta
       name="description"
-      content="Explora nuestro catálogo de casas prefabricadas. Diseños modernos, campestres y minimalistas que se adaptan a tus necesidades y presupuesto."
+      content="Explora nuestro catálogo de casas prefabricadas: diseños campestres, cabañas modernas, bodegas y más. Soluciones personalizables para tu proyecto en Colombia."
     />
     <meta
       name="keywords"
-      content="catálogo casas prefabricadas, modelos de casas, planos de casas, CONCASAYA"
+      content="catálogo casas prefabricadas, modelos de casas, planos de casas, diseños de cabañas, bodegas prefabricadas, CONCASAYA"
     />
+
+    <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
+    <meta name="theme-color" content="#0077b6" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,24 +25,135 @@
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
-
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0077b6",
+              secondary: "#0d1b2a",
+              dark: "#2D3748",
+              light: "#F8FAFC",
+            },
+          },
+        },
+      };
+    </script>
 
     <style>
       body {
         font-family: "Poppins", sans-serif;
       }
+
+      .parallax-bg {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+      }
+
+      .parallax-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        transform: translateZ(-1px) scale(1.1);
+        transform-style: preserve-3d;
+      }
+
+      #parallax-cta::before {
+        background-image: url("assets/images/casco.webp");
+      }
+
+      #parallax-cta-contact::before {
+        background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+      }
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      }
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        animation: fadeIn 0.3s;
+      }
+      .modal-content {
+        background-color: #fff;
+        margin: auto;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        width: 90%;
+        max-width: 800px;
+        position: relative;
+        animation: slideIn 0.3s;
+      }
+      .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        color: #aaa;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close-btn:hover,
+      .close-btn:focus {
+        color: #333;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes slideIn {
+        from {
+          transform: translateY(-50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body class="bg-white text-dark">
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
         <a href="/" class="flex items-center space-x-3">
           <img
@@ -50,97 +165,238 @@
         <div class="hidden md:flex space-x-6 items-center">
           <a
             href="/"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Inicio</a
           >
           <a
             href="/modelos.html"
-            class="text-teal-500 font-bold transition duration-300"
+            class="text-primary font-bold transition duration-300"
             >Modelos</a
           >
+          <div class="relative dropdown">
+            <button
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+            >
+              <span>Municipios</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul
+              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+            >
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/chia.html"
+                  >Chía</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/cajica.html"
+                  >Cajicá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/mosquera.html"
+                  >Mosquera</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/zipaquira.html"
+                  >Zipaquirá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/boyaca.html"
+                  >Boyacá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/sopo.html"
+                  >Sopó</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/funza.html"
+                  >Funza</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/la-vega.html"
+                  >La Vega</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/madrid.html"
+                  >Madrid</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/santander.html"
+                  >Santander</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/tocancipa.html"
+                  >Tocancipá</a
+                >
+              </li>
+            </ul>
+          </div>
           <a
             href="/ventajas.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Ventajas</a
           >
           <a
-            href="/galeria.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
-            >Galería</a
-          >
-          <a
             href="/blog.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Blog</a
           >
           <a
-            href="/faq.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
-            >Preguntas Frecuentes</a
-          >
-          <a
             href="/nosotros.html"
-            class="text-gray-600 hover:text-teal-500 transition duration-300"
+            class="text-dark hover:text-primary transition duration-300"
             >Sobre Nosotros</a
           >
           <a
             href="/contacto.html"
-            class="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300"
             >Contacto</a
           >
         </div>
         <div class="md:hidden">
           <button
             id="menu-btn"
-            class="text-gray-600 hover:text-teal-500 focus:outline-none"
+            class="text-dark hover:text-primary focus:outline-none"
           >
             <i class="fas fa-bars fa-lg"></i>
           </button>
         </div>
       </nav>
-      <div id="mobile-menu" class="hidden md:hidden">
-        <a href="/" class="block py-2 px-4 text-sm hover:bg-gray-100">Inicio</a>
+      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
         <a
           href="/modelos.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100 bg-gray-100"
+          class="block py-2 px-4 text-sm bg-light text-primary font-semibold"
           >Modelos</a
         >
-        <a
-          href="/ventajas.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
+        <div class="relative">
+          <button
+            class="w-full text-left block py-2 px-4 text-sm hover:bg-light"
+            id="mobile-dropdown-btn"
+          >
+            Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
+          </button>
+          <div id="mobile-dropdown-menu" class="hidden pl-4">
+            <a
+              href="/pages/chia.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Chía</a
+            >
+            <a
+              href="/pages/cajica.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Cajicá</a
+            >
+            <a
+              href="/pages/mosquera.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Mosquera</a
+            >
+            <a
+              href="/pages/zipaquira.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Zipaquirá</a
+            >
+            <a
+              href="/pages/boyaca.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Boyacá</a
+            >
+            <a
+              href="/pages/sopo.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Sopó</a
+            >
+            <a
+              href="/pages/funza.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Funza</a
+            >
+            <a
+              href="/pages/la-vega.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >La Vega</a
+            >
+            <a
+              href="/pages/madrid.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Madrid</a
+            >
+            <a
+              href="/pages/santander.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Santander</a
+            >
+            <a
+              href="/pages/tocancipa.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Tocancipá</a
+            >
+          </div>
+        </div>
+        <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Ventajas</a
         >
-        <a
-          href="/galeria.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Galería</a
-        >
-        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-gray-100"
+        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Blog</a
         >
-        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-gray-100"
-          >Preguntas Frecuentes</a
-        >
-        <a
-          href="/nosotros.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
+        <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Sobre Nosotros</a
         >
-        <a
-          href="/contacto.html"
-          class="block py-2 px-4 text-sm hover:bg-gray-100"
+        <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Contacto</a
         >
       </div>
     </header>
 
     <main class="pt-20">
-      <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-          <h1 class="text-4xl font-bold text-gray-800">Nuestros Modelos</h1>
-          <p class="text-lg text-gray-600 mt-2">
-            Encuentra el diseño perfecto que se ajuste a tu estilo de vida y
-            presupuesto.
+      <section
+        class="relative py-24 bg-cover bg-center"
+        style="
+          background-image: url('assets/images/casa2.webp');
+        "
+      >
+        <div class="absolute inset-0 bg-secondary opacity-75"></div>
+        <div
+          class="container relative z-10 mx-auto px-6 text-center"
+          data-aos="fade-up"
+        >
+          <h1 class="text-4xl font-bold text-white">
+            Nuestro Catálogo de Diseños
+          </h1>
+          <p class="text-lg text-gray-200 mt-2 max-w-3xl mx-auto">
+            Explora nuestra variedad de modelos. Cada diseño es un punto de
+            partida que podemos adaptar a tus necesidades, gustos y presupuesto.
           </p>
         </div>
       </section>
@@ -149,184 +405,570 @@
         <div class="container mx-auto px-6">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
               data-aos="fade-up"
               data-aos-delay="100"
             >
               <img
-                src="https://images.pexels.com/photos/1454806/pexels-photo-1454806.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Modelo de casa Esmeralda"
+                src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa campestre prefabricada de un piso"
                 class="w-full h-56 object-cover"
               />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Modelo Esmeralda</h3>
-                <div class="flex items-center text-gray-600 mb-4 space-x-4">
-                  <span><i class="fas fa-ruler-combined mr-1"></i> 95 m²</span>
-                  <span><i class="fas fa-bed mr-1"></i> 3</span>
-                  <span><i class="fas fa-bath mr-1"></i> 2</span>
-                </div>
-                <p class="text-gray-700 mb-4">
-                  Diseño familiar con excelente distribución de espacios y
-                  acabados premium.
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Casas Campestres</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Diseños que se integran con el paisaje, ideales para lotes
+                  amplios. Recomendadas para familias, con distribuciones
+                  flexibles de 3 a 4 habitaciones.
                 </p>
-                <p class="text-2xl font-bold text-teal-600 mb-4">
-                  Desde $150.000.000
-                </p>
-                <a
-                  href="#"
-                  class="block text-center w-full bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
-                  >Ver Detalles</a
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Casa Campestre"
+                  data-img="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 120m²|Habitaciones: 3|Baños: 2|Niveles: 1"
+                  data-desc="Este modelo está pensado para la vida en el campo. Sus amplios ventanales y corredores conectan el interior con la naturaleza. La distribución de un solo nivel ofrece comodidad y accesibilidad. Es totalmente personalizable en acabados y distribución."
                 >
+                  Ver Detalles
+                </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
               data-aos="fade-up"
               data-aos-delay="200"
             >
               <img
                 src="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Modelo de casa Zafiro"
+                alt="Casa prefabricada moderna de dos pisos"
                 class="w-full h-56 object-cover"
               />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Modelo Zafiro</h3>
-                <div class="flex items-center text-gray-600 mb-4 space-x-4">
-                  <span><i class="fas fa-ruler-combined mr-1"></i> 125 m²</span>
-                  <span><i class="fas fa-bed mr-1"></i> 4</span>
-                  <span><i class="fas fa-bath mr-1"></i> 3</span>
-                </div>
-                <p class="text-gray-700 mb-4">
-                  Amplitud y confort en dos niveles, ideal para familias grandes
-                  y lotes espaciosos.
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Diseños de Dos Pisos</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Maximiza el espacio de tu lote y separa las áreas sociales de
+                  las privadas. Perfectas para familias que buscan mayor
+                  amplitud y vistas panorámicas.
                 </p>
-                <p class="text-2xl font-bold text-teal-600 mb-4">
-                  Desde $195.000.000
-                </p>
-                <a
-                  href="#"
-                  class="block text-center w-full bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
-                  >Ver Detalles</a
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Diseño de Dos Pisos"
+                  data-img="https://images.pexels.com/photos/2089696/pexels-photo-2089696.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 150m²|Habitaciones: 4|Baños: 3|Niveles: 2"
+                  data-desc="Nuestros diseños dúplex ofrecen una solución inteligente para lotes compactos sin sacrificar espacio. La primera planta cuenta con una zona social integrada y la segunda alberga las habitaciones para mayor privacidad. Ideal para vistas elevadas."
                 >
+                  Ver Detalles
+                </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
               data-aos="fade-up"
               data-aos-delay="300"
             >
               <img
-                src="https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Modelo de casa Amatista"
+                src="https://images.pexels.com/photos/2440471/pexels-photo-2440471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Cabaña prefabricada moderna para turismo"
                 class="w-full h-56 object-cover"
               />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Modelo Amatista</h3>
-                <div class="flex items-center text-gray-600 mb-4 space-x-4">
-                  <span><i class="fas fa-ruler-combined mr-1"></i> 70 m²</span>
-                  <span><i class="fas fa-bed mr-1"></i> 2</span>
-                  <span><i class="fas fa-bath mr-1"></i> 1</span>
-                </div>
-                <p class="text-gray-700 mb-4">
-                  Un diseño compacto y moderno, perfecto para parejas o familias
-                  pequeñas.
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Cabañas Modernas</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  La solución perfecta para proyectos turísticos, glamping o una
+                  escapada personal. Diseños acogedores, eficientes y de rápida
+                  instalación.
                 </p>
-                <p class="text-2xl font-bold text-teal-600 mb-4">
-                  Desde $110.000.000
-                </p>
-                <a
-                  href="#"
-                  class="block text-center w-full bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
-                  >Ver Detalles</a
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Cabaña Moderna"
+                  data-img="https://images.pexels.com/photos/2440471/pexels-photo-2440471.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 60m²|Habitaciones: 2|Baños: 1|Niveles: 1"
+                  data-desc="Optimizadas para el confort en espacios compactos. Estas cabañas son perfectas para inversión en el sector turístico o como un refugio privado. Su construcción rápida minimiza el impacto en el entorno natural."
                 >
+                  Ver Detalles
+                </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
               data-aos="fade-up"
               data-aos-delay="100"
             >
               <img
-                src="https://images.pexels.com/photos/1000653/pexels-photo-1000653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Modelo de casa Ópalo"
+                src="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Casa prefabricada de estilo contemporáneo"
                 class="w-full h-56 object-cover"
               />
-              <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">Modelo Ópalo</h3>
-                <div class="flex items-center text-gray-600 mb-4 space-x-4">
-                  <span><i class="fas fa-ruler-combined mr-1"></i> 85 m²</span>
-                  <span><i class="fas fa-bed mr-1"></i> 3</span>
-                  <span><i class="fas fa-bath mr-1"></i> 2</span>
-                </div>
-                <p class="text-gray-700 mb-4">
-                  Estilo campestre con corredores amplios, integrando el
-                  interior con la naturaleza.
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Estilo Contemporáneo</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Líneas limpias, ventanales amplios y una distribución
+                  inteligente que prioriza la luz natural y la funcionalidad
+                  para un estilo de vida moderno.
                 </p>
-                <p class="text-2xl font-bold text-teal-600 mb-4">
-                  Desde $140.000.000
-                </p>
-                <a
-                  href="#"
-                  class="block text-center w-full bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 transition duration-300"
-                  >Ver Detalles</a
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Estilo Contemporáneo"
+                  data-img="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 85m²|Habitaciones: 3|Baños: 2|Niveles: 1"
+                  data-desc="Este diseño se enfoca en la simplicidad y la elegancia. Los espacios abiertos crean una sensación de amplitud, mientras que los acabados de alta calidad aseguran un hogar sofisticado y duradero. Ideal para familias modernas."
                 >
+                  Ver Detalles
+                </button>
               </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img
+                src="https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Bodega o taller prefabricado"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Bodegas y Talleres</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Soluciones rápidas y seguras para almacenaje, talleres o
+                  espacios de trabajo. Estructuras robustas y adaptables a las
+                  necesidades de tu finca o empresa.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Bodega y Taller"
+                  data-img="https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 100m²|Espacio: Diáfano|Altura: Personalizable|Uso: Comercial / Agrícola"
+                  data-desc="Construimos espacios funcionales y resistentes para uso comercial, agrícola o industrial. Nuestras bodegas prefabricadas se entregan en tiempo récord y pueden ser personalizadas en altura y accesos según tus requerimientos."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <img
+                src="https://images.pexels.com/photos/2079449/pexels-photo-2079449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                alt="Vivienda prefabricada compacta y minimalista"
+                class="w-full h-56 object-cover"
+              />
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-semibold mb-2">Diseños Compactos</h3>
+                <p class="text-gray-700 mb-4 flex-grow">
+                  Perfectos como primera vivienda, casa de huéspedes o para
+                  lotes pequeños. Un diseño minimalista que no sacrifica el
+                  estilo ni la comodidad.
+                </p>
+                <button
+                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  data-model="Diseño Compacto"
+                  data-img="https://images.pexels.com/photos/2079449/pexels-photo-2079449.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                  data-specs="Área Sugerida: 50m²|Habitaciones: 1|Baños: 1|Niveles: 1"
+                  data-desc="La prueba de que el buen diseño no necesita grandes espacios. Esta solución es ideal para quienes buscan eficiencia y un costo asequible. Cada rincón está diseñado para ser funcional, creando un hogar acogedor y completo."
+                >
+                  Ver Detalles
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery-preview" class="py-20">
+        <div class="container mx-auto px-6">
+          <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
+            Proyectos que Inspiran
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
+            <div
+              class="col-span-2 row-span-2 rounded-lg overflow-hidden"
+              data-aos="zoom-in"
+            >
+              <img
+                src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                alt="Cocina moderna en casa prefabricada"
+              />
+            </div>
+            <div
+              class="rounded-lg overflow-hidden"
+              data-aos="zoom-in"
+              data-aos-delay="100"
+            >
+              <img
+                src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                alt="Fachada de casa prefabricada"
+              />
+            </div>
+            <div
+              class="rounded-lg overflow-hidden"
+              data-aos="zoom-in"
+              data-aos-delay="200"
+            >
+              <img
+                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                alt="Interior de sala en casa prefabricada"
+              />
+            </div>
+            <div
+              class="col-span-2 rounded-lg overflow-hidden"
+              data-aos="zoom-in"
+              data-aos-delay="300"
+            >
+              <img
+                src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                alt="Exterior con piscina de casa prefabricada"
+              />
+            </div>
+          </div>
+          <div class="text-center mt-12" data-aos="fade-up">
+            <a
+              href="/galeria.html"
+              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
+              >Ver Galería Completa</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="parallax-cta-contact"
+        class="relative overflow-hidden py-24 parallax-bg"
+      >
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-70 z-10"
+        ></div>
+
+        <div class="container mx-auto px-6 relative z-20">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div data-aos="fade-right">
+              <img
+                src="assets/images/herocasa.webp"
+                class="rounded-lg shadow-xl w-full h-full object-cover"
+                alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
+              />
+            </div>
+            <div data-aos="fade-right" class="text-white">
+              <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
+              <p class="text-gray-200 mb-6">
+                Desde la idea inicial hasta la entrega de llaves, nuestro equipo
+                de expertos te acompaña en cada etapa del proceso. Te ofrecemos
+                asesoría completa para que tomes la mejor decisión.
+              </p>
+              <ul class="space-y-3 mb-8">
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Asesoría 100% Gratuita y Personalizada
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Adaptamos Diseños a tu Gusto y Presupuesto
+                </li>
+                <li class="flex items-center">
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
+                  >Recibe una Cotización Clara y Detallada
+                </li>
+              </ul>
+              <a
+                href="/contacto.html"
+                class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+              >
+                Hablar con un Asesor
+              </a>
             </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="bg-gray-800 text-white py-10">
-      <div class="container mx-auto px-6 text-center">
-        <div class="flex justify-center space-x-6 mb-6">
-          <a
-            href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-tiktok fa-2x"></i
-          ></a>
-          <a
-            href="https://www.instagram.com/kaprecolcasasprefab"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-instagram fa-2x"></i
-          ></a>
-          <a
-            href="https://www.facebook.com/Kaprecol"
-            target="_blank"
-            class="hover:text-teal-400 transition duration-300"
-            ><i class="fab fa-facebook fa-2x"></i
-          ></a>
+    <div id="modelModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <img
+              id="modal-image"
+              src=""
+              alt="Imagen detallada del modelo de casa prefabricada"
+              class="w-full h-auto rounded-lg shadow-md"
+            />
+          </div>
+          <div>
+            <h2 id="modal-title" class="text-3xl font-bold text-dark mb-4"></h2>
+            <div id="modal-specs" class="mb-4 text-gray-700 space-y-2"></div>
+            <p id="modal-desc" class="text-gray-600 mb-6"></p>
+            <a
+              id="modal-whatsapp-btn"
+              href="#"
+              target="_blank"
+              class="w-full block text-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-green-600 transition duration-300"
+            >
+              <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
+            </a>
+          </div>
         </div>
-        <div class="mb-4">
-          <p><i class="fas fa-phone mr-2"></i>3142891018 - 3165771582</p>
-          <p>
-            <i class="fas fa-map-marker-alt mr-2"></i>Cl. 147 #101-56, C.C.
-            Fiesta Suba, Local 64, Bogotá
+      </div>
+    </div>
+
+    <footer class="bg-dark text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mb-8">
+          <div class="col-span-2 lg:col-span-1">
+            <p class="text-gray-400">
+              Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
+              de alta calidad en Bogotá y Cundinamarca.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Zonas de Cobertura</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/pages/chia.html" class="hover:text-primary"
+                  >Casas en Chía</a
+                >
+              </li>
+              <li>
+                <a href="/pages/cajica.html" class="hover:text-primary"
+                  >Casas en Cajicá</a
+                >
+              </li>
+              <li>
+                <a href="/pages/mosquera.html" class="hover:text-primary"
+                  >Casas en Mosquera</a
+                >
+              </li>
+              <li>
+                <a href="/pages/zipaquira.html" class="hover:text-primary"
+                  >Casas en Zipaquirá</a
+                >
+              </li>
+              <li>
+                <a href="/pages/sopo.html" class="hover:text-primary"
+                  >Casas en Sopó</a
+                >
+              </li>
+              <li>
+                <a href="/pages/la-vega.html" class="hover:text-primary"
+                  >Casas en La Vega</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Modelos Populares</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/modelos.html" class="hover:text-primary"
+                  >Casas Campestres</a
+                >
+              </li>
+              <li>
+                <a href="/modelos.html" class="hover:text-primary"
+                  >Cabañas Modernas</a
+                >
+              </li>
+              <li>
+                <a href="/modelos.html" class="hover:text-primary"
+                  >Diseños de Dos Pisos</a
+                >
+              </li>
+              <li>
+                <a href="/modelos.html" class="hover:text-primary"
+                  >Viviendas Compactas</a
+                >
+              </li>
+              <li>
+                <a href="/modelos.html" class="hover:text-primary"
+                  >Bodegas y Almacenes</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Enlaces de Interés</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <a href="/ventajas.html" class="hover:text-primary"
+                  >Ventajas y Beneficios</a
+                >
+              </li>
+              <li>
+                <a href="/faq.html" class="hover:text-primary"
+                  >Preguntas Frecuentes</a
+                >
+              </li>
+              <li>
+                <a href="/blog.html" class="hover:text-primary"
+                  >Blog de Construcción</a
+                >
+              </li>
+              <li>
+                <a href="/nosotros.html" class="hover:text-primary"
+                  >Sobre Nosotros</a
+                >
+              </li>
+              <li>
+                <a href="/contacto.html" class="hover:text-primary"
+                  >Contacto y Cotizaciones</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold mb-4">Contáctanos</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li>
+                <i class="fas fa-map-marker-alt fa-fw mr-2"></i>Cl. 147 #101-56,
+                Local 64, Bogotá
+              </li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>314 289 1018</li>
+              <li><i class="fas fa-phone fa-fw mr-2"></i>316 577 1582</li>
+              <li>
+                <i class="fab fa-whatsapp fa-fw mr-2"></i
+                ><a
+                  href="https://wa.me/573142891018"
+                  target="_blank"
+                  class="hover:text-primary"
+                  >Enviar Mensaje</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center text-center"
+        >
+          <p class="text-sm text-gray-500 mb-4 md:mb-0">
+            &copy; 2025 CONCASAYA. Todos los derechos reservados. Sitio web
+            diseñado para la construcción de casas prefabricadas en
+            Cundinamarca.
           </p>
+          <div class="flex justify-center space-x-6">
+            <a
+              href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1"
+              target="_blank"
+              class="text-gray-400 hover:text-primary transition duration-300"
+              ><i class="fab fa-tiktok fa-2x"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/kaprecolcasasprefab"
+              target="_blank"
+              class="text-gray-400 hover:text-primary transition duration-300"
+              ><i class="fab fa-instagram fa-2x"></i
+            ></a>
+            <a
+              href="https://www.facebook.com/kprecol"
+              target="_blank"
+              class="text-gray-400 hover:text-primary transition duration-300"
+              ><i class="fab fa-facebook fa-2x"></i
+            ></a>
+          </div>
         </div>
-        <p class="text-sm text-gray-400">
-          &copy; 2025 CONCASAYA. Todos los derechos reservados.
-        </p>
       </div>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 800,
-        once: true,
-      });
+      document.addEventListener("DOMContentLoaded", () => {
+        AOS.init({
+          duration: 800,
+          once: true,
+        });
 
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
+        const menuBtn = document.getElementById("menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        if (menuBtn && mobileMenu) {
+          menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("hidden");
+          });
+        }
 
-      menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+        const mobileDropdownBtn = document.getElementById(
+          "mobile-dropdown-btn"
+        );
+        const mobileDropdownMenu = document.getElementById(
+          "mobile-dropdown-menu"
+        );
+        if (mobileDropdownBtn && mobileDropdownMenu) {
+          mobileDropdownBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            mobileDropdownMenu.classList.toggle("hidden");
+          });
+        }
+
+        const modal = document.getElementById("modelModal");
+        const openModalBtns = document.querySelectorAll(".open-modal-btn");
+        const closeModalBtn = document.querySelector(".close-btn");
+
+        const modalImage = document.getElementById("modal-image");
+        const modalTitle = document.getElementById("modal-title");
+        const modalSpecs = document.getElementById("modal-specs");
+        const modalDesc = document.getElementById("modal-desc");
+        const modalWhatsappBtn = document.getElementById("modal-whatsapp-btn");
+
+        const businessWhatsappNumber = "573142891018";
+
+        openModalBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const model = btn.dataset.model;
+            const imgSrc = btn.dataset.img;
+            const specsString = btn.dataset.specs;
+            const desc = btn.dataset.desc;
+
+            modalImage.src = imgSrc;
+            modalTitle.textContent = model;
+            modalDesc.textContent = desc;
+
+            modalSpecs.innerHTML = "";
+            const specsArray = specsString.split("|");
+            const icons = {
+              "Área Sugerida": "fa-ruler-combined",
+              Habitaciones: "fa-bed",
+              Baños: "fa-bath",
+              Niveles: "fa-layer-group",
+              Espacio: "fa-warehouse",
+              Altura: "fa-arrows-alt-v",
+              Uso: "fa-tag",
+            };
+
+            specsArray.forEach((spec) => {
+              const [key, value] = spec.split(":");
+              const iconClass = icons[key.trim()] || "fa-check-circle";
+              const p = document.createElement("p");
+              p.innerHTML = `<i class="fas ${iconClass} fa-fw mr-2 text-primary"></i><strong>${key}:</strong> ${value}`;
+              modalSpecs.appendChild(p);
+            });
+
+            const whatsappMessage = `Hola CONCASAYA, estoy interesado en el modelo *${model}*. Me gustaría recibir más información.`;
+            modalWhatsappBtn.href = `https://wa.me/${businessWhatsappNumber}?text=${encodeURIComponent(
+              whatsappMessage
+            )}`;
+
+            modal.style.display = "flex";
+          });
+        });
+
+        const closeModal = () => {
+          modal.style.display = "none";
+        };
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+        window.addEventListener("click", (event) => {
+          if (event.target == modal) {
+            closeModal();
+          }
+        });
       });
     </script>
   </body>
