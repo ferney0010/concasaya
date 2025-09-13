@@ -69,7 +69,7 @@
     </style>
   </head>
   <body class="bg-white text-dark">
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
@@ -81,9 +81,7 @@
           />
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a
-            href="/"
-            class="text-dark hover:text-primary transition duration-300"
+          <a href="/" class="text-primary font-bold transition duration-300"
             >Inicio</a
           >
           <a
@@ -91,6 +89,12 @@
             class="text-dark hover:text-primary transition duration-300"
             >Modelos</a
           >
+          <a
+            href="/ventajas.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >¿Que es EPS?</a
+          >
+
           <div class="relative dropdown">
             <button
               class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
@@ -125,65 +129,66 @@
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/zipaquira.html"
-                  >Zipaquirá</a
+                  href="pages/zipaquira.html"
+                  >zipaquirá</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/boyaca.html"
+                  href="pages/boyaca.html"
                   >Boyacá</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/sopo.html"
+                  href="pages/sopo.html"
                   >Sopó</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/funza.html"
+                  href="pages/funza.html"
                   >Funza</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/la-vega.html"
+                  href="pages/la-vega.html"
                   >La Vega</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/madrid.html"
+                  href="pages/madrid.html"
                   >Madrid</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:text-primary hover:bg-light"
-                  href="/pages/santander.html"
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/santander.html"
                   >Santander</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/tocancipa.html"
-                  >Tocancipá</a
+                  href="pages/tocancipa.html"
+                  >tocancipá</a
                 >
               </li>
             </ul>
           </div>
+
           <a
-            href="/ventajas.html"
-            class="text-primary font-bold transition duration-300"
-            >¿Que es EPS?</a
+            href="/galeria.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Galeria</a
           >
           <a
             href="/blog.html"
@@ -210,8 +215,11 @@
           </button>
         </div>
       </nav>
+      <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
+        <a href="/" class="block py-2 px-4 text-sm text-primary font-semibold"
+          >Inicio</a
+        >
         <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Modelos</a
         >
@@ -239,57 +247,61 @@
               >Mosquera</a
             >
             <a
-              href="/pages/zipaquira.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Zipaquirá</a
-            >
-            <a
-              href="/pages/boyaca.html"
+              href="pages/boyaca.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Boyacá</a
             >
             <a
-              href="/pages/sopo.html"
+              href="pages/zipaquira.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Zipaquirá</a
+            >
+            <a
+              href="pages/sopo.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Sopó</a
             >
             <a
-              href="/pages/funza.html"
+              href="pages/funza.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Funza</a
             >
             <a
-              href="/pages/la-vega.html"
+              href="pages/la-vega.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >La Vega</a
             >
             <a
-              href="/pages/madrid.html"
+              href="pages/madrid.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Madrid</a
             >
             <a
-              href="/pages/santander.html"
+              href="pages/santander.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Santander</a
             >
             <a
-              href="/pages/tocancipa.html"
+              href="pages/tocancipa.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Tocancipá</a
             >
           </div>
         </div>
-        <a
-          href="/ventajas.html"
-          class="block py-2 px-4 text-sm bg-light text-primary font-semibold"
+        <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
           >¿Que es EPS?</a
+        >
+        <a href="/galeria.html" class="block py-2 px-4 text-sm hover:bg-light"
+          >Galeria</a
         >
         <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Blog</a
         >
         <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Sobre Nosotros</a
+        >
+        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-light"
+          >Preguntas Frecuentes</a
         >
         <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Contacto</a
@@ -332,7 +344,7 @@
                 conectores de acero.
               </p>
               <p class="text-gray-600 text-lg">
-                Una vez instalados, estos paneles se recubren con mortero,
+                Una vez instalados, estos paneles se recubren con concreto estructural,
                 creando muros monolíticos de concreto reforzado que son
                 increíblemente ligeros pero a la vez extremadamente resistentes.
                 Esta combinación es la clave de sus extraordinarias propiedades
@@ -397,7 +409,7 @@
 
           <div
             class="flex flex-col md:flex-row-reverse items-center gap-12"
-            data-aos="fade-left"
+            data-aos="fade-right"
           >
             <div class="md:w-1/2">
               <div
@@ -409,8 +421,7 @@
                 Un Oasis de Paz: <strong>Aislamiento Acústico</strong>
               </h2>
               <p class="text-gray-600 text-lg">
-                La estructura de los <strong>paneles de EPS</strong> absorbe y
-                disipa las ondas sonoras de manera muy eficaz. Esto reduce
+                La estructura de los <strong>paneles de EPS</strong> aisla las ondas sonoras de manera muy eficaz. Esto reduce
                 drásticamente el ruido exterior, creando un ambiente interior de
                 paz y <strong>tranquilidad</strong>. Disfruta del silencio y el
                 <strong>confort acústico</strong> que solo este sistema puede
@@ -441,7 +452,7 @@
                 <strong>Resistencia Estructural</strong>
               </h2>
               <p class="text-gray-600 text-lg">
-                La combinación de un núcleo ligero con mallas de acero y mortero
+                La combinación de un núcleo ligero con mallas de acero y concreto estructural
                 crea una estructura monolítica de gran
                 <strong>resistencia estructural</strong>. Nuestras casas con
                 <strong>EPS</strong> cumplen y superan los requisitos de la
@@ -460,7 +471,7 @@
 
           <div
             class="flex flex-col md:flex-row-reverse items-center gap-12"
-            data-aos="fade-left"
+            data-aos="fade-right"
           >
             <div class="md:w-1/2">
               <div

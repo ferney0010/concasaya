@@ -93,7 +93,7 @@
     </style>
   </head>
   <body class="bg-white text-dark">
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
@@ -105,9 +105,7 @@
           />
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a
-            href="/"
-            class="text-dark hover:text-primary transition duration-300"
+          <a href="/" class="text-primary font-bold transition duration-300"
             >Inicio</a
           >
           <a
@@ -115,9 +113,15 @@
             class="text-dark hover:text-primary transition duration-300"
             >Modelos</a
           >
+          <a
+            href="/ventajas.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >¿Que es EPS?</a
+          >
+
           <div class="relative dropdown">
             <button
-              class="text-primary font-bold transition duration-300 inline-flex items-center"
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
             >
               <span>Municipios</span>
               <i class="fas fa-chevron-down ml-2 text-xs"></i>
@@ -149,30 +153,66 @@
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/zipaquira.html"
-                  >Zipaquirá</a
+                  href="pages/zipaquira.html"
+                  >zipaquirá</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/sopo.html"
+                  href="pages/boyaca.html"
+                  >Boyacá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/sopo.html"
                   >Sopó</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 bg-light text-primary font-semibold"
-                  href="/pages/madrid.html"
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/funza.html"
+                  >Funza</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/la-vega.html"
+                  >La Vega</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/madrid.html"
                   >Madrid</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/santander.html"
+                  >Santander</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/tocancipa.html"
+                  >tocancipá</a
                 >
               </li>
             </ul>
           </div>
+
           <a
-            href="/ventajas.html"
+            href="/galeria.html"
             class="text-dark hover:text-primary transition duration-300"
-            >¿Que es EPS?</a
+            >Galeria</a
           >
           <a
             href="/blog.html"
@@ -199,19 +239,22 @@
           </button>
         </div>
       </nav>
+      <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
+        <a href="/" class="block py-2 px-4 text-sm text-primary font-semibold"
+          >Inicio</a
+        >
         <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Modelos</a
         >
         <div class="relative">
           <button
-            class="w-full text-left block py-2 px-4 text-sm bg-light text-primary font-semibold"
+            class="w-full text-left block py-2 px-4 text-sm hover:bg-light"
             id="mobile-dropdown-btn"
           >
             Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
           </button>
-          <div id="mobile-dropdown-menu" class="pl-4">
+          <div id="mobile-dropdown-menu" class="hidden pl-4">
             <a
               href="/pages/chia.html"
               class="block py-2 px-4 text-sm hover:bg-light"
@@ -228,30 +271,61 @@
               >Mosquera</a
             >
             <a
-              href="/pages/zipaquira.html"
+              href="pages/boyaca.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Boyacá</a
+            >
+            <a
+              href="pages/zipaquira.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Zipaquirá</a
             >
             <a
-              href="/pages/sopo.html"
+              href="pages/sopo.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Sopó</a
             >
             <a
-              href="/pages/madrid.html"
-              class="block py-2 px-4 text-sm bg-gray-200"
+              href="pages/funza.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Funza</a
+            >
+            <a
+              href="pages/la-vega.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >La Vega</a
+            >
+            <a
+              href="pages/madrid.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
               >Madrid</a
+            >
+            <a
+              href="pages/santander.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Santander</a
+            >
+            <a
+              href="pages/tocancipa.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Tocancipá</a
             >
           </div>
         </div>
         <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
           >¿Que es EPS?</a
         >
+        <a href="/galeria.html" class="block py-2 px-4 text-sm hover:bg-light"
+          >Galeria</a
+        >
         <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Blog</a
         >
         <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Sobre Nosotros</a
+        >
+        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-light"
+          >Preguntas Frecuentes</a
         >
         <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Contacto</a

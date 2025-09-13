@@ -64,10 +64,14 @@
         visibility: visible;
         transform: translateY(0);
       }
+      .filter-btn.active {
+        background-color: #0077b6;
+        color: white;
+      }
     </style>
   </head>
   <body class="bg-white text-dark">
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
         class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
@@ -79,9 +83,7 @@
           />
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a
-            href="/"
-            class="text-dark hover:text-primary transition duration-300"
+          <a href="/" class="text-dark hover:text-primary transition duration-300"
             >Inicio</a
           >
           <a
@@ -89,6 +91,12 @@
             class="text-dark hover:text-primary transition duration-300"
             >Modelos</a
           >
+          <a
+            href="/ventajas.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >¿Que es EPS?</a
+          >
+
           <div class="relative dropdown">
             <button
               class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
@@ -123,70 +131,66 @@
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/zipaquira.html"
-                  >Zipaquirá</a
+                  href="pages/zipaquira.html"
+                  >zipaquirá</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/boyaca.html"
+                  href="pages/boyaca.html"
                   >Boyacá</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/sopo.html"
+                  href="pages/sopo.html"
                   >Sopó</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/funza.html"
+                  href="pages/funza.html"
                   >Funza</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/la-vega.html"
+                  href="pages/la-vega.html"
                   >La Vega</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/madrid.html"
+                  href="pages/madrid.html"
                   >Madrid</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/santander.html"
+                  href="pages/santander.html"
                   >Santander</a
                 >
               </li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/tocancipa.html"
-                  >Tocancipá</a
+                  href="pages/tocancipa.html"
+                  >tocancipá</a
                 >
               </li>
             </ul>
           </div>
-          <a
-            href="/ventajas.html"
-            class="text-dark hover:text-primary transition duration-300"
-            >¿Que es EPS?</a
-          >
+
           <a
             href="/galeria.html"
             class="text-primary font-bold transition duration-300"
-            >Galería</a
+            >Galeria</a
           >
           <a
             href="/blog.html"
@@ -213,8 +217,11 @@
           </button>
         </div>
       </nav>
+      <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-        <a href="/" class="block py-2 px-4 text-sm hover:bg-light">Inicio</a>
+        <a href="/" class="block py-2 px-4 text-sm text-dark font-semibold"
+          >Inicio</a
+        >
         <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Modelos</a
         >
@@ -242,42 +249,42 @@
               >Mosquera</a
             >
             <a
-              href="/pages/zipaquira.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Zipaquirá</a
-            >
-            <a
-              href="/pages/boyaca.html"
+              href="pages/boyaca.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Boyacá</a
             >
             <a
-              href="/pages/sopo.html"
+              href="pages/zipaquira.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Zipaquirá</a
+            >
+            <a
+              href="pages/sopo.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Sopó</a
             >
             <a
-              href="/pages/funza.html"
+              href="pages/funza.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Funza</a
             >
             <a
-              href="/pages/la-vega.html"
+              href="pages/la-vega.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >La Vega</a
             >
             <a
-              href="/pages/madrid.html"
+              href="pages/madrid.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Madrid</a
             >
             <a
-              href="/pages/santander.html"
+              href="pages/santander.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Santander</a
             >
             <a
-              href="/pages/tocancipa.html"
+              href="pages/tocancipa.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Tocancipá</a
             >
@@ -286,16 +293,17 @@
         <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
           >¿Que es EPS?</a
         >
-        <a
-          href="/galeria.html"
-          class="block py-2 px-4 text-sm bg-light text-primary font-semibold"
-          >Galería</a
+        <a href="/galeria.html" class="block py-2 px-4 text-sm text-primary hover:bg-light"
+          >Galeria</a
         >
         <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Blog</a
         >
         <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Sobre Nosotros</a
+        >
+        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-light"
+          >Preguntas Frecuentes</a
         >
         <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Contacto</a
@@ -329,120 +337,14 @@
             class="flex flex-wrap justify-center gap-2 md:gap-4 mb-12"
             data-aos="fade-up"
           >
-            <button
-              class="px-4 py-2 text-sm md:text-base bg-primary text-white rounded-full font-semibold"
-            >
-              Todos
-            </button>
-            <button
-              class="px-4 py-2 text-sm md:text-base bg-white text-dark rounded-full font-semibold hover:bg-light transition"
-            >
-              Fachadas
-            </button>
-            <button
-              class="px-4 py-2 text-sm md:text-base bg-white text-dark rounded-full font-semibold hover:bg-light transition"
-            >
-              Cocinas
-            </button>
-            <button
-              class="px-4 py-2 text-sm md:text-base bg-white text-dark rounded-full font-semibold hover:bg-light transition"
-            >
-              Interiores
-            </button>
+            <div class="text-center w-full">Cargando categorías...</div>
           </div>
 
           <div
             id="gallery-container"
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
           >
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Cocina moderna"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Fachada de casa campestre"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Sala de estar minimalista"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="400"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/259962/pexels-photo-259962.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Exterior de casa moderna"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/271816/pexels-photo-271816.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Baño elegante"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Comedor acogedor"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Fachada con piscina"
-              />
-            </div>
-            <div
-              class="overflow-hidden rounded-lg shadow-lg group"
-              data-aos="zoom-in"
-              data-aos-delay="400"
-            >
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="https://images.pexels.com/photos/279746/pexels-photo-279746.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Cocina con isla central"
-              />
-            </div>
+             <div class="text-center w-full col-span-full">Cargando imágenes...</div>
           </div>
         </div>
       </section>
@@ -641,23 +543,97 @@
         <i class="fab fa-whatsapp text-2xl"></i>
       </a>
     </div>
+    
+    <script type="module">
+      import { supabase } from './supabaseClient.js';
 
-    <script>
-      const fabMainButton = document.getElementById("fab-main-button");
-      const fabOptions = document.getElementById("fab-options");
-      const fabOpenIcon = document.getElementById("fab-open-icon");
-      const fabCloseIcon = document.getElementById("fab-close-icon");
+      const filterButtonsContainer = document.getElementById('filter-buttons');
+      const galleryContainer = document.getElementById('gallery-container');
+      let allImages = [];
 
-      if (fabMainButton) {
-        fabMainButton.addEventListener("click", () => {
-          fabOptions.classList.toggle("hidden");
-          fabOptions.classList.toggle("flex");
-          fabOpenIcon.classList.toggle("hidden");
-          fabCloseIcon.classList.toggle("hidden");
+      const displayImages = (images) => {
+        galleryContainer.innerHTML = '';
+        if (images.length === 0) {
+            galleryContainer.innerHTML = '<p class="col-span-full text-center">No hay imágenes en esta categoría.</p>';
+            return;
+        }
+
+        images.forEach((img, index) => {
+            const div = document.createElement('div');
+            div.className = 'overflow-hidden rounded-lg shadow-lg group';
+            div.setAttribute('data-aos', 'zoom-in');
+            div.setAttribute('data-aos-delay', (index % 4) * 100);
+            div.innerHTML = `
+              <img
+                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
+                src="${img.image_url}"
+                alt="${img.title}"
+              />
+            `;
+            galleryContainer.appendChild(div);
         });
-      }
-    </script>
+        AOS.refresh();
+      };
 
+      const setupFilterButtons = (categories) => {
+        filterButtonsContainer.innerHTML = '';
+        
+        const allButton = document.createElement('button');
+        allButton.className = 'filter-btn px-4 py-2 text-sm md:text-base rounded-full font-semibold active';
+        allButton.textContent = 'Todos';
+        allButton.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            allButton.classList.add('active');
+            displayImages(allImages);
+        });
+        filterButtonsContainer.appendChild(allButton);
+
+        categories.forEach(cat => {
+            const button = document.createElement('button');
+            button.className = 'filter-btn px-4 py-2 text-sm md:text-base bg-white text-dark rounded-full font-semibold hover:bg-light transition';
+            button.textContent = cat.name;
+            button.dataset.categoryId = cat.id;
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                const filteredImages = allImages.filter(img => img.category_id === cat.id);
+                displayImages(filteredImages);
+            });
+            filterButtonsContainer.appendChild(button);
+        });
+      };
+
+      const loadGalleryData = async () => {
+        const { data: images, error: imagesError } = await supabase
+            .from('concasaya_gallery_images')
+            .select('*')
+            .order('created_at', { ascending: false });
+
+        if (imagesError) {
+            galleryContainer.innerHTML = '<p class="col-span-full text-center text-red-500">Error al cargar las imágenes.</p>';
+            return;
+        }
+        allImages = images;
+
+        const { data: categories, error: categoriesError } = await supabase
+            .from('concasaya_gallery_categories')
+            .select('*')
+            .order('name');
+        
+        if (categoriesError) {
+            filterButtonsContainer.innerHTML = '<p class="w-full text-center text-red-500">Error al cargar las categorías.</p>';
+        } else {
+            setupFilterButtons(categories);
+        }
+
+        displayImages(allImages);
+      };
+
+      document.addEventListener('DOMContentLoaded', () => {
+        loadGalleryData();
+      });
+
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
