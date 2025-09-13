@@ -1203,55 +1203,13 @@
         </div>
       </section>
 
-      <section id="gallery-preview" class="py-20">
+           <section id="gallery-preview" class="py-20">
         <div class="container mx-auto px-6">
           <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
             Proyectos que Inspiran
           </h2>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
-            <div
-              class="col-span-2 row-span-2 rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-            >
-              <img
-                src="https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Cocina moderna en casa prefabricada"
-              />
-            </div>
-            <div
-              class="rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="100"
-            >
-              <img
-                src="https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Fachada de casa prefabricada"
-              />
-            </div>
-            <div
-              class="rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Interior de sala en casa prefabricada"
-              />
-            </div>
-            <div
-              class="col-span-2 rounded-lg overflow-hidden"
-              data-aos="zoom-in"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                alt="Exterior con piscina de casa prefabricada"
-              />
-            </div>
+          <div id="gallery-preview-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
+            <div class="col-span-full text-center">Cargando imágenes recientes...</div>
           </div>
           <div class="text-center mt-12" data-aos="fade-up">
             <a
@@ -1262,6 +1220,53 @@
           </div>
         </div>
       </section>
+
+      <script type="module">
+        import { supabase } from './supabaseClient.js';
+
+        const galleryPreviewContainer = document.getElementById('gallery-preview-container');
+
+        const loadRecentImages = async () => {
+            const { data: images, error } = await supabase
+                .from('concasaya_gallery_images')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(5);
+
+            if (error || !images || images.length === 0) {
+                galleryPreviewContainer.innerHTML = '<p class="col-span-full text-center">No hay imágenes para mostrar.</p>';
+                return;
+            }
+
+            galleryPreviewContainer.innerHTML = '';
+
+            images.forEach((image, index) => {
+                const imageWrapper = document.createElement('div');
+                let classList = 'rounded-lg overflow-hidden';
+                let delay = index * 100;
+
+                if (index === 0) {
+                    classList += ' col-span-2 row-span-2';
+                }
+                
+                imageWrapper.className = classList;
+                imageWrapper.setAttribute('data-aos', 'zoom-in');
+                imageWrapper.setAttribute('data-aos-delay', delay);
+
+                imageWrapper.innerHTML = `
+                    <img
+                        src="${image.image_url}"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                        alt="${image.title}"
+                    />
+                `;
+                galleryPreviewContainer.appendChild(imageWrapper);
+            });
+            setTimeout(() => AOS.refresh(), 100);
+        };
+
+        document.addEventListener('DOMContentLoaded', loadRecentImages);
+      </script>
 
       <section class="py-16 bg-gray-100">
         <div class="container mx-auto px-6 text-center" data-aos="fade-up">
