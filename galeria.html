@@ -12,25 +12,22 @@
       name="keywords"
       content="galería casas prefabricadas, fotos de casas, proyectos CONCASAYA, inspiración de diseño"
     />
-
     <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
     <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
     <meta name="theme-color" content="#0077b6" />
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
     <script>
       tailwind.config = {
         theme: {
@@ -45,7 +42,6 @@
         },
       };
     </script>
-
     <style>
       body {
         font-family: "Poppins", sans-serif;
@@ -96,7 +92,6 @@
             class="text-dark hover:text-primary transition duration-300"
             >¿Que es EPS?</a
           >
-
           <div class="relative dropdown">
             <button
               class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
@@ -186,7 +181,6 @@
               </li>
             </ul>
           </div>
-
           <a
             href="/galeria.html"
             class="text-primary font-bold transition duration-300"
@@ -217,7 +211,6 @@
           </button>
         </div>
       </nav>
-      <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
         <a href="/" class="block py-2 px-4 text-sm text-dark font-semibold"
           >Inicio</a
@@ -339,7 +332,6 @@
           >
             <div class="text-center w-full">Cargando categorías...</div>
           </div>
-
           <div
             id="gallery-container"
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
@@ -550,6 +542,7 @@
       const filterButtonsContainer = document.getElementById('filter-buttons');
       const galleryContainer = document.getElementById('gallery-container');
       let allImages = [];
+      let lightbox;
 
       const displayImages = (images) => {
         galleryContainer.innerHTML = '';
@@ -564,14 +557,21 @@
             div.setAttribute('data-aos', 'zoom-in');
             div.setAttribute('data-aos-delay', (index % 4) * 100);
             div.innerHTML = `
-              <img
-                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                src="${img.image_url}"
-                alt="${img.title}"
-              />
+              <a href="${img.image_url}" class="glightbox" data-gallery="concasaya-gallery" data-title="${img.title}">
+                <img
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
+                  src="${img.image_url}"
+                  alt="${img.title}"
+                />
+              </a>
             `;
             galleryContainer.appendChild(div);
         });
+        
+        if (lightbox) {
+            lightbox.reload();
+        }
+        
         AOS.refresh();
       };
 
@@ -627,14 +627,21 @@
         }
 
         displayImages(allImages);
+
+        lightbox = GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: true,
+            zoomable: true
+        });
       };
 
       document.addEventListener('DOMContentLoaded', () => {
         loadGalleryData();
       });
-
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
       AOS.init({
         duration: 800,
