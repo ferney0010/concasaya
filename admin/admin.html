@@ -6,99 +6,116 @@
     <title>Panel de Administración | CONCASAYA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#0d1b2a',
+                        'brand-light-dark': '#1b2735',
+                        'brand-primary': '#0077b6',
+                        'brand-secondary': '#4a5568',
+                    },
+                },
+            },
+        };
+    </script>
 </head>
-<body class="bg-gray-100">
+<body class="bg-brand-dark text-gray-300">
 
-    <div id="login-section" class="flex items-center justify-center min-h-screen">
-        <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold text-center">Administración CONCASAYA</h2>
+    <div id="login-section" class="flex items-center justify-center min-h-screen p-4">
+        <div class="w-full max-w-md p-8 space-y-6 bg-brand-light-dark rounded-xl shadow-2xl">
+            <div class="flex justify-center">
+                <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-12 w-auto">
+            </div>
+            <h2 class="text-2xl font-bold text-center text-white">Administración</h2>
             <form id="login-form" class="space-y-6">
                 <div>
-                    <label for="email" class="block text-sm font-medium">Correo</label>
-                    <input type="email" id="email" required class="w-full px-3 py-2 mt-1 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    <label for="email" class="block text-sm font-medium text-gray-400">Correo</label>
+                    <input type="email" id="email" required class="w-full px-4 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md focus:ring-brand-primary focus:border-brand-primary text-white">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium">Contraseña</label>
-                    <input type="password" id="password" required class="w-full px-3 py-2 mt-1 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                    <label for="password" class="block text-sm font-medium text-gray-400">Contraseña</label>
+                    <input type="password" id="password" required class="w-full px-4 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md focus:ring-brand-primary focus:border-brand-primary text-white">
                 </div>
-                <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">Entrar</button>
+                <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90 transition-colors">Entrar</button>
             </form>
-            <p id="auth-error" class="text-red-500 text-center text-sm"></p>
+            <p id="auth-error" class="text-red-400 text-center text-sm"></p>
         </div>
     </div>
 
     <div id="admin-panel" class="hidden">
-        <header class="bg-white shadow-md">
+        <header class="bg-brand-light-dark shadow-lg">
             <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <h1 class="text-xl font-bold">Panel de Administración</h1>
-                <button id="logout-btn" class="px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700">Cerrar Sesión</button>
+                <h1 class="text-xl font-bold text-white">Panel de Administración</h1>
+                <button id="logout-btn" class="px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">Cerrar Sesión</button>
             </nav>
         </header>
 
         <main class="container mx-auto p-6 space-y-12">
             <section id="gallery-management">
-                <h2 class="text-3xl font-bold mb-6 border-b pb-2">Gestionar Galería</h2>
+                <h2 class="text-3xl font-bold mb-6 border-b border-brand-secondary pb-2 text-white">Gestionar Galería</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-1 p-6 bg-white rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Añadir / Editar Imagen</h3>
+                    <div class="lg:col-span-1 p-6 bg-brand-light-dark rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold mb-4 text-white">Añadir / Editar Imagen</h3>
                         <form id="gallery-form" class="space-y-4">
                             <input type="hidden" id="gallery-id">
                             <div>
-                                <label for="gallery-title" class="block text-sm font-medium">Título</label>
-                                <input type="text" id="gallery-title" required class="w-full px-3 py-2 mt-1 border rounded-md">
+                                <label for="gallery-title" class="block text-sm font-medium text-gray-400">Título</label>
+                                <input type="text" id="gallery-title" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white">
                             </div>
                             <div>
-                                <label for="gallery-category" class="block text-sm font-medium">Categoría</label>
-                                <select id="gallery-category" required class="w-full px-3 py-2 mt-1 border rounded-md"></select>
+                                <label for="gallery-category" class="block text-sm font-medium text-gray-400">Categoría</label>
+                                <select id="gallery-category" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white"></select>
                             </div>
                             <div>
-                                <label for="gallery-image" class="block text-sm font-medium">Archivo de Imagen (.webp)</label>
-                                <input type="file" id="gallery-image" accept="image/webp" class="w-full mt-1 text-sm">
+                                <label for="gallery-image" class="block text-sm font-medium text-gray-400">Archivo de Imagen (.webp)</label>
+                                <input type="file" id="gallery-image" accept="image/webp" class="w-full mt-1 text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-primary file:text-white hover:file:bg-opacity-90">
                             </div>
-                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">Guardar Imagen</button>
-                            <button type="button" id="cancel-gallery-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-600 rounded-md hover:bg-gray-200">Cancelar Edición</button>
+                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90">Guardar Imagen</button>
+                            <button type="button" id="cancel-gallery-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-300 rounded-md bg-brand-secondary hover:bg-opacity-90">Cancelar Edición</button>
                         </form>
                     </div>
-                     <div class="lg:col-span-2 p-6 bg-white rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Gestionar Categorías</h3>
+                     <div class="lg:col-span-2 p-6 bg-brand-light-dark rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold mb-4 text-white">Gestionar Categorías</h3>
                         <form id="category-form" class="flex gap-2 mb-4">
-                             <input type="text" id="category-name" placeholder="Nombre de la nueva categoría" required class="flex-grow px-3 py-2 border rounded-md">
+                             <input type="text" id="category-name" placeholder="Nombre de la nueva categoría" required class="flex-grow px-3 py-2 bg-brand-dark border border-brand-secondary rounded-md text-white">
                              <button type="submit" class="px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700">Crear</button>
                         </form>
                         <div id="categories-list" class="space-y-2"></div>
                     </div>
                 </div>
-                <div class="mt-8 p-6 bg-white rounded-lg shadow-md">
-                     <h3 class="text-lg font-semibold mb-4">Imágenes Subidas</h3>
+                <div class="mt-8 p-6 bg-brand-light-dark rounded-lg shadow-md">
+                     <h3 class="text-lg font-semibold mb-4 text-white">Imágenes Subidas</h3>
                     <div id="gallery-list" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
                 </div>
             </section>
             
             <section id="blog-management">
-                <h2 class="text-3xl font-bold mb-6 border-b pb-2">Gestionar Blog</h2>
+                <h2 class="text-3xl font-bold mb-6 border-b border-brand-secondary pb-2 text-white">Gestionar Blog</h2>
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-1 p-6 bg-white rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Añadir / Editar Entrada</h3>
+                    <div class="lg:col-span-1 p-6 bg-brand-light-dark rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold mb-4 text-white">Añadir / Editar Entrada</h3>
                         <form id="blog-form" class="space-y-4">
                             <input type="hidden" id="blog-id">
                             <div>
-                                <label for="blog-title" class="block text-sm font-medium">Título</label>
-                                <input type="text" id="blog-title" required class="w-full px-3 py-2 mt-1 border rounded-md">
+                                <label for="blog-title" class="block text-sm font-medium text-gray-400">Título</label>
+                                <input type="text" id="blog-title" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white">
                             </div>
                             <div>
-                                <label for="blog-content" class="block text-sm font-medium">Contenido</label>
-                                <textarea id="blog-content" rows="6" required class="w-full px-3 py-2 mt-1 border rounded-md"></textarea>
+                                <label for="blog-content" class="block text-sm font-medium text-gray-400">Contenido</label>
+                                <textarea id="blog-content" rows="6" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white"></textarea>
                             </div>
                             <div>
-                                <label for="blog-image" class="block text-sm font-medium">Imagen Principal (.webp)</label>
-                                <input type="file" id="blog-image" accept="image/webp" class="w-full mt-1 text-sm">
+                                <label for="blog-image" class="block text-sm font-medium text-gray-400">Imagen Principal (.webp)</label>
+                                <input type="file" id="blog-image" accept="image/webp" class="w-full mt-1 text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-primary file:text-white hover:file:bg-opacity-90">
                             </div>
-                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700">Guardar Entrada</button>
-                            <button type="button" id="cancel-blog-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-600 rounded-md hover:bg-gray-200">Cancelar Edición</button>
+                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90">Guardar Entrada</button>
+                            <button type="button" id="cancel-blog-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-300 rounded-md bg-brand-secondary hover:bg-opacity-90">Cancelar Edición</button>
                         </form>
                     </div>
-                    <div class="lg:col-span-2 p-6 bg-white rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4">Entradas Publicadas</h3>
+                    <div class="lg:col-span-2 p-6 bg-brand-light-dark rounded-lg shadow-md">
+                        <h3 class="text-lg font-semibold mb-4 text-white">Entradas Publicadas</h3>
                         <div id="blog-list" class="space-y-4"></div>
                     </div>
                 </div>
@@ -106,5 +123,6 @@
         </main>
     </div>
     
-<script type="module" src="./admin.js"></script></body>
+<script type="module" src="./admin.js"></script>
+</body>
 </html>
