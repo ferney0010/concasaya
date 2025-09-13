@@ -658,6 +658,59 @@
       </div>
     </footer>
 
+     <div
+      class="fixed bottom-5 right-5 z-50 flex flex-col items-center space-y-3"
+    >
+      <a
+        href="https://www.tiktok.com/@kaprecolcasasprefab?_t=ZS-8zagYjMhE3x&_r=1"
+        target="_blank"
+        aria-label="TikTok"
+        class="w-12 h-12 rounded-full flex items-center justify-center bg-black hover:bg-gray-800 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+      >
+        <i class="fab fa-tiktok text-2xl"></i>
+      </a>
+      <a
+        href="https://www.instagram.com/kaprecolcasasprefab"
+        target="_blank"
+        aria-label="Instagram"
+        class="w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+      >
+        <i class="fab fa-instagram text-2xl"></i>
+      </a>
+      <a
+        href="https://www.facebook.com/kprecol/"
+        target="_blank"
+        aria-label="Facebook"
+        class="w-12 h-12 rounded-full flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+      >
+        <i class="fab fa-facebook-f text-2xl"></i>
+      </a>
+      <a
+        href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
+        target="_blank"
+        aria-label="WhatsApp"
+        class="w-12 h-12 rounded-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+      >
+        <i class="fab fa-whatsapp text-2xl"></i>
+      </a>
+    </div>
+
+    <script>
+      const fabMainButton = document.getElementById("fab-main-button");
+      const fabOptions = document.getElementById("fab-options");
+      const fabOpenIcon = document.getElementById("fab-open-icon");
+      const fabCloseIcon = document.getElementById("fab-close-icon");
+
+      if (fabMainButton) {
+        fabMainButton.addEventListener("click", () => {
+          fabOptions.classList.toggle("hidden");
+          fabOptions.classList.toggle("flex");
+          fabOpenIcon.classList.toggle("hidden");
+          fabCloseIcon.classList.toggle("hidden");
+        });
+      }
+    </script>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
