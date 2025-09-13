@@ -728,94 +728,13 @@
         </div>
       </section>
 
-      <section id="blog-preview" class="py-20">
+           <section id="blog-preview" class="py-20">
         <div class="container mx-auto px-6">
           <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
             Mantente Informado con Nuestro Blog
           </h2>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <img
-                src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Imagen de artículo de blog"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-secondary font-semibold">Diseño</span>
-                <h3 class="text-xl font-bold my-2">
-                  5 Ventajas de los Diseños Minimalistas
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Descubre cómo el minimalismo maximiza el espacio y la
-                  funcionalidad...
-                </p>
-                <a
-                  href="/blog/diseno-minimalista.html"
-                  class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Imagen de artículo de blog"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-secondary font-semibold"
-                  >Proceso</span
-                >
-                <h3 class="text-xl font-bold my-2">
-                  ¿Cuánto tiempo toma construir tu casa?
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Desglosamos el proceso paso a paso, desde la cimentación hasta
-                  la entrega...
-                </p>
-                <a
-                  href="/blog/tiempo-construccion.html"
-                  class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Imagen de artículo de blog"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-secondary font-semibold"
-                  >Sostenibilidad</span
-                >
-                <h3 class="text-xl font-bold my-2">
-                  Beneficios del EPS en la construcción
-                </h3>
-                <p class="text-gray-600 mb-4 text-sm">
-                  Conoce el impacto del EPS como aislante térmico y su beneficio
-                  ambiental...
-                </p>
-                <a
-                  href="/blog/sostenibilidad-eps.html"
-                  class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
+          <div id="blog-preview-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="col-span-full text-center">Cargando artículos recientes...</div>
           </div>
           <div class="text-center mt-12" data-aos="fade-up">
             <a
@@ -826,6 +745,54 @@
           </div>
         </div>
       </section>
+
+      <script type="module">
+        import { supabase } from './supabaseClient.js';
+
+        const blogPreviewContainer = document.getElementById('blog-preview-container');
+
+        const loadRecentPosts = async () => {
+            const { data: posts, error } = await supabase
+                .from('concasaya_blog_posts')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(3);
+
+            if (error || !posts || posts.length === 0) {
+                blogPreviewContainer.innerHTML = '<p class="col-span-full text-center">No hay artículos para mostrar.</p>';
+                return;
+            }
+
+            blogPreviewContainer.innerHTML = '';
+
+            posts.forEach((post, index) => {
+                const article = document.createElement('article');
+                article.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
+                article.setAttribute('data-aos', 'fade-up');
+                article.setAttribute('data-aos-delay', (index + 1) * 100);
+
+                const postImage = post.image_url 
+                    ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
+                    : '<div class="w-full h-56 bg-gray-200 flex items-center justify-center"><span class="text-gray-400">Sin imagen</span></div>';
+                
+                const snippet = post.content ? post.content.substring(0, 100) + '...' : 'Haz clic para leer el contenido completo.';
+
+                article.innerHTML = `
+                    ${postImage}
+                    <div class="p-6">
+                        <span class="text-sm text-secondary font-semibold">Artículo</span>
+                        <h3 class="text-xl font-bold my-2">${post.title}</h3>
+                        <p class="text-gray-600 mb-4 text-sm">${snippet}</p>
+                        <a href="/blog/post.html?id=${post.id}" class="font-semibold text-primary hover:underline">Leer más &rarr;</a>
+                    </div>
+                `;
+                blogPreviewContainer.appendChild(article);
+            });
+            setTimeout(() => AOS.refresh(), 100);
+        };
+        
+        document.addEventListener('DOMContentLoaded', loadRecentPosts);
+      </script>
 
       <section id="testimonials" class="py-20 bg-light">
         <div class="container mx-auto px-6">
