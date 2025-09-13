@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- El título se llenará dinámicamente -->
+    <title>Cargando artículo... | CONCASAYA</title> 
+
+    <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
+    <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
+    <meta name="theme-color" content="#0077b6" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0077b6",
+              secondary: "#0d1b2a",
+              dark: "#2D3748",
+              light: "#F8FAFC",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu { opacity: 0; visibility: hidden; transform: translateY(10px); transition: all 0.3s ease; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .post-content h2 { font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; }
+        .post-content p { margin-bottom: 1rem; line-height: 1.75; }
+        .post-content ul { list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem; }
+    </style>
+</head>
+<body class="bg-white text-dark">
+
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+      <!-- Copiamos el mismo header para mantener la consistencia -->
+       <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto" />
+        </a>
+        <div class="hidden md:flex space-x-6 items-center">
+          <a href="/" class="text-dark hover:text-primary transition duration-300">Inicio</a>
+          <a href="/modelos.html" class="text-dark hover:text-primary transition duration-300">Modelos</a>
+          <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">¿Que es EPS?</a>
+          <a href="/galeria.html" class="text-dark hover:text-primary transition duration-300">Galeria</a>
+          <a href="/blog.html" class="text-primary font-bold transition duration-300">Blog</a>
+          <a href="/nosotros.html" class="text-dark hover:text-primary transition duration-300">Sobre Nosotros</a>
+          <a href="/contacto.html" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300">Contacto</a>
+        </div>
+        <div class="md:hidden">
+          <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pt-20">
+        <div id="post-container" class="container mx-auto px-6 py-16">
+            <!-- El contenido del post se cargará aquí -->
+            <div class="text-center">Cargando artículo...</div>
+        </div>
+    </main>
+
+    <footer class="bg-dark text-white pt-16 pb-8">
+        <!-- Copiamos el mismo footer -->
+         <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 CONCASAYA. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { supabase } from '../supabaseClient.js';
+
+        const postContainer = document.getElementById('post-container');
+
+        const getPostIdFromUrl = () => {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id');
+        };
+
+        const loadPost = async () => {
+            const postId = getPostIdFromUrl();
+            if (!postId) {
+                postContainer.innerHTML = '<p class="text-center text-red-500">No se encontró el artículo. <a href="/blog.html" class="underline">Volver al blog</a></p>';
+                return;
+            }
+
+            const { data: post, error } = await supabase
+                .from('concasaya_blog_posts')
+                .select('*')
+                .eq('id', postId)
+                .single();
+
+            if (error || !post) {
+                postContainer.innerHTML = '<p class="text-center text-red-500">Error al cargar el artículo o no existe. <a href="/blog.html" class="underline">Volver al blog</a></p>';
+                return;
+            }
+
+            document.title = `${post.title} | CONCASAYA`;
+
+            // Para que los saltos de línea en el panel se vean como párrafos
+            const formattedContent = post.content
+                .split('\n')
+                .map(paragraph => `<p>${paragraph}</p>`)
+                .join('');
+            
+            postContainer.innerHTML = `
+                <article class="max-w-4xl mx-auto">
+                    ${post.image_url ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-96 object-cover rounded-lg mb-8">` : ''}
+                    <h1 class="text-4xl font-bold text-dark mb-4">${post.title}</h1>
+                    <p class="text-gray-500 mb-8">Publicado el ${new Date(post.created_at).toLocaleDateString()}</p>
+                    <div class="post-content text-lg text-gray-700">
+                        ${formattedContent}
+                    </div>
+                    <div class="mt-12">
+                        <a href="/blog.html" class="text-primary hover:underline">&larr; Volver a todos los artículos</a>
+                    </div>
+                </article>
+            `;
+        };
+
+        document.addEventListener('DOMContentLoaded', loadPost);
+    </script>
+
+</body>
+</html>

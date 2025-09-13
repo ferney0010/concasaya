@@ -81,7 +81,9 @@
           />
         </a>
         <div class="hidden md:flex space-x-6 items-center">
-          <a href="/" class="text-primary font-bold transition duration-300"
+          <a
+            href="/"
+            class="text-dark hover:text-primary transition duration-300"
             >Inicio</a
           >
           <a
@@ -192,7 +194,7 @@
           >
           <a
             href="/blog.html"
-            class="text-dark hover:text-primary transition duration-300"
+            class="text-primary font-bold transition duration-300"
             >Blog</a
           >
           <a
@@ -217,7 +219,7 @@
       </nav>
       <!-- Menú Móvil -->
       <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-        <a href="/" class="block py-2 px-4 text-sm text-primary font-semibold"
+        <a href="/" class="block py-2 px-4 text-sm text-dark font-semibold"
           >Inicio</a
         >
         <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
@@ -294,7 +296,9 @@
         <a href="/galeria.html" class="block py-2 px-4 text-sm hover:bg-light"
           >Galeria</a
         >
-        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
+        <a
+          href="/blog.html"
+          class="block py-2 px-4 text-sm text-primary hover:bg-light"
           >Blog</a
         >
         <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
@@ -334,118 +338,9 @@
             id="blog-posts-container"
             class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <img
-                src="https://images.pexels.com/photos/439391/pexels-photo-439391.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Diseño minimalista en una casa prefabricada"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-primary font-semibold"
-                  >Diseño y Arquitectura</span
-                >
-                <h3 class="text-xl font-bold my-2 text-dark">
-                  5 Ventajas de los Diseños Minimalistas en Casas Prefabricadas
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  Descubre cómo el minimalismo no solo es una tendencia
-                  estética, sino una forma inteligente de maximizar el espacio y
-                  la funcionalidad...
-                </p>
-                <a href="blog/diseno-minimalista.html" class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
-
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Interior de una casa prefabricada en construcción"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-primary font-semibold"
-                  >Proceso Constructivo</span
-                >
-                <h3 class="text-xl font-bold my-2 text-dark">
-                  ¿Cuánto tiempo toma construir una casa prefabricada?
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  Desglosamos el proceso paso a paso, desde la cimentación hasta
-                  la entrega de llaves, para que sepas qué esperar...
-                </p>
-                <a href="blog/tiempo-construccion.html" class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
-
-            <article
-              class="bg-white rounded-lg shadow-lg overflow-hidden"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <img
-                src="https://images.pexels.com/photos/206172/pexels-photo-206172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Panel de EPS para construcción sostenible"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6">
-                <span class="text-sm text-primary font-semibold"
-                  >Sostenibilidad</span
-                >
-                <h3 class="text-xl font-bold my-2 text-dark">
-                  Materiales Sostenibles: Introduciendo el EPS en la
-                  construcción
-                </h3>
-                <p class="text-gray-600 mb-4">
-                  Conoce los beneficios del poliestireno expandido (EPS) como
-                  aislante térmico y su impacto positivo en el medio ambiente...
-                </p>
-                <a href="blog/sostenibilidad-eps.html" class="font-semibold text-primary hover:underline"
-                  >Leer más &rarr;</a
-                >
-              </div>
-            </article>
-          </div>
-
-          <div class="mt-12 flex justify-center" data-aos="fade-up">
-            <nav class="flex items-center space-x-2">
-              <a
-                href="#"
-                class="px-4 py-2 text-dark bg-white rounded-md hover:bg-light shadow-sm"
-                >Anterior</a
-              >
-              <a
-                href="#"
-                class="px-4 py-2 text-white bg-primary rounded-md shadow-sm"
-                >1</a
-              >
-              <a
-                href="#"
-                class="px-4 py-2 text-dark bg-white rounded-md hover:bg-light shadow-sm"
-                >2</a
-              >
-              <a
-                href="#"
-                class="px-4 py-2 text-dark bg-white rounded-md hover:bg-light shadow-sm"
-                >3</a
-              >
-              <a
-                href="#"
-                class="px-4 py-2 text-dark bg-white rounded-md hover:bg-light shadow-sm"
-                >Siguiente</a
-              >
-            </nav>
+            <div class="text-center w-full col-span-full">
+              Cargando entradas del blog...
+            </div>
           </div>
         </div>
       </section>
@@ -608,7 +503,7 @@
       </div>
     </footer>
 
-   <div
+    <div
       class="fixed bottom-5 right-5 z-50 flex flex-col items-center space-y-3"
     >
       <a
@@ -645,22 +540,59 @@
       </a>
     </div>
 
-    <script>
-      const fabMainButton = document.getElementById("fab-main-button");
-      const fabOptions = document.getElementById("fab-options");
-      const fabOpenIcon = document.getElementById("fab-open-icon");
-      const fabCloseIcon = document.getElementById("fab-close-icon");
+    <script type="module">
+      import { supabase } from "./supabaseClient.js";
 
-      if (fabMainButton) {
-        fabMainButton.addEventListener("click", () => {
-          fabOptions.classList.toggle("hidden");
-          fabOptions.classList.toggle("flex");
-          fabOpenIcon.classList.toggle("hidden");
-          fabCloseIcon.classList.toggle("hidden");
+      const postsContainer = document.getElementById("blog-posts-container");
+
+      const loadBlogPosts = async () => {
+        const { data: posts, error } = await supabase
+          .from("concasaya_blog_posts")
+          .select("*")
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          postsContainer.innerHTML =
+            '<p class="col-span-full text-center text-red-500">Error al cargar las entradas del blog.</p>';
+          return;
+        }
+
+        if (posts.length === 0) {
+          postsContainer.innerHTML =
+            '<p class="col-span-full text-center">Aún no hay entradas en el blog. ¡Vuelve pronto!</p>';
+          return;
+        }
+
+        postsContainer.innerHTML = "";
+        posts.forEach((post, index) => {
+          const article = document.createElement("article");
+          article.className = "bg-white rounded-lg shadow-lg overflow-hidden";
+          article.setAttribute("data-aos", "fade-up");
+          article.setAttribute("data-aos-delay", (index % 3) * 100);
+
+          const postImage = post.image_url
+            ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
+            : '<div class="w-full h-56 bg-gray-200"></div>';
+
+          const postContent = post.content
+            ? post.content.substring(0, 150) + "..."
+            : "";
+
+          article.innerHTML = `
+                    ${postImage}
+                    <div class="p-6">
+                        <span class="text-sm text-primary font-semibold">Artículo</span>
+                        <h3 class="text-xl font-bold my-2 text-dark">${post.title}</h3>
+                        <p class="text-gray-600 mb-4">${postContent}</p>
+<a href="/blog/post.html?id=${post.id}" class="font-semibold text-primary hover:underline">Leer más &rarr;</a>                    </div>
+                `;
+          postsContainer.appendChild(article);
         });
-      }
-    </script>
+        AOS.refresh();
+      };
 
+      document.addEventListener("DOMContentLoaded", loadBlogPosts);
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({
@@ -686,8 +618,6 @@
           mobileDropdownMenu.classList.toggle("hidden");
         });
       }
-
-    
     </script>
   </body>
 </html>
