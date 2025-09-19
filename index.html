@@ -165,13 +165,23 @@
       }
     </script>
     <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tcaaszcmuu");
-</script>
-    <meta name="google-site-verification" content="-ioixX7Av0BUATWXQccPjO0-lRH2QVkKP4V0lpmrXws" />
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "tcaaszcmuu");
+    </script>
+    <meta
+      name="google-site-verification"
+      content="-ioixX7Av0BUATWXQccPjO0-lRH2QVkKP4V0lpmrXws"
+    />
   </head>
   <body class="bg-white text-dark">
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
@@ -238,13 +248,7 @@
                   >zipaquirá</a
                 >
               </li>
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="pages/boyaca.html"
-                  >Boyacá</a
-                >
-              </li>
+              <li></li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
@@ -273,18 +277,22 @@
                   >Madrid</a
                 >
               </li>
-              <li>
-                <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="pages/santander.html"
-                  >Santander</a
-                >
-              </li>
+              <li></li>
               <li>
                 <a
                   class="block px-4 py-2 hover:bg-light hover:text-primary"
                   href="pages/tocancipa.html"
                   >tocancipá</a
+                >
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/santander.html"
+                  >Santander</a
+                >
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="pages/boyaca.html"
+                  >Boyacá</a
                 >
               </li>
             </ul>
@@ -361,11 +369,7 @@
               class="block py-2 px-4 text-sm hover:bg-light"
               >Mosquera</a
             >
-            <a
-              href="pages/boyaca.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Boyacá</a
-            >
+           
             <a
               href="pages/zipaquira.html"
               class="block py-2 px-4 text-sm hover:bg-light"
@@ -391,16 +395,23 @@
               class="block py-2 px-4 text-sm hover:bg-light"
               >Madrid</a
             >
-            <a
-              href="pages/santander.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Santander</a
-            >
+           
             <a
               href="pages/tocancipa.html"
               class="block py-2 px-4 text-sm hover:bg-light"
               >Tocancipá</a
             >
+             <a
+              href="pages/santander.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Santander</a
+            > 
+             <a
+              href="pages/boyaca.html"
+              class="block py-2 px-4 text-sm hover:bg-light"
+              >Boyacá</a
+            >
+
           </div>
         </div>
         <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
@@ -721,7 +732,13 @@
         </div>
       </section>
 
-      <section style="height: 100vh; display: flex; justify-content: center; align-items: center;"
+      <section
+        style="
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        "
         id="parallax-cta"
         class="relative overflow-hidden py-24 parallax-bg"
       >
@@ -749,13 +766,18 @@
         </div>
       </section>
 
-           <section id="blog-preview" class="py-20">
+      <section id="blog-preview" class="py-20">
         <div class="container mx-auto px-6">
           <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
             Mantente Informado con Nuestro Blog
           </h2>
-          <div id="blog-preview-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="col-span-full text-center">Cargando artículos recientes...</div>
+          <div
+            id="blog-preview-container"
+            class="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            <div class="col-span-full text-center">
+              Cargando artículos recientes...
+            </div>
           </div>
           <div class="text-center mt-12" data-aos="fade-up">
             <a
@@ -768,37 +790,42 @@
       </section>
 
       <script type="module">
-        import { supabase } from './supabaseClient.js';
+        import { supabase } from "./supabaseClient.js";
 
-        const blogPreviewContainer = document.getElementById('blog-preview-container');
+        const blogPreviewContainer = document.getElementById(
+          "blog-preview-container"
+        );
 
         const loadRecentPosts = async () => {
-            const { data: posts, error } = await supabase
-                .from('concasaya_blog_posts')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .limit(3);
+          const { data: posts, error } = await supabase
+            .from("concasaya_blog_posts")
+            .select("*")
+            .order("created_at", { ascending: false })
+            .limit(3);
 
-            if (error || !posts || posts.length === 0) {
-                blogPreviewContainer.innerHTML = '<p class="col-span-full text-center">No hay artículos para mostrar.</p>';
-                return;
-            }
+          if (error || !posts || posts.length === 0) {
+            blogPreviewContainer.innerHTML =
+              '<p class="col-span-full text-center">No hay artículos para mostrar.</p>';
+            return;
+          }
 
-            blogPreviewContainer.innerHTML = '';
+          blogPreviewContainer.innerHTML = "";
 
-            posts.forEach((post, index) => {
-                const article = document.createElement('article');
-                article.className = 'bg-white rounded-lg shadow-lg overflow-hidden';
-                article.setAttribute('data-aos', 'fade-up');
-                article.setAttribute('data-aos-delay', (index + 1) * 100);
+          posts.forEach((post, index) => {
+            const article = document.createElement("article");
+            article.className = "bg-white rounded-lg shadow-lg overflow-hidden";
+            article.setAttribute("data-aos", "fade-up");
+            article.setAttribute("data-aos-delay", (index + 1) * 100);
 
-                const postImage = post.image_url 
-                    ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
-                    : '<div class="w-full h-56 bg-gray-200 flex items-center justify-center"><span class="text-gray-400">Sin imagen</span></div>';
-                
-                const snippet = post.content ? post.content.substring(0, 100) + '...' : 'Haz clic para leer el contenido completo.';
+            const postImage = post.image_url
+              ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
+              : '<div class="w-full h-56 bg-gray-200 flex items-center justify-center"><span class="text-gray-400">Sin imagen</span></div>';
 
-                article.innerHTML = `
+            const snippet = post.content
+              ? post.content.substring(0, 100) + "..."
+              : "Haz clic para leer el contenido completo.";
+
+            article.innerHTML = `
                     ${postImage}
                     <div class="p-6">
                         <span class="text-sm text-secondary font-semibold">Artículo</span>
@@ -807,12 +834,12 @@
                         <a href="/blog/post.html?id=${post.id}" class="font-semibold text-primary hover:underline">Leer más &rarr;</a>
                     </div>
                 `;
-                blogPreviewContainer.appendChild(article);
-            });
-            setTimeout(() => AOS.refresh(), 100);
+            blogPreviewContainer.appendChild(article);
+          });
+          setTimeout(() => AOS.refresh(), 100);
         };
-        
-        document.addEventListener('DOMContentLoaded', loadRecentPosts);
+
+        document.addEventListener("DOMContentLoaded", loadRecentPosts);
       </script>
 
       <section id="testimonials" class="py-20 bg-light">
@@ -1191,13 +1218,18 @@
         </div>
       </section>
 
-           <section id="gallery-preview" class="py-20">
+      <section id="gallery-preview" class="py-20">
         <div class="container mx-auto px-6">
           <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
             Proyectos que Inspiran
           </h2>
-          <div id="gallery-preview-container" class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
-            <div class="col-span-full text-center">Cargando imágenes recientes...</div>
+          <div
+            id="gallery-preview-container"
+            class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96"
+          >
+            <div class="col-span-full text-center">
+              Cargando imágenes recientes...
+            </div>
           </div>
           <div class="text-center mt-12" data-aos="fade-up">
             <a
@@ -1210,50 +1242,53 @@
       </section>
 
       <script type="module">
-        import { supabase } from './supabaseClient.js';
+        import { supabase } from "./supabaseClient.js";
 
-        const galleryPreviewContainer = document.getElementById('gallery-preview-container');
+        const galleryPreviewContainer = document.getElementById(
+          "gallery-preview-container"
+        );
 
         const loadRecentImages = async () => {
-            const { data: images, error } = await supabase
-                .from('concasaya_gallery_images')
-                .select('*')
-                .order('created_at', { ascending: false })
-                .limit(5);
+          const { data: images, error } = await supabase
+            .from("concasaya_gallery_images")
+            .select("*")
+            .order("created_at", { ascending: false })
+            .limit(5);
 
-            if (error || !images || images.length === 0) {
-                galleryPreviewContainer.innerHTML = '<p class="col-span-full text-center">No hay imágenes para mostrar.</p>';
-                return;
+          if (error || !images || images.length === 0) {
+            galleryPreviewContainer.innerHTML =
+              '<p class="col-span-full text-center">No hay imágenes para mostrar.</p>';
+            return;
+          }
+
+          galleryPreviewContainer.innerHTML = "";
+
+          images.forEach((image, index) => {
+            const imageWrapper = document.createElement("div");
+            let classList = "rounded-lg overflow-hidden";
+            let delay = index * 100;
+
+            if (index === 0) {
+              classList += " col-span-2 row-span-2";
             }
 
-            galleryPreviewContainer.innerHTML = '';
+            imageWrapper.className = classList;
+            imageWrapper.setAttribute("data-aos", "zoom-in");
+            imageWrapper.setAttribute("data-aos-delay", delay);
 
-            images.forEach((image, index) => {
-                const imageWrapper = document.createElement('div');
-                let classList = 'rounded-lg overflow-hidden';
-                let delay = index * 100;
-
-                if (index === 0) {
-                    classList += ' col-span-2 row-span-2';
-                }
-                
-                imageWrapper.className = classList;
-                imageWrapper.setAttribute('data-aos', 'zoom-in');
-                imageWrapper.setAttribute('data-aos-delay', delay);
-
-                imageWrapper.innerHTML = `
+            imageWrapper.innerHTML = `
                     <img
                         src="${image.image_url}"
                         class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
                         alt="${image.title}"
                     />
                 `;
-                galleryPreviewContainer.appendChild(imageWrapper);
-            });
-            setTimeout(() => AOS.refresh(), 100);
+            galleryPreviewContainer.appendChild(imageWrapper);
+          });
+          setTimeout(() => AOS.refresh(), 100);
         };
 
-        document.addEventListener('DOMContentLoaded', loadRecentImages);
+        document.addEventListener("DOMContentLoaded", loadRecentImages);
       </script>
 
       <section class="py-16 bg-gray-100">
@@ -1506,7 +1541,7 @@
           <div class="col-span-2 lg:col-span-1">
             <p class="text-gray-400">
               Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
-              de alta calidad en Bogotá y Cundinamarca.
+              y en EPS de alta calidad en Colombia.
             </p>
           </div>
 
