@@ -93,6 +93,140 @@
         visibility: visible;
         transform: translateY(0);
       }
+      .dropdown-menu {
+        border-radius: 12px;
+        padding: 0.5rem 0;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(10px);
+      }
+      .dropdown-menu li a {
+        border-radius: 8px;
+        margin: 0.25rem 0.5rem;
+        transition: all 0.3s ease;
+      }
+      .dropdown-menu li a:hover {
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
+      }
+      
+      /* Menú mejorado para tablet y móvil - Estilo Moderno */
+      #tablet-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+      #tablet-menu.open {
+        max-height: 1000px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .tablet-menu-item {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 4px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      .tablet-menu-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        transition: width 0.3s ease;
+      }
+      .tablet-menu-item:hover::before {
+        width: 100%;
+      }
+      .tablet-menu-item:hover {
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.08) 0%, rgba(0, 119, 182, 0.03) 100%);
+        border-left-color: #0077b6;
+        transform: translateX(8px);
+        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.15);
+      }
+      .tablet-menu-item.active {
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.12) 0%, rgba(0, 119, 182, 0.05) 100%);
+        border-left-color: #0077b6;
+        color: #0077b6;
+        font-weight: 600;
+        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.2);
+      }
+      .tablet-menu-item i {
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      .tablet-menu-item:hover i {
+        transform: scale(1.2);
+        color: #0077b6;
+      }
+      .tablet-submenu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+        border-left: 2px solid #e5e7eb;
+        margin-left: 1rem;
+      }
+      .tablet-submenu.open {
+        max-height: 600px;
+      }
+      .menu-icon {
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .menu-icon.open {
+        transform: rotate(90deg);
+      }
+      .municipio-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-left: 0.5rem;
+      }
+      .municipio-item::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 3px;
+        height: 0;
+        background: linear-gradient(180deg, #0077b6 0%, #00a8e8 100%);
+        transition: height 0.3s ease;
+        border-radius: 0 2px 2px 0;
+      }
+      .municipio-item:hover::before {
+        height: 60%;
+      }
+      .municipio-icon {
+        width: 20px;
+        text-align: center;
+        color: #0077b6;
+        transition: all 0.3s ease;
+      }
+      .municipio-item:hover .municipio-icon {
+        transform: scale(1.3) rotate(5deg);
+        color: #00a8e8;
+      }
+      #menu-btn {
+        position: relative;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+      }
+      #menu-btn:hover {
+        background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        transform: scale(1.1);
+      }
+      #menu-btn:active {
+        transform: scale(0.95);
+      }
     </style>
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -114,7 +248,7 @@
             class="h-10 w-auto"
           />
         </a>
-        <div class="hidden md:flex space-x-6 items-center">
+        <div class="hidden lg:flex space-x-6 items-center">
           <a href="https://www.concasaya.com/" class="text-dark hover:text-primary transition duration-300"
             >Inicio</a
           >
@@ -141,86 +275,86 @@
             >
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light text-primary font-bold"
+                  class="municipio-item block px-4 py-2 hover:bg-light text-primary font-bold"
                   href="/pages/chia.html"
-                  >Chía</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Chía</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/cajica.html"
-                  >Cajicá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Cajicá</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/mosquera.html"
-                  >Mosquera</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Mosquera</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/zipaquira.html"
-                  >Zipaquirá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Zipaquirá</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/sopo.html"
-                  >Sopó</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/funza.html"
-                  >Funza</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Funza</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/villadeleyva.html"
-                  >Villa de Leyva</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de Leyva</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/la-vega.html"
-                  >La Vega</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>La Vega</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/madrid.html"
-                  >Madrid</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Madrid</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/tocancipa.html"
-                  >Tocancipá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Tocancipá</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/santander.html"
-                  >Santander</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
                 >
               </li>
               <li>
                 <a
-                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/boyaca.html"
-                  >Boyacá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Boyacá</a
                 >
               </li>
             </ul>
