@@ -391,116 +391,115 @@
             >Contacto</a
           >
         </div>
-        <div class="md:hidden">
+        <div class="lg:hidden">
           <button
             id="menu-btn"
-            class="text-dark hover:text-primary focus:outline-none"
+            class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110"
+            aria-label="Menú"
           >
-            <i class="fas fa-bars fa-lg"></i>
+            <i id="menu-icon" class="fas fa-bars fa-lg"></i>
           </button>
         </div>
       </nav>
-      <!-- Menú Móvil -->
-      <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
-        <a href="https://www.concasaya.com/" class="block py-2 px-4 text-sm hover:bg-light"
-          >Inicio</a
+      <!-- Menú Tablet y Móvil Mejorado -->
+      <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
+        <a href="https://www.concasaya.com/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
         >
-        <a href="/modelos.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Modelos</a
+        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
         >
         <div class="relative">
           <button
-            class="w-full text-left block py-2 px-4 text-sm hover:bg-light font-bold text-primary"
-            id="mobile-dropdown-btn"
+            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
+            id="tablet-dropdown-btn"
           >
-            Municipios <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            <span><i class="fas fa-map-marker-alt mr-3 text-primary"></i>Municipios</span>
+            <i id="tablet-dropdown-icon" class="fas fa-chevron-down text-xs menu-icon transition-transform"></i>
           </button>
-          <div id="mobile-dropdown-menu" class="hidden pl-4">
+          <div id="tablet-dropdown-menu" class="tablet-submenu">
             <a
               href="/pages/chia.html"
-              class="block py-2 px-4 text-sm hover:bg-light font-bold text-primary"
-              >Chía</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition font-bold text-primary"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Chía</a
             >
             <a
               href="/pages/cajica.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Cajicá</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Cajicá</a
             >
             <a
               href="/pages/mosquera.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Mosquera</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Mosquera</a
             >
-           
             <a
               href="/pages/zipaquira.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Zipaquirá</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Zipaquirá</a
             >
             <a
               href="/pages/sopo.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Sopó</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
             >
             <a
               href="/pages/funza.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Funza</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Funza</a
             >
-             <a
+            <a
               href="/pages/villadeleyva.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Villa de Leyva</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de Leyva</a
             >
             <a
               href="/pages/la-vega.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >La Vega</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>La Vega</a
             >
             <a
               href="/pages/madrid.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Madrid</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Madrid</a
             >
-           
             <a
               href="/pages/tocancipa.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Tocancipá</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Tocancipá</a
             >
-             <a
+            <a
               href="/pages/santander.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Santander</a
-            > 
-             <a
-              href="/pages/boyaca.html"
-              class="block py-2 px-4 text-sm hover:bg-light"
-              >Boyacá</a
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
             >
-
+            <a
+              href="/pages/boyaca.html"
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Boyacá</a
+            >
           </div>
         </div>
-        <a href="/ventajas.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >¿Que es EPS?</a
+        <a href="/ventajas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Que es EPS?</a
         >
-        <a href="/galeria.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Galeria</a
+        <a href="/galeria.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-images mr-3 text-primary"></i>Galeria</a
         >
-        <a href="/blog.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Blog</a
+        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
         >
-        <a href="/nosotros.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Sobre Nosotros</a
+        <a href="/nosotros.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
         >
-        <a href="/faq.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Preguntas Frecuentes</a
+        <a href="/faq.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
         >
-        <a href="/referidos.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Plan Referidos</a
+        <a href="/referidos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
         >
-        <a href="/contacto.html" class="block py-2 px-4 text-sm hover:bg-light"
-          >Contacto</a
+        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
+          ><i class="fas fa-envelope mr-3"></i>Contacto</a
         >
       </div>
 </header>
@@ -1065,22 +1064,76 @@
       });
 
       const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      const mobileDropdownBtn = document.getElementById('mobile-dropdown-btn');
-      const mobileDropdownMenu = document.getElementById('mobile-dropdown-menu');
+      // Menú tablet/móvil mejorado con animaciones modernas
+      const tabletMenu = document.getElementById("tablet-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      
+      if (menuBtn && tabletMenu) {
+        menuBtn.addEventListener("click", () => {
+          const isOpen = tabletMenu.classList.contains("open");
+          tabletMenu.classList.toggle("open");
+          
+          // Animación del icono hamburguesa a X
+          if (isOpen) {
+            menuIcon.classList.remove("fa-times");
+            menuIcon.classList.add("fa-bars");
+            menuIcon.classList.remove("open");
+          } else {
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-times");
+            menuIcon.classList.add("open");
+          }
+        });
+      }
 
-      if (menuBtn && mobileMenu) {
-          menuBtn.addEventListener("click", () => {
-              mobileMenu.classList.toggle("hidden");
-          });
+      // Dropdown de municipios en tablet/móvil con animación
+      const tabletDropdownBtn = document.getElementById("tablet-dropdown-btn");
+      const tabletDropdownMenu = document.getElementById("tablet-dropdown-menu");
+      const tabletDropdownIcon = document.getElementById("tablet-dropdown-icon");
+      
+      if (tabletDropdownBtn && tabletDropdownMenu) {
+        tabletDropdownBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const isOpen = tabletDropdownMenu.classList.contains("open");
+          tabletDropdownMenu.classList.toggle("open");
+          
+          // Rotar el icono
+          if (isOpen) {
+            tabletDropdownIcon.classList.remove("open");
+          } else {
+            tabletDropdownIcon.classList.add("open");
+          }
+        });
       }
       
-      if (mobileDropdownBtn && mobileDropdownMenu) {
-          mobileDropdownBtn.addEventListener('click', (e) => {
-              e.preventDefault();
-              mobileDropdownMenu.classList.toggle('hidden');
-          });
-      }
+      // Cerrar menú al hacer clic fuera con animación suave
+      document.addEventListener("click", (e) => {
+        if (tabletMenu && !tabletMenu.contains(e.target) && menuBtn && !menuBtn.contains(e.target)) {
+          if (tabletMenu.classList.contains("open")) {
+            tabletMenu.classList.remove("open");
+            if (menuIcon) {
+              menuIcon.classList.remove("fa-times", "open");
+              menuIcon.classList.add("fa-bars");
+            }
+          }
+        }
+      });
+      
+      // Cerrar menú al hacer scroll (opcional, mejora UX)
+      let lastScroll = 0;
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+        if (tabletMenu && tabletMenu.classList.contains("open")) {
+          if (Math.abs(currentScroll - lastScroll) > 50) {
+            tabletMenu.classList.remove("open");
+            if (menuIcon) {
+              menuIcon.classList.remove("fa-times", "open");
+              menuIcon.classList.add("fa-bars");
+            }
+          }
+        }
+        lastScroll = currentScroll;
+      });
 
       const faqQuestions = document.querySelectorAll(".faq-question");
       if (faqQuestions.length > 0) {
