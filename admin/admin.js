@@ -1,4 +1,18 @@
 import { supabase } from "../supabaseClient.js";
+
+// Verificar que supabase se haya cargado correctamente
+if (!supabase || !supabase.auth) {
+  console.error("Error: El cliente de Supabase no se inicializó correctamente");
+  document.body.innerHTML = `
+    <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0d1b2a; color: #fff; padding: 20px;">
+      <div style="text-align: center;">
+        <h1 style="color: #ff4444; margin-bottom: 20px;">Error de Configuración</h1>
+        <p>No se pudo inicializar el cliente de Supabase. Por favor, verifica la consola para más detalles.</p>
+      </div>
+    </div>
+  `;
+}
+
 const loginSection = document.getElementById("login-section");
 const adminPanel = document.getElementById("admin-panel");
 const loginForm = document.getElementById("login-form");
@@ -26,16 +40,33 @@ const blogList = document.getElementById("blog-list");
 const cancelBlogEditBtn = document.getElementById("cancel-blog-edit");
 
 const checkUserSession = async () => {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  if (session) {
-    loginSection.classList.add("hidden");
-    adminPanel.classList.remove("hidden");
-    loadInitialData();
-  } else {
-    loginSection.classList.remove("hidden");
-    adminPanel.classList.add("hidden");
+  try {
+    if (!supabase || !supabase.auth) {
+      throw new Error("El cliente de Supabase no está disponible");
+    }
+    
+    const {
+      data: { session },
+      error
+    } = await supabase.auth.getSession();
+    
+    if (error) {
+      console.error("Error al verificar sesión:", error);
+      authError.textContent = "Error al verificar la sesión. Por favor, recarga la página.";
+      return;
+    }
+    
+    if (session) {
+      loginSection.classList.add("hidden");
+      adminPanel.classList.remove("hidden");
+      loadInitialData();
+    } else {
+      loginSection.classList.remove("hidden");
+      adminPanel.classList.add("hidden");
+    }
+  } catch (error) {
+    console.error("Error en checkUserSession:", error);
+    authError.textContent = "Error de conexión. Por favor, recarga la página.";
   }
 };
 
@@ -47,14 +78,30 @@ const loadInitialData = async () => {
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+  
+  if (!supabase || !supabase.auth) {
+    authError.textContent = "Error: El cliente de Supabase no está disponible. Por favor, recarga la página.";
+    return;
+  }
+  
   const email = e.target.email.value;
   const password = e.target.password.value;
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
-  if (error) {
-    authError.textContent = "Correo o contraseña incorrectos.";
-  } else {
-    authError.textContent = "";
-    checkUserSession();
+  
+  authError.textContent = "";
+  
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    
+    if (error) {
+      console.error("Error de autenticación:", error);
+      authError.textContent = error.message || "Correo o contraseña incorrectos.";
+    } else {
+      authError.textContent = "";
+      checkUserSession();
+    }
+  } catch (error) {
+    console.error("Error inesperado en login:", error);
+    authError.textContent = "Error de conexión. Por favor, intenta de nuevo.";
   }
 });
 
@@ -341,4 +388,14 @@ cancelBlogEditBtn.addEventListener("click", () => {
   blogForm.reset();
 });
 
-document.addEventListener("DOMContentLoaded", checkUserSession);
+// Esperar a que el DOM esté listo y verificar que supabase esté disponible
+document.addEventListener("DOMContentLoaded", () => {
+  if (!supabase || !supabase.auth) {
+    console.error("Supabase no está disponible al cargar la página");
+    if (authError) {
+      authError.textContent = "Error de configuración. Por favor, recarga la página.";
+    }
+    return;
+  }
+  checkUserSession();
+});
