@@ -69,6 +69,52 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
+        .tab-button {
+            transition: all 0.3s ease;
+            position: relative;
+            margin-bottom: -1px;
+        }
+        .tab-button.active {
+            background-color: #1e293b;
+            color: white;
+            border-bottom-color: #0077b6;
+            border-bottom-width: 3px;
+        }
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: #0077b6;
+        }
+        .tab-button:not(.active) {
+            background-color: transparent;
+            color: #94a3b8;
+            border-bottom-color: transparent;
+        }
+        .tab-button:not(.active):hover {
+            background-color: #1e293b;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
         @media (max-width: 768px) {
             .container-mobile {
                 padding-left: 1rem;
@@ -115,11 +161,24 @@
             </nav>
         </header>
 
-        <main class="container mx-auto container-mobile p-4 md:p-6 lg:p-8 space-y-8 md:space-y-12">
-            <section id="gallery-management">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 border-b-2 border-brand-primary pb-3 text-white">
-                    <i class="fas fa-images mr-2"></i>Gestionar Galería
-                </h2>
+        <main class="container mx-auto container-mobile p-4 md:p-6 lg:p-8">
+            <!-- Sistema de Pestañas -->
+            <div class="mb-6 md:mb-8">
+                <div class="flex flex-wrap gap-2 border-b border-gray-700">
+                    <button id="tab-gallery" class="tab-button active px-6 py-3 font-semibold rounded-t-lg border-b-2 border-transparent flex items-center gap-2">
+                        <i class="fas fa-images"></i>
+                        <span>Galería</span>
+                    </button>
+                    <button id="tab-blog" class="tab-button px-6 py-3 font-semibold rounded-t-lg border-b-2 border-transparent flex items-center gap-2">
+                        <i class="fas fa-blog"></i>
+                        <span>Blog</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido de Pestaña: Galería -->
+            <section id="gallery-management" class="tab-content active">
+                <div class="space-y-6 md:space-y-8">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                     <div class="lg:col-span-1 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
                         <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
@@ -191,11 +250,10 @@
                     <div id="gallery-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4"></div>
                 </div>
             </section>
-            
-            <section id="blog-management">
-                <h2 class="text-2xl md:text-3xl font-bold mb-6 border-b-2 border-brand-primary pb-3 text-white">
-                    <i class="fas fa-blog mr-2"></i>Gestionar Blog
-                </h2>
+
+            <!-- Contenido de Pestaña: Blog -->
+            <section id="blog-management" class="tab-content">
+                <div class="space-y-6 md:space-y-8">
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
                     <div class="lg:col-span-1 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
                         <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
@@ -249,6 +307,7 @@
                         </h3>
                         <div id="blog-list" class="space-y-4"></div>
                     </div>
+                </div>
                 </div>
             </section>
         </main>

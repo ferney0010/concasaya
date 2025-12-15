@@ -56,6 +56,37 @@ const blogRemovePreview = document.getElementById("blog-remove-preview");
 const blogLoading = document.getElementById("blog-loading");
 const blogSubmitBtn = document.getElementById("blog-submit-btn");
 
+// Elementos de pestañas
+const tabGallery = document.getElementById("tab-gallery");
+const tabBlog = document.getElementById("tab-blog");
+const galleryManagement = document.getElementById("gallery-management");
+const blogManagement = document.getElementById("blog-management");
+
+// Sistema de pestañas
+const switchTab = (tabName) => {
+  // Remover clase active de todos los botones y contenidos
+  [tabGallery, tabBlog].forEach(btn => btn.classList.remove("active"));
+  [galleryManagement, blogManagement].forEach(content => content.classList.remove("active"));
+
+  // Activar la pestaña seleccionada
+  if (tabName === "gallery") {
+    tabGallery.classList.add("active");
+    galleryManagement.classList.add("active");
+  } else if (tabName === "blog") {
+    tabBlog.classList.add("active");
+    blogManagement.classList.add("active");
+  }
+};
+
+// Event listeners para las pestañas
+if (tabGallery) {
+  tabGallery.addEventListener("click", () => switchTab("gallery"));
+}
+
+if (tabBlog) {
+  tabBlog.addEventListener("click", () => switchTab("blog"));
+}
+
 const checkUserSession = async () => {
   try {
     if (!supabase || !supabase.auth) {
