@@ -320,28 +320,80 @@ const initializeImageUploads = () => {
   }
 };
 
+// Función para normalizar nombres de archivo (eliminar caracteres especiales)
+const normalizeFileName = (fileName) => {
+  // Separar nombre y extensión
+  const lastDot = fileName.lastIndexOf('.');
+  const name = lastDot > 0 ? fileName.substring(0, lastDot) : fileName;
+  const extension = lastDot > 0 ? fileName.substring(lastDot) : '';
+  
+  // Normalizar el nombre: eliminar acentos y caracteres especiales
+  let normalized = name
+    .normalize('NFD') // Descompone caracteres con acentos
+    .replace(/[\u0300-\u036f]/g, '') // Elimina diacríticos (acentos, tildes, etc.)
+    .replace(/[^a-zA-Z0-9]/g, '-') // Reemplaza caracteres no alfanuméricos con guiones
+    .replace(/-+/g, '-') // Reemplaza múltiples guiones con uno solo
+    .replace(/^-|-$/g, ''); // Elimina guiones al inicio y final
+  
+  // Si el nombre queda vacío, usar un nombre por defecto
+  if (!normalized) {
+    normalized = 'imagen';
+  }
+  
+  // Limitar longitud del nombre
+  if (normalized.length > 50) {
+    normalized = normalized.substring(0, 50);
+  }
+  
+  return `${normalized}${extension}`;
+};
+
 const uploadFile = async (file, showLoading = null) => {
   if (showLoading) {
     showLoading.classList.remove('hidden');
   }
   
-  const fileName = `public/${Date.now()}-${file.name.replace(/\s/g, "-")}`;
-  const { error } = await supabase.storage
-    .from("concasaya_media")
-    .upload(fileName, file);
-  
-  if (showLoading) {
-    showLoading.classList.add('hidden');
-  }
-  
-  if (error) {
-    console.error("Upload error:", error);
+  try {
+    // Normalizar el nombre del archivo
+    const normalizedName = normalizeFileName(file.name);
+    const fileName = `public/${Date.now()}-${normalizedName}`;
+    
+    console.log('Subiendo archivo:', fileName);
+    
+    const { error, data: uploadData } = await supabase.storage
+      .from("concasaya_media")
+      .upload(fileName, file, {
+        cacheControl: '3600',
+        upsert: false // No sobrescribir archivos existentes
+      });
+    
+    if (showLoading) {
+      showLoading.classList.add('hidden');
+    }
+    
+    if (error) {
+      console.error("Upload error:", error);
+      // Mostrar error más específico
+      if (error.message) {
+        console.error("Error details:", error.message);
+      }
+      return null;
+    }
+    
+    // Obtener la URL pública
+    const { data } = supabase.storage
+      .from("concasaya_media")
+      .getPublicUrl(fileName);
+    
+    console.log('Archivo subido exitosamente:', data.publicUrl);
+    return data.publicUrl;
+  } catch (err) {
+    if (showLoading) {
+      showLoading.classList.add('hidden');
+    }
+    console.error("Error inesperado al subir archivo:", err);
     return null;
   }
-  const { data } = supabase.storage
-    .from("concasaya_media")
-    .getPublicUrl(fileName);
-  return data.publicUrl;
 };
 
 galleryForm.addEventListener("submit", async (e) => {
