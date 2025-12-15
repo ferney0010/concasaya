@@ -537,24 +537,66 @@ blogForm.addEventListener("submit", async (e) => {
 
   const dataToSave = { title, content };
   if (imageUrl) dataToSave.image_url = imageUrl;
-  if (ctaText && ctaUrl) {
+  
+  // Solo agregar campos CTA si ambos están presentes
+  const hasCta = ctaText && ctaUrl;
+  if (hasCta) {
     dataToSave.cta_text = ctaText;
     dataToSave.cta_url = ctaUrl;
-  } else {
-    // Si no hay CTA, asegurarse de limpiar campos anteriores
-    dataToSave.cta_text = null;
-    dataToSave.cta_url = null;
   }
 
-  const { error } = id
-    ? await supabase
+  let result;
+  if (id) {
+    // Actualizar entrada existente
+    result = await supabase
+      .from("concasaya_blog_posts")
+      .update(dataToSave)
+      .eq("id", id);
+  } else {
+    // Crear nueva entrada
+    result = await supabase
+      .from("concasaya_blog_posts")
+      .insert(dataToSave);
+  }
+
+  let { error } = result;
+  
+  // Si hay error y estamos intentando guardar con CTA, intentar sin CTA
+  if (error && hasCta && error.message && error.message.includes("column")) {
+    console.warn("Error al guardar con CTA, intentando sin campos CTA...");
+    const dataWithoutCta = { title, content };
+    if (imageUrl) dataWithoutCta.image_url = imageUrl;
+    
+    if (id) {
+      result = await supabase
         .from("concasaya_blog_posts")
-        .update(dataToSave)
-        .eq("id", id)
-    : await supabase.from("concasaya_blog_posts").insert(dataToSave);
+        .update(dataWithoutCta)
+        .eq("id", id);
+    } else {
+      result = await supabase
+        .from("concasaya_blog_posts")
+        .insert(dataWithoutCta);
+    }
+    
+    error = result.error;
+    if (!error) {
+      alert("¡Entrada guardada exitosamente!\n\nNota: Los campos CTA no se guardaron porque las columnas no existen en la base de datos. " +
+            "Para usar esta funcionalidad, crea las columnas 'cta_text' (text) y 'cta_url' (text) en la tabla 'concasaya_blog_posts' en Supabase.");
+    }
+  }
 
   if (error) {
-    alert("Error al guardar la entrada: " + error.message);
+    console.error("Error completo:", error);
+    let errorMessage = "Error al guardar la entrada: " + error.message;
+    
+    // Mensaje más específico si el error es por columnas faltantes
+    if (error.message && error.message.includes("column") && error.message.includes("does not exist")) {
+      errorMessage += "\n\nNota: Parece que las columnas CTA no existen en la base de datos. " +
+                     "Por favor, crea las columnas 'cta_text' (text) y 'cta_url' (text) en la tabla 'concasaya_blog_posts' en Supabase, " +
+                     "o elimina los valores del CTA e intenta de nuevo.";
+    }
+    
+    alert(errorMessage);
     blogSubmitBtn.disabled = false;
     blogSubmitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Publicar Entrada';
   } else {
