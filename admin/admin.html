@@ -20,102 +20,233 @@
             },
         };
     </script>
+    <style>
+        /* Mejoras de contraste y legibilidad */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        .text-contrast {
+            color: #e2e8f0;
+        }
+        .bg-card {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .input-field {
+            background-color: #0f172a;
+            border: 1px solid #475569;
+            color: #f1f5f9;
+        }
+        .input-field:focus {
+            border-color: #0077b6;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+        }
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #475569;
+        }
+        .upload-area {
+            border: 2px dashed #475569;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: #0077b6;
+            background-color: rgba(0, 119, 182, 0.05);
+        }
+        .upload-area.dragover {
+            border-color: #0077b6;
+            background-color: rgba(0, 119, 182, 0.1);
+        }
+        .loading-spinner {
+            border: 3px solid rgba(255, 255, 255, 0.1);
+            border-top-color: #0077b6;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @media (max-width: 768px) {
+            .container-mobile {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
 </head>
-<body class="bg-brand-dark text-gray-300">
+<body class="bg-brand-dark text-contrast min-h-screen">
 
     <div id="login-section" class="flex items-center justify-center min-h-screen p-4">
-        <div class="w-full max-w-md p-8 space-y-6 bg-brand-light-dark rounded-xl shadow-2xl">
-            <div style="background-color: antiquewhite; border-radius: 20px; padding: 5px;" class="flex justify-center">
+        <div class="w-full max-w-md p-6 md:p-8 space-y-6 bg-card rounded-xl shadow-2xl border border-gray-700">
+            <div style="background-color: antiquewhite; border-radius: 20px; padding: 8px;" class="flex justify-center">
                 <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-12 w-auto">
             </div>
-            <h2 class="text-2xl font-bold text-center text-white">Administración</h2>
-            <form id="login-form" class="space-y-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-white">Panel de Administración</h2>
+            <form id="login-form" class="space-y-5">
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-400">Correo</label>
-                    <input type="email" id="email" required class="w-full px-4 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md focus:ring-brand-primary focus:border-brand-primary text-white">
+                    <label for="email" class="block text-sm font-semibold text-gray-300 mb-2">Correo Electrónico</label>
+                    <input type="email" id="email" required class="input-field w-full px-4 py-3 rounded-lg text-base">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-400">Contraseña</label>
-                    <input type="password" id="password" required class="w-full px-4 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md focus:ring-brand-primary focus:border-brand-primary text-white">
+                    <label for="password" class="block text-sm font-semibold text-gray-300 mb-2">Contraseña</label>
+                    <input type="password" id="password" required class="input-field w-full px-4 py-3 rounded-lg text-base">
                 </div>
-                <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90 transition-colors">Entrar</button>
+                <button type="submit" class="w-full px-4 py-3 font-bold text-white bg-brand-primary rounded-lg hover:bg-blue-600 transition-colors shadow-lg hover:shadow-xl">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Iniciar Sesión
+                </button>
             </form>
-            <p id="auth-error" class="text-red-400 text-center text-sm"></p>
+            <p id="auth-error" class="text-red-400 text-center text-sm font-medium min-h-[20px]"></p>
         </div>
     </div>
 
     <div id="admin-panel" class="hidden">
-        <header class="bg-brand-light-dark shadow-lg">
-            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <h1 class="text-xl font-bold text-white">Panel de Administración</h1>
-                <button id="logout-btn" class="px-4 py-2 font-bold text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors">Cerrar Sesión</button>
+        <header class="bg-card shadow-lg border-b border-gray-700 sticky top-0 z-50">
+            <nav class="container mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+                <h1 class="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                    <i class="fas fa-cog"></i>
+                    Panel de Administración
+                </h1>
+                <button id="logout-btn" class="px-4 py-2 font-semibold text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors shadow-md hover:shadow-lg w-full sm:w-auto">
+                    <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
+                </button>
             </nav>
         </header>
 
-        <main class="container mx-auto p-6 space-y-12">
+        <main class="container mx-auto container-mobile p-4 md:p-6 lg:p-8 space-y-8 md:space-y-12">
             <section id="gallery-management">
-                <h2 class="text-3xl font-bold mb-6 border-b border-brand-secondary pb-2 text-white">Gestionar Galería</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-1 p-6 bg-brand-light-dark rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4 text-white">Añadir / Editar Imagen</h3>
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 border-b-2 border-brand-primary pb-3 text-white">
+                    <i class="fas fa-images mr-2"></i>Gestionar Galería
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="lg:col-span-1 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
+                            <i class="fas fa-plus-circle text-brand-primary"></i>
+                            Añadir / Editar Imagen
+                        </h3>
                         <form id="gallery-form" class="space-y-4">
                             <input type="hidden" id="gallery-id">
                             <div>
-                                <label for="gallery-title" class="block text-sm font-medium text-gray-400">Título</label>
-                                <input type="text" id="gallery-title" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white">
+                                <label for="gallery-title" class="block text-sm font-semibold text-gray-300 mb-2">Título de la Imagen</label>
+                                <input type="text" id="gallery-title" required class="input-field w-full px-4 py-2.5 rounded-lg">
                             </div>
                             <div>
-                                <label for="gallery-category" class="block text-sm font-medium text-gray-400">Categoría</label>
-                                <select id="gallery-category" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white"></select>
+                                <label for="gallery-category" class="block text-sm font-semibold text-gray-300 mb-2">Categoría</label>
+                                <select id="gallery-category" required class="input-field w-full px-4 py-2.5 rounded-lg">
+                                    <option value="">Selecciona una categoría</option>
+                                </select>
                             </div>
                             <div>
-                                <label for="gallery-image" class="block text-sm font-medium text-gray-400">Archivo de Imagen (.webp)</label>
-                                <input type="file" id="gallery-image" accept="image/webp" class="w-full mt-1 text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-primary file:text-white hover:file:bg-opacity-90">
+                                <label for="gallery-image" class="block text-sm font-semibold text-gray-300 mb-2">Imagen (.webp, .jpg, .png)</label>
+                                <div class="upload-area rounded-lg p-4 text-center cursor-pointer" id="gallery-upload-area">
+                                    <input type="file" id="gallery-image" accept="image/*" class="hidden">
+                                    <div id="gallery-upload-content" class="space-y-2">
+                                        <i class="fas fa-cloud-upload-alt text-4xl text-gray-400"></i>
+                                        <p class="text-sm text-gray-400">Haz clic o arrastra una imagen aquí</p>
+                                        <p class="text-xs text-gray-500">Formatos: .webp, .jpg, .png</p>
+                                    </div>
+                                    <div id="gallery-preview" class="hidden mt-4">
+                                        <img id="gallery-preview-img" class="preview-image mx-auto" alt="Preview">
+                                        <button type="button" id="gallery-remove-preview" class="mt-2 text-red-400 hover:text-red-300 text-sm">
+                                            <i class="fas fa-times mr-1"></i>Eliminar imagen
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90">Guardar Imagen</button>
-                            <button type="button" id="cancel-gallery-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-300 rounded-md bg-brand-secondary hover:bg-opacity-90">Cancelar Edición</button>
+                            <div id="gallery-loading" class="hidden text-center py-2">
+                                <div class="loading-spinner w-6 h-6 border-2 mx-auto"></div>
+                                <p class="text-sm text-gray-400 mt-2">Subiendo imagen...</p>
+                            </div>
+                            <button type="submit" id="gallery-submit-btn" class="w-full px-4 py-3 font-semibold text-white bg-brand-primary rounded-lg hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg">
+                                <i class="fas fa-save mr-2"></i>Guardar Imagen
+                            </button>
+                            <button type="button" id="cancel-gallery-edit" class="w-full px-4 py-2.5 mt-2 text-sm font-medium text-gray-300 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-times mr-2"></i>Cancelar Edición
+                            </button>
                         </form>
                     </div>
-                     <div class="lg:col-span-2 p-6 bg-brand-light-dark rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4 text-white">Gestionar Categorías</h3>
-                        <form id="category-form" class="flex gap-2 mb-4">
-                             <input type="text" id="category-name" placeholder="Nombre de la nueva categoría" required class="flex-grow px-3 py-2 bg-brand-dark border border-brand-secondary rounded-md text-white">
-                             <button type="submit" class="px-4 py-2 font-bold text-white bg-green-600 rounded-md hover:bg-green-700">Crear</button>
-                        </form>
-                        <div id="categories-list" class="space-y-2"></div>
+                    <div class="lg:col-span-2 space-y-6">
+                        <div class="p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
+                            <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
+                                <i class="fas fa-tags text-green-500"></i>
+                                Gestionar Categorías
+                            </h3>
+                            <form id="category-form" class="flex flex-col sm:flex-row gap-3 mb-5">
+                                <input type="text" id="category-name" placeholder="Nombre de la nueva categoría" required class="input-field flex-grow px-4 py-2.5 rounded-lg">
+                                <button type="submit" class="px-5 py-2.5 font-semibold text-white bg-green-600 rounded-lg hover:bg-green-700 transition-colors shadow-md whitespace-nowrap">
+                                    <i class="fas fa-plus mr-2"></i>Crear
+                                </button>
+                            </form>
+                            <div id="categories-list" class="space-y-2"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="mt-8 p-6 bg-brand-light-dark rounded-lg shadow-md">
-                     <h3 class="text-lg font-semibold mb-4 text-white">Imágenes Subidas</h3>
-                    <div id="gallery-list" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+                <div class="mt-6 md:mt-8 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
+                        <i class="fas fa-th text-brand-primary"></i>
+                        Imágenes Subidas
+                    </h3>
+                    <div id="gallery-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4"></div>
                 </div>
             </section>
             
             <section id="blog-management">
-                <h2 class="text-3xl font-bold mb-6 border-b border-brand-secondary pb-2 text-white">Gestionar Blog</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    <div class="lg:col-span-1 p-6 bg-brand-light-dark rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4 text-white">Añadir / Editar Entrada</h3>
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 border-b-2 border-brand-primary pb-3 text-white">
+                    <i class="fas fa-blog mr-2"></i>Gestionar Blog
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                    <div class="lg:col-span-1 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
+                            <i class="fas fa-edit text-brand-primary"></i>
+                            Añadir / Editar Entrada
+                        </h3>
                         <form id="blog-form" class="space-y-4">
                             <input type="hidden" id="blog-id">
                             <div>
-                                <label for="blog-title" class="block text-sm font-medium text-gray-400">Título</label>
-                                <input type="text" id="blog-title" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white">
+                                <label for="blog-title" class="block text-sm font-semibold text-gray-300 mb-2">Título del Blog</label>
+                                <input type="text" id="blog-title" required class="input-field w-full px-4 py-2.5 rounded-lg" placeholder="Ej: Consejos para tu hogar">
                             </div>
                             <div>
-                                <label for="blog-content" class="block text-sm font-medium text-gray-400">Contenido</label>
-                                <textarea id="blog-content" rows="6" required class="w-full px-3 py-2 mt-1 bg-brand-dark border border-brand-secondary rounded-md text-white"></textarea>
+                                <label for="blog-content" class="block text-sm font-semibold text-gray-300 mb-2">Contenido</label>
+                                <textarea id="blog-content" rows="10" required class="input-field w-full px-4 py-3 rounded-lg resize-y" placeholder="Escribe el contenido de tu entrada de blog aquí..."></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Puedes usar saltos de línea para formatear el texto</p>
                             </div>
                             <div>
-                                <label for="blog-image" class="block text-sm font-medium text-gray-400">Imagen Principal (.webp)</label>
-                                <input type="file" id="blog-image" accept="image/webp" class="w-full mt-1 text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-primary file:text-white hover:file:bg-opacity-90">
+                                <label for="blog-image" class="block text-sm font-semibold text-gray-300 mb-2">Imagen Principal</label>
+                                <div class="upload-area rounded-lg p-4 text-center cursor-pointer" id="blog-upload-area">
+                                    <input type="file" id="blog-image" accept="image/*" class="hidden">
+                                    <div id="blog-upload-content" class="space-y-2">
+                                        <i class="fas fa-image text-4xl text-gray-400"></i>
+                                        <p class="text-sm text-gray-400">Haz clic o arrastra una imagen aquí</p>
+                                        <p class="text-xs text-gray-500">Formatos: .webp, .jpg, .png</p>
+                                    </div>
+                                    <div id="blog-preview" class="hidden mt-4">
+                                        <img id="blog-preview-img" class="preview-image mx-auto" alt="Preview">
+                                        <button type="button" id="blog-remove-preview" class="mt-2 text-red-400 hover:text-red-300 text-sm">
+                                            <i class="fas fa-times mr-1"></i>Eliminar imagen
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" class="w-full px-4 py-2 font-bold text-white bg-brand-primary rounded-md hover:bg-opacity-90">Guardar Entrada</button>
-                            <button type="button" id="cancel-blog-edit" class="w-full px-4 py-2 mt-2 text-sm text-center text-gray-300 rounded-md bg-brand-secondary hover:bg-opacity-90">Cancelar Edición</button>
+                            <div id="blog-loading" class="hidden text-center py-2">
+                                <div class="loading-spinner w-6 h-6 border-2 mx-auto"></div>
+                                <p class="text-sm text-gray-400 mt-2">Guardando entrada...</p>
+                            </div>
+                            <button type="submit" id="blog-submit-btn" class="w-full px-4 py-3 font-semibold text-white bg-brand-primary rounded-lg hover:bg-blue-600 transition-colors shadow-md hover:shadow-lg">
+                                <i class="fas fa-paper-plane mr-2"></i>Publicar Entrada
+                            </button>
+                            <button type="button" id="cancel-blog-edit" class="w-full px-4 py-2.5 mt-2 text-sm font-medium text-gray-300 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors">
+                                <i class="fas fa-times mr-2"></i>Cancelar Edición
+                            </button>
                         </form>
                     </div>
-                    <div class="lg:col-span-2 p-6 bg-brand-light-dark rounded-lg shadow-md">
-                        <h3 class="text-lg font-semibold mb-4 text-white">Entradas Publicadas</h3>
+                    <div class="lg:col-span-2 p-5 md:p-6 bg-card rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-lg md:text-xl font-semibold mb-5 text-white flex items-center gap-2">
+                            <i class="fas fa-list text-brand-primary"></i>
+                            Entradas Publicadas
+                        </h3>
                         <div id="blog-list" class="space-y-4"></div>
                     </div>
                 </div>

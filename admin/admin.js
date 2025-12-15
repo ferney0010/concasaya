@@ -39,6 +39,23 @@ const blogImageInput = document.getElementById("blog-image");
 const blogList = document.getElementById("blog-list");
 const cancelBlogEditBtn = document.getElementById("cancel-blog-edit");
 
+// Elementos de preview de imágenes
+const galleryUploadArea = document.getElementById("gallery-upload-area");
+const galleryUploadContent = document.getElementById("gallery-upload-content");
+const galleryPreview = document.getElementById("gallery-preview");
+const galleryPreviewImg = document.getElementById("gallery-preview-img");
+const galleryRemovePreview = document.getElementById("gallery-remove-preview");
+const galleryLoading = document.getElementById("gallery-loading");
+const gallerySubmitBtn = document.getElementById("gallery-submit-btn");
+
+const blogUploadArea = document.getElementById("blog-upload-area");
+const blogUploadContent = document.getElementById("blog-upload-content");
+const blogPreview = document.getElementById("blog-preview");
+const blogPreviewImg = document.getElementById("blog-preview-img");
+const blogRemovePreview = document.getElementById("blog-remove-preview");
+const blogLoading = document.getElementById("blog-loading");
+const blogSubmitBtn = document.getElementById("blog-submit-btn");
+
 const checkUserSession = async () => {
   try {
     if (!supabase || !supabase.auth) {
@@ -60,6 +77,10 @@ const checkUserSession = async () => {
       loginSection.classList.add("hidden");
       adminPanel.classList.remove("hidden");
       loadInitialData();
+      // Inicializar uploads después de que el panel sea visible
+      setTimeout(() => {
+        initializeImageUploads();
+      }, 300);
     } else {
       loginSection.classList.remove("hidden");
       adminPanel.classList.add("hidden");
@@ -129,10 +150,12 @@ const loadCategories = async () => {
 
     const catDiv = document.createElement("div");
     catDiv.className =
-      "flex justify-between items-center bg-gray-50 p-2 rounded";
+      "flex justify-between items-center bg-gray-800 p-3 rounded-lg border border-gray-700 hover:bg-gray-750 transition-colors";
     catDiv.innerHTML = `
-            <span>${cat.name}</span>
-            <button data-id="${cat.id}" class="delete-category-btn text-red-500 hover:text-red-700 text-xl font-bold">&times;</button>
+            <span class="text-gray-200 font-medium">${cat.name}</span>
+            <button data-id="${cat.id}" class="delete-category-btn text-red-400 hover:text-red-300 text-lg font-bold px-2 py-1 rounded hover:bg-red-900/20 transition-colors" title="Eliminar categoría">
+                <i class="fas fa-trash"></i>
+            </button>
         `;
     categoriesList.appendChild(catDiv);
   });
@@ -172,11 +195,112 @@ categoriesList.addEventListener("click", async (e) => {
   }
 });
 
-const uploadFile = async (file) => {
+// Funciones de preview de imágenes
+const setupImagePreview = (input, preview, previewImg, uploadContent, removeBtn) => {
+  const handleFile = (file) => {
+    if (!file || !file.type.startsWith('image/')) {
+      alert('Por favor, selecciona un archivo de imagen válido');
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImg.src = e.target.result;
+      preview.classList.remove('hidden');
+      uploadContent.classList.add('hidden');
+    };
+    reader.readAsDataURL(file);
+  };
+
+  input.addEventListener('change', (e) => {
+    if (e.target.files[0]) {
+      handleFile(e.target.files[0]);
+    }
+  });
+
+  removeBtn.addEventListener('click', () => {
+    input.value = '';
+    preview.classList.add('hidden');
+    uploadContent.classList.remove('hidden');
+  });
+};
+
+// Setup drag and drop
+const setupDragAndDrop = (area, input) => {
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+    area.addEventListener(eventName, preventDefaults, false);
+  });
+
+  function preventDefaults(e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  ['dragenter', 'dragover'].forEach(eventName => {
+    area.addEventListener(eventName, () => {
+      area.classList.add('dragover');
+    }, false);
+  });
+
+  ['dragleave', 'drop'].forEach(eventName => {
+    area.addEventListener(eventName, () => {
+      area.classList.remove('dragover');
+    }, false);
+  });
+
+  area.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    if (files.length > 0) {
+      input.files = files;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }, false);
+
+  area.addEventListener('click', () => {
+    input.click();
+  });
+};
+
+// Inicializar previews y drag & drop cuando el panel esté visible
+const initializeImageUploads = () => {
+  if (galleryUploadArea && galleryImageInput) {
+    setupImagePreview(
+      galleryImageInput,
+      galleryPreview,
+      galleryPreviewImg,
+      galleryUploadContent,
+      galleryRemovePreview
+    );
+    setupDragAndDrop(galleryUploadArea, galleryImageInput);
+  }
+
+  if (blogUploadArea && blogImageInput) {
+    setupImagePreview(
+      blogImageInput,
+      blogPreview,
+      blogPreviewImg,
+      blogUploadContent,
+      blogRemovePreview
+    );
+    setupDragAndDrop(blogUploadArea, blogImageInput);
+  }
+};
+
+const uploadFile = async (file, showLoading = null) => {
+  if (showLoading) {
+    showLoading.classList.remove('hidden');
+  }
+  
   const fileName = `public/${Date.now()}-${file.name.replace(/\s/g, "-")}`;
   const { error } = await supabase.storage
     .from("concasaya_media")
     .upload(fileName, file);
+  
+  if (showLoading) {
+    showLoading.classList.add('hidden');
+  }
+  
   if (error) {
     console.error("Upload error:", error);
     return null;
@@ -190,14 +314,37 @@ const uploadFile = async (file) => {
 galleryForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const id = galleryIdInput.value;
-  const title = galleryTitleInput.value;
+  const title = galleryTitleInput.value.trim();
   const category_id = galleryCategorySelect.value;
   const file = galleryImageInput.files[0];
 
+  if (!title) {
+    alert("Por favor, ingresa un título para la imagen");
+    return;
+  }
+
+  if (!category_id) {
+    alert("Por favor, selecciona una categoría");
+    return;
+  }
+
+  if (!id && !file) {
+    alert("Por favor, selecciona una imagen para subir");
+    return;
+  }
+
+  gallerySubmitBtn.disabled = true;
+  gallerySubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Guardando...';
+
   let imageUrl;
   if (file) {
-    imageUrl = await uploadFile(file);
-    if (!imageUrl) return alert("Error al subir la imagen.");
+    imageUrl = await uploadFile(file, galleryLoading);
+    if (!imageUrl) {
+      alert("Error al subir la imagen. Por favor, intenta de nuevo.");
+      gallerySubmitBtn.disabled = false;
+      gallerySubmitBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Guardar Imagen';
+      return;
+    }
   }
 
   const dataToSave = { title, category_id };
@@ -212,10 +359,17 @@ galleryForm.addEventListener("submit", async (e) => {
 
   if (error) {
     alert("Error al guardar la imagen: " + error.message);
+    gallerySubmitBtn.disabled = false;
+    gallerySubmitBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Guardar Imagen';
   } else {
     galleryForm.reset();
     galleryIdInput.value = "";
+    galleryPreview.classList.add('hidden');
+    galleryUploadContent.classList.remove('hidden');
+    gallerySubmitBtn.disabled = false;
+    gallerySubmitBtn.innerHTML = '<i class="fas fa-save mr-2"></i>Guardar Imagen';
     await loadGalleryImages();
+    alert("¡Imagen guardada exitosamente!");
   }
 });
 
@@ -227,16 +381,28 @@ const loadGalleryImages = async () => {
   if (error) return;
 
   galleryList.innerHTML = "";
+  if (data.length === 0) {
+    galleryList.innerHTML = '<p class="text-gray-400 text-center py-8 col-span-full">No hay imágenes subidas aún</p>';
+    return;
+  }
+
   data.forEach((img) => {
     const div = document.createElement("div");
-    div.className = "relative group border rounded-md overflow-hidden";
+    div.className = "relative group border border-gray-700 rounded-lg overflow-hidden bg-gray-800 hover:border-brand-primary transition-all";
     div.innerHTML = `
-            <img src="${img.image_url}" class="w-full h-24 object-cover">
-            <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button data-id="${img.id}" class="edit-gallery-btn text-white text-sm">Editar</button>
-                <button data-id="${img.id}" data-url="${img.image_url}" class="delete-gallery-btn text-red-400 text-sm">Eliminar</button>
+            <img src="${img.image_url}" class="w-full h-32 md:h-40 object-cover" loading="lazy" alt="${img.title}">
+            <div class="absolute inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <button data-id="${img.id}" class="edit-gallery-btn px-4 py-2 text-white bg-brand-primary rounded hover:bg-blue-600 transition-colors text-sm font-medium">
+                    <i class="fas fa-edit mr-1"></i>Editar
+                </button>
+                <button data-id="${img.id}" data-url="${img.image_url}" class="delete-gallery-btn px-4 py-2 text-white bg-red-600 rounded hover:bg-red-700 transition-colors text-sm font-medium">
+                    <i class="fas fa-trash mr-1"></i>Eliminar
+                </button>
             </div>
-            <p class="text-xs p-1 bg-gray-50 truncate">${img.title}</p>
+            <div class="p-2 bg-gray-800">
+                <p class="text-xs text-gray-300 truncate font-medium">${img.title}</p>
+                <p class="text-xs text-gray-500 mt-1">${img.concasaya_gallery_categories?.name || 'Sin categoría'}</p>
+            </div>
         `;
     galleryList.appendChild(div);
   });
@@ -271,6 +437,12 @@ galleryList.addEventListener("click", async (e) => {
     galleryIdInput.value = data.id;
     galleryTitleInput.value = data.title;
     galleryCategorySelect.value = data.category_id;
+    // Mostrar preview de la imagen existente
+    if (data.image_url) {
+      galleryPreviewImg.src = data.image_url;
+      galleryPreview.classList.remove('hidden');
+      galleryUploadContent.classList.add('hidden');
+    }
     galleryForm.scrollIntoView({ behavior: "smooth" });
   }
 });
@@ -278,19 +450,44 @@ galleryList.addEventListener("click", async (e) => {
 cancelGalleryEditBtn.addEventListener("click", () => {
   galleryIdInput.value = "";
   galleryForm.reset();
+  galleryPreview.classList.add('hidden');
+  galleryUploadContent.classList.remove('hidden');
 });
 
 blogForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const id = blogIdInput.value;
-  const title = blogTitleInput.value;
-  const content = blogContentInput.value;
+  const title = blogTitleInput.value.trim();
+  const content = blogContentInput.value.trim();
   const file = blogImageInput.files[0];
+
+  if (!title) {
+    alert("Por favor, ingresa un título para la entrada");
+    return;
+  }
+
+  if (!content) {
+    alert("Por favor, ingresa el contenido de la entrada");
+    return;
+  }
+
+  if (!id && !file) {
+    alert("Por favor, selecciona una imagen principal para la entrada");
+    return;
+  }
+
+  blogSubmitBtn.disabled = true;
+  blogSubmitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Publicando...';
 
   let imageUrl;
   if (file) {
-    imageUrl = await uploadFile(file);
-    if (!imageUrl) return alert("Error al subir la imagen del blog.");
+    imageUrl = await uploadFile(file, blogLoading);
+    if (!imageUrl) {
+      alert("Error al subir la imagen. Por favor, intenta de nuevo.");
+      blogSubmitBtn.disabled = false;
+      blogSubmitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Publicar Entrada';
+      return;
+    }
   }
 
   const dataToSave = { title, content };
@@ -305,10 +502,17 @@ blogForm.addEventListener("submit", async (e) => {
 
   if (error) {
     alert("Error al guardar la entrada: " + error.message);
+    blogSubmitBtn.disabled = false;
+    blogSubmitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Publicar Entrada';
   } else {
     blogForm.reset();
     blogIdInput.value = "";
+    blogPreview.classList.add('hidden');
+    blogUploadContent.classList.remove('hidden');
+    blogSubmitBtn.disabled = false;
+    blogSubmitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Publicar Entrada';
     await loadBlogPosts();
+    alert("¡Entrada publicada exitosamente!");
   }
 });
 
@@ -320,28 +524,43 @@ const loadBlogPosts = async () => {
   if (error) return;
 
   blogList.innerHTML = "";
+  if (data.length === 0) {
+    blogList.innerHTML = '<p class="text-gray-400 text-center py-8">No hay entradas publicadas aún</p>';
+    return;
+  }
+
   data.forEach((post) => {
     const div = document.createElement("div");
-    div.className = "flex items-start gap-4 p-2 border rounded-md bg-white";
+    div.className = "flex flex-col sm:flex-row items-start gap-4 p-4 border border-gray-700 rounded-lg bg-gray-800 hover:border-brand-primary transition-all";
+    const date = new Date(post.created_at).toLocaleDateString('es-ES', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
     div.innerHTML = `
             ${
               post.image_url
-                ? `<img src="${post.image_url}" class="w-20 h-20 object-cover rounded">`
-                : '<div class="w-20 h-20 bg-gray-200 rounded"></div>'
+                ? `<img src="${post.image_url}" class="w-full sm:w-24 h-24 object-cover rounded-lg flex-shrink-0" loading="lazy" alt="${post.title}">`
+                : '<div class="w-full sm:w-24 h-24 bg-gray-700 rounded-lg flex-shrink-0 flex items-center justify-center"><i class="fas fa-image text-gray-600"></i></div>'
             }
-            <div class="flex-grow">
-                <h4 class="font-bold">${post.title}</h4>
-                <p class="text-sm text-gray-600">${(
+            <div class="flex-grow min-w-0">
+                <h4 class="font-bold text-white text-lg mb-1">${post.title}</h4>
+                <p class="text-xs text-gray-400 mb-2">${date}</p>
+                <p class="text-sm text-gray-300 line-clamp-2">${(
                   post.content || ""
-                ).substring(0, 50)}...</p>
+                ).substring(0, 100)}${post.content && post.content.length > 100 ? '...' : ''}</p>
             </div>
-            <div class="flex flex-col gap-2">
+            <div class="flex flex-row sm:flex-col gap-2 w-full sm:w-auto">
                 <button data-id="${
                   post.id
-                }" class="edit-blog-btn text-blue-500 hover:text-blue-700">Editar</button>
+                }" class="edit-blog-btn px-4 py-2 text-white bg-brand-primary rounded-lg hover:bg-blue-600 transition-colors text-sm font-medium flex-1 sm:flex-none">
+                    <i class="fas fa-edit mr-1"></i>Editar
+                </button>
                 <button data-id="${post.id}" data-url="${
       post.image_url || ""
-    }" class="delete-blog-btn text-red-500 hover:text-red-700">Eliminar</button>
+    }" class="delete-blog-btn px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors text-sm font-medium flex-1 sm:flex-none">
+                    <i class="fas fa-trash mr-1"></i>Eliminar
+                </button>
             </div>
         `;
     blogList.appendChild(div);
@@ -379,6 +598,12 @@ blogList.addEventListener("click", async (e) => {
     blogIdInput.value = data.id;
     blogTitleInput.value = data.title;
     blogContentInput.value = data.content;
+    // Mostrar preview de la imagen existente
+    if (data.image_url) {
+      blogPreviewImg.src = data.image_url;
+      blogPreview.classList.remove('hidden');
+      blogUploadContent.classList.add('hidden');
+    }
     blogForm.scrollIntoView({ behavior: "smooth" });
   }
 });
@@ -386,6 +611,8 @@ blogList.addEventListener("click", async (e) => {
 cancelBlogEditBtn.addEventListener("click", () => {
   blogIdInput.value = "";
   blogForm.reset();
+  blogPreview.classList.add('hidden');
+  blogUploadContent.classList.remove('hidden');
 });
 
 // Esperar a que el DOM esté listo y verificar que supabase esté disponible
@@ -398,4 +625,22 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
   checkUserSession();
+  
+  // Inicializar uploads cuando el panel esté visible
+  setTimeout(() => {
+    if (!adminPanel.classList.contains('hidden')) {
+      initializeImageUploads();
+    }
+  }, 500);
 });
+
+// Observar cambios en la visibilidad del panel
+const observer = new MutationObserver(() => {
+  if (!adminPanel.classList.contains('hidden')) {
+    initializeImageUploads();
+  }
+});
+
+if (adminPanel) {
+  observer.observe(adminPanel, { attributes: true, attributeFilter: ['class'] });
+}
