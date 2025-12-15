@@ -130,53 +130,83 @@
         
         /* Estilos mejorados para el contenido del post */
         .post-content {
-            line-height: 1.8;
-            color: #374151;
+            line-height: 1.9;
+            color: #4a5568;
+            font-size: 1.125rem;
         }
         .post-content h2 { 
-            font-size: 2rem; 
+            font-size: 2.25rem; 
             font-weight: 700; 
             margin-top: 3rem; 
             margin-bottom: 1.5rem;
-            color: #1f2937;
-            border-bottom: 3px solid #0077b6;
+            color: #1a202c;
+            border-bottom: 2px solid #e2e8f0;
             padding-bottom: 0.5rem;
         }
         .post-content h3 { 
-            font-size: 1.5rem; 
+            font-size: 1.75rem; 
             font-weight: 600; 
             margin-top: 2rem; 
             margin-bottom: 1rem;
-            color: #374151;
+            color: #2d3748;
+        }
+        .post-content h4 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #2d3748;
         }
         .post-content p { 
             margin-bottom: 1.5rem; 
-            line-height: 1.8;
-            font-size: 1.1rem;
+            line-height: 1.9;
+            font-size: 1.125rem;
+        }
+        .post-content p:first-of-type {
+            font-size: 1.25rem;
+            color: #4a5568;
+            font-weight: 400;
         }
         .post-content ul, .post-content ol { 
-            margin-left: 2rem; 
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            margin: 1.5rem 0;
+            padding-left: 2.5rem;
+        }
+        .post-content ul {
+            list-style-type: disc;
+        }
+        .post-content ol {
+            list-style-type: decimal;
         }
         .post-content li {
             margin-bottom: 0.75rem;
+            line-height: 1.8;
+        }
+        .post-content li::marker {
+            color: #0077b6;
         }
         .post-content strong {
-            color: #0077b6;
-            font-weight: 600;
+            color: #1a202c;
+            font-weight: 700;
+        }
+        .post-content em {
+            font-style: italic;
+            color: #4a5568;
         }
         .post-content a {
             color: #0077b6;
             text-decoration: underline;
+            font-weight: 500;
+            transition: color 0.2s;
         }
         .post-content a:hover {
-            color: #005a8a;
+            color: #005a8b;
         }
         .post-content blockquote {
             border-left: 4px solid #0077b6;
-            padding-left: 1.5rem;
+            padding: 1rem 1.5rem;
             margin: 2rem 0;
+            background-color: #f7fafc;
+            border-radius: 0 8px 8px 0;
             font-style: italic;
             color: #6b7280;
         }
@@ -580,12 +610,100 @@
             document.title = `${post.title} | CONCASAYA`;
             breadcrumbTitle.textContent = post.title.length > 30 ? post.title.substring(0, 30) + '...' : post.title;
 
-            // Para que los saltos de línea en el panel se vean como párrafos
-            const formattedContent = post.content
-                .split('\n')
-                .filter(paragraph => paragraph.trim() !== '')
-                .map(paragraph => `<p>${paragraph.trim()}</p>`)
-                .join('');
+            // Formatear el contenido: convertir saltos de línea en párrafos
+            // Mejorar el formato para que se vea más profesional
+            const formatContent = (content) => {
+                if (!content) return '';
+                
+                // Dividir por líneas
+                const lines = content.split('\n');
+                let formatted = '';
+                let inParagraph = false;
+                
+                lines.forEach((line, index) => {
+                    const trimmed = line.trim();
+                    
+                    // Si la línea está vacía, cerrar el párrafo anterior
+                    if (trimmed === '') {
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        return;
+                    }
+                    
+                    // Si empieza con #, es un encabezado
+                    if (trimmed.startsWith('### ')) {
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        formatted += `<h3>${trimmed.substring(4)}</h3>`;
+                    } else if (trimmed.startsWith('## ')) {
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        formatted += `<h2>${trimmed.substring(3)}</h2>`;
+                    } else if (trimmed.startsWith('# ')) {
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        formatted += `<h2>${trimmed.substring(2)}</h2>`;
+                    } else if (trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+                        // Lista no ordenada
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        if (!formatted.endsWith('<ul>')) {
+                            formatted += '<ul>';
+                        }
+                        formatted += `<li>${trimmed.substring(2)}</li>`;
+                    } else if (/^\d+\.\s/.test(trimmed)) {
+                        // Lista ordenada
+                        if (inParagraph) {
+                            formatted += '</p>';
+                            inParagraph = false;
+                        }
+                        if (!formatted.endsWith('<ol>')) {
+                            formatted += '<ol>';
+                        }
+                        formatted += `<li>${trimmed.replace(/^\d+\.\s/, '')}</li>`;
+                    } else {
+                        // Texto normal - agregar al párrafo
+                        if (!inParagraph) {
+                            formatted += '<p>';
+                            inParagraph = true;
+                        } else {
+                            formatted += ' ';
+                        }
+                        // Escapar HTML pero permitir formato básico
+                        formatted += trimmed
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\*(.*?)\*/g, '<em>$1</em>');
+                    }
+                });
+                
+                // Cerrar párrafos y listas abiertas
+                if (inParagraph) {
+                    formatted += '</p>';
+                }
+                if (formatted.includes('<ul>') && !formatted.includes('</ul>')) {
+                    formatted += '</ul>';
+                }
+                if (formatted.includes('<ol>') && !formatted.includes('</ol>')) {
+                    formatted += '</ol>';
+                }
+                
+                return formatted;
+            };
+            
+            const formattedContent = formatContent(post.content);
             
             const heroImage = post.image_url ? `
                 <div class="hero-image rounded-2xl overflow-hidden mb-12 shadow-2xl">
@@ -608,6 +726,17 @@
                 </div>
             `;
             
+            // Botón CTA si existe
+            const ctaButton = (post.cta_text && post.cta_url) ? `
+                <div class="my-8 p-6 bg-gradient-to-r from-primary to-blue-600 rounded-xl shadow-lg text-center">
+                    <h3 class="text-white text-xl font-bold mb-4">¿Te interesa este tema?</h3>
+                    <a href="${post.cta_url.startsWith('http') ? post.cta_url : post.cta_url}" 
+                       class="inline-block bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-xl">
+                        <i class="fas fa-arrow-right mr-2"></i>${post.cta_text}
+                    </a>
+                </div>
+            ` : '';
+
             postContainer.innerHTML = `
                 <article class="max-w-4xl mx-auto fade-in">
                     ${heroImage}
@@ -615,6 +744,8 @@
                         <div class="post-content prose prose-lg max-w-none">
                             ${formattedContent}
                         </div>
+                        
+                        ${ctaButton}
                         
                         <!-- Separador decorativo -->
                         <div class="my-12 border-t border-gray-200"></div>

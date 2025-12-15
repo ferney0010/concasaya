@@ -36,6 +36,8 @@ const blogIdInput = document.getElementById("blog-id");
 const blogTitleInput = document.getElementById("blog-title");
 const blogContentInput = document.getElementById("blog-content");
 const blogImageInput = document.getElementById("blog-image");
+const blogCtaTextInput = document.getElementById("blog-cta-text");
+const blogCtaUrlInput = document.getElementById("blog-cta-url");
 const blogList = document.getElementById("blog-list");
 const cancelBlogEditBtn = document.getElementById("cancel-blog-edit");
 
@@ -490,6 +492,8 @@ blogForm.addEventListener("submit", async (e) => {
   const id = blogIdInput.value;
   const title = blogTitleInput.value.trim();
   const content = blogContentInput.value.trim();
+  const ctaText = blogCtaTextInput.value.trim();
+  const ctaUrl = blogCtaUrlInput.value.trim();
   const file = blogImageInput.files[0];
 
   if (!title) {
@@ -504,6 +508,16 @@ blogForm.addEventListener("submit", async (e) => {
 
   if (!id && !file) {
     alert("Por favor, selecciona una imagen principal para la entrada");
+    return;
+  }
+
+  // Validar CTA si se proporciona
+  if (ctaText && !ctaUrl) {
+    alert("Por favor, ingresa una URL de destino para el botón CTA");
+    return;
+  }
+  if (!ctaText && ctaUrl) {
+    alert("Por favor, ingresa el texto del botón CTA");
     return;
   }
 
@@ -523,6 +537,14 @@ blogForm.addEventListener("submit", async (e) => {
 
   const dataToSave = { title, content };
   if (imageUrl) dataToSave.image_url = imageUrl;
+  if (ctaText && ctaUrl) {
+    dataToSave.cta_text = ctaText;
+    dataToSave.cta_url = ctaUrl;
+  } else {
+    // Si no hay CTA, asegurarse de limpiar campos anteriores
+    dataToSave.cta_text = null;
+    dataToSave.cta_url = null;
+  }
 
   const { error } = id
     ? await supabase
@@ -538,6 +560,8 @@ blogForm.addEventListener("submit", async (e) => {
   } else {
     blogForm.reset();
     blogIdInput.value = "";
+    blogCtaTextInput.value = "";
+    blogCtaUrlInput.value = "";
     blogPreview.classList.add('hidden');
     blogUploadContent.classList.remove('hidden');
     blogSubmitBtn.disabled = false;
@@ -577,9 +601,15 @@ const loadBlogPosts = async () => {
             <div class="flex-grow min-w-0">
                 <h4 class="font-bold text-white text-lg mb-1">${post.title}</h4>
                 <p class="text-xs text-gray-400 mb-2">${date}</p>
-                <p class="text-sm text-gray-300 line-clamp-2">${(
+                <p class="text-sm text-gray-300 line-clamp-2 mb-2">${(
                   post.content || ""
                 ).substring(0, 100)}${post.content && post.content.length > 100 ? '...' : ''}</p>
+                ${post.cta_text && post.cta_url ? `
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="text-xs bg-blue-600 text-white px-2 py-0.5 rounded">CTA: ${post.cta_text}</span>
+                        <span class="text-xs text-gray-500">→ ${post.cta_url}</span>
+                    </div>
+                ` : ''}
             </div>
             <div class="flex flex-row sm:flex-col gap-2 w-full sm:w-auto">
                 <button data-id="${
@@ -629,6 +659,8 @@ blogList.addEventListener("click", async (e) => {
     blogIdInput.value = data.id;
     blogTitleInput.value = data.title;
     blogContentInput.value = data.content;
+    blogCtaTextInput.value = data.cta_text || "";
+    blogCtaUrlInput.value = data.cta_url || "";
     // Mostrar preview de la imagen existente
     if (data.image_url) {
       blogPreviewImg.src = data.image_url;
@@ -642,6 +674,8 @@ blogList.addEventListener("click", async (e) => {
 cancelBlogEditBtn.addEventListener("click", () => {
   blogIdInput.value = "";
   blogForm.reset();
+  blogCtaTextInput.value = "";
+  blogCtaUrlInput.value = "";
   blogPreview.classList.add('hidden');
   blogUploadContent.classList.remove('hidden');
 });
