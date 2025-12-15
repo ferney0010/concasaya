@@ -260,6 +260,7 @@ const setupImagePreview = (input, preview, previewImg, uploadContent, removeBtn)
 
 // Setup drag and drop
 const setupDragAndDrop = (area, input) => {
+  // Prevenir eventos de drag por defecto
   ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
     area.addEventListener(eventName, preventDefaults, false);
   });
@@ -290,14 +291,43 @@ const setupDragAndDrop = (area, input) => {
     }
   }, false);
 
-  area.addEventListener('click', () => {
-    input.click();
-  });
+  // Manejar click en el área de upload
+  let clickTimeout = null;
+  area.addEventListener('click', (e) => {
+    // Si el click fue directamente en el input, no hacer nada
+    if (e.target === input || e.target.closest('input[type="file"]')) {
+      return;
+    }
+    
+    // Prevenir que el click se propague
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Limpiar timeout anterior si existe
+    if (clickTimeout) {
+      clearTimeout(clickTimeout);
+    }
+    
+    // Abrir el selector de archivos con un pequeño delay para evitar doble activación
+    clickTimeout = setTimeout(() => {
+      input.click();
+      clickTimeout = null;
+    }, 50);
+  }, { once: false, passive: false });
+  
+  // Prevenir que el input file dispare eventos adicionales cuando se hace click directamente
+  input.addEventListener('click', (e) => {
+    e.stopPropagation();
+  }, false);
 };
+
+// Flags para evitar inicialización múltiple
+let galleryInitialized = false;
+let blogInitialized = false;
 
 // Inicializar previews y drag & drop cuando el panel esté visible
 const initializeImageUploads = () => {
-  if (galleryUploadArea && galleryImageInput) {
+  if (galleryUploadArea && galleryImageInput && !galleryInitialized) {
     setupImagePreview(
       galleryImageInput,
       galleryPreview,
@@ -306,9 +336,10 @@ const initializeImageUploads = () => {
       galleryRemovePreview
     );
     setupDragAndDrop(galleryUploadArea, galleryImageInput);
+    galleryInitialized = true;
   }
 
-  if (blogUploadArea && blogImageInput) {
+  if (blogUploadArea && blogImageInput && !blogInitialized) {
     setupImagePreview(
       blogImageInput,
       blogPreview,
@@ -317,6 +348,7 @@ const initializeImageUploads = () => {
       blogRemovePreview
     );
     setupDragAndDrop(blogUploadArea, blogImageInput);
+    blogInitialized = true;
   }
 };
 
