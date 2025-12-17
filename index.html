@@ -102,6 +102,37 @@
       body {
         font-family: "Poppins", sans-serif;
       }
+      
+      /* Estilos para el hero mejorado */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      /* Animación para el indicador de scroll */
+      @keyframes scroll-bounce {
+        0%, 100% {
+          transform: translateY(0);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(10px);
+          opacity: 1;
+        }
+      }
+      
+      .scroll-indicator {
+        animation: scroll-bounce 2s ease-in-out infinite;
+      }
+      
       .parallax-bg {
         position: relative;
         overflow: hidden;
@@ -615,32 +646,69 @@
 
     <main>
       <section
-        class="h-screen bg-cover bg-center flex items-center"
-        style="background-image: url('assets/images/fondo2.webp')"
+        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20"
+        style="background-image: url('assets/images/fondo2.webp'); min-height: 95vh;"
       >
-        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-          <div
-            class="bg-white bg-opacity-85 p-6 md:p-10 rounded-lg max-w-4xl mx-auto"
-          >
-            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-4">
-              <strong>Casas Prefabricadas</strong> en <strong>Bogotá</strong>
-            </h1>
-            <p class="text-xl text-gray-700 mb-8">
-              Nuestras casas con
+        <!-- Overlay con gradiente -->
+        <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
+
+        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0">
+          <div class="max-w-4xl mx-auto text-center">
+            <!-- Título principal -->
+            <div class="mb-8 sm:mb-10" data-aos="fade-up">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-6 leading-tight px-2">
+                Casas Prefabricadas en <span class="text-primary">Bogotá</span>
+                <span class="block mt-2 sm:mt-3">y Cundinamarca</span>
+              </h1>
+              <p class="text-base sm:text-lg md:text-xl text-gray-100 mt-4 sm:mt-5 max-w-3xl mx-auto px-2">
+                Construcción <strong class="text-white">rápida</strong>, <strong class="text-white">económica</strong> y 
+                <strong class="text-white">sostenible</strong> con <strong class="text-white">paneles EPS</strong> o 
+                <strong class="text-white">plaqueta de concreto</strong>.
+              </p>
+            </div>
+
+            <!-- Palabras clave compactas -->
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2" data-aos="fade-up" data-aos-delay="100">
+              <span class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20">
+                <i class="fas fa-building mr-1 sm:mr-1.5 text-primary"></i>Construcción Rápida
+              </span>
+              <span class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20">
+                <i class="fas fa-dollar-sign mr-1 sm:mr-1.5 text-primary"></i>Precios Accesibles
+              </span>
+              <span class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20">
+                <i class="fas fa-leaf mr-1 sm:mr-1.5 text-primary"></i>Paneles EPS
+              </span>
+              <span class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20">
+                <i class="fas fa-shield-alt mr-1 sm:mr-1.5 text-primary"></i>Construcción Segura
+              </span>
+            </div>
+
+            <!-- CTAs compactos -->
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-center px-2 mb-8 sm:mb-10" data-aos="fade-up" data-aos-delay="200">
               <a
-                style="color: #0077b6; text-decoration: underline"
-                href="ventajas.html"
-                ><strong>Paneles EPS</strong></a
+                href="/modelos.html"
+                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
               >
-              o Plaqueta de Concreto garantizan una
-              <strong>Contrucción Rápida</strong> y <strong>Segura</strong>.
-            </p>
-            <a
-              href="/modelos.html"
-              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
-            >
-              Ver Modelos y Precios
-            </a>
+                <i class="fas fa-eye"></i>
+                <span>Ver Modelos y Precios</span>
+              </a>
+              <a
+                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20casas%20prefabricadas."
+                target="_blank"
+                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Indicador de scroll animado -->
+            <div class="flex flex-col items-center justify-center mt-8 sm:mt-10" data-aos="fade-up" data-aos-delay="300">
+              <span class="text-white text-sm mb-2 opacity-80">Descubre más</span>
+              <div class="scroll-indicator cursor-pointer" onclick="document.getElementById('counter-section').scrollIntoView({ behavior: 'smooth' })">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+              </div>
+            </div>
           </div>
         </div>
       </section>

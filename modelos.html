@@ -268,6 +268,22 @@
           opacity: 1;
         }
       }
+      
+      /* Animación para el indicador de scroll */
+      @keyframes scroll-bounce {
+        0%, 100% {
+          transform: translateY(0);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(10px);
+          opacity: 1;
+        }
+      }
+      
+      .scroll-indicator {
+        animation: scroll-bounce 2s ease-in-out infinite;
+      }
     </style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
@@ -554,21 +570,73 @@
 
     <main class="pt-20">
       <section
-        class="relative py-24 bg-cover bg-center"
-        style="background-image: url('assets/images/casa2.webp')"
+        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20"
+        style="background-image: url('assets/images/casa2.webp'); min-height: 95vh;"
       >
-        <div class="absolute inset-0 bg-secondary opacity-75"></div>
-        <div
-          class="container relative z-10 mx-auto px-6 text-center"
-          data-aos="fade-up"
-        >
-          <h1 class="text-4xl font-bold text-white">
-            Nuestro Catálogo de Diseños
-          </h1>
-          <p class="text-lg text-gray-200 mt-2 max-w-3xl mx-auto">
-            Explora nuestra variedad de modelos. Cada diseño es un punto de
-            partida que podemos adaptar a tus necesidades, gustos y presupuesto.
-          </p>
+        <!-- Overlay con gradiente -->
+        <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
+
+        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0">
+          <div class="max-w-4xl mx-auto text-center">
+            <!-- Título principal -->
+            <div class="mb-8 sm:mb-10" data-aos="fade-up">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-6 leading-tight px-2">
+                Catálogo de <span class="text-primary">Casas Prefabricadas</span>
+                <span class="block mt-2 sm:mt-3">Modelos y Precios</span>
+              </h1>
+              <p class="text-base sm:text-lg md:text-xl text-gray-100 mt-4 sm:mt-5 max-w-3xl mx-auto px-2">
+                Explora nuestros <strong class="text-white">modelos de casas prefabricadas</strong>. 
+                Cada diseño es personalizable según tus <strong class="text-white">necesidades</strong>, 
+                <strong class="text-white">gustos</strong> y <strong class="text-white">presupuesto</strong>.
+              </p>
+            </div>
+
+            <!-- Palabras clave compactas -->
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2" data-aos="fade-up" data-aos-delay="100">
+              <span class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20">
+                <i class="fas fa-home mr-1 text-primary text-xs"></i>Casas Campestres
+              </span>
+              <span class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20">
+                <i class="fas fa-calculator mr-1 text-primary text-xs"></i>Precios Desde
+              </span>
+              <span class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20">
+                <i class="fas fa-pencil-ruler mr-1 text-primary text-xs"></i>Diseños Personalizables
+              </span>
+              <span class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20">
+                <i class="fas fa-leaf mr-1 text-primary text-xs"></i>Paneles EPS
+              </span>
+              <span class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20">
+                <i class="fas fa-map-marker-alt mr-1 text-primary text-xs"></i>Todo Cundinamarca
+              </span>
+            </div>
+
+            <!-- CTAs compactos -->
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-center px-2 mb-8 sm:mb-10" data-aos="fade-up" data-aos-delay="200">
+              <a
+                href="#catalog"
+                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-eye"></i>
+                <span>Ver Catálogo Completo</span>
+              </a>
+              <a
+                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20modelos%20de%20casas%20prefabricadas."
+                target="_blank"
+                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+
+            <!-- Indicador de scroll animado -->
+            <div class="flex flex-col items-center justify-center mt-8 sm:mt-10" data-aos="fade-up" data-aos-delay="300">
+              <span class="text-white text-sm mb-2 opacity-80">Descubre nuestros modelos</span>
+              <div class="scroll-indicator cursor-pointer" onclick="document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' })">
+                <i class="fas fa-chevron-down text-white text-2xl"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
