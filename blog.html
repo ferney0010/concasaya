@@ -804,7 +804,7 @@
           article.setAttribute("data-aos-delay", (index % 3) * 100);
 
           const postImage = post.image_url
-            ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
+            ? `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image_url}" alt="${post.title}" class="w-full h-auto object-contain max-h-full" /></div>`
             : '<div class="w-full h-56 bg-gray-200"></div>';
 
           const postContent = post.content
