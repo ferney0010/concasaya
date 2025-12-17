@@ -284,6 +284,106 @@
       .scroll-indicator {
         animation: scroll-bounce 2s ease-in-out infinite;
       }
+      
+      /* Estilos mejorados para las tarjetas de modelos - Diseño Moderno y Elegante */
+      .model-card {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .model-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #0077b6 0%, #00a8e8 100%);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease;
+        z-index: 1;
+      }
+      
+      .model-card:hover::before {
+        transform: scaleX(1);
+      }
+      
+      .model-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        border-color: rgba(0, 119, 182, 0.2);
+      }
+      
+      .model-card .image-container {
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      }
+      
+      .model-card img {
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      
+      .model-card:hover img {
+        transform: scale(1.15);
+      }
+      
+      .model-card .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+      
+      .model-card:hover .image-overlay {
+        opacity: 1;
+      }
+      
+      .model-card .badge {
+        backdrop-filter: blur(10px);
+        background: rgba(0, 119, 182, 0.9);
+        box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+      }
+      
+      .model-card .content-section {
+        background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%);
+      }
+      
+      .model-card .title {
+        background: linear-gradient(135deg, #0d1b2a 0%, #2D3748 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* Estilos mejorados para el modal */
+      .modal-content {
+        max-width: 900px;
+        animation: modalSlideIn 0.3s ease-out;
+      }
+      
+      @keyframes modalSlideIn {
+        from {
+          transform: scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      
+      .modal-content img {
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
     </style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
@@ -640,240 +740,302 @@
         </div>
       </section>
 
-      <section id="catalog" class="py-20">
+      <section id="catalog" class="py-20 bg-gray-50">
         <div class="container mx-auto px-6">
+          <!-- Encabezado de la sección -->
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+              Nuestros Modelos de Casas Prefabricadas
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              Descubre nuestra amplia variedad de diseños. Cada modelo es personalizable y puede adaptarse a tus necesidades específicas. 
+              Haz clic en "Ver Detalles" para conocer más sobre cada opción.
+            </p>
+          </div>
+          
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <img
-                src="assets/images/cabaña.webp"
-                alt="Cabaña rústica y acogedora"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Cabañas</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/cabaña.webp"
+                  alt="Cabaña rústica y acogedora"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+                <div class="absolute top-5 right-5 badge text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide z-10">
+                  Popular
+                </div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Cabañas</h3>
+                  <div class="h-1 w-16 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+                </div>
+                <p class="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">
                   Un refugio de calidez y confort. Este diseño maximiza el
                   espacio aprovechando cada rincon para una estadia comoda y
                   acogedora. Ideal como cabaña de descanso o para
                   proyectos turisticos.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Cabaña"
                   data-img="assets/images/cabaña.webp"
                   data-specs="Areá Sugerida: 15m² a 45m²|Habitaciones: 1-2|Usos: alojamiento tipo glamping o cabaña de descanso"
                   data-desc="Un refugio de calidez y confort. Este diseño maximiza el espacio aprovechando cada rincon para una estadia comoda y acogedora. Ideal como cabaña de descanso o para proyectos turisticos"
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <img
-                src="assets/images/casal1.webp"
-                alt="Casa prefabricada en L con patio central"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Casas en L</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/casal1.webp"
+                  alt="Casa prefabricada en L con patio central"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Casas en L</h3>
+                  <div class="h-1 w-16 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+                </div>
+                <p class="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">
                   Diseño moderno que optimiza el espacio creando áreas privadas
                   y un patio central. Favorecen la ventilación cruzada y la
                   iluminación natural.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Casa en L"
                   data-img="assets/images/casal1.webp"
                   data-specs="Área Sugerida: 100m² en adelante|Habitaciones: 3|Baños: 3|Característica: Patio Central"
                   data-desc="La forma en L permite una separación natural entre las áreas sociales y privadas, generando un espacio privado para la familia y un espacio social amplio para las visitas. Este diseño es ideal para la vida familiar, ofreciendo privacidad y espacios luminosos."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <img
-                src="assets/images/campe1.webp"
-                alt="Casa campestre con terraza y jardín"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/campe1.webp"
+                  alt="Casa campestre con terraza y jardín"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">
                   Casa Campestre o Colonial
                 </h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+                  <div class="h-1 w-16 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+                </div>
+                <p class="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">
                   Diseñadas para entornos rurales, con terrazas amplias y
                   conexión con la naturaleza. Combinan estética tradicional y
                   materiales modernos.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Casa Campestre"
                   data-img="assets/images/campe1.webp"
                   data-specs="Estilo: Moderno y funcional|Areá Sugerida: 90m²|Pisos: 1 - 2"
                   data-desc="Nuestras casas campestres son la combinación perfecta de elegancia y funcionalidad. Diseñadas para maximizar el disfrute del entorno, son ideales para fincas de recreo o como vivienda principal fuera de la ciudad."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <img
-                src="assets/images/cubi1.webp"
-                alt="Casa de diseño cúbico Moderno"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/cubi1.webp"
+                  alt="Casa de diseño cúbico Moderno"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">
                   Diseño Cúbico / Moderno
                 </h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+                  <div class="h-1 w-16 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
+                </div>
+                <p class="text-gray-600 mb-6 flex-grow leading-relaxed text-sm">
                   Estilo Moderno con líneas rectas, grandes ventanales y
                   acabados modernos. Optimiza el espacio y la entrada de luz
                   natural.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Diseño Cúbico"
                   data-img="assets/images/cubi1.webp"
                   data-specs="Estilo: Moderno|Ventanas: Grandes|Pisos: 1 - 2|Concepto: Funcionalidad"
                   data-desc="Para los amantes del diseño contemporáneo, el estilo cúbico ofrece una estética limpia y funcional. Sus grandes ventanales inundan los interiores de luz, creando espacios amplios y visualmente conectados con el exterior."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <img
-                src="assets/images/oficina.jpg"
-                alt="Caseta prefabricada para oficina"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Oficinas</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/oficina.jpg"
+                  alt="Caseta prefabricada para oficina"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Oficinas</h3>
+                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">
                   Construcciones versátiles para oficinas, puntos de vigilancia
                   o almacenamiento. Prácticas y de rápida instalación.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Oficina"
                   data-img="assets/images/oficina.jpg"
                   data-specs="Área Sugerida: Desde 230m²|Uso: Oficinas privadas o Gubernamentales, locales comerciales|Instalación: Rápida y sencilla"
                   data-desc="Ofrecemos soluciones modulares para necesidades comerciales, oficinas completas desde 230m², nuestras construcciones son una alternativa rápida, económica y eficiente."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <img
-                src="assets/images/bodega2.webp"
-                alt="Bodega prefabricada industrial"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Bodegas</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/bodega2.webp"
+                  alt="Bodega prefabricada industrial"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Bodegas</h3>
+                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">
                   Espacios amplios y resistentes diseñados para almacenamiento
                   industrial, agrícola o comercial, con techos altos y
                   estructuras metálicas.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Bodega Prefabricada"
                   data-img="assets/images/bodega2.webp"
                   data-specs="Área Sugerida: 100m² hasta 300m²|Estructura: Metálica|Techos: Altos|Uso: Industrial, Agrícola"
                   data-desc="Nuestras bodegas modulares prefabricadas están diseñadas para soportar grandes cargas y ofrecer la máxima durabilidad. Son la solución ideal para el sector agrícola e industrial, garantizando un montaje rápido y un espacio de trabajo seguro."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <img
-                src="assets/images/aula1.webp"
-                alt="Aula de colegio prefabricada y modular"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Aulas para Colegio</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/aula1.webp"
+                  alt="Aula de colegio prefabricada y modular"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Aulas para Colegio</h3>
+                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">
                   Solución modular rápida y funcional para instituciones
                   educativas. Cumplen con estándares de seguridad y comodidad, y
                   son personalizables.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Aula Modular"
                   data-img="assets/images/aula1.webp"
                   data-specs="Uso: Educativo|Seguridad: Cumple normativas|Instalación: Rápida|Diseño: Personalizable"
                   data-desc="Ofrecemos una solución eficiente para la expansión de instituciones educativas. Nuestras aulas modulares son seguras, cómodas y se instalan en una fracción del tiempo de la construcción tradicional, minimizando la interrupción de las actividades escolares."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
             </div>
 
             <div
-              class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col"
+              class="bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col model-card"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <img
-                src="assets/images/cubo1.webp"
-                alt="Tiny house moderna y funcional"
-                class="w-full h-56 object-cover"
-              />
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-xl font-semibold mb-2">Tiny House</h3>
-                <p class="text-gray-700 mb-4 flex-grow">
+              <div class="image-container h-72 relative">
+                <img
+                  src="assets/images/cubo1.webp"
+                  alt="Tiny house moderna y funcional"
+                  class="w-full h-full"
+                />
+                <div class="image-overlay"></div>
+              </div>
+              <div class="content-section p-7 flex flex-col flex-grow">
+                <div class="mb-4">
+                  <h3 class="title text-2xl font-bold mb-2">Tiny House</h3>
+                <p class="text-gray-600 mb-4 flex-grow leading-relaxed">
                   Casas pequeñas y compactas diseñadas para maximizar el uso del
                   espacio. Ideales para un estilo de vida minimalista o
                   viviendas temporales.
                 </p>
                 <button
-                  class="open-modal-btn mt-auto w-full bg-dark text-white px-4 py-2 rounded-full hover:bg-opacity-80 transition duration-300"
+                  class="open-modal-btn mt-auto w-full bg-gradient-to-r from-primary to-primary/90 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-primary/90 hover:to-primary transition-all duration-300 transform hover:scale-[1.02] flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
                   data-model="Tiny House"
                   data-img="assets/images/cubo1.webp"
                   data-specs="Área Sugerida: 15m² a 30m²|Habitaciones: 1|Uso: Vivienda o alojamiento"
                   data-desc="Vive más con menos. Nuestras Tiny Houses son un testimonio de diseño inteligente, donde cada centímetro cuenta. Son una opción rapida, económica y perfecta para quienes valoran la simplicidad y la libertad."
                 >
+                  <i class="fas fa-eye"></i>
                   Ver Detalles
                 </button>
               </div>
@@ -886,27 +1048,70 @@
     <div id="modelModal" class="modal">
       <div class="modal-content">
         <span class="close-btn">&times;</span>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <!-- Columna de imagen -->
+          <div class="sticky top-4">
             <img
               id="modal-image"
               src=""
               alt="Imagen detallada del modelo de casa prefabricada"
-              class="w-full h-auto rounded-lg shadow-md"
+              class="w-full h-auto rounded-xl shadow-xl"
             />
           </div>
+          
+          <!-- Columna de contenido -->
           <div>
-            <h2 id="modal-title" class="text-3xl font-bold text-dark mb-4"></h2>
-            <div id="modal-specs" class="mb-4 text-gray-700 space-y-2"></div>
-            <p id="modal-desc" class="text-gray-600 mb-6"></p>
-            <a
-              id="modal-whatsapp-btn"
-              href="#"
-              target="_blank"
-              class="w-full block text-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold text-lg hover:bg-green-600 transition duration-300"
-            >
-              <i class="fab fa-whatsapp mr-2"></i>Contactar por WhatsApp
-            </a>
+            <div class="mb-4">
+              <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold mb-3">
+                Modelo Disponible
+              </span>
+              <h2 id="modal-title" class="text-3xl md:text-4xl font-bold text-dark mb-4"></h2>
+            </div>
+            
+            <!-- Especificaciones -->
+            <div id="modal-specs" class="mb-6 p-4 bg-gray-50 rounded-lg space-y-3">
+              <h3 class="font-bold text-dark mb-3 flex items-center gap-2">
+                <i class="fas fa-info-circle text-primary"></i>
+                Especificaciones
+              </h3>
+            </div>
+            
+            <!-- Descripción -->
+            <div class="mb-6">
+              <h3 class="font-bold text-dark mb-2 flex items-center gap-2">
+                <i class="fas fa-file-alt text-primary"></i>
+                Descripción
+              </h3>
+              <p id="modal-desc" class="text-gray-600 leading-relaxed"></p>
+            </div>
+            
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row gap-3">
+              <a
+                id="modal-whatsapp-btn"
+                href="#"
+                target="_blank"
+                class="flex-1 text-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <i class="fab fa-whatsapp text-xl"></i>
+                Consultar por WhatsApp
+              </a>
+              <a
+                href="/contacto.html"
+                class="flex-1 text-center bg-primary text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+              >
+                <i class="fas fa-envelope"></i>
+                Solicitar Cotización
+              </a>
+            </div>
+            
+            <!-- Información adicional -->
+            <div class="mt-6 p-4 bg-primary/5 rounded-lg border border-primary/20">
+              <p class="text-sm text-gray-600 flex items-start gap-2">
+                <i class="fas fa-lightbulb text-primary mt-1"></i>
+                <span><strong>Nota:</strong> Todos nuestros modelos son personalizables. Podemos adaptar el diseño, tamaño y acabados según tus necesidades y presupuesto.</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
