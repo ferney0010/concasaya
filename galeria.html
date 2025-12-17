@@ -105,6 +105,19 @@
         color: white;
       }
       
+      /* Estilos para paginación */
+      #pagination-container button:disabled {
+        pointer-events: none;
+      }
+      
+      #pagination-container button:not(:disabled):hover {
+        transform: scale(1.05);
+      }
+      
+      #pagination-container .page-number {
+        min-width: 44px;
+      }
+      
       /* Menú mejorado para tablet y móvil - Estilo Moderno */
       #tablet-menu {
         max-height: 0;
@@ -542,6 +555,11 @@
               Cargando imágenes...
             </div>
           </div>
+          
+          <!-- Controles de paginación -->
+          <div id="pagination-container" class="mt-12 flex justify-center items-center gap-2 flex-wrap">
+            <!-- Los botones de paginación se generarán dinámicamente -->
+          </div>
         </div>
       </section>
 
@@ -928,18 +946,30 @@
 
       const filterButtonsContainer = document.getElementById("filter-buttons");
       const galleryContainer = document.getElementById("gallery-container");
+      const paginationContainer = document.getElementById("pagination-container");
       let allImages = [];
+      let filteredImages = [];
       let lightbox;
+      let currentPage = 1;
+      const imagesPerPage = 10;
 
-      const displayImages = (images) => {
+      const displayImages = (images, page = 1) => {
         galleryContainer.innerHTML = "";
+        currentPage = page;
+        
         if (images.length === 0) {
           galleryContainer.innerHTML =
             '<p class="col-span-full text-center">No hay imágenes en esta categoría.</p>';
+          paginationContainer.innerHTML = "";
           return;
         }
 
-        images.forEach((img, index) => {
+        // Calcular el rango de imágenes a mostrar
+        const startIndex = (page - 1) * imagesPerPage;
+        const endIndex = startIndex + imagesPerPage;
+        const imagesToShow = images.slice(startIndex, endIndex);
+
+        imagesToShow.forEach((img, index) => {
           const div = document.createElement("div");
           div.className = "overflow-hidden rounded-lg shadow-lg group";
           div.setAttribute("data-aos", "zoom-in");
@@ -960,7 +990,146 @@
           lightbox.reload();
         }
 
+        // Renderizar controles de paginación
+        renderPagination(images, page);
+
         AOS.refresh();
+      };
+
+      const renderPagination = (images, currentPageNum) => {
+        const totalPages = Math.ceil(images.length / imagesPerPage);
+        
+        if (totalPages <= 1) {
+          paginationContainer.innerHTML = "";
+          return;
+        }
+
+        let paginationHTML = "";
+
+        // Botón Anterior
+        paginationHTML += `
+          <button
+            id="prev-page"
+            class="px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+              currentPageNum === 1
+                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-opacity-90 hover:scale-105"
+            }"
+            ${currentPageNum === 1 ? "disabled" : ""}
+          >
+            <i class="fas fa-chevron-left mr-1"></i> Anterior
+          </button>
+        `;
+
+        // Números de página
+        const maxVisiblePages = 5;
+        let startPage = Math.max(1, currentPageNum - Math.floor(maxVisiblePages / 2));
+        let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+        if (endPage - startPage < maxVisiblePages - 1) {
+          startPage = Math.max(1, endPage - maxVisiblePages + 1);
+        }
+
+        if (startPage > 1) {
+          paginationHTML += `
+            <button
+              class="page-number px-4 py-2 rounded-lg font-semibold bg-white text-dark hover:bg-light transition-all duration-300 hover:scale-105"
+              data-page="1"
+            >
+              1
+            </button>
+          `;
+          if (startPage > 2) {
+            paginationHTML += `<span class="px-2 text-gray-400">...</span>`;
+          }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+          paginationHTML += `
+            <button
+              class="page-number px-4 py-2 rounded-lg font-semibold transition-all duration-300 hover:scale-105 ${
+                i === currentPageNum
+                  ? "bg-primary text-white"
+                  : "bg-white text-dark hover:bg-light"
+              }"
+              data-page="${i}"
+            >
+              ${i}
+            </button>
+          `;
+        }
+
+        if (endPage < totalPages) {
+          if (endPage < totalPages - 1) {
+            paginationHTML += `<span class="px-2 text-gray-400">...</span>`;
+          }
+          paginationHTML += `
+            <button
+              class="page-number px-4 py-2 rounded-lg font-semibold bg-white text-dark hover:bg-light transition-all duration-300 hover:scale-105"
+              data-page="${totalPages}"
+            >
+              ${totalPages}
+            </button>
+          `;
+        }
+
+        // Botón Siguiente
+        paginationHTML += `
+          <button
+            id="next-page"
+            class="px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${
+              currentPageNum === totalPages
+                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                : "bg-primary text-white hover:bg-opacity-90 hover:scale-105"
+            }"
+            ${currentPageNum === totalPages ? "disabled" : ""}
+          >
+            Siguiente <i class="fas fa-chevron-right ml-1"></i>
+          </button>
+        `;
+
+        // Información de página
+        paginationHTML += `
+          <div class="w-full md:w-auto text-center md:text-left mt-4 md:mt-0 md:ml-4 text-gray-600">
+            <span class="text-sm">
+              Página ${currentPageNum} de ${totalPages} 
+              <span class="text-gray-400">(${images.length} imágenes)</span>
+            </span>
+          </div>
+        `;
+
+        paginationContainer.innerHTML = paginationHTML;
+
+        // Event listeners para los botones
+        const prevButton = document.getElementById("prev-page");
+        const nextButton = document.getElementById("next-page");
+        const pageNumbers = document.querySelectorAll(".page-number");
+
+        if (prevButton) {
+          prevButton.addEventListener("click", () => {
+            if (currentPageNum > 1) {
+              displayImages(filteredImages, currentPageNum - 1);
+              window.scrollTo({ top: galleryContainer.offsetTop - 100, behavior: "smooth" });
+            }
+          });
+        }
+
+        if (nextButton) {
+          nextButton.addEventListener("click", () => {
+            if (currentPageNum < totalPages) {
+              displayImages(filteredImages, currentPageNum + 1);
+              window.scrollTo({ top: galleryContainer.offsetTop - 100, behavior: "smooth" });
+            }
+          });
+        }
+
+        pageNumbers.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const page = parseInt(btn.dataset.page);
+            displayImages(filteredImages, page);
+            window.scrollTo({ top: galleryContainer.offsetTop - 100, behavior: "smooth" });
+          });
+        });
       };
 
       const setupFilterButtons = (categories) => {
@@ -975,7 +1144,8 @@
             .querySelectorAll(".filter-btn")
             .forEach((btn) => btn.classList.remove("active"));
           allButton.classList.add("active");
-          displayImages(allImages);
+          filteredImages = allImages;
+          displayImages(filteredImages, 1);
         });
         filterButtonsContainer.appendChild(allButton);
 
@@ -990,10 +1160,10 @@
               .querySelectorAll(".filter-btn")
               .forEach((btn) => btn.classList.remove("active"));
             button.classList.add("active");
-            const filteredImages = allImages.filter(
+            filteredImages = allImages.filter(
               (img) => img.category_id === cat.id
             );
-            displayImages(filteredImages);
+            displayImages(filteredImages, 1);
           });
           filterButtonsContainer.appendChild(button);
         });
@@ -1011,6 +1181,7 @@
           return;
         }
         allImages = images;
+        filteredImages = images;
 
         const { data: categories, error: categoriesError } = await supabase
           .from("concasaya_gallery_categories")
@@ -1024,7 +1195,7 @@
           setupFilterButtons(categories);
         }
 
-        displayImages(allImages);
+        displayImages(filteredImages, 1);
 
         lightbox = GLightbox({
           selector: ".glightbox",
