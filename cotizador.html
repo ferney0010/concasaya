@@ -39,6 +39,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Tailwind Config -->
@@ -343,7 +344,7 @@
     <main class="pt-24 pb-20">
       <div class="container mx-auto px-6">
         <!-- Header del Cotizador -->
-        <div class="text-center mb-12">
+        <div class="text-center mb-12" data-aos="fade-up">
           <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">
             Cotizador de Casas Prefabricadas
           </h1>
@@ -363,7 +364,7 @@
           <div class="lg:col-span-2">
             <form id="cotizador-form" class="space-y-6">
               <!-- Tipo de Construcción -->
-              <div class="form-section">
+              <div class="form-section" data-aos="fade-up">
                 <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
                   <i class="fas fa-home text-primary mr-3"></i>
                   Tipo de Construcción
@@ -425,7 +426,7 @@
               </div>
 
               <!-- Materiales -->
-              <div class="form-section">
+              <div class="form-section" data-aos="fade-up" data-aos-delay="100">
                 <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
                   <i class="fas fa-tools text-primary mr-3"></i>
                   Materiales y Acabados
@@ -514,7 +515,7 @@
               </div>
 
               <!-- Ubicación -->
-              <div class="form-section">
+              <div class="form-section" data-aos="fade-up" data-aos-delay="200">
                 <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
                   <i class="fas fa-map-marker-alt text-primary mr-3"></i>
                   Ubicación del Proyecto
@@ -567,7 +568,7 @@
               </div>
 
               <!-- Consideraciones del Terreno -->
-              <div class="form-section">
+              <div class="form-section" data-aos="fade-up" data-aos-delay="300">
                 <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
                   <i class="fas fa-mountain text-primary mr-3"></i>
                   Consideraciones del Terreno
@@ -667,7 +668,7 @@
               </div>
 
               <!-- Botón Calcular -->
-              <div class="form-section">
+              <div class="form-section" data-aos="fade-up" data-aos-delay="400">
                 <button
                   type="submit"
                   class="w-full bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105 flex items-center justify-center"
@@ -682,7 +683,7 @@
           <!-- Resultado -->
           <div class="lg:col-span-1">
             <div id="resultado-container" class="sticky top-24">
-              <div class="result-card text-center">
+              <div class="result-card text-center" data-aos="fade-left">
                 <i class="fas fa-home fa-3x mb-4 opacity-80"></i>
                 <h3 class="text-2xl font-bold mb-4">Tu Cotización</h3>
                 <div id="resultado-precio" class="text-4xl font-bold mb-2">
@@ -714,7 +715,7 @@
         </div>
 
         <!-- Información Adicional -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-aos="fade-up">
           <div class="bg-white p-6 rounded-lg shadow-md">
             <i class="fas fa-clock text-primary text-3xl mb-4"></i>
             <h3 class="font-bold text-lg mb-2">Tiempo de Construcción</h3>
@@ -750,7 +751,10 @@
       </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      AOS.init();
+      
       // Menú móvil
       const menuBtn = document.getElementById("menu-btn");
       const tabletMenu = document.getElementById("tablet-menu");
