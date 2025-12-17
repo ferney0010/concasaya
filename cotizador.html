@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es_CO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cotizador de Casas Prefabricadas | CONCASAYA</title>
+
+    <!-- SEO Meta -->
+    <meta
+      name="description"
+      content="Calcula el precio aproximado de tu casa prefabricada. Considera tipo de construcción, materiales, ubicación y preparación del terreno."
+    />
+    <meta
+      name="keywords"
+      content="cotizador casas prefabricadas, calculadora precio casa prefabricada, presupuesto casa EPS, cotización construcción"
+    />
+    <link rel="canonical" href="https://www.concasaya.com/cotizador.html" />
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      href="https://www.concasaya.com/assets/images/logo.ico"
+      type="image/x-icon"
+    />
+    <link
+      rel="icon"
+      href="https://www.concasaya.com/assets/images/logoconcasaya.webp"
+      sizes="any"
+    />
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#0077b6",
+              secondary: "#0d1b2a",
+              dark: "#2D3748",
+              light: "#F8FAFC",
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- Custom Styles -->
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      
+      .dropdown:hover .dropdown-menu {
+        display: block;
+      }
+      .dropdown-menu {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+      }
+      .dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      
+      /* Menú tablet y móvil */
+      #tablet-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+      #tablet-menu.open {
+        max-height: 1000px;
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .tablet-menu-item {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border-left: 4px solid transparent;
+        position: relative;
+        overflow: hidden;
+      }
+      .tablet-menu-item:hover {
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.08) 0%, rgba(0, 119, 182, 0.03) 100%);
+        border-left-color: #0077b6;
+        transform: translateX(8px);
+      }
+      .tablet-menu-item.active {
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.12) 0%, rgba(0, 119, 182, 0.05) 100%);
+        border-left-color: #0077b6;
+        color: #0077b6;
+        font-weight: 600;
+      }
+      
+      /* Estilos del cotizador */
+      .form-section {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-bottom: 1.5rem;
+      }
+      
+      .result-card {
+        background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+        color: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 119, 182, 0.3);
+      }
+      
+      .info-box {
+        background: #f0f9ff;
+        border-left: 4px solid #0077b6;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-top: 1rem;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50">
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+      <nav
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
+      >
+        <a href="/" class="flex items-center space-x-3">
+          <img
+            src="/assets/images/logocasah.webp"
+            alt="CONCASAYA Logo"
+            class="h-10 w-auto"
+          />
+        </a>
+        <div class="hidden lg:flex space-x-6 items-center">
+          <a href="/" class="text-dark hover:text-primary transition duration-300"
+            >Inicio</a
+          >
+          <a
+            href="/modelos.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Modelos</a
+          >
+          <a
+            href="/ventajas.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >¿Que es EPS?</a
+          >
+          <div class="relative dropdown">
+            <button
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+            >
+              <span>Municipios</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul
+              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+            >
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/chia.html"
+                  >Chía</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/cajica.html"
+                  >Cajicá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/mosquera.html"
+                  >Mosquera</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/zipaquira.html"
+                  >Zipaquirá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/sopo.html"
+                  >Sopó</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/funza.html"
+                  >Funza</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/villadeleyva.html"
+                  >Villa de Leyva</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/la-vega.html"
+                  >La Vega</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/madrid.html"
+                  >Madrid</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/tocancipa.html"
+                  >Tocancipá</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/santander.html"
+                  >Santander</a
+                >
+              </li>
+              <li>
+                <a
+                  class="block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/boyaca.html"
+                  >Boyacá</a
+                >
+              </li>
+            </ul>
+          </div>
+          <a
+            href="/galeria.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Galeria</a
+          >
+          <a
+            href="/blog.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="/nosotros.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Sobre Nosotros</a
+          >
+          <a
+            href="/faq.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Preguntas Frecuentes</a
+          >
+          <a
+            href="/referidos.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Plan Referidos</a
+          >
+          <a
+            href="/cotizador.html"
+            class="text-primary font-bold transition duration-300"
+            >Cotizador</a
+          >
+          <a
+            href="/contacto.html"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300"
+            >Contacto</a
+          >
+        </div>
+        <div class="lg:hidden">
+          <button
+            id="menu-btn"
+            class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110"
+            aria-label="Menú"
+          >
+            <i id="menu-icon" class="fas fa-bars fa-lg"></i>
+          </button>
+        </div>
+      </nav>
+      <!-- Menú Tablet y Móvil -->
+      <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
+        <a href="/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
+        >
+        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
+        >
+        <a href="/cotizador.html" class="tablet-menu-item active block py-3 px-6 text-base font-medium"
+          ><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador</a
+        >
+        <a href="/ventajas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Que es EPS?</a
+        >
+        <a href="/galeria.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-images mr-3 text-primary"></i>Galeria</a
+        >
+        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
+        >
+        <a href="/nosotros.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
+        >
+        <a href="/faq.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
+        >
+        <a href="/referidos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
+        >
+        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
+          ><i class="fas fa-envelope mr-3"></i>Contacto</a
+        >
+      </div>
+    </header>
+
+    <main class="pt-24 pb-20">
+      <div class="container mx-auto px-6">
+        <!-- Header del Cotizador -->
+        <div class="text-center mb-12">
+          <h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+            Cotizador de Casas Prefabricadas
+          </h1>
+          <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+            Calcula el precio aproximado de tu casa prefabricada. Este cotizador considera tipo de construcción, materiales, ubicación y preparación del terreno.
+          </p>
+          <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg max-w-3xl mx-auto">
+            <p class="text-sm text-gray-700">
+              <i class="fas fa-info-circle text-yellow-600 mr-2"></i>
+              <strong>Nota:</strong> Los precios mostrados son aproximados y pueden variar según las condiciones específicas del proyecto. Para una cotización precisa, contáctanos directamente.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <!-- Formulario -->
+          <div class="lg:col-span-2">
+            <form id="cotizador-form" class="space-y-6">
+              <!-- Tipo de Construcción -->
+              <div class="form-section">
+                <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
+                  <i class="fas fa-home text-primary mr-3"></i>
+                  Tipo de Construcción
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Tipo de Vivienda
+                    </label>
+                    <select
+                      id="tipo-construccion"
+                      name="tipo-construccion"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="cabaña">Cabaña Prefabricada</option>
+                      <option value="casa-campestre">Casa Campestre</option>
+                      <option value="casa-urbana">Casa Urbana</option>
+                      <option value="bodega">Bodega/Almacén</option>
+                      <option value="oficina">Oficina/Comercial</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Número de Pisos
+                    </label>
+                    <select
+                      id="pisos"
+                      name="pisos"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="1">1 Piso</option>
+                      <option value="2">2 Pisos</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Área Construida (m²)
+                    </label>
+                    <input
+                      type="number"
+                      id="area"
+                      name="area"
+                      min="20"
+                      max="500"
+                      step="5"
+                      placeholder="Ej: 60"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    />
+                    <p class="text-xs text-gray-500 mt-1">
+                      Ingrese el área total en metros cuadrados (mínimo 20 m²)
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Materiales -->
+              <div class="form-section">
+                <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
+                  <i class="fas fa-tools text-primary mr-3"></i>
+                  Materiales y Acabados
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Sistema Constructivo
+                    </label>
+                    <select
+                      id="sistema"
+                      name="sistema"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="eps">Paneles EPS (Estándar)</option>
+                      <option value="plaqueta">Plaqueta de Concreto</option>
+                      <option value="mixto">Sistema Mixto</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Nivel de Acabados
+                    </label>
+                    <select
+                      id="acabados"
+                      name="acabados"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="basico">Básico (Pintura estándar, pisos básicos)</option>
+                      <option value="medio">Medio (Pintura premium, pisos cerámicos)</option>
+                      <option value="premium">Premium (Pintura de lujo, pisos porcelanato, detalles especiales)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Instalaciones Adicionales
+                    </label>
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="instalacion-electrica"
+                          name="instalaciones"
+                          value="electrica"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Instalación Eléctrica Completa</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="instalacion-hidraulica"
+                          name="instalaciones"
+                          value="hidraulica"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Instalación Hidráulica Completa</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="instalacion-sanitaria"
+                          name="instalaciones"
+                          value="sanitaria"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Instalación Sanitaria</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="instalacion-gas"
+                          name="instalaciones"
+                          value="gas"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Instalación de Gas</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ubicación -->
+              <div class="form-section">
+                <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
+                  <i class="fas fa-map-marker-alt text-primary mr-3"></i>
+                  Ubicación del Proyecto
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Municipio/Ciudad
+                    </label>
+                    <select
+                      id="ubicacion"
+                      name="ubicacion"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="bogota">Bogotá</option>
+                      <option value="chia">Chía</option>
+                      <option value="cajica">Cajicá</option>
+                      <option value="mosquera">Mosquera</option>
+                      <option value="zipaquira">Zipaquirá</option>
+                      <option value="sopo">Sopó</option>
+                      <option value="funza">Funza</option>
+                      <option value="madrid">Madrid</option>
+                      <option value="tocancipa">Tocancipá</option>
+                      <option value="la-vega">La Vega</option>
+                      <option value="villadeleyva">Villa de Leyva</option>
+                      <option value="otro">Otro (Cundinamarca/Boyacá/Santander)</option>
+                      <option value="otro-lejano">Otro (Fuera de zona principal)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Distancia desde Bogotá (km)
+                    </label>
+                    <input
+                      type="number"
+                      id="distancia"
+                      name="distancia"
+                      min="0"
+                      max="500"
+                      placeholder="Ej: 30"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                    />
+                    <p class="text-xs text-gray-500 mt-1">
+                      Solo si el municipio no está en la lista o está fuera de la zona principal
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Consideraciones del Terreno -->
+              <div class="form-section">
+                <h2 class="text-2xl font-bold text-dark mb-4 flex items-center">
+                  <i class="fas fa-mountain text-primary mr-3"></i>
+                  Consideraciones del Terreno
+                </h2>
+                <div class="space-y-4">
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Estado del Terreno
+                    </label>
+                    <select
+                      id="estado-terreno"
+                      name="estado-terreno"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="apto">Terreno Apto (Nivelado, con acceso, listo para construir)</option>
+                      <option value="nivelacion">Requiere Nivelación (Necesita movimiento de tierra)</option>
+                      <option value="acceso">Requiere Acceso (Necesita construcción de vía de acceso)</option>
+                      <option value="cimentacion">Requiere Cimentación Especial (Suelo blando o pendiente pronunciada)</option>
+                      <option value="completo">Requiere Preparación Completa (Nivelación + Acceso + Cimentación)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Tipo de Suelo
+                    </label>
+                    <select
+                      id="tipo-suelo"
+                      name="tipo-suelo"
+                      class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary"
+                      required
+                    >
+                      <option value="">Seleccione una opción</option>
+                      <option value="firme">Suelo Firme (Óptimo para construcción)</option>
+                      <option value="normal">Suelo Normal (Requiere cimentación estándar)</option>
+                      <option value="blando">Suelo Blando (Requiere cimentación reforzada)</option>
+                      <option value="pendiente">Terreno en Pendiente (Requiere nivelación y cimentación especial)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">
+                      Servicios Públicos Disponibles
+                    </label>
+                    <div class="space-y-2">
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="servicio-agua"
+                          name="servicios"
+                          value="agua"
+                          checked
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Agua</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="servicio-energia"
+                          name="servicios"
+                          value="energia"
+                          checked
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Energía Eléctrica</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="servicio-alcantarillado"
+                          name="servicios"
+                          value="alcantarillado"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Alcantarillado</span>
+                      </label>
+                      <label class="flex items-center">
+                        <input
+                          type="checkbox"
+                          id="servicio-gas"
+                          name="servicios"
+                          value="gas"
+                          class="mr-2 w-4 h-4 text-primary focus:ring-primary"
+                        />
+                        <span>Gas Natural</span>
+                      </label>
+                    </div>
+                    <div class="info-box mt-3">
+                      <p class="text-sm text-gray-700">
+                        <i class="fas fa-info-circle text-primary mr-2"></i>
+                        <strong>Nota:</strong> Si los servicios públicos no están disponibles, se deben considerar costos adicionales para pozos sépticos, plantas eléctricas, etc.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botón Calcular -->
+              <div class="form-section">
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-opacity-90 transition duration-300 transform hover:scale-105 flex items-center justify-center"
+                >
+                  <i class="fas fa-calculator mr-3"></i>
+                  Calcular Precio Aproximado
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Resultado -->
+          <div class="lg:col-span-1">
+            <div id="resultado-container" class="sticky top-24">
+              <div class="result-card text-center">
+                <i class="fas fa-home fa-3x mb-4 opacity-80"></i>
+                <h3 class="text-2xl font-bold mb-4">Tu Cotización</h3>
+                <div id="resultado-precio" class="text-4xl font-bold mb-2">
+                  $0
+                </div>
+                <p class="text-sm opacity-90 mb-6">
+                  Precio aproximado total
+                </p>
+                <div id="desglose" class="text-left text-sm space-y-2 mb-6 hidden">
+                  <div class="border-t border-white/30 pt-2">
+                    <p class="opacity-75">Desglose aproximado:</p>
+                  </div>
+                </div>
+                <div class="info-box bg-white/20 border-white/30 text-white mt-4">
+                  <p class="text-xs">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    Este precio es una estimación. Para una cotización precisa, contáctanos.
+                  </p>
+                </div>
+                <a
+                  href="/contacto.html"
+                  class="mt-6 inline-block bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition duration-300"
+                >
+                  Solicitar Cotización Oficial
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información Adicional -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <i class="fas fa-clock text-primary text-3xl mb-4"></i>
+            <h3 class="font-bold text-lg mb-2">Tiempo de Construcción</h3>
+            <p class="text-gray-600 text-sm">
+              Las casas prefabricadas se construyen entre 15 y 45 días según el tamaño y complejidad del proyecto.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <i class="fas fa-shield-alt text-primary text-3xl mb-4"></i>
+            <h3 class="font-bold text-lg mb-2">Garantía</h3>
+            <p class="text-gray-600 text-sm">
+              Todas nuestras construcciones incluyen garantía en estructura y acabados. Consulta los términos específicos.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <i class="fas fa-handshake text-primary text-3xl mb-4"></i>
+            <h3 class="font-bold text-lg mb-2">Asesoría Personalizada</h3>
+            <p class="text-gray-600 text-sm">
+              Nuestro equipo te acompañará en cada etapa del proyecto para asegurar el mejor resultado.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white pt-12 pb-8 mt-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center">
+          <p class="text-sm text-gray-400 mb-2">
+            &copy; 2025 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Menú móvil
+      const menuBtn = document.getElementById("menu-btn");
+      const tabletMenu = document.getElementById("tablet-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      
+      if (menuBtn && tabletMenu) {
+        menuBtn.addEventListener("click", () => {
+          const isOpen = tabletMenu.classList.contains("open");
+          tabletMenu.classList.toggle("open");
+          if (isOpen) {
+            menuIcon.classList.remove("fa-times");
+            menuIcon.classList.add("fa-bars");
+          } else {
+            menuIcon.classList.remove("fa-bars");
+            menuIcon.classList.add("fa-times");
+          }
+        });
+      }
+
+      // Lógica del cotizador
+      const form = document.getElementById("cotizador-form");
+      const resultadoPrecio = document.getElementById("resultado-precio");
+      const desglose = document.getElementById("desglose");
+
+      // Precios base por m² (PROVISIONALES - A ACTUALIZAR)
+      const preciosBase = {
+        eps: 800000, // Precio por m² en paneles EPS
+        plaqueta: 950000, // Precio por m² en plaqueta de concreto
+        mixto: 875000, // Precio por m² en sistema mixto
+      };
+
+      // Multiplicadores por tipo de construcción
+      const multiplicadoresTipo = {
+        cabaña: 0.9,
+        "casa-campestre": 1.0,
+        "casa-urbana": 1.1,
+        bodega: 0.85,
+        oficina: 1.05,
+      };
+
+      // Multiplicadores por acabados
+      const multiplicadoresAcabados = {
+        basico: 1.0,
+        medio: 1.15,
+        premium: 1.35,
+      };
+
+      // Multiplicadores por pisos
+      const multiplicadoresPisos = {
+        1: 1.0,
+        2: 1.8, // Dos pisos cuesta menos que duplicar
+      };
+
+      // Costos adicionales por instalaciones
+      const costosInstalaciones = {
+        electrica: 500000,
+        hidraulica: 400000,
+        sanitaria: 600000,
+        gas: 300000,
+      };
+
+      // Costos por preparación de terreno
+      const costosTerreno = {
+        apto: 0,
+        nivelacion: 2000000,
+        acceso: 3000000,
+        cimentacion: 4000000,
+        completo: 8000000,
+      };
+
+      // Costos por tipo de suelo
+      const costosSuelo = {
+        firme: 0,
+        normal: 1000000,
+        blando: 3000000,
+        pendiente: 5000000,
+      };
+
+      // Multiplicadores por ubicación (costo de transporte)
+      const multiplicadoresUbicacion = {
+        bogota: 1.0,
+        chia: 1.05,
+        cajica: 1.05,
+        mosquera: 1.05,
+        zipaquira: 1.08,
+        sopo: 1.08,
+        funza: 1.05,
+        madrid: 1.1,
+        tocancipa: 1.1,
+        "la-vega": 1.12,
+        villadeleyva: 1.15,
+        otro: 1.2,
+        "otro-lejano": 1.3,
+      };
+
+      // Costo por servicios faltantes
+      const costosServicios = {
+        agua: 0, // Generalmente disponible
+        energia: 0, // Generalmente disponible
+        alcantarillado: 1500000, // Pozo séptico
+        gas: 0, // Opcional
+      };
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        // Obtener valores del formulario
+        const tipoConstruccion = document.getElementById("tipo-construccion").value;
+        const pisos = document.getElementById("pisos").value;
+        const area = parseFloat(document.getElementById("area").value);
+        const sistema = document.getElementById("sistema").value;
+        const acabados = document.getElementById("acabados").value;
+        const ubicacion = document.getElementById("ubicacion").value;
+        const distancia = parseFloat(document.getElementById("distancia").value) || 0;
+        const estadoTerreno = document.getElementById("estado-terreno").value;
+        const tipoSuelo = document.getElementById("tipo-suelo").value;
+
+        // Instalaciones seleccionadas
+        const instalacionesCheckboxes = document.querySelectorAll('input[name="instalaciones"]:checked');
+        const instalaciones = Array.from(instalacionesCheckboxes).map(cb => cb.value);
+
+        // Servicios seleccionados
+        const serviciosCheckboxes = document.querySelectorAll('input[name="servicios"]:checked');
+        const servicios = Array.from(serviciosCheckboxes).map(cb => cb.value);
+
+        // Calcular precio base
+        let precioBase = preciosBase[sistema] * area;
+        
+        // Aplicar multiplicadores
+        precioBase *= multiplicadoresTipo[tipoConstruccion] || 1.0;
+        precioBase *= multiplicadoresAcabados[acabados] || 1.0;
+        precioBase *= multiplicadoresPisos[pisos] || 1.0;
+        
+        // Aplicar multiplicador de ubicación
+        let multiplicadorUbicacion = multiplicadoresUbicacion[ubicacion] || 1.2;
+        if (ubicacion === "otro" && distancia > 0) {
+          multiplicadorUbicacion = 1.0 + (distancia * 0.01); // 1% por cada km adicional
+        }
+        precioBase *= multiplicadorUbicacion;
+
+        // Agregar costos de instalaciones
+        let costoInstalaciones = 0;
+        instalaciones.forEach(inst => {
+          costoInstalaciones += costosInstalaciones[inst] || 0;
+        });
+
+        // Agregar costos de preparación de terreno
+        let costoPreparacionTerreno = costosTerreno[estadoTerreno] || 0;
+        costoPreparacionTerreno += costosSuelo[tipoSuelo] || 0;
+
+        // Agregar costos por servicios faltantes
+        let costoServiciosFaltantes = 0;
+        if (!servicios.includes("alcantarillado")) {
+          costoServiciosFaltantes += costosServicios.alcantarillado;
+        }
+
+        // Calcular precio total
+        const precioTotal = precioBase + costoInstalaciones + costoPreparacionTerreno + costoServiciosFaltantes;
+
+        // Mostrar resultado
+        resultadoPrecio.textContent = `$${precioTotal.toLocaleString("es-CO")}`;
+        
+        // Mostrar desglose
+        desglose.classList.remove("hidden");
+        desglose.innerHTML = `
+          <div class="border-t border-white/30 pt-2">
+            <p class="opacity-75 mb-2">Desglose aproximado:</p>
+            <div class="space-y-1 text-xs">
+              <div class="flex justify-between">
+                <span>Construcción base:</span>
+                <span>$${Math.round(precioBase).toLocaleString("es-CO")}</span>
+              </div>
+              ${costoInstalaciones > 0 ? `
+              <div class="flex justify-between">
+                <span>Instalaciones:</span>
+                <span>$${costoInstalaciones.toLocaleString("es-CO")}</span>
+              </div>
+              ` : ''}
+              ${costoPreparacionTerreno > 0 ? `
+              <div class="flex justify-between">
+                <span>Preparación terreno:</span>
+                <span>$${costoPreparacionTerreno.toLocaleString("es-CO")}</span>
+              </div>
+              ` : ''}
+              ${costoServiciosFaltantes > 0 ? `
+              <div class="flex justify-between">
+                <span>Servicios adicionales:</span>
+                <span>$${costoServiciosFaltantes.toLocaleString("es-CO")}</span>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+        `;
+
+        // Scroll suave al resultado
+        document.getElementById("resultado-container").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    </script>
+  </body>
+</html>
