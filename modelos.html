@@ -233,9 +233,11 @@
         padding: 2rem;
         border-radius: 0.5rem;
         width: 90%;
-        max-width: 800px;
+        max-width: 900px;
         position: relative;
-        animation: slideIn 0.3s;
+        animation: modalSlideIn 0.3s ease-out;
+        max-height: 90vh;
+        overflow-y: auto;
       }
       .close-btn {
         position: absolute;
@@ -364,11 +366,6 @@
       }
       
       /* Estilos mejorados para el modal */
-      .modal-content {
-        max-width: 900px;
-        animation: modalSlideIn 0.3s ease-out;
-      }
-      
       @keyframes modalSlideIn {
         from {
           transform: scale(0.9);
@@ -1050,7 +1047,7 @@
         <span class="close-btn">&times;</span>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
           <!-- Columna de imagen -->
-          <div class="sticky top-4">
+          <div class="order-2 md:order-1">
             <img
               id="modal-image"
               src=""
@@ -1060,7 +1057,7 @@
           </div>
           
           <!-- Columna de contenido -->
-          <div>
+          <div class="order-1 md:order-2">
             <div class="mb-4">
               <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold mb-3">
                 Modelo Disponible
