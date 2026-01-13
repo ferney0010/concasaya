@@ -216,6 +216,22 @@
       #menu-btn:active {
         transform: scale(0.95);
       }
+      
+      /* Animación para el indicador de scroll */
+      @keyframes scroll-bounce {
+        0%, 100% {
+          transform: translateY(0);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translateY(10px);
+          opacity: 1;
+        }
+      }
+      
+      .scroll-indicator {
+        animation: scroll-bounce 2s ease-in-out infinite;
+      }
     </style>
     <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -495,20 +511,34 @@
 
     <main class="pt-20">
       <section
-        class="relative py-24 bg-cover bg-center"
+        class="relative py-20 md:py-24 bg-cover bg-center bg-gradient-to-br from-secondary via-secondary to-gray-800 overflow-hidden"
         style="
-          background-image: url('https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+          background-image: linear-gradient(135deg, rgba(13, 26, 42, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%), url('https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
         "
       >
-        <div class="absolute inset-0 bg-secondary opacity-70"></div>
-        <div
-          class="container relative z-10 mx-auto px-6 text-center"
-          data-aos="fade-up"
-        >
-          <h1 class="text-4xl font-bold text-white">Nuestro Blog</h1>
-          <p class="text-lg text-gray-200 mt-2 max-w-3xl mx-auto">
-            Novedades, guías y consejos del mundo de las casas prefabricadas.
-          </p>
+        <!-- Elementos decorativos de fondo -->
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container relative z-10 mx-auto px-6">
+          <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+              Blog de Casas Prefabricadas
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed">
+              Guías de precios, cómo comprar y consejos prácticos para tu proyecto
+            </p>
+          </div>
+          
+          <!-- Indicador de scroll animado -->
+          <div class="flex flex-col items-center justify-center mt-12" data-aos="fade-up" data-aos-delay="300">
+            <span class="text-white text-sm mb-2 opacity-80">Explora nuestros artículos</span>
+            <div class="scroll-indicator cursor-pointer" onclick="document.getElementById('blog-list').scrollIntoView({ behavior: 'smooth' })">
+              <i class="fas fa-chevron-down text-white text-2xl"></i>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -830,12 +860,23 @@
           article.setAttribute("data-aos", "fade-up");
           article.setAttribute("data-aos-delay", (index % 3) * 100);
 
-          // Detectar si es el artículo de Cundinamarca para mostrar video
+          // Detectar si es un artículo con video (Cundinamarca, Clima Cálido o Ventajas 2026)
           const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
+          const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
+          const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
+          const hasVideo = isCundinamarcaPost || isClimaCalidoPost || isVentajas2026Post;
+          
+          // Determinar qué video usar según el artículo
+          let videoSource = "/assets/video/videoblog1.mp4";
+          if (isClimaCalidoPost) {
+            videoSource = "/assets/video/videoblog2.mp4";
+          } else if (isVentajas2026Post) {
+            videoSource = "/assets/video/videoblog3.mp4";
+          }
           
           let postMedia;
-          if (isCundinamarcaPost) {
-            // Mostrar video para el artículo de Cundinamarca
+          if (hasVideo) {
+            // Mostrar video para artículos con video
             postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
               <video 
                 autoplay 
@@ -846,7 +887,7 @@
                 style="min-height: 200px; max-height: 400px;"
                 aria-label="${post.title}"
               >
-                <source src="/assets/video/videoblog1.mp4" type="video/mp4" />
+                <source src="${videoSource}" type="video/mp4" />
                 <!-- Fallback -->
                 <img src="${post.image || 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}" alt="${post.title}" class="w-full h-full object-cover" />
               </video>
