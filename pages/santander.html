@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>
-      Casas Prefabricadas en Santander | Bucaramanga, San Gil y Más | CONCASAYA
+      Casas Prefabricadas en Santa Marta | Construcción Rápida y Moderna | CONCASAYA
     </title>
 
     <meta
       name="description"
-      content="Construimos tu casa prefabricada en los principales municipios de Santander: Bucaramanga, Floridablanca, Girón, Piedecuesta, San Gil, Barichara y El Socorro."
+      content="Construye tu casa prefabricada en Santa Marta con CONCASAYA. Diseños modernos adaptados al clima cálido, paneles EPS, construcción en 2-4 meses. ¡Cotiza gratis hoy!"
     />
     <meta
       name="keywords"
-      content="casas prefabricadas santander, casas prefabricadas bucaramanga, casas prefabricadas san gil, casas prefabricadas barichara, casas prefabricadas girón, casas prefabricadas piedecuesta, casas prefabricadas el socorro, casas prefabricadas vélez, construir en santander, CONCASAYA, lotes en santander, casas campestres santander, paneles EPS"
+      content="casas prefabricadas santa marta, casas prefabricadas magdalena, casas prefabricadas clima cálido, casas EPS santa marta, construcción rápida santa marta, casas prefabricadas costa caribe, viviendas prefabricadas santa marta, CONCASAYA santa marta, casas modernas santa marta, casas campestres santa marta, paneles EPS santa marta"
     />
     <link
       rel="canonical"
@@ -39,11 +39,11 @@
     <!-- Open Graph -->
     <meta
       property="og:title"
-      content="Casas Prefabricadas en todo Santander | CONCASAYA"
+      content="Casas Prefabricadas en Santa Marta | CONCASAYA - Construcción Rápida"
     />
     <meta
       property="og:description"
-      content="Expertos en construcción de casas modernas en Bucaramanga, San Gil, Barichara y los principales municipios de Santander."
+      content="Tu casa prefabricada en Santa Marta lista en 2-4 meses. Diseños modernos, paneles EPS para clima cálido, precios competitivos. ¡Cotiza gratis ahora!"
     />
     <meta
       property="og:image"
@@ -127,7 +127,7 @@
         box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
       }
       
-      /* Menú mejorado para tablet y móvil - Estilo Moderno */
+      /* Menú mejorado para tablet y móvil */
       #tablet-menu {
         max-height: 0;
         overflow: hidden;
@@ -243,6 +243,35 @@
       }
       #menu-btn:active {
         transform: scale(0.95);
+      }
+      
+      /* Estilos para conversión */
+      .cta-pulse {
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+      .urgency-badge {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+        animation: shake 0.5s ease-in-out infinite;
+      }
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-2px); }
+        75% { transform: translateX(2px); }
+      }
+      .benefit-card {
+        transition: all 0.3s ease;
+      }
+      .benefit-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 35px rgba(0, 119, 182, 0.2);
       }
     </style>
     <script type="text/javascript">
@@ -376,7 +405,7 @@
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light text-primary font-bold"
                   href="/pages/santander.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
                 >
               </li>
               <li>
@@ -416,8 +445,8 @@
           >
           <a
             href="/contacto.html"
-            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300"
-            >Contacto</a
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 cta-pulse"
+            >Cotizar Ahora</a
           >
         </div>
         <div class="lg:hidden">
@@ -500,7 +529,7 @@
             <a
               href="/pages/santander.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition font-bold text-primary"
-              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
             >
             <a
               href="/pages/boyaca.html"
@@ -528,219 +557,424 @@
           ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
         >
         <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
-          ><i class="fas fa-envelope mr-3"></i>Contacto</a
+          ><i class="fas fa-calculator mr-3"></i>Cotizar Ahora</a
         >
       </div>
     </header>
 
     <main>
+      <!-- Hero Section con CTA Prominente -->
       <section
-        class="h-screen bg-cover bg-center flex items-center"
-        style="
-          background-image: url('/assets/images/fondo1.webp');
-        "
+        class="h-screen bg-cover bg-center flex items-center relative"
+        style="background-image: url('/assets/images/fondo1.webp');"
       >
-        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-          <div
-            class="bg-white bg-opacity-85 p-6 md:p-10 rounded-lg max-w-4xl mx-auto"
-          >
-            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-4">
-              <strong>Casas Prefabricadas en Santander</strong>
+        <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70"></div>
+        <div class="container mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+          <div class="bg-white/95 p-8 md:p-12 rounded-2xl max-w-5xl mx-auto shadow-2xl">
+            <div class="inline-block mb-4">
+              <span class="urgency-badge text-white px-4 py-2 rounded-full text-sm font-bold">
+                🔥 OFERTA ESPECIAL SANTA MARTA
+              </span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6">
+              <strong>Tu Casa Prefabricada en Santa Marta</strong><br/>
+              <span class="text-primary">Lista en Solo 2-4 Meses</span>
             </h1>
-            <p class="text-xl text-gray-700 mb-8">
-              Llevamos nuestros diseños modernos y campestres a todo el
-              departamento. Construimos tu proyecto en <strong>San Gil</strong>,
-              <strong>El Socorro</strong>, <strong>Vélez</strong> y toda la
-              región.
+            <p class="text-xl md:text-2xl text-gray-700 mb-8 font-semibold">
+              Diseños modernos adaptados al <strong>clima cálido</strong> con paneles EPS.<br/>
+              <span class="text-primary">Ahorra hasta 40% en energía</span> y disfruta de tu hogar este año.
             </p>
-            <a
-              href="/contacto.html"
-              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
-              aria-label="Cotizar Proyecto de casa prefabricada en Santander"
-              >Cotizar Proyecto</a
-            >
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="/contacto.html"
+                class="bg-primary text-white px-10 py-4 rounded-full font-bold text-xl hover:opacity-90 transition duration-300 shadow-xl cta-pulse transform hover:scale-105"
+                aria-label="Cotizar Casa Prefabricada en Santa Marta"
+              >
+                <i class="fas fa-calculator mr-2"></i>COTIZAR GRATIS AHORA
+              </a>
+              <a
+                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20en%20Santa%20Marta"
+                target="_blank"
+                class="bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition duration-300 shadow-xl transform hover:scale-105"
+              >
+                <i class="fab fa-whatsapp mr-2"></i>WhatsApp Directo
+              </a>
+            </div>
+            <p class="text-sm text-gray-600 mt-4">
+              <i class="fas fa-check-circle text-green-500"></i> Cotización en 24 horas | <i class="fas fa-check-circle text-green-500"></i> Sin compromiso
+            </p>
           </div>
         </div>
       </section>
 
+      <!-- Sección de Beneficios Urgentes -->
+      <section class="py-16 bg-gradient-to-b from-primary to-blue-600 text-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ¿Por Qué Construir en Santa Marta con CONCASAYA?
+            </h2>
+            <p class="text-xl text-white/90 max-w-3xl mx-auto">
+              La solución perfecta para el clima cálido de la Costa Caribe
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center benefit-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="text-5xl mb-4">🌡️</div>
+              <h3 class="text-xl font-bold mb-2">Aislamiento Térmico Superior</h3>
+              <p class="text-white/90">Mantén tu casa 8-10°C más fresca sin aire acondicionado constante. Ahorra hasta 40% en energía.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center benefit-card" data-aos="fade-up" data-aos-delay="200">
+              <div class="text-5xl mb-4">⚡</div>
+              <h3 class="text-xl font-bold mb-2">Construcción Rápida</h3>
+              <p class="text-white/90">Tu casa lista en 2-4 meses vs 8-12 meses de construcción tradicional. ¡Disfruta tu hogar este año!</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center benefit-card" data-aos="fade-up" data-aos-delay="300">
+              <div class="text-5xl mb-4">🌊</div>
+              <h3 class="text-xl font-bold mb-2">Resistente a Humedad</h3>
+              <p class="text-white/90">Paneles EPS impermeables perfectos para la brisa marina y alta humedad de Santa Marta.</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center benefit-card" data-aos="fade-up" data-aos-delay="400">
+              <div class="text-5xl mb-4">💰</div>
+              <h3 class="text-xl font-bold mb-2">Precios Competitivos</h3>
+              <p class="text-white/90">Hasta 30% más económico que construcción tradicional. Calidad premium a mejor precio.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Flotante -->
+      <section class="py-12 bg-white border-y-4 border-primary">
+        <div class="container mx-auto px-6 text-center">
+          <div class="bg-gradient-to-r from-primary to-blue-600 text-white p-8 rounded-2xl shadow-2xl" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              ¿Listo para Construir tu Casa en Santa Marta?
+            </h2>
+            <p class="text-xl mb-6 text-white/90">
+              Obtén tu cotización gratuita en menos de 24 horas. Sin compromiso.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href="/contacto.html"
+                class="bg-white text-primary px-10 py-4 rounded-full font-bold text-xl hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105"
+              >
+                <i class="fas fa-envelope mr-2"></i>Solicitar Cotización
+              </a>
+              <a
+                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20en%20Santa%20Marta"
+                target="_blank"
+                class="bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition duration-300 shadow-xl transform hover:scale-105"
+              >
+                <i class="fab fa-whatsapp mr-2"></i>Chatear por WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Sección: Santa Marta - El Lugar Perfecto -->
       <section class="py-20 bg-light">
         <div class="container mx-auto px-6">
-          <div class="text-center" data-aos="fade-up">
-            <h2 class="text-3xl font-bold">
-              Santander: Un Destino de Aventura, Historia y Naturaleza
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Santa Marta: La Perla del Caribe para tu Hogar
             </h2>
-            <p class="text-gray-600 mt-4 max-w-3xl mx-auto">
-              Santander lo tiene todo: paisajes imponentes, pueblos patrimonio y
-              un dinamismo único. Es el lugar perfecto para tu
-              <strong>casa campestre</strong>, de recreo o como una inversión de
-              alta valorización.
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Construye en una de las ciudades más hermosas de Colombia. Clima cálido todo el año, playas paradisíacas y crecimiento constante.
             </p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 text-center">
-            <div
-              class="bg-white p-8 rounded-lg shadow-md"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <i class="fas fa-mountain fa-3x text-primary mb-4"></i>
-              <h3 class="text-xl font-semibold mb-2">Tierra de Aventura</h3>
-              <p>
-                Ideal para construir cerca de destinos turísticos como el Cañón
-                del Chicamocha y centros de deportes de aventura.
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-xl shadow-lg benefit-card" data-aos="fade-up" data-aos-delay="100">
+              <i class="fas fa-sun fa-4x text-primary mb-4"></i>
+              <h3 class="text-2xl font-bold mb-3">Clima Cálido Ideal</h3>
+              <p class="text-gray-700">
+                Santa Marta disfruta de <strong>clima cálido constante</strong> durante todo el año. Nuestras casas prefabricadas con paneles EPS están diseñadas específicamente para mantener el confort en estas condiciones.
               </p>
             </div>
-            <div
-              class="bg-white p-8 rounded-lg shadow-md"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <i class="fas fa-landmark fa-3x text-primary mb-4"></i>
-              <h3 class="text-xl font-semibold mb-2">Riqueza Histórica</h3>
-              <p>
-                Construye tu hogar en una región llena de cultura, cerca de
-                Pueblos Patrimonio que cuentan la historia de Colombia.
+            <div class="bg-white p-8 rounded-xl shadow-lg benefit-card" data-aos="fade-up" data-aos-delay="200">
+              <i class="fas fa-chart-line fa-4x text-primary mb-4"></i>
+              <h3 class="text-2xl font-bold mb-3">Inversión Inteligente</h3>
+              <p class="text-gray-700">
+                Santa Marta está en <strong>constante crecimiento</strong>. Construir ahora es una inversión estratégica. Las casas prefabricadas ofrecen excelente relación calidad-precio y rápida entrega.
               </p>
             </div>
-            <div
-              class="bg-white p-8 rounded-lg shadow-md"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <i class="fas fa-leaf fa-3x text-primary mb-4"></i>
-              <h3 class="text-xl font-semibold mb-2">Diversidad de Climas</h3>
-              <p>
-                Desde el clima cálido de San Gil hasta el temple más fresco de
-                Vélez, adaptamos nuestros diseños a cada entorno.
+            <div class="bg-white p-8 rounded-xl shadow-lg benefit-card" data-aos="fade-up" data-aos-delay="300">
+              <i class="fas fa-umbrella-beach fa-4x text-primary mb-4"></i>
+              <h3 class="text-2xl font-bold mb-3">Cerca del Mar</h3>
+              <p class="text-gray-700">
+                Nuestros <strong>paneles EPS</strong> resisten perfectamente la brisa marina y la humedad costera. No se degradan con la salinidad, garantizando durabilidad a largo plazo.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Sección: Ventajas Técnicas para Clima Cálido -->
       <section class="py-20">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12" data-aos="fade-up">
-            <h2 class="text-3xl font-bold">
-              Amplia Cobertura para <strong>Construir en Santander</strong>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Tecnología Adaptada al Clima de Santa Marta
             </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+              Nuestras casas prefabricadas están diseñadas específicamente para el clima cálido del Caribe
+            </p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div
-              class="text-center p-6"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <div
-                class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary text-white mb-4"
-              >
-                <i class="fas fa-city fa-2x"></i>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Área Metropolitana</h3>
-              <p class="text-gray-600">
-                Proyectos en <strong>Bucaramanga</strong>,
-                <strong>Floridablanca</strong>, <strong>Girón</strong> y
-                <strong>Piedecuesta</strong>.
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-gradient-to-br from-primary/10 to-blue-50 p-8 rounded-xl" data-aos="fade-right">
+              <h3 class="text-2xl font-bold mb-4 text-primary">
+                <i class="fas fa-thermometer-half mr-2"></i>Aislamiento Térmico con Paneles EPS
+              </h3>
+              <p class="text-gray-700 mb-4 text-lg">
+                Los paneles EPS (Poliestireno Expandido) ofrecen un coeficiente de conductividad térmica excepcionalmente bajo. En Santa Marta, donde las temperaturas pueden superar los 30°C, esto es crucial.
               </p>
+              <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Mantiene el interior 8-10°C más fresco</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Reduce consumo de aire acondicionado hasta 40%</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Ahorro significativo en facturas de energía</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Confort todo el año sin altos costos</li>
+              </ul>
             </div>
-            <div
-              class="text-center p-6"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <div
-                class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary text-white mb-4"
-              >
-                <i class="fas fa-water fa-2x"></i>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Zona Turística</h3>
-              <p class="text-gray-600">
-                Construimos tu <strong>casa prefabricada en San Gil</strong> y
-                el pueblo patrimonio de <strong>Barichara</strong>.
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 p-8 rounded-xl" data-aos="fade-left">
+              <h3 class="text-2xl font-bold mb-4 text-green-600">
+                <i class="fas fa-shield-alt mr-2"></i>Resistencia a Humedad y Salinidad
+              </h3>
+              <p class="text-gray-700 mb-4 text-lg">
+                La Costa Caribe tiene alta humedad relativa y exposición a brisas marinas con sal. Nuestros paneles EPS están diseñados para estas condiciones.
               </p>
+              <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>100% Impermeables - No absorben humedad</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Resistentes a la salinidad marina</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>No se degradan con el tiempo</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Mantienen propiedades aislantes por décadas</li>
+              </ul>
             </div>
-            <div
-              class="text-center p-6"
-              data-aos="fade-up"
-              data-aos-delay="300"
-            >
-              <div
-                class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary text-white mb-4"
-              >
-                <i class="fas fa-landmark fa-2x"></i>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Pueblos Históricos</h3>
-              <p class="text-gray-600">
-                Tu proyecto en municipios llenos de historia como
-                <strong>El Socorro</strong> y <strong>Vélez</strong>.
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-xl" data-aos="fade-right">
+              <h3 class="text-2xl font-bold mb-4 text-orange-600">
+                <i class="fas fa-wind mr-2"></i>Ventilación Natural Optimizada
+              </h3>
+              <p class="text-gray-700 mb-4 text-lg">
+                Diseñamos nuestras casas para aprovechar las brisas naturales de Santa Marta, reduciendo aún más la necesidad de climatización artificial.
               </p>
+              <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Ventilación cruzada estratégica</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Techos altos para escape de aire caliente</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Aleros que protegen del sol directo</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Patios interiores que crean microclimas frescos</li>
+              </ul>
             </div>
-            <div
-              class="text-center p-6"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <div
-                class="flex items-center justify-center h-16 w-16 mx-auto rounded-full bg-primary text-white mb-4"
-              >
-                <i class="fas fa-map-marker-alt fa-2x"></i>
-              </div>
-              <h3 class="text-xl font-semibold mb-2">Otras Zonas</h3>
-              <p class="text-gray-600">
-                Llegamos a zonas tranquilas como
-                <strong>Puente Nacional</strong> y veredas aledañas en todo el
-                departamento.
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-8 rounded-xl" data-aos="fade-left">
+              <h3 class="text-2xl font-bold mb-4 text-purple-600">
+                <i class="fas fa-bolt mr-2"></i>Eficiencia Energética Superior
+              </h3>
+              <p class="text-gray-700 mb-4 text-lg">
+                En clima cálido, el mayor consumo energético viene del aire acondicionado. Nuestras casas reducen este consumo significativamente.
               </p>
+              <ul class="space-y-2 text-gray-700">
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Menor necesidad de climatización artificial</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Ahorro en facturas de energía eléctrica</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Menor huella de carbono</li>
+                <li><i class="fas fa-check-circle text-green-500 mr-2"></i>Mayor confort con menor costo operativo</li>
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- Comparación: Prefabricada vs Tradicional -->
+      <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Casas Prefabricadas vs Construcción Tradicional
+            </h2>
+            <p class="text-xl text-gray-600">
+              La mejor opción para Santa Marta y el clima cálido
+            </p>
+          </div>
+          <div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="fade-up">
+            <div class="overflow-x-auto">
+              <table class="w-full">
+                <thead class="bg-primary text-white">
+                  <tr>
+                    <th class="p-6 text-left text-lg font-bold">Característica</th>
+                    <th class="p-6 text-center text-lg font-bold">Casas Prefabricadas CONCASAYA</th>
+                    <th class="p-6 text-center text-lg font-bold">Construcción Tradicional</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                  <tr class="bg-green-50">
+                    <td class="p-6 font-semibold text-lg">Aislamiento Térmico</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> Excelente</span>
+                      <p class="text-sm text-gray-600 mt-1">8-10°C más fresco</p>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-orange-600"><i class="fas fa-minus-circle"></i> Variable</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-6 font-semibold text-lg">Tiempo de Construcción</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> 2-4 meses</span>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-red-600"><i class="fas fa-times-circle"></i> 8-12 meses</span>
+                    </td>
+                  </tr>
+                  <tr class="bg-green-50">
+                    <td class="p-6 font-semibold text-lg">Resistencia a Humedad</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> Alta</span>
+                      <p class="text-sm text-gray-600 mt-1">Perfecto para clima costero</p>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-orange-600"><i class="fas fa-minus-circle"></i> Depende del material</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-6 font-semibold text-lg">Eficiencia Energética</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> 40% más eficiente</span>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-orange-600"><i class="fas fa-minus-circle"></i> Estándar</span>
+                    </td>
+                  </tr>
+                  <tr class="bg-green-50">
+                    <td class="p-6 font-semibold text-lg">Costo Total</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> Hasta 30% más económico</span>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-red-600"><i class="fas fa-times-circle"></i> Más costoso</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-6 font-semibold text-lg">Mantenimiento</td>
+                    <td class="p-6 text-center">
+                      <span class="text-green-600 font-bold text-xl"><i class="fas fa-check-circle"></i> Mínimo</span>
+                    </td>
+                    <td class="p-6 text-center">
+                      <span class="text-orange-600"><i class="fas fa-minus-circle"></i> Regular requerido</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA Intermedio -->
+      <section class="py-16 bg-primary text-white">
+        <div class="container mx-auto px-6 text-center">
+          <div data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              No Esperes Más - Tu Casa en Santa Marta te Está Esperando
+            </h2>
+            <p class="text-xl mb-8 text-white/90 max-w-2xl mx-auto">
+              Cada día que pasa es un día más sin disfrutar de tu hogar ideal. Comienza tu proyecto hoy.
+            </p>
+            <a
+              href="/contacto.html"
+              class="bg-white text-primary px-10 py-4 rounded-full font-bold text-xl hover:bg-gray-100 transition duration-300 shadow-xl transform hover:scale-105 inline-block"
+            >
+              <i class="fas fa-rocket mr-2"></i>Iniciar Mi Proyecto Ahora
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
       <section id="faq-local" class="py-20 bg-light">
         <div class="container mx-auto px-6 max-w-4xl">
-          <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
-            Dudas Frecuentes sobre <strong>Proyectos en Santander</strong>
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-12" data-aos="fade-up">
+            Preguntas Frecuentes sobre <strong>Casas Prefabricadas en Santa Marta</strong>
           </h2>
           <div class="space-y-4" data-aos="fade-up">
-            <div class="bg-white rounded-lg shadow-md">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
               <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
+                class="faq-question w-full flex justify-between items-center text-left p-6 hover:bg-gray-50 transition"
               >
                 <h3 class="text-lg font-semibold">
-                  ¿Qué permisos se requieren para una
-                  <strong>casa prefabricada en Santander</strong>?
+                  ¿Las casas prefabricadas son adecuadas para el clima cálido de Santa Marta?
                 </h3>
                 <i
                   class="fas fa-chevron-down transform transition-transform"
                 ></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
-                <p>
-                  Cada municipio tiene su propia normativa. Es necesaria una
-                  licencia de construcción expedida por la
-                  <strong>Secretaría de Planeación</strong> local. Nuestro
-                  equipo te asesora para gestionar este trámite en el municipio
-                  donde se ubique tu lote.
+                <p class="text-lg">
+                  <strong>Absolutamente sí.</strong> Las casas prefabricadas con paneles EPS son ideales para clima cálido. El aislamiento térmico de los paneles EPS mantiene el interior fresco, reduciendo significativamente la necesidad de aire acondicionado. En Santa Marta, donde las temperaturas pueden superar los 30°C, esto es una ventaja crucial que puede ahorrarte hasta 40% en costos de energía.
                 </p>
               </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
               <button
-                class="faq-question w-full flex justify-between items-center text-left p-6"
+                class="faq-question w-full flex justify-between items-center text-left p-6 hover:bg-gray-50 transition"
               >
                 <h3 class="text-lg font-semibold">
-                  ¿Ofrecen la mejora de paneles EPS para el clima de Santander?
+                  ¿Resisten la humedad y salinidad del ambiente marino de Santa Marta?
                 </h3>
                 <i
                   class="fas fa-chevron-down transform transition-transform"
                 ></i>
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
-                <p>
-                  Sí. Los <strong>paneles EPS</strong> son una mejora opcional
-                  excelente para Santander. Ayudan a mantener la casa fresca en
-                  zonas cálidas como San Gil y a conservar una temperatura
-                  agradable en las zonas más altas y frías del departamento,
-                  garantizando confort todo el año.
+                <p class="text-lg">
+                  <strong>Sí, perfectamente.</strong> Los paneles EPS son impermeables y resistentes a la humedad y salinidad. No se degradan con el tiempo como otros materiales, lo que los hace perfectos para construcciones cerca del mar como en Santa Marta. Esta es una de las principales ventajas sobre la construcción tradicional en zonas costeras.
+                </p>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <button
+                class="faq-question w-full flex justify-between items-center text-left p-6 hover:bg-gray-50 transition"
+              >
+                <h3 class="text-lg font-semibold">
+                  ¿Cuánto tiempo toma construir una casa prefabricada en Santa Marta?
+                </h3>
+                <i
+                  class="fas fa-chevron-down transform transition-transform"
+                ></i>
+              </button>
+              <div class="faq-answer px-6 pb-6 text-gray-600">
+                <p class="text-lg">
+                  El tiempo de construcción es de <strong>2-4 meses</strong> desde la aprobación de planos hasta la entrega. La ventaja en Santa Marta es que no hay interrupciones por lluvia como en otras regiones, lo que permite mantener los tiempos de construcción de manera más precisa. Comparado con 8-12 meses de construcción tradicional, es una diferencia significativa.
+                </p>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <button
+                class="faq-question w-full flex justify-between items-center text-left p-6 hover:bg-gray-50 transition"
+              >
+                <h3 class="text-lg font-semibold">
+                  ¿Cuánto puedo ahorrar en energía con una casa prefabricada en clima cálido?
+                </h3>
+                <i
+                  class="fas fa-chevron-down transform transition-transform"
+                ></i>
+              </button>
+              <div class="faq-answer px-6 pb-6 text-gray-600">
+                <p class="text-lg">
+                  Las casas prefabricadas pueden reducir el consumo de energía hasta en un <strong>40%</strong> comparado con casas tradicionales, gracias al excelente aislamiento térmico. Esto se traduce en ahorros significativos en facturas de electricidad, especialmente importante en Santa Marta donde el uso de aire acondicionado es constante.
+                </p>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden">
+              <button
+                class="faq-question w-full flex justify-between items-center text-left p-6 hover:bg-gray-50 transition"
+              >
+                <h3 class="text-lg font-semibold">
+                  ¿CONCASAYA construye en Santa Marta?
+                </h3>
+                <i
+                  class="fas fa-chevron-down transform transition-transform"
+                ></i>
+              </button>
+              <div class="faq-answer px-6 pb-6 text-gray-600">
+                <p class="text-lg">
+                  <strong>Sí, CONCASAYA está expandiendo su cobertura a Santa Marta</strong> y toda la Costa Caribe. Estamos listos para construir tu casa prefabricada en Santa Marta. <a href="/contacto.html" class="text-primary font-semibold hover:underline">Contáctanos</a> para conocer más sobre nuestros proyectos en la región y obtener una cotización personalizada.
                 </p>
               </div>
             </div>
@@ -748,138 +982,155 @@
         </div>
       </section>
 
-      <section id="contact-details" class="py-20">
+      <!-- Formulario de Contacto Optimizado -->
+      <section id="contact-details" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div data-aos="fade-right">
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+              Solicita Tu Cotización Gratuita
+            </h2>
+            <p class="text-xl text-gray-600">
+              Responde en menos de 24 horas. Sin compromiso.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
+            <div data-aos="fade-right" class="bg-gradient-to-br from-primary/5 to-blue-50 p-8 rounded-2xl">
               <h2 class="text-2xl font-bold mb-6">Envíanos un Mensaje</h2>
               <form id="contact-form" class="space-y-6">
                 <div>
                   <label
                     for="name"
-                    class="block text-sm font-medium text-gray-700"
-                    >Nombre Completo</label
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Nombre Completo *</label
                   >
                   <input
                     type="text"
                     id="name"
                     name="name"
                     required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition"
+                    placeholder="Tu nombre completo"
                   />
                 </div>
                 <div>
                   <label
                     for="email"
-                    class="block text-sm font-medium text-gray-700"
-                    >Correo Electrónico</label
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Correo Electrónico *</label
                   >
                   <input
                     type="email"
                     id="email"
                     name="email"
                     required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition"
+                    placeholder="tu@email.com"
                   />
                 </div>
                 <div>
                   <label
                     for="phone"
-                    class="block text-sm font-medium text-gray-700"
-                    >Teléfono</label
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Teléfono *</label
                   >
                   <input
                     type="tel"
                     id="phone"
                     name="phone"
                     required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition"
+                    placeholder="300 123 4567"
                   />
                 </div>
                 <div>
                   <label
                     for="message"
-                    class="block text-sm font-medium text-gray-700"
-                    >Mensaje</label
+                    class="block text-sm font-medium text-gray-700 mb-2"
+                    >Mensaje *</label
                   >
                   <textarea
                     id="message"
                     name="message"
                     rows="4"
                     required
-                    class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-primary focus:border-primary"
+                    class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition"
+                    placeholder="Cuéntanos sobre tu proyecto en Santa Marta..."
                   ></textarea>
                 </div>
                 <div>
                   <button
                     type="submit"
-                    class="w-full bg-primary text-white px-6 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
+                    class="w-full bg-primary text-white px-6 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition duration-300 shadow-xl transform hover:scale-105"
                   >
-                    Enviar Mensaje por WhatsApp
+                    <i class="fas fa-paper-plane mr-2"></i>Enviar Mensaje por WhatsApp
                   </button>
                 </div>
               </form>
               <div id="form-status" class="mt-4 text-center"></div>
             </div>
 
-            <div data-aos="fade-right" class="space-y-8">
-              <div>
-                <h2 class="text-2xl font-bold mb-4">Información de Contacto</h2>
+            <div data-aos="fade-left" class="space-y-8">
+              <div class="bg-white p-8 rounded-2xl shadow-lg border-2 border-primary/20">
+                <h2 class="text-2xl font-bold mb-6 text-primary">
+                  <i class="fas fa-info-circle mr-2"></i>Información de Contacto
+                </h2>
                 <div class="space-y-4 text-lg">
                   <p class="flex items-center">
                     <i
-                      class="fas fa-map-marker-alt fa-fw mr-3 text-primary"
+                      class="fas fa-map-marker-alt fa-fw mr-3 text-primary text-xl"
                     ></i>
-                    Cl. 147 #101-56, C.C. Fiesta Suba, Local 64, Bogotá
+                    <span>Cl. 147 #101-56, C.C. Fiesta Suba, Local 64, Bogotá</span>
                   </p>
                   <p class="flex items-center">
-                    <i class="fas fa-phone fa-fw mr-3 text-primary"></i
-                    ><a href="tel:3142891018" class="hover:text-primary"
+                    <i class="fas fa-phone fa-fw mr-3 text-primary text-xl"></i
+                    ><a href="tel:3142891018" class="hover:text-primary font-semibold"
                       >314 289 1018</a
                     >
                   </p>
                   <p class="flex items-center">
-                    <i class="fas fa-phone fa-fw mr-3 text-primary"></i
-                    ><a href="tel:3165771582" class="hover:text-primary"
+                    <i class="fas fa-phone fa-fw mr-3 text-primary text-xl"></i
+                    ><a href="tel:3165771582" class="hover:text-primary font-semibold"
                       >316 577 1582</a
                     >
                   </p>
                   <p class="flex items-center">
-                    <i class="fab fa-whatsapp fa-fw mr-3 text-primary"></i
+                    <i class="fab fa-whatsapp fa-fw mr-3 text-primary text-xl"></i
                     ><a
                       href="https://wa.me/573142891018"
                       target="_blank"
-                      class="hover:text-primary"
+                      class="hover:text-primary font-semibold"
                       >Chatea con nosotros en WhatsApp</a
                     >
                   </p>
                 </div>
               </div>
-              <div>
-                <h3 class="text-xl font-bold mb-4">Encuéntranos en Redes</h3>
+              <div class="bg-gradient-to-br from-primary/10 to-blue-50 p-8 rounded-2xl">
+                <h3 class="text-xl font-bold mb-4">
+                  <i class="fas fa-share-alt mr-2"></i>Encuéntranos en Redes
+                </h3>
                 <div class="flex space-x-4">
                   <a
                     href="https://www.tiktok.com/@concasayaprefabricados"
                     target="_blank"
-                    class="text-gray-600 hover:text-primary transition duration-300"
-                    ><i class="fab fa-tiktok fa-2x"></i
+                    class="w-14 h-14 rounded-full bg-black text-white flex items-center justify-center hover:bg-gray-800 transition transform hover:scale-110"
+                    ><i class="fab fa-tiktok text-2xl"></i
                   ></a>
                   <a
                     href="https://www.instagram.com/concasaya"
                     target="_blank"
-                    class="text-gray-600 hover:text-primary transition duration-300"
-                    ><i class="fab fa-instagram fa-2x"></i
+                    class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white flex items-center justify-center hover:opacity-90 transition transform hover:scale-110"
+                    ><i class="fab fa-instagram text-2xl"></i
                   ></a>
                   <a
                     href="https://www.facebook.com/Kaprecol"
                     target="_blank"
-                    class="text-gray-600 hover:text-primary transition duration-300"
-                    ><i class="fab fa-facebook fa-2x"></i
+                    class="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center hover:bg-blue-700 transition transform hover:scale-110"
+                    ><i class="fab fa-facebook text-2xl"></i
                   ></a>
                 </div>
               </div>
               <div>
-                <div class="w-full h-80 rounded-lg overflow-hidden shadow-lg">
+                <div class="w-full h-80 rounded-xl overflow-hidden shadow-lg">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4711.320030957209!2d-74.09502512430795!3d4.744496695230697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f8557511fda19%3A0x491ba502f43cf5eb!2sCasas%20Prefabricadas%20(Recomendado)%20-%20CONCASAYA!5e1!3m2!1ses-419!2sco!4v1757392818847!5m2!1ses-419!2sco"
                     width="100%"
@@ -911,15 +1162,17 @@
               const businessWhatsappNumber = "573142891018";
 
               const whatsappMessage = `
-                    Hola CONCASAYA, me gustaría solicitar una cotización.
+Hola CONCASAYA, me gustaría solicitar una cotización para una casa prefabricada en Santa Marta.
 
-                    *Nombre:* ${name}
-                    *Teléfono:* ${phone}
-                    *Email:* ${email}
+*Nombre:* ${name}
+*Teléfono:* ${phone}
+*Email:* ${email}
 
-                    *Mensaje:*
-                    ${message}
-                `;
+*Mensaje:*
+${message}
+
+*Ubicación:* Santa Marta, Magdalena
+              `;
 
               const whatsappUrl = `https://wa.me/${businessWhatsappNumber}?text=${encodeURIComponent(
                 whatsappMessage
@@ -928,27 +1181,47 @@
               window.open(whatsappUrl, "_blank");
 
               contactForm.reset();
+              
+              const statusDiv = document.getElementById("form-status");
+              if (statusDiv) {
+                statusDiv.innerHTML = '<p class="text-green-600 font-semibold"><i class="fas fa-check-circle mr-2"></i>¡Mensaje enviado! Te contactaremos pronto.</p>';
+              }
             });
           }
         });
       </script>
 
-      <section class="py-20 bg-primary text-white">
-        <div class="container mx-auto px-6 text-center" data-aos="fade-up">
-          <h2 class="text-3xl font-bold mb-4">
-            ¿Tu <strong>Lote en Santander</strong> está Listo para tu Nuevo
-            Proyecto?
+      <!-- CTA Final Urgente -->
+      <section class="py-20 bg-gradient-to-r from-primary via-blue-600 to-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        <div class="container mx-auto px-6 text-center relative z-10" data-aos="fade-up">
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">
+            ¿Tu <strong>Lote en Santa Marta</strong> Está Listo?
           </h2>
-          <p class="mb-8 max-w-2x1 mx-auto text-gray-200">
-            Aprovecha la belleza y el potencial de esta increíble región.
-            Contáctanos para una cotización de tu
-            <strong>casa campestre o de recreo</strong>.
+          <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white/90">
+            No esperes más. Cada día que pasa es un día más sin disfrutar de tu casa prefabricada ideal en la Perla del Caribe.
           </p>
-          <a
-            href="/contacto.html"
-            class="bg-white text-primary px-8 py-3 rounded-full font-semibold text-lg hover:bg-gray-100 transition duration-300"
-            >Agendar Visita Técnica</a
-          >
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contacto.html"
+              class="bg-white text-primary px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition duration-300 shadow-2xl transform hover:scale-105 cta-pulse"
+            >
+              <i class="fas fa-calendar-check mr-2"></i>Agendar Visita Técnica Gratuita
+            </a>
+            <a
+              href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20en%20Santa%20Marta"
+              target="_blank"
+              class="bg-green-500 text-white px-10 py-5 rounded-full font-bold text-xl hover:bg-green-600 transition duration-300 shadow-2xl transform hover:scale-105"
+            >
+              <i class="fab fa-whatsapp mr-2"></i>WhatsApp Directo
+            </a>
+          </div>
+          <p class="text-sm mt-6 text-white/80">
+            <i class="fas fa-clock mr-2"></i>Respuesta garantizada en menos de 24 horas
+          </p>
         </div>
       </section>
     </main>
@@ -997,27 +1270,27 @@
                 >
               </li>
               <li>
-                <a href="/pages/funza.html" class="hover:text-primary"
+                <a href="/pages/la-vega.html" class="hover:text-primary"
                   >Casas Prefabricadas en La Vega</a
                 >
               </li>
               <li>
-                <a href="/pages/funza.html" class="hover:text-primary"
+                <a href="/pages/madrid.html" class="hover:text-primary"
                   >Casas Prefabricadas en Madrid</a
                 >
               </li>
               <li>
-                <a href="/pages/funza.html" class="hover:text-primary"
+                <a href="/pages/tocancipa.html" class="hover:text-primary"
                   >Casas Prefabricadas en Tocancipá</a
                 >
               </li>
               <li>
-                <a href="/pages/funza.html" class="hover:text-primary"
-                  >Casas Prefabricadas en Santander</a
+                <a href="/pages/santander.html" class="hover:text-primary font-bold text-primary"
+                  >Casas Prefabricadas en Santa Marta</a
                 >
               </li>
               <li>
-                <a href="/pages/funza.html" class="hover:text-primary"
+                <a href="/pages/boyaca.html" class="hover:text-primary"
                   >Casas Prefabricadas en Boyacá</a
                 >
               </li>
@@ -1114,7 +1387,7 @@
           <p class="text-sm text-gray-500 mb-4 md:mb-0">
             &copy; 2025 CONCASAYA. Todos los derechos reservados. Sitio web
             diseñado para la construcción de casas prefabricadas en
-            Cundinamarca.
+            Colombia.
           </p>
           <div class="flex justify-center space-x-6">
             <a
@@ -1130,8 +1403,7 @@
               ><i class="fab fa-instagram fa-2x"></i
             ></a>
             <a
-              href="https://www.facebook.com/concasaya/
-"
+              href="https://www.facebook.com/concasaya/"
               target="_blank"
               class="text-gray-400 hover:text-primary transition duration-300"
               ><i class="fab fa-facebook fa-2x"></i
@@ -1169,30 +1441,14 @@
         <i class="fab fa-facebook-f text-2xl"></i>
       </a>
       <a
-        href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
+        href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada%20en%20Santa%20Marta.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
         target="_blank"
         aria-label="WhatsApp"
-        class="w-12 h-12 rounded-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+        class="w-14 h-14 rounded-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white shadow-lg transition-transform duration-300 transform hover:-translate-y-1 cta-pulse"
       >
         <i class="fab fa-whatsapp text-2xl"></i>
       </a>
     </div>
-
-    <script>
-      const fabMainButton = document.getElementById("fab-main-button");
-      const fabOptions = document.getElementById("fab-options");
-      const fabOpenIcon = document.getElementById("fab-open-icon");
-      const fabCloseIcon = document.getElementById("fab-close-icon");
-
-      if (fabMainButton) {
-        fabMainButton.addEventListener("click", () => {
-          fabOptions.classList.toggle("hidden");
-          fabOptions.classList.toggle("flex");
-          fabOpenIcon.classList.toggle("hidden");
-          fabCloseIcon.classList.toggle("hidden");
-        });
-      }
-    </script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -1202,7 +1458,6 @@
       });
 
       const menuBtn = document.getElementById("menu-btn");
-      // Menú tablet/móvil mejorado con animaciones modernas
       const tabletMenu = document.getElementById("tablet-menu");
       const menuIcon = document.getElementById("menu-icon");
       
@@ -1211,7 +1466,6 @@
           const isOpen = tabletMenu.classList.contains("open");
           tabletMenu.classList.toggle("open");
           
-          // Animación del icono hamburguesa a X
           if (isOpen) {
             menuIcon.classList.remove("fa-times");
             menuIcon.classList.add("fa-bars");
@@ -1224,7 +1478,6 @@
         });
       }
 
-      // Dropdown de municipios en tablet/móvil con animación
       const tabletDropdownBtn = document.getElementById("tablet-dropdown-btn");
       const tabletDropdownMenu = document.getElementById("tablet-dropdown-menu");
       const tabletDropdownIcon = document.getElementById("tablet-dropdown-icon");
@@ -1235,7 +1488,6 @@
           const isOpen = tabletDropdownMenu.classList.contains("open");
           tabletDropdownMenu.classList.toggle("open");
           
-          // Rotar el icono
           if (isOpen) {
             tabletDropdownIcon.classList.remove("open");
           } else {
@@ -1244,7 +1496,6 @@
         });
       }
       
-      // Cerrar menú al hacer clic fuera con animación suave
       document.addEventListener("click", (e) => {
         if (tabletMenu && !tabletMenu.contains(e.target) && menuBtn && !menuBtn.contains(e.target)) {
           if (tabletMenu.classList.contains("open")) {
@@ -1257,7 +1508,6 @@
         }
       });
       
-      // Cerrar menú al hacer scroll (opcional, mejora UX)
       let lastScroll = 0;
       window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
