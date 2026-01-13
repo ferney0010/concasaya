@@ -161,7 +161,7 @@
         { value: 'nemocon', label: 'Nemocón' },
         { value: 'pandi', label: 'Pandi' },
         { value: 'san-bernardo', label: 'San Bernardo' },
-        { value: 'santander', label: 'Santander' },
+        { value: 'santa-marta', label: 'Santa Marta' },
         { value: 'sibate', label: 'Sibaté' },
         { value: 'silvania', label: 'Silvania' },
         { value: 'soacha', label: 'Soacha' },
@@ -1246,6 +1246,7 @@
       yacopi: 1.18,
       'villa-de-leyva': 1.15,
       villadeleyva: 1.15,
+      'santa-marta': 1.2,
       santander: 1.2,
       boyaca: 1.2,
     };

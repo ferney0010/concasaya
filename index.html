@@ -12,7 +12,7 @@
     />
     <meta
       name="keywords"
-      content="casas prefabricadas, casas prefabricadas bogotá, casas modulares, CONCASAYA prefabricados, construcción en seco, casas EPS, casas prefabricadas chía, casas prefabricadas cajicá, casas prefabricadas mosquera, casas prefabricadas sopó, casas prefabricadas zipaquirá, casas prefabricadas funza, casas prefabricadas la vega, casas prefabricadas madrid, casas prefabricadas tocancipá, casas prefabricadas villa de leyva, casas prefabricadas boyacá, casas prefabricadas santander"
+      content="casas prefabricadas, casas prefabricadas bogotá, casas modulares, CONCASAYA prefabricados, construcción en seco, casas EPS, casas prefabricadas chía, casas prefabricadas cajicá, casas prefabricadas mosquera, casas prefabricadas sopó, casas prefabricadas zipaquirá, casas prefabricadas funza, casas prefabricadas la vega, casas prefabricadas madrid, casas prefabricadas tocancipá, casas prefabricadas villa de leyva, casas prefabricadas boyacá, casas prefabricadas santa marta"
     />
     <link rel="canonical" href="https://www.concasaya.com/" />
 
@@ -117,20 +117,162 @@
         animation: float 6s ease-in-out infinite;
       }
       
-      /* Animación para el indicador de scroll */
-      @keyframes scroll-bounce {
-        0%, 100% {
-          transform: translateY(0);
-          opacity: 0.7;
+      /* Layout mixto del hero para PC */
+      @media (min-width: 1024px) {
+        .hero-section {
+          min-height: 100vh !important;
+          height: 100vh !important;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          position: relative !important;
         }
-        50% {
-          transform: translateY(10px);
-          opacity: 1;
+        .hero-container {
+          width: 100%;
+          max-width: 1400px;
+          display: grid !important;
+          grid-template-columns: 1fr 1fr;
+          gap: 3rem;
+          align-items: center !important;
+          padding-top: 12vh !important;
+          padding-bottom: 4vh !important;
+          margin: 0 auto;
+        }
+        .hero-content {
+          width: 100%;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-right: 2rem;
+          gap: 0;
+        }
+        .hero-content > * {
+          width: 100%;
+        }
+        .hero-content h1 {
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+        }
+        .hero-content p {
+          line-height: 1.7;
+          margin-bottom: 1.5rem;
         }
       }
-      
-      .scroll-indicator {
-        animation: scroll-bounce 2s ease-in-out infinite;
+
+      /* Estilos del slider de imágenes con efecto de superposición */
+      .hero-slider {
+        position: relative;
+        width: 100%;
+        height: 600px;
+        border-radius: 20px;
+        overflow: visible;
+      }
+
+      .slider-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+
+      .slider-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        transform: translate(0, 0) scale(1);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      /* Posición inicial apilada de todas las slides (diagonal) - Se calcula dinámicamente en JS */
+
+      .slide.active {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+        z-index: 10 !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      }
+
+      .slide.prev {
+        opacity: 0;
+        transform: translate(0, 0) scale(1);
+      }
+
+      .slide.next {
+        opacity: 0;
+        transform: translate(0, 0) scale(1);
+      }
+
+      .slide:not(.active) {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .slide-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      .slide-video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      .slider-indicators {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 10;
+      }
+
+      .slider-indicators .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 2px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .slider-indicators .indicator.active {
+        background: #0077b6;
+        width: 30px;
+        border-radius: 6px;
+        border-color: #0077b6;
+      }
+
+      .slider-indicators .indicator:hover {
+        background: rgba(255, 255, 255, 0.8);
       }
       
       .parallax-bg {
@@ -312,6 +454,72 @@
         transform: translateX(5px);
         box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
       }
+      
+      /* Estilos mejorados para badges de precio - Más llamativos y accesibles */
+      .price-badge {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: white !important;
+        padding: 0.375rem 0.75rem;
+        border-radius: 9999px;
+        font-weight: 700;
+        font-size: 0.75rem;
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        text-decoration: none !important;
+        cursor: pointer;
+        white-space: nowrap;
+        line-height: 1;
+      }
+      
+      .price-badge::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.5s ease;
+      }
+      
+      .price-badge:hover::before {
+        left: 100%;
+      }
+      
+      .price-badge:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5), 0 4px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        color: white !important;
+      }
+      
+      .price-badge:visited {
+        color: white !important;
+      }
+      
+      .price-badge:active {
+        color: white !important;
+      }
+      
+      .price-badge i {
+        font-size: 0.875rem;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+      }
+      
+      @media (max-width: 640px) {
+        .price-badge {
+          font-size: 0.75rem;
+          padding: 0.4rem 0.8rem;
+        }
+      }
     </style>
 
     <!-- Structured Data -->
@@ -486,8 +694,8 @@
               <li>
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
-                  href="/pages/santander.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
+                  href="/pages/santa-marta.html"
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
                 >
               </li>
               <li>
@@ -614,9 +822,9 @@
               ><i class="fas fa-map-marker-alt municipio-icon"></i>Tocancipá</a
             >
             <a
-              href="/pages/santander.html"
+              href="/pages/santa-marta.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
-              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santander</a
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
             >
             <a
               href="/pages/boyaca.html"
@@ -654,21 +862,22 @@
 
     <main>
       <section
-        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20"
+        class="relative bg-cover bg-center flex items-center justify-center py-20 sm:py-24 md:py-32 lg:py-0 pt-24 sm:pt-20 lg:pt-0 hero-section"
         style="background-image: url('assets/images/fondo2.webp'); min-height: 95vh;"
       >
         <!-- Overlay con gradiente -->
         <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
 
-        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0">
-          <div class="max-w-4xl mx-auto text-center">
+        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0 lg:pt-0 hero-container">
+          <!-- Contenido izquierdo (siempre visible) -->
+          <div class="hero-content max-w-4xl mx-auto text-center lg:text-left lg:max-w-none">
             <!-- Título principal -->
-            <div class="mb-8 sm:mb-10" data-aos="fade-up">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-6 leading-tight px-2">
+            <div class="mb-6 lg:mb-8" data-aos="fade-up">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-5 leading-tight lg:px-0 px-2">
                 Casas Prefabricadas en <span class="text-primary">Bogotá</span>
-                <span class="block mt-2 sm:mt-3">y Cundinamarca</span>
+                <span class="block mt-2 lg:mt-3">y Cundinamarca</span>
               </h1>
-              <p class="text-base sm:text-lg md:text-xl text-gray-100 mt-4 sm:mt-5 max-w-3xl mx-auto px-2">
+              <p class="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-gray-100 mt-4 lg:mt-5 max-w-3xl lg:max-w-2xl mx-auto lg:mx-0 lg:px-0 px-2 leading-relaxed">
                 Construcción <strong class="text-white">rápida</strong>, <strong class="text-white">económica</strong> y 
                 <strong class="text-white">sostenible</strong> con <strong class="text-white">paneles EPS</strong> o 
                 <strong class="text-white">plaqueta de concreto</strong>.
@@ -676,45 +885,156 @@
             </div>
 
             <!-- Palabras clave compactas -->
-            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2" data-aos="fade-up" data-aos-delay="100">
-              <a href="/modelos.html" class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-building mr-1 sm:mr-1.5 text-primary"></i>Construcción Rápida
+            <div class="flex flex-wrap justify-center lg:justify-start gap-2 lg:gap-2.5 mb-6 lg:mb-8 lg:px-0 px-2" data-aos="fade-up" data-aos-delay="100">
+              <a href="/modelos.html" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-building mr-1.5 text-primary"></i>Construcción Rápida
               </a>
-              <a href="/cotizador.html" class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-dollar-sign mr-1 sm:mr-1.5 text-primary"></i>Precios Accesibles
+              <a href="/cotizador.html" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-dollar-sign mr-1.5 text-primary"></i>Precios Accesibles
               </a>
-              <a href="/ventajas.html" class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-leaf mr-1 sm:mr-1.5 text-primary"></i>Paneles EPS
+              <a href="/ventajas.html" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-leaf mr-1.5 text-primary"></i>Paneles EPS
               </a>
-              <a href="#eps-advantage" onclick="document.getElementById('eps-advantage').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-shield-alt mr-1 sm:mr-1.5 text-primary"></i>Construcción Segura
+              <a href="#eps-advantage" onclick="document.getElementById('eps-advantage').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-shield-alt mr-1.5 text-primary"></i>Construcción Segura
               </a>
             </div>
 
             <!-- CTAs compactos -->
-            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-center px-2 mb-8 sm:mb-10" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-stretch sm:items-center lg:px-0 px-2" data-aos="fade-up" data-aos-delay="200">
               <a
                 href="/modelos.html"
-                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-primary text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-primary text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
               >
                 <i class="fas fa-eye"></i>
-                <span>Ver Modelos y Precios</span>
+                <span>Ver Modelos</span>
               </a>
               <a
                 href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20casas%20prefabricadas."
                 target="_blank"
-                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
               >
                 <i class="fab fa-whatsapp"></i>
                 <span>WhatsApp</span>
               </a>
             </div>
+          </div>
 
-            <!-- Indicador de scroll animado -->
-            <div class="flex flex-col items-center justify-center mt-8 sm:mt-10" data-aos="fade-up" data-aos-delay="300">
-              <span class="text-white text-sm mb-2 opacity-80">Descubre más</span>
-              <div class="scroll-indicator cursor-pointer" onclick="document.getElementById('counter-section').scrollIntoView({ behavior: 'smooth' })">
-                <i class="fas fa-chevron-down text-white text-2xl"></i>
+          <!-- Slider de imágenes y videos (solo visible en PC) -->
+          <div class="hero-slider hidden lg:block">
+            <div class="slider-container">
+              <div class="slider-wrapper">
+                <div class="slide active">
+                  <img src="assets/images/herocasa.webp" alt="Casa prefabricada moderna" class="slide-image">
+                </div>
+                <div class="slide">
+                  <video class="slide-video" muted loop playsinline>
+                    <source src="assets/video/videoblog1.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="slide">
+                  <img src="assets/images/herocasa1.webp" alt="Casa prefabricada campestre" class="slide-image">
+                </div>
+                <div class="slide">
+                  <video class="slide-video" muted loop playsinline>
+                    <source src="assets/video/videoblog2.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cabaña.webp" alt="Cabaña prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <video class="slide-video" muted loop playsinline>
+                    <source src="assets/video/videoblog3.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="slide">
+                  <img src="assets/images/casal1.webp" alt="Casa prefabricada estilo moderno" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cass2.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cass3.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cass4.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cassa1.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/casa2.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cabaññ1.webp" alt="Cabaña prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/campe1.webp" alt="Casa campestre prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cubi1.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cubo1.webp" alt="Casa prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/oasis.webp" alt="Casa prefabricada Oasis" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/eficiente.webp" alt="Casa prefabricada eficiente" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/colonial.webp" alt="Casa prefabricada estilo colonial" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/bodega1.webp" alt="Bodega prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/bodega2.webp" alt="Bodega prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/aula1.webp" alt="Aula prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/cocina.webp" alt="Cocina prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/sala.webp" alt="Sala prefabricada" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/mezanine.webp" alt="Mezanine prefabricado" class="slide-image">
+                </div>
+                <div class="slide">
+                  <img src="assets/images/tiniy1.webp" alt="Casa prefabricada Tiny" class="slide-image">
+                </div>
+              </div>
+              <!-- Indicadores del slider -->
+              <div class="slider-indicators">
+                <span class="indicator active" data-slide="0"></span>
+                <span class="indicator" data-slide="1"></span>
+                <span class="indicator" data-slide="2"></span>
+                <span class="indicator" data-slide="3"></span>
+                <span class="indicator" data-slide="4"></span>
+                <span class="indicator" data-slide="5"></span>
+                <span class="indicator" data-slide="6"></span>
+                <span class="indicator" data-slide="7"></span>
+                <span class="indicator" data-slide="8"></span>
+                <span class="indicator" data-slide="9"></span>
+                <span class="indicator" data-slide="10"></span>
+                <span class="indicator" data-slide="11"></span>
+                <span class="indicator" data-slide="12"></span>
+                <span class="indicator" data-slide="13"></span>
+                <span class="indicator" data-slide="14"></span>
+                <span class="indicator" data-slide="15"></span>
+                <span class="indicator" data-slide="16"></span>
+                <span class="indicator" data-slide="17"></span>
+                <span class="indicator" data-slide="18"></span>
+                <span class="indicator" data-slide="19"></span>
+                <span class="indicator" data-slide="20"></span>
+                <span class="indicator" data-slide="21"></span>
+                <span class="indicator" data-slide="22"></span>
+                <span class="indicator" data-slide="23"></span>
               </div>
             </div>
           </div>
@@ -805,9 +1125,15 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Cabañas Prefabricadas Modernas
-                </h3>
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                  <h3 class="text-xl font-semibold">
+                    Cabañas Prefabricadas Modernas
+                  </h3>
+                  <a href="/cotizador-encuesta.html" class="price-badge">
+                    <i class="fas fa-tag"></i>
+                    Desde 18M
+                  </a>
+                </div>
                 <p class="text-gray-600 mb-4">
                   Diseños acogedores y funcionales, perfectos para escapadas de
                   fin de semana o proyectos turísticos. Optimizamos cada metro
@@ -834,9 +1160,15 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Casas Campestres Amplias
-                </h3>
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                  <h3 class="text-xl font-semibold">
+                    Casas Campestres Amplias
+                  </h3>
+                  <a href="/cotizador-encuesta.html" class="price-badge">
+                    <i class="fas fa-tag"></i>
+                    Desde 85M
+                  </a>
+                </div>
                 <p class="text-gray-600 mb-4">
                   Viviendas diseñadas para integrarse con el paisaje de la
                   Sabana. Soluciones de uno y dos pisos con amplios espacios
@@ -862,9 +1194,15 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Bodegas y Espacios de Almacenaje
-                </h3>
+                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                  <h3 class="text-xl font-semibold">
+                    Bodegas y Espacios de Almacenaje
+                  </h3>
+                  <a href="/cotizador-encuesta.html" class="price-badge">
+                    <i class="fas fa-tag"></i>
+                    Desde 70M
+                  </a>
+                </div>
                 <p class="text-gray-600 mb-4">
                   Soluciones de almacenamiento construidas con la misma rapidez
                   y eficiencia de nuestros sistemas habitacionales. Ideales para
@@ -2122,6 +2460,108 @@
           }
         }
         lastScroll = currentScroll;
+      });
+
+      // Slider automático de imágenes del hero con efecto de superposición
+      document.addEventListener('DOMContentLoaded', function() {
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.slider-indicators .indicator');
+        let currentSlide = 0;
+        const slideInterval = 4000; // Cambiar cada 4 segundos
+
+        function showSlide(index) {
+          // Remover todas las clases de estado
+          slides.forEach((slide, i) => {
+            slide.classList.remove('active', 'prev', 'next');
+            
+            // Pausar todos los videos
+            const video = slide.querySelector('.slide-video');
+            if (video) {
+              video.pause();
+              video.currentTime = 0;
+            }
+            
+            // Ocultar todas las slides inactivas
+            slide.style.top = '0';
+            slide.style.left = '0';
+            slide.style.zIndex = 1;
+          });
+          
+          indicators.forEach(indicator => indicator.classList.remove('active'));
+
+          // Agregar clase active a la slide e indicador actual
+          if (slides[index]) {
+            slides[index].classList.add('active');
+            slides[index].style.top = '0';
+            slides[index].style.left = '0';
+            slides[index].style.zIndex = 10;
+            
+            // Reproducir el video si existe en la slide activa
+            const activeVideo = slides[index].querySelector('.slide-video');
+            if (activeVideo) {
+              activeVideo.play().catch(e => {
+                console.log('Error al reproducir video:', e);
+              });
+            }
+          }
+          
+          // Agregar clases prev y next para efecto de profundidad
+          if (slides[index - 1]) {
+            slides[index - 1].classList.add('prev');
+          }
+          if (slides[index + 1]) {
+            slides[index + 1].classList.add('next');
+          }
+          
+          if (indicators[index]) {
+            indicators[index].classList.add('active');
+          }
+        }
+
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % slides.length;
+          showSlide(currentSlide);
+        }
+
+        // Inicializar posiciones de todas las slides (todas ocultas excepto la primera)
+        slides.forEach((slide, i) => {
+          slide.style.top = '0';
+          slide.style.left = '0';
+          slide.style.zIndex = i === 0 ? 10 : 1;
+        });
+
+        // Reproducir el video inicial si existe
+        const initialVideo = slides[0]?.querySelector('.slide-video');
+        if (initialVideo) {
+          initialVideo.play().catch(e => {
+            console.log('Error al reproducir video inicial:', e);
+          });
+        }
+
+        // Iniciar el slider automático
+        let sliderInterval = setInterval(nextSlide, slideInterval);
+
+        // Agregar eventos a los indicadores para navegación manual
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener('click', () => {
+            currentSlide = index;
+            showSlide(currentSlide);
+            // Reiniciar el intervalo
+            clearInterval(sliderInterval);
+            sliderInterval = setInterval(nextSlide, slideInterval);
+          });
+        });
+
+        // Pausar el slider al hacer hover (opcional)
+        const sliderContainer = document.querySelector('.slider-container');
+        if (sliderContainer) {
+          sliderContainer.addEventListener('mouseenter', () => {
+            clearInterval(sliderInterval);
+          });
+          sliderContainer.addEventListener('mouseleave', () => {
+            sliderInterval = setInterval(nextSlide, slideInterval);
+          });
+        }
       });
     </script>
   </body>
