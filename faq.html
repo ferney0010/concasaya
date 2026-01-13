@@ -496,21 +496,67 @@
 </header>
 
     <main class="pt-20">
-      <section
-        class="relative py-24 bg-cover bg-center"
-        style="
-          background-image: url('https://images.pexels.com/photos/534151/pexels-photo-534151.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-        "
-      >
-        <div class="absolute inset-0 bg-secondary opacity-70"></div>
-        <div
-          class="container relative z-10 mx-auto px-6 text-center"
-          data-aos="fade-up"
-        >
-          <h1 class="text-4xl font-bold text-white">Preguntas y Respuestas</h1>
-          <p class="text-lg text-gray-200 mt-2 max-w-3xl mx-auto">
-            Encuentra respuestas a las dudas más comunes sobre tu futura casa.
-          </p>
+      <!-- Hero CTA - Ocupa todo el ancho -->
+      <section class="relative w-full" data-aos="fade-up">
+        <div class="w-full bg-white">
+          <div class="grid lg:grid-cols-2 gap-0">
+            <!-- Video - Loop, sin sonido, sin controles - Cuadrado en todas las resoluciones -->
+            <div class="relative w-full aspect-square">
+              <video
+                class="w-full h-full object-contain"
+                autoplay
+                muted
+                loop
+                playsinline
+              >
+                <source src="assets/video/faq.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+              </video>
+            </div>
+            
+            <!-- Contenido del CTA -->
+            <div class="p-6 lg:p-10 xl:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white min-h-[400px] lg:min-h-[500px]">
+              <h1 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-secondary mb-3 lg:mb-4">
+                Preguntas y Respuestas
+              </h1>
+              <p class="text-gray-600 mb-3 lg:mb-4 text-sm lg:text-base xl:text-lg">
+                Encuentra respuestas a las dudas más comunes sobre tu futura casa.
+              </p>
+              <p class="text-gray-600 mb-6 lg:mb-8 text-base lg:text-lg xl:text-xl leading-relaxed">
+                Mira nuestro video explicativo y descubre todo lo que necesitas saber sobre nuestras casas prefabricadas. Resolvemos todas tus dudas sobre construcción, materiales, costos y más.
+              </p>
+              
+              <!-- Botones de acción -->
+              <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-5 lg:mb-6">
+                <a
+                  href="/cotizador.html"
+                  class="bg-primary text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 text-center text-sm lg:text-base"
+                >
+                  <i class="fas fa-calculator"></i>
+                  Cotiza tu Proyecto
+                </a>
+                <a
+                  href="/contacto.html"
+                  class="bg-secondary text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-secondary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 text-center text-sm lg:text-base"
+                >
+                  <i class="fas fa-envelope"></i>
+                  Contáctanos
+                </a>
+              </div>
+              
+              <!-- WhatsApp directo -->
+              <div class="pt-3 lg:pt-4 border-t border-gray-200">
+                <a
+                  href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20tengo%20una%20pregunta%20sobre%20sus%20casas%20prefabricadas."
+                  target="_blank"
+                  class="inline-flex items-center gap-2 lg:gap-3 text-primary hover:text-primary/80 transition-colors font-semibold"
+                >
+                  <i class="fab fa-whatsapp text-2xl lg:text-3xl text-green-500"></i>
+                  <span class="text-sm lg:text-base xl:text-lg">Chatea con nosotros por WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
