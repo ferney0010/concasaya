@@ -775,49 +775,102 @@
 
     <script type="module">
       import { supabase } from "./supabaseClient.js";
+      import { staticPosts } from "./blog/static-posts-config.js";
 
       const postsContainer = document.getElementById("blog-posts-container");
 
       const loadBlogPosts = async () => {
+        // Cargar posts de Supabase
+        let supabasePosts = [];
         const { data: posts, error } = await supabase
           .from("concasaya_blog_posts")
           .select("*")
           .order("created_at", { ascending: false });
 
-        if (error) {
-          postsContainer.innerHTML =
-            '<p class="col-span-full text-center text-red-500">Error al cargar las entradas del blog.</p>';
-          return;
+        if (!error && posts) {
+          supabasePosts = posts.map(post => ({
+            id: post.id,
+            title: post.title,
+            description: post.content ? post.content.substring(0, 150) + "..." : "",
+            image: post.image_url || null,
+            date: post.created_at,
+            url: `/blog/post.html?id=${post.id}`,
+            type: "supabase"
+          }));
         }
 
-        if (posts.length === 0) {
+        // Convertir posts estáticos al mismo formato
+        const staticPostsFormatted = staticPosts.map(post => ({
+          id: post.slug,
+          title: post.title,
+          description: post.description,
+          image: post.image || null,
+          date: post.date,
+          url: post.url,
+          type: "static"
+        }));
+
+        // Combinar y ordenar por fecha (más recientes primero)
+        const allPosts = [...supabasePosts, ...staticPostsFormatted].sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          return dateB - dateA;
+        });
+
+        if (allPosts.length === 0) {
           postsContainer.innerHTML =
             '<p class="col-span-full text-center">Aún no hay entradas en el blog. ¡Vuelve pronto!</p>';
           return;
         }
 
         postsContainer.innerHTML = "";
-        posts.forEach((post, index) => {
+        allPosts.forEach((post, index) => {
           const article = document.createElement("article");
-          article.className = "bg-white rounded-lg shadow-lg overflow-hidden";
+          article.className = "bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300";
           article.setAttribute("data-aos", "fade-up");
           article.setAttribute("data-aos-delay", (index % 3) * 100);
 
-          const postImage = post.image_url
-            ? `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image_url}" alt="${post.title}" class="w-full h-auto object-contain max-h-full" /></div>`
-            : '<div class="w-full h-56 bg-gray-200"></div>';
-
-          const postContent = post.content
-            ? post.content.substring(0, 150) + "..."
-            : "";
+          // Detectar si es el artículo de Cundinamarca para mostrar video
+          const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
+          
+          let postMedia;
+          if (isCundinamarcaPost) {
+            // Mostrar video para el artículo de Cundinamarca
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
+              <video 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="w-full h-full object-cover"
+                style="min-height: 200px; max-height: 400px;"
+                aria-label="${post.title}"
+              >
+                <source src="/assets/video/videoblog1.mp4" type="video/mp4" />
+                <!-- Fallback -->
+                <img src="${post.image || 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}" alt="${post.title}" class="w-full h-full object-cover" />
+              </video>
+            </div>`;
+          } else if (post.image) {
+            // Mostrar imagen para otros artículos
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+          } else {
+            // Placeholder si no hay imagen
+            postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';
+          }
 
           article.innerHTML = `
-                    ${postImage}
-                    <div class="p-6">
-                        <span class="text-sm text-primary font-semibold">Artículo</span>
-                        <h3 class="text-xl font-bold my-2 text-dark">${post.title}</h3>
-                        <p class="text-gray-600 mb-4">${postContent}</p>
-<a href="/blog/post.html?id=${post.id}" class="font-semibold text-primary hover:underline">Leer más &rarr;</a>                    </div>
+                    <a href="${post.url}" class="block">
+                        ${postMedia}
+                        <div class="p-6">
+                            <span class="text-sm text-primary font-semibold">Artículo</span>
+                            <h3 class="text-xl font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
+                            <p class="text-gray-600 mb-4">${post.description}</p>
+                            <span class="font-semibold text-primary hover:underline inline-flex items-center">
+                                Leer más <i class="fas fa-arrow-right ml-2"></i>
+                            </span>
+                        </div>
+                    </a>
                 `;
           postsContainer.appendChild(article);
         });
