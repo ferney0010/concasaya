@@ -562,52 +562,61 @@
       </div>
     </header>
 
-    <main>
-      <!-- Hero Section con CTA Prominente -->
+    <main class="pt-20">
+      <!-- Hero Section -->
       <section
-        class="h-screen bg-cover bg-center flex items-center relative"
-        style="background-image: url('/assets/images/fondo1.webp');"
+        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20"
+        style="background-image: url('../assets/images/casa2.webp'); min-height: 95vh; background-attachment: fixed;"
       >
-        <div class="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/70"></div>
-        <div class="container mx-auto px-6 text-center relative z-10" data-aos="fade-up">
-          <div class="bg-white/95 p-8 md:p-12 rounded-2xl max-w-5xl mx-auto shadow-2xl">
-            <div class="inline-block mb-4">
-              <span class="urgency-badge text-white px-4 py-2 rounded-full text-sm font-bold">
-                🔥 OFERTA ESPECIAL SANTA MARTA
-              </span>
+        <!-- Overlay con gradiente -->
+        <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
+
+        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0">
+          <div class="max-w-4xl mx-auto text-center">
+            <!-- Título principal -->
+            <div class="mb-8 sm:mb-10" data-aos="fade-up">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-5 sm:mb-6 leading-tight px-2">
+                Casas Prefabricadas en <span class="text-primary">Santa Marta</span>
+                <span class="block mt-2 sm:mt-3">Diseños para Clima Cálido</span>
+              </h1>
+              <p class="text-base sm:text-lg md:text-xl text-gray-100 mt-4 sm:mt-5 max-w-3xl mx-auto px-2">
+                Construye tu <strong class="text-white">casa prefabricada</strong> en Santa Marta. 
+                Diseños modernos adaptados al <strong class="text-white">clima cálido</strong> del Caribe. 
+                <strong class="text-white">Elige entre plaqueta de concreto o paneles EPS</strong> según tus necesidades.
+              </p>
             </div>
-            <h1 class="text-4xl md:text-6xl font-bold text-dark mb-6">
-              <strong>Tu Casa Prefabricada en Santa Marta</strong>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 font-semibold">
-              Diseños modernos adaptados al <strong>clima cálido</strong>.<br/>
-              <span class="text-primary">Elige entre plaqueta de concreto o paneles EPS</span> según tus necesidades.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a
-                href="/contacto.html"
-                class="bg-primary text-white px-10 py-4 rounded-full font-bold text-xl hover:opacity-90 transition duration-300 shadow-xl cta-pulse transform hover:scale-105"
-                aria-label="Cotizar Casa Prefabricada en Santa Marta"
-              >
-                <i class="fas fa-calculator mr-2"></i>COTIZAR GRATIS AHORA
+
+            <!-- Palabras clave compactas -->
+            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2" data-aos="fade-up" data-aos-delay="100">
+              <a href="#beneficios" onclick="document.getElementById('beneficios').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-sun mr-1 text-primary text-xs"></i>Clima Cálido
               </a>
+              <a href="/cotizador.html" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-calculator mr-1 text-primary text-xs"></i>Precios Desde
+              </a>
+              <a href="#tecnologia" onclick="document.getElementById('tecnologia').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+                <i class="fas fa-cog mr-1 text-primary text-xs"></i>Plaqueta o EPS
+              </a>
+            </div>
+
+            <!-- CTAs compactos -->
+            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-center px-2 mb-8 sm:mb-10">
               <a
                 href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20en%20Santa%20Marta"
                 target="_blank"
-                class="bg-green-500 text-white px-10 py-4 rounded-full font-bold text-xl hover:bg-green-600 transition duration-300 shadow-xl transform hover:scale-105"
+                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
               >
-                <i class="fab fa-whatsapp mr-2"></i>WhatsApp Directo
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp</span>
               </a>
             </div>
-            <p class="text-sm text-gray-600 mt-4">
-              <i class="fas fa-check-circle text-green-500"></i> Cotización en 24 horas | <i class="fas fa-check-circle text-green-500"></i> Sin compromiso
-            </p>
+
           </div>
         </div>
       </section>
 
       <!-- Sección de Beneficios Urgentes -->
-      <section class="py-16 bg-primary text-white">
+      <section id="beneficios" class="py-16 bg-primary text-white">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -709,7 +718,7 @@
       </section>
 
       <!-- Sección: Ventajas Técnicas para Clima Cálido -->
-      <section class="py-20">
+      <section id="tecnologia" class="py-20">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4">
@@ -1208,7 +1217,7 @@ ${message}
               href="/contacto.html"
               class="bg-white text-primary px-10 py-5 rounded-full font-bold text-xl hover:bg-gray-100 transition duration-300 shadow-2xl transform hover:scale-105 cta-pulse"
             >
-              <i class="fas fa-calendar-check mr-2"></i>Agendar Visita Técnica Gratuita
+              <i class="fas fa-calendar-check mr-2"></i>Agendar Visita Técnica
             </a>
             <a
               href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20en%20Santa%20Marta"
