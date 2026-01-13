@@ -396,6 +396,13 @@
               </li>
               <li>
                 <a
+                  class="municipio-item block px-4 py-2 hover:bg-light text-primary font-bold"
+                  href="/pages/cota.html"
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Cota</a
+                >
+              </li>
+              <li>
+                <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/mosquera.html"
                   ><i class="fas fa-map-marker-alt municipio-icon"></i>Mosquera</a
@@ -541,6 +548,11 @@
               href="/pages/cajica.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
               ><i class="fas fa-map-marker-alt municipio-icon"></i>Cajicá</a
+            >
+            <a
+              href="/pages/cota.html"
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition font-bold text-primary"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Cota</a
             >
             <a
               href="/pages/mosquera.html"
@@ -819,59 +831,93 @@
       </section>
 
       <!-- Sección: Galería de Proyectos -->
-      <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <section id="gallery-preview" class="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 text-dark">
-              Inspírate con Nuestros Proyectos
+              Proyectos que Inspiran
             </h2>
             <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Descubre casas prefabricadas terminadas en la Sabana de Bogotá. Diseños modernos, interiores acogedores y fachadas impresionantes.
             </p>
+          </div>
+          <div
+            id="gallery-preview-container"
+            class="grid grid-cols-2 md:grid-cols-4 gap-4 h-96"
+          >
+            <div class="col-span-full text-center">
+              Cargando imágenes recientes...
+            </div>
+          </div>
+          <div class="text-center mt-12" data-aos="fade-up">
             <a
               href="/galeria.html"
-              class="inline-block bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-700 transition duration-300 shadow-xl transform hover:scale-105"
+              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300 inline-flex items-center gap-2"
             >
-              <i class="fas fa-images mr-2"></i>Ver Galería Completa
-            </a>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mb-8">
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden benefit-card" data-aos="fade-up" data-aos-delay="100">
-              <div class="aspect-video bg-gradient-to-br from-primary/20 to-primary/40 flex items-center justify-center">
-                <i class="fas fa-home text-6xl text-primary/60"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Fachadas Modernas</h3>
-                <p class="text-gray-600">Diseños contemporáneos que se adaptan a la Sabana</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden benefit-card" data-aos="fade-up" data-aos-delay="200">
-              <div class="aspect-video bg-gradient-to-br from-blue-200 to-blue-400 flex items-center justify-center">
-                <i class="fas fa-couch text-6xl text-primary/60"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Interiores Acogedores</h3>
-                <p class="text-gray-600">Espacios diseñados para el confort y la funcionalidad</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-xl shadow-lg overflow-hidden benefit-card" data-aos="fade-up" data-aos-delay="300">
-              <div class="aspect-video bg-gradient-to-br from-purple-200 to-purple-400 flex items-center justify-center">
-                <i class="fas fa-tree text-6xl text-purple-600/60"></i>
-              </div>
-              <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Proyectos Campestres</h3>
-                <p class="text-gray-600">Casas que se integran con el paisaje de la Sabana</p>
-              </div>
-            </div>
-          </div>
-          <div class="text-center">
-            <a href="/galeria.html" class="text-primary font-bold text-lg hover:underline inline-flex items-center gap-2">
-              Ver más proyectos en nuestra galería completa
-              <i class="fas fa-arrow-right"></i>
+              <i class="fas fa-images"></i>
+              Ver Galería Completa
             </a>
           </div>
         </div>
       </section>
+
+      <script type="module">
+        import { supabase } from "../supabaseClient.js";
+
+        const galleryPreviewContainer = document.getElementById(
+          "gallery-preview-container"
+        );
+
+        const loadRecentImages = async () => {
+          const { data: images, error } = await supabase
+            .from("concasaya_gallery_images")
+            .select("*")
+            .order("created_at", { ascending: false })
+            .limit(5);
+
+          if (error || !images || images.length === 0) {
+            galleryPreviewContainer.innerHTML =
+              '<p class="col-span-full text-center text-gray-600">No hay imágenes para mostrar.</p>';
+            return;
+          }
+
+          galleryPreviewContainer.innerHTML = "";
+
+          images.forEach((image, index) => {
+            const imageWrapper = document.createElement("div");
+            let classList = "rounded-lg overflow-hidden cursor-pointer";
+            let delay = index * 100;
+
+            if (index === 0) {
+              classList += " col-span-2 row-span-2";
+            }
+
+            imageWrapper.className = classList;
+            // Desactivar zoom en móviles - usar fade-up en lugar de zoom-in
+            const isMobile = window.innerWidth <= 768;
+            imageWrapper.setAttribute("data-aos", isMobile ? "fade-up" : "zoom-in");
+            imageWrapper.setAttribute("data-aos-delay", delay);
+
+            imageWrapper.innerHTML = `
+                    <img
+                        src="${image.image_url}"
+                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                        alt="${image.title || 'Proyecto CONCASAYA'}"
+                    />
+                `;
+            
+            // Agregar click para abrir en galería completa
+            imageWrapper.addEventListener('click', () => {
+              window.location.href = '/galeria.html';
+            });
+            
+            galleryPreviewContainer.appendChild(imageWrapper);
+          });
+          setTimeout(() => AOS.refresh(), 100);
+        };
+
+        document.addEventListener("DOMContentLoaded", loadRecentImages);
+      </script>
 
       <!-- Sección: Por Qué Elegir Casas Prefabricadas en Cota -->
       <section class="py-20 bg-white">
