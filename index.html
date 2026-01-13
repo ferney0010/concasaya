@@ -373,6 +373,13 @@
         }
       }
       
+      @media (max-width: 768px) {
+        .modal-image-full,
+        .modal-video-full {
+          animation: fadeIn 0.3s ease;
+        }
+      }
+      
       .parallax-bg {
         position: relative;
         overflow: hidden;
@@ -2052,7 +2059,9 @@
             }
 
             imageWrapper.className = classList;
-            imageWrapper.setAttribute("data-aos", "zoom-in");
+            // Desactivar zoom en móviles - usar fade-up en lugar de zoom-in
+            const isMobile = window.innerWidth <= 768;
+            imageWrapper.setAttribute("data-aos", isMobile ? "fade-up" : "zoom-in");
             imageWrapper.setAttribute("data-aos-delay", delay);
 
             imageWrapper.innerHTML = `
