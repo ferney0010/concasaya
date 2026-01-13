@@ -652,8 +652,9 @@
             </p>
           </div>
         </div>
-        <!-- Video a pantalla completa -->
-        <div class="w-full">
+        <!-- Video y Tarjetas en Grid Responsive -->
+        <!-- Video a pantalla completa en móvil -->
+        <div class="w-full lg:hidden mb-8">
           <video
             class="w-full h-auto"
             autoplay
@@ -665,8 +666,23 @@
             Tu navegador no soporta la reproducción de video.
           </video>
         </div>
-        <div class="container mx-auto px-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="container mx-auto px-6 lg:pt-0 pt-0">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start">
+            <!-- Video - Izquierda en desktop, oculto en móvil -->
+            <div class="hidden lg:block w-full lg:sticky lg:top-20">
+              <video
+                class="w-full h-auto rounded-lg shadow-2xl"
+                autoplay
+                muted
+                loop
+                playsinline
+              >
+                <source src="../assets/video/videosantamarta.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+              </video>
+            </div>
+            <!-- Tarjetas - Derecha en desktop, abajo en móvil -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
             <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center benefit-card" data-aos="fade-up" data-aos-delay="100">
               <div class="text-5xl mb-4">🌡️</div>
               <h3 class="text-xl font-bold mb-2">Aislamiento Térmico Superior</h3>
@@ -686,6 +702,7 @@
               <div class="text-5xl mb-4">💰</div>
               <h3 class="text-xl font-bold mb-2">Precios Competitivos</h3>
               <p class="text-white/90">Hasta 30% más económico que construcción tradicional. Calidad premium a mejor precio.</p>
+            </div>
             </div>
           </div>
         </div>
