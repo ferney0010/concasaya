@@ -273,6 +273,31 @@
         transform: translateY(-8px);
         box-shadow: 0 15px 35px rgba(0, 119, 182, 0.2);
       }
+      
+      /* Estilos para hero en móviles */
+      .hero-bg-mobile {
+        background-attachment: scroll;
+        background-size: cover;
+        background-position: center center;
+      }
+      
+      @media (min-width: 768px) {
+        .hero-bg-mobile {
+          background-attachment: fixed;
+        }
+      }
+      
+      /* Ajuste específico para iPhone */
+      @media (max-width: 767px) {
+        .hero-bg-mobile {
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+        }
+      }
     </style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
@@ -565,8 +590,8 @@
     <main class="pt-20">
       <!-- Hero Section -->
       <section
-        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20"
-        style="background-image: url('../assets/images/casa2.webp'); min-height: 95vh; background-attachment: fixed;"
+        class="relative bg-cover bg-center flex items-center py-20 sm:py-24 md:py-32 pt-24 sm:pt-20 hero-bg-mobile"
+        style="background-image: url('../assets/images/casa2.webp'); min-height: 95vh; background-size: cover; background-position: center;"
       >
         <!-- Overlay con gradiente -->
         <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
