@@ -629,22 +629,21 @@
       /* Animación pequeña en la esquina inferior izquierda */
       .small-animation {
         position: fixed;
-        bottom: 1.25rem; /* bottom-5 */
-        left: 1.25rem; /* left-5 */
-        width: 6rem; /* w-24 (x2 del tamaño original) */
-        height: 6rem; /* h-24 (x2 del tamaño original) */
+        bottom: 0.5rem; /* Más abajo */
+        left: 0.5rem; /* Más a la izquierda */
         z-index: 50; /* z-50 igual que los botones flotantes */
         opacity: 1;
         transform: scale(1);
         transition: opacity 0.5s ease, transform 0.5s ease;
         pointer-events: auto;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         cursor: pointer;
         text-decoration: none;
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
         visibility: visible;
+        background: transparent;
+        padding: 0;
       }
       
       .small-animation.hidden {
@@ -655,23 +654,89 @@
       }
       
       .small-animation:hover {
-        transform: scale(1.1) translateY(-4px);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        transform: scale(1.05) translateY(-4px);
+      }
+      
+      .small-animation:hover .small-animation-text {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
       }
       
       .small-animation img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+        width: 8rem;
+        height: 8rem;
+        object-fit: contain;
         display: block;
+        flex-shrink: 0;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      }
+      
+      .small-animation-text {
+        position: relative;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+        white-space: nowrap;
+        line-height: 1.2;
+        padding: 0.75rem 1rem;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        transition: box-shadow 0.3s ease;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      
+      /* Cola de la nube de pensamiento */
+      .small-animation-text::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 10px solid rgba(255, 255, 255, 0.4);
+        filter: blur(2px);
+      }
+      
+      .small-animation-text span {
+        display: block;
+        font-size: 0.75rem;
+        color: white;
+        font-weight: 500;
+        margin-top: 0.25rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
       
       @media (max-width: 640px) {
         .small-animation {
-          width: 5rem;
-          height: 5rem;
-          bottom: 1rem;
-          left: 1rem;
+          gap: 0.2rem;
+          bottom: 0.5rem;
+          left: 0.5rem;
+        }
+        
+        .small-animation img {
+          width: 6.5rem;
+          height: 6.5rem;
+        }
+        
+        .small-animation-text {
+          font-size: 0.75rem;
+          padding: 0.6rem 0.8rem;
+        }
+        
+        .small-animation-text::before {
+          left: -5px;
+          border-top-width: 8px;
+          border-bottom-width: 8px;
+          border-right-width: 8px;
+        }
+        
+        .small-animation-text span {
+          font-size: 0.65rem;
         }
       }
     </style>
@@ -2959,7 +3024,11 @@
     
     <!-- Animación pequeña ocasional -->
     <a id="small-animation" class="small-animation" href="contacto.html" title="Ir a contacto">
-      <img src="/assets/video/aminacion.gif" alt="Animación" onerror="console.error('Error cargando animación:', this.src)" />
+      <img src="/assets/video/saludo2.gif" alt="Animación" onerror="console.error('Error cargando animación:', this.src)" />
+      <div class="small-animation-text">
+        ¡Haz clic aquí!
+        <span>Contáctanos</span>
+      </div>
     </a>
   </body>
 </html>
