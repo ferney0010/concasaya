@@ -13,7 +13,7 @@
   const appState = {
     currentQuestion: 0,
     answers: {},
-    totalQuestions: 15,
+    totalQuestions: 14,
     termsAccepted: false,
     visualContentMap: {
       // Tipo de vivienda
@@ -256,18 +256,6 @@
         { value: 'si-separar', label: 'Sí, me interesa separar', icon: 'fas fa-hand-holding-usd', description: 'Quiero reservar mi proyecto' },
         { value: 'informacion', label: 'Quiero más información', icon: 'fas fa-info-circle', description: 'Necesito conocer los detalles' },
         { value: 'no-separar', label: 'No, prefiero esperar', icon: 'fas fa-pause-circle', description: 'No por el momento' }
-      ],
-      hasVisual: false
-    },
-    {
-      id: 'disponibilidad-dinero',
-      title: '¿Dispones de los recursos económicos para el proyecto?',
-      subtitle: 'Esto nos ayuda a orientar mejor las opciones de financiamiento',
-      type: 'radio',
-      options: [
-        { value: 'si-disponible', label: 'Sí, tengo los recursos', icon: 'fas fa-check-circle', description: 'Recursos disponibles' },
-        { value: 'parcialmente', label: 'Parcialmente, necesito financiamiento', icon: 'fas fa-credit-card', description: 'Requiere opciones de pago' },
-        { value: 'evaluando-financiamiento', label: 'Estoy evaluando opciones', icon: 'fas fa-question-circle', description: 'Analizando posibilidades' }
       ],
       hasVisual: false
     },
@@ -950,13 +938,11 @@
   function updateProgress() {
     const progressBar = document.getElementById('progress-bar');
     const progressPercent = document.getElementById('progress-percent');
-    const currentQuestion = document.getElementById('current-question');
     
-    if (progressBar && progressPercent && currentQuestion) {
+    if (progressBar && progressPercent) {
       const progress = ((appState.currentQuestion + 1) / appState.totalQuestions) * 100;
       progressBar.style.width = progress + '%';
       progressPercent.textContent = Math.round(progress) + '%';
-      currentQuestion.textContent = appState.currentQuestion + 1;
     }
   }
 
@@ -1352,7 +1338,6 @@
       'terreno-propio': 'Terreno Propio',
       'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
-      'disponibilidad-dinero': 'Disponibilidad de Recursos',
       'instalaciones': 'Instalaciones'
     };
 
@@ -1392,9 +1377,6 @@
       'si-separar': 'Sí, me interesa separar',
       'informacion': 'Quiero más información',
       'no-separar': 'No, prefiero esperar',
-      'si-disponible': 'Sí, tengo los recursos',
-      'parcialmente': 'Parcialmente, necesito financiamiento',
-      'evaluando-financiamiento': 'Estoy evaluando opciones',
       'electrica': 'Instalación Eléctrica',
       'hidraulica': 'Instalación Hidráulica',
       'sanitaria': 'Instalación Sanitaria',
@@ -1503,7 +1485,6 @@
       'terreno-propio': 'Terreno Propio',
       'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
-      'disponibilidad-dinero': 'Disponibilidad de Recursos',
       'instalaciones': 'Instalaciones'
     };
 
@@ -1543,9 +1524,6 @@
       'si-separar': 'Sí, me interesa separar',
       'informacion': 'Quiero más información',
       'no-separar': 'No, prefiero esperar',
-      'si-disponible': 'Sí, tengo los recursos',
-      'parcialmente': 'Parcialmente, necesito financiamiento',
-      'evaluando-financiamiento': 'Estoy evaluando opciones',
       'electrica': 'Instalación Eléctrica',
       'hidraulica': 'Instalación Hidráulica',
       'sanitaria': 'Instalación Sanitaria',
