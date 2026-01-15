@@ -625,6 +625,55 @@
           padding: 0.4rem 0.8rem;
         }
       }
+      
+      /* Animación pequeña en la esquina inferior izquierda */
+      .small-animation {
+        position: fixed;
+        bottom: 1.25rem; /* bottom-5 */
+        left: 1.25rem; /* left-5 */
+        width: 6rem; /* w-24 (x2 del tamaño original) */
+        height: 6rem; /* h-24 (x2 del tamaño original) */
+        z-index: 50; /* z-50 igual que los botones flotantes */
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        pointer-events: auto;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        cursor: pointer;
+        text-decoration: none;
+        display: block;
+        visibility: visible;
+      }
+      
+      .small-animation.hidden {
+        opacity: 0;
+        transform: scale(0.8);
+        pointer-events: none;
+        visibility: hidden;
+      }
+      
+      .small-animation:hover {
+        transform: scale(1.1) translateY(-4px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+      }
+      
+      .small-animation img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      
+      @media (max-width: 640px) {
+        .small-animation {
+          width: 5rem;
+          height: 5rem;
+          bottom: 1rem;
+          left: 1rem;
+        }
+      }
     </style>
 
     <!-- Structured Data -->
@@ -2853,6 +2902,64 @@
           e.stopPropagation();
         });
       }
+
+      // Animación pequeña ocasional en la esquina inferior izquierda
+      (function() {
+        const smallAnimation = document.getElementById('small-animation');
+        if (!smallAnimation) {
+          console.error('Elemento small-animation no encontrado');
+          return;
+        }
+
+        let isVisible = true; // Inicia visible
+        let timeoutId;
+
+        function showAnimation() {
+          if (!isVisible) {
+            smallAnimation.classList.remove('hidden');
+            isVisible = true;
+            console.log('Animación visible');
+            // Ocultar después de 5-8 segundos
+            const hideDelay = 5000 + Math.random() * 3000;
+            timeoutId = setTimeout(() => {
+              hideAnimation();
+            }, hideDelay);
+          }
+        }
+
+        function hideAnimation() {
+          if (isVisible) {
+            smallAnimation.classList.add('hidden');
+            isVisible = false;
+            console.log('Animación oculta');
+            // Mostrar nuevamente después de 8-15 segundos
+            const showDelay = 8000 + Math.random() * 7000;
+            timeoutId = setTimeout(() => {
+              showAnimation();
+            }, showDelay);
+          }
+        }
+
+        // Iniciar el ciclo después de que la página cargue
+        function initAnimation() {
+          // Primera aparición después de 2 segundos
+          setTimeout(() => {
+            showAnimation();
+          }, 2000);
+        }
+
+        // Asegurar que se ejecute cuando el DOM esté listo
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAnimation);
+        } else {
+          initAnimation();
+        }
+      })();
     </script>
+    
+    <!-- Animación pequeña ocasional -->
+    <a id="small-animation" class="small-animation" href="contacto.html" title="Ir a contacto">
+      <img src="/assets/video/aminacion.gif" alt="Animación" onerror="console.error('Error cargando animación:', this.src)" />
+    </a>
   </body>
 </html>
