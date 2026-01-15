@@ -106,19 +106,22 @@
           value: 'obra-negra', 
           label: 'Obra Negra', 
           icon: 'fas fa-hammer', 
-          description: 'Estructura sin acabados. Solo construcción básica.' 
+          description: 'Estructura sin acabados. Solo construcción básica.',
+          availableFor: ['plaqueta'] // Solo disponible para plaqueta
         },
         { 
           value: 'gris', 
           label: 'Gris', 
           icon: 'fas fa-trowel', 
-          description: 'Instalación de luz y pañete.' 
+          description: 'Instalación de luz y pañete. Incluye redes eléctricas e hidráulicas.',
+          availableFor: ['plaqueta', 'eps'] // Disponible para ambos
         },
         { 
           value: 'blanca', 
           label: 'Blanca', 
           icon: 'fas fa-home', 
-          description: 'Acabados básicos.'
+          description: 'Acabados básicos.',
+          availableFor: ['plaqueta', 'eps'] // Disponible para ambos
         }
       ],
       hasVisual: false
@@ -129,45 +132,19 @@
       subtitle: 'La ubicación afecta los costos de transporte e instalación',
       type: 'datalist',
       options: [
-        { value: 'anapoima', label: 'Anapoima' },
-        { value: 'arbelaez', label: 'Arbeláez' },
         { value: 'bogota', label: 'Bogotá' },
         { value: 'boyaca', label: 'Boyacá' },
-        { value: 'cachipay', label: 'Cachipay' },
         { value: 'cajica', label: 'Cajicá' },
-        { value: 'caparrapi', label: 'Caparrapí' },
         { value: 'chia', label: 'Chía' },
-        { value: 'choconta', label: 'Chocontá' },
         { value: 'cota', label: 'Cota' },
-        { value: 'facatativa', label: 'Facatativá' },
         { value: 'funza', label: 'Funza' },
-        { value: 'fusagasuga', label: 'Fusagasugá' },
-        { value: 'gachancipa', label: 'Gachancipá' },
-        { value: 'girardot', label: 'Girardot' },
-        { value: 'guaduas', label: 'Guaduas' },
-        { value: 'guatavita', label: 'Guatavita' },
-        { value: 'la-calera', label: 'La Calera' },
-        { value: 'la-mesa', label: 'La Mesa' },
         { value: 'la-vega', label: 'La Vega' },
         { value: 'madrid', label: 'Madrid' },
         { value: 'mosquera', label: 'Mosquera' },
-        { value: 'nemocon', label: 'Nemocón' },
-        { value: 'pandi', label: 'Pandi' },
-        { value: 'san-bernardo', label: 'San Bernardo' },
         { value: 'santa-marta', label: 'Santa Marta' },
-        { value: 'sibate', label: 'Sibaté' },
-        { value: 'silvania', label: 'Silvania' },
-        { value: 'soacha', label: 'Soacha' },
         { value: 'sopo', label: 'Sopó' },
-        { value: 'suesca', label: 'Suesca' },
-        { value: 'tabio', label: 'Tabio' },
-        { value: 'tenjo', label: 'Tenjo' },
-        { value: 'tocaima', label: 'Tocaima' },
         { value: 'tocancipa', label: 'Tocancipá' },
-        { value: 'ubate', label: 'Ubaté' },
         { value: 'villa-de-leyva', label: 'Villa de Leyva' },
-        { value: 'villeta', label: 'Villeta' },
-        { value: 'yacopi', label: 'Yacopí' },
         { value: 'zipaquira', label: 'Zipaquirá' }
       ],
       hasVisual: false,
@@ -447,7 +424,29 @@
     // Renderizar según tipo de pregunta
     if (question.type === 'radio') {
       questionHTML += '<div class="space-y-3">';
-      question.options.forEach((option, index) => {
+      
+      // Filtrar opciones según el sistema constructivo si es la pregunta de acabados
+      let availableOptions = question.options;
+      if (question.id === 'acabados') {
+        const sistemaSeleccionado = appState.answers.sistema;
+        if (sistemaSeleccionado === 'eps') {
+          // Si se seleccionó EPS, solo mostrar gris y blanca (no obra negra)
+          availableOptions = question.options.filter(opt => 
+            opt.availableFor && opt.availableFor.includes('eps')
+          );
+          // Si ya había seleccionado obra-negra, limpiar esa selección
+          if (appState.answers.acabados === 'obra-negra') {
+            appState.answers.acabados = '';
+          }
+        } else {
+          // Para plaqueta, mostrar todas las opciones disponibles
+          availableOptions = question.options.filter(opt => 
+            !opt.availableFor || opt.availableFor.includes('plaqueta')
+          );
+        }
+      }
+      
+      availableOptions.forEach((option, index) => {
         const isSelected = appState.answers[question.id] === option.value;
         questionHTML += `
           <div 
@@ -485,6 +484,22 @@
           `;
         }
       });
+      
+      // Mostrar mensaje informativo si se seleccionó EPS
+      if (question.id === 'acabados' && appState.answers.sistema === 'eps') {
+        questionHTML += `
+          <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-4 mt-4">
+            <div class="flex items-start">
+              <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
+              <div>
+                <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre EPS</p>
+                <p class="text-xs text-blue-700">El sistema EPS se entrega mínimo desde obra gris, incluyendo pañete, redes eléctricas e hidráulicas. No está disponible en obra negra.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
       questionHTML += '</div>';
     } else if (question.type === 'select') {
       questionHTML += `
@@ -720,6 +735,11 @@
     
     appState.answers[questionId] = value;
     
+    // Si se cambia el sistema constructivo a EPS y ya había seleccionado obra-negra, limpiar acabados
+    if (questionId === 'sistema' && value === 'eps' && appState.answers.acabados === 'obra-negra') {
+      appState.answers.acabados = '';
+    }
+    
     // Agregar animación sutil de "procesando" a la opción seleccionada
     const selectedCard = document.querySelector(`[data-value="${value}"]`);
     if (selectedCard) {
@@ -728,7 +748,14 @@
     }
     
     // Re-renderizar para mostrar la imagen debajo de la opción seleccionada
+    // Si cambió el sistema, también re-renderizar la pregunta de acabados si ya se había respondido
     renderQuestion();
+    
+    // Si cambió el sistema y ya se había respondido acabados, re-renderizar también esa pregunta
+    if (questionId === 'sistema' && appState.answers.acabados) {
+      // La pregunta de acabados se re-renderizará cuando se llegue a ella
+    }
+    
     updateNextButton();
     
     // Scroll automático al botón "Siguiente" después de seleccionar
@@ -1149,12 +1176,10 @@
       },
       'eps': {
         '1-piso': {
-          'obra-negra': 1200000,
           'gris': 1450000,
           'blanca': 1950000
         },
         '2-pisos': {
-          'obra-negra': 2600000,
           'gris': 2950000,
           'blanca': 3450000
         }
@@ -1191,47 +1216,20 @@
 
     const multiplicadoresUbicacion = {
       bogota: 1.0,
-      chia: 1.05,
-      cajica: 1.05,
-      mosquera: 1.05,
-      zipaquira: 1.08,
-      sopo: 1.08,
-      funza: 1.05,
-      madrid: 1.1,
-      tocancipa: 1.1,
-      'la-vega': 1.12,
-      facatativa: 1.08,
-      soacha: 1.05,
-      girardot: 1.15,
-      sibate: 1.08,
-      'la-calera': 1.1,
-      tabio: 1.08,
-      tenjo: 1.08,
-      gachancipa: 1.1,
-      cota: 1.08,
-      choconta: 1.12,
-      guatavita: 1.1,
-      suesca: 1.1,
-      nemocon: 1.1,
-      ubate: 1.12,
-      villeta: 1.15,
-      fusagasuga: 1.15,
-      silvania: 1.15,
-      pandi: 1.15,
-      arbelaez: 1.15,
-      'san-bernardo': 1.15,
-      cachipay: 1.12,
-      anapoima: 1.12,
-      'la-mesa': 1.15,
-      tocaima: 1.15,
-      guaduas: 1.15,
-      caparrapi: 1.18,
-      yacopi: 1.18,
-      'villa-de-leyva': 1.15,
-      villadeleyva: 1.15,
-      'santa-marta': 1.2,
-      santander: 1.2,
       boyaca: 1.2,
+      cajica: 1.05,
+      chia: 1.05,
+      cota: 1.08,
+      funza: 1.05,
+      'la-vega': 1.12,
+      madrid: 1.1,
+      mosquera: 1.05,
+      'santa-marta': 1.2,
+      sopo: 1.08,
+      tocancipa: 1.1,
+      'villa-de-leyva': 1.15,
+      villadeleyva: 1.15, // Mantener ambos formatos por compatibilidad
+      zipaquira: 1.08,
     };
 
     const sistema = appState.answers.sistema || 'eps';
@@ -1245,7 +1243,12 @@
     const instalaciones = appState.answers.instalaciones || [];
 
     // Obtener precio por m² según sistema, pisos y acabados
-    const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabados] || preciosPorM2['eps']['1-piso']['obra-negra'];
+    // Si es EPS y se seleccionó obra-negra (no debería pasar, pero por seguridad), usar gris
+    let acabadosParaCalcular = acabados;
+    if (sistema === 'eps' && acabados === 'obra-negra') {
+      acabadosParaCalcular = 'gris';
+    }
+    const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['gris'];
     
     // Calcular precio base multiplicando precio por m² por el área
     let precioBase = precioM2 * area;
