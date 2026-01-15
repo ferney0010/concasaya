@@ -1133,9 +1133,32 @@
 
   // Calcular precio estimado
   function calculatePrice() {
-    const preciosBase = {
-      eps: 800000,
-      plaqueta: 950000,
+    // Nueva tabla de precios por m² según sistema constructivo, pisos y acabados
+    const preciosPorM2 = {
+      'plaqueta': {
+        '1-piso': {
+          'obra-negra': 600000,
+          'gris': 1150000,
+          'blanca': 1850000
+        },
+        '2-pisos': {
+          'obra-negra': 700000,
+          'gris': 1400000,
+          'blanca': 2350000
+        }
+      },
+      'eps': {
+        '1-piso': {
+          'obra-negra': 1200000,
+          'gris': 1450000,
+          'blanca': 1950000
+        },
+        '2-pisos': {
+          'obra-negra': 2600000,
+          'gris': 2950000,
+          'blanca': 3450000
+        }
+      }
     };
 
     const multiplicadoresTipo = {
@@ -1144,17 +1167,6 @@
       'casa-urbana': 1.1,
       bodega: 0.85,
       oficina: 1.05,
-    };
-
-    const multiplicadoresAcabados = {
-      'obra-negra': 1.0,
-      'gris': 1.25,
-      'blanca': 1.5,
-    };
-
-    const multiplicadoresPisos = {
-      '1-piso': 1.0,
-      '2-pisos': 1.8,
     };
 
     const costosInstalaciones = {
@@ -1232,10 +1244,14 @@
     const tipoSuelo = appState.answers['tipo-suelo'] || 'plan';
     const instalaciones = appState.answers.instalaciones || [];
 
-    let precioBase = preciosBase[sistema] * area;
+    // Obtener precio por m² según sistema, pisos y acabados
+    const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabados] || preciosPorM2['eps']['1-piso']['obra-negra'];
+    
+    // Calcular precio base multiplicando precio por m² por el área
+    let precioBase = precioM2 * area;
+    
+    // Aplicar multiplicadores de tipo de vivienda y ubicación
     precioBase *= multiplicadoresTipo[tipoVivienda] || 1.0;
-    precioBase *= multiplicadoresAcabados[acabados] || 1.0;
-    precioBase *= multiplicadoresPisos[pisos] || 1.0;
     precioBase *= multiplicadoresUbicacion[ubicacion] || 1.2;
 
     let costoInstalaciones = 0;
