@@ -64,11 +64,12 @@
             background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
-        #tablet-menu.open {
-            max-height: 1000px;
-            opacity: 1;
-            transform: translateY(0);
-        }
+      #tablet-menu.open {
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
+        opacity: 1;
+        transform: translateY(0);
+      }
         .tablet-menu-item {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             border-left: 4px solid transparent;

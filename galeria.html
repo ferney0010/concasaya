@@ -145,7 +145,8 @@
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
       }
       #tablet-menu.open {
-        max-height: 1000px;
+        max-height: calc(100vh - 80px);
+        overflow-y: auto;
         opacity: 1;
         transform: translateY(0);
       }
