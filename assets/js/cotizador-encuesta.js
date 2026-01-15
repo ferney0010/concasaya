@@ -28,7 +28,6 @@
       // Sistema constructivo
       'eps': 'assets/images/paneleps.webp',
       'plaqueta': 'assets/images/casal1.webp',
-      'mixto': 'assets/images/casa2.webp',
       // Nivel de acabados (usar imágenes genéricas)
       'obra-negra': 'assets/images/casal1.webp',
       'gris': 'assets/images/casa2.webp',
@@ -93,15 +92,9 @@
           label: 'Plaqueta de Concreto', 
           icon: 'fas fa-building', 
           description: 'Mayor resistencia y durabilidad.' 
-        },
-        { 
-          value: 'mixto', 
-          label: 'Sistema Mixto', 
-          icon: 'fas fa-th', 
-          description: 'Combinación de ambos sistemas.' 
         }
       ],
-      hasVisual: true
+      hasVisual: false
     },
     {
       id: 'acabados',
@@ -119,13 +112,13 @@
           value: 'gris', 
           label: 'Gris', 
           icon: 'fas fa-trowel', 
-          description: 'Incluye instalaciones y acabados básicos.' 
+          description: 'Instalación de luz y pañete.' 
         },
         { 
           value: 'blanca', 
           label: 'Blanca', 
           icon: 'fas fa-home', 
-          description: 'Lista para habitar. Incluye todos los acabados.'
+          description: 'Acabados básicos.'
         }
       ],
       hasVisual: false
@@ -196,14 +189,12 @@
     },
     {
       id: 'tipo-suelo',
-      title: '¿Qué tipo de suelo tiene tu terreno?',
-      subtitle: 'El tipo de suelo determina los requerimientos de cimentación',
+      title: '¿Condición del terreno?',
+      subtitle: 'La condición del terreno determina los requerimientos de construcción',
       type: 'radio',
       options: [
-        { value: 'firme', label: 'Suelo Firme', icon: 'fas fa-mountain', description: 'Óptimo para construcción' },
-        { value: 'normal', label: 'Suelo Normal', icon: 'fas fa-layer-group', description: 'Requiere cimentación estándar' },
-        { value: 'blando', label: 'Suelo Blando', icon: 'fas fa-water', description: 'Requiere cimentación reforzada' },
-        { value: 'pendiente', label: 'Terreno en Pendiente', icon: 'fas fa-mountain', description: 'Requiere nivelación y cimentación especial' }
+        { value: 'plan', label: 'Terreno Plano', icon: 'fas fa-layer-group', description: 'Terreno nivelado y plano' },
+        { value: 'pendiente', label: 'Terreno en Pendiente', icon: 'fas fa-mountain', description: 'Terreno con inclinación' }
       ],
       hasVisual: false
     },
@@ -222,16 +213,13 @@
     },
     {
       id: 'presupuesto',
-      title: '¿Cuál es tu presupuesto aproximado?',
-      subtitle: 'Esto nos ayuda a orientar mejor las opciones',
+      title: '¿En que rango de inversión busca su proyecto?',
+      subtitle: 'Selecciona el rango de inversión para tu proyecto',
       type: 'radio',
       options: [
-        { value: '0-50', label: '$0 - $50M', icon: 'fas fa-dollar-sign', description: 'Rango básico' },
-        { value: '50-100', label: '$50M - $100M', icon: 'fas fa-dollar-sign', description: 'Rango económico' },
-        { value: '100-200', label: '$100M - $200M', icon: 'fas fa-dollar-sign', description: 'Rango medio' },
-        { value: '200-300', label: '$200M - $300M', icon: 'fas fa-dollar-sign', description: 'Rango medio-alto' },
-        { value: '300-500', label: '$300M - $500M', icon: 'fas fa-dollar-sign', description: 'Rango alto' },
-        { value: 'mas-500', label: 'Más de $500M', icon: 'fas fa-dollar-sign', description: 'Rango premium' }
+        { value: '18-50', label: 'Entre 18 a 50 millones', icon: 'fas fa-dollar-sign', description: 'Rango de inversión inicial' },
+        { value: '51-100', label: 'Entre 51 a 100', icon: 'fas fa-dollar-sign', description: 'Rango de inversión medio' },
+        { value: 'otros', label: 'Otros precios', icon: 'fas fa-dollar-sign', description: 'Otro rango de inversión' }
       ],
       hasVisual: false
     },
@@ -1162,7 +1150,6 @@
     const preciosBase = {
       eps: 800000,
       plaqueta: 950000,
-      mixto: 875000,
     };
 
     const multiplicadoresTipo = {
@@ -1200,9 +1187,7 @@
     };
 
     const costosSuelo = {
-      firme: 0,
-      normal: 1000000,
-      blando: 3000000,
+      plan: 0,
       pendiente: 5000000,
     };
 
@@ -1258,7 +1243,7 @@
     const pisos = appState.answers.pisos || '1-piso';
     const ubicacion = appState.answers.ubicacion || 'bogota';
     const estadoTerreno = appState.answers['estado-terreno'] || 'apto';
-    const tipoSuelo = appState.answers['tipo-suelo'] || 'normal';
+    const tipoSuelo = appState.answers['tipo-suelo'] || 'plan';
     const instalaciones = appState.answers.instalaciones || [];
 
     let precioBase = preciosBase[sistema] * area;
@@ -1361,9 +1346,9 @@
       'acabados': 'Nivel de Acabados',
       'ubicacion': 'Ubicación',
       'estado-terreno': 'Estado del Terreno',
-      'tipo-suelo': 'Tipo de Suelo',
+      'tipo-suelo': 'Condición del Terreno',
       'tiempo-entrega': 'Tiempo de Inicio',
-      'presupuesto': 'Presupuesto Aproximado',
+      'presupuesto': 'Rango de Inversión',
       'terreno-propio': 'Terreno Propio',
       'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
@@ -1381,7 +1366,6 @@
       '2-pisos': '2 Pisos',
       'eps': 'Paneles EPS',
       'plaqueta': 'Plaqueta de Concreto',
-      'mixto': 'Sistema Mixto',
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
@@ -1390,20 +1374,15 @@
       'acceso': 'Requiere Acceso',
       'cimentacion': 'Requiere Cimentación Especial',
       'completo': 'Requiere Preparación Completa',
-      'firme': 'Suelo Firme',
-      'normal': 'Suelo Normal',
-      'blando': 'Suelo Blando',
+      'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
       '1-3-meses': '1 a 3 meses',
       '3-6-meses': '3 a 6 meses',
       'mas-6-meses': 'Más de 6 meses',
-      '0-50': '$0 - $50M',
-      '50-100': '$50M - $100M',
-      '100-200': '$100M - $200M',
-      '200-300': '$200M - $300M',
-      '300-500': '$300M - $500M',
-      'mas-500': 'Más de $500M',
+      '18-50': 'Entre 18 a 50 millones',
+      '51-100': 'Entre 51 a 100',
+      'otros': 'Otros precios',
       'si': 'Sí, ya tengo el terreno',
       'buscando': 'Estoy buscando terreno',
       'evaluando': 'Estoy evaluando opciones',
@@ -1518,9 +1497,9 @@
       'acabados': 'Nivel de Acabados',
       'ubicacion': 'Ubicación',
       'estado-terreno': 'Estado del Terreno',
-      'tipo-suelo': 'Tipo de Suelo',
+      'tipo-suelo': 'Condición del Terreno',
       'tiempo-entrega': 'Tiempo de Inicio',
-      'presupuesto': 'Presupuesto Aproximado',
+      'presupuesto': 'Rango de Inversión',
       'terreno-propio': 'Terreno Propio',
       'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
@@ -1538,7 +1517,6 @@
       '2-pisos': '2 Pisos',
       'eps': 'Paneles EPS',
       'plaqueta': 'Plaqueta de Concreto',
-      'mixto': 'Sistema Mixto',
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
@@ -1547,20 +1525,15 @@
       'acceso': 'Requiere Acceso',
       'cimentacion': 'Requiere Cimentación Especial',
       'completo': 'Requiere Preparación Completa',
-      'firme': 'Suelo Firme',
-      'normal': 'Suelo Normal',
-      'blando': 'Suelo Blando',
+      'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
       '1-3-meses': '1 a 3 meses',
       '3-6-meses': '3 a 6 meses',
       'mas-6-meses': 'Más de 6 meses',
-      '0-50': '$0 - $50M',
-      '50-100': '$50M - $100M',
-      '100-200': '$100M - $200M',
-      '200-300': '$200M - $300M',
-      '300-500': '$300M - $500M',
-      'mas-500': 'Más de $500M',
+      '18-50': 'Entre 18 a 50 millones',
+      '51-100': 'Entre 51 a 100',
+      'otros': 'Otros precios',
       'si': 'Sí, ya tengo el terreno',
       'buscando': 'Estoy buscando terreno',
       'evaluando': 'Estoy evaluando opciones',
