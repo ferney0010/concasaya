@@ -1584,6 +1584,7 @@
     }
     if (priceData.terreno > 0) {
       message += `🏗️ Preparación Terreno: $${priceData.terreno.toLocaleString('es-CO')}\n`;
+      message += `   ⚠️ *Nota:* El precio de preparación del terreno está sujeto a visita técnica.\n`;
     }
 
     message += `\n*⚠️ IMPORTANTE:* Este es un valor estimado aproximado. Los precios finales están sujetos a múltiples factores y variantes. Para una cotización precisa, te ofrecemos atención personalizada por WhatsApp, videollamada, o visita si se requiere.\n\n`;
