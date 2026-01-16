@@ -218,7 +218,7 @@
       subtitle: 'Nuestra visita técnica permite una cotización precisa y detallada',
       type: 'radio',
       options: [
-        { value: 'si-visita', label: 'Sí, quiero solicitar una visita', icon: 'fas fa-calendar-check', description: 'Programar visita técnica gratuita' },
+        { value: 'si-visita', label: 'Sí, quiero solicitar una visita', icon: 'fas fa-calendar-check', description: 'Programar visita técnica' },
         { value: 'mas-tarde', label: 'Más adelante', icon: 'fas fa-clock', description: 'Mejor en otra fecha' },
         { value: 'no-visita', label: 'Por ahora no', icon: 'fas fa-times-circle', description: 'No en este momento' }
       ],
