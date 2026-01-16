@@ -1588,8 +1588,12 @@
     }
 
     message += `\n*⚠️ IMPORTANTE:* Este es un valor estimado aproximado. Los precios finales están sujetos a múltiples factores y variantes. Para una cotización precisa, te ofrecemos atención personalizada por WhatsApp, videollamada, o visita si se requiere.\n\n`;
-    message += `📞 *¡Visítanos en nuestra oficina física!*\n`;
-    message += `Centro Comercial Fiesta - Te brindamos atención personalizada para tu proyecto\n\n`;
+    message += `📍 *¡Visítanos en nuestra oficina física!*\n`;
+    message += `Dirección: Cl. 147 #101-56 Local 64, Bogotá\n`;
+    message += `Centro Comercial Fiesta\n`;
+    message += `📍 Ver ubicación en Google Maps:\n`;
+    message += `https://maps.app.goo.gl/qGv5S1qG6Gy5KZ4A7\n\n`;
+    message += `Te brindamos atención personalizada para tu proyecto.\n\n`;
     message += `¡Gracias por confiar en CONCASAYA! 🏡`;
 
     const whatsappNumber = '573142891018';
