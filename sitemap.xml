@@ -4,7 +4,7 @@
     <!-- Página Principal (Máxima Prioridad) -->
     <url>
         <loc>https://www.concasaya.com/</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -12,31 +12,31 @@
     <!-- Páginas Principales (Alta Prioridad) -->
     <url>
         <loc>https://www.concasaya.com/modelos.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/contacto.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/ventajas.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/galeria.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/blog.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
@@ -44,73 +44,73 @@
     <!-- Páginas de Municipios (Prioridad Media-Alta) -->
     <url>
         <loc>https://www.concasaya.com/pages/chia.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/cajica.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/sopo.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/zipaquira.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/mosquera.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/madrid.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/funza.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/la-vega.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/tocancipa.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/villadeleyva.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/boyaca.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/santa-marta.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -118,19 +118,19 @@
     <!-- Páginas Secundarias (Prioridad Media) -->
     <url>
         <loc>https://www.concasaya.com/nosotros.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/faq.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/referidos.html</loc>
-        <lastmod>2025-10-01</lastmod>
+        <lastmod>2026-10-01</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.6</priority>
     </url>
