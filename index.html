@@ -102,7 +102,7 @@
       body {
         font-family: "Poppins", sans-serif;
       }
-      
+
       /* Estilos para el slogan del hero */
       .slogan-hero {
         font-family: "Playfair Display", serif;
@@ -120,33 +120,34 @@
         transition: all 0.3s ease;
         font-weight: 500;
       }
-      
+
       .slogan-hero:hover {
         background: rgba(0, 0, 0, 0.4);
         transform: translateY(-2px);
         box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
       }
-      
+
       @media (max-width: 640px) {
         .slogan-hero {
           padding: 0.4rem 0.9rem;
         }
       }
-      
+
       /* Estilos para el hero mejorado */
       @keyframes float {
-        0%, 100% {
+        0%,
+        100% {
           transform: translateY(0px);
         }
         50% {
           transform: translateY(-20px);
         }
       }
-      
+
       .animate-float {
         animation: float 6s ease-in-out infinite;
       }
-      
+
       /* Layout mixto del hero para PC */
       @media (min-width: 1024px) {
         .hero-section {
@@ -402,14 +403,14 @@
           opacity: 1;
         }
       }
-      
+
       @media (max-width: 768px) {
         .modal-image-full,
         .modal-video-full {
           animation: fadeIn 0.3s ease;
         }
       }
-      
+
       .parallax-bg {
         position: relative;
         overflow: hidden;
@@ -449,12 +450,13 @@
         visibility: visible;
         transform: translateY(0);
       }
-      
+
       /* Menú mejorado para tablet y móvil - Estilo Moderno */
       #tablet-menu {
         max-height: 0;
         overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+          opacity 0.4s ease, transform 0.4s ease;
         opacity: 0;
         transform: translateY(-10px);
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -473,26 +475,38 @@
         overflow: hidden;
       }
       .tablet-menu-item::before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         top: 0;
         height: 100%;
         width: 0;
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 119, 182, 0.1) 0%,
+          rgba(0, 119, 182, 0.05) 100%
+        );
         transition: width 0.3s ease;
       }
       .tablet-menu-item:hover::before {
         width: 100%;
       }
       .tablet-menu-item:hover {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.08) 0%, rgba(0, 119, 182, 0.03) 100%);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 119, 182, 0.08) 0%,
+          rgba(0, 119, 182, 0.03) 100%
+        );
         border-left-color: #0077b6;
         transform: translateX(8px);
         box-shadow: -4px 0 12px rgba(0, 119, 182, 0.15);
       }
       .tablet-menu-item.active {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.12) 0%, rgba(0, 119, 182, 0.05) 100%);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 119, 182, 0.12) 0%,
+          rgba(0, 119, 182, 0.05) 100%
+        );
         border-left-color: #0077b6;
         color: #0077b6;
         font-weight: 600;
@@ -522,7 +536,7 @@
       .menu-icon.open {
         transform: rotate(90deg);
       }
-      
+
       /* Iconos para municipios en dropdown desktop - Estilo Moderno */
       .municipio-item {
         display: flex;
@@ -533,7 +547,7 @@
         padding-left: 0.5rem;
       }
       .municipio-item::before {
-        content: '';
+        content: "";
         position: absolute;
         left: 0;
         top: 50%;
@@ -557,7 +571,7 @@
         transform: scale(1.3) rotate(5deg);
         color: #00a8e8;
       }
-      
+
       /* Botón hamburguesa mejorado */
       #menu-btn {
         position: relative;
@@ -566,18 +580,23 @@
         transition: all 0.3s ease;
       }
       #menu-btn:hover {
-        background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        background: linear-gradient(
+          135deg,
+          rgba(0, 119, 182, 0.1) 0%,
+          rgba(0, 119, 182, 0.05) 100%
+        );
         transform: scale(1.1);
       }
       #menu-btn:active {
         transform: scale(0.95);
       }
-      
+
       /* Dropdown desktop mejorado */
       .dropdown-menu {
         border-radius: 12px;
         padding: 0.5rem 0;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15),
+          0 0 0 1px rgba(0, 0, 0, 0.05);
         backdrop-filter: blur(10px);
       }
       .dropdown-menu li a {
@@ -586,11 +605,15 @@
         transition: all 0.3s ease;
       }
       .dropdown-menu li a:hover {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+        background: linear-gradient(
+          90deg,
+          rgba(0, 119, 182, 0.1) 0%,
+          rgba(0, 119, 182, 0.05) 100%
+        );
         transform: translateX(5px);
         box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
       }
-      
+
       /* Estilos mejorados para badges de precio - Más llamativos y accesibles */
       .price-badge {
         background: linear-gradient(135deg, #10b981 0%, #059669 100%);
@@ -599,7 +622,8 @@
         border-radius: 9999px;
         font-weight: 700;
         font-size: 0.75rem;
-        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4), 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4),
+          0 2px 4px rgba(0, 0, 0, 0.1);
         border: 2px solid rgba(255, 255, 255, 0.3);
         display: inline-flex;
         align-items: center;
@@ -614,49 +638,55 @@
         white-space: nowrap;
         line-height: 1;
       }
-      
+
       .price-badge::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 0;
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
         transition: left 0.5s ease;
       }
-      
+
       .price-badge:hover::before {
         left: 100%;
       }
-      
+
       .price-badge:hover {
         transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5), 0 4px 8px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5),
+          0 4px 8px rgba(0, 0, 0, 0.15);
         background: linear-gradient(135deg, #059669 0%, #047857 100%);
         color: white !important;
       }
-      
+
       .price-badge:visited {
         color: white !important;
       }
-      
+
       .price-badge:active {
         color: white !important;
       }
-      
+
       .price-badge i {
         font-size: 0.875rem;
         filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
       }
-      
+
       @media (max-width: 640px) {
         .price-badge {
           font-size: 0.75rem;
           padding: 0.4rem 0.8rem;
         }
       }
-      
+
       /* Animación pequeña en la esquina inferior izquierda */
       .small-animation {
         position: fixed;
@@ -676,22 +706,22 @@
         background: transparent;
         padding: 0;
       }
-      
+
       .small-animation.hidden {
         opacity: 0;
         transform: scale(0.8);
         pointer-events: none;
         visibility: hidden;
       }
-      
+
       .small-animation:hover {
         transform: scale(1.05) translateY(-4px);
       }
-      
+
       .small-animation:hover .small-animation-text {
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
       }
-      
+
       .small-animation img {
         width: 8rem;
         height: 8rem;
@@ -700,7 +730,7 @@
         flex-shrink: 0;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
-      
+
       .small-animation-text {
         position: relative;
         color: white;
@@ -717,10 +747,10 @@
         transition: box-shadow 0.3s ease;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
-      
+
       /* Cola de la nube de pensamiento */
       .small-animation-text::before {
-        content: '';
+        content: "";
         position: absolute;
         left: -2px;
         top: 50%;
@@ -732,7 +762,7 @@
         border-right: 6px solid rgba(30, 30, 30, 0.5);
         filter: blur(2px);
       }
-      
+
       .small-animation-text span {
         display: block;
         font-size: 0.75rem;
@@ -741,31 +771,31 @@
         margin-top: 0.25rem;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       }
-      
+
       @media (max-width: 640px) {
         .small-animation {
           gap: -0.15rem;
           bottom: 0.5rem;
           left: 0.5rem;
         }
-        
+
         .small-animation img {
           width: 6.5rem;
           height: 6.5rem;
         }
-        
+
         .small-animation-text {
           font-size: 0.75rem;
           padding: 0.6rem 0.8rem;
         }
-        
+
         .small-animation-text::before {
           left: -1px;
           border-top-width: 5px;
           border-bottom-width: 5px;
           border-right-width: 5px;
         }
-        
+
         .small-animation-text span {
           font-size: 0.65rem;
         }
@@ -896,14 +926,16 @@
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/mosquera.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Mosquera</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i
+                  >Mosquera</a
                 >
               </li>
               <li>
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/zipaquira.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Zipaquirá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i
+                  >Zipaquirá</a
                 >
               </li>
               <li>
@@ -924,14 +956,16 @@
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/villadeleyva.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de Leyva</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de
+                  Leyva</a
                 >
               </li>
               <li>
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/la-vega.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>La Vega</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>La
+                  Vega</a
                 >
               </li>
               <li>
@@ -945,14 +979,16 @@
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/tocancipa.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Tocancipá</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i
+                  >Tocancipá</a
                 >
               </li>
               <li>
                 <a
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/santa-marta.html"
-                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa
+                  Marta</a
                 >
               </li>
               <li>
@@ -1013,10 +1049,14 @@
       </nav>
       <!-- Menú Tablet y Móvil Mejorado -->
       <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
-        <a href="/" class="tablet-menu-item active block py-3 px-6 text-base font-medium"
+        <a
+          href="/"
+          class="tablet-menu-item active block py-3 px-6 text-base font-medium"
           ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
         >
-        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/modelos.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
         >
         <div class="relative">
@@ -1024,8 +1064,14 @@
             class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
             id="tablet-dropdown-btn"
           >
-            <span><i class="fas fa-map-marker-alt mr-3 text-primary"></i>Municipios</span>
-            <i id="tablet-dropdown-icon" class="fas fa-chevron-down text-xs menu-icon transition-transform"></i>
+            <span
+              ><i class="fas fa-map-marker-alt mr-3 text-primary"></i
+              >Municipios</span
+            >
+            <i
+              id="tablet-dropdown-icon"
+              class="fas fa-chevron-down text-xs menu-icon transition-transform"
+            ></i>
           </button>
           <div id="tablet-dropdown-menu" class="tablet-submenu">
             <a
@@ -1066,7 +1112,8 @@
             <a
               href="/pages/villadeleyva.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
-              ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de Leyva</a
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Villa de
+              Leyva</a
             >
             <a
               href="/pages/la-vega.html"
@@ -1086,7 +1133,8 @@
             <a
               href="/pages/santa-marta.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
-              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa Marta</a
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Santa
+              Marta</a
             >
             <a
               href="/pages/boyaca.html"
@@ -1095,28 +1143,45 @@
             >
           </div>
         </div>
-        <a href="/ventajas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/ventajas.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Que es EPS?</a
         >
-        <a href="/galeria.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/galeria.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-images mr-3 text-primary"></i>Galeria</a
         >
-        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/blog.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
         >
-        <a href="/nosotros.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/nosotros.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
         >
-        <a href="/faq.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
-          ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
+        <a
+          href="/faq.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas
+          Frecuentes</a
         >
-        <a href="/referidos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/referidos.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
         >
-        <a href="/cotizador-encuesta.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+        <a
+          href="/cotizador-encuesta.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
           ><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador</a
         >
-        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
+        <a
+          href="/contacto.html"
+          class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
           ><i class="fas fa-envelope mr-3"></i>Contacto</a
         >
       </div>
@@ -1125,57 +1190,105 @@
     <main>
       <section
         class="relative bg-cover bg-center flex items-center justify-center py-20 sm:py-24 md:py-32 lg:py-0 pt-24 sm:pt-20 lg:pt-0 hero-section"
-        style="background-image: url('assets/images/fondo2.webp'); min-height: 95vh;"
+        style="
+          background-image: url('assets/images/fondo2.webp');
+          min-height: 95vh;
+        "
       >
         <!-- Overlay con gradiente -->
-        <div class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-secondary/75 via-secondary/70 to-secondary/80"
+        ></div>
 
-        <div class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0 lg:pt-0 hero-container">
+        <div
+          class="container relative z-10 mx-auto px-4 sm:px-6 pt-4 sm:pt-0 lg:pt-0 hero-container"
+        >
           <!-- Contenido izquierdo (siempre visible) -->
-          <div class="hero-content max-w-4xl mx-auto text-center lg:text-left lg:max-w-none">
+          <div
+            class="hero-content max-w-4xl mx-auto text-center lg:text-left lg:max-w-none"
+          >
             <!-- Slogan con efecto blur -->
             <div class="mb-4 lg:mb-6" data-aos="fade-down" data-aos-delay="50">
-              <p class="slogan-hero text-xs sm:text-sm md:text-sm lg:text-base xl:text-base font-normal italic text-white lg:px-0 px-2">
+              <p
+                class="slogan-hero text-xs sm:text-sm md:text-sm lg:text-base xl:text-base font-normal italic text-white lg:px-0 px-2"
+              >
                 "Cuando todo es claro, todo es más fácil"
               </p>
             </div>
             <!-- Título principal -->
             <div class="mb-6 lg:mb-8" data-aos="fade-up">
-              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-5 leading-tight lg:px-0 px-2">
+              <h1
+                class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-5 leading-tight lg:px-0 px-2"
+              >
                 Casas Prefabricadas en <span class="text-primary">Bogotá</span>
                 <span class="block mt-2 lg:mt-3">y Cundinamarca</span>
               </h1>
-              <p class="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-gray-100 mt-4 lg:mt-5 max-w-3xl lg:max-w-2xl mx-auto lg:mx-0 lg:px-0 px-2 leading-relaxed">
-                Construcción <strong class="text-white">rápida</strong>, <strong class="text-white">económica</strong> y 
-                <strong class="text-white">sostenible</strong> con <strong class="text-white">paneles EPS</strong> o 
+              <p
+                class="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-gray-100 mt-4 lg:mt-5 max-w-3xl lg:max-w-2xl mx-auto lg:mx-0 lg:px-0 px-2 leading-relaxed"
+              >
+                Construcción <strong class="text-white">rápida</strong>,
+                <strong class="text-white">económica</strong> y
+                <strong class="text-white">sostenible</strong> con
+                <strong class="text-white">paneles EPS</strong> o
                 <strong class="text-white">plaqueta de concreto</strong>.
               </p>
             </div>
 
             <!-- Palabras clave compactas -->
-            <div class="flex flex-nowrap sm:flex-wrap justify-center lg:justify-start gap-2 lg:gap-2.5 mb-6 lg:mb-8 lg:px-0 px-2" data-aos="fade-up" data-aos-delay="100">
-              <a href="/modelos.html" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-building mr-1.5 text-primary"></i>Construcción Rápida
+            <div
+              class="flex flex-nowrap sm:flex-wrap justify-center lg:justify-start gap-2 lg:gap-2.5 mb-6 lg:mb-8 lg:px-0 px-2"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <a
+                href="/modelos.html"
+                class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <i class="fas fa-building mr-1.5 text-primary"></i>Construcción
+                Rápida
               </a>
-              <a href="/cotizador-encuesta.html" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-dollar-sign mr-1.5 text-primary"></i>Precios Accesibles
+              <a
+                href="/cotizador-encuesta.html"
+                class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <i class="fas fa-dollar-sign mr-1.5 text-primary"></i>Precios
+                Accesibles
               </a>
-              <a href="/ventajas.html" class="hidden sm:inline-flex px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
+              <a
+                href="/ventajas.html"
+                class="hidden sm:inline-flex px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
                 <i class="fas fa-leaf mr-1.5 text-primary"></i>Paneles EPS
               </a>
-              <a href="#eps-advantage" onclick="document.getElementById('eps-advantage').scrollIntoView({ behavior: 'smooth' }); return false;" class="hidden sm:inline-flex px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-shield-alt mr-1.5 text-primary"></i>Construcción Segura
+              <a
+                href="#eps-advantage"
+                onclick="document.getElementById('eps-advantage').scrollIntoView({ behavior: 'smooth' }); return false;"
+                class="hidden sm:inline-flex px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+              >
+                <i class="fas fa-shield-alt mr-1.5 text-primary"></i
+                >Construcción Segura
               </a>
             </div>
 
             <!-- CTAs compactos -->
-            <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-stretch sm:items-center lg:px-0 px-2" data-aos="fade-up" data-aos-delay="200">
+            <div
+              class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-stretch sm:items-center lg:px-0 px-2"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
               <a
                 href="/modelos.html"
                 class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-primary text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
               >
                 <i class="fas fa-eye"></i>
                 <span>Ver Modelos</span>
+              </a>
+              <a
+                href="/cotizador-encuesta.html"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
+              >
+                <i class="fas fa-calculator"></i>
+                <span>Cotizador Gratis</span>
               </a>
               <a
                 href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20casas%20prefabricadas."
@@ -1193,88 +1306,189 @@
             <div class="slider-container">
               <div class="slider-wrapper">
                 <div class="slide active">
-                  <img src="assets/images/herocasa.webp" alt="Casa prefabricada moderna" class="slide-image">
+                  <img
+                    src="assets/images/herocasa.webp"
+                    alt="Casa prefabricada moderna"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
                   <video class="slide-video" muted loop playsinline>
-                    <source src="assets/video/videoblog1.mp4" type="video/mp4">
+                    <source
+                      src="assets/video/videoblog1.mp4"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
                 <div class="slide">
-                  <img src="assets/images/herocasa1.webp" alt="Casa prefabricada campestre" class="slide-image">
+                  <img
+                    src="assets/images/herocasa1.webp"
+                    alt="Casa prefabricada campestre"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
                   <video class="slide-video" muted loop playsinline>
-                    <source src="assets/video/videoblog2.mp4" type="video/mp4">
+                    <source
+                      src="assets/video/videoblog2.mp4"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cabaña.webp" alt="Cabaña prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cabaña.webp"
+                    alt="Cabaña prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
                   <video class="slide-video" muted loop playsinline>
-                    <source src="assets/video/videoblog3.mp4" type="video/mp4">
+                    <source
+                      src="assets/video/videoblog3.mp4"
+                      type="video/mp4"
+                    />
                   </video>
                 </div>
                 <div class="slide">
-                  <img src="assets/images/casal1.webp" alt="Casa prefabricada estilo moderno" class="slide-image">
+                  <img
+                    src="assets/images/casal1.webp"
+                    alt="Casa prefabricada estilo moderno"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cass2.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cass2.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cass3.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cass3.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cass4.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cass4.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cassa1.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cassa1.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/casa2.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/casa2.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cabaññ1.webp" alt="Cabaña prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cabaññ1.webp"
+                    alt="Cabaña prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/campe1.webp" alt="Casa campestre prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/campe1.webp"
+                    alt="Casa campestre prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cubi1.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cubi1.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cubo1.webp" alt="Casa prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cubo1.webp"
+                    alt="Casa prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/oasis.webp" alt="Casa prefabricada Oasis" class="slide-image">
+                  <img
+                    src="assets/images/oasis.webp"
+                    alt="Casa prefabricada Oasis"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/eficiente.webp" alt="Casa prefabricada eficiente" class="slide-image">
+                  <img
+                    src="assets/images/eficiente.webp"
+                    alt="Casa prefabricada eficiente"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/colonial.webp" alt="Casa prefabricada estilo colonial" class="slide-image">
+                  <img
+                    src="assets/images/colonial.webp"
+                    alt="Casa prefabricada estilo colonial"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/bodega1.webp" alt="Bodega prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/bodega1.webp"
+                    alt="Bodega prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/bodega2.webp" alt="Bodega prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/bodega2.webp"
+                    alt="Bodega prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/aula1.webp" alt="Aula prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/aula1.webp"
+                    alt="Aula prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/cocina.webp" alt="Cocina prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/cocina.webp"
+                    alt="Cocina prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/sala.webp" alt="Sala prefabricada" class="slide-image">
+                  <img
+                    src="assets/images/sala.webp"
+                    alt="Sala prefabricada"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/mezanine.webp" alt="Mezanine prefabricado" class="slide-image">
+                  <img
+                    src="assets/images/mezanine.webp"
+                    alt="Mezanine prefabricado"
+                    class="slide-image"
+                  />
                 </div>
                 <div class="slide">
-                  <img src="assets/images/tiniy1.webp" alt="Casa prefabricada Tiny" class="slide-image">
+                  <img
+                    src="assets/images/tiniy1.webp"
+                    alt="Casa prefabricada Tiny"
+                    class="slide-image"
+                  />
                 </div>
               </div>
               <!-- Indicadores del slider -->
@@ -1315,8 +1529,21 @@
             <button class="image-modal-close" aria-label="Cerrar">
               <i class="fas fa-times"></i>
             </button>
-            <img id="modal-image" src="" alt="Imagen ampliada" class="modal-image-full">
-            <video id="modal-video" src="" class="modal-video-full hidden" controls autoplay muted loop></video>
+            <img
+              id="modal-image"
+              src=""
+              alt="Imagen ampliada"
+              class="modal-image-full"
+            />
+            <video
+              id="modal-video"
+              src=""
+              class="modal-video-full hidden"
+              controls
+              autoplay
+              muted
+              loop
+            ></video>
           </div>
         </div>
       </section>
@@ -1392,7 +1619,9 @@
         <div class="w-full bg-white">
           <div class="grid lg:grid-cols-2 gap-0">
             <!-- Video - Loop, sin sonido, sin controles - Más grande en PC con fondo azul -->
-            <div class="relative w-full aspect-square lg:aspect-square bg-primary flex items-center justify-center lg:py-12 lg:px-8">
+            <div
+              class="relative w-full aspect-square lg:aspect-square bg-primary flex items-center justify-center lg:py-12 lg:px-8"
+            >
               <div class="w-full max-w-2xl mx-auto">
                 <video
                   class="w-full h-full object-contain"
@@ -1401,24 +1630,42 @@
                   loop
                   playsinline
                 >
-                  <source src="assets/video/videoherorobotindex.mp4" type="video/mp4">
+                  <source
+                    src="assets/video/videoherorobotindex.mp4"
+                    type="video/mp4"
+                  />
                   Tu navegador no soporta la reproducción de video.
                 </video>
               </div>
             </div>
-            
+
             <!-- Contenido del CTA -->
-            <div class="p-6 lg:p-10 xl:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white min-h-[400px] lg:min-h-[500px]">
-              <h2 class="text-2xl lg:text-3xl xl:text-4xl font-bold text-secondary mb-3 lg:mb-4">
+            <div
+              class="p-6 lg:p-10 xl:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white min-h-[400px] lg:min-h-[500px]"
+            >
+              <h2
+                class="text-2xl lg:text-3xl xl:text-4xl font-bold text-secondary mb-3 lg:mb-4"
+              >
                 Casas Prefabricadas de Alta Calidad
               </h2>
-              <p class="text-primary font-semibold mb-3 lg:mb-4 text-sm lg:text-base xl:text-lg">
-                ⚡ Construcción eficiente • 💰 Precios competitivos • ✅ Calidad garantizada
+              <p
+                class="text-primary font-semibold mb-3 lg:mb-4 text-sm lg:text-base xl:text-lg"
+              >
+                ⚡ Construcción eficiente • 💰 Precios competitivos • ✅ Calidad
+                garantizada
               </p>
-              <p class="text-gray-600 mb-4 text-base lg:text-lg xl:text-xl leading-relaxed">
-                Descubre por qué más de <strong class="text-secondary">12,000 familias</strong> han elegido nuestras casas prefabricadas. Materiales de primera calidad, diseño personalizado y acompañamiento en todo el proceso.
+              <p
+                class="text-gray-600 mb-4 text-base lg:text-lg xl:text-xl leading-relaxed"
+              >
+                Descubre por qué más de
+                <strong class="text-secondary">12,000 familias</strong> han
+                elegido nuestras casas prefabricadas. Materiales de primera
+                calidad, diseño personalizado y acompañamiento en todo el
+                proceso.
               </p>
-              <ul class="text-gray-700 mb-6 lg:mb-8 space-y-2 text-sm lg:text-base">
+              <ul
+                class="text-gray-700 mb-6 lg:mb-8 space-y-2 text-sm lg:text-base"
+              >
                 <li class="flex items-center gap-2">
                   <i class="fas fa-check-circle text-primary"></i>
                   <span>Construcción más rápida que el método tradicional</span>
@@ -1432,9 +1679,11 @@
                   <span>Garantía y soporte post-entrega</span>
                 </li>
               </ul>
-              
+
               <!-- Botones de acción -->
-              <div class="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-5 lg:mb-6">
+              <div
+                class="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-5 lg:mb-6"
+              >
                 <a
                   href="/cotizador-encuesta.html"
                   class="bg-primary text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 text-center text-sm lg:text-base"
@@ -1450,7 +1699,7 @@
                   Ver Modelos
                 </a>
               </div>
-              
+
               <!-- WhatsApp directo -->
               <div class="pt-3 lg:pt-4 border-t border-gray-200">
                 <a
@@ -1458,8 +1707,12 @@
                   target="_blank"
                   class="inline-flex items-center gap-2 lg:gap-3 text-primary hover:text-primary/80 transition-colors font-semibold"
                 >
-                  <i class="fab fa-whatsapp text-2xl lg:text-3xl text-green-500"></i>
-                  <span class="text-sm lg:text-base xl:text-lg">Consulta inmediata por WhatsApp</span>
+                  <i
+                    class="fab fa-whatsapp text-2xl lg:text-3xl text-green-500"
+                  ></i>
+                  <span class="text-sm lg:text-base xl:text-lg"
+                    >Consulta inmediata por WhatsApp</span
+                  >
                 </a>
               </div>
             </div>
@@ -1485,7 +1738,9 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                <div
+                  class="flex items-center justify-between flex-wrap gap-2 mb-2"
+                >
                   <h3 class="text-xl font-semibold">
                     Cabañas Prefabricadas Modernas
                   </h3>
@@ -1520,7 +1775,9 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                <div
+                  class="flex items-center justify-between flex-wrap gap-2 mb-2"
+                >
                   <h3 class="text-xl font-semibold">
                     Casas Campestres Amplias
                   </h3>
@@ -1554,7 +1811,9 @@
                 class="w-full h-56 object-cover"
               />
               <div class="p-6">
-                <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+                <div
+                  class="flex items-center justify-between flex-wrap gap-2 mb-2"
+                >
                   <h3 class="text-xl font-semibold">
                     Bodegas y Espacios de Almacenaje
                   </h3>
@@ -2224,7 +2483,10 @@
             imageWrapper.className = classList;
             // Desactivar zoom en móviles - usar fade-up en lugar de zoom-in
             const isMobile = window.innerWidth <= 768;
-            imageWrapper.setAttribute("data-aos", isMobile ? "fade-up" : "zoom-in");
+            imageWrapper.setAttribute(
+              "data-aos",
+              isMobile ? "fade-up" : "zoom-in"
+            );
             imageWrapper.setAttribute("data-aos-delay", delay);
 
             imageWrapper.innerHTML = `
@@ -2486,20 +2748,30 @@
       </section>
     </main>
 
-    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+    <footer
+      class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden"
+    >
       <!-- Decoración de fondo -->
       <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+        <div
+          class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl"
+        ></div>
       </div>
-      
+
       <div class="container mx-auto px-6 relative z-10">
         <!-- Sección principal del footer -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <!-- Información de la empresa -->
           <div class="lg:col-span-1">
             <div class="mb-6">
-              <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-12 w-auto mb-4">
+              <img
+                src="/assets/images/logocasah.webp"
+                alt="CONCASAYA Logo"
+                class="h-12 w-auto mb-4"
+              />
             </div>
             <p class="text-gray-300 leading-relaxed mb-6">
               Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
@@ -2544,43 +2816,75 @@
 
           <!-- Zonas de Cobertura -->
           <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+            <h4
+              class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary"
+            >
               Zonas de Cobertura
             </h4>
             <ul class="space-y-3">
               <li>
-                <a href="/pages/chia.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/chia.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Casas Prefabricadas en Chía</span>
                 </a>
               </li>
               <li>
-                <a href="/pages/cajica.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/cajica.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Casas Prefabricadas en Cajicá</span>
                 </a>
               </li>
               <li>
-                <a href="/pages/mosquera.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/mosquera.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Casas Prefabricadas en Mosquera</span>
                 </a>
               </li>
               <li>
-                <a href="/pages/zipaquira.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/zipaquira.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Casas Prefabricadas en Zipaquirá</span>
                 </a>
               </li>
               <li>
-                <a href="/pages/sopo.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/sopo.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Casas Prefabricadas en Sopó</span>
                 </a>
               </li>
               <li>
-                <a href="/pages/funza.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/pages/funza.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Ver más municipios...</span>
                 </a>
               </li>
@@ -2589,43 +2893,75 @@
 
           <!-- Enlaces rápidos -->
           <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+            <h4
+              class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary"
+            >
               Enlaces Rápidos
             </h4>
             <ul class="space-y-3">
               <li>
-                <a href="/modelos.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/modelos.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Modelos de Casas</span>
                 </a>
               </li>
               <li>
-                <a href="/ventajas.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/ventajas.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>¿Qué es EPS?</span>
                 </a>
               </li>
               <li>
-                <a href="/blog.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/blog.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Blog de Construcción</span>
                 </a>
               </li>
               <li>
-                <a href="/faq.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/faq.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Preguntas Frecuentes</span>
                 </a>
               </li>
               <li>
-                <a href="/nosotros.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/nosotros.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Sobre Nosotros</span>
                 </a>
               </li>
               <li>
-                <a href="/contacto.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                <a
+                  href="/contacto.html"
+                  class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group"
+                >
+                  <i
+                    class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"
+                  ></i>
                   <span>Contacto</span>
                 </a>
               </li>
@@ -2634,21 +2970,33 @@
 
           <!-- Información de contacto -->
           <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+            <h4
+              class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary"
+            >
               Contáctanos
             </h4>
             <ul class="space-y-4">
               <li class="flex items-start">
                 <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
-                <span class="text-gray-300">Cl. 147 #101-56, Local 64, Bogotá</span>
+                <span class="text-gray-300"
+                  >Cl. 147 #101-56, Local 64, Bogotá</span
+                >
               </li>
               <li class="flex items-center">
                 <i class="fas fa-phone text-primary mr-3"></i>
-                <a href="tel:+573142891018" class="text-gray-300 hover:text-primary transition-colors">314 289 1018</a>
+                <a
+                  href="tel:+573142891018"
+                  class="text-gray-300 hover:text-primary transition-colors"
+                  >314 289 1018</a
+                >
               </li>
               <li class="flex items-center">
                 <i class="fas fa-phone text-primary mr-3"></i>
-                <a href="tel:+573165771582" class="text-gray-300 hover:text-primary transition-colors">316 577 1582</a>
+                <a
+                  href="tel:+573165771582"
+                  class="text-gray-300 hover:text-primary transition-colors"
+                  >316 577 1582</a
+                >
               </li>
               <li class="flex items-center">
                 <i class="fab fa-whatsapp text-primary mr-3 text-lg"></i>
@@ -2668,20 +3016,23 @@
         <div class="border-t border-gray-700/50 my-8"></div>
 
         <!-- Copyright y créditos -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-6">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4 pt-6"
+        >
           <div class="text-center md:text-left">
             <p class="text-sm text-gray-400 mb-2">
-              &copy; 2025 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.
+              &copy; 2025
+              <span class="font-semibold text-white">CONCASAYA</span>. Todos los
+              derechos reservados.
             </p>
             <p class="text-xs text-gray-500">
-              Sitio web diseñado para la construcción de casas prefabricadas en Colombia.
+              Sitio web diseñado para la construcción de casas prefabricadas en
+              Colombia.
             </p>
           </div>
-          
+
           <div class="flex flex-col items-center gap-2">
-            <p class="text-xs text-gray-500">
-              Desarrollado por
-            </p>
+            <p class="text-xs text-gray-500">Desarrollado por</p>
             <a
               href="https://www.codifytech.click/"
               target="_blank"
@@ -2756,12 +3107,12 @@
       const menuBtn = document.getElementById("menu-btn");
       const tabletMenu = document.getElementById("tablet-menu");
       const menuIcon = document.getElementById("menu-icon");
-      
+
       if (menuBtn && tabletMenu) {
         menuBtn.addEventListener("click", () => {
           const isOpen = tabletMenu.classList.contains("open");
           tabletMenu.classList.toggle("open");
-          
+
           // Animación del icono hamburguesa a X
           if (isOpen) {
             menuIcon.classList.remove("fa-times");
@@ -2777,15 +3128,19 @@
 
       // Dropdown de municipios en tablet/móvil con animación
       const tabletDropdownBtn = document.getElementById("tablet-dropdown-btn");
-      const tabletDropdownMenu = document.getElementById("tablet-dropdown-menu");
-      const tabletDropdownIcon = document.getElementById("tablet-dropdown-icon");
-      
+      const tabletDropdownMenu = document.getElementById(
+        "tablet-dropdown-menu"
+      );
+      const tabletDropdownIcon = document.getElementById(
+        "tablet-dropdown-icon"
+      );
+
       if (tabletDropdownBtn && tabletDropdownMenu) {
         tabletDropdownBtn.addEventListener("click", (e) => {
           e.preventDefault();
           const isOpen = tabletDropdownMenu.classList.contains("open");
           tabletDropdownMenu.classList.toggle("open");
-          
+
           // Rotar el icono
           if (isOpen) {
             tabletDropdownIcon.classList.remove("open");
@@ -2794,10 +3149,15 @@
           }
         });
       }
-      
+
       // Cerrar menú al hacer clic fuera con animación suave
       document.addEventListener("click", (e) => {
-        if (tabletMenu && !tabletMenu.contains(e.target) && menuBtn && !menuBtn.contains(e.target)) {
+        if (
+          tabletMenu &&
+          !tabletMenu.contains(e.target) &&
+          menuBtn &&
+          !menuBtn.contains(e.target)
+        ) {
           if (tabletMenu.classList.contains("open")) {
             tabletMenu.classList.remove("open");
             if (menuIcon) {
@@ -2807,7 +3167,7 @@
           }
         }
       });
-      
+
       // Cerrar menú al hacer scroll (opcional, mejora UX)
       let lastScroll = 0;
       window.addEventListener("scroll", () => {
@@ -2825,58 +3185,62 @@
       });
 
       // Slider automático de imágenes del hero con efecto de superposición
-      document.addEventListener('DOMContentLoaded', function() {
-        const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.slider-indicators .indicator');
+      document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll(".slide");
+        const indicators = document.querySelectorAll(
+          ".slider-indicators .indicator"
+        );
         let currentSlide = 0;
         const slideInterval = 4000; // Cambiar cada 4 segundos
 
         function showSlide(index) {
           // Remover todas las clases de estado
           slides.forEach((slide, i) => {
-            slide.classList.remove('active', 'prev', 'next');
-            
+            slide.classList.remove("active", "prev", "next");
+
             // Pausar todos los videos
-            const video = slide.querySelector('.slide-video');
+            const video = slide.querySelector(".slide-video");
             if (video) {
               video.pause();
               video.currentTime = 0;
             }
-            
+
             // Ocultar todas las slides inactivas
-            slide.style.top = '0';
-            slide.style.left = '0';
+            slide.style.top = "0";
+            slide.style.left = "0";
             slide.style.zIndex = 1;
           });
-          
-          indicators.forEach(indicator => indicator.classList.remove('active'));
+
+          indicators.forEach((indicator) =>
+            indicator.classList.remove("active")
+          );
 
           // Agregar clase active a la slide e indicador actual
           if (slides[index]) {
-            slides[index].classList.add('active');
-            slides[index].style.top = '0';
-            slides[index].style.left = '0';
+            slides[index].classList.add("active");
+            slides[index].style.top = "0";
+            slides[index].style.left = "0";
             slides[index].style.zIndex = 10;
-            
+
             // Reproducir el video si existe en la slide activa
-            const activeVideo = slides[index].querySelector('.slide-video');
+            const activeVideo = slides[index].querySelector(".slide-video");
             if (activeVideo) {
-              activeVideo.play().catch(e => {
-                console.log('Error al reproducir video:', e);
+              activeVideo.play().catch((e) => {
+                console.log("Error al reproducir video:", e);
               });
             }
           }
-          
+
           // Agregar clases prev y next para efecto de profundidad
           if (slides[index - 1]) {
-            slides[index - 1].classList.add('prev');
+            slides[index - 1].classList.add("prev");
           }
           if (slides[index + 1]) {
-            slides[index + 1].classList.add('next');
+            slides[index + 1].classList.add("next");
           }
-          
+
           if (indicators[index]) {
-            indicators[index].classList.add('active');
+            indicators[index].classList.add("active");
           }
         }
 
@@ -2887,16 +3251,16 @@
 
         // Inicializar posiciones de todas las slides (todas ocultas excepto la primera)
         slides.forEach((slide, i) => {
-          slide.style.top = '0';
-          slide.style.left = '0';
+          slide.style.top = "0";
+          slide.style.left = "0";
           slide.style.zIndex = i === 0 ? 10 : 1;
         });
 
         // Reproducir el video inicial si existe
-        const initialVideo = slides[0]?.querySelector('.slide-video');
+        const initialVideo = slides[0]?.querySelector(".slide-video");
         if (initialVideo) {
-          initialVideo.play().catch(e => {
-            console.log('Error al reproducir video inicial:', e);
+          initialVideo.play().catch((e) => {
+            console.log("Error al reproducir video inicial:", e);
           });
         }
 
@@ -2905,7 +3269,7 @@
 
         // Agregar eventos a los indicadores para navegación manual
         indicators.forEach((indicator, index) => {
-          indicator.addEventListener('click', () => {
+          indicator.addEventListener("click", () => {
             currentSlide = index;
             showSlide(currentSlide);
             // Reiniciar el intervalo
@@ -2915,34 +3279,34 @@
         });
 
         // Pausar el slider al hacer hover (opcional)
-        const sliderContainer = document.querySelector('.slider-container');
+        const sliderContainer = document.querySelector(".slider-container");
         if (sliderContainer) {
-          sliderContainer.addEventListener('mouseenter', () => {
+          sliderContainer.addEventListener("mouseenter", () => {
             clearInterval(sliderInterval);
           });
-          sliderContainer.addEventListener('mouseleave', () => {
+          sliderContainer.addEventListener("mouseleave", () => {
             sliderInterval = setInterval(nextSlide, slideInterval);
           });
         }
 
         // Agregar eventos de clic a las imágenes y videos del slider para abrir el modal
         slides.forEach((slide) => {
-          const image = slide.querySelector('.slide-image');
-          const video = slide.querySelector('.slide-video');
-          
+          const image = slide.querySelector(".slide-image");
+          const video = slide.querySelector(".slide-video");
+
           if (image) {
-            image.style.cursor = 'pointer';
-            image.addEventListener('click', () => {
-              openImageModal(image.src, image.alt, 'image');
+            image.style.cursor = "pointer";
+            image.addEventListener("click", () => {
+              openImageModal(image.src, image.alt, "image");
             });
           }
-          
+
           if (video) {
-            video.style.cursor = 'pointer';
-            video.addEventListener('click', () => {
-              const videoSource = video.querySelector('source');
+            video.style.cursor = "pointer";
+            video.addEventListener("click", () => {
+              const videoSource = video.querySelector("source");
               if (videoSource) {
-                openImageModal(videoSource.src, 'Video', 'video');
+                openImageModal(videoSource.src, "Video", "video");
               }
             });
           }
@@ -2950,66 +3314,66 @@
       });
 
       // Funcionalidad del modal de imágenes
-      const imageModal = document.getElementById('image-modal');
-      const modalImage = document.getElementById('modal-image');
-      const modalVideo = document.getElementById('modal-video');
-      const modalClose = document.querySelector('.image-modal-close');
-      const modalOverlay = document.querySelector('.image-modal-overlay');
+      const imageModal = document.getElementById("image-modal");
+      const modalImage = document.getElementById("modal-image");
+      const modalVideo = document.getElementById("modal-video");
+      const modalClose = document.querySelector(".image-modal-close");
+      const modalOverlay = document.querySelector(".image-modal-overlay");
 
       function openImageModal(src, alt, type) {
-        if (type === 'image') {
+        if (type === "image") {
           modalImage.src = src;
           modalImage.alt = alt;
-          modalImage.classList.remove('hidden');
-          modalVideo.classList.add('hidden');
+          modalImage.classList.remove("hidden");
+          modalVideo.classList.add("hidden");
           modalVideo.pause();
-        } else if (type === 'video') {
+        } else if (type === "video") {
           modalVideo.src = src;
-          modalVideo.classList.remove('hidden');
-          modalImage.classList.add('hidden');
+          modalVideo.classList.remove("hidden");
+          modalImage.classList.add("hidden");
           modalVideo.play();
         }
-        imageModal.classList.remove('hidden');
-        document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+        imageModal.classList.remove("hidden");
+        document.body.style.overflow = "hidden"; // Prevenir scroll del body
       }
 
       function closeImageModal() {
-        imageModal.classList.add('hidden');
+        imageModal.classList.add("hidden");
         modalVideo.pause();
         modalVideo.currentTime = 0;
-        document.body.style.overflow = ''; // Restaurar scroll del body
+        document.body.style.overflow = ""; // Restaurar scroll del body
       }
 
       // Cerrar modal con el botón X
       if (modalClose) {
-        modalClose.addEventListener('click', closeImageModal);
+        modalClose.addEventListener("click", closeImageModal);
       }
 
       // Cerrar modal al hacer clic fuera (en el overlay)
       if (modalOverlay) {
-        modalOverlay.addEventListener('click', closeImageModal);
+        modalOverlay.addEventListener("click", closeImageModal);
       }
 
       // Cerrar modal con la tecla ESC
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !imageModal.classList.contains('hidden')) {
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !imageModal.classList.contains("hidden")) {
           closeImageModal();
         }
       });
 
       // Prevenir que el clic en el contenido del modal lo cierre
-      const modalContent = document.querySelector('.image-modal-content');
+      const modalContent = document.querySelector(".image-modal-content");
       if (modalContent) {
-        modalContent.addEventListener('click', (e) => {
+        modalContent.addEventListener("click", (e) => {
           e.stopPropagation();
         });
       }
 
       // Animación pequeña ocasional en la esquina inferior izquierda
-      (function() {
-        const smallAnimation = document.getElementById('small-animation');
+      (function () {
+        const smallAnimation = document.getElementById("small-animation");
         if (!smallAnimation) {
-          console.error('Elemento small-animation no encontrado');
+          console.error("Elemento small-animation no encontrado");
           return;
         }
 
@@ -3018,9 +3382,9 @@
 
         function showAnimation() {
           if (!isVisible) {
-            smallAnimation.classList.remove('hidden');
+            smallAnimation.classList.remove("hidden");
             isVisible = true;
-            console.log('Animación visible');
+            console.log("Animación visible");
             // Ocultar después de 5-8 segundos
             const hideDelay = 5000 + Math.random() * 3000;
             timeoutId = setTimeout(() => {
@@ -3031,9 +3395,9 @@
 
         function hideAnimation() {
           if (isVisible) {
-            smallAnimation.classList.add('hidden');
+            smallAnimation.classList.add("hidden");
             isVisible = false;
-            console.log('Animación oculta');
+            console.log("Animación oculta");
             // Mostrar nuevamente después de 8-15 segundos
             const showDelay = 8000 + Math.random() * 7000;
             timeoutId = setTimeout(() => {
@@ -3051,17 +3415,26 @@
         }
 
         // Asegurar que se ejecute cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initAnimation);
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initAnimation);
         } else {
           initAnimation();
         }
       })();
     </script>
-    
+
     <!-- Animación pequeña ocasional -->
-    <a id="small-animation" class="small-animation hidden" href="contacto.html" title="Ir a contacto">
-      <img src="/assets/video/saludo2.gif" alt="Animación" onerror="console.error('Error cargando animación:', this.src)" />
+    <a
+      id="small-animation"
+      class="small-animation hidden"
+      href="contacto.html"
+      title="Ir a contacto"
+    >
+      <img
+        src="/assets/video/saludo2.gif"
+        alt="Animación"
+        onerror="console.error('Error cargando animación:', this.src)"
+      />
       <div class="small-animation-text">
         ¿Necesitas ayuda?
         <span>¡Contáctanos aquí!</span>
