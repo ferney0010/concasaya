@@ -1275,7 +1275,9 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+    <script type="module">
+      import { supabase } from '../supabaseClient.js';
+
       AOS.init({
         duration: 800,
         once: true,
@@ -1287,6 +1289,55 @@
         menuBtn.addEventListener("click", () => {
           mobileMenu.classList.toggle("hidden");
         });
+      }
+
+      // Buscar la imagen del artículo de Zipaquirá y reemplazar el video
+      const loadZipaquiraImage = async () => {
+        try {
+          const { data: posts, error } = await supabase
+            .from("concasaya_blog_posts")
+            .select("image_url, title");
+
+          if (!error && posts && posts.length > 0) {
+            const zipaquiraPost = posts.find(p => 
+              p.title && (
+                (p.title.includes("Cuánto Cuesta una Casa Prefabricada en Zipaquirá") && p.title.includes("Dónde Comprarla")) ||
+                p.title.includes("¿Cuánto Cuesta una Casa Prefabricada en Zipaquirá y Dónde Comprarla?")
+              )
+            );
+            
+            if (zipaquiraPost && zipaquiraPost.image_url) {
+              // Reemplazar el video con la imagen
+              const heroSection = document.querySelector('.hero-image');
+              if (heroSection) {
+                heroSection.innerHTML = `
+                  <img 
+                    src="${zipaquiraPost.image_url}" 
+                    alt="Ventajas de Construir en Material Prefabricado en 2026 - CONCASAYA"
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="hero-content w-full p-4 sm:p-6 md:p-8 lg:p-12">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg leading-tight" data-aos="fade-up">
+                      Ventajas de Construir en Material Prefabricado en 2026: El Futuro de la Construcción
+                    </h1>
+                    <p class="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
+                      Descubre por qué <strong>construir en material prefabricado en 2026</strong> es la mejor decisión. <strong>CONCASAYA</strong> te muestra las innovaciones, tendencias y ventajas del futuro de la construcción prefabricada en Colombia.
+                    </p>
+                  </div>
+                `;
+              }
+            }
+          }
+        } catch (err) {
+          console.log("No se pudo cargar la imagen de Zipaquirá:", err);
+        }
+      };
+
+      // Cargar la imagen cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadZipaquiraImage);
+      } else {
+        loadZipaquiraImage();
       }
     </script>
   </body>

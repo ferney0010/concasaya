@@ -1068,7 +1068,9 @@
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
+    <script type="module">
+      import { supabase } from '../supabaseClient.js';
+
       AOS.init({
         duration: 800,
         once: true,
@@ -1080,6 +1082,66 @@
         menuBtn.addEventListener("click", () => {
           mobileMenu.classList.toggle("hidden");
         });
+      }
+
+      // Buscar la imagen del artículo de la cabaña y reemplazar el video
+      const loadCabanaImage = async () => {
+        try {
+          const { data: posts, error } = await supabase
+            .from("concasaya_blog_posts")
+            .select("image_url, title");
+
+          if (!error && posts && posts.length > 0) {
+            const cabanaPost = posts.find(p => 
+              p.title && p.title.includes("Diseña tu Cabaña Única") && p.title.includes("Personalización y Presupuesto Justo")
+            );
+            
+            if (cabanaPost && cabanaPost.image_url) {
+              // Reemplazar el video con la imagen
+              const heroSection = document.querySelector('.hero-image');
+              if (heroSection) {
+                heroSection.innerHTML = `
+                  <img 
+                    src="${cabanaPost.image_url}" 
+                    alt="Venta de Casas Prefabricadas en Cundinamarca - CONCASAYA"
+                    class="w-full h-full object-cover"
+                  />
+                  <div class="hero-content w-full p-4 sm:p-6 md:p-8 lg:p-12">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg leading-tight" data-aos="fade-up">
+                      Venta de Casas Prefabricadas en Cundinamarca: Guía Completa 2026
+                    </h1>
+                    <p class="text-base sm:text-lg md:text-xl text-white/90 mb-4 sm:mb-6 drop-shadow-md max-w-3xl" data-aos="fade-up" data-aos-delay="100">
+                      Descubre por qué <strong>CONCASAYA</strong> es la mejor opción para comprar <strong>casas prefabricadas en Cundinamarca</strong>. Expertos en construcción rápida y económica en Bogotá y municipios aledaños.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4" data-aos="fade-up" data-aos-delay="200">
+                      <a
+                        href="/contacto.html"
+                        class="bg-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base hover:opacity-90 transition duration-300 transform hover:scale-105 shadow-lg text-center"
+                      >
+                        <i class="fas fa-phone-alt mr-2"></i>Cotizar Ahora
+                      </a>
+                      <a
+                        href="#contenido"
+                        class="bg-white/20 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base hover:bg-white/30 transition duration-300 transform hover:scale-105 border-2 border-white/30 text-center"
+                      >
+                        <i class="fas fa-arrow-down mr-2"></i>Saber Más
+                      </a>
+                    </div>
+                  </div>
+                `;
+              }
+            }
+          }
+        } catch (err) {
+          console.log("No se pudo cargar la imagen de la cabaña:", err);
+        }
+      };
+
+      // Cargar la imagen cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadCabanaImage);
+      } else {
+        loadCabanaImage();
       }
     </script>
   </body>

@@ -436,6 +436,60 @@
       #parallax-cta-contact::before {
         background-image: url("https://images.pexels.com/photos/3153201/pexels-photo-3153201.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
       }
+      .parallax-bg-terrenos-layer {
+        background-image: url("assets/images/casal1.webp");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        transform: scale(1.1);
+        will-change: transform;
+        transition: transform 0.1s ease-out;
+      }
+      
+      /* Estilos mejorados para textos del CTA de terrenos */
+      .cta-title-terrenos {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8),
+                     0 0 20px rgba(0, 0, 0, 0.5),
+                     2px 2px 4px rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+      }
+      
+      .cta-subtitle-terrenos {
+        color: #f97316;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 1),
+                     0 0 20px rgba(249, 115, 22, 0.8),
+                     0 0 40px rgba(249, 115, 22, 0.6),
+                     2px 2px 4px rgba(0, 0, 0, 1);
+        letter-spacing: 1.5px;
+        position: relative;
+        display: inline-block;
+        padding: 0.5rem 1.5rem;
+        background: rgba(0, 0, 0, 0.4);
+        border-radius: 15px;
+        border: 2px solid rgba(249, 115, 22, 0.5);
+        box-shadow: 0 0 20px rgba(249, 115, 22, 0.5),
+                   inset 0 0 20px rgba(249, 115, 22, 0.2);
+      }
+      
+      .cta-button-terrenos {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      
+      @media (max-width: 768px) {
+        .cta-title-terrenos {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                       0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .cta-subtitle-terrenos {
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9),
+                       0 0 10px rgba(249, 115, 22, 0.5);
+        }
+      }
       .dropdown:hover .dropdown-menu {
         display: block;
       }
@@ -1614,109 +1668,35 @@
         </div>
       </section>
 
-      <!-- CTA con Video Hero -->
-      <section class="relative w-full bg-white">
-        <div class="w-full bg-white">
-          <div class="grid lg:grid-cols-2 gap-0">
-            <!-- Video - Loop, sin sonido, sin controles - Más grande en PC con fondo azul -->
-            <div
-              class="relative w-full aspect-square lg:aspect-square bg-primary flex items-center justify-center lg:py-12 lg:px-8"
-            >
-              <div class="w-full max-w-2xl mx-auto">
-                <video
-                  class="w-full h-full object-contain"
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                >
-                  <source
-                    src="assets/video/videoherorobotindex.mp4"
-                    type="video/mp4"
-                  />
-                  Tu navegador no soporta la reproducción de video.
-                </video>
-              </div>
-            </div>
-
-            <!-- Contenido del CTA -->
-            <div
-              class="p-6 lg:p-10 xl:p-12 flex flex-col justify-center bg-gradient-to-br from-gray-50 to-white min-h-[400px] lg:min-h-[500px]"
-            >
-              <h2
-                class="text-2xl lg:text-3xl xl:text-4xl font-bold text-secondary mb-3 lg:mb-4"
-              >
-                Casas Prefabricadas de Alta Calidad
-              </h2>
-              <p
-                class="text-primary font-semibold mb-3 lg:mb-4 text-sm lg:text-base xl:text-lg"
-              >
-                ⚡ Construcción eficiente • 💰 Precios competitivos • ✅ Calidad
-                garantizada
-              </p>
-              <p
-                class="text-gray-600 mb-4 text-base lg:text-lg xl:text-xl leading-relaxed"
-              >
-                Descubre por qué más de
-                <strong class="text-secondary">12,000 familias</strong> han
-                elegido nuestras casas prefabricadas. Materiales de primera
-                calidad, diseño personalizado y acompañamiento en todo el
-                proceso.
-              </p>
-              <ul
-                class="text-gray-700 mb-6 lg:mb-8 space-y-2 text-sm lg:text-base"
-              >
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check-circle text-primary"></i>
-                  <span>Construcción más rápida que el método tradicional</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check-circle text-primary"></i>
-                  <span>Desde $500.000 por m² en obra negra</span>
-                </li>
-                <li class="flex items-center gap-2">
-                  <i class="fas fa-check-circle text-primary"></i>
-                  <span>Garantía y soporte post-entrega</span>
-                </li>
-              </ul>
-
-              <!-- Botones de acción -->
-              <div
-                class="flex flex-col sm:flex-row gap-3 lg:gap-4 mb-5 lg:mb-6"
-              >
-                <a
-                  href="/cotizador-encuesta.html"
-                  class="bg-primary text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 text-center text-sm lg:text-base"
-                >
-                  <i class="fas fa-calculator"></i>
-                  Cotiza Ahora - Es Gratis
-                </a>
-                <a
-                  href="/modelos.html"
-                  class="bg-secondary text-white px-6 lg:px-8 py-3 lg:py-4 rounded-full font-semibold hover:bg-secondary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-2 text-center text-sm lg:text-base"
-                >
-                  <i class="fas fa-home"></i>
-                  Ver Modelos
-                </a>
-              </div>
-
-              <!-- WhatsApp directo -->
-              <div class="pt-3 lg:pt-4 border-t border-gray-200">
-                <a
-                  href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada."
-                  target="_blank"
-                  class="inline-flex items-center gap-2 lg:gap-3 text-primary hover:text-primary/80 transition-colors font-semibold"
-                >
-                  <i
-                    class="fab fa-whatsapp text-2xl lg:text-3xl text-green-500"
-                  ></i>
-                  <span class="text-sm lg:text-base xl:text-lg"
-                    >Consulta inmediata por WhatsApp</span
-                  >
-                </a>
-              </div>
-            </div>
-          </div>
+      <!-- CTA con Efecto Parallax -->
+      <section
+        id="parallax-cta-terrenos"
+        class="relative overflow-hidden py-24"
+      >
+        <div
+          class="parallax-bg-terrenos-layer absolute top-0 left-0 w-full h-full z-0"
+        ></div>
+        <div
+          class="absolute top-0 left-0 w-full h-full bg-dark bg-opacity-60 z-10"
+        ></div>
+        <div
+          class="container mx-auto px-6 relative z-20 text-center text-white"
+          data-aos="fade-up"
+        >
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight cta-title-terrenos">
+            Necesitas un terreno donde construir o quieres vender un terreno
+          </h2>
+          <p class="text-xl md:text-2xl lg:text-3xl font-bold mb-10 cta-subtitle-terrenos">
+            Nosotros te ayudamos
+          </p>
+          <a
+            href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20necesito%20ayuda%20con%20terrenos%3A%20quiero%20construir%20o%20vender%20un%20terreno."
+            target="_blank"
+            class="bg-green-500 hover:bg-green-600 text-white px-10 py-5 rounded-full font-bold text-lg md:text-xl lg:text-2xl transition-all duration-300 inline-flex items-center justify-center gap-3 transform hover:scale-110 shadow-2xl hover:shadow-green-500/50 cta-button-terrenos"
+          >
+            <i class="fab fa-whatsapp text-3xl md:text-4xl"></i>
+            Contáctanos por WhatsApp
+          </a>
         </div>
       </section>
 
@@ -3421,6 +3401,27 @@
           initAnimation();
         }
       })();
+
+      // Efecto Parallax para CTA de Terrenos
+      document.addEventListener("DOMContentLoaded", function () {
+        const parallaxSection = document.getElementById("parallax-cta-terrenos");
+        const parallaxBg = parallaxSection?.querySelector(".parallax-bg-terrenos-layer");
+        
+        if (parallaxBg) {
+          window.addEventListener("scroll", () => {
+            const scrolled = window.pageYOffset;
+            const sectionTop = parallaxSection.offsetTop;
+            const sectionHeight = parallaxSection.offsetHeight;
+            const windowHeight = window.innerHeight;
+            
+            // Calcular si la sección está visible
+            if (scrolled + windowHeight > sectionTop && scrolled < sectionTop + sectionHeight) {
+              const rate = (scrolled - sectionTop) * 0.5;
+              parallaxBg.style.transform = `translateY(${rate}px) scale(1.1)`;
+            }
+          });
+        }
+      });
     </script>
 
     <!-- Animación pequeña ocasional -->

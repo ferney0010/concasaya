@@ -861,6 +861,33 @@
           type: "static"
         }));
 
+        // Buscar la imagen del artículo de la cabaña
+        const cabanaPost = supabasePosts.find(p => 
+          p.title && (
+            (p.title.includes("Diseña tu Cabaña Única") && p.title.includes("Personalización y Presupuesto Justo")) ||
+            p.title.includes("Diseña tu Cabaña Única: Personalización y Presupuesto Justo")
+          )
+        );
+        const cabanaImage = cabanaPost ? cabanaPost.image : null;
+
+        // Buscar la imagen del artículo de Zipaquirá
+        const zipaquiraPost = supabasePosts.find(p => 
+          p.title && (
+            (p.title.includes("Cuánto Cuesta una Casa Prefabricada en Zipaquirá") && p.title.includes("Dónde Comprarla")) ||
+            p.title.includes("¿Cuánto Cuesta una Casa Prefabricada en Zipaquirá y Dónde Comprarla?")
+          )
+        );
+        const zipaquiraImage = zipaquiraPost ? zipaquiraPost.image : null;
+
+        // Buscar la imagen del artículo de Chía
+        const chiaPost = supabasePosts.find(p => 
+          p.title && (
+            (p.title.includes("Casas Prefabricadas en Chía") && p.title.includes("Guía Definitiva de Precios") && p.title.includes("Lotes y Permisos")) ||
+            p.title.includes("Casas Prefabricadas en Chía: Guía Definitiva de Precios, Lotes y Permisos")
+          )
+        );
+        const chiaImage = chiaPost ? chiaPost.image : null;
+
         // Combinar y ordenar por fecha (más recientes primero)
         const allPosts = [...supabasePosts, ...staticPostsFormatted].sort((a, b) => {
           const dateA = new Date(a.date);
@@ -881,22 +908,38 @@
           article.setAttribute("data-aos", "fade-up");
           article.setAttribute("data-aos-delay", (index % 3) * 100);
 
-          // Detectar si es un artículo con video (Cundinamarca, Clima Cálido o Ventajas 2026)
+          // Detectar si es un artículo con video (Cundinamarca, Clima Cálido, Ventajas 2026 o Sismos y Clima)
           const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
           const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
           const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
-          const hasVideo = isCundinamarcaPost || isClimaCalidoPost || isVentajas2026Post;
+          const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
+          const hasVideo = isClimaCalidoPost || isSismosClimaPost;
           
           // Determinar qué video usar según el artículo
           let videoSource = "/assets/video/videoblog1.mp4";
           if (isClimaCalidoPost) {
             videoSource = "/assets/video/videoblog2.mp4";
-          } else if (isVentajas2026Post) {
-            videoSource = "/assets/video/videoblog3.mp4";
+          } else if (isSismosClimaPost) {
+            videoSource = "/assets/video/videoblogg.mp4";
           }
           
+          // Detectar si es el artículo sobre seguridad y durabilidad
+          const isSeguridadDurabilidadPost = post.title && (
+            (post.title.includes("casas prefabricadas son seguras") && post.title.includes("durables") && post.title.includes("Colombia")) ||
+            post.title.includes("¿Las casas prefabricadas son seguras y durables? Todo lo que debes saber en Colombia")
+          );
+
           let postMedia;
-          if (hasVideo) {
+          // Si es el artículo de Cundinamarca, usar la imagen de la cabaña si está disponible
+          if (isCundinamarcaPost && cabanaImage) {
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${cabanaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+          } else if (isVentajas2026Post && zipaquiraImage) {
+            // Si es el artículo de Ventajas 2026, usar la imagen de Zipaquirá si está disponible
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${zipaquiraImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+          } else if (isSeguridadDurabilidadPost && chiaImage) {
+            // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+          } else if (hasVideo) {
             // Mostrar video para artículos con video
             postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
               <video 
