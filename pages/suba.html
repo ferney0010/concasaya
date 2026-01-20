@@ -9,11 +9,11 @@
 
     <meta
       name="description"
-      content="Construye tu casa prefabricada en Suba, Bogotá. Especialistas en construcción con paneles EPS. Ubicados en C.C. Fiesta Suba, Local 64. Asesoría completa para tu proyecto de vivienda en la localidad de Suba."
+      content="Construye tu casa prefabricada en Suba, Bogotá. Especialistas en construcción con paneles EPS y plaqueta de concreto. Ubicados en C.C. Fiesta Suba, Local 64. Asesoría completa para tu proyecto de vivienda en la localidad de Suba."
     />
     <meta
       name="keywords"
-      content="casas prefabricadas suba, construir en suba, vivienda en suba bogotá, CONCASAYA, lotes en suba, paneles EPS suba, casas prefabricadas bogotá, construcción en seco suba, casas modulares suba, localidad suba, C.C. Fiesta Suba"
+      content="casas prefabricadas suba, construir en suba, vivienda en suba bogotá, CONCASAYA, lotes en suba, paneles EPS suba, plaqueta de concreto suba, casas prefabricadas bogotá, construcción en seco suba, casas modulares suba, localidad suba, C.C. Fiesta Suba"
     />
     <link
       rel="canonical"
@@ -43,7 +43,7 @@
     />
     <meta
       property="og:description"
-      content="Especialistas en construcción con paneles EPS en Suba, Bogotá. Ubicados en C.C. Fiesta Suba, Local 64. Construcción rápida y de calidad para tu vivienda."
+      content="Especialistas en construcción con paneles EPS y plaqueta de concreto en Suba, Bogotá. Ubicados en C.C. Fiesta Suba, Local 64. Construcción rápida y de calidad para tu vivienda."
     />
     <meta
       property="og:image"
@@ -63,7 +63,7 @@
       "@type": "LocalBusiness",
       "name": "CONCASAYA",
       "image": "https://www.concasaya.com/assets/images/logoconcasaya.webp",
-      "description": "Casas Prefabricadas en Suba, Bogotá. Especialistas en construcción con paneles EPS.",
+      "description": "Casas Prefabricadas en Suba, Bogotá. Especialistas en construcción con paneles EPS y plaqueta de concreto.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Cl. 147 #101-56, C.C. Fiesta Suba, Local 64",
@@ -154,6 +154,9 @@
         padding: 0.5rem 0;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
         backdrop-filter: blur(10px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
       }
       .dropdown-menu li a {
         border-radius: 8px;
@@ -228,6 +231,9 @@
         background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
         border-left: 2px solid #e5e7eb;
         margin-left: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
       }
       .tablet-submenu.open {
         max-height: 600px;
@@ -326,12 +332,133 @@
         }
       }
       
-      /* Hero section en móvil - 95% del viewport */
-      @media (max-width: 1023px) {
-        .hero-section-mobile {
-          height: 95vh !important;
-          min-height: 95vh !important;
-          max-height: 95vh !important;
+      /* Estilos adicionales para el Hero */
+      .hero-section {
+        position: relative;
+      }
+      
+      .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(13, 27, 42, 0.2) 100%);
+        animation: gradientShift 8s ease infinite;
+      }
+      
+      @keyframes gradientShift {
+        0%, 100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      
+      /* Animación para el scroll indicator */
+      @keyframes bounce {
+        0%, 100% {
+          transform: translateY(0) translateX(-50%);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-50%);
+        }
+      }
+      
+      .animate-bounce {
+        animation: bounce 2s infinite;
+      }
+      
+      /* Mejoras responsive para móvil pequeño (320px - 640px) */
+      @media (max-width: 640px) {
+        section.relative {
+          min-height: calc(100vh - 80px);
+          padding-top: 1rem;
+          padding-bottom: 1rem;
+        }
+        
+        .bg-white\/95 {
+          margin: 0 0.5rem;
+        }
+        
+        h1 {
+          line-height: 1.2 !important;
+        }
+        
+        /* Ajustar botones en móvil */
+        .flex.flex-col a {
+          font-size: 0.875rem;
+          padding: 0.75rem 1.5rem;
+        }
+        
+        /* Características en móvil */
+        .grid.grid-cols-1 > div {
+          padding: 0.75rem;
+        }
+      }
+      
+      /* Mejoras para tablet (641px - 1024px) */
+      @media (min-width: 641px) and (max-width: 1024px) {
+        section.relative {
+          min-height: 90vh;
+        }
+        
+        .bg-white\/95 {
+          padding: 2rem;
+        }
+        
+        h1 {
+          font-size: 2.5rem !important;
+        }
+        
+        /* Grid de características en tablet */
+        .grid.sm\:grid-cols-2 {
+          gap: 1rem;
+        }
+      }
+      
+      /* Mejoras para desktop (1025px+) */
+      @media (min-width: 1025px) {
+        section.relative {
+          height: 100vh;
+        }
+        
+        .bg-white\/95 {
+          padding: 3rem;
+        }
+      }
+      
+      /* Ajustes para pantallas muy grandes (1440px+) */
+      @media (min-width: 1440px) {
+        .container {
+          max-width: 1280px;
+        }
+      }
+      
+      /* Mejoras de accesibilidad y touch en móvil */
+      @media (max-width: 768px) {
+        a, button {
+          min-height: 44px;
+          min-width: 44px;
+        }
+        
+        /* Mejorar legibilidad del texto en móvil */
+        p {
+          line-height: 1.6;
+        }
+      }
+      
+      /* Optimización para orientación landscape en móvil */
+      @media (max-width: 896px) and (orientation: landscape) {
+        section.relative {
+          min-height: auto;
+          padding: 2rem 0;
+        }
+        
+        .bg-white\/95 {
+          padding: 1.5rem;
         }
       }
     </style>
@@ -378,7 +505,7 @@
               <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
             <ul
-              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+              class="dropdown-menu absolute hidden text-dark pt-2 w-96 bg-white rounded-lg shadow-xl"
             >
               <li>
                 <a
@@ -420,6 +547,13 @@
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/sopo.html"
                   ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
+                >
+              </li>
+              <li>
+                <a
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/suba.html"
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Suba</a
                 >
               </li>
               <li>
@@ -575,6 +709,11 @@
               ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
             >
             <a
+              href="/pages/suba.html"
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Suba</a
+            >
+            <a
               href="/pages/funza.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
               ><i class="fas fa-map-marker-alt municipio-icon"></i>Funza</a
@@ -641,94 +780,101 @@
     <main>
       <!-- Hero Section -->
       <section
-        class="hero-section-mobile lg:h-screen bg-cover bg-center relative flex items-center pt-20 pb-4 lg:pt-0 lg:pb-0"
-        style="
-          background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.pexels.com/photos/221024/pexels-photo-221024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-          background-position: center;
-          background-repeat: no-repeat;
-          background-size: cover;
-        "
+        class="relative w-full min-h-screen bg-gradient-to-br from-light via-white to-light flex items-center justify-center overflow-hidden"
+        style="padding-top: 120px; padding-bottom: 60px;"
       >
-        <div class="container mx-auto px-6">
-          <!-- Contenido principal -->
-          <div class="text-center lg:text-left max-w-4xl lg:max-w-5xl mx-auto lg:mx-0">
-            <!-- Slogan con efecto blur -->
-            <div class="mb-4 lg:mb-6" data-aos="fade-down" data-aos-delay="50">
-              <p
-                class="slogan-hero text-xs sm:text-sm md:text-sm lg:text-base xl:text-base font-normal italic text-white lg:px-0 px-2"
-              >
-                "Cuando todo es claro, todo es más fácil"
-              </p>
+        <!-- Contenido del Hero -->
+        <div class="w-full px-4 sm:px-6 lg:px-8 xl:px-12 text-center relative z-10 py-8 md:py-12 lg:py-16">
+          <div class="w-full max-w-7xl mx-auto">
+            <!-- Badge de ubicación -->
+            <div class="inline-block mb-4 sm:mb-6">
+              <span class="bg-primary text-white px-4 py-2 sm:px-6 sm:py-2.5 md:px-8 md:py-3 rounded-full text-xs sm:text-sm md:text-base font-semibold shadow-lg inline-flex items-center">
+                <i class="fas fa-map-marker-alt mr-2 text-xs sm:text-sm md:text-base"></i>
+                <span class="hidden sm:inline">C.C. Fiesta Suba, Local 64</span>
+                <span class="sm:hidden">Fiesta Suba, Local 64</span>
+              </span>
             </div>
             
-            <!-- Título principal -->
-            <div class="mb-6 lg:mb-8" data-aos="fade-up">
-              <h1
-                class="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 lg:mb-5 leading-tight lg:px-0 px-2"
-              >
-                Casas Prefabricadas en <span class="text-primary">Suba</span>, Bogotá
-              </h1>
-              <p
-                class="text-base sm:text-lg md:text-xl lg:text-lg xl:text-xl text-gray-100 mt-4 lg:mt-5 max-w-3xl lg:max-w-2xl mx-auto lg:mx-0 lg:px-0 px-2 leading-relaxed"
-              >
-                Construcción <strong class="text-white">rápida</strong>,
-                <strong class="text-white">económica</strong> y
-                <strong class="text-white">sostenible</strong> con
-                <strong class="text-white">paneles EPS</strong> o
-                <strong class="text-white">plaqueta de concreto</strong>.
-              </p>
-            </div>
-
-            <!-- Palabras clave compactas - Solo 2 badges -->
-            <div
-              class="flex flex-nowrap sm:flex-wrap justify-center lg:justify-start gap-2 lg:gap-2.5 mb-6 lg:mb-8 lg:px-0 px-2"
-              data-aos="fade-up"
-              data-aos-delay="100"
-            >
-              <a
-                href="/modelos.html"
-                class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
-              >
-                <i class="fas fa-building mr-1.5 text-primary"></i>Construcción
-                Rápida
+            <!-- Título Principal -->
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-dark mb-4 sm:mb-5 md:mb-6 leading-tight px-2">
+              <strong class="text-primary block mb-2">Casas Prefabricadas en Suba</strong>
+              <span class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl block">Construye tu Hogar en el Norte de Bogotá</span>
+            </h1>
+            
+            <!-- Subtítulo con palabras clave -->
+            <p class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-7 md:mb-8 max-w-3xl mx-auto leading-relaxed px-2">
+              Especialistas en <strong>construcción con paneles EPS y plaqueta de concreto en Suba</strong>. 
+              Diseños modernos, construcción rápida y asesoría completa para tu proyecto de 
+              <strong>vivienda prefabricada en la localidad de Suba, Bogotá</strong>.
+            </p>
+            
+            <!-- Características destacadas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-10 md:mb-12 text-left">
+              <a href="/modelos.html" class="flex items-center space-x-3 sm:space-x-4 bg-white p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer group">
+                <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <i class="fas fa-home text-primary text-lg sm:text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-dark text-base sm:text-lg md:text-xl mb-1 group-hover:text-primary transition-colors duration-300">Ver Modelos</p>
+                  <p class="text-sm sm:text-base text-gray-600">Explora nuestros diseños</p>
+                </div>
+                <i class="fas fa-chevron-right text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2"></i>
               </a>
+              <a href="/ventajas.html" class="flex items-center space-x-3 sm:space-x-4 bg-white p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer group">
+                <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <i class="fas fa-bolt text-primary text-lg sm:text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-dark text-base sm:text-lg md:text-xl mb-1 group-hover:text-primary transition-colors duration-300">Tecnología EPS y Plaqueta</p>
+                  <p class="text-sm sm:text-base text-gray-600">Conoce ambas opciones</p>
+                </div>
+                <i class="fas fa-chevron-right text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2"></i>
+              </a>
+              <a href="/galeria.html" class="flex items-center space-x-3 sm:space-x-4 bg-white p-4 sm:p-5 md:p-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 cursor-pointer group sm:col-span-2 lg:col-span-1">
+                <div class="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-primary/10 rounded-full flex items-center justify-center group-hover:bg-primary/20 transition-colors duration-300">
+                  <i class="fas fa-images text-primary text-lg sm:text-xl md:text-2xl group-hover:scale-110 transition-transform duration-300"></i>
+                </div>
+                <div class="min-w-0 flex-1">
+                  <p class="font-semibold text-dark text-base sm:text-lg md:text-xl mb-1 group-hover:text-primary transition-colors duration-300">Ver Galería</p>
+                  <p class="text-sm sm:text-base text-gray-600">Proyectos realizados</p>
+                </div>
+                <i class="fas fa-chevron-right text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300 ml-2"></i>
+              </a>
+            </div>
+            
+            <!-- Botones CTA -->
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center mb-4 sm:mb-5 md:mb-6">
               <a
                 href="/cotizador-encuesta.html"
-                class="px-3 sm:px-4 py-1.5 sm:py-2 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs sm:text-sm font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                class="bg-primary text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 w-full sm:w-auto"
+                aria-label="Solicitar cotización para casa prefabricada en Suba"
               >
-                <i class="fas fa-dollar-sign mr-1.5 text-primary"></i>Precios
-                Accesibles
-              </a>
-            </div>
-
-            <!-- CTAs compactos -->
-            <div
-              class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center lg:justify-start items-stretch sm:items-center lg:px-0 px-2"
-            >
-              <a
-                href="/modelos.html"
-                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-primary text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-              >
-                <i class="fas fa-eye"></i>
-                <span>Ver Modelos</span>
+                <i class="fas fa-calculator text-sm sm:text-base"></i>
+                <span class="whitespace-nowrap">Solicitar Cotización</span>
               </a>
               <a
-                href="/cotizador-encuesta.html"
-                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
-              >
-                <i class="fas fa-calculator"></i>
-                <span>Cotizador Gratis</span>
-              </a>
-              <a
-                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20casas%20prefabricadas%20en%20Suba."
+                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada%20en%20Suba.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
                 target="_blank"
-                class="w-full sm:w-auto px-6 sm:px-7 lg:px-8 py-3 sm:py-3.5 lg:py-4 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                class="bg-green-500 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base sm:text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2 w-full sm:w-auto"
+                aria-label="Contactar por WhatsApp para casa prefabricada en Suba"
               >
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
+                <i class="fab fa-whatsapp text-base sm:text-xl"></i>
+                <span class="whitespace-nowrap">Chatear por WhatsApp</span>
               </a>
             </div>
+            
+            <!-- Texto adicional SEO -->
+            <p class="text-xs sm:text-sm text-gray-600 mt-4 sm:mt-5 md:mt-6 px-2 leading-relaxed">
+              <i class="fas fa-info-circle mr-1 sm:mr-2 text-primary text-xs sm:text-sm"></i>
+              <span class="inline sm:block">Visítanos en <strong>C.C. Fiesta Suba, Local 64</strong> o contáctanos para una asesoría personalizada sobre 
+              <strong>lotes en Suba</strong> y <strong>construcción prefabricada en Bogotá</strong>.</span>
+            </p>
           </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+          <i class="fas fa-chevron-down text-primary text-xl md:text-2xl opacity-70"></i>
         </div>
       </section>
 
@@ -827,12 +973,11 @@
                 <i class="fas fa-thermometer-half fa-2x"></i>
               </div>
               <h3 class="text-xl font-semibold mb-2">
-                Tecnología <strong>Paneles EPS</strong>
+                Tecnología <strong>EPS y Plaqueta</strong>
               </h3>
               <p class="text-gray-600">
-                Construimos con <strong>paneles EPS</strong> para garantizar
-                confort térmico y acústico en tu nuevo hogar. Perfecto para 
-                el clima de Bogotá.
+                Ofrecemos dos opciones: <strong>paneles EPS</strong> para máximo confort térmico y acústico, 
+                o <strong>plaqueta de concreto</strong> para mayor resistencia. Tú eliges la mejor opción para tu proyecto en Suba.
               </p>
             </div>
             <div
@@ -928,8 +1073,8 @@
               </div>
               <p class="text-gray-700 mb-4 italic">
                 "Después de buscar varias opciones para construir en Suba, 
-                encontramos CONCASAYA y fue la mejor decisión. Los paneles EPS 
-                funcionan perfecto para el clima de Bogotá. Muy contentos con el resultado."
+                encontramos CONCASAYA y fue la mejor decisión. Elegimos paneles EPS 
+                y funcionan perfecto para el clima de Bogotá. También ofrecen plaqueta de concreto. Muy contentos con el resultado."
               </p>
               <div class="border-t pt-4">
                 <p class="font-semibold text-dark">Carlos Rodríguez</p>
@@ -980,8 +1125,8 @@
               </div>
               <p class="text-gray-700 mb-4 italic">
                 "Profesionales de primera. El diseño de nuestra casa prefabricada 
-                en Suba superó nuestras expectativas. El aislamiento térmico de 
-                los paneles EPS es excelente y el acabado impecable."
+                en Suba superó nuestras expectativas. Elegimos plaqueta de concreto 
+                por su resistencia, aunque también tienen opción con paneles EPS. El acabado impecable."
               </p>
               <div class="border-t pt-4">
                 <p class="font-semibold text-dark">Roberto Silva</p>
@@ -1057,11 +1202,11 @@
               </button>
               <div class="faq-answer px-6 pb-6 text-gray-600">
                 <p>
-                  El tiempo de construcción depende del modelo y tamaño de la casa. 
-                  En general, una casa prefabricada con paneles EPS en Suba puede 
+                  El tiempo de construcción depende del modelo, tamaño de la casa y el material elegido. 
+                  En general, una casa prefabricada en Suba (con paneles EPS o plaqueta de concreto) puede 
                   estar lista en 3 a 6 meses desde el inicio de la construcción, 
                   mucho más rápido que la construcción tradicional. Esto incluye 
-                  la fabricación de paneles, transporte a Suba e instalación.
+                  la fabricación de paneles o plaquetas, transporte a Suba e instalación.
                 </p>
               </div>
             </div>
@@ -1288,7 +1433,7 @@
           <div class="col-span-2 lg:col-span-1">
             <p class="text-gray-400">
               Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
-              y en EPS de alta calidad en Colombia.
+              con paneles EPS y plaqueta de concreto de alta calidad en Colombia.
             </p>
           </div>
 
