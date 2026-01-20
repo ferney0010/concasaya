@@ -480,6 +480,22 @@
         backdrop-filter: blur(10px);
       }
       
+      .cta-description-terrenos {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                     0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .cta-description-terrenos em {
+        font-style: italic;
+        display: block;
+        padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-left: 4px solid rgba(249, 115, 22, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+      }
+      
       @media (max-width: 768px) {
         .cta-title-terrenos {
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
@@ -488,6 +504,12 @@
         .cta-subtitle-terrenos {
           text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9),
                        0 0 10px rgba(249, 115, 22, 0.5);
+        }
+        .cta-description-terrenos {
+          font-size: 0.9rem;
+        }
+        .cta-description-terrenos em {
+          padding: 1rem;
         }
       }
       .dropdown:hover .dropdown-menu {
@@ -1683,11 +1705,17 @@
           class="container mx-auto px-6 relative z-20 text-center text-white"
           data-aos="fade-up"
         >
-          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight cta-title-terrenos">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight cta-title-terrenos">
             Necesitas un terreno donde construir o quieres vender un terreno
           </h2>
-          <p class="text-xl md:text-2xl lg:text-3xl font-bold mb-10 cta-subtitle-terrenos">
+          <p class="text-xl md:text-2xl lg:text-3xl font-bold mb-4 cta-subtitle-terrenos">
             Nosotros te ayudamos
+          </p>
+          <p class="text-base md:text-lg lg:text-xl mb-8 max-w-3xl mx-auto text-gray-200 leading-relaxed cta-description-terrenos">
+            <em class="text-white">"En CONCASAYA entendemos que encontrar el terreno ideal para construir tu hogar o vender tu propiedad puede ser un proceso complejo. Por eso, nuestro equipo de expertos está aquí para acompañarte en cada paso, ofreciéndote asesoría personalizada y soluciones adaptadas a tus necesidades."</em>
+          </p>
+          <p class="text-sm md:text-base lg:text-lg mb-8 text-gray-300 font-medium">
+            Te ayudamos a encontrar el terreno perfecto para tu proyecto o a vender tu propiedad de manera rápida y segura
           </p>
           <a
             href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20necesito%20ayuda%20con%20terrenos%3A%20quiero%20construir%20o%20vender%20un%20terreno."
@@ -1697,6 +1725,7 @@
             <i class="fab fa-whatsapp text-3xl md:text-4xl"></i>
             Contáctanos por WhatsApp
           </a>
+        </div>
         </div>
       </section>
 
