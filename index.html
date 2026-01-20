@@ -496,6 +496,68 @@
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
       }
       
+      /* Estilos para el CTA principal */
+      .cta-title-main {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8),
+                     0 0 20px rgba(0, 0, 0, 0.5),
+                     2px 2px 4px rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+      }
+      
+      .cta-description-main {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                     0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .cta-description-main em {
+        font-style: italic;
+        display: block;
+        padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-left: 4px solid rgba(249, 115, 22, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+      }
+      
+      .cta-button-main {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      
+      /* Estilos para el CTA del Proyecto */
+      .cta-title-project {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8),
+                     0 0 20px rgba(0, 0, 0, 0.5),
+                     2px 2px 4px rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+        letter-spacing: 0.5px;
+        line-height: 1.2;
+      }
+      
+      .cta-description-project {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                     0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .cta-description-project em {
+        font-style: italic;
+        display: block;
+        padding: 1.5rem;
+        background: rgba(0, 0, 0, 0.5);
+        border-left: 4px solid rgba(249, 115, 22, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);
+      }
+      
+      .cta-button-project {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(10px);
+      }
+      
       @media (max-width: 768px) {
         .cta-title-terrenos {
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
@@ -509,6 +571,26 @@
           font-size: 0.9rem;
         }
         .cta-description-terrenos em {
+          padding: 1rem;
+        }
+        .cta-title-main {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                       0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .cta-description-main {
+          font-size: 0.9rem;
+        }
+        .cta-description-main em {
+          padding: 1rem;
+        }
+        .cta-title-project {
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8),
+                       0 0 15px rgba(0, 0, 0, 0.5);
+        }
+        .cta-description-project {
+          font-size: 0.9rem;
+        }
+        .cta-description-project em {
           padding: 1rem;
         }
       }
@@ -1966,18 +2048,20 @@
           class="container mx-auto px-6 relative z-20 text-center text-white"
           data-aos="fade-up"
         >
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight cta-title-main">
             ¿Listo para Dar el Primer Paso?
           </h2>
-          <p class="text-lg mb-8 max-w-2xl mx-auto">
-            Nuestro equipo está listo para convertir tu visión en realidad.
-            Contáctanos hoy para una asesoría y descubre lo fácil que es tener
-            la casa que siempre has querido.
+          <p class="text-base md:text-lg lg:text-xl mb-6 max-w-3xl mx-auto text-gray-200 leading-relaxed cta-description-main">
+            <em class="text-white">"En CONCASAYA transformamos tus sueños en realidad. Nuestro equipo de expertos está comprometido contigo desde el primer momento, ofreciéndote asesoría personalizada, diseños adaptados a tus necesidades y un proceso de construcción transparente y eficiente."</em>
+          </p>
+          <p class="text-sm md:text-base lg:text-lg mb-8 text-gray-300 font-medium max-w-2xl mx-auto">
+            Contáctanos hoy para una asesoría gratuita y descubre lo fácil que es tener la casa que siempre has querido
           </p>
           <a
             href="/contacto.html"
-            class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+            class="bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 text-white px-10 py-5 rounded-full font-bold text-lg md:text-xl lg:text-2xl transition-all duration-300 inline-flex items-center justify-center gap-3 transform hover:scale-110 shadow-2xl hover:shadow-orange-500/50 border-2 border-orange-300/50 hover:border-orange-200 cta-button-main"
           >
+            <i class="fas fa-calculator text-2xl md:text-3xl"></i>
             Solicitar Cotización Gratuita
           </a>
         </div>
@@ -2725,30 +2809,34 @@
               />
             </div>
             <div data-aos="fade-right" class="text-white">
-              <h2 class="text-3xl font-bold mb-4">Tu Proyecto Empieza Aquí</h2>
-              <p class="text-gray-200 mb-6">
-                Desde la idea inicial hasta la entrega de llaves, nuestro equipo
-                de expertos te acompaña en cada etapa del proceso. Te ofrecemos
-                asesoría completa para que tomes la mejor decisión.
+              <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight cta-title-project">
+                Tu Proyecto Empieza Aquí
+              </h2>
+              <p class="text-base md:text-lg lg:text-xl mb-6 text-gray-200 leading-relaxed cta-description-project">
+                <em class="text-white">"En CONCASAYA entendemos que construir tu hogar es uno de los proyectos más importantes de tu vida. Por eso, desde la idea inicial hasta la entrega de llaves, nuestro equipo de expertos te acompaña en cada etapa del proceso con dedicación, transparencia y compromiso."</em>
+              </p>
+              <p class="text-sm md:text-base lg:text-lg mb-6 text-gray-300 font-medium">
+                Te ofrecemos asesoría completa y personalizada para que tomes la mejor decisión en cada paso del camino
               </p>
               <ul class="space-y-3 mb-8">
                 <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Asesoría 100% Gratuita y Personalizada
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2 text-xl"></i
+                  ><span class="text-base md:text-lg">Asesoría 100% Gratuita y Personalizada</span>
                 </li>
                 <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Adaptamos Diseños a tu Gusto y Presupuesto
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2 text-xl"></i
+                  ><span class="text-base md:text-lg">Adaptamos Diseños a tu Gusto y Presupuesto</span>
                 </li>
                 <li class="flex items-center">
-                  <i class="fas fa-check-circle text-primary fa-fw mr-2"></i
-                  >Recibe una Cotización Clara y Detallada
+                  <i class="fas fa-check-circle text-primary fa-fw mr-2 text-xl"></i
+                  ><span class="text-base md:text-lg">Recibe una Cotización Clara y Detallada</span>
                 </li>
               </ul>
               <a
                 href="/contacto.html"
-                class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition-transform duration-300 inline-block transform hover:scale-105"
+                class="bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 text-white px-10 py-5 rounded-full font-bold text-lg md:text-xl lg:text-2xl transition-all duration-300 inline-flex items-center justify-center gap-3 transform hover:scale-110 shadow-2xl hover:shadow-orange-500/50 border-2 border-orange-300/50 hover:border-orange-200 cta-button-project"
               >
+                <i class="fas fa-comments text-2xl md:text-3xl"></i>
                 Hablar con un Asesor
               </a>
             </div>
