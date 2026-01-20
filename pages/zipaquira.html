@@ -115,6 +115,9 @@
         padding: 0.5rem 0;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
         backdrop-filter: blur(10px);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
       }
       .dropdown-menu li a {
         border-radius: 8px;
@@ -189,6 +192,9 @@
         background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
         border-left: 2px solid #e5e7eb;
         margin-left: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
       }
       .tablet-submenu.open {
         max-height: 600px;
@@ -289,7 +295,7 @@
               <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
             <ul
-              class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl"
+              class="dropdown-menu absolute hidden text-dark pt-2 w-96 bg-white rounded-lg shadow-xl"
             >
               <li>
                 <a
@@ -331,6 +337,13 @@
                   class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
                   href="/pages/sopo.html"
                   ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
+                >
+              </li>
+              <li>
+                <a
+                  class="municipio-item block px-4 py-2 hover:bg-light hover:text-primary"
+                  href="/pages/suba.html"
+                  ><i class="fas fa-map-marker-alt municipio-icon"></i>Suba</a
                 >
               </li>
               <li>
@@ -484,6 +497,11 @@
               href="/pages/sopo.html"
               class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
               ><i class="fas fa-map-marker-alt municipio-icon"></i>Sopó</a
+            >
+            <a
+              href="/pages/suba.html"
+              class="municipio-item block py-2.5 px-8 text-sm text-gray-700 hover:text-primary hover:bg-white transition"
+              ><i class="fas fa-map-marker-alt municipio-icon"></i>Suba</a
             >
             <a
               href="/pages/funza.html"
