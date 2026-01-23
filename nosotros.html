@@ -655,15 +655,61 @@
         </div>
       </section>
 
-      <section>
-        <div class="lg:hidden">
-          <video
-            width="100%"
-            controls
-            autoplay
-            loop
-            src="/assets/video/videoconca.mp4"
-          ></video>
+      <!-- Sección de Video -->
+      <section class="py-12 md:py-16 lg:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
+            <!-- Video - Vertical en PC, Horizontal en móvil/tablet -->
+            <div class="w-full lg:w-auto flex justify-center lg:justify-start" data-aos="fade-right">
+              <div class="relative rounded-lg overflow-hidden shadow-2xl bg-gray-900 max-w-xs sm:max-w-md lg:max-w-sm">
+                <video
+                  class="w-full h-auto"
+                  controls
+                  autoplay
+                  loop
+                  muted
+                  playsinline
+                  preload="auto"
+                  src="/assets/video/videoconca.mp4"
+                  style="aspect-ratio: 9/16; object-fit: cover;"
+                >
+                  Tu navegador no soporta la reproducción de videos.
+                </video>
+              </div>
+            </div>
+            
+            <!-- Texto descriptivo -->
+            <div class="w-full" data-aos="fade-left">
+              <h2 class="text-3xl md:text-4xl font-bold text-dark mb-6">
+                Conoce Nuestro <span class="text-primary">Proceso Constructivo</span>
+              </h2>
+              <p class="text-gray-600 text-lg mb-4 leading-relaxed">
+                En este video podrás ver de cerca cómo trabajamos en CONCASAYA. 
+                Desde la fabricación de nuestros paneles hasta la instalación final, 
+                cada paso está diseñado para garantizar la máxima calidad y eficiencia.
+              </p>
+              <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+                Nuestro sistema constructivo con <strong>paneles EPS</strong> y 
+                <strong>plaqueta de concreto</strong> nos permite entregar viviendas 
+                de excelente calidad en tiempos récord, sin comprometer la durabilidad 
+                ni el confort de tu hogar.
+              </p>
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="/modelos.html"
+                  class="bg-primary text-white px-6 py-3 rounded-full font-semibold text-center hover:bg-primary/90 transition duration-300 transform hover:scale-105"
+                >
+                  Ver Modelos
+                </a>
+                <a
+                  href="/contacto.html"
+                  class="bg-white text-primary border-2 border-primary px-6 py-3 rounded-full font-semibold text-center hover:bg-primary hover:text-white transition duration-300 transform hover:scale-105"
+                >
+                  Solicitar Cotización
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
