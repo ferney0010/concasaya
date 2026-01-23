@@ -13,7 +13,7 @@
   const appState = {
     currentQuestion: 0,
     answers: {},
-    totalQuestions: 14,
+    totalQuestions: 12,
     termsAccepted: false,
     visualContentMap: {
       // Tipo de vivienda
@@ -114,14 +114,7 @@
           label: 'Gris', 
           icon: 'fas fa-trowel', 
           description: 'Instalación de luz y pañete. Incluye redes eléctricas e hidráulicas.',
-          availableFor: ['plaqueta', 'eps'] // Disponible para ambos
-        },
-        { 
-          value: 'blanca', 
-          label: 'Blanca', 
-          icon: 'fas fa-home', 
-          description: 'Acabados básicos.',
-          availableFor: ['plaqueta', 'eps'] // Disponible para ambos
+          availableFor: ['eps'] // Solo disponible para EPS
         }
       ],
       hasVisual: false
@@ -136,33 +129,28 @@
         { value: 'boyaca', label: 'Boyacá' },
         { value: 'cajica', label: 'Cajicá' },
         { value: 'chia', label: 'Chía' },
+        { value: 'choconta', label: 'Chocontá' },
         { value: 'cota', label: 'Cota' },
+        { value: 'facatativa', label: 'Facatativá' },
         { value: 'funza', label: 'Funza' },
+        { value: 'la-mesa', label: 'La Mesa' },
         { value: 'la-vega', label: 'La Vega' },
         { value: 'madrid', label: 'Madrid' },
+        { value: 'mesitas-del-colegio', label: 'Mesitas del Colegio' },
         { value: 'mosquera', label: 'Mosquera' },
+        { value: 'pacho', label: 'Pacho' },
+        { value: 'san-francisco', label: 'San Francisco' },
         { value: 'santa-marta', label: 'Santa Marta' },
+        { value: 'sogamoso', label: 'Sogamoso' },
         { value: 'sopo', label: 'Sopó' },
+        { value: 'suba', label: 'Subá' },
+        { value: 'supata', label: 'Supatá' },
         { value: 'tocancipa', label: 'Tocancipá' },
         { value: 'villa-de-leyva', label: 'Villa de Leyva' },
         { value: 'zipaquira', label: 'Zipaquirá' }
       ],
       hasVisual: false,
       placeholder: 'Escribe o selecciona el municipio'
-    },
-    {
-      id: 'estado-terreno',
-      title: '¿Cuál es el estado actual de tu terreno?',
-      subtitle: 'Esto nos ayuda a calcular los costos de preparación',
-      type: 'radio',
-      options: [
-        { value: 'apto', label: 'Terreno Apto', icon: 'fas fa-check-circle', description: 'Nivelado, con acceso, listo para construir' },
-        { value: 'nivelacion', label: 'Requiere Nivelación', icon: 'fas fa-mountain', description: 'Necesita movimiento de tierra' },
-        { value: 'acceso', label: 'Requiere Acceso', icon: 'fas fa-road', description: 'Necesita construcción de vía de acceso' },
-        { value: 'cimentacion', label: 'Requiere Cimentación Especial', icon: 'fas fa-hard-hat', description: 'Suelo blando o pendiente pronunciada' },
-        { value: 'completo', label: 'Requiere Preparación Completa', icon: 'fas fa-tools', description: 'Nivelación + Acceso + Cimentación' }
-      ],
-      hasVisual: false
     },
     {
       id: 'tipo-suelo',
@@ -209,18 +197,6 @@
         { value: 'si', label: 'Sí, ya tengo el terreno', icon: 'fas fa-check-circle', description: 'Terreno disponible y listo' },
         { value: 'buscando', label: 'Estoy buscando terreno', icon: 'fas fa-search', description: 'Aún no tengo terreno' },
         { value: 'evaluando', label: 'Estoy evaluando opciones', icon: 'fas fa-question-circle', description: 'En proceso de decisión' }
-      ],
-      hasVisual: false
-    },
-    {
-      id: 'solicitar-visita',
-      title: '¿Te gustaría que visitemos tu terreno?',
-      subtitle: 'Nuestra visita técnica permite una cotización precisa y detallada',
-      type: 'radio',
-      options: [
-        { value: 'si-visita', label: 'Sí, quiero solicitar una visita', icon: 'fas fa-calendar-check', description: 'Programar visita técnica' },
-        { value: 'mas-tarde', label: 'Más adelante', icon: 'fas fa-clock', description: 'Mejor en otra fecha' },
-        { value: 'no-visita', label: 'Por ahora no', icon: 'fas fa-times-circle', description: 'No en este momento' }
       ],
       hasVisual: false
     },
@@ -430,7 +406,7 @@
       if (question.id === 'acabados') {
         const sistemaSeleccionado = appState.answers.sistema;
         if (sistemaSeleccionado === 'eps') {
-          // Si se seleccionó EPS, solo mostrar gris y blanca (no obra negra)
+          // Si se seleccionó EPS, solo mostrar obra gris
           availableOptions = question.options.filter(opt => 
             opt.availableFor && opt.availableFor.includes('eps')
           );
@@ -438,11 +414,15 @@
           if (appState.answers.acabados === 'obra-negra') {
             appState.answers.acabados = '';
           }
-        } else {
-          // Para plaqueta, mostrar todas las opciones disponibles
+        } else if (sistemaSeleccionado === 'plaqueta') {
+          // Para plaqueta, solo mostrar obra negra
           availableOptions = question.options.filter(opt => 
-            !opt.availableFor || opt.availableFor.includes('plaqueta')
+            opt.availableFor && opt.availableFor.includes('plaqueta')
           );
+          // Si ya había seleccionado gris o blanca, limpiar esa selección
+          if (appState.answers.acabados === 'gris' || appState.answers.acabados === 'blanca') {
+            appState.answers.acabados = '';
+          }
         }
       }
       
@@ -485,19 +465,36 @@
         }
       });
       
-      // Mostrar mensaje informativo si se seleccionó EPS
-      if (question.id === 'acabados' && appState.answers.sistema === 'eps') {
-        questionHTML += `
-          <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-4 mt-4">
-            <div class="flex items-start">
-              <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
-              <div>
-                <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre EPS</p>
-                <p class="text-xs text-blue-700">El sistema EPS se entrega mínimo desde obra gris, incluyendo pañete, redes eléctricas e hidráulicas. No está disponible en obra negra.</p>
+      // Mostrar mensaje informativo según el sistema seleccionado
+      if (question.id === 'acabados') {
+        const sistemaSeleccionado = appState.answers.sistema;
+        if (sistemaSeleccionado === 'eps') {
+          questionHTML += `
+            <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-4 mt-4">
+              <div class="flex items-start">
+                <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
+                <div>
+                  <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre EPS</p>
+                  <p class="text-xs text-blue-700">El sistema EPS se cotiza únicamente en obra gris, incluyendo pañete, redes eléctricas e hidráulicas.</p>
+                  <p class="text-xs text-blue-700 mt-2"><strong>¿Deseas cotizar acabados?</strong> Si necesitas cotizar acabados adicionales, por favor escríbenos por WhatsApp o agenda una videollamada.</p>
+                </div>
               </div>
             </div>
-          </div>
-        `;
+          `;
+        } else if (sistemaSeleccionado === 'plaqueta') {
+          questionHTML += `
+            <div class="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-4 mt-4">
+              <div class="flex items-start">
+                <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
+                <div>
+                  <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre Plaqueta</p>
+                  <p class="text-xs text-blue-700">El sistema de Plaqueta se cotiza únicamente en obra negra (estructura sin acabados).</p>
+                  <p class="text-xs text-blue-700 mt-2"><strong>¿Deseas cotizar acabados?</strong> Si necesitas cotizar acabados adicionales, por favor escríbenos por WhatsApp o agenda una videollamada.</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }
       }
       
       questionHTML += '</div>';
@@ -735,9 +732,13 @@
     
     appState.answers[questionId] = value;
     
-    // Si se cambia el sistema constructivo a EPS y ya había seleccionado obra-negra, limpiar acabados
-    if (questionId === 'sistema' && value === 'eps' && appState.answers.acabados === 'obra-negra') {
-      appState.answers.acabados = '';
+    // Si se cambia el sistema constructivo, limpiar acabados si no son compatibles
+    if (questionId === 'sistema') {
+      if (value === 'eps' && (appState.answers.acabados === 'obra-negra' || appState.answers.acabados === 'blanca')) {
+        appState.answers.acabados = '';
+      } else if (value === 'plaqueta' && (appState.answers.acabados === 'gris' || appState.answers.acabados === 'blanca')) {
+        appState.answers.acabados = '';
+      }
     }
     
     // Agregar animación sutil de "procesando" a la opción seleccionada
@@ -1201,31 +1202,29 @@
       gas: 300000,
     };
 
-    const costosTerreno = {
-      apto: 0,
-      nivelacion: 2000000,
-      acceso: 3000000,
-      cimentacion: 4000000,
-      completo: 8000000,
-    };
-
-    const costosSuelo = {
-      plan: 0,
-      pendiente: 5000000,
-    };
+    // Costos de preparación de terreno eliminados - ya no se incluyen en la cotización
 
     const multiplicadoresUbicacion = {
       bogota: 1.0,
       boyaca: 1.2,
       cajica: 1.05,
       chia: 1.05,
+      choconta: 1.12,
       cota: 1.08,
+      facatativa: 1.08,
       funza: 1.05,
+      'la-mesa': 1.1,
       'la-vega': 1.12,
       madrid: 1.1,
+      'mesitas-del-colegio': 1.1,
       mosquera: 1.05,
+      pacho: 1.15,
+      'san-francisco': 1.15,
       'santa-marta': 1.2,
+      sogamoso: 1.25,
       sopo: 1.08,
+      suba: 1.0,
+      supata: 1.15,
       tocancipa: 1.1,
       'villa-de-leyva': 1.15,
       villadeleyva: 1.15, // Mantener ambos formatos por compatibilidad
@@ -1235,11 +1234,9 @@
     const sistema = appState.answers.sistema || 'eps';
     const area = parseInt(appState.answers.area) || 60;
     const tipoVivienda = appState.answers['tipo-vivienda'] || 'casa-campestre';
-    const acabados = appState.answers.acabados || 'obra-negra';
+    const acabados = appState.answers.acabados || (sistema === 'eps' ? 'gris' : 'obra-negra');
     const pisos = appState.answers.pisos || '1-piso';
     const ubicacion = appState.answers.ubicacion || 'bogota';
-    const estadoTerreno = appState.answers['estado-terreno'] || 'apto';
-    const tipoSuelo = appState.answers['tipo-suelo'] || 'plan';
     const instalaciones = appState.answers.instalaciones || [];
 
     // Obtener precio por m² según sistema, pisos y acabados
@@ -1262,16 +1259,14 @@
       costoInstalaciones += costosInstalaciones[inst] || 0;
     });
 
-    let costoPreparacionTerreno = costosTerreno[estadoTerreno] || 0;
-    costoPreparacionTerreno += costosSuelo[tipoSuelo] || 0;
-
-    const precioTotal = precioBase + costoInstalaciones + costoPreparacionTerreno;
+    // Costos de preparación de terreno ya no se incluyen en la cotización
+    const precioTotal = precioBase + costoInstalaciones;
 
     return {
       total: precioTotal,
       base: precioBase,
       instalaciones: costoInstalaciones,
-      terreno: costoPreparacionTerreno
+      terreno: 0 // Ya no se incluyen costos de preparación de terreno
     };
   }
 
@@ -1350,12 +1345,10 @@
       'sistema': 'Sistema Constructivo',
       'acabados': 'Nivel de Acabados',
       'ubicacion': 'Ubicación',
-      'estado-terreno': 'Estado del Terreno',
       'tipo-suelo': 'Condición del Terreno',
       'tiempo-entrega': 'Tiempo de Inicio',
       'presupuesto': 'Rango de Inversión',
       'terreno-propio': 'Terreno Propio',
-      'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
       'instalaciones': 'Instalaciones'
     };
@@ -1373,11 +1366,6 @@
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
-      'apto': 'Terreno Apto',
-      'nivelacion': 'Requiere Nivelación',
-      'acceso': 'Requiere Acceso',
-      'cimentacion': 'Requiere Cimentación Especial',
-      'completo': 'Requiere Preparación Completa',
       'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
@@ -1390,9 +1378,6 @@
       'si': 'Sí, ya tengo el terreno',
       'buscando': 'Estoy buscando terreno',
       'evaluando': 'Estoy evaluando opciones',
-      'si-visita': 'Sí, quiero solicitar una visita',
-      'mas-tarde': 'Más adelante',
-      'no-visita': 'Por ahora no',
       'si-separar': 'Sí, me interesa separar',
       'informacion': 'Quiero más información',
       'no-separar': 'No, prefiero esperar',
@@ -1497,12 +1482,10 @@
       'sistema': 'Sistema Constructivo',
       'acabados': 'Nivel de Acabados',
       'ubicacion': 'Ubicación',
-      'estado-terreno': 'Estado del Terreno',
       'tipo-suelo': 'Condición del Terreno',
       'tiempo-entrega': 'Tiempo de Inicio',
       'presupuesto': 'Rango de Inversión',
       'terreno-propio': 'Terreno Propio',
-      'solicitar-visita': 'Solicitar Visita',
       'separar-proyecto': 'Separar Proyecto',
       'instalaciones': 'Instalaciones'
     };
@@ -1520,11 +1503,6 @@
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
-      'apto': 'Terreno Apto',
-      'nivelacion': 'Requiere Nivelación',
-      'acceso': 'Requiere Acceso',
-      'cimentacion': 'Requiere Cimentación Especial',
-      'completo': 'Requiere Preparación Completa',
       'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
@@ -1537,9 +1515,6 @@
       'si': 'Sí, ya tengo el terreno',
       'buscando': 'Estoy buscando terreno',
       'evaluando': 'Estoy evaluando opciones',
-      'si-visita': 'Sí, quiero solicitar una visita',
-      'mas-tarde': 'Más adelante',
-      'no-visita': 'Por ahora no',
       'si-separar': 'Sí, me interesa separar',
       'informacion': 'Quiero más información',
       'no-separar': 'No, prefiero esperar',
@@ -1582,10 +1557,7 @@
     if (priceData.instalaciones > 0) {
       message += `⚡ Instalaciones: $${priceData.instalaciones.toLocaleString('es-CO')}\n`;
     }
-    if (priceData.terreno > 0) {
-      message += `🏗️ Preparación Terreno: $${priceData.terreno.toLocaleString('es-CO')}\n`;
-      message += `   ⚠️ *Nota:* El precio de preparación del terreno está sujeto a visita técnica.\n`;
-    }
+    // Costos de preparación de terreno ya no se incluyen en la cotización
 
     message += `\n*⚠️ IMPORTANTE:* Este es un valor estimado aproximado. Los precios finales están sujetos a múltiples factores y variantes. Para una cotización precisa, te ofrecemos atención personalizada por WhatsApp, videollamada, o visita si se requiere.\n\n`;
     message += `📍 *¡Visítanos en nuestra oficina física!*\n`;
