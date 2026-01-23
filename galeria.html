@@ -284,6 +284,23 @@
         }
       }
       
+      /* Estilos responsivos para el contenedor del panorama 360 */
+      .panorama-container {
+        height: 600px;
+      }
+      
+      @media (max-width: 768px) {
+        .panorama-container {
+          height: 300px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .panorama-container {
+          height: 250px;
+        }
+      }
+      
       /* Efecto hover mejorado para badges */
       .hero-badge {
         transition: all 0.3s ease;
@@ -292,6 +309,43 @@
       .hero-badge:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 12px rgba(0, 119, 182, 0.3);
+      }
+      
+      /* Estilos para miniaturas de panoramas 360 */
+      .panorama-thumb {
+        position: relative;
+      }
+      
+      .panorama-thumb.active {
+        border-color: #0077b6 !important;
+        box-shadow: 0 8px 20px rgba(0, 119, 182, 0.3);
+      }
+      
+      .panorama-thumb:hover {
+        border-color: #0077b6;
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+      }
+      
+      .panorama-thumb.active::before {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: -4px;
+        right: -4px;
+        bottom: -4px;
+        border: 2px solid #0077b6;
+        border-radius: 0.5rem;
+        z-index: -1;
+        animation: pulse-border 2s ease-in-out infinite;
+      }
+      
+      @keyframes pulse-border {
+        0%, 100% {
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+        }
       }
     </style>
     <script type="text/javascript">
@@ -692,23 +746,101 @@
             </h2>
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">
               Explora el interior de nuestras casas prefabricadas con nuestro visor interactivo 360°. 
-              Arrastra con el mouse o desliza con el dedo para navegar.
+              Navega entre el primer piso, escalera y segundo piso. Arrastra con el mouse o desliza con el dedo para navegar.
             </p>
           </div>
           
+          <!-- Contenedor principal del visor -->
           <div 
-            class="mx-auto rounded-lg shadow-2xl overflow-hidden"
-            style="max-width: 1200px; height: 600px;"
+            class="mx-auto rounded-lg shadow-2xl overflow-hidden mb-8 panorama-container"
+            style="max-width: 1200px;"
             data-aos="fade-up"
             data-aos-delay="100"
           >
             <div id="panorama" style="width: 100%; height: 100%;"></div>
           </div>
 
+          <!-- Galería de miniaturas para seleccionar vistas 360 -->
+          <div class="max-w-1200px mx-auto mb-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-semibold text-dark mb-4 text-center">
+              Selecciona una vista:
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 justify-center">
+              <!-- Miniatura 1 - Primer Piso -->
+              <div 
+                class="panorama-thumb active cursor-pointer rounded-lg overflow-hidden shadow-lg border-4 border-primary transition-all duration-300 hover:scale-105"
+                data-panorama="/assets/images/360.jpg"
+                data-title="Primer Piso"
+              >
+                <div class="relative">
+                  <img 
+                    src="/assets/images/360.jpg" 
+                    alt="Primer Piso"
+                    class="w-full h-32 object-cover"
+                    onerror="this.src='https://via.placeholder.com/400x200?text=Primer+Piso'"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-2 text-white text-sm font-semibold text-center">
+                    Primer Piso
+                  </div>
+                  <div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1.5">
+                    <i class="fas fa-vr-cardboard text-xs"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Miniatura 2 - Segundo Piso -->
+              <div 
+                class="panorama-thumb cursor-pointer rounded-lg overflow-hidden shadow-lg border-4 border-transparent transition-all duration-300 hover:scale-105"
+                data-panorama="/assets/images/segundo360.jpeg"
+                data-title="Segundo Piso"
+              >
+                <div class="relative">
+                  <img 
+                    src="/assets/images/segundo360.jpeg" 
+                    alt="Segundo Piso"
+                    class="w-full h-32 object-cover"
+                    onerror="this.src='https://via.placeholder.com/400x200?text=Segundo+Piso'"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-2 text-white text-sm font-semibold text-center">
+                    Segundo Piso
+                  </div>
+                  <div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1.5">
+                    <i class="fas fa-vr-cardboard text-xs"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Miniatura 3 - Habitación con Mezanine -->
+              <div 
+                class="panorama-thumb cursor-pointer rounded-lg overflow-hidden shadow-lg border-4 border-transparent transition-all duration-300 hover:scale-105"
+                data-panorama="/assets/images/habitaciones360.jpeg"
+                data-title="Habitación con Mezanine"
+              >
+                <div class="relative">
+                  <img 
+                    src="/assets/images/habitaciones360.jpeg" 
+                    alt="Habitación con Mezanine"
+                    class="w-full h-32 object-cover"
+                    onerror="this.src='https://via.placeholder.com/400x200?text=Habitacion+Mezanine'"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div class="absolute bottom-0 left-0 right-0 p-2 text-white text-sm font-semibold text-center">
+                    Habitación con Mezanine
+                  </div>
+                  <div class="absolute top-2 right-2 bg-primary text-white rounded-full p-1.5">
+                    <i class="fas fa-vr-cardboard text-xs"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="text-center mt-6">
             <p class="text-sm text-gray-500">
               <i class="fas fa-info-circle mr-2"></i>
-              Usa el mouse para arrastrar o las flechas del teclado para navegar
+              Usa el mouse para arrastrar o las flechas del teclado para navegar. Haz clic en las miniaturas para cambiar de vista.
             </p>
           </div>
         </div>
@@ -1455,17 +1587,21 @@
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
     
     <script>
+      // Variables globales para el visor
+      let panoramaViewer = null;
+      let panoramaContainer = null;
+      
       // Inicializar el visor 360 cuando el DOM esté listo
       document.addEventListener('DOMContentLoaded', function() {
-        const panoramaContainer = document.getElementById('panorama');
+        panoramaContainer = document.getElementById('panorama');
         
         if (panoramaContainer && typeof pannellum !== 'undefined') {
           try {
-            // Crear el visor panorámico con Pannellum
             // Desactivar zoom en móviles
             const isMobile = window.innerWidth <= 768;
             
-            const viewer = pannellum.viewer(panoramaContainer, {
+            // Crear el visor panorámico con Pannellum
+            panoramaViewer = pannellum.viewer(panoramaContainer, {
               type: "equirectangular",
               panorama: "/assets/images/360.jpg",
               autoLoad: true,
@@ -1485,21 +1621,23 @@
             });
 
             // Manejo de errores
-            viewer.on('error', function(error) {
+            panoramaViewer.on('error', function(error) {
               console.error('Error al cargar la imagen 360:', error);
               panoramaContainer.innerHTML = `
                 <div class="flex items-center justify-center h-full bg-gray-200 rounded-lg">
                   <div class="text-center p-8">
                     <i class="fas fa-exclamation-triangle text-4xl text-gray-400 mb-4"></i>
                     <p class="text-gray-600 font-semibold">No se pudo cargar la imagen 360°</p>
-                    <p class="text-sm text-gray-500 mt-2">Por favor, verifica que la imagen existe en: /assets/images/360.jpg</p>
+                    <p class="text-sm text-gray-500 mt-2">Por favor, verifica que la imagen existe</p>
                   </div>
                 </div>
               `;
             });
 
-            viewer.on('load', function() {
+            panoramaViewer.on('load', function() {
               console.log('Visor 360° cargado correctamente');
+              // Configurar los event listeners después de que el visor esté cargado
+              setupPanoramaThumbs();
             });
           } catch (error) {
             console.error('Error al inicializar el visor 360:', error);
@@ -1512,6 +1650,8 @@
                 </div>
               </div>
             `;
+            // Intentar configurar de todas formas
+            setTimeout(setupPanoramaThumbs, 500);
           }
         } else if (!panoramaContainer) {
           console.error('No se encontró el contenedor del visor 360');
@@ -1527,6 +1667,81 @@
               </div>
             `;
           }
+        }
+
+        // Función para configurar los event listeners de las miniaturas
+        function setupPanoramaThumbs() {
+          const panoramaThumbs = document.querySelectorAll('.panorama-thumb');
+          const isMobile = window.innerWidth <= 768;
+          
+          if (panoramaThumbs.length === 0) {
+            console.warn('No se encontraron miniaturas de panorama, reintentando...');
+            setTimeout(setupPanoramaThumbs, 500);
+            return;
+          }
+          
+          console.log('Configurando', panoramaThumbs.length, 'miniaturas de panorama');
+          
+          panoramaThumbs.forEach(function(thumb) {
+            thumb.addEventListener('click', function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              
+              const panoramaUrl = this.getAttribute('data-panorama');
+              const panoramaTitle = this.getAttribute('data-title');
+              
+              console.log('Click en miniatura:', panoramaTitle, 'URL:', panoramaUrl);
+              
+              // Remover clase active de todas las miniaturas
+              panoramaThumbs.forEach(function(t) {
+                t.classList.remove('active');
+                t.style.borderColor = 'transparent';
+              });
+              
+              // Agregar clase active a la miniatura seleccionada
+              this.classList.add('active');
+              this.style.borderColor = '#0077b6';
+              
+              // Cambiar el panorama en el visor - recrear el visor con la nueva imagen
+              if (panoramaContainer && typeof pannellum !== 'undefined') {
+                try {
+                  // Destruir el visor anterior si existe
+                  if (panoramaViewer && typeof panoramaViewer.destroy === 'function') {
+                    panoramaViewer.destroy();
+                  }
+                  
+                  // Limpiar el contenedor
+                  panoramaContainer.innerHTML = '';
+                  
+                  // Crear nuevo visor con la imagen seleccionada
+                  panoramaViewer = pannellum.viewer(panoramaContainer, {
+                    type: "equirectangular",
+                    panorama: panoramaUrl,
+                    autoLoad: true,
+                    autoRotate: 0,
+                    showControls: true,
+                    showFullscreenCtrl: true,
+                    showZoomCtrl: !isMobile,
+                    keyboardZoom: !isMobile,
+                    mouseZoom: !isMobile,
+                    minHfov: 50,
+                    maxHfov: 90,
+                    hfov: 80,
+                    compass: true,
+                    northOffset: 0,
+                    crossOrigin: "anonymous",
+                    hotSpots: []
+                  });
+                  
+                  console.log('Visor recreado con panorama:', panoramaTitle);
+                } catch (error) {
+                  console.error('Error al cambiar el panorama:', error);
+                }
+              } else {
+                console.error('Contenedor o Pannellum no está disponible');
+              }
+            });
+          });
         }
       });
     </script>
