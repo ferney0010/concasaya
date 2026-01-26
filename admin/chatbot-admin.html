@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Chatbot CONCASAYA</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0077b6" />
+    <meta name="description" content="Panel de administración del chatbot de CONCASAYA" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="shortcut icon"
+      href="/assets/images/logo.ico"
+      type="image/x-icon"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { 
+          extend: { 
+            colors: {
+              primary: {
+                50: '#e6f2f8',
+                100: '#b3d9e8',
+                200: '#80c0d8',
+                300: '#4da7c8',
+                400: '#1a8eb8',
+                500: '#0077b6',
+                600: '#005f94',
+                700: '#004772',
+                800: '#002f50',
+                900: '#00172e',
+              }
+            }
+          } 
+        },
+      };
+    </script>
+    <style>
+      html, body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0077b6 0%, #005f94 50%, #004772 100%);
+        background-attachment: fixed;
+        position: relative;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(0, 119, 182, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 95, 148, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(0, 71, 114, 0.2) 0%, transparent 50%);
+        animation: backgroundShift 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .dark body {
+        background: linear-gradient(135deg, #00172e 0%, #002f50 50%, #004772 100%);
+      }
+      .dark body::before {
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(0, 23, 46, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 47, 80, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(0, 71, 114, 0.3) 0%, transparent 50%);
+      }
+      @keyframes backgroundShift {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+      }
+      textarea {
+        min-height: 45vh;
+        resize: vertical;
+      }
+      .loader {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #0077b6;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 1s linear infinite;
+        display: inline-block;
+        margin-right: 8px;
+      }
+      .dark .loader {
+        border-top: 4px solid #4da7c8;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .admin-container {
+        position: relative;
+        z-index: 1;
+        backdrop-filter: blur(20px);
+      }
+      .header-gradient {
+        background: linear-gradient(135deg, #0077b6 0%, #005f94 50%, #004772 100%);
+        box-shadow: 0 4px 20px rgba(0, 119, 182, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      .header-gradient::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: headerGlow 8s ease-in-out infinite;
+      }
+      @keyframes headerGlow {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        50% { transform: translate(20px, 20px) scale(1.1); }
+      }
+      .header-gradient > * {
+        position: relative;
+        z-index: 1;
+      }
+      .dark .header-gradient {
+        background: linear-gradient(135deg, #00172e 0%, #002f50 50%, #004772 100%);
+      }
+      .logo-admin {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+      }
+      .logo-admin:hover {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      }
+      @media (hover: none) {
+        .logo-admin:hover {
+          transform: none;
+        }
+      }
+      /* Responsive adjustments for mobile */
+      @media (max-width: 640px) {
+        body {
+          padding: 0.75rem;
+        }
+        .admin-container {
+          padding: 1rem !important;
+          border-radius: 0.5rem;
+        }
+        .header-gradient {
+          padding: 0.625rem !important;
+          gap: 0.75rem !important;
+        }
+        .header-gradient h1 {
+          font-size: 0.75rem;
+          line-height: 1.3;
+        }
+        .logo-admin {
+          height: 2.25rem !important;
+        }
+      }
+      @media (max-width: 480px) {
+        body {
+          padding: 0.5rem;
+        }
+        .admin-container {
+          padding: 0.75rem !important;
+        }
+        .header-gradient {
+          padding: 0.5rem !important;
+          gap: 0.5rem !important;
+        }
+        .header-gradient h1 {
+          font-size: 0.6875rem;
+          line-height: 1.25;
+        }
+        .logo-admin {
+          height: 2rem !important;
+        }
+        .header-gradient button {
+          padding: 0.375rem !important;
+          font-size: 0.875rem !important;
+        }
+      }
+      @media (min-width: 1024px) {
+        .header-gradient {
+          padding: 1rem 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class="min-h-screen p-4 transition-colors duration-300"
+  >
+    <div
+      class="admin-container w-full max-w-4xl mx-auto bg-white/95 dark:bg-gray-800/95 p-4 sm:p-6 md:p-8 rounded-lg shadow-2xl border border-white/20 dark:border-gray-700/50"
+    >
+      <header
+        class="header-gradient flex items-center justify-between gap-2 sm:gap-4 p-2.5 sm:p-3 md:p-4 mb-4 sm:mb-6 rounded-lg"
+      >
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0 flex-1">
+          <img
+            src="/assets/images/logoconcasaya.webp"
+            alt="Logo CONCASAYA"
+            class="logo-admin h-9 sm:h-10 md:h-12 w-auto object-contain flex-shrink-0"
+          />
+          <div class="min-w-0 flex-1">
+            <h1 class="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl font-bold text-white leading-tight truncate sm:whitespace-normal">
+              <span class="hidden sm:inline">Admin Chatbot CONCASAYA</span>
+              <span class="sm:hidden">Admin CONCASAYA</span>
+            </h1>
+            <p class="text-[10px] sm:text-xs text-white/80 mt-0.5 hidden sm:block">
+              Panel de Administración
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
+          <button
+            id="admin-theme-toggle"
+            title="Cambiar tema"
+            class="p-1.5 sm:p-2 md:p-2.5 rounded-lg bg-white/10 hover:bg-white/20 active:bg-white/30 text-white text-sm sm:text-base md:text-lg transition-all duration-200 hover:scale-105 active:scale-95 backdrop-blur-sm hover:rotate-180"
+          >
+            <i
+              id="admin-theme-icon-light"
+              class="fa-solid fa-sun hidden dark:inline"
+            ></i>
+            <i
+              id="admin-theme-icon-dark"
+              class="fa-solid fa-moon inline dark:hidden"
+            ></i>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <div id="edit-section">
+          <div class="mb-4">
+            <label
+              for="knowledge-textarea"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+            >
+              Contenido Base de Conocimiento (CONCASAYA):
+            </label>
+            <textarea
+              id="knowledge-textarea"
+              rows="15"
+              class="block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:text-gray-100 sm:text-sm font-mono text-xs leading-relaxed"
+              disabled
+              placeholder="Cargando contenido..."
+            ></textarea>
+            <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+              Este panel permite editar el contenido base de conocimiento del asistente virtual.
+              La información se carga desde <code class="text-xs">knowledge_base.json</code> y se guarda en localStorage como backup.
+              Para guardar permanentemente, actualiza el archivo <code class="text-xs">knowledge_base.json</code> en el servidor.
+            </p>
+          </div>
+
+          <div class="flex justify-end items-center gap-4 mt-5">
+            <p
+              id="save-status"
+              class="text-sm text-primary-600 dark:text-primary-400 mr-auto h-5 font-medium"
+            ></p>
+            <button
+              id="save-button"
+              class="flex justify-center items-center py-2 px-5 border border-transparent rounded-md shadow-lg text-sm font-medium text-white bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 transition-all duration-300 transform hover:scale-105 active:scale-95"
+              disabled
+            >
+              <span id="save-button-text">Guardar Cambios</span>
+              <span id="save-spinner" class="loader hidden ml-2"></span>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="/admin/chatbot-admin.js"></script>
+  </body>
+</html>
