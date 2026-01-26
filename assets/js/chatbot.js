@@ -331,7 +331,7 @@ function searchInKnowledgeBase(query) {
   // Si hay suficiente coincidencia (al menos 2 palabras clave o score > 3)
   if (score > 0 && (matchedKeywords.length >= 2 || score > 3)) {
     // Buscar párrafos relevantes
-    const paragraphs = loadedKnowledge.split(/\n\n');
+    const paragraphs = loadedKnowledge.split(/\n\n/);
     const relevantParagraphs = [];
     const seenParagraphs = new Set();
     
