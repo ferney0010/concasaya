@@ -86,28 +86,23 @@ let initialContext = "";
 let conversationHistory = [];
 let conversationData = {}; // Para almacenar datos extraídos de la conversación (área, sistema, etc.)
 
-// Tabla de precios por m² (igual que el cotizador)
+// Tabla de precios por m² (precios optimistas y accesibles para cotizaciones aproximadas)
+// NOTA: Estos son precios aproximados y optimistas. Para cotización precisa, contactar asesor o usar cotizador completo.
 const preciosPorM2 = {
   'plaqueta': {
     '1-piso': {
-      'obra-negra': 600000,
-      'gris': 1150000,
-      'blanca': 1850000
+      'obra-negra': 550000  // Reducido de 600000 (solo obra negra disponible para plaqueta)
     },
     '2-pisos': {
-      'obra-negra': 700000,
-      'gris': 1400000,
-      'blanca': 2350000
+      'obra-negra': 650000  // Reducido de 700000 (solo obra negra disponible para plaqueta)
     }
   },
   'eps': {
     '1-piso': {
-      'gris': 1450000,
-      'blanca': 1950000
+      'gris': 1300000  // Reducido de 1450000 (solo obra gris disponible para EPS)
     },
     '2-pisos': {
-      'gris': 2950000,
-      'blanca': 3450000
+      'gris': 2700000  // Reducido de 2950000 (solo obra gris disponible para EPS)
     }
   }
 };
@@ -148,26 +143,42 @@ const multiplicadoresUbicacion = {
 };
 
 // Función para calcular precio aproximado
+// IMPORTANTE: Mantener los mismos parámetros que el cotizador:
+// - EPS solo cotiza en obra gris (no obra negra ni blanca)
+// - Plaqueta solo cotiza en obra negra (no gris ni blanca)
 function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, tipoVivienda) {
   // Valores por defecto
   area = area || 60;
   sistema = sistema || 'eps';
-  acabados = acabados || (sistema === 'eps' ? 'gris' : 'obra-negra');
   pisos = pisos || '1-piso';
   ubicacion = ubicacion || 'bogota';
   tipoVivienda = tipoVivienda || 'casa-campestre';
 
-  // Si es EPS y se seleccionó obra-negra, usar gris
-  let acabadosParaCalcular = acabados;
-  if (sistema === 'eps' && acabados === 'obra-negra') {
+  // Ajustar acabados según el sistema (igual que el cotizador)
+  let acabadosParaCalcular;
+  if (sistema === 'eps') {
+    // EPS solo cotiza en obra gris
     acabadosParaCalcular = 'gris';
+  } else if (sistema === 'plaqueta') {
+    // Plaqueta solo cotiza en obra negra
+    acabadosParaCalcular = 'obra-negra';
+  } else {
+    // Default
+    acabadosParaCalcular = 'gris';
+  }
+
+  // Si el usuario especificó acabados que no son compatibles, usar los del sistema
+  if (sistema === 'eps' && acabados && acabados !== 'gris') {
+    acabadosParaCalcular = 'gris'; // Forzar gris para EPS
+  } else if (sistema === 'plaqueta' && acabados && acabados !== 'obra-negra') {
+    acabadosParaCalcular = 'obra-negra'; // Forzar obra negra para Plaqueta
   }
 
   const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['gris'];
   
   let precioBase = precioM2 * area;
   precioBase *= multiplicadoresTipo[tipoVivienda] || 1.0;
-  precioBase *= multiplicadoresUbicacion[ubicacion] || 1.2;
+  precioBase *= multiplicadoresUbicacion[ubicacion] || 1.0; // Reducir multiplicador de ubicación para precios más optimistas
 
   return {
     total: precioBase,
@@ -748,8 +759,10 @@ Instrucciones CRÍTICAS para tus respuestas:
 - Evita respuestas muy largas o técnicas. Prefiere explicaciones simples y fáciles de entender.
 - Si el usuario pregunta sobre precios o cotizaciones:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
-  * Siempre menciona que es una estimación aproximada y que para una cotización precisa puede usar el cotizador completo en /cotizador-encuesta.html o contactar directamente.
-  * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema, acabados) antes de calcular.
+  * IMPORTANTE: Los precios que proporciones deben ser ACCESIBLES a primera vista. NO menciones rangos de precios amplios que puedan confundir o espantar a los usuarios. En su lugar, da ejemplos específicos con los precios actuales (EPS obra gris 1 piso: $1.300.000/m², Plaqueta obra negra 1 piso: $550.000/m²).
+  * IMPORTANTE: Siempre menciona que es una estimación aproximada y que para una cotización precisa debe contactar al asesor por WhatsApp (314 289 1018) o usar el cotizador completo en /cotizador-encuesta.html.
+  * IMPORTANTE: Recuerda que EPS solo cotiza en obra gris (no obra negra ni blanca) y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
+  * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema) antes de calcular.
 - Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html pero NO redirijas automáticamente. Solo sugiere y deja que el usuario haga clic cuando quiera.
 - Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html pero NO redirijas automáticamente.
 - Si el usuario pregunta sobre información de la empresa, sugiere visitar /nosotros.html pero NO redirijas automáticamente.
@@ -1228,10 +1241,20 @@ async function handleUserInput() {
       priceMessage += `💰 **Precio estimado total**: $${priceData.total.toLocaleString('es-CO')}\n`;
       priceMessage += `📐 **Área**: ${priceData.area} m²\n`;
       priceMessage += `🏗️ **Sistema**: ${priceData.sistema === 'eps' ? 'Paneles EPS' : 'Plaqueta de Concreto'}\n`;
-      priceMessage += `✨ **Acabados**: ${priceData.acabados === 'obra-negra' ? 'Obra Negra' : priceData.acabados === 'gris' ? 'Obra Gris' : 'Obra Blanca'}\n`;
+      
+      // Mostrar acabados según el sistema (igual que el cotizador)
+      if (priceData.sistema === 'eps') {
+        priceMessage += `✨ **Acabados**: Obra Gris (único nivel disponible para Paneles EPS)\n`;
+      } else {
+        priceMessage += `✨ **Acabados**: Obra Negra (único nivel disponible para Plaqueta de Concreto)\n`;
+      }
+      
       priceMessage += `📊 **Precio por m²**: $${priceData.precioM2.toLocaleString('es-CO')}\n\n`;
-      priceMessage += `⚠️ **Importante**: Esta es solo una estimación aproximada. Los precios finales pueden variar según condiciones específicas del terreno, permisos, y otros factores.\n\n`;
-      priceMessage += `Para una cotización más precisa y detallada, te recomiendo usar nuestro **cotizador completo** o contactarnos directamente.`;
+      priceMessage += `⚠️ **Importante**: Esta es una estimación aproximada. Los precios finales pueden variar según condiciones específicas del terreno, permisos, transporte y otros factores.\n\n`;
+      priceMessage += `Para obtener una **cotización precisa y detallada**, te recomiendo:\n`;
+      priceMessage += `• Contactar a nuestro asesor por **WhatsApp al 314 289 1018**\n`;
+      priceMessage += `• O usar nuestro **cotizador completo** en /cotizador-encuesta.html\n\n`;
+      priceMessage += `Nuestro equipo estará encantado de ayudarte con todos los detalles.`;
       
       const buttons = getActionButtons(message, intent, priceMessage);
       addMessage(priceMessage, "bot", false, buttons);
