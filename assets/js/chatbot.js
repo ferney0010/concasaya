@@ -300,15 +300,254 @@ function navigateToPage(page) {
   }
 }
 
+// Función para buscar en la base de conocimiento local
+function searchInKnowledgeBase(query) {
+  if (!loadedKnowledge) return null;
+  
+  const lowerQuery = query.toLowerCase();
+  
+  // Palabras clave importantes (filtrar palabras muy comunes)
+  const stopWords = ['que', 'cual', 'como', 'donde', 'cuando', 'porque', 'para', 'con', 'de', 'la', 'el', 'los', 'las', 'un', 'una', 'es', 'son', 'está', 'están'];
+  const keywords = lowerQuery.split(/\s+/)
+    .filter(word => word.length > 2 && !stopWords.includes(word))
+    .slice(0, 5); // Limitar a 5 palabras clave más importantes
+  
+  if (keywords.length === 0) return null;
+  
+  // Buscar coincidencias relevantes
+  let score = 0;
+  let matchedKeywords = [];
+  
+  // Buscar por palabras clave y calcular score
+  keywords.forEach(keyword => {
+    const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+    const matches_found = loadedKnowledge.match(regex);
+    if (matches_found) {
+      score += matches_found.length;
+      matchedKeywords.push(keyword);
+    }
+  });
+  
+  // Si hay suficiente coincidencia (al menos 2 palabras clave o score > 3)
+  if (score > 0 && (matchedKeywords.length >= 2 || score > 3)) {
+    // Buscar párrafos relevantes
+    const paragraphs = loadedKnowledge.split(/\n\n');
+    const relevantParagraphs = [];
+    const seenParagraphs = new Set();
+    
+    // Priorizar párrafos que contengan múltiples palabras clave
+    keywords.forEach(keyword => {
+      paragraphs.forEach((para, index) => {
+        const paraLower = para.toLowerCase();
+        if (paraLower.includes(keyword) && para.length > 50 && !seenParagraphs.has(index)) {
+          // Calcular relevancia del párrafo
+          let paraScore = 0;
+          keywords.forEach(kw => {
+            const kwMatches = paraLower.match(new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi'));
+            if (kwMatches) paraScore += kwMatches.length;
+          });
+          
+          if (paraScore > 0) {
+            relevantParagraphs.push({
+              text: para.trim(),
+              score: paraScore,
+              index: index
+            });
+            seenParagraphs.add(index);
+          }
+        }
+      });
+    });
+    
+    // Ordenar por relevancia y tomar los mejores
+    relevantParagraphs.sort((a, b) => b.score - a.score);
+    const topParagraphs = relevantParagraphs.slice(0, 3);
+    
+    if (topParagraphs.length > 0) {
+      // Combinar párrafos relevantes
+      const combined = topParagraphs.map(p => p.text).join('\n\n');
+      
+      // Asegurar que la respuesta tenga suficiente contenido
+      if (combined.length > 100) {
+        return {
+          found: true,
+          answer: combined.substring(0, 800), // Limitar longitud pero permitir más contenido
+          score: score
+        };
+      }
+    }
+  }
+  
+  return null;
+}
+
+// Función para analizar respuesta del bot y detectar menciones de contacto
+function extractContactButtonsFromResponse(botResponse) {
+  const buttons = [];
+  const lowerResponse = botResponse.toLowerCase();
+  
+  // Detectar menciones de WhatsApp (más patrones)
+  const whatsappPatterns = [
+    /\bwhatsapp\b/,
+    /\bwhats\b/,
+    /\b573142891018\b/,
+    /\b314\s*289\s*1018\b/,
+    /\bescr[ií]benos por whatsapp\b/,
+    /\bcont[aá]ctanos por whatsapp\b/,
+    /\bcomun[ií]cate por whatsapp\b/,
+    /\bchatea por whatsapp\b/,
+    /\bmensaje por whatsapp\b/
+  ];
+  
+  const hasWhatsApp = whatsappPatterns.some(pattern => pattern.test(lowerResponse));
+  
+  if (hasWhatsApp) {
+    buttons.push({
+      text: 'Abrir WhatsApp',
+      icon: 'fa-whatsapp',
+      action: 'whatsapp',
+      class: 'bg-green-500 hover:bg-green-600',
+      external: true
+    });
+  }
+  
+  // Detectar menciones de dirección física/oficina
+  const officePatterns = [
+    /\bdirecci[oó]n\b/,
+    /\boficina\b/,
+    /\bsitio f[ií]sico\b/,
+    /\blocal\b/,
+    /\bcentro comercial\b/,
+    /\bcl\.\s*147\b/,
+    /\bcalle\s*147\b/,
+    /\bfiesta\b/,
+    /\bvis[ií]tanos\b/,
+    /\bven a nuestra\b/,
+    /\bven a visitarnos\b/,
+    /\bvisita nuestra oficina\b/,
+    /\boficina f[ií]sica\b/
+  ];
+  
+  const hasOffice = officePatterns.some(pattern => pattern.test(lowerResponse));
+  
+  if (hasOffice) {
+    buttons.push({
+      text: 'Ver Ubicación en Google Maps',
+      icon: 'fa-map-marker-alt',
+      action: 'maps',
+      class: 'bg-red-600 hover:bg-red-700',
+      external: true
+    });
+  }
+  
+  // Detectar teléfonos (si no hay botón de WhatsApp ya)
+  if (!hasWhatsApp && (lowerResponse.match(/\b(314|316)\s*\d{3}\s*\d{4}\b/) || lowerResponse.match(/\btel[eé]fono\b/))) {
+    buttons.push({
+      text: 'Llamar',
+      icon: 'fa-phone',
+      action: 'phone',
+      class: 'bg-blue-600 hover:bg-blue-700',
+      external: true
+    });
+  }
+  
+  return buttons;
+}
+
+// Función para determinar qué botones mostrar según el contexto
+function getActionButtons(message, intent, botResponse = '') {
+  const buttons = [];
+  const lowerMessage = message.toLowerCase();
+  const lowerResponse = botResponse.toLowerCase();
+  
+  // Combinar mensaje del usuario y respuesta del bot para análisis completo
+  const combinedText = lowerMessage + ' ' + lowerResponse;
+  
+  // Botón de cotizador si menciona precio, cotización, etc.
+  if (intent === 'cotizar' || combinedText.match(/\b(cotizar|precio|cu[aá]nto|presupuesto)\b/)) {
+    buttons.push({
+      text: 'Ver Cotizador Completo',
+      icon: 'fa-calculator',
+      action: 'cotizador',
+      class: 'bg-primary-600 hover:bg-primary-700'
+    });
+  }
+  
+  // Botón de modelos si menciona modelos, catálogo, etc.
+  if (intent === 'modelos' || combinedText.match(/\b(modelos|cat[aá]logo|dise[ñn]os|tipos)\b/)) {
+    buttons.push({
+      text: 'Ver Modelos',
+      icon: 'fa-building',
+      action: 'modelos',
+      class: 'bg-primary-600 hover:bg-primary-700'
+    });
+  }
+  
+  // Botones de municipios específicos
+  const municipios = {
+    'chia': { text: 'Ver Chía', page: 'chia' },
+    'cajica': { text: 'Ver Cajicá', page: 'cajica' },
+    'mosquera': { text: 'Ver Mosquera', page: 'mosquera' },
+    'sopo': { text: 'Ver Sopó', page: 'sopo' },
+    'zipaquira': { text: 'Ver Zipaquirá', page: 'zipaquira' },
+    'funza': { text: 'Ver Funza', page: 'funza' },
+    'la vega': { text: 'Ver La Vega', page: 'la-vega' },
+    'madrid': { text: 'Ver Madrid', page: 'madrid' },
+    'tocancipa': { text: 'Ver Tocancipá', page: 'tocancipa' },
+    'boyaca': { text: 'Ver Boyacá', page: 'boyaca' },
+    'villa de leyva': { text: 'Ver Villa de Leyva', page: 'villadeleyva' },
+    'santa marta': { text: 'Ver Santa Marta', page: 'santa-marta' }
+  };
+  
+  for (const [municipio, info] of Object.entries(municipios)) {
+    if (combinedText.includes(municipio)) {
+      buttons.push({
+        text: info.text,
+        icon: 'fa-map-marker-alt',
+        action: info.page,
+        class: 'bg-green-600 hover:bg-green-700'
+      });
+      break; // Solo un botón de municipio a la vez
+    }
+  }
+  
+  // Botón de contacto si menciona contacto, teléfono, etc.
+  if (intent === 'contacto' || combinedText.match(/\b(contacto|tel[eé]fono|llamar|escribir)\b/)) {
+    buttons.push({
+      text: 'Ir a Contacto',
+      icon: 'fa-phone',
+      action: 'contacto',
+      class: 'bg-blue-600 hover:bg-blue-700'
+    });
+  }
+  
+  // Extraer botones de contacto de la respuesta del bot
+  const contactButtons = extractContactButtonsFromResponse(botResponse);
+  
+  // Agregar botones de contacto si no están duplicados
+  contactButtons.forEach(contactBtn => {
+    const isDuplicate = buttons.some(btn => btn.action === contactBtn.action);
+    if (!isDuplicate) {
+      buttons.push(contactBtn);
+    }
+  });
+  
+  return buttons;
+}
+
 function buildInitialContext() {
   initialContext = `
 Eres un asistente virtual amigable y servicial para clientes potenciales y clientes de "CONCASAYA", empresa especializada en casas prefabricadas.
+
+IMPORTANTE: Esta API solo debe ser utilizada cuando el usuario solicite información muy específica que NO esté disponible en la base de conocimiento local, o cuando necesites realizar búsquedas en internet para información actualizada o muy técnica que requiera fuentes externas.
+
 Tu propósito principal es:
 1. Responder preguntas frecuentes (PQR) sobre casas prefabricadas, sistemas constructivos, precios, modelos y servicios de CONCASAYA.
 2. Proporcionar información sobre sistemas constructivos (Paneles EPS y Plaqueta de concreto), tipos de vivienda, niveles de acabados y ubicaciones de servicio.
 3. Ofrecer cotizaciones aproximadas cuando el usuario lo solicite, usando la información de precios proporcionada.
 4. Dirigir a los usuarios a páginas específicas del sitio web cuando sea relevante (modelos, ventajas, contacto, cotizador completo, páginas de municipios).
 5. Indicar los canales adecuados para contactar a CONCASAYA (teléfono, WhatsApp, dirección física).
+6. Usar tu capacidad de búsqueda en internet SOLO cuando la pregunta requiera información muy específica, actualizada o técnica que no esté en la base de conocimiento.
 
 Información de contacto de CONCASAYA:
 - Teléfono Principal: 314 289 1018
@@ -321,7 +560,9 @@ Utiliza la siguiente información específica sobre CONCASAYA para formular tus 
 ${loadedKnowledge}
 
 Instrucciones Adicionales para Respuestas:
-- Basa tus respuestas estrictamente en la información proporcionada en el compendio anterior.
+- Basa tus respuestas PRIMERO en la información proporcionada en el compendio anterior.
+- Si la información está disponible en el compendio, úsala directamente sin buscar en internet.
+- Solo usa búsqueda en internet para información muy específica, actualizada o técnica que claramente no esté en el compendio.
 - IMPORTANTE: Tus respuestas deben ser BREVES y CONCISAS (máximo 3-4 oraciones).
 - IMPORTANTE: SIEMPRE termina tu respuesta con una pregunta relevante para mantener la conversación activa. Ejemplos: "¿Hay algo más en lo que pueda ayudarte?", "¿Necesitas más información sobre este tema?", "¿Te gustaría ver nuestros modelos?", "¿Quieres una cotización aproximada?"
 - Si el usuario pregunta sobre precios o cotizaciones:
@@ -414,7 +655,7 @@ function markdownToHtml(text) {
   return text;
 }
 
-function addMessage(message, sender, animateTyping = false) {
+function addMessage(message, sender, animateTyping = false, actionButtons = []) {
   const messageElement = document.createElement("div");
   messageElement.classList.add(
     "flex", "mb-4", "max-w-[85%]", "md:max-w-lg", "mx-2", "text-sm", "w-full"
@@ -452,9 +693,43 @@ function addMessage(message, sender, animateTyping = false) {
 
     if (animateTyping) {
       bubble.innerHTML = '<span class="typing-content"></span>';
-      typeMessage(message, bubble.querySelector('.typing-content'));
+      typeMessage(message, bubble.querySelector('.typing-content'), actionButtons);
     } else {
       bubble.innerHTML = markdownToHtml(message);
+      
+      // Agregar botones de acción si existen
+      if (actionButtons && actionButtons.length > 0) {
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.className = "mt-3 flex flex-wrap gap-2";
+        
+        actionButtons.forEach(btn => {
+          const button = document.createElement("button");
+          button.className = `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-xs font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 ${btn.class || 'bg-primary-600 hover:bg-primary-700'}`;
+          button.innerHTML = `<i class="fas ${btn.icon}"></i><span>${btn.text}</span>`;
+          
+          button.onclick = (e) => {
+            e.stopPropagation();
+            if (btn.action === 'whatsapp') {
+              window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
+            } else if (btn.action === 'maps') {
+              // Abrir Google Maps con la dirección de la oficina
+              const address = encodeURIComponent('Cl. 147 #101-56 Local 64, Bogotá, Colombia');
+              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+            } else if (btn.action === 'phone') {
+              // Abrir teléfono (tel: link)
+              window.location.href = 'tel:+573142891018';
+            } else if (btn.external) {
+              // Para otras acciones externas
+            } else {
+              navigateToPage(btn.action);
+            }
+          };
+          
+          buttonsContainer.appendChild(button);
+        });
+        
+        bubble.appendChild(buttonsContainer);
+      }
     }
 
     const copyBtn = document.createElement("button");
@@ -489,7 +764,7 @@ function addMessage(message, sender, animateTyping = false) {
   return messageElement;
 }
 
-function typeMessage(text, element) {
+function typeMessage(text, element, actionButtons = []) {
   const formattedText = markdownToHtml(text);
   const words = text.split(/(\s+)/);
   let currentText = '';
@@ -506,6 +781,41 @@ function typeMessage(text, element) {
     } else {
       clearInterval(typeInterval);
       element.innerHTML = formattedText;
+      
+      // Agregar botones después de terminar de escribir
+      if (actionButtons && actionButtons.length > 0) {
+        const buttonsContainer = document.createElement("div");
+        buttonsContainer.className = "mt-3 flex flex-wrap gap-2";
+        
+        actionButtons.forEach(btn => {
+          const button = document.createElement("button");
+          button.className = `inline-flex items-center gap-2 px-4 py-2 rounded-lg text-white text-xs font-semibold transition-all duration-200 transform hover:scale-105 active:scale-95 ${btn.class || 'bg-primary-600 hover:bg-primary-700'}`;
+          button.innerHTML = `<i class="fas ${btn.icon}"></i><span>${btn.text}</span>`;
+          
+          button.onclick = (e) => {
+            e.stopPropagation();
+            if (btn.action === 'whatsapp') {
+              window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
+            } else if (btn.action === 'maps') {
+              // Abrir Google Maps con la dirección de la oficina
+              const address = encodeURIComponent('Cl. 147 #101-56 Local 64, Bogotá, Colombia');
+              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+            } else if (btn.action === 'phone') {
+              // Abrir teléfono (tel: link)
+              window.location.href = 'tel:+573142891018';
+            } else if (btn.external) {
+              // Para otras acciones externas
+            } else {
+              navigateToPage(btn.action);
+            }
+          };
+          
+          buttonsContainer.appendChild(button);
+        });
+        
+        element.parentElement.appendChild(buttonsContainer);
+      }
+      
       smoothScrollToBottom();
     }
   }, CHAR_TYPING_SPEED * 1.5);
@@ -580,7 +890,7 @@ function removeIndicator(indicator) {
   }
 }
 
-async function getApiResponse() {
+async function getApiResponse(intent = null, originalMessage = '') {
   let thinkingIndicator = showThinkingIndicator();
   let writingIndicator = null;
   suggestionsContainer.innerHTML = "";
@@ -631,16 +941,20 @@ async function getApiResponse() {
     if (blockReason && blockReason !== "STOP") {
       console.warn("Respuesta bloqueada:", data);
       botResponse = `Mi respuesta fue bloqueada (${blockReason}). Por favor, intenta reformular tu pregunta o contacta a ${CONTACT_INFO}.`;
-      addMessage(botResponse, "bot", false);
+      const buttons = getActionButtons(originalMessage, intent, botResponse);
+      addMessage(botResponse, "bot", false, buttons);
       displaySuggestions();
       sendButton.disabled = !userInput.value.trim() || !loadedKnowledge || !knowledgeLoaded;
     } else if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
       botResponse = data.candidates[0].content.parts[0].text.trim();
       writingIndicator = showWritingIndicator();
+      
+      // Obtener botones de acción según el contexto (incluyendo análisis de la respuesta)
+      const buttons = getActionButtons(originalMessage, intent, botResponse);
 
       setTimeout(() => {
         removeIndicator(writingIndicator);
-        addMessage(botResponse, "bot", true);
+        addMessage(botResponse, "bot", true, buttons);
         conversationHistory.push({
           role: "model",
           parts: [{ text: botResponse }],
@@ -652,7 +966,8 @@ async function getApiResponse() {
       console.warn("Respuesta inesperada desde la API:", data);
       botResponse =
         "No he podido generar una respuesta válida en este momento. Inténtalo de nuevo o contacta a CONCASAYA directamente.";
-      addMessage(botResponse, "bot", false);
+      const buttons = getActionButtons(originalMessage, intent, botResponse);
+      addMessage(botResponse, "bot", false, buttons);
       displaySuggestions();
       sendButton.disabled = !userInput.value.trim() || !loadedKnowledge || !knowledgeLoaded;
     }
@@ -670,7 +985,8 @@ async function getApiResponse() {
     
     errorMessage += `Por favor, intenta de nuevo más tarde o contacta directamente a ${CONTACT_INFO}.`;
     
-    addMessage(errorMessage, "bot", false);
+    const buttons = getActionButtons(originalMessage, intent, errorMessage);
+    addMessage(errorMessage, "bot", false, buttons);
     if (conversationHistory.length > 2) conversationHistory.pop();
     displaySuggestions();
     sendButton.disabled = !userInput.value.trim() || !loadedKnowledge || !knowledgeLoaded;
@@ -686,7 +1002,7 @@ async function getApiResponse() {
   }
 }
 
-function handleUserInput() {
+async function handleUserInput() {
   const message = userInput.value.trim();
   if (!message) return;
   
@@ -705,7 +1021,9 @@ function handleUserInput() {
     // Manejar intenciones específicas antes de enviar a la API
     if (intent === 'cotizador_completo') {
       addMessage(message, "user");
-      addMessage("Te voy a dirigir a nuestro cotizador completo donde podrás obtener una cotización detallada paso a paso. ¡Es muy fácil de usar!", "bot", false);
+      const botMessage = "Te voy a dirigir a nuestro cotizador completo donde podrás obtener una cotización detallada paso a paso. ¡Es muy fácil de usar!";
+      const buttons = getActionButtons(message, intent, botMessage);
+      addMessage(botMessage, "bot", false, buttons);
       setTimeout(() => {
         navigateToPage('cotizador');
       }, 1500);
@@ -733,9 +1051,10 @@ function handleUserInput() {
       priceMessage += `✨ **Acabados**: ${priceData.acabados === 'obra-negra' ? 'Obra Negra' : priceData.acabados === 'gris' ? 'Obra Gris' : 'Obra Blanca'}\n`;
       priceMessage += `📊 **Precio por m²**: $${priceData.precioM2.toLocaleString('es-CO')}\n\n`;
       priceMessage += `⚠️ **Importante**: Esta es solo una estimación aproximada. Los precios finales pueden variar según condiciones específicas del terreno, permisos, y otros factores.\n\n`;
-      priceMessage += `Para una cotización más precisa y detallada, te recomiendo usar nuestro **cotizador completo** en /cotizador-encuesta.html o contactarnos directamente. ¿Te gustaría que te dirija al cotizador completo?`;
+      priceMessage += `Para una cotización más precisa y detallada, te recomiendo usar nuestro **cotizador completo** o contactarnos directamente.`;
       
-      addMessage(priceMessage, "bot", false);
+      const buttons = getActionButtons(message, intent, priceMessage);
+      addMessage(priceMessage, "bot", false, buttons);
       conversationHistory.push({ role: "user", parts: [{ text: message }] });
       conversationHistory.push({ role: "model", parts: [{ text: priceMessage }] });
       userInput.value = "";
@@ -746,7 +1065,9 @@ function handleUserInput() {
     // Manejar navegación a páginas
     if (intent === 'modelos') {
       addMessage(message, "user");
-      addMessage("Te voy a dirigir a nuestra página de modelos donde podrás ver todos nuestros diseños disponibles. ¡Espero que encuentres el modelo perfecto para ti!", "bot", false);
+      const botMessage = "Te voy a dirigir a nuestra página de modelos donde podrás ver todos nuestros diseños disponibles. ¡Espero que encuentres el modelo perfecto para ti!";
+      const buttons = getActionButtons(message, intent, botMessage);
+      addMessage(botMessage, "bot", false, buttons);
       setTimeout(() => {
         navigateToPage('modelos');
       }, 1500);
@@ -754,7 +1075,36 @@ function handleUserInput() {
       return;
     }
     
-    // Enviar mensaje normal a la API
+    // PRIMERO: Buscar en la base de conocimiento local
+    const localSearchResult = searchInKnowledgeBase(message);
+    
+    // Si encontramos información relevante en la base local, usarla
+    if (localSearchResult && localSearchResult.found && localSearchResult.score > 2) {
+      addMessage(message, "user");
+      conversationHistory.push({ role: "user", parts: [{ text: message }] });
+      
+      // Construir respuesta basada en la información local
+      let botResponse = localSearchResult.answer;
+      
+      // Agregar contexto adicional si es necesario
+      if (botResponse.length < 200) {
+        // Si la respuesta es muy corta, complementar con información adicional
+        botResponse += "\n\nSi necesitas más información específica o tienes preguntas adicionales, no dudes en preguntarme.";
+      }
+      
+      // Obtener botones de acción según el contexto (incluyendo análisis de la respuesta)
+      const buttons = getActionButtons(message, intent, botResponse);
+      
+      // Agregar mensaje con botones
+      addMessage(botResponse, "bot", true, buttons);
+      conversationHistory.push({ role: "model", parts: [{ text: botResponse }] });
+      userInput.value = "";
+      displaySuggestions();
+      return;
+    }
+    
+    // Si no encontramos suficiente información local, usar la API de IA
+    // Solo para información muy específica o que requiera búsqueda en internet
     addMessage(message, "user");
     conversationHistory.push({ role: "user", parts: [{ text: message }] });
     userInput.value = "";
@@ -766,7 +1116,7 @@ function handleUserInput() {
     }
     sendButton.disabled = true;
     if (suggestionsContainer) suggestionsContainer.innerHTML = "";
-    getApiResponse();
+    getApiResponse(intent, message);
   } else if (!loadedKnowledge || !knowledgeLoaded) {
     console.warn("La información base aún no está lista.");
     addMessage(
