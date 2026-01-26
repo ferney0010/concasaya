@@ -595,11 +595,27 @@ async function getApiResponse() {
     removeIndicator(thinkingIndicator);
 
     if (!response.ok) {
-      const errorData = await response.json();
+      let errorData;
+      try {
+        errorData = await response.json();
+      } catch (e) {
+        errorData = { error: `Error ${response.status}: ${response.statusText}` };
+      }
       console.error("Error desde la API:", errorData);
-      const errorMessage =
-        errorData.error ||
-        `Error ${response.status}: No se pudo obtener respuesta del servidor. Intenta de nuevo o contacta a CONCASAYA directamente.`;
+      
+      let errorMessage = errorData.error || `Error ${response.status}: No se pudo obtener respuesta del servidor.`;
+      
+      // Mensajes más específicos según el tipo de error
+      if (response.status === 500) {
+        if (errorMessage.includes('PERPLEXITY_API_KEY')) {
+          errorMessage = "⚠️ El chatbot necesita configuración del servidor. Si estás probando localmente, asegúrate de ejecutar 'npm install' y 'npm start', y crear un archivo .env con PERPLEXITY_API_KEY. Para producción, configura la variable de entorno en Vercel.";
+        } else {
+          errorMessage = "⚠️ Error del servidor. Si estás probando localmente, asegúrate de tener el servidor ejecutándose (npm start). Si el problema persiste, contacta a CONCASAYA directamente.";
+        }
+      } else if (response.status === 404) {
+        errorMessage = "⚠️ La API no está disponible. Si estás probando localmente, ejecuta 'npm start' para iniciar el servidor de desarrollo.";
+      }
+      
       addMessage(errorMessage, "bot", false);
       if (conversationHistory.length > 2) conversationHistory.pop();
       displaySuggestions();
@@ -644,11 +660,17 @@ async function getApiResponse() {
     console.error("Error al llamar a la API:", error);
     removeIndicator(thinkingIndicator);
     removeIndicator(writingIndicator);
-    addMessage(
-      `Hubo un problema de comunicación. Por favor, intenta de nuevo más tarde o contacta directamente a ${CONTACT_INFO}.`,
-      "bot",
-      false
-    );
+    
+    let errorMessage = `Hubo un problema de comunicación. `;
+    
+    // Mensaje más específico según el tipo de error
+    if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+      errorMessage += "No se pudo conectar con el servidor. Si estás probando localmente, asegúrate de ejecutar 'npm start' para iniciar el servidor de desarrollo. ";
+    }
+    
+    errorMessage += `Por favor, intenta de nuevo más tarde o contacta directamente a ${CONTACT_INFO}.`;
+    
+    addMessage(errorMessage, "bot", false);
     if (conversationHistory.length > 2) conversationHistory.pop();
     displaySuggestions();
     sendButton.disabled = !userInput.value.trim() || !loadedKnowledge || !knowledgeLoaded;

@@ -87,6 +87,8 @@ module.exports = async (req, res) => {
 
     } catch (error) {
         console.error('Error inesperado en la función serverless:', error);
-        return res.status(500).json({ error: 'Error interno del servidor.' });
+        return res.status(500).json({ 
+            error: `Error interno del servidor: ${error.message}` 
+        });
     }
 };
