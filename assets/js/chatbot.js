@@ -729,7 +729,8 @@ Información de contacto de CONCASAYA:
 - Teléfono Alternativo: 316 577 1582
 - WhatsApp: 573142891018
 - Dirección: Cl. 147 #101-56 Local 64, Bogotá (Centro Comercial Fiesta)
-- Horario: Lunes a viernes 9:00 a.m. a 5:00 p.m.
+- Horario: Lunes a viernes 9:00 a.m. a 5:00 p.m. / Sábados 9:00 a.m. a 5:00 p.m.
+- Atención 24/7: Disponible a través de canales digitales (WhatsApp, redes sociales, chatbot con IA)
 
 Utiliza la siguiente información específica sobre CONCASAYA para formular tus respuestas. Este es el compendio general de información:
 ${loadedKnowledge}
