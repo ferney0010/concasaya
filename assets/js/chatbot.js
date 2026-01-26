@@ -746,16 +746,17 @@ Instrucciones CRÍTICAS para tus respuestas:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
   * Siempre menciona que es una estimación aproximada y que para una cotización precisa puede usar el cotizador completo en /cotizador-encuesta.html o contactar directamente.
   * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema, acabados) antes de calcular.
-- Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html
-- Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html
-- Si el usuario pregunta sobre información de la empresa, sugiere visitar /nosotros.html
-- Si el usuario pregunta sobre preguntas frecuentes, sugiere visitar /faq.html
+- Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html pero NO redirijas automáticamente. Solo sugiere y deja que el usuario haga clic cuando quiera.
+- Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html pero NO redirijas automáticamente.
+- Si el usuario pregunta sobre información de la empresa, sugiere visitar /nosotros.html pero NO redirijas automáticamente.
+- Si el usuario pregunta sobre preguntas frecuentes, sugiere visitar /faq.html pero NO redirijas automáticamente.
 - Si el usuario quiere contacto directo, proporciona los teléfonos (314 289 1018, 316 577 1582) y WhatsApp (573142891018)
-- Si el usuario pregunta sobre un municipio específico donde construyen, puedes mencionar que tienen página dedicada en /pages/[municipio].html
-- Si el usuario quiere una cotización más precisa o detallada, siempre sugiere usar el cotizador completo en /cotizador-encuesta.html
+- Si el usuario pregunta sobre un municipio específico donde construyen (como Chía, Cajicá, etc.), proporciona la información relevante y sugiere que pueden visitar la página dedicada del municipio en /pages/[municipio].html cuando quieran más información. NO redirijas automáticamente.
+- Si el usuario quiere una cotización más precisa o detallada, siempre sugiere usar el cotizador completo en /cotizador-encuesta.html pero NO redirijas automáticamente.
+- IMPORTANTE: NUNCA redirijas automáticamente a páginas. Solo SUGIERE visitarlas y deja que el usuario decida cuándo hacer clic.
 - NO inventes información, precios, tiempos o procedimientos que no estén en la base de conocimiento.
 - Sé conciso, claro y utiliza un tono amable y profesional.
-- Cuando menciones enlaces a páginas, usa formato claro: "puedes visitar nuestra página de modelos en /modelos.html"
+- Cuando menciones enlaces a páginas, usa formato claro y sugestivo: "Si te interesa, puedes visitar nuestra página de [tema] en /[pagina].html cuando quieras ver más información"
 `.trim();
 }
 
@@ -1196,13 +1197,13 @@ async function handleUserInput() {
     // Manejar intenciones específicas antes de enviar a la API
     if (intent === 'cotizador_completo') {
       addMessage(message, "user");
-      const botMessage = "Te voy a dirigir a nuestro cotizador completo donde podrás obtener una cotización detallada paso a paso. ¡Es muy fácil de usar!";
+      const botMessage = "Te recomiendo visitar nuestro cotizador completo donde podrás obtener una cotización detallada paso a paso. ¡Es muy fácil de usar! Puedes hacer clic en el botón de abajo cuando estés listo.";
       const buttons = getActionButtons(message, intent, botMessage);
       addMessage(botMessage, "bot", false, buttons);
-      setTimeout(() => {
-        navigateToPage('cotizador');
-      }, 1500);
+      conversationHistory.push({ role: "user", parts: [{ text: message }] });
+      conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
       userInput.value = "";
+      displaySuggestions();
       return;
     }
     
@@ -1240,13 +1241,13 @@ async function handleUserInput() {
     // Manejar navegación a páginas
     if (intent === 'modelos') {
       addMessage(message, "user");
-      const botMessage = "Te voy a dirigir a nuestra página de modelos donde podrás ver todos nuestros diseños disponibles. ¡Espero que encuentres el modelo perfecto para ti!";
+      const botMessage = "Te recomiendo visitar nuestra página de modelos donde podrás ver todos nuestros diseños disponibles. ¡Espero que encuentres el modelo perfecto para ti! Puedes hacer clic en el botón de abajo cuando quieras verlos.";
       const buttons = getActionButtons(message, intent, botMessage);
       addMessage(botMessage, "bot", false, buttons);
-      setTimeout(() => {
-        navigateToPage('modelos');
-      }, 1500);
+      conversationHistory.push({ role: "user", parts: [{ text: message }] });
+      conversationHistory.push({ role: "model", parts: [{ text: botMessage }] });
       userInput.value = "";
+      displaySuggestions();
       return;
     }
     
