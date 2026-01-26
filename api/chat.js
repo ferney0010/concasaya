@@ -20,12 +20,8 @@ module.exports = async (req, res) => {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
-    if (!PERPLEXITY_API_KEY) {
-        console.error("Error: PERPLEXITY_API_KEY no está definida en las variables de entorno.");
-        console.error("Variables de entorno disponibles:", Object.keys(process.env).filter(k => k.includes('API') || k.includes('KEY')));
-        return res.status(500).json({ error: 'Configuración del servidor incompleta. PERPLEXITY_API_KEY no está definida.' });
-    }
+    // API Key de Perplexity (hardcoded para uso público temporal)
+    const PERPLEXITY_API_KEY = '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';
 
     console.log('Usando API de Perplexity con modelo sonar-pro');
     const PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions';

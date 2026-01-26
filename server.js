@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,15 +17,8 @@ app.post('/api/chat', async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
-    
-    if (!PERPLEXITY_API_KEY) {
-        console.error("Error: PERPLEXITY_API_KEY no está definida en las variables de entorno.");
-        console.error("Por favor, crea un archivo .env con: PERPLEXITY_API_KEY=tu_clave_aqui");
-        return res.status(500).json({ 
-            error: 'Configuración del servidor incompleta. Por favor, configura la variable de entorno PERPLEXITY_API_KEY en el archivo .env' 
-        });
-    }
+    // API Key de Perplexity (hardcoded para uso público temporal)
+    const PERPLEXITY_API_KEY = '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';
 
     const PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions';
 
@@ -102,6 +94,5 @@ app.get('*', (req, res) => {
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`🚀 Servidor ejecutándose en http://localhost:${PORT}`);
-    console.log(`📝 Asegúrate de tener configurada la variable de entorno PERPLEXITY_API_KEY en el archivo .env`);
     console.log(`💡 Para probar el chatbot, visita: http://localhost:${PORT}/chatbot.html`);
 });
