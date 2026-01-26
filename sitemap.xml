@@ -169,6 +169,24 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.concasaya.com/pages/firavitoba.html</loc>
+        <lastmod>2026-10-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/valle-de-tenza.html</loc>
+        <lastmod>2026-10-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/subachoque.html</loc>
+        <lastmod>2026-10-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.concasaya.com/pages/supata.html</loc>
         <lastmod>2026-10-01</lastmod>
         <changefreq>monthly</changefreq>
