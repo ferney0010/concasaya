@@ -889,9 +889,8 @@ function addMessage(message, sender, animateTyping = false, actionButtons = []) 
             if (btn.action === 'whatsapp') {
               window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
             } else if (btn.action === 'maps') {
-              // Abrir Google Maps con la dirección de la oficina
-              const address = encodeURIComponent('Cl. 147 #101-56 Local 64, Bogotá, Colombia');
-              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+              // Abrir Google Maps con el link de la ubicación
+              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank');
             } else if (btn.action === 'phone') {
               // Abrir teléfono (tel: link)
               window.location.href = 'tel:+573142891018';
@@ -974,9 +973,8 @@ function typeMessage(text, element, actionButtons = []) {
             if (btn.action === 'whatsapp') {
               window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
             } else if (btn.action === 'maps') {
-              // Abrir Google Maps con la dirección de la oficina
-              const address = encodeURIComponent('Cl. 147 #101-56 Local 64, Bogotá, Colombia');
-              window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+              // Abrir Google Maps con el link de la ubicación
+              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank');
             } else if (btn.action === 'phone') {
               // Abrir teléfono (tel: link)
               window.location.href = 'tel:+573142891018';
