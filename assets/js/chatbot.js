@@ -892,7 +892,7 @@ function addMessage(message, sender, animateTyping = false, actionButtons = []) 
               window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
             } else if (btn.action === 'maps') {
               // Abrir Google Maps con el link de la ubicación
-              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank');
+              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank', 'noopener,noreferrer');
             } else if (btn.action === 'phone') {
               // Abrir teléfono (tel: link)
               window.location.href = 'tel:+573142891018';
@@ -976,7 +976,7 @@ function typeMessage(text, element, actionButtons = []) {
               window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
             } else if (btn.action === 'maps') {
               // Abrir Google Maps con el link de la ubicación
-              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank');
+              window.open('https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7', '_blank', 'noopener,noreferrer');
             } else if (btn.action === 'phone') {
               // Abrir teléfono (tel: link)
               window.location.href = 'tel:+573142891018';
