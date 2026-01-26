@@ -728,7 +728,10 @@ Información de contacto de CONCASAYA:
 - Teléfono Principal: 314 289 1018
 - Teléfono Alternativo: 316 577 1582
 - WhatsApp: 573142891018
-- Dirección: Cl. 147 #101-56 Local 64, Bogotá (Centro Comercial Fiesta)
+- Dirección: Cl. 147 #101-56 Local 64, Bogotá (Centro Comercial Fiesta, Suba)
+- Ubicación: Centro Comercial Fiesta, Suba - Al lado del Portal de Suba de TransMilenio, muy cerca a la estación La Campiña
+- Cómo llegar: En TransMilenio, tomar la ruta hacia Portal de Suba y bajarse en la estación La Campiña. El Centro Comercial Fiesta está muy cerca de esta estación, al lado del Portal de Suba.
+- Link de Google Maps: https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7
 - Horario: Lunes a viernes 9:00 a.m. a 5:00 p.m. / Sábados 9:00 a.m. a 5:00 p.m.
 - Atención 24/7: Disponible a través de canales digitales (WhatsApp, redes sociales, chatbot con IA)
 
