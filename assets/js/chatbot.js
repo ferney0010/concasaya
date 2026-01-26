@@ -306,11 +306,25 @@ function searchInKnowledgeBase(query) {
   
   const lowerQuery = query.toLowerCase();
   
+  // Detectar si es una pregunta de definición/explicación
+  const isDefinitionQuery = lowerQuery.match(/\b(qu[eé] es|qu[eé] son|qu[eé] significa|explica|definici[oó]n|qu[eé] es un|qu[eé] es una|c[oó]mo funciona|qu[eé] incluye)\b/);
+  
   // Palabras clave importantes (filtrar palabras muy comunes)
-  const stopWords = ['que', 'cual', 'como', 'donde', 'cuando', 'porque', 'para', 'con', 'de', 'la', 'el', 'los', 'las', 'un', 'una', 'es', 'son', 'está', 'están'];
-  const keywords = lowerQuery.split(/\s+/)
+  const stopWords = ['que', 'cual', 'como', 'donde', 'cuando', 'porque', 'para', 'con', 'de', 'la', 'el', 'los', 'las', 'un', 'una', 'es', 'son', 'está', 'están', 'qué', 'cuál', 'cuáles'];
+  let keywords = lowerQuery.split(/\s+/)
     .filter(word => word.length > 2 && !stopWords.includes(word))
     .slice(0, 5); // Limitar a 5 palabras clave más importantes
+  
+  // Si es pregunta de definición y no hay keywords suficientes, usar términos del contexto
+  if (isDefinitionQuery && keywords.length < 2) {
+    // Extraer el término a definir
+    const definitionMatch = lowerQuery.match(/\b(?:qu[eé] es|qu[eé] son|qu[eé] significa|qu[eé] es un|qu[eé] es una)\s+(.+?)(?:\?|$)/);
+    if (definitionMatch) {
+      const termToDefine = definitionMatch[1].trim();
+      const termWords = termToDefine.split(/\s+/).filter(w => w.length > 2);
+      keywords = [...keywords, ...termWords].slice(0, 5);
+    }
+  }
   
   if (keywords.length === 0) return null;
   
@@ -328,24 +342,148 @@ function searchInKnowledgeBase(query) {
     }
   });
   
-  // Si hay suficiente coincidencia (al menos 2 palabras clave o score > 3)
-  if (score > 0 && (matchedKeywords.length >= 2 || score > 3)) {
-    // Buscar párrafos relevantes
+  // Si hay suficiente coincidencia (al menos 1 palabra clave o score > 2)
+  if (score > 0 && (matchedKeywords.length >= 1 || score > 2)) {
+    // Dividir en secciones por títulos (líneas en mayúsculas o con números)
+    const sections = loadedKnowledge.split(/\n(?=[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\s]+:|\d+\.\s+[A-Z])/);
+    const relevantSections = [];
+    
+    // Buscar secciones completas que contengan las palabras clave
+    sections.forEach((section, sectionIndex) => {
+      const sectionLower = section.toLowerCase();
+      let sectionScore = 0;
+      let keywordMatches = 0;
+      
+      // Calcular score de la sección
+      keywords.forEach(keyword => {
+        const regex = new RegExp(`\\b${keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi');
+        const matches = section.match(regex);
+        if (matches) {
+          sectionScore += matches.length;
+          keywordMatches++;
+        }
+      });
+      
+      // Si la sección contiene al menos una palabra clave relevante
+      if (sectionScore > 0 && keywordMatches > 0) {
+        // Priorizar secciones explicativas sobre tablas de precios
+        let priority = sectionScore;
+        
+          // Aumentar prioridad si contiene palabras explicativas (más importante para preguntas de definición)
+          const explanatoryWords = ['es', 'son', 'incluye', 'significa', 'consiste', 'características', 'ventajas', 'definición', 'qué es', 'cómo funciona', 'sistema', 'panel'];
+          explanatoryWords.forEach(word => {
+            if (sectionLower.includes(word)) {
+              priority += isDefinitionQuery ? 8 : 5; // Más prioridad si es pregunta de definición
+            }
+          });
+          
+          // Priorizar secciones que empiezan con el término buscado
+          if (keywords.some(kw => sectionLower.startsWith(kw) || sectionLower.match(new RegExp(`^\\d+\\.\\s*.*\\b${kw}\\b`, 'i')))) {
+            priority += 10;
+          }
+        
+        // Reducir prioridad si es principalmente una tabla de precios
+        if (sectionLower.match(/\$\d+[.,]\d+[.,]\d+/g) && sectionLower.split('\n').length < 10) {
+          priority -= 3;
+        }
+        
+        // Asegurar que la sección tenga contenido suficiente
+        if (section.trim().length > 80) {
+          relevantSections.push({
+            text: section.trim(),
+            score: priority,
+            keywordMatches: keywordMatches,
+            index: sectionIndex
+          });
+        }
+      }
+    });
+    
+    // Si encontramos secciones relevantes
+    if (relevantSections.length > 0) {
+      // Ordenar por relevancia (score y número de keywords coincidentes)
+      relevantSections.sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return b.keywordMatches - a.keywordMatches;
+      });
+      
+      // Tomar las mejores secciones (hasta 2 para tener contexto completo)
+      const topSections = relevantSections.slice(0, 2);
+      
+      // Combinar secciones y buscar párrafos adyacentes para contexto
+      let combined = '';
+      
+      topSections.forEach((section, idx) => {
+        if (idx > 0) combined += '\n\n';
+        combined += section.text;
+        
+        // Si la sección es corta, buscar párrafos adyacentes para más contexto
+        if (section.text.length < 300 && idx === 0) {
+          const allSections = loadedKnowledge.split(/\n(?=[A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\s]+:|\d+\.\s+[A-Z])/);
+          const currentIndex = section.index;
+          
+          // Agregar sección siguiente si existe y es relevante
+          if (currentIndex + 1 < allSections.length) {
+            const nextSection = allSections[currentIndex + 1].trim();
+            if (nextSection.length > 50 && nextSection.length < 400) {
+              combined += '\n\n' + nextSection;
+            }
+          }
+        }
+      });
+      
+      // Limpiar y formatear la respuesta
+      combined = combined.trim();
+      
+      // Asegurar que la respuesta tenga suficiente contenido explicativo
+      if (combined.length > 100) {
+        // Limitar longitud pero asegurar que termine en una oración completa
+        let finalAnswer = combined.substring(0, 1000);
+        
+        // Si se cortó, intentar terminar en un punto o salto de línea
+        if (combined.length > 1000) {
+          const lastPeriod = finalAnswer.lastIndexOf('.');
+          const lastNewline = finalAnswer.lastIndexOf('\n');
+          const cutPoint = Math.max(lastPeriod, lastNewline);
+          
+          if (cutPoint > 500) {
+            finalAnswer = finalAnswer.substring(0, cutPoint + 1);
+          }
+        }
+        
+        return {
+          found: true,
+          answer: finalAnswer,
+          score: score
+        };
+      }
+    }
+    
+    // Si no encontramos secciones completas, buscar párrafos individuales
     const paragraphs = loadedKnowledge.split(/\n\n/);
     const relevantParagraphs = [];
     const seenParagraphs = new Set();
     
-    // Priorizar párrafos que contengan múltiples palabras clave
     keywords.forEach(keyword => {
       paragraphs.forEach((para, index) => {
         const paraLower = para.toLowerCase();
-        if (paraLower.includes(keyword) && para.length > 50 && !seenParagraphs.has(index)) {
-          // Calcular relevancia del párrafo
+        if (paraLower.includes(keyword) && para.length > 80 && !seenParagraphs.has(index)) {
+          // Priorizar párrafos explicativos
           let paraScore = 0;
           keywords.forEach(kw => {
             const kwMatches = paraLower.match(new RegExp(`\\b${kw.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'gi'));
             if (kwMatches) paraScore += kwMatches.length;
           });
+          
+          // Aumentar score si es explicativo
+          if (paraLower.match(/\b(es|son|significa|consiste|incluye|características)\b/)) {
+            paraScore += 3;
+          }
+          
+          // Reducir score si es principalmente números/precios
+          if (para.match(/\$\d+[.,]\d+[.,]\d+/g) && para.split('\n').length < 5) {
+            paraScore -= 2;
+          }
           
           if (paraScore > 0) {
             relevantParagraphs.push({
@@ -359,19 +497,25 @@ function searchInKnowledgeBase(query) {
       });
     });
     
-    // Ordenar por relevancia y tomar los mejores
-    relevantParagraphs.sort((a, b) => b.score - a.score);
-    const topParagraphs = relevantParagraphs.slice(0, 3);
-    
-    if (topParagraphs.length > 0) {
-      // Combinar párrafos relevantes
-      const combined = topParagraphs.map(p => p.text).join('\n\n');
+    if (relevantParagraphs.length > 0) {
+      relevantParagraphs.sort((a, b) => b.score - a.score);
+      const topParagraphs = relevantParagraphs.slice(0, 3);
       
-      // Asegurar que la respuesta tenga suficiente contenido
+      // Combinar párrafos y agregar contexto si es necesario
+      let combined = topParagraphs.map(p => p.text).join('\n\n');
+      
+      // Si el primer párrafo es corto, buscar el siguiente para contexto
+      if (topParagraphs[0].text.length < 200 && topParagraphs[0].index + 1 < paragraphs.length) {
+        const nextPara = paragraphs[topParagraphs[0].index + 1].trim();
+        if (nextPara.length > 50 && !nextPara.match(/^\$\d+/)) {
+          combined = topParagraphs[0].text + '\n\n' + nextPara;
+        }
+      }
+      
       if (combined.length > 100) {
         return {
           found: true,
-          answer: combined.substring(0, 800), // Limitar longitud pero permitir más contenido
+          answer: combined.substring(0, 1000),
           score: score
         };
       }
@@ -379,6 +523,40 @@ function searchInKnowledgeBase(query) {
   }
   
   return null;
+}
+
+// Función para formatear respuestas de la base de conocimiento de forma más conversacional
+function formatResponseForConversation(response, userQuery) {
+  let formatted = response;
+  const lowerQuery = userQuery.toLowerCase();
+  
+  // Si la pregunta es sobre definiciones o explicaciones, agregar introducción conversacional
+  if (lowerQuery.match(/\b(qu[eé] es|qu[eé] son|qu[eé] significa|explica|definici[oó]n|qu[eé] es un|qu[eé] es una)\b/)) {
+    // Verificar si la respuesta comienza directamente con información técnica
+    if (!formatted.toLowerCase().match(/^(te explico|te cuento|déjame explicarte|es|son|significa)/)) {
+      // Agregar introducción conversacional
+      formatted = "Te explico: " + formatted.charAt(0).toLowerCase() + formatted.slice(1);
+    }
+  }
+  
+  // Convertir listas con guiones en formato más conversacional
+  formatted = formatted.replace(/^-\s+/gm, '• ');
+  
+  // Mejorar formato de títulos en mayúsculas para que sean más legibles
+  formatted = formatted.replace(/\n([A-ZÁÉÍÓÚÑ][A-ZÁÉÍÓÚÑ\s]+:)/g, '\n\n**$1**');
+  
+  // Convertir números de lista en formato más natural
+  formatted = formatted.replace(/^\d+\.\s+([A-Z])/gm, '**$1');
+  
+  // Asegurar que los párrafos tengan espacios adecuados
+  formatted = formatted.replace(/\n{3,}/g, '\n\n');
+  
+  // Agregar punto final si falta
+  if (!formatted.match(/[.!?]$/)) {
+    formatted += '.';
+  }
+  
+  return formatted.trim();
 }
 
 // Función para analizar respuesta del bot y detectar menciones de contacto
@@ -539,15 +717,12 @@ function buildInitialContext() {
   initialContext = `
 Eres un asistente virtual amigable y servicial para clientes potenciales y clientes de "CONCASAYA", empresa especializada en casas prefabricadas.
 
-IMPORTANTE: Esta API solo debe ser utilizada cuando el usuario solicite información muy específica que NO esté disponible en la base de conocimiento local, o cuando necesites realizar búsquedas en internet para información actualizada o muy técnica que requiera fuentes externas.
-
 Tu propósito principal es:
 1. Responder preguntas frecuentes (PQR) sobre casas prefabricadas, sistemas constructivos, precios, modelos y servicios de CONCASAYA.
 2. Proporcionar información sobre sistemas constructivos (Paneles EPS y Plaqueta de concreto), tipos de vivienda, niveles de acabados y ubicaciones de servicio.
 3. Ofrecer cotizaciones aproximadas cuando el usuario lo solicite, usando la información de precios proporcionada.
 4. Dirigir a los usuarios a páginas específicas del sitio web cuando sea relevante (modelos, ventajas, contacto, cotizador completo, páginas de municipios).
 5. Indicar los canales adecuados para contactar a CONCASAYA (teléfono, WhatsApp, dirección física).
-6. Usar tu capacidad de búsqueda en internet SOLO cuando la pregunta requiera información muy específica, actualizada o técnica que no esté en la base de conocimiento.
 
 Información de contacto de CONCASAYA:
 - Teléfono Principal: 314 289 1018
@@ -559,12 +734,13 @@ Información de contacto de CONCASAYA:
 Utiliza la siguiente información específica sobre CONCASAYA para formular tus respuestas. Este es el compendio general de información:
 ${loadedKnowledge}
 
-Instrucciones Adicionales para Respuestas:
-- Basa tus respuestas PRIMERO en la información proporcionada en el compendio anterior.
-- Si la información está disponible en el compendio, úsala directamente sin buscar en internet.
-- Solo usa búsqueda en internet para información muy específica, actualizada o técnica que claramente no esté en el compendio.
-- IMPORTANTE: Tus respuestas deben ser BREVES y CONCISAS (máximo 3-4 oraciones).
+Instrucciones CRÍTICAS para tus respuestas:
+- IMPORTANTE: Tus respuestas deben ser BREVES, CONCISAS y CONVERSACIONALES (máximo 3-4 oraciones o 150-200 palabras).
+- IMPORTANTE: Usa un TONO AMIGABLE y CONVERSACIONAL, como si estuvieras hablando con un amigo, pero manteniendo profesionalismo.
+- IMPORTANTE: Basa tus respuestas ÚNICAMENTE en la información proporcionada en el compendio anterior. NO inventes información.
 - IMPORTANTE: SIEMPRE termina tu respuesta con una pregunta relevante para mantener la conversación activa. Ejemplos: "¿Hay algo más en lo que pueda ayudarte?", "¿Necesitas más información sobre este tema?", "¿Te gustaría ver nuestros modelos?", "¿Quieres una cotización aproximada?"
+- Cuando expliques conceptos (como "qué es obra negra", "qué es panel EPS"), sé claro y directo, usando ejemplos prácticos cuando sea posible.
+- Evita respuestas muy largas o técnicas. Prefiere explicaciones simples y fáciles de entender.
 - Si el usuario pregunta sobre precios o cotizaciones:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
   * Siempre menciona que es una estimación aproximada y que para una cotización precisa puede usar el cotizador completo en /cotizador-encuesta.html o contactar directamente.
@@ -1075,36 +1251,8 @@ async function handleUserInput() {
       return;
     }
     
-    // PRIMERO: Buscar en la base de conocimiento local
-    const localSearchResult = searchInKnowledgeBase(message);
-    
-    // Si encontramos información relevante en la base local, usarla
-    if (localSearchResult && localSearchResult.found && localSearchResult.score > 2) {
-      addMessage(message, "user");
-      conversationHistory.push({ role: "user", parts: [{ text: message }] });
-      
-      // Construir respuesta basada en la información local
-      let botResponse = localSearchResult.answer;
-      
-      // Agregar contexto adicional si es necesario
-      if (botResponse.length < 200) {
-        // Si la respuesta es muy corta, complementar con información adicional
-        botResponse += "\n\nSi necesitas más información específica o tienes preguntas adicionales, no dudes en preguntarme.";
-      }
-      
-      // Obtener botones de acción según el contexto (incluyendo análisis de la respuesta)
-      const buttons = getActionButtons(message, intent, botResponse);
-      
-      // Agregar mensaje con botones
-      addMessage(botResponse, "bot", true, buttons);
-      conversationHistory.push({ role: "model", parts: [{ text: botResponse }] });
-      userInput.value = "";
-      displaySuggestions();
-      return;
-    }
-    
-    // Si no encontramos suficiente información local, usar la API de IA
-    // Solo para información muy específica o que requiera búsqueda en internet
+    // Usar la API de IA para procesar la pregunta y generar respuesta conversacional
+    // La IA usará la base de conocimiento completa como contexto
     addMessage(message, "user");
     conversationHistory.push({ role: "user", parts: [{ text: message }] });
     userInput.value = "";
