@@ -1336,12 +1336,12 @@
           const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
           const hasVideo = isClimaCalidoPost || isSismosClimaPost;
           
-          // Determinar qué video usar según el artículo
-          let videoSource = "/assets/video/videoblog1.mp4";
+          // Determinar qué imagen usar según el artículo
+          let imageSource = "/assets/images/herocasa.webp";
           if (isClimaCalidoPost) {
-            videoSource = "/assets/video/videoblog2.mp4";
+            imageSource = "/assets/images/herocasa.webp";
           } else if (isSismosClimaPost) {
-            videoSource = "/assets/video/videoblogg.mp4";
+            imageSource = "/assets/images/herocasa.webp";
           }
           
           // Detectar si es el artículo sobre seguridad y durabilidad
@@ -1361,21 +1361,15 @@
             // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
             postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
           } else if (hasVideo) {
-            // Mostrar video para artículos con video
+            // Mostrar imagen para artículos que antes tenían video
             postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
-              <video 
-                autoplay 
-                muted 
-                loop 
-                playsinline 
+              <img 
+                src="${imageSource}" 
+                alt="${post.title}" 
                 class="w-full h-full object-cover"
                 style="min-height: 200px; max-height: 400px;"
-                aria-label="${post.title}"
-              >
-                <source src="${videoSource}" type="video/mp4" />
-                <!-- Fallback -->
-                <img src="${post.image || 'https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}" alt="${post.title}" class="w-full h-full object-cover" />
-              </video>
+                loading="lazy"
+              />
             </div>`;
           } else if (post.image) {
             // Mostrar imagen para otros artículos
