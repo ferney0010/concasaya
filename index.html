@@ -1012,6 +1012,30 @@
           font-size: 0.65rem;
         }
       }
+
+      /* Modal del Chatbot - responsive y elegante */
+      .chatbot-modal.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .chatbot-modal.is-open .chatbot-modal-content {
+        transform: scale(1);
+      }
+      .chatbot-modal-content {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      @media (max-width: 640px) {
+        .chatbot-modal-content {
+          border-radius: 0;
+          max-height: 100vh;
+          max-height: 100dvh;
+        }
+      }
+      @media (min-width: 641px) {
+        .chatbot-modal-content {
+          border: 1px solid rgba(0, 119, 182, 0.2);
+        }
+      }
     </style>
 
     <!-- Structured Data -->
@@ -3302,6 +3326,54 @@
       >
         <i class="fab fa-whatsapp text-2xl"></i>
       </a>
+      <button
+        type="button"
+        id="chatbot-floating-btn"
+        aria-label="Abrir asistente virtual"
+        class="w-12 h-12 rounded-full flex items-center justify-center bg-primary hover:bg-primary/90 text-white shadow-md transition-transform duration-300 transform hover:-translate-y-1"
+      >
+        <i class="fas fa-robot text-2xl"></i>
+      </button>
+    </div>
+
+    <!-- Modal del Chatbot -->
+    <div
+      id="chatbot-modal"
+      class="chatbot-modal fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-all duration-300"
+      aria-hidden="true"
+      aria-modal="true"
+      role="dialog"
+    >
+      <div
+        class="chatbot-modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm"
+        data-close-modal
+      ></div>
+      <div
+        class="chatbot-modal-content relative flex flex-col w-full h-full sm:max-w-4xl sm:max-h-[90vh] sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-white transform transition-all duration-300 scale-95"
+      >
+        <div class="chatbot-modal-header flex-shrink-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/90 text-white shadow-md">
+          <span class="font-semibold text-sm sm:text-base flex items-center gap-2">
+            <i class="fas fa-robot"></i>
+            Asistente Virtual CONCASAYA
+          </span>
+          <button
+            type="button"
+            id="chatbot-modal-close"
+            aria-label="Cerrar chatbot"
+            class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/30 transition-colors duration-200"
+          >
+            <i class="fas fa-times text-lg"></i>
+          </button>
+        </div>
+        <div class="chatbot-modal-body flex-1 min-h-0 relative">
+          <iframe
+            id="chatbot-iframe"
+            src="about:blank"
+            title="Asistente Virtual CONCASAYA"
+            class="absolute inset-0 w-full h-full border-0"
+          ></iframe>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -3318,6 +3390,41 @@
           fabCloseIcon.classList.toggle("hidden");
         });
       }
+
+      // Modal del Chatbot
+      const chatbotModal = document.getElementById("chatbot-modal");
+      const chatbotFloatingBtn = document.getElementById("chatbot-floating-btn");
+      const chatbotModalClose = document.getElementById("chatbot-modal-close");
+      const chatbotIframe = document.getElementById("chatbot-iframe");
+
+      function openChatbotModal() {
+        if (!chatbotModal || !chatbotIframe) return;
+        chatbotIframe.src = "/chatbot.html";
+        chatbotModal.classList.add("is-open");
+        chatbotModal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+        document.addEventListener("keydown", handleChatbotModalEscape);
+      }
+
+      function closeChatbotModal() {
+        if (!chatbotModal) return;
+        chatbotModal.classList.remove("is-open");
+        chatbotModal.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+        document.removeEventListener("keydown", handleChatbotModalEscape);
+      }
+
+      function handleChatbotModalEscape(e) {
+        if (e.key === "Escape") closeChatbotModal();
+      }
+
+      if (chatbotFloatingBtn) {
+        chatbotFloatingBtn.addEventListener("click", openChatbotModal);
+      }
+      if (chatbotModalClose) {
+        chatbotModalClose.addEventListener("click", closeChatbotModal);
+      }
+      chatbotModal?.querySelector("[data-close-modal]")?.addEventListener("click", closeChatbotModal);
     </script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
