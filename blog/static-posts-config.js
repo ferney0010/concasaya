@@ -28,5 +28,14 @@ export const staticPosts = [
     date: "2026-01-15",
     url: "/blog/ventajas-construccion-prefabricada-2026.html",
     category: "Guías"
+  },
+  {
+    slug: "construccion-panel-eps-vs-bloquelon",
+    title: "¿Qué es mejor: panel EPS o bloquelón? Comparativa 2026",
+    description: "Comparativa panel EPS vs bloquelón: tiempo, costo, aislamiento. Ventajas del EPS. CONCASAYA en Bogotá y Cundinamarca.",
+    image: "https://www.concasaya.com/assets/images/herocasa.webp",
+    date: "2026-02-08",
+    url: "/blog/construccion-panel-eps-vs-bloquelon.html",
+    category: "Comparativas"
   }
 ];
