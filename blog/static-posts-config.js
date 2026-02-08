@@ -33,9 +33,18 @@ export const staticPosts = [
     slug: "construccion-panel-eps-vs-bloquelon",
     title: "¿Qué es mejor: panel EPS o bloquelón? Comparativa 2026",
     description: "Comparativa panel EPS vs bloquelón: tiempo, costo, aislamiento. Ventajas del EPS. CONCASAYA en Bogotá y Cundinamarca.",
-    image: "https://www.concasaya.com/assets/images/herocasa.webp",
+    image: "https://www.concasaya.com/assets/images/cassa1.webp",
     date: "2026-02-08",
     url: "/blog/construccion-panel-eps-vs-bloquelon.html",
+    category: "Comparativas"
+  },
+  {
+    slug: "plaqueta-concreto-vs-bloquelon",
+    title: "¿Qué es mejor: plaqueta de concreto o bloquelón? Comparativa 2026",
+    description: "Comparativa plaqueta de concreto vs bloquelón: acabado, juntas, grietas y durabilidad. La plaqueta gana. CONCASAYA la usa en sus proyectos.",
+    image: "https://www.concasaya.com/assets/images/casa2.webp",
+    date: "2026-02-08",
+    url: "/blog/plaqueta-concreto-vs-bloquelon.html",
     category: "Comparativas"
   }
 ];

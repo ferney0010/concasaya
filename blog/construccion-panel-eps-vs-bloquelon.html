@@ -19,7 +19,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="¿Qué es mejor: panel EPS o bloquelón? | CONCASAYA" />
     <meta property="og:description" content="Comparativa panel EPS vs bloquelón: tiempo, costo, aislamiento. Te explicamos qué es mejor para tu casa en 2026." />
-    <meta property="og:image" content="https://www.concasaya.com/assets/images/herocasa.webp" />
+    <meta property="og:image" content="https://www.concasaya.com/assets/images/cassa1.webp" />
     <meta property="og:url" content="https://www.concasaya.com/blog/construccion-panel-eps-vs-bloquelon.html" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="es_CO" />
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="¿Qué es mejor: panel EPS o bloquelón? | CONCASAYA" />
     <meta name="twitter:description" content="Comparativa panel EPS vs bloquelón. Te explicamos qué conviene para tu vivienda en 2026." />
-    <meta name="twitter:image" content="https://www.concasaya.com/assets/images/herocasa.webp" />
+    <meta name="twitter:image" content="https://www.concasaya.com/assets/images/cassa1.webp" />
 
     <!-- Schema.org Article Markup -->
     <script type="application/ld+json">
@@ -37,7 +37,7 @@
       "@type": "Article",
       "headline": "¿Qué es mejor: panel EPS o bloquelón? Comparativa 2026",
       "description": "Comparativa entre panel EPS y bloquelón. CONCASAYA explica qué es mejor para construir en Colombia.",
-      "image": "https://www.concasaya.com/assets/images/herocasa.webp",
+      "image": "https://www.concasaya.com/assets/images/cassa1.webp",
       "author": { "@type": "Organization", "name": "CONCASAYA" },
       "publisher": {
         "@type": "Organization",
@@ -79,7 +79,7 @@
         border-radius: 12px; padding: 0.5rem 0;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px);
       }
-      .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+      .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); display: block !important; }
       .post-content { line-height: 1.9; color: #4a5568; font-size: 1.125rem; }
       .post-content h2 { font-size: 2.25rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #1a202c; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
       .post-content h3 { font-size: 1.75rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #2d3748; }
@@ -129,7 +129,7 @@
     </script>
   </head>
   <body class="bg-white text-dark">
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+    <header class="relative bg-white shadow-md fixed w-full top-0 z-50">
       <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
         <a href="/" class="flex items-center space-x-3">
           <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto" />
@@ -158,16 +158,36 @@
           <a href="/contacto.html" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300">Contacto</a>
         </div>
         <div class="lg:hidden">
-          <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none"><i class="fas fa-bars fa-lg"></i></button>
+          <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none" aria-label="Abrir menú"><i class="fas fa-bars fa-lg"></i></button>
         </div>
       </nav>
+      <!-- Menú móvil (oculto por defecto, se muestra al hacer clic en el botón) -->
+      <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 bg-white border-t shadow-lg z-40">
+        <div class="container mx-auto px-6 py-4 flex flex-col gap-1">
+          <a href="/" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Inicio</a>
+          <a href="/modelos.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Modelos</a>
+          <span class="block py-2 px-4 text-sm font-semibold text-gray-500 mt-2">Municipios</span>
+          <a href="/pages/chia.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Chía</a>
+          <a href="/pages/cajica.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Cajicá</a>
+          <a href="/pages/mosquera.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Mosquera</a>
+          <a href="/pages/zipaquira.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Zipaquirá</a>
+          <a href="/pages/sopo.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Sopó</a>
+          <a href="/pages/funza.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Funza</a>
+          <a href="/pages/la-vega.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">La Vega</a>
+          <a href="/pages/madrid.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Madrid</a>
+          <a href="/ventajas.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">¿Qué es EPS?</a>
+          <a href="/blog.html" class="block py-3 px-4 text-primary font-semibold hover:bg-light rounded-lg transition">Blog</a>
+          <a href="/nosotros.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Sobre Nosotros</a>
+          <a href="/contacto.html" class="block py-3 px-4 bg-primary text-white rounded-lg hover:opacity-90 transition text-center mt-2">Contacto</a>
+        </div>
+      </div>
     </header>
 
     <main class="pt-20">
       <!-- Hero -->
       <section class="hero-image">
         <img
-          src="/assets/images/herocasa.webp"
+          src="/assets/images/cassa1.webp"
           alt="¿Qué es mejor panel EPS o bloquelón? - CONCASAYA"
           class="w-full h-full object-cover"
         />
