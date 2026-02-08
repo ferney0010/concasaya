@@ -46,5 +46,14 @@ export const staticPosts = [
     date: "2026-02-08",
     url: "/blog/plaqueta-concreto-vs-bloquelon.html",
     category: "Comparativas"
+  },
+  {
+    slug: "construccion-prefabricada-vs-tradicional",
+    title: "Construcción prefabricada vs tradicional: comparativa 2026",
+    description: "Comparativa construcción prefabricada vs tradicional: tiempo, costo, calidad y sostenibilidad. Ventajas de la vivienda prefabricada. CONCASAYA en Bogotá y Cundinamarca.",
+    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
+    date: "2026-02-08",
+    url: "/blog/construccion-prefabricada-vs-tradicional.html",
+    category: "Comparativas"
   }
 ];
