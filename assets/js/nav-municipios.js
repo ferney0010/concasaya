@@ -1,4 +1,4 @@
-(function () {
+function renderNavMunicipios() {
   var list = window.MUNICIPIOS;
   if (!list || !list.length) return;
 
@@ -44,4 +44,10 @@
     }
     footerEl.innerHTML = footerHtml;
   }
-})();
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", renderNavMunicipios);
+} else {
+  renderNavMunicipios();
+}

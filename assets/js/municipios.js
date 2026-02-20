@@ -1,5 +1,5 @@
 /**
- * Fuente única de municipios para menús de navegación.
+ * Fuente única de municipios para menús de navegación (34 municipios).
  * Para agregar un municipio: añade un objeto { slug: "nombre-archivo", nombre: "Nombre para mostrar" }
  * y crea la página en /pages/nombre-archivo.html
  */
