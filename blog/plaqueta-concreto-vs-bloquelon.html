@@ -140,16 +140,7 @@
             <button class="text-dark hover:text-primary transition duration-300 inline-flex items-center">
               <span>Municipios</span><i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
-            <ul class="dropdown-menu absolute hidden text-dark pt-2 w-48 bg-white rounded-lg shadow-xl">
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/chia.html">Chía</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/cajica.html">Cajicá</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/mosquera.html">Mosquera</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/zipaquira.html">Zipaquirá</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/sopo.html">Sopó</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/funza.html">Funza</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/la-vega.html">La Vega</a></li>
-              <li><a class="block px-4 py-2 hover:bg-light hover:text-primary" href="/pages/madrid.html">Madrid</a></li>
-            </ul>
+            <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
           </div>
           <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">¿Qué es EPS?</a>
           <a href="/blog.html" class="text-primary font-bold transition duration-300">Blog</a>
@@ -165,14 +156,7 @@
           <a href="/" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Inicio</a>
           <a href="/modelos.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Modelos</a>
           <span class="block py-2 px-4 text-sm font-semibold text-gray-500 mt-2">Municipios</span>
-          <a href="/pages/chia.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Chía</a>
-          <a href="/pages/cajica.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Cajicá</a>
-          <a href="/pages/mosquera.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Mosquera</a>
-          <a href="/pages/zipaquira.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Zipaquirá</a>
-          <a href="/pages/sopo.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Sopó</a>
-          <a href="/pages/funza.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Funza</a>
-          <a href="/pages/la-vega.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">La Vega</a>
-          <a href="/pages/madrid.html" class="block py-2 px-6 text-dark hover:bg-light hover:text-primary rounded-lg transition text-sm">Madrid</a>
+          <div id="tablet-dropdown-menu" class="tablet-submenu py-2" style="max-height: 45vh; overflow-y: auto;"></div>
           <a href="/ventajas.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">¿Qué es EPS?</a>
           <a href="/blog.html" class="block py-3 px-4 text-primary font-semibold hover:bg-light rounded-lg transition">Blog</a>
           <a href="/nosotros.html" class="block py-3 px-4 text-dark hover:bg-light hover:text-primary rounded-lg transition">Sobre Nosotros</a>
@@ -458,5 +442,7 @@
       const mobileMenu = document.getElementById("mobile-menu");
       if (menuBtn && mobileMenu) menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
     </script>
+    <script src="/assets/js/municipios.js"></script>
+    <script src="/assets/js/nav-municipios.js"></script>
   </body>
 </html>
