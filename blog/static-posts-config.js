@@ -30,6 +30,33 @@ export const staticPosts = [
     category: "Guías"
   },
   {
+    slug: "comprar-casa-prefabricada-colombia-2026",
+    title: "Comprar Casa Prefabricada en Colombia 2026: Guía Completa",
+    description: "Todo lo que necesitas saber para comprar casa prefabricada en Colombia 2026. CONCASAYA es tu proveedor líder en viviendas prefabricadas en Bogotá, Cundinamarca, Santa Marta y más regiones.",
+    image: "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    date: "2026-03-04",
+    url: "/blog/comprar-casa-prefabricada-colombia-2026.html",
+    category: "Guías"
+  },
+  {
+    slug: "precio-casa-prefabricada-colombia-2026",
+    title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
+    description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
+    date: "2026-03-04",
+    url: "/blog/precio-casa-prefabricada-colombia-2026.html",
+    category: "Guías"
+  },
+  {
+    slug: "casas-prefabricadas-en-colombia",
+    title: "Casas Prefabricadas en Colombia 2026: Guía Completa",
+    description: "Todo sobre casas prefabricadas en Colombia. CONCASAYA es el líder en Bogotá, Cundinamarca, Santa Marta. Precios, ventajas, regiones. Cotización gratuita.",
+    image: "https://www.concasaya.com/assets/images/cabaña.webp",
+    date: "2026-03-04",
+    url: "/blog/casas-prefabricadas-en-colombia.html",
+    category: "Guías"
+  },
+  {
     slug: "construccion-panel-eps-vs-bloquelon",
     title: "¿Qué es mejor: panel EPS o bloquelón? Comparativa 2026",
     description: "Comparativa panel EPS vs bloquelón: tiempo, costo, aislamiento. Ventajas del EPS. CONCASAYA en Bogotá y Cundinamarca.",
