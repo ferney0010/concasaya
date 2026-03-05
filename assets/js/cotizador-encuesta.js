@@ -124,7 +124,14 @@
           label: 'Gris', 
           icon: 'fas fa-trowel', 
           description: 'Instalación de luz y pañete. Incluye redes eléctricas e hidráulicas.',
-          availableFor: ['eps'] // Solo disponible para EPS
+          availableFor: ['eps'] // Disponible para EPS
+        },
+        { 
+          value: 'blanca', 
+          label: 'Obra Blanca', 
+          icon: 'fas fa-paint-roller', 
+          description: 'Todo lo anterior más acabados finales: pisos, pintura, listo para habitar.',
+          availableFor: ['eps'] // Disponible para EPS
         }
       ],
       hasVisual: false
@@ -484,7 +491,7 @@
                 <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
                 <div>
                   <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre EPS</p>
-                  <p class="text-xs text-blue-700">El sistema EPS se cotiza únicamente en obra gris, incluyendo pañete, redes eléctricas e hidráulicas.</p>
+                  <p class="text-xs text-blue-700">El sistema EPS se cotiza en obra gris o obra blanca. Obra gris incluye pañete y redes eléctricas e hidráulicas. Obra blanca incluye acabados finales completos.</p>
                   <p class="text-xs text-blue-700 mt-2"><strong>¿Deseas cotizar acabados?</strong> Si necesitas cotizar acabados adicionales, por favor escríbenos por WhatsApp o agenda una videollamada.</p>
                 </div>
               </div>
@@ -743,7 +750,7 @@
     
     // Si se cambia el sistema constructivo, limpiar acabados si no son compatibles
     if (questionId === 'sistema') {
-      if (value === 'eps' && (appState.answers.acabados === 'obra-negra' || appState.answers.acabados === 'blanca')) {
+      if (value === 'eps' && appState.answers.acabados === 'obra-negra') {
         appState.answers.acabados = '';
       } else if (value === 'plaqueta' && (appState.answers.acabados === 'gris' || appState.answers.acabados === 'blanca')) {
         appState.answers.acabados = '';

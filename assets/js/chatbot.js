@@ -99,10 +99,12 @@ const preciosPorM2 = {
   },
   'eps': {
     '1-piso': {
-      'gris': 1300000  // Reducido de 1450000 (solo obra gris disponible para EPS)
+      'gris': 1300000,
+      'blanca': 1950000
     },
     '2-pisos': {
-      'gris': 2700000  // Reducido de 2950000 (solo obra gris disponible para EPS)
+      'gris': 2700000,
+      'blanca': 3450000
     }
   }
 };
@@ -144,7 +146,7 @@ const multiplicadoresUbicacion = {
 
 // Función para calcular precio aproximado
 // IMPORTANTE: Mantener los mismos parámetros que el cotizador:
-// - EPS solo cotiza en obra gris (no obra negra ni blanca)
+// - EPS cotiza en obra gris o obra blanca (no obra negra)
 // - Plaqueta solo cotiza en obra negra (no gris ni blanca)
 function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, tipoVivienda) {
   // Valores por defecto
@@ -157,8 +159,8 @@ function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, ti
   // Ajustar acabados según el sistema (igual que el cotizador)
   let acabadosParaCalcular;
   if (sistema === 'eps') {
-    // EPS solo cotiza en obra gris
-    acabadosParaCalcular = 'gris';
+    // EPS cotiza en obra gris o blanca
+    acabadosParaCalcular = acabados === 'blanca' ? 'blanca' : 'gris';
   } else if (sistema === 'plaqueta') {
     // Plaqueta solo cotiza en obra negra
     acabadosParaCalcular = 'obra-negra';
@@ -168,8 +170,8 @@ function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, ti
   }
 
   // Si el usuario especificó acabados que no son compatibles, usar los del sistema
-  if (sistema === 'eps' && acabados && acabados !== 'gris') {
-    acabadosParaCalcular = 'gris'; // Forzar gris para EPS
+  if (sistema === 'eps' && acabados && acabados !== 'gris' && acabados !== 'blanca') {
+    acabadosParaCalcular = 'gris'; // Forzar gris para EPS si no es válido
   } else if (sistema === 'plaqueta' && acabados && acabados !== 'obra-negra') {
     acabadosParaCalcular = 'obra-negra'; // Forzar obra negra para Plaqueta
   }
@@ -741,7 +743,7 @@ Información de contacto de CONCASAYA:
 - WhatsApp: 573142891018
 - Dirección: Cl. 147 #101-56 Local 64, Bogotá (Centro Comercial Fiesta, Suba)
 - Ubicación: Centro Comercial Fiesta, Suba - Al lado del Portal de Suba de TransMilenio, muy cerca a la estación La Campiña
-- Cómo llegar: En TransMilenio, tomar la ruta hacia Portal de Suba y bajarse en la estación La Campiña. El Centro Comercial Fiesta está muy cerca de esta estación, al lado del Portal de Suba.
+- Cómo llegar: Toma TransMilenio hasta el Portal de Suba (estación terminal en el noroccidente de Bogotá). Puedes bajarte en el mismo Portal de Suba o en la estación La Campiña, que está muy cerca. Nuestra oficina está en el Centro Comercial Fiesta, ubicado al lado del Portal de Suba.
 - Link de Google Maps: https://maps.app.goo.gl/tW71rq5A6EYYQNtJ7
 - Horario: Lunes a viernes 9:00 a.m. a 5:00 p.m. / Sábados 9:00 a.m. a 5:00 p.m.
 - Atención 24/7: Disponible a través de canales digitales (WhatsApp, redes sociales, chatbot con IA)
@@ -761,7 +763,7 @@ Instrucciones CRÍTICAS para tus respuestas:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
   * IMPORTANTE: Los precios que proporciones deben ser ACCESIBLES a primera vista. NO menciones rangos de precios amplios que puedan confundir o espantar a los usuarios. En su lugar, da ejemplos específicos con los precios actuales (EPS obra gris 1 piso: $1.300.000/m², Plaqueta obra negra 1 piso: $550.000/m²).
   * IMPORTANTE: Siempre menciona que es una estimación aproximada y que para una cotización precisa debe contactar al asesor por WhatsApp (314 289 1018) o usar el cotizador completo en /cotizador-encuesta.html.
-  * IMPORTANTE: Recuerda que EPS solo cotiza en obra gris (no obra negra ni blanca) y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
+  * IMPORTANTE: Recuerda que EPS cotiza en obra gris o obra blanca (no obra negra) y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
   * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema) antes de calcular.
 - Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html pero NO redirijas automáticamente. Solo sugiere y deja que el usuario haga clic cuando quiera.
 - Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html pero NO redirijas automáticamente.
@@ -1244,7 +1246,8 @@ async function handleUserInput() {
       
       // Mostrar acabados según el sistema (igual que el cotizador)
       if (priceData.sistema === 'eps') {
-        priceMessage += `✨ **Acabados**: Obra Gris (único nivel disponible para Paneles EPS)\n`;
+        const acabadosLabel = priceData.acabados === 'blanca' ? 'Obra Blanca' : 'Obra Gris';
+        priceMessage += `✨ **Acabados**: ${acabadosLabel} (disponible obra gris y obra blanca para Paneles EPS)\n`;
       } else {
         priceMessage += `✨ **Acabados**: Obra Negra (único nivel disponible para Plaqueta de Concreto)\n`;
       }
