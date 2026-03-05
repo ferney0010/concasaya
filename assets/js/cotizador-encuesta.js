@@ -9,6 +9,16 @@
     AOS.init();
   }
 
+  function getUbicacionLabel(val) {
+    if (!val) return val;
+    if (val === 'bogota') return 'Bogotá';
+    if (typeof window.MUNICIPIOS !== 'undefined') {
+      var m = window.MUNICIPIOS.find(function(x) { return x.slug === val; });
+      if (m) return m.nombre;
+    }
+    return val;
+  }
+
   // Estado de la aplicación
   const appState = {
     currentQuestion: 0,
@@ -124,31 +134,30 @@
       title: '¿En qué municipio o ciudad será tu proyecto?',
       subtitle: 'La ubicación afecta los costos de transporte e instalación',
       type: 'datalist',
-      options: [
-        { value: 'bogota', label: 'Bogotá' },
-        { value: 'boyaca', label: 'Boyacá' },
-        { value: 'cajica', label: 'Cajicá' },
-        { value: 'chia', label: 'Chía' },
-        { value: 'choconta', label: 'Chocontá' },
-        { value: 'cota', label: 'Cota' },
-        { value: 'facatativa', label: 'Facatativá' },
-        { value: 'funza', label: 'Funza' },
-        { value: 'la-mesa', label: 'La Mesa' },
-        { value: 'la-vega', label: 'La Vega' },
-        { value: 'madrid', label: 'Madrid' },
-        { value: 'mesitas-del-colegio', label: 'Mesitas del Colegio' },
-        { value: 'mosquera', label: 'Mosquera' },
-        { value: 'pacho', label: 'Pacho' },
-        { value: 'san-francisco', label: 'San Francisco' },
-        { value: 'santa-marta', label: 'Santa Marta' },
-        { value: 'sogamoso', label: 'Sogamoso' },
-        { value: 'sopo', label: 'Sopó' },
-        { value: 'suba', label: 'Subá' },
-        { value: 'supata', label: 'Supatá' },
-        { value: 'tocancipa', label: 'Tocancipá' },
-        { value: 'villa-de-leyva', label: 'Villa de Leyva' },
-        { value: 'zipaquira', label: 'Zipaquirá' }
-      ],
+      options: (function() {
+        var opts = [{ value: 'bogota', label: 'Bogotá' }];
+        if (typeof window.MUNICIPIOS === 'undefined') {
+          opts = opts.concat([
+            { value: 'chia', label: 'Chía' }, { value: 'cajica', label: 'Cajicá' }, { value: 'cota', label: 'Cota' },
+            { value: 'mosquera', label: 'Mosquera' }, { value: 'zipaquira', label: 'Zipaquirá' }, { value: 'sopo', label: 'Sopó' },
+            { value: 'suba', label: 'Suba' }, { value: 'funza', label: 'Funza' }, { value: 'villadeleyva', label: 'Villa de Leyva' },
+            { value: 'la-vega', label: 'La Vega' }, { value: 'madrid', label: 'Madrid' }, { value: 'tocancipa', label: 'Tocancipá' },
+            { value: 'tunja', label: 'Tunja' }, { value: 'santa-marta', label: 'Santa Marta' }, { value: 'boyaca', label: 'Boyacá' },
+            { value: 'barbosa', label: 'Barbosa' }, { value: 'choconta', label: 'Chocontá' }, { value: 'san-francisco', label: 'San Francisco' },
+            { value: 'supata', label: 'Supatá' }, { value: 'pacho', label: 'Pacho' }, { value: 'puente-nacional', label: 'Puente Nacional' },
+            { value: 'la-mesa', label: 'La Mesa' }, { value: 'mesitas-del-colegio', label: 'Mesitas del Colegio' }, { value: 'facatativa', label: 'Facatativá' },
+            { value: 'sogamoso', label: 'Sogamoso' }, { value: 'firavitoba', label: 'Firavitoba' }, { value: 'valle-de-tenza', label: 'Valle de Tenza' },
+            { value: 'velez', label: 'Vélez' }, { value: 'subachoque', label: 'Subachoque' }, { value: 'soacha', label: 'Soacha' },
+            { value: 'guasca', label: 'Guasca' }, { value: 'sesquile', label: 'Sesquilé' }, { value: 'la-calera', label: 'La Calera' },
+            { value: 'villeta', label: 'Villeta' }, { value: 'raquira', label: 'Ráquira' }, { value: 'chiquinquira', label: 'Chiquinquirá' }
+          ]);
+        } else {
+          window.MUNICIPIOS.forEach(function(m) {
+            opts.push({ value: m.slug, label: m.nombre });
+          });
+        }
+        return opts;
+      })(),
       hasVisual: false,
       placeholder: 'Escribe o selecciona el municipio'
     },
@@ -1227,8 +1236,22 @@
       supata: 1.15,
       tocancipa: 1.1,
       'villa-de-leyva': 1.15,
-      villadeleyva: 1.15, // Mantener ambos formatos por compatibilidad
+      villadeleyva: 1.15,
       zipaquira: 1.08,
+      barbosa: 1.2,
+      firavitoba: 1.25,
+      'valle-de-tenza': 1.2,
+      velez: 1.25,
+      subachoque: 1.08,
+      soacha: 1.02,
+      guasca: 1.1,
+      sesquile: 1.1,
+      'la-calera': 1.1,
+      villeta: 1.15,
+      raquira: 1.2,
+      chiquinquira: 1.2,
+      tunja: 1.25,
+      'puente-nacional': 1.25,
     };
 
     const sistema = appState.answers.sistema || 'eps';
@@ -1445,7 +1468,7 @@
         if (Array.isArray(value)) {
           value = value.map(v => optionLabels[v] || v).join(', ');
         } else {
-          value = optionLabels[value] || value;
+          value = (key === 'ubicacion') ? getUbicacionLabel(value) : (optionLabels[value] || value);
           if (key === 'area') {
             value = value + ' m²';
           }
@@ -1541,7 +1564,7 @@
         if (Array.isArray(value)) {
           value = value.map(v => optionLabels[v] || v).join(', ');
         } else {
-          value = optionLabels[value] || value;
+          value = (key === 'ubicacion') ? getUbicacionLabel(value) : (optionLabels[value] || value);
           if (key === 'area') {
             value = value + ' m²';
           }
