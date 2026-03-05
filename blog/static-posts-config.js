@@ -23,7 +23,7 @@ export const staticPosts = [
   {
     slug: "ventajas-construccion-prefabricada-2026",
     title: "Ventajas de Construir en Material Prefabricado en 2026: Guía Completa",
-    description: "Descubre las ventajas de construir en material prefabricado en 2026. CONCASAYA te muestra las innovaciones, beneficios económicos, sostenibilidad y tendencias del futuro de la construcción prefabricada en Colombia.",
+    description: "Descubre las ventajas de construir en material prefabricado en 2026. CONCASAYA te muestra las innovaciones, beneficios, sostenibilidad y tendencias del futuro de la construcción prefabricada en Colombia.",
     image: "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     date: "2026-01-15",
     url: "/blog/ventajas-construccion-prefabricada-2026.html",
