@@ -34,6 +34,8 @@ window.MUNICIPIOS = [
   { slug: "velez", nombre: "Vélez" },
   { slug: "subachoque", nombre: "Subachoque" },
   { slug: "soacha", nombre: "Soacha" },
+  { slug: "guasca", nombre: "Guasca" },
+  { slug: "sesquile", nombre: "Sesquilé" },
   { slug: "la-calera", nombre: "La Calera" },
   { slug: "villeta", nombre: "Villeta" },
   { slug: "raquira", nombre: "Ráquira" },

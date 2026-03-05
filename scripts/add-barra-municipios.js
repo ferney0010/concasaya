@@ -19,6 +19,8 @@ const MUNICIPIOS = [
   { slug: "la-mesa", nombre: "La Mesa" }, { slug: "mesitas-del-colegio", nombre: "Mesitas del Colegio" }, { slug: "facatativa", nombre: "Facatativá" },
   { slug: "sogamoso", nombre: "Sogamoso" }, { slug: "firavitoba", nombre: "Firavitoba" }, { slug: "valle-de-tenza", nombre: "Valle de Tenza" },
   { slug: "velez", nombre: "Vélez" }, { slug: "subachoque", nombre: "Subachoque" }, { slug: "soacha", nombre: "Soacha" },
+  { slug: "guasca", nombre: "Guasca" },
+  { slug: "sesquile", nombre: "Sesquilé" },
   { slug: "la-calera", nombre: "La Calera" }, { slug: "villeta", nombre: "Villeta" }, { slug: "raquira", nombre: "Ráquira" },
   { slug: "chiquinquira", nombre: "Chiquinquirá" }
 ];
