@@ -3,6 +3,36 @@
 
 export const staticPosts = [
   {
+    slug: "construir-respaldo-legal-casa-prefabricada-concasaya",
+    title: "Construir con respaldo legal: la ventaja de elegir CONCASAYA para tu casa prefabricada",
+    description:
+      "Seguridad jurídica en obra, riesgos de construir sin licencia, multas por construcción ilegal y cómo CONCASAYA acompaña con gestión integral y asesoría en tu proyecto prefabricado.",
+    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
+    date: "2026-04-19",
+    url: "/blog/construir-respaldo-legal-casa-prefabricada-concasaya.html",
+    category: "Guías"
+  },
+  {
+    slug: "permisos-adicionales-casas-prefabricadas-colombia",
+    title: "Permisos adicionales en la construcción de casas prefabricadas: servicios públicos, normas urbanísticas y gestión con CONCASAYA",
+    description:
+      "Más allá de la licencia: conexión a agua, energía y alcantarillado, normas urbanísticas, trámites ambientales y cómo CONCASAYA ayuda a evitar retrasos en tu obra prefabricada.",
+    image: "https://www.concasaya.com/assets/images/casa2.webp",
+    date: "2026-04-18",
+    url: "/blog/permisos-adicionales-casas-prefabricadas-colombia.html",
+    category: "Guías"
+  },
+  {
+    slug: "licencia-construccion-casas-prefabricadas-colombia",
+    title: "Licencia de construcción para casas prefabricadas: requisitos, trámites y acompañamiento legal con CONCASAYA",
+    description:
+      "Qué es la licencia de obra, por qué es obligatoria, documentos típicos ante la curaduría urbana y cómo CONCASAYA apoya tu proyecto de casa prefabricada en Colombia.",
+    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
+    date: "2026-04-17",
+    url: "/blog/licencia-construccion-casas-prefabricadas-colombia.html",
+    category: "Guías"
+  },
+  {
     slug: "venta-casas-prefabricadas-cundinamarca",
     title: "Venta de Casas Prefabricadas en Cundinamarca: Guía Completa 2026",
     description: "Guía completa sobre la venta de casas prefabricadas en Cundinamarca. Descubre por qué CONCASAYA es la mejor opción para tu hogar prefabricado en Bogotá, Chía, Cajicá, Mosquera y más municipios.",
