@@ -43,8 +43,8 @@ export const staticPosts = [
   },
   {
     slug: "ventajas-prefabricados-clima-calido-santa-marta",
-    title: "Ventajas de Casas Prefabricadas en Clima Cálido: Santa Marta y Costa Caribe",
-    description: "Descubre las ventajas de las casas prefabricadas en clima cálido. CONCASAYA construye en Santa Marta, Barranquilla, Cartagena y toda la Costa Caribe. Aislamiento térmico, resistencia y diseño moderno.",
+    title: "Ventajas de Casas Prefabricadas en Clima Cálido: Costa Caribe y más",
+    description: "Descubre las ventajas de las casas prefabricadas en clima cálido. CONCASAYA construye en Barranquilla y la Costa Caribe; también en Boyacá (p. ej. Samacá). Aislamiento térmico, resistencia y diseño moderno.",
     image: "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     date: "2026-01-15",
     url: "/blog/ventajas-prefabricados-clima-calido-santa-marta.html",
@@ -62,7 +62,7 @@ export const staticPosts = [
   {
     slug: "comprar-casa-prefabricada-colombia-2026",
     title: "Comprar Casa Prefabricada en Colombia 2026: Guía Completa",
-    description: "Todo lo que necesitas saber para comprar casa prefabricada en Colombia 2026. CONCASAYA es tu proveedor líder en viviendas prefabricadas en Bogotá, Cundinamarca, Santa Marta y más regiones.",
+    description: "Todo lo que necesitas saber para comprar casa prefabricada en Colombia 2026. CONCASAYA es tu proveedor líder en viviendas prefabricadas en Bogotá, Cundinamarca, Boyacá y más regiones.",
     image: "https://images.pexels.com/photos/2219024/pexels-photo-2219024.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     date: "2026-03-04",
     url: "/blog/comprar-casa-prefabricada-colombia-2026.html",
@@ -80,7 +80,7 @@ export const staticPosts = [
   {
     slug: "casas-prefabricadas-en-colombia",
     title: "Casas Prefabricadas en Colombia 2026: Guía Completa",
-    description: "Todo sobre casas prefabricadas en Colombia. CONCASAYA es el líder en Bogotá, Cundinamarca, Santa Marta. Precios, ventajas, regiones. Cotización gratuita.",
+    description: "Todo sobre casas prefabricadas en Colombia. CONCASAYA es el líder en Bogotá, Cundinamarca, Boyacá. Precios, ventajas, regiones. Cotización gratuita.",
     image: "https://www.concasaya.com/assets/images/cabaña.webp",
     date: "2026-03-04",
     url: "/blog/casas-prefabricadas-en-colombia.html",

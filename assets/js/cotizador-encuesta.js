@@ -149,7 +149,7 @@
             { value: 'mosquera', label: 'Mosquera' }, { value: 'zipaquira', label: 'Zipaquirá' }, { value: 'sopo', label: 'Sopó' },
             { value: 'suba', label: 'Suba' }, { value: 'funza', label: 'Funza' }, { value: 'villadeleyva', label: 'Villa de Leyva' },
             { value: 'la-vega', label: 'La Vega' }, { value: 'madrid', label: 'Madrid' }, { value: 'tocancipa', label: 'Tocancipá' },
-            { value: 'tunja', label: 'Tunja' }, { value: 'santa-marta', label: 'Santa Marta' }, { value: 'boyaca', label: 'Boyacá' },
+            { value: 'tunja', label: 'Tunja' }, { value: 'duitama', label: 'Duitama' }, { value: 'paipa', label: 'Paipa' }, { value: 'samaca', label: 'Samacá' }, { value: 'boyaca', label: 'Boyacá' },
             { value: 'barbosa', label: 'Barbosa' }, { value: 'choconta', label: 'Chocontá' }, { value: 'san-francisco', label: 'San Francisco' },
             { value: 'supata', label: 'Supatá' }, { value: 'pacho', label: 'Pacho' }, { value: 'puente-nacional', label: 'Puente Nacional' },
             { value: 'la-mesa', label: 'La Mesa' }, { value: 'mesitas-del-colegio', label: 'Mesitas del Colegio' }, { value: 'facatativa', label: 'Facatativá' },
@@ -1236,7 +1236,7 @@
       mosquera: 1.05,
       pacho: 1.15,
       'san-francisco': 1.15,
-      'santa-marta': 1.2,
+      samaca: 1.2,
       sogamoso: 1.25,
       sopo: 1.08,
       suba: 1.0,
@@ -1258,6 +1258,8 @@
       raquira: 1.2,
       chiquinquira: 1.2,
       tunja: 1.25,
+      duitama: 1.25,
+      paipa: 1.25,
       'puente-nacional': 1.25,
     };
 

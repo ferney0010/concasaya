@@ -133,7 +133,7 @@ const multiplicadoresUbicacion = {
   mosquera: 1.05,
   pacho: 1.15,
   'san-francisco': 1.15,
-  'santa-marta': 1.2,
+  samaca: 1.2,
   sogamoso: 1.25,
   sopo: 1.08,
   suba: 1.0,
@@ -217,7 +217,7 @@ function detectIntent(message) {
   }
   
   // Detección de ubicaciones
-  if (lowerMessage.match(/\b(bogot[aá]|ch[ií]a|cajic[aá]|mosquera|sop[oó]|zipaquir[aá]|funza|la vega|madrid|tocancip[aá]|boyac[aá]|santa marta|municipio|ciudad|zona)\b/)) {
+  if (lowerMessage.match(/\b(bogot[aá]|ch[ií]a|cajic[aá]|mosquera|sop[oó]|zipaquir[aá]|funza|la vega|madrid|tocancip[aá]|boyac[aá]|samac[aá]|municipio|ciudad|zona)\b/)) {
     return 'ubicacion';
   }
   
@@ -305,7 +305,7 @@ function navigateToPage(page) {
     'tocancipa': '/pages/tocancipa.html',
     'boyaca': '/pages/boyaca.html',
     'villadeleyva': '/pages/villadeleyva.html',
-    'santa-marta': '/pages/santa-marta.html'
+    samaca: '/pages/samaca.html'
   };
   
   if (pages[page]) {
@@ -687,7 +687,8 @@ function getActionButtons(message, intent, botResponse = '') {
     'tocancipa': { text: 'Ver Tocancipá', page: 'tocancipa' },
     'boyaca': { text: 'Ver Boyacá', page: 'boyaca' },
     'villa de leyva': { text: 'Ver Villa de Leyva', page: 'villadeleyva' },
-    'santa marta': { text: 'Ver Santa Marta', page: 'santa-marta' }
+    'samacá': { text: 'Ver Samacá', page: 'samaca' },
+    samaca: { text: 'Ver Samacá', page: 'samaca' }
   };
   
   for (const [municipio, info] of Object.entries(municipios)) {

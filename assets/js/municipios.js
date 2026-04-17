@@ -1,5 +1,5 @@
 /**
- * Fuente única de municipios para menús de navegación (34 municipios).
+ * Fuente única de municipios para menús de navegación (36 municipios).
  * Para agregar un municipio: añade un objeto { slug: "nombre-archivo", nombre: "Nombre para mostrar" }
  * y crea la página en /pages/nombre-archivo.html
  */
@@ -17,7 +17,9 @@ window.MUNICIPIOS = [
   { slug: "madrid", nombre: "Madrid" },
   { slug: "tocancipa", nombre: "Tocancipá" },
   { slug: "tunja", nombre: "Tunja" },
-  { slug: "santa-marta", nombre: "Santa Marta" },
+  { slug: "duitama", nombre: "Duitama" },
+  { slug: "paipa", nombre: "Paipa" },
+  { slug: "samaca", nombre: "Samacá" },
   { slug: "boyaca", nombre: "Boyacá" },
   { slug: "barbosa", nombre: "Barbosa" },
   { slug: "choconta", nombre: "Chocontá" },

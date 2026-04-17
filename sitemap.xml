@@ -127,8 +127,8 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/pages/santa-marta.html</loc>
-        <lastmod>2026-01-27</lastmod>
+        <loc>https://www.concasaya.com/pages/samaca.html</loc>
+        <lastmod>2026-04-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
@@ -231,6 +231,18 @@
     <url>
         <loc>https://www.concasaya.com/pages/tunja.html</loc>
         <lastmod>2026-01-27</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/duitama.html</loc>
+        <lastmod>2026-04-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/paipa.html</loc>
+        <lastmod>2026-04-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
