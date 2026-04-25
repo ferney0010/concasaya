@@ -23,7 +23,7 @@ function renderNavMunicipios() {
     var style = document.createElement("style");
     style.id = "coverage-nav-responsive-styles";
     style.textContent = [
-      "#nav-municipios-desktop{width:min(92vw,760px);max-height:calc(100vh - 88px);overflow-y:auto;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.25rem .35rem!important;padding:.5rem!important;}",
+      "#nav-municipios-desktop{left:auto!important;right:0!important;width:min(92vw,760px);min-width:min(92vw,760px)!important;max-height:calc(100vh - 88px);overflow-y:auto;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.25rem .35rem!important;padding:.5rem!important;z-index:60;}",
       "#nav-municipios-desktop .coverage-section-title{font-size:10px;line-height:1.1;letter-spacing:.08em;padding:.55rem .5rem .2rem!important;}",
       "#nav-municipios-desktop .municipio-item{font-size:clamp(10px,.72vw,12px);line-height:1.22;gap:.35rem;padding:.45rem .5rem!important;margin:.08rem .12rem!important;min-width:0;white-space:normal;overflow-wrap:anywhere;word-break:normal;align-items:flex-start;}",
       "#nav-municipios-desktop .municipio-icon{width:14px;min-width:14px;font-size:.72rem;margin-top:.1rem;}",
