@@ -23,18 +23,25 @@ function renderNavMunicipios() {
     var style = document.createElement("style");
     style.id = "coverage-nav-responsive-styles";
     style.textContent = [
-      "#nav-municipios-desktop{left:auto!important;right:0!important;width:min(92vw,760px);min-width:min(92vw,760px)!important;max-height:calc(100vh - 88px);overflow-y:auto;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.25rem .35rem!important;padding:.5rem!important;z-index:60;}",
+      "#nav-municipios-desktop{left:auto!important;right:0!important;top:100%;width:min(92vw,760px);min-width:min(92vw,760px)!important;max-height:min(72vh,calc(100vh - 86px));overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:.25rem .35rem!important;padding:.5rem!important;z-index:60;}",
+      "#nav-municipios-desktop .coverage-section-title,#nav-municipios-desktop .coverage-countries-wrap{grid-column:1/-1!important;}",
+      "#nav-municipios-desktop .coverage-countries-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.25rem .35rem;margin:0 0 .35rem 0;padding:0;list-style:none;}",
+      "#nav-municipios-desktop .coverage-countries-grid .municipio-item{height:100%;justify-content:flex-start;}",
       "#nav-municipios-desktop .coverage-section-title{font-size:10px;line-height:1.1;letter-spacing:.08em;padding:.55rem .5rem .2rem!important;}",
       "#nav-municipios-desktop .municipio-item{font-size:clamp(10px,.72vw,12px);line-height:1.22;gap:.35rem;padding:.45rem .5rem!important;margin:.08rem .12rem!important;min-width:0;white-space:normal;overflow-wrap:anywhere;word-break:normal;align-items:flex-start;}",
       "#nav-municipios-desktop .municipio-icon{width:14px;min-width:14px;font-size:.72rem;margin-top:.1rem;}",
       "#nav-municipios-desktop .coverage-name{display:block;min-width:0;max-width:100%;}",
+      "#tablet-menu.open{max-height:calc(100vh - 64px)!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;}",
       "#tablet-dropdown-menu .coverage-section-title{font-size:10px;line-height:1.1;letter-spacing:.08em;padding:.55rem 1rem .25rem!important;}",
       "#tablet-dropdown-menu .municipio-item{font-size:clamp(11px,3.2vw,13px);line-height:1.25;gap:.45rem;padding:.6rem .85rem!important;min-width:0;white-space:normal;overflow-wrap:anywhere;align-items:flex-start;}",
       "#tablet-dropdown-menu .municipio-icon{width:14px;min-width:14px;font-size:.75rem;margin-top:.1rem;}",
       "#tablet-dropdown-menu .coverage-name{display:block;min-width:0;max-width:100%;}",
-      "@media (max-width:1180px){#nav-municipios-desktop{width:min(92vw,620px);grid-template-columns:repeat(2,minmax(0,1fr))!important;}}",
+      "#tablet-dropdown-menu.open{max-height:min(58vh,520px)!important;overflow-y:auto!important;}",
+      "@media (max-width:1180px){#nav-municipios-desktop{width:min(92vw,620px);grid-template-columns:repeat(2,minmax(0,1fr))!important;}#nav-municipios-desktop .coverage-countries-grid{grid-template-columns:repeat(5,minmax(0,1fr));}}",
       "@media (min-width:1400px){#nav-municipios-desktop{width:min(84vw,820px);}}",
-      "@media (max-width:640px){#tablet-dropdown-menu{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#tablet-dropdown-menu .municipio-item{font-size:11px;padding:.52rem .7rem!important;gap:.35rem;}#tablet-dropdown-menu .coverage-section-title{grid-column:1/-1;}}"
+      "@media (max-width:1023px){#nav-municipios-desktop{display:none!important;}}",
+      "@media (max-width:640px){#tablet-dropdown-menu{grid-template-columns:repeat(2,minmax(0,1fr))!important;}#tablet-dropdown-menu .municipio-item{font-size:11px;padding:.52rem .7rem!important;gap:.35rem;}#tablet-dropdown-menu .coverage-section-title{grid-column:1/-1;}#tablet-dropdown-menu.open{max-height:56vh!important;}}",
+      "@media (max-width:420px){#tablet-dropdown-menu{grid-template-columns:1fr!important;}#tablet-dropdown-menu .coverage-section-title{grid-column:1!important;}}"
     ].join("");
     document.head.appendChild(style);
   }
@@ -74,6 +81,7 @@ function renderNavMunicipios() {
   if (paises.length) {
     desktopHtml += renderSectionHeader("Países", "fas fa-earth-americas");
     mobileHtml += renderMobileSectionHeader("Países", "fas fa-earth-americas");
+    desktopHtml += '<li class="coverage-countries-wrap col-span-full"><ul class="coverage-countries-grid">';
     for (var p = 0; p < paises.length; p++) {
       var pais = paises[p];
       var paisHref = baseHref + pais.slug + ".html";
@@ -85,6 +93,7 @@ function renderNavMunicipios() {
       desktopHtml += "<li><a class=\"" + paisDesktopCls + "\" href=\"" + esc(paisHref) + "\">" + paisIcon + "<span class=\"coverage-name\">" + paisNombre + "</span></a></li>";
       mobileHtml += "<a class=\"" + paisMobileCls + "\" href=\"" + esc(paisHref) + "\">" + paisIcon + "<span class=\"coverage-name\">" + paisNombre + "</span></a>";
     }
+    desktopHtml += "</ul></li>";
   }
 
   if (municipios.length) {
