@@ -1,8 +1,37 @@
 /**
- * Fuente única de municipios para menús de navegación (36 municipios).
- * Para agregar un municipio: añade un objeto { slug: "nombre-archivo", nombre: "Nombre para mostrar" }
- * y crea la página en /pages/nombre-archivo.html
+ * Fuente única de cobertura para menús de navegación.
+ * Para agregar un país: añade un objeto en PAISES con { slug, nombre, icono? }
+ * y crea la página en /pages/nombre-archivo.html.
+ * Para agregar un municipio: añade un objeto en MUNICIPIOS con { slug, nombre }.
  */
+window.PAISES = [
+  {
+    slug: "colombianos-en-el-exterior",
+    nombre: "Colombianos en el exterior",
+    icono: "fas fa-globe-americas"
+  },
+  {
+    slug: "colombianos-estados-unidos",
+    nombre: "Estados Unidos",
+    icono: "fas fa-flag-usa"
+  },
+  {
+    slug: "colombianos-espana",
+    nombre: "España",
+    icono: "fas fa-flag"
+  },
+  {
+    slug: "colombianos-canada",
+    nombre: "Canadá",
+    icono: "fab fa-canadian-maple-leaf"
+  },
+  {
+    slug: "colombianos-mexico",
+    nombre: "México",
+    icono: "fas fa-flag"
+  }
+];
+
 window.MUNICIPIOS = [
   { slug: "chia", nombre: "Chía" },
   { slug: "cajica", nombre: "Cajicá" },

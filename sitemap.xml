@@ -264,6 +264,68 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/guasca.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/sesquile.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/villeta.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/la-calera.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/santa-marta.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Páginas de cobertura internacional (Prioridad Alta) -->
+    <url>
+        <loc>https://www.concasaya.com/pages/colombianos-en-el-exterior.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/colombianos-estados-unidos.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/colombianos-espana.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/colombianos-canada.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/colombianos-mexico.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
 
     <!-- Páginas Secundarias (Prioridad Media) -->
     <url>
@@ -327,6 +389,42 @@
         <lastmod>2026-03-04</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-europa.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html</loc>
+        <lastmod>2026-04-25</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/construccion-prefabricada-vs-tradicional.html</loc>
+        <lastmod>2026-02-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/construccion-panel-eps-vs-bloquelon.html</loc>
+        <lastmod>2026-02-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/plaqueta-concreto-vs-bloquelon.html</loc>
+        <lastmod>2026-02-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
     </url>
 
 </urlset>
