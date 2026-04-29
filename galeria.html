@@ -790,7 +790,7 @@
           </div>
           <div
             id="gallery-container"
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
             <div class="text-center w-full col-span-full">
               Cargando imágenes...
@@ -1257,7 +1257,7 @@
       let filteredImages = [];
       let lightbox;
       let currentPage = 1;
-      const imagesPerPage = 10;
+      const imagesPerPage = 9;
 
       const displayImages = (images, page = 1) => {
         galleryContainer.innerHTML = "";
@@ -1281,7 +1281,7 @@
           // Desactivar zoom en móviles - usar fade-up en lugar de zoom-in
           const isMobile = window.innerWidth <= 768;
           div.setAttribute("data-aos", isMobile ? "fade-up" : "zoom-in");
-          div.setAttribute("data-aos-delay", (index % 4) * 100);
+          div.setAttribute("data-aos-delay", (index % 3) * 100);
           div.innerHTML = `
               <a href="${img.image_url}" class="glightbox" data-gallery="concasaya-gallery" data-title="${img.title}">
                 <img
