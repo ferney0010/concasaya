@@ -1466,6 +1466,8 @@
                     src="assets/images/herocasa.webp"
                     alt="Casa prefabricada moderna"
                     class="slide-image"
+                    decoding="async"
+                    fetchpriority="high"
                   />
                 </div>
                 <div class="slide">
@@ -1473,6 +1475,8 @@
                     src="assets/images/cass2.webp"
                     alt="Casa prefabricada campestre"
                     class="slide-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="slide">
@@ -1480,6 +1484,8 @@
                     src="assets/images/cabaña.webp"
                     alt="Cabaña prefabricada"
                     class="slide-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="slide">
@@ -1487,6 +1493,8 @@
                     src="assets/images/casal1.webp"
                     alt="Casa prefabricada estilo moderno"
                     class="slide-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="slide">
@@ -1494,6 +1502,8 @@
                     src="assets/images/eficiente.webp"
                     alt="Casa prefabricada eficiente"
                     class="slide-image"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               </div>
@@ -1656,6 +1666,8 @@
                 src="assets/images/cabaña18.PNG"
                 alt="Cabaña prefabricada moderna rodeada de naturaleza"
                 class="w-full h-56 object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div class="p-6">
                 <div
@@ -1693,6 +1705,8 @@
                 src="assets/images/herocasa.webp"
                 alt="Casa campestre prefabricada de dos pisos con jardín"
                 class="w-full h-56 object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div class="p-6">
                 <div
@@ -1729,6 +1743,8 @@
                 src="assets/images/bodega2.webp"
                 alt="Bodega prefabricada moderna y funcional"
                 class="w-full h-56 object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div class="p-6">
                 <div
@@ -1784,6 +1800,8 @@
                 src="assets/images/paneleps.webp"
                 alt="Panel de EPS mostrando su estructura para aislamiento"
                 class="rounded-lg shadow-2xl w-full h-auto"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
@@ -1898,9 +1916,14 @@
 
       <section id="blog-preview" class="py-20">
         <div class="container mx-auto px-6">
-          <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
-            Mantente Informado con Nuestro Blog
-          </h2>
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl font-bold">
+              Mantente Informado con Nuestro Blog
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mt-3">
+              Las <strong>tres guías más recientes</strong> de nuestro blog.
+            </p>
+          </div>
           <div
             id="blog-preview-container"
             class="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -1909,6 +1932,24 @@
               Cargando artículos recientes...
             </div>
           </div>
+
+          <div
+            id="blog-preview-thumbs-wrap"
+            class="mt-12 hidden max-w-5xl mx-auto"
+            aria-label="Más artículos sugeridos"
+          >
+            <p
+              class="text-center text-sm font-semibold text-gray-700 mb-4 tracking-wide uppercase"
+              data-aos="fade-up"
+            >
+              También te puede interesar
+            </p>
+            <div
+              id="blog-preview-thumbs"
+              class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
+            ></div>
+          </div>
+
           <div class="text-center mt-12" data-aos="fade-up">
             <a
               href="/blog.html"
@@ -1920,62 +1961,163 @@
       </section>
 
       <script type="module">
-        import { supabase } from "./supabaseClient.js";
+        import { staticPosts } from "./blog/static-posts-config.js";
 
+        const blogSection = document.getElementById("blog-preview");
         const blogPreviewContainer = document.getElementById(
           "blog-preview-container"
         );
+        const blogPreviewThumbsWrap = document.getElementById(
+          "blog-preview-thumbs-wrap"
+        );
+        const blogPreviewThumbs = document.getElementById(
+          "blog-preview-thumbs"
+        );
 
-        const loadRecentPosts = async () => {
-          const { data: posts, error } = await supabase
-            .from("concasaya_blog_posts")
-            .select("*")
-            .order("created_at", { ascending: false })
-            .limit(3);
+        let blogPostsLoaded = false;
 
-          if (error || !posts || posts.length === 0) {
-            blogPreviewContainer.innerHTML =
-              '<p class="col-span-full text-center">No hay artículos para mostrar.</p>';
-            return;
+        function escapeHtml(str) {
+          return String(str)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function formatPostDate(iso) {
+          if (!iso) return "";
+          try {
+            return new Date(iso).toLocaleDateString("es-CO", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            });
+          } catch {
+            return "";
           }
+        }
 
-          blogPreviewContainer.innerHTML = "";
+        const loadRecentPosts = () => {
+          if (blogPostsLoaded) return;
+          blogPostsLoaded = true;
 
-          posts.forEach((post, index) => {
-            const article = document.createElement("article");
-            article.className = "bg-white rounded-lg shadow-lg overflow-hidden";
-            article.setAttribute("data-aos", "fade-up");
-            article.setAttribute("data-aos-delay", (index + 1) * 100);
+          try {
+            const sorted = [...staticPosts].sort(
+              (a, b) => new Date(b.date) - new Date(a.date)
+            );
+            const posts = sorted.slice(0, 3);
+            const morePosts = sorted.slice(3, 9);
 
-            const postImage = post.image_url
-              ? `<img src="${post.image_url}" alt="${post.title}" class="w-full h-56 object-cover" />`
-              : '<div class="w-full h-56 bg-gray-200 flex items-center justify-center"><span class="text-gray-400">Sin imagen</span></div>';
+            if (!posts.length) {
+              blogPreviewContainer.innerHTML =
+                '<p class="col-span-full text-center">No hay artículos para mostrar.</p>';
+              if (blogPreviewThumbsWrap) blogPreviewThumbsWrap.classList.add("hidden");
+              return;
+            }
 
-            const snippet = post.content
-              ? post.content.substring(0, 100) + "..."
-              : "Haz clic para leer el contenido completo.";
+            blogPreviewContainer.innerHTML = "";
 
-            article.innerHTML = `
+            if (blogPreviewThumbs && blogPreviewThumbsWrap) {
+              blogPreviewThumbs.innerHTML = "";
+              if (morePosts.length > 0) {
+                blogPreviewThumbsWrap.classList.remove("hidden");
+                morePosts.forEach((post, i) => {
+                  const safeTitle = escapeHtml(post.title);
+                  const link = document.createElement("a");
+                  link.href = post.url;
+                  link.className =
+                    "group flex flex-col rounded-lg overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md hover:border-primary/35 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2";
+                  link.setAttribute("data-aos", "fade-up");
+                  link.setAttribute("data-aos-delay", String(i * 40));
+                  const thumbImg = post.image
+                    ? `<div class="aspect-[4/3] overflow-hidden bg-gray-100"><img src="${post.image}" alt="${safeTitle}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" /></div>`
+                    : `<div class="aspect-[4/3] bg-gradient-to-br from-primary/80 to-secondary flex items-center justify-center" role="img" aria-label="${safeTitle}"><i class="fas fa-newspaper text-white/90 text-xl" aria-hidden="true"></i></div>`;
+                  link.innerHTML = `
+                    ${thumbImg}
+                    <div class="p-2.5 min-h-[3.25rem] flex items-start">
+                      <span class="text-[11px] sm:text-xs font-medium text-dark line-clamp-2 leading-snug">${safeTitle}</span>
+                    </div>`;
+                  blogPreviewThumbs.appendChild(link);
+                });
+              } else {
+                blogPreviewThumbsWrap.classList.add("hidden");
+              }
+            }
+
+            posts.forEach((post, index) => {
+              const article = document.createElement("article");
+              article.className =
+                "bg-white rounded-lg shadow-lg overflow-hidden flex flex-col";
+              article.setAttribute("data-aos", "fade-up");
+              article.setAttribute("data-aos-delay", (index + 1) * 100);
+
+              const isNewest = index === 0;
+              const badge = isNewest
+                ? `<span class="absolute top-3 left-3 z-10 inline-flex items-center rounded-full bg-primary text-white text-xs font-semibold px-3 py-1 shadow-md">Lo más reciente</span>`
+                : "";
+
+              const postImage = post.image
+                ? `<div class="relative h-56 overflow-hidden bg-gray-100">${badge}<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" loading="lazy" decoding="async" /></div>`
+                : `<div class="relative w-full h-56 bg-gray-200 flex items-center justify-center">${badge}<span class="text-gray-400">Sin imagen</span></div>`;
+
+              const snippet = post.description
+                ? post.description.length > 140
+                  ? post.description.substring(0, 140) + "..."
+                  : post.description
+                : "Haz clic para leer la guía completa.";
+
+              const dateStr = formatPostDate(post.date);
+              const timeAttr = post.date
+                ? String(post.date).replace(/"/g, "&quot;")
+                : "";
+
+              article.innerHTML = `
                     ${postImage}
-                    <div class="p-6">
-                        <span class="text-sm text-secondary font-semibold">Artículo</span>
-                        <h3 class="text-xl font-bold my-2">${post.title}</h3>
-                        <p class="text-gray-600 mb-4 text-sm">${snippet}</p>
-                        <a href="/blog/post.html?id=${post.id}" class="font-semibold text-primary hover:underline">Leer más &rarr;</a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <time class="text-sm text-gray-500 mb-2 block" datetime="${timeAttr}">${dateStr || "Blog"}</time>
+                        <h3 class="text-xl font-bold mb-2 text-dark">${post.title}</h3>
+                        <p class="text-gray-600 mb-4 text-sm flex-grow">${snippet}</p>
+                        <a href="${post.url}" class="font-semibold text-primary hover:underline mt-auto">Leer más &rarr;</a>
                     </div>
                 `;
-            blogPreviewContainer.appendChild(article);
-          });
-          setTimeout(() => AOS.refresh(), 100);
+              blogPreviewContainer.appendChild(article);
+            });
+            setTimeout(() => AOS.refresh(), 100);
+          } catch (e) {
+            console.error(e);
+            blogPostsLoaded = false;
+            blogPreviewContainer.innerHTML =
+              '<p class="col-span-full text-center text-gray-600">No se pudo cargar el blog.</p>';
+          }
         };
 
-        document.addEventListener("DOMContentLoaded", loadRecentPosts);
+        const startBlogWhenVisible = () => {
+          if (!blogSection || !blogPreviewContainer) return;
+          if (!("IntersectionObserver" in window)) {
+            loadRecentPosts();
+            return;
+          }
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (entry.isIntersecting) {
+                  loadRecentPosts();
+                  io.disconnect();
+                  return;
+                }
+              }
+            },
+            { rootMargin: "280px 0px", threshold: 0.01 }
+          );
+          io.observe(blogSection);
+        };
+
+        document.addEventListener("DOMContentLoaded", startBlogWhenVisible);
       </script>
 
       <section id="testimonials" class="py-20 bg-light">
         <div class="container mx-auto px-6">
           <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
-            Lo que Dicen Nuestros Clientes
+            Lo que Dicen Nuestros Clientes en 2026
           </h2>
           <div
             id="testimonials-grid"
@@ -2000,6 +2142,11 @@
               </p>
               <h4 class="font-bold">Ferney Bello</h4>
               <span class="text-sm text-gray-500">Samacá, Boyacá</span>
+              <time
+                datetime="2026-04-24"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >24 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2021,6 +2168,11 @@
               </p>
               <h4 class="font-bold">Jairo A Rico</h4>
               <span class="text-sm text-gray-500">Zipaquirá, Cundinamarca</span>
+              <time
+                datetime="2026-04-22"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >22 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2042,6 +2194,11 @@
               </p>
               <h4 class="font-bold">Francisco Rincon</h4>
               <span class="text-sm text-gray-500">Sopó, Cundinamarca</span>
+              <time
+                datetime="2026-04-19"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >19 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2063,6 +2220,11 @@
               </p>
               <h4 class="font-bold">María Margarita Chaparro</h4>
               <span class="text-sm text-gray-500">Villa de Leyva, Boyacá</span>
+              <time
+                datetime="2026-04-16"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >16 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2084,6 +2246,11 @@
               </p>
               <h4 class="font-bold">Natalia Veloza</h4>
               <span class="text-sm text-gray-500">Bucaramanga, Santander</span>
+              <time
+                datetime="2026-04-12"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >12 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2104,6 +2271,11 @@
               </p>
               <h4 class="font-bold">Sandra Maribel Castellanos</h4>
               <span class="text-sm text-gray-500">La Calera, Cundinamarca</span>
+              <time
+                datetime="2026-04-08"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >8 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2127,6 +2299,11 @@
               <span class="text-sm text-gray-500"
                 >Buenaventura, Valle del Cauca</span
               >
+              <time
+                datetime="2026-04-04"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >4 de abril de 2026</time
+              >
             </div>
 
             <div
@@ -2148,6 +2325,11 @@
               </p>
               <h4 class="font-bold">Helmer Chaparro</h4>
               <span class="text-sm text-gray-500">Girardot, Cundinamarca</span>
+              <time
+                datetime="2026-03-30"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >30 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2169,6 +2351,11 @@
               </p>
               <h4 class="font-bold">Jose Uliser Torres Caro</h4>
               <span class="text-sm text-gray-500">Paipa, Boyacá</span>
+              <time
+                datetime="2026-03-25"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >25 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2192,6 +2379,11 @@
               <span class="text-sm text-gray-500"
                 >Fusagasugá, Cundinamarca</span
               >
+              <time
+                datetime="2020-04-14"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >14 de abril de 2020</time
+              >
             </div>
 
             <div
@@ -2212,6 +2404,11 @@
               </p>
               <h4 class="font-bold">Mary Figueroa</h4>
               <span class="text-sm text-gray-500">San Gil, Santander</span>
+              <time
+                datetime="2026-03-20"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >20 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2232,6 +2429,11 @@
               </p>
               <h4 class="font-bold">Olga Ines Santiago Sanchez</h4>
               <span class="text-sm text-gray-500">Guatavita, Cundinamarca</span>
+              <time
+                datetime="2026-03-14"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >14 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2254,6 +2456,11 @@
               </p>
               <h4 class="font-bold">Javier OrtG</h4>
               <span class="text-sm text-gray-500">Tunja, Boyacá</span>
+              <time
+                datetime="2026-03-08"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >8 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2275,6 +2482,11 @@
               </p>
               <h4 class="font-bold">Elvi Rozo</h4>
               <span class="text-sm text-gray-500">Cota, Cundinamarca</span>
+              <time
+                datetime="2026-03-03"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >3 de marzo de 2026</time
+              >
             </div>
 
             <div
@@ -2297,6 +2509,11 @@
               </p>
               <h4 class="font-bold">Saldarriagas GuauMiau</h4>
               <span class="text-sm text-gray-500">Sabana de Bogotá</span>
+              <time
+                datetime="2026-02-26"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >26 de febrero de 2026</time
+              >
             </div>
 
             <div
@@ -2318,6 +2535,11 @@
               </p>
               <h4 class="font-bold">Maria Olarte</h4>
               <span class="text-sm text-gray-500">Chía, Cundinamarca</span>
+              <time
+                datetime="2026-02-18"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >18 de febrero de 2026</time
+              >
             </div>
 
             <div
@@ -2338,6 +2560,11 @@
               </p>
               <h4 class="font-bold">YINA PAOLA SANCHEZ</h4>
               <span class="text-sm text-gray-500">Cajicá, Cundinamarca</span>
+              <time
+                datetime="2026-02-10"
+                class="text-xs text-gray-400 mt-1.5 block"
+                >10 de febrero de 2026</time
+              >
             </div>
           </div>
           <div
@@ -2348,23 +2575,32 @@
         </div>
       </section>
 
-      <section id="gallery-preview" class="py-20">
+      <section
+        id="gallery-preview"
+        class="py-20 bg-gradient-to-b from-slate-50 to-white"
+      >
         <div class="container mx-auto px-6">
-          <h2 class="text-3xl font-bold text-center mb-12" data-aos="fade-up">
-            Proyectos que Inspiran
-          </h2>
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+              Proyectos que Inspiran
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+              Un vistazo a proyectos recientes. Haz clic en una foto para
+              ampliarla o entra a la galería completa.
+            </p>
+          </div>
           <div
             id="gallery-preview-container"
-            class="grid grid-cols-2 lg:grid-cols-3 gap-4 h-96"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
-            <div class="col-span-full text-center">
+            <div class="col-span-full text-center py-12 text-gray-500">
               Cargando imágenes recientes...
             </div>
           </div>
           <div class="text-center mt-12" data-aos="fade-up">
             <a
               href="/galeria.html"
-              class="bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300"
+              class="inline-flex items-center gap-2 bg-primary text-white px-8 py-3 rounded-full font-semibold text-lg hover:opacity-90 transition duration-300 shadow-lg shadow-primary/25"
               >Ver Proyectos Recientes</a
             >
           </div>
@@ -2372,58 +2608,138 @@
       </section>
 
       <script type="module">
-        import { supabase } from "./supabaseClient.js";
-
+        const gallerySection = document.getElementById("gallery-preview");
         const galleryPreviewContainer = document.getElementById(
           "gallery-preview-container"
         );
 
-        const loadRecentImages = async () => {
-          const { data: images, error } = await supabase
-            .from("concasaya_gallery_images")
-            .select("*")
-            .order("created_at", { ascending: false })
-            .limit(5);
+        let previewLightbox = null;
+        let galleryImagesStarted = false;
+        let glightboxLoadPromise = null;
 
-          if (error || !images || images.length === 0) {
-            galleryPreviewContainer.innerHTML =
-              '<p class="col-span-full text-center">No hay imágenes para mostrar.</p>';
-            return;
+        function loadGLightboxAssets() {
+          if (typeof GLightbox !== "undefined") {
+            return Promise.resolve();
           }
+          if (!glightboxLoadPromise) {
+            glightboxLoadPromise = new Promise((resolve, reject) => {
+              const link = document.createElement("link");
+              link.rel = "stylesheet";
+              link.href =
+                "https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css";
+              document.head.appendChild(link);
 
-          galleryPreviewContainer.innerHTML = "";
+              const script = document.createElement("script");
+              script.src =
+                "https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js";
+              script.async = true;
+              script.dataset.glightboxLoader = "true";
+              script.onload = () => resolve();
+              script.onerror = () =>
+                reject(new Error("Error al cargar GLightbox"));
+              document.body.appendChild(script);
+            });
+          }
+          return glightboxLoadPromise;
+        }
 
-          images.forEach((image, index) => {
-            const imageWrapper = document.createElement("div");
-            let classList = "rounded-lg overflow-hidden";
-            let delay = index * 100;
+        const loadRecentImages = async () => {
+          if (galleryImagesStarted || !galleryPreviewContainer) return;
+          galleryImagesStarted = true;
 
-            if (index === 0) {
-              classList += " col-span-2 row-span-2";
+          try {
+            const { supabase } = await import("./supabaseClient.js");
+            const { data: images, error } = await supabase
+              .from("concasaya_gallery_images")
+              .select("*")
+              .order("created_at", { ascending: false })
+              .limit(9);
+
+            if (error || !images || images.length === 0) {
+              galleryPreviewContainer.innerHTML =
+                '<p class="col-span-full text-center text-gray-600 py-8">No hay imágenes para mostrar.</p>';
+              return;
             }
 
-            imageWrapper.className = classList;
-            // Desactivar zoom en móviles - usar fade-up en lugar de zoom-in
-            const isMobile = window.innerWidth <= 768;
-            imageWrapper.setAttribute(
-              "data-aos",
-              isMobile ? "fade-up" : "zoom-in"
-            );
-            imageWrapper.setAttribute("data-aos-delay", delay);
+            galleryPreviewContainer.innerHTML = "";
 
-            imageWrapper.innerHTML = `
-                    <img
-                        src="${image.image_url}"
-                        class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
-                        alt="${image.title}"
-                    />
-                `;
-            galleryPreviewContainer.appendChild(imageWrapper);
-          });
-          setTimeout(() => AOS.refresh(), 100);
+            const isMobile = window.innerWidth <= 768;
+
+            images.forEach((image, index) => {
+              const card = document.createElement("div");
+              card.className = "overflow-hidden rounded-lg shadow-lg group";
+              card.setAttribute("data-aos", isMobile ? "fade-up" : "zoom-in");
+              card.setAttribute("data-aos-delay", String((index % 3) * 100));
+
+              card.innerHTML = `
+              <a href="${image.image_url}" class="glightbox block focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2" data-gallery="concasaya-index-preview" data-title="${String(image.title || "").replace(/"/g, "&quot;")}">
+                <div class="aspect-[4/3] overflow-hidden bg-gray-100">
+                  <img
+                    src="${image.image_url}"
+                    class="w-full h-full object-cover transform transition-transform duration-300 group-hover:scale-110"
+                    alt="${String(image.title || "").replace(/"/g, "&quot;")}"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </a>`;
+              galleryPreviewContainer.appendChild(card);
+            });
+
+            try {
+              await loadGLightboxAssets();
+            } catch (lightboxErr) {
+              console.warn(lightboxErr);
+            }
+
+            setTimeout(() => {
+              AOS.refresh();
+              if (typeof GLightbox === "undefined") return;
+              try {
+                if (previewLightbox) {
+                  previewLightbox.reload();
+                } else {
+                  previewLightbox = GLightbox({
+                    selector: "#gallery-preview-container .glightbox",
+                    touchNavigation: true,
+                    loop: true,
+                    zoomable: !isMobile,
+                  });
+                }
+              } catch (lb) {
+                console.warn(lb);
+              }
+            }, 0);
+          } catch (e) {
+            console.error(e);
+            galleryImagesStarted = false;
+            galleryPreviewContainer.innerHTML =
+              '<p class="col-span-full text-center text-gray-600 py-8">No se pudo cargar la galería.</p>';
+          }
         };
 
-        document.addEventListener("DOMContentLoaded", loadRecentImages);
+        const startGalleryWhenVisible = () => {
+          if (!gallerySection || !galleryPreviewContainer) return;
+          if (!("IntersectionObserver" in window)) {
+            loadRecentImages();
+            return;
+          }
+          const io = new IntersectionObserver(
+            (entries) => {
+              for (const entry of entries) {
+                if (entry.isIntersecting) {
+                  loadRecentImages();
+                  io.disconnect();
+                  return;
+                }
+              }
+            },
+            { rootMargin: "320px 0px", threshold: 0.01 }
+          );
+          io.observe(gallerySection);
+        };
+
+        document.addEventListener("DOMContentLoaded", startGalleryWhenVisible);
       </script>
 
       <section class="py-16 bg-gray-100">
@@ -2635,6 +2951,8 @@
                 src="assets/images/planos.webp"
                 class="rounded-lg shadow-xl w-full h-full object-cover"
                 alt="Mujer sonriendo con las llaves de su nueva casa prefabricada"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div data-aos="fade-right" class="text-white">
@@ -2697,6 +3015,8 @@
                 src="/assets/images/logocasah.webp"
                 alt="CONCASAYA Logo"
                 class="h-12 w-auto mb-4"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <p class="text-gray-300 leading-relaxed mb-6">
@@ -3488,6 +3808,8 @@
       <img
         src="/assets/images/logoconcasaya.webp"
         alt="Contacto CONCASAYA"
+        loading="lazy"
+        decoding="async"
         onerror="console.error('Error cargando imagen:', this.src)"
       />
       <div class="small-animation-text">
