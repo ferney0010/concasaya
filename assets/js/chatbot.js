@@ -99,12 +99,10 @@ const preciosPorM2 = {
   },
   'eps': {
     '1-piso': {
-      'gris': 1300000,
-      'blanca': 1950000
+      'llave-en-mano': 2100000
     },
     '2-pisos': {
-      'gris': 2700000,
-      'blanca': 3450000
+      'llave-en-mano': 2600000
     }
   }
 };
@@ -146,7 +144,7 @@ const multiplicadoresUbicacion = {
 
 // Función para calcular precio aproximado
 // IMPORTANTE: Mantener los mismos parámetros que el cotizador:
-// - EPS cotiza en obra gris o obra blanca (no obra negra)
+// - EPS cotiza solo en llave en mano
 // - Plaqueta solo cotiza en obra negra (no gris ni blanca)
 function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, tipoVivienda) {
   // Valores por defecto
@@ -159,24 +157,22 @@ function calculateApproximatePrice(area, sistema, acabados, pisos, ubicacion, ti
   // Ajustar acabados según el sistema (igual que el cotizador)
   let acabadosParaCalcular;
   if (sistema === 'eps') {
-    // EPS cotiza en obra gris o blanca
-    acabadosParaCalcular = acabados === 'blanca' ? 'blanca' : 'gris';
+    // EPS cotiza solo en llave en mano
+    acabadosParaCalcular = 'llave-en-mano';
   } else if (sistema === 'plaqueta') {
     // Plaqueta solo cotiza en obra negra
     acabadosParaCalcular = 'obra-negra';
   } else {
     // Default
-    acabadosParaCalcular = 'gris';
+    acabadosParaCalcular = 'llave-en-mano';
   }
 
   // Si el usuario especificó acabados que no son compatibles, usar los del sistema
-  if (sistema === 'eps' && acabados && acabados !== 'gris' && acabados !== 'blanca') {
-    acabadosParaCalcular = 'gris'; // Forzar gris para EPS si no es válido
-  } else if (sistema === 'plaqueta' && acabados && acabados !== 'obra-negra') {
+  if (sistema === 'plaqueta' && acabados && acabados !== 'obra-negra') {
     acabadosParaCalcular = 'obra-negra'; // Forzar obra negra para Plaqueta
   }
 
-  const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['gris'];
+  const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['llave-en-mano'];
   
   let precioBase = precioM2 * area;
   precioBase *= multiplicadoresTipo[tipoVivienda] || 1.0;
@@ -249,10 +245,9 @@ function extractConversationData(message) {
   // Extraer acabados
   if (lowerMessage.match(/\bobra negra\b/)) {
     conversationData.acabados = 'obra-negra';
-  } else if (lowerMessage.match(/\bobra gris\b/)) {
-    conversationData.acabados = 'gris';
-  } else if (lowerMessage.match(/\bobra blanca\b/)) {
-    conversationData.acabados = 'blanca';
+  } else if (lowerMessage.match(/\b(obra gris|obra blanca|llave en mano)\b/)) {
+    // Para EPS el chatbot maneja una sola modalidad: llave en mano
+    conversationData.acabados = 'llave-en-mano';
   }
   
   // Extraer número de pisos
@@ -762,9 +757,9 @@ Instrucciones CRÍTICAS para tus respuestas:
 - Evita respuestas muy largas o técnicas. Prefiere explicaciones simples y fáciles de entender.
 - Si el usuario pregunta sobre precios o cotizaciones:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
-  * IMPORTANTE: Los precios que proporciones deben ser ACCESIBLES a primera vista. NO menciones rangos de precios amplios que puedan confundir o espantar a los usuarios. En su lugar, da ejemplos específicos con los precios actuales (EPS obra gris 1 piso: $1.300.000/m², Plaqueta obra negra 1 piso: $550.000/m²).
+  * IMPORTANTE: Los precios que proporciones deben ser ACCESIBLES a primera vista. NO menciones rangos de precios amplios que puedan confundir o espantar a los usuarios. En su lugar, da ejemplos específicos con los precios actuales (EPS llave en mano 1 piso: $2.100.000/m², EPS llave en mano 2 pisos: $2.600.000/m², Plaqueta obra negra 1 piso: $550.000/m²).
   * IMPORTANTE: Siempre menciona que es una estimación aproximada y que para una cotización precisa debe contactar al asesor por WhatsApp (314 289 1018) o usar el cotizador completo en /cotizador-encuesta.html.
-  * IMPORTANTE: Recuerda que EPS cotiza en obra gris o obra blanca (no obra negra) y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
+  * IMPORTANTE: Recuerda que EPS cotiza solo en llave en mano y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
   * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema) antes de calcular.
 - Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html pero NO redirijas automáticamente. Solo sugiere y deja que el usuario haga clic cuando quiera.
 - Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html pero NO redirijas automáticamente.
@@ -1247,8 +1242,7 @@ async function handleUserInput() {
       
       // Mostrar acabados según el sistema (igual que el cotizador)
       if (priceData.sistema === 'eps') {
-        const acabadosLabel = priceData.acabados === 'blanca' ? 'Obra Blanca' : 'Obra Gris';
-        priceMessage += `✨ **Acabados**: ${acabadosLabel} (disponible obra gris y obra blanca para Paneles EPS)\n`;
+        priceMessage += `✨ **Modalidad EPS**: Llave en mano\n`;
       } else {
         priceMessage += `✨ **Acabados**: Obra Negra (único nivel disponible para Plaqueta de Concreto)\n`;
       }

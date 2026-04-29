@@ -124,14 +124,21 @@
           label: 'Gris', 
           icon: 'fas fa-trowel', 
           description: 'Instalación de luz y pañete. Incluye redes eléctricas e hidráulicas.',
-          availableFor: ['eps'] // Disponible para EPS
+          availableFor: ['plaqueta'] // Disponible para Plaqueta
         },
         { 
           value: 'blanca', 
           label: 'Obra Blanca', 
           icon: 'fas fa-paint-roller', 
           description: 'Todo lo anterior más acabados finales: pisos, pintura, listo para habitar.',
-          availableFor: ['eps'] // Disponible para EPS
+          availableFor: ['plaqueta'] // Disponible para Plaqueta
+        },
+        { 
+          value: 'llave-en-mano', 
+          label: 'Llave en Mano', 
+          icon: 'fas fa-key', 
+          description: 'Proyecto integral listo para habitar.',
+          availableFor: ['eps'] // Solo disponible para EPS
         }
       ],
       hasVisual: false
@@ -422,21 +429,25 @@
       if (question.id === 'acabados') {
         const sistemaSeleccionado = appState.answers.sistema;
         if (sistemaSeleccionado === 'eps') {
-          // Si se seleccionó EPS, solo mostrar obra gris
+          // Si se seleccionó EPS, solo mostrar llave en mano
           availableOptions = question.options.filter(opt => 
             opt.availableFor && opt.availableFor.includes('eps')
           );
-          // Si ya había seleccionado obra-negra, limpiar esa selección
-          if (appState.answers.acabados === 'obra-negra') {
+          // Si había una selección de plaqueta, limpiar esa selección
+          if (
+            appState.answers.acabados === 'obra-negra' ||
+            appState.answers.acabados === 'gris' ||
+            appState.answers.acabados === 'blanca'
+          ) {
             appState.answers.acabados = '';
           }
         } else if (sistemaSeleccionado === 'plaqueta') {
-          // Para plaqueta, solo mostrar obra negra
+          // Para plaqueta, mostrar etapas de obra
           availableOptions = question.options.filter(opt => 
             opt.availableFor && opt.availableFor.includes('plaqueta')
           );
-          // Si ya había seleccionado gris o blanca, limpiar esa selección
-          if (appState.answers.acabados === 'gris' || appState.answers.acabados === 'blanca') {
+          // Si ya había seleccionado llave en mano, limpiar esa selección
+          if (appState.answers.acabados === 'llave-en-mano') {
             appState.answers.acabados = '';
           }
         }
@@ -491,8 +502,8 @@
                 <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
                 <div>
                   <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre EPS</p>
-                  <p class="text-xs text-blue-700">El sistema EPS se cotiza en obra gris o obra blanca. Obra gris incluye pañete y redes eléctricas e hidráulicas. Obra blanca incluye acabados finales completos.</p>
-                  <p class="text-xs text-blue-700 mt-2"><strong>¿Deseas cotizar acabados?</strong> Si necesitas cotizar acabados adicionales, por favor escríbenos por WhatsApp o agenda una videollamada.</p>
+                  <p class="text-xs text-blue-700">El sistema EPS se cotiza únicamente en modalidad llave en mano.</p>
+                  <p class="text-xs text-blue-700 mt-2"><strong>¿Necesitas detalles de alcance?</strong> Escríbenos por WhatsApp o agenda una videollamada para revisar especificaciones.</p>
                 </div>
               </div>
             </div>
@@ -504,7 +515,7 @@
                 <i class="fas fa-info-circle text-blue-600 text-lg mr-3 mt-1"></i>
                 <div>
                   <p class="text-sm text-blue-800 font-semibold mb-1">Importante sobre Plaqueta</p>
-                  <p class="text-xs text-blue-700">El sistema de Plaqueta se cotiza únicamente en obra negra (estructura sin acabados).</p>
+                  <p class="text-xs text-blue-700">El sistema de Plaqueta se puede cotizar por etapas: obra negra, obra gris y obra blanca.</p>
                   <p class="text-xs text-blue-700 mt-2"><strong>¿Deseas cotizar acabados?</strong> Si necesitas cotizar acabados adicionales, por favor escríbenos por WhatsApp o agenda una videollamada.</p>
                 </div>
               </div>
@@ -750,9 +761,14 @@
     
     // Si se cambia el sistema constructivo, limpiar acabados si no son compatibles
     if (questionId === 'sistema') {
-      if (value === 'eps' && appState.answers.acabados === 'obra-negra') {
+      if (
+        value === 'eps' &&
+        (appState.answers.acabados === 'obra-negra' ||
+          appState.answers.acabados === 'gris' ||
+          appState.answers.acabados === 'blanca')
+      ) {
         appState.answers.acabados = '';
-      } else if (value === 'plaqueta' && (appState.answers.acabados === 'gris' || appState.answers.acabados === 'blanca')) {
+      } else if (value === 'plaqueta' && appState.answers.acabados === 'llave-en-mano') {
         appState.answers.acabados = '';
       }
     }
@@ -1193,12 +1209,10 @@
       },
       'eps': {
         '1-piso': {
-          'gris': 1450000,
-          'blanca': 1950000
+          'llave-en-mano': 2100000
         },
         '2-pisos': {
-          'gris': 2950000,
-          'blanca': 3450000
+          'llave-en-mano': 2600000
         }
       }
     };
@@ -1266,18 +1280,18 @@
     const sistema = appState.answers.sistema || 'eps';
     const area = parseInt(appState.answers.area) || 60;
     const tipoVivienda = appState.answers['tipo-vivienda'] || 'casa-campestre';
-    const acabados = appState.answers.acabados || (sistema === 'eps' ? 'gris' : 'obra-negra');
+    const acabados = appState.answers.acabados || (sistema === 'eps' ? 'llave-en-mano' : 'obra-negra');
     const pisos = appState.answers.pisos || '1-piso';
     const ubicacion = appState.answers.ubicacion || 'bogota';
     const instalaciones = appState.answers.instalaciones || [];
 
     // Obtener precio por m² según sistema, pisos y acabados
-    // Si es EPS y se seleccionó obra-negra (no debería pasar, pero por seguridad), usar gris
+    // Si es EPS y llega un acabado no válido, forzar llave en mano
     let acabadosParaCalcular = acabados;
-    if (sistema === 'eps' && acabados === 'obra-negra') {
-      acabadosParaCalcular = 'gris';
+    if (sistema === 'eps' && acabados !== 'llave-en-mano') {
+      acabadosParaCalcular = 'llave-en-mano';
     }
-    const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['gris'];
+    const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['llave-en-mano'];
     
     // Calcular precio base multiplicando precio por m² por el área
     let precioBase = precioM2 * area;
@@ -1398,6 +1412,7 @@
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
+      'llave-en-mano': 'Llave en Mano',
       'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
@@ -1535,6 +1550,7 @@
       'obra-negra': 'Obra Negra',
       'gris': 'Gris',
       'blanca': 'Blanca',
+      'llave-en-mano': 'Llave en Mano',
       'plan': 'Terreno Plano',
       'pendiente': 'Terreno en Pendiente',
       'inmediato': 'Lo antes posible',
