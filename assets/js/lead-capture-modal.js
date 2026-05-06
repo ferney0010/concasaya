@@ -6,6 +6,7 @@
 
   const config = {
     whatsappNumber: "573142891018",
+    termsPremioSurpriseUrl: "/terminos-premio-sorpresa.html",
     showDelayMs: 18000,
     minimumScrollPercent: 35,
     dismissedCooldownDays: 7,
@@ -113,32 +114,35 @@
         padding: 1.15rem;
       }
 
-      .cc-lead-modal__eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        margin-bottom: 0.6rem;
-        padding: 0.3rem 0.65rem;
-        border-radius: 999px;
-        background: #ecfdf5;
-        color: #047857;
-        font-size: 0.76rem;
-        font-weight: 700;
+      .cc-lead-modal__title {
+        margin: 0 2rem 0.5rem 0;
+        padding: 0 0 0.4rem;
+        color: #0d1b2a;
+        font-size: 1.32rem;
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -0.03em;
       }
 
-      .cc-lead-modal__title {
-        margin: 0 2rem 0.35rem 0;
-        color: #0d1b2a;
-        font-size: 1.08rem;
-        line-height: 1.25;
-        font-weight: 800;
+      .cc-lead-modal__title::after {
+        content: "";
+        display: block;
+        margin-top: 0.42rem;
+        width: min(140px, 42%);
+        height: 4px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #0077b6, #10b981);
+      }
+
+      .cc-lead-modal__title-em {
+        color: #0077b6;
       }
 
       .cc-lead-modal__text {
-        margin: 0 0 0.9rem;
+        margin: 0 0 0.72rem;
         color: #475569;
-        font-size: 0.88rem;
-        line-height: 1.5;
+        font-size: 0.84rem;
+        line-height: 1.4;
       }
 
       .cc-lead-modal__form {
@@ -209,6 +213,17 @@
         line-height: 1.35;
       }
 
+      .cc-lead-modal__terms-link {
+        color: #0077b6;
+        font-weight: 600;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .cc-lead-modal__terms-link:hover {
+        color: #005f92;
+      }
+
       .cc-lead-modal__close {
         position: absolute;
         top: 0.75rem;
@@ -251,22 +266,22 @@
           padding: 0.95rem;
         }
 
-        .cc-lead-modal__eyebrow {
-          margin-bottom: 0.45rem;
-          padding: 0.26rem 0.55rem;
-          font-size: 0.68rem;
+        .cc-lead-modal__title {
+          margin-right: 2.35rem;
+          font-size: 1.14rem;
+          line-height: 1.12;
+          padding-bottom: 0;
         }
 
-        .cc-lead-modal__title {
-          margin-right: 2.25rem;
-          font-size: 0.98rem;
-          line-height: 1.22;
+        .cc-lead-modal__title::after {
+          margin-top: 0.35rem;
+          height: 3px;
         }
 
         .cc-lead-modal__text {
-          margin-bottom: 0.7rem;
-          font-size: 0.8rem;
-          line-height: 1.42;
+          margin-bottom: 0.62rem;
+          font-size: 0.79rem;
+          line-height: 1.38;
         }
 
         .cc-lead-modal__form {
@@ -289,7 +304,7 @@
 
         .cc-lead-modal__fineprint {
           margin-top: 0.45rem;
-          font-size: 0.66rem;
+          font-size: 0.64rem;
         }
 
         .cc-lead-modal__never {
@@ -333,7 +348,7 @@
   const buildWhatsappUrl = (email, phone) => {
     const currentPage = document.title ? `${document.title} - ${window.location.href}` : window.location.href;
     const message = [
-      "Hola CONCASAYA, quiero participar por el bono especial para empezar mi casa prefabricada.",
+      "Hola CONCASAYA, quiero información sobre casas prefabricadas y conocer cómo obtener el premio sorpresa por mi compra (según contrato firmado).",
       "",
       `Celular: ${phone}`,
       `Correo: ${email}`,
@@ -361,20 +376,19 @@
 
     const modal = document.createElement("section");
     modal.className = "cc-lead-modal";
-    modal.setAttribute("aria-label", "Bono CONCASAYA por WhatsApp");
+    modal.setAttribute("aria-label", "Premio sorpresa CONCASAYA por WhatsApp");
     modal.innerHTML = `
       <div class="cc-lead-modal__card" role="dialog" aria-modal="false" aria-labelledby="cc-lead-modal-title">
         <button class="cc-lead-modal__close" type="button" aria-label="Cerrar anuncio">&times;</button>
         <div class="cc-lead-modal__content">
-          <span class="cc-lead-modal__eyebrow">Oportunidad CONCASAYA</span>
-          <h2 class="cc-lead-modal__title" id="cc-lead-modal-title">Tu casa puede empezar hoy con un bono especial</h2>
-          <p class="cc-lead-modal__text">Déjanos tu celular y correo por WhatsApp y participa por una asesoría prioritaria con guía de inversión, modelos recomendados y beneficios para dar el primer paso de tu proyecto.</p>
+          <h2 class="cc-lead-modal__title" id="cc-lead-modal-title"><span class="cc-lead-modal__title-em">Premio sorpresa</span> por tu compra</h2>
+          <p class="cc-lead-modal__text">Deja celular y correo · te escribimos por WhatsApp · premio <strong>solo al firmar el contrato</strong>. Ej.: sanitarios baño, microondas, Smart TV.</p>
           <form class="cc-lead-modal__form">
             <input class="cc-lead-modal__input" type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="Número de celular" required />
             <input class="cc-lead-modal__input" type="email" name="email" autocomplete="email" placeholder="Correo electrónico" required />
-            <button class="cc-lead-modal__submit" type="submit">Quiero mi bono por WhatsApp</button>
+            <button class="cc-lead-modal__submit" type="submit">Hablar por WhatsApp</button>
           </form>
-          <p class="cc-lead-modal__fineprint">Te contactaremos solo con información útil para tu proyecto CONCASAYA. Puedes cerrar este aviso sin interrumpir tu navegación.</p>
+          <p class="cc-lead-modal__fineprint"><a href="${config.termsPremioSurpriseUrl}" class="cc-lead-modal__terms-link" target="_blank" rel="noopener noreferrer">Términos y condiciones</a>. Puedes cerrar cuando quieras.</p>
           <button class="cc-lead-modal__never" type="button">No volver a mostrar este anuncio</button>
         </div>
       </div>
