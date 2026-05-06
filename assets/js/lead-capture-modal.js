@@ -7,10 +7,10 @@
   const config = {
     whatsappNumber: "573142891018",
     termsPremioSurpriseUrl: "/terminos-premio-sorpresa.html",
-    showDelayMs: 18000,
-    minimumScrollPercent: 35,
-    dismissedCooldownDays: 7,
-    convertedCooldownDays: 30,
+    showDelayMs: 9000,
+    minimumScrollPercent: 18,
+    dismissedCooldownDays: 3,
+    convertedCooldownDays: 14,
     sessionKey: "concasayaLeadModalShownThisSession",
     dismissedKey: "concasayaLeadModalDismissedAt",
     convertedKey: "concasayaLeadModalConvertedAt",
@@ -20,8 +20,8 @@
 
   if (isHomePage) {
     Object.assign(config, {
-      showDelayMs: 7000,
-      minimumScrollPercent: 12,
+      showDelayMs: 4000,
+      minimumScrollPercent: 5,
       sessionKey: "concasayaLeadModalShownHomeSession",
       neverShowKey: "concasayaLeadModalNeverShowHome",
     });

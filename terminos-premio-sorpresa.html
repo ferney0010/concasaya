@@ -34,6 +34,59 @@
       body {
         font-family: "Poppins", system-ui, sans-serif;
       }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      /* Ruleta demo */
+      .roulette-scope {
+        --roulette-size: min(22rem, 92vw);
+      }
+      .roulette-disk {
+        width: var(--roulette-size);
+        height: var(--roulette-size);
+        border-radius: 50%;
+        transform-origin: 50% 50%;
+        will-change: transform;
+        transition: transform 4.85s cubic-bezier(0.1, 0.72, 0.12, 0.995);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .roulette-disk {
+          transition-duration: 0.01ms;
+        }
+        .wheel-glow {
+          animation: none !important;
+        }
+      }
+      .wheel-glow {
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 4px rgba(255, 255, 255, 0.95),
+          0 8px 32px rgba(0, 119, 182, 0.35),
+          0 20px 50px rgba(15, 23, 42, 0.18);
+      }
+      @keyframes wheel-idle-glare {
+        0%,
+        100% {
+          opacity: 0.55;
+        }
+        50% {
+          opacity: 0.95;
+        }
+      }
+      .wheel-glare {
+        animation: wheel-idle-glare 2.8s ease-in-out infinite;
+      }
+      .wheel-pointer svg {
+        filter: drop-shadow(0 4px 6px rgba(15, 23, 42, 0.25));
+      }
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800 antialiased">
@@ -83,7 +136,71 @@
           <li>
             CONCASAYA se reserva el derecho de <strong>modificar, suspender o finalizar</strong> la campaña, siempre respetando lo ya pactado por escrito con clientes que hubieren firmado contrato bajo condiciones publicitarias vigentes al momento de la firma.
           </li>
+          <li>
+            El <strong>simulador demostrativo (ruleta en pantalla)</strong> ubicado más abajo en esta página muestra ejemplo visual con fines educativos. <strong>No constituye oferta contractual</strong>, promesa comercial ni descripción exacta del sorteo que pudiera llegar a aplicarse a un contrato.
+          </li>
         </ol>
+
+        <!-- Simulador ruleta: demo ilustrativa (sin valor contractual) -->
+        <div id="premio-simulador" class="roulette-scope mt-12 not-prose">
+          <h2 id="titulo-simulador" class="text-lg font-bold text-secondary md:text-xl">Ruleta demostrativa de premios</h2>
+          <p class="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-snug text-amber-950 md:text-sm">
+            Es un <strong>ejemplo visual</strong>: la ruleta <strong>hace grandes los arcos económicos</strong>; los premios caros apenas se ven como hendiduras doradas/fucsia. <strong>No es probabilidad oficial</strong>.
+          </p>
+
+          <div
+            class="relative mx-auto mt-8 max-w-md rounded-[2rem] border border-primary/25 bg-gradient-to-br from-white via-sky-50 to-emerald-50 p-7 pb-8 shadow-xl shadow-primary/15"
+          >
+            <div class="wheel-pointer absolute left-1/2 top-[2px] z-30 -translate-x-1/2 -translate-y-1/2 scale-105 drop-shadow-lg" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 36 44" aria-hidden="true">
+                <path fill="#0d1b2a" d="M18 43 2 13h28L18 43Z" stroke="#fff" stroke-width="3" stroke-linejoin="round" />
+              </svg>
+            </div>
+
+            <div class="relative mx-auto mt-7 flex w-fit flex-col items-center">
+              <div class="wheel-glow wheel-glare relative rounded-full bg-white p-[5px]" style="box-shadow: 0 16px 40px rgba(0,119,182,0.22)">
+                <div id="roulette-disk" class="roulette-disk" role="presentation" aria-hidden="true"></div>
+                <div
+                  class="absolute left-1/2 top-1/2 z-10 flex h-[calc(var(--roulette-size)*0.54)] w-[calc(var(--roulette-size)*0.54)] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full bg-white px-4 text-center shadow-[inset_0_4px_20px_rgba(0,0,0,.06)] ring-4 ring-secondary/95"
+                >
+                  <span class="sr-only">Resultado simulado</span>
+                  <p id="roulette-hub-short" class="text-[10px] font-bold uppercase tracking-wide text-slate-500">Gira</p>
+                  <p
+                    id="roulette-hub-title"
+                    class="sim-result-text mt-0.5 line-clamp-3 text-[0.8125rem] font-extrabold leading-tight text-secondary md:text-[0.9375rem]"
+                  >
+                    Toca «Girar»
+                  </p>
+                  <span id="roulette-hub-tip" class="mt-2 max-w-[12rem] text-[10px] font-medium uppercase tracking-normal text-emerald-800/90">&nbsp;</span>
+                </div>
+              </div>
+            </div>
+
+            <p id="roulette-announce" role="status" aria-live="polite" aria-atomic="true" class="mt-8 text-center text-sm font-semibold text-slate-600">
+              Toca «Girar la ruleta» para un resultado ficticio.
+            </p>
+
+            <div class="mt-6 flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <button
+                type="button"
+                id="roulette-spin-btn"
+                class="inline-flex min-h-[3rem] items-center justify-center gap-3 rounded-full bg-gradient-to-br from-orange-400 via-orange-500 to-orange-700 px-10 py-3 text-base font-extrabold tracking-tight text-white shadow-[0_10px_0_#c2410c,0_20px_30px_rgba(234,88,12,.4)] ring-2 ring-orange-400/55 transition-[transform,filter,box-shadow] hover:brightness-105 active:translate-y-[2px] active:shadow-[0_5px_0_#c2410c] disabled:cursor-not-allowed disabled:opacity-55 disabled:shadow-none disabled:ring-slate-300"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2.5" opacity="0.22" />
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.25" d="M11 3v8l5 5" />
+                </svg>
+                Girar la ruleta
+              </button>
+            </div>
+
+            <p id="legend-capt" class="mt-10 text-[11px] font-bold uppercase tracking-wider text-slate-600">Los colores (ancho del arco) ≈ probabilidad modelo</p>
+            <ul id="roulette-leyenda" class="mt-3 flex flex-wrap justify-center gap-2 md:justify-start"></ul>
+            <p class="mt-4 text-[11px] leading-relaxed text-slate-600">
+              En este modelo, el arco violeta («Smart ejemplo» ≈ 0,6 %) y el brillo dorado («Premio alto rango» ≈ 0,4 %) son casi ilegibles; lo normal es arrancar los bloques grandes verdes o turquesas. Todo es <strong>ilustrativo en pantalla</strong>, sin valor contractual.
+            </p>
+          </div>
+        </div>
 
         <h2 class="mt-10 text-lg font-bold text-secondary">Datos de contacto</h2>
         <p class="mt-3 text-sm leading-relaxed text-slate-700">
@@ -93,5 +210,261 @@
         </p>
       </div>
     </main>
+
+    <script>
+      (function () {
+        "use strict";
+
+        var TOTAL_parts = 1000;
+
+        var PREMIOS = [
+          {
+            etiquetaBreve: "Kits económicos A",
+            hubLinea: "Kits menor valor",
+            tituloCompleto:
+              "Paquete amplio accesorios y complementos (ejemplo menor valor)",
+            textoResultado:
+              'Resultado modelo: paquete de accesorios y kits de menor valor (ejemplo económico; no garantiza artículos reales).',
+            huecoTip: "~44 % modelo ilustrativo",
+            parts: 436,
+            color: "#059669",
+            tierHue: "#047857",
+          },
+          {
+            etiquetaBreve: "Eco · luces / cocina",
+            hubLinea: "Luminarias y grifería",
+            tituloCompleto:
+              "Luminarias LED, complementos cocina/grifería (ejemplo de valor bajo medio)",
+            textoResultado:
+              "Ejemplo económico: luminarias LED o complementos de cocina/grifería (solo ilustrativo).",
+            huecoTip: "~24 % modelo",
+            parts: 239,
+            color: "#27b09c",
+            tierHue: "#0f766e",
+          },
+          {
+            etiquetaBreve: "Sanitarios económicos",
+            hubLinea: "Combo baño económ.",
+            tituloCompleto: "Combo de sanitarios básicos tipo baño (ejemplo menor rango)",
+            textoResultado: "Ejemplo: combo sanitario básico; referencia económica, no compromiso contractual.",
+            huecoTip: "~15 % modelo",
+            parts: 154,
+            color: "#0ea5e9",
+            tierHue: "#0369a1",
+          },
+          {
+            etiquetaBreve: "Interior · acabados",
+            hubLinea: "Interior / mueble menor",
+            tituloCompleto:
+              "Mueble menor de baño técnico, griferías extra o puertillo interior ejemplo (valor medio menor)",
+            textoResultado:
+              "Ejemplo interior: muebles técnicos o acabados menores mencionados (referencia cotidiana ilustrativa).",
+            huecoTip: "~12 % modelo",
+            parts: 117,
+            color: "#38bdf8",
+            tierHue: "#0369a1",
+          },
+          {
+            etiquetaBreve: "Electro menor",
+            hubLinea: "Microondas",
+            tituloCompleto: 'Horno microondas nueva referencia (ejemplo medio)',
+            textoResultado: 'Simulacro: horno microondas de referencia (no es promesa de marca ni modelo exacto).',
+            huecoTip: "~2,9 % modelo",
+            parts: 29,
+            color: "#fbbf24",
+            tierHue: "#b45309",
+          },
+          {
+            etiquetaBreve: "Frío compacto",
+            hubLinea: "Neverina",
+            tituloCompleto: "Nevera ejecutiva ejemplo (valor medio medio-alto ficticio)",
+            textoResultado: "Simulacro: nevera ejecutiva ejemplo (solo representación estadística ficticia no contractual).",
+            huecoTip: "~1,5 % modelo",
+            parts: 15,
+            color: "#fb923c",
+            tierHue: "#c2410c",
+          },
+          {
+            etiquetaBreve: "Tech · Smart TV demo",
+            hubLinea: "Smart ejemplo",
+            tituloCompleto: 'Smart TV 43"-50" ejemplo (caso cara y poco habitual en modelo)',
+            textoResultado:
+              'Rareza ilustrativa: Smart TV tamaño medio (≈ 0,6 % modelo; muy lejos del bloque económico).',
+            huecoTip: "~0,6 % modelo",
+            parts: 6,
+            color: "#a855f7",
+            tierHue: "#581c87",
+          },
+          {
+            etiquetaBreve: "Top demo",
+            hubLinea: "¡Ultra raro demo!",
+            tituloCompleto:
+              'Pack premium ejemplo (gran TV/barra/minisplit) · casi invisible (~0.4 % probabilidad modelo ilustrativo)',
+            textoResultado:
+              "El demo sitúa el premio alto rango prácticamente invisible: ~0,4 % probabilidad modelo (no oficial).",
+            huecoTip: "~0,4 % modelo",
+            parts: 4,
+            color: "#d4af37",
+            tierHue: "#92400e",
+          },
+        ];
+
+        var chequeo = PREMIOS.reduce(function (s, r) {
+          return s + r.parts;
+        }, 0);
+
+        var disk = document.getElementById("roulette-disk");
+        var hubShort = document.getElementById("roulette-hub-short");
+        var hubTitle = document.getElementById("roulette-hub-title");
+        var hubTip = document.getElementById("roulette-hub-tip");
+        var announce = document.getElementById("roulette-announce");
+        var btn = document.getElementById("roulette-spin-btn");
+        var lista = document.getElementById("roulette-leyenda");
+
+        if (chequeo !== TOTAL_parts && typeof console !== "undefined") {
+          console.warn("Premios modelo suman", chequeo, "≠", TOTAL_parts);
+        }
+
+        /* Ángulos (grados desde arriba, sentido horario) + gradiente cóncnico */
+        var acumDeg = 0;
+        PREMIOS.forEach(function (p) {
+          var span = (p.parts / TOTAL_parts) * 360;
+          p._midDesdeArriba = acumDeg + span / 2;
+          acumDeg += span;
+        });
+
+        var stops = "";
+        acumDeg = 0;
+
+        PREMIOS.forEach(function (p, idx) {
+          var span = (p.parts / TOTAL_parts) * 360;
+          var end = acumDeg + span;
+          var seg = idx ? ", " : "";
+          stops += seg + p.color + " " + acumDeg + "deg " + end + "deg";
+          acumDeg = end;
+        });
+
+        if (disk) {
+          disk.style.background =
+            'conic-gradient(from -90deg, ' + stops + ')';
+          disk.style.boxShadow = 'inset 0 0 20px rgba(255,255,255,0.12)';
+        }
+
+        function armarLegenda() {
+          if (!lista) return;
+          lista.innerHTML = "";
+          PREMIOS.forEach(function (p) {
+            var li = document.createElement("li");
+            li.className =
+              'inline-flex max-w-full items-center gap-2 rounded-full border border-slate-100 bg-white/90 px-3 py-1 text-[11px] font-semibold text-secondary shadow-sm';
+            var pctTxt = ((p.parts / TOTAL_parts) * 100).toLocaleString('es-CO', {
+              minimumFractionDigits: 1,
+              maximumFractionDigits: 1,
+            });
+            li.innerHTML =
+              '<span class="h-2.5 w-2.5 flex-shrink-0 rounded-full shadow-sm" style="background:' +
+              p.color +
+              '"></span><span>' +
+              escapeHtml(p.etiquetaBreve) +
+              "</span>" +
+              '<span class="text-slate-500">(' +
+              pctTxt +
+              "&nbsp;%)</span>";
+            lista.appendChild(li);
+          });
+        }
+
+        function escapeHtml(tx) {
+          return String(tx)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/"/g, "&quot;");
+        }
+
+        function sortearWeighted() {
+          var rnd = Math.random() * TOTAL_parts;
+          var i;
+          for (i = 0; i < PREMIOS.length; i++) {
+            rnd -= PREMIOS[i].parts;
+            if (rnd <= 0) return PREMIOS[i];
+          }
+          return PREMIOS[PREMIOS.length - 1];
+        }
+
+        var rotationTotalDeg = 0;
+
+        function giroAleatorio(pi) {
+          var thetaMid = pi._midDesdeArriba;
+          var targetRest = ((((360 - thetaMid) % 360) + 360) % 360);
+          var estadoActual =
+            ((((rotationTotalDeg % 360) + 360) % 360) + 360) % 360;
+          var ajuste = ((((targetRest - estadoActual) % 360) + 360) % 360);
+          var lazosPx = Math.floor(Math.random() * 4) + 5;
+          var lazosDeg = lazosPx * 360;
+          rotationTotalDeg += lazosDeg + ajuste;
+          return rotationTotalDeg;
+        }
+
+        function poblarCabecerasIniciales() {
+          if (!hubShort || !hubTitle || !hubTip || !announce) return;
+
+          hubShort.textContent = "Prepárate";
+          hubTitle.textContent = "Toca «Girar la ruleta»";
+          var pctTop =
+            ((PREMIOS[PREMIOS.length - 1].parts / TOTAL_parts) * 100).toFixed(2);
+
+          hubTip.textContent =
+            "Ultra top demo ≈ " + pctTop + " % probabilidad modelo (no oficial)";
+          hubTip.className =
+            "mt-2 max-w-[14rem] text-[10px] font-semibold uppercase leading-snug tracking-wide text-emerald-800 md:text-[11px]";
+          hubTip.style.color = "";
+          announce.textContent =
+            "Los premios caros ocupan apenas un arquito: no conviertas este demo en garantía contractual.";
+        }
+
+        poblarCabecerasIniciales();
+
+        armarLegenda();
+
+        function ejecutarGiro() {
+          if (!btn || !disk || !announce || !hubShort || !hubTitle || !hubTip) return;
+          var reduceMo = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          var settleMs = reduceMo ? 180 : 4880;
+
+          var ganador = sortearWeighted();
+          btn.disabled = true;
+          btn.setAttribute("aria-busy", "true");
+
+          hubShort.textContent = "Girando…";
+          hubTitle.textContent = ganador.etiquetaBreve;
+          hubTip.textContent = "";
+          hubTip.style.color = "#64748b";
+
+          announce.textContent =
+            "Animación ficticia… el puntero fijo marca el resultado ilustrativo al detener la ruleta.";
+
+          disk.style.transition = reduceMo
+            ? "transform 0.16s cubic-bezier(0.4, 0, 0.2, 1)"
+            : "transform 4.85s cubic-bezier(0.09, 0.72, 0.06, 0.995)";
+
+          var destinoDeg = giroAleatorio(ganador);
+          window.requestAnimationFrame(function () {
+            disk.style.transform = "rotate(" + destinoDeg + "deg)";
+          });
+
+          window.setTimeout(function () {
+            btn.disabled = false;
+            btn.removeAttribute("aria-busy");
+            hubShort.textContent = ganador.etiquetaBreve + " (demo)";
+            hubTitle.textContent = ganador.tituloCompleto;
+            hubTip.textContent = ganador.huecoTip;
+            hubTip.style.color = ganador.tierHue || "#0f172a";
+            announce.textContent = ganador.textoResultado;
+          }, settleMs);
+        }
+
+        btn && btn.addEventListener("click", ejecutarGiro);
+      })();
+    </script>
   </body>
 </html>
