@@ -1961,7 +1961,7 @@
       </section>
 
       <script type="module">
-        import { staticPosts } from "./blog/static-posts-config.js";
+        import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
 
         const blogSection = document.getElementById("blog-preview");
         const blogPreviewContainer = document.getElementById(
@@ -2004,6 +2004,7 @@
             const sorted = [...staticPosts].sort(
               (a, b) => new Date(b.date) - new Date(a.date)
             );
+            applyThumbnailFlipEffective(sorted);
             const posts = sorted.slice(0, 3);
             const morePosts = sorted.slice(3, 9);
 
@@ -2022,6 +2023,7 @@
                 blogPreviewThumbsWrap.classList.remove("hidden");
                 morePosts.forEach((post, i) => {
                   const safeTitle = escapeHtml(post.title);
+                  const flipThumb = post.thumbnailFlipEffective === true;
                   const link = document.createElement("a");
                   link.href = post.url;
                   link.className =
@@ -2029,7 +2031,7 @@
                   link.setAttribute("data-aos", "fade-up");
                   link.setAttribute("data-aos-delay", String(i * 40));
                   const thumbImg = post.image
-                    ? `<div class="aspect-[4/3] overflow-hidden bg-gray-100"><img src="${post.image}" alt="${safeTitle}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" decoding="async" /></div>`
+                    ? `<div class="aspect-[4/3] overflow-hidden bg-gray-100"><img src="${post.image}" alt="${safeTitle}" class="w-full h-full object-cover${flipThumb ? "" : " transition-transform duration-300 group-hover:scale-105"}"${flipThumb ? ' style="transform: scaleX(-1);"' : ""} loading="lazy" decoding="async" /></div>`
                     : `<div class="aspect-[4/3] bg-gradient-to-br from-primary/80 to-secondary flex items-center justify-center" role="img" aria-label="${safeTitle}"><i class="fas fa-newspaper text-white/90 text-xl" aria-hidden="true"></i></div>`;
                   link.innerHTML = `
                     ${thumbImg}
@@ -2056,7 +2058,7 @@
                 : "";
 
               const postImage = post.image
-                ? `<div class="relative h-56 overflow-hidden bg-gray-100">${badge}<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover" loading="lazy" decoding="async" /></div>`
+                ? `<div class="relative h-56 overflow-hidden bg-gray-100">${badge}<img src="${post.image}" alt="${post.title}" class="w-full h-full object-cover"${post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : ""} loading="lazy" decoding="async" /></div>`
                 : `<div class="relative w-full h-56 bg-gray-200 flex items-center justify-center">${badge}<span class="text-gray-400">Sin imagen</span></div>`;
 
               const snippet = post.description

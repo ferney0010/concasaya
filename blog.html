@@ -861,7 +861,7 @@
 
     <script type="module">
       import { supabase } from "./supabaseClient.js";
-      import { staticPosts } from "./blog/static-posts-config.js";
+      import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
 
       const postsContainer = document.getElementById("blog-posts-container");
 
@@ -893,7 +893,8 @@
           image: post.image || null,
           date: post.date,
           url: post.url,
-          type: "static"
+          type: "static",
+          flipThumbnailHorizontal: post.flipThumbnailHorizontal === true
         }));
 
         // Buscar la imagen del artículo de la cabaña
@@ -929,6 +930,8 @@
           const dateB = new Date(b.date);
           return dateB - dateA;
         });
+
+        applyThumbnailFlipEffective(allPosts);
 
         if (allPosts.length === 0) {
           postsContainer.innerHTML =
@@ -986,8 +989,9 @@
               />
             </div>`;
           } else if (post.image) {
-            // Mostrar imagen para otros artículos
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+            const thumbFlip =
+              post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : "";
+            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full"${thumbFlip} loading="lazy" /></div>`;
           } else {
             // Placeholder si no hay imagen
             postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';

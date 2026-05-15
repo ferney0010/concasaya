@@ -1,8 +1,9 @@
 /**
  * Fuente única de cobertura para menús de navegación.
- * Para agregar un país: añade un objeto en PAISES con { slug, nombre, icono? }
- * y crea la página en /pages/nombre-archivo.html.
- * Para agregar un municipio: añade un objeto en MUNICIPIOS con { slug, nombre }.
+ * Landing país (SEO «Casas prefabricadas en Colombia»): /pages/casas-prefabricadas-colombia.html
+ * (bloque «Colombia» en el menú Cobertura y pie lo gestiona assets/js/nav-municipios.js).
+ * Para agregar un país (colonianos en el exterior): PAISES + página en /pages/.
+ * Para agregar un municipio: MUNICIPIOS + página en /pages/.
  */
 window.PAISES = [
   {
@@ -59,6 +60,7 @@ window.MUNICIPIOS = [
   { slug: "la-mesa", nombre: "La Mesa" },
   { slug: "mesitas-del-colegio", nombre: "Mesitas del Colegio" },
   { slug: "facatativa", nombre: "Facatativá" },
+  { slug: "fusagasuga", nombre: "Fusagasugá" },
   { slug: "sogamoso", nombre: "Sogamoso" },
   { slug: "firavitoba", nombre: "Firavitoba" },
   { slug: "valle-de-tenza", nombre: "Valle de Tenza" },

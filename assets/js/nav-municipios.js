@@ -4,6 +4,8 @@ function renderNavMunicipios() {
   if (!municipios.length && !paises.length) return;
 
   var baseHref = "/pages/";
+  var colSlug = "casas-prefabricadas-colombia";
+  var colHref = baseHref + colSlug + ".html";
   var municipioIcon = '<i class="fas fa-map-marker-alt municipio-icon"></i>';
 
   var currentSlug = null;
@@ -78,6 +80,18 @@ function renderNavMunicipios() {
   var desktopHtml = "";
   var mobileHtml = "";
 
+  var isCurrentCol = currentSlug === colSlug;
+  var colDesktopCls = "municipio-item block px-4 py-2 hover:bg-light " + (isCurrentCol ? "text-primary font-bold" : "hover:text-primary");
+  var colMobileCls = "municipio-item block py-2.5 px-8 text-sm " + (isCurrentCol ? "text-gray-700 hover:text-primary hover:bg-white transition font-bold text-primary" : "text-gray-700 hover:text-primary hover:bg-white transition");
+  var colIcon = '<i class="fas fa-flag municipio-icon"></i>';
+
+  desktopHtml += renderSectionHeader("Colombia", "fas fa-flag");
+  desktopHtml += '<li class="coverage-countries-wrap col-span-full"><ul class="coverage-countries-grid">';
+  desktopHtml += "<li><a class=\"" + colDesktopCls + "\" href=\"" + esc(colHref) + "\">" + colIcon + "<span class=\"coverage-name\">Casas prefabricadas en Colombia</span></a></li>";
+  desktopHtml += "</ul></li>";
+  mobileHtml += renderMobileSectionHeader("Colombia", "fas fa-flag");
+  mobileHtml += "<a class=\"" + colMobileCls + "\" href=\"" + esc(colHref) + "\">" + colIcon + "<span class=\"coverage-name\">Casas prefabricadas en Colombia</span></a>";
+
   if (paises.length) {
     desktopHtml += renderSectionHeader("Países", "fas fa-earth-americas");
     mobileHtml += renderMobileSectionHeader("Países", "fas fa-earth-americas");
@@ -120,6 +134,7 @@ function renderNavMunicipios() {
   updateCoverageLabels();
   if (footerEl) {
     var footerHtml = "";
+    footerHtml += "<li><a href=\"" + esc(colHref) + "\" class=\"hover:text-primary\">Casas prefabricadas en Colombia</a></li>";
     for (var c = 0; c < paises.length; c++) {
       var country = paises[c];
       var cHref = baseHref + country.slug + ".html";

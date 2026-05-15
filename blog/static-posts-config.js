@@ -3,6 +3,26 @@
 
 export const staticPosts = [
   {
+    slug: "guia-casas-prefabricadas-colombia-concasaya",
+    title: "Casas prefabricadas en Colombia (2026)",
+    description:
+      "Guía extensa con contexto real: municipios y clima, precios y proceso de compra, licencias, EPS y plaqueta, colombianos en el exterior y cómo seguir con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/fondo4.webp",
+    date: "2026-05-15",
+    url: "/blog/guia-casas-prefabricadas-colombia-concasaya.html",
+    category: "Guías"
+  },
+  {
+    slug: "construccion-prefabricada-cundinamarca-guia-concasaya",
+    title: "Construcción prefabricada en Cundinamarca (2026)",
+    description:
+      "Texto amplio sobre EPS y plaqueta en el departamento: Sabana, Sur y Occidente, licencias y permisos, precios y compra, Boyacá vecino y clientes en el exterior.",
+    image: "https://www.concasaya.com/assets/images/fondo2.webp",
+    date: "2026-05-15",
+    url: "/blog/construccion-prefabricada-cundinamarca-guia-concasaya.html",
+    category: "Guías"
+  },
+  {
     slug: "comprar-casa-prefabricada-colombia-desde-estados-unidos-canada",
     title: "Comprar Casa Prefabricada en Colombia desde Estados Unidos y Canadá",
     description:
@@ -145,3 +165,30 @@ export const staticPosts = [
   }
 ];
 
+/**
+ * Miniaturas con la misma URL: la 1.ª en `posts` (orden ya definido, p. ej. por fecha) queda normal;
+ * la 2.ª y siguientes se reflejan en horizontal para que no parezcan la misma foto.
+ * Si la URL es única, solo aplica `flipThumbnailHorizontal` del post si existe.
+ */
+export function applyThumbnailFlipEffective(posts) {
+  if (!Array.isArray(posts)) return;
+  const counts = {};
+  posts.forEach((p) => {
+    if (p.image) counts[p.image] = (counts[p.image] || 0) + 1;
+  });
+  const seq = {};
+  posts.forEach((p) => {
+    if (!p.image) {
+      p.thumbnailFlipEffective = false;
+      return;
+    }
+    const dup = counts[p.image] >= 2;
+    seq[p.image] = (seq[p.image] || 0) + 1;
+    const idx = seq[p.image];
+    if (dup) {
+      p.thumbnailFlipEffective = idx >= 2;
+    } else {
+      p.thumbnailFlipEffective = p.flipThumbnailHorizontal === true;
+    }
+  });
+}

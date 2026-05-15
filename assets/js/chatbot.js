@@ -123,6 +123,7 @@ const multiplicadoresUbicacion = {
   choconta: 1.12,
   cota: 1.08,
   facatativa: 1.08,
+  fusagasuga: 1.12,
   funza: 1.05,
   'la-mesa': 1.1,
   'la-vega': 1.12,
@@ -295,6 +296,7 @@ function navigateToPage(page) {
     'sopo': '/pages/sopo.html',
     'zipaquira': '/pages/zipaquira.html',
     'funza': '/pages/funza.html',
+    fusagasuga: '/pages/fusagasuga.html',
     'la-vega': '/pages/la-vega.html',
     'madrid': '/pages/madrid.html',
     'tocancipa': '/pages/tocancipa.html',
@@ -683,7 +685,9 @@ function getActionButtons(message, intent, botResponse = '') {
     'boyaca': { text: 'Ver Boyacá', page: 'boyaca' },
     'villa de leyva': { text: 'Ver Villa de Leyva', page: 'villadeleyva' },
     'samacá': { text: 'Ver Samacá', page: 'samaca' },
-    samaca: { text: 'Ver Samacá', page: 'samaca' }
+    samaca: { text: 'Ver Samacá', page: 'samaca' },
+    fusagasugá: { text: 'Ver Fusagasugá', page: 'fusagasuga' },
+    fusagasuga: { text: 'Ver Fusagasugá', page: 'fusagasuga' }
   };
   
   for (const [municipio, info] of Object.entries(municipios)) {
