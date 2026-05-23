@@ -11,7 +11,7 @@ const pagesDir = path.join(root, "pages");
 const MUNICIPIOS = [
   { slug: "chia", nombre: "Chía" }, { slug: "cajica", nombre: "Cajicá" }, { slug: "cota", nombre: "Cota" },
   { slug: "mosquera", nombre: "Mosquera" }, { slug: "zipaquira", nombre: "Zipaquirá" }, { slug: "sopo", nombre: "Sopó" },
-  { slug: "suba", nombre: "Suba" }, { slug: "funza", nombre: "Funza" }, { slug: "villadeleyva", nombre: "Villa de Leyva" },
+  { slug: "suba", nombre: "Suba" }, { slug: "norte-bogota", nombre: "Norte de Bogotá" }, { slug: "funza", nombre: "Funza" }, { slug: "villadeleyva", nombre: "Villa de Leyva" },
   { slug: "la-vega", nombre: "La Vega" }, { slug: "madrid", nombre: "Madrid" }, { slug: "tocancipa", nombre: "Tocancipá" },
   { slug: "tunja", nombre: "Tunja" }, { slug: "duitama", nombre: "Duitama" }, { slug: "paipa", nombre: "Paipa" }, { slug: "samaca", nombre: "Samacá" }, { slug: "boyaca", nombre: "Boyacá" },
   { slug: "barbosa", nombre: "Barbosa" }, { slug: "choconta", nombre: "Chocontá" }, { slug: "san-francisco", nombre: "San Francisco" },

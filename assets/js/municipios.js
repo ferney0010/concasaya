@@ -41,6 +41,7 @@ window.MUNICIPIOS = [
   { slug: "zipaquira", nombre: "Zipaquirá" },
   { slug: "sopo", nombre: "Sopó" },
   { slug: "suba", nombre: "Suba" },
+  { slug: "norte-bogota", nombre: "Norte de Bogotá" },
   { slug: "funza", nombre: "Funza" },
   { slug: "villadeleyva", nombre: "Villa de Leyva" },
   { slug: "la-vega", nombre: "La Vega" },
