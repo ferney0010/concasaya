@@ -3,6 +3,26 @@
 
 export const staticPosts = [
   {
+    slug: "casas-prefabricadas-desde-suba-construir-cundinamarca",
+    title: "Casas prefabricadas desde Suba: cotiza en Bogotá, construye en Cundinamarca",
+    description:
+      "Guía para residentes de Suba: cotiza en C.C. Fiesta Suba y construye tu casa prefabricada en Chía, Cajicá, La Calera o cualquier municipio de Cundinamarca. Lotes disponibles.",
+    image: "https://www.concasaya.com/assets/images/fondo3.webp",
+    date: "2026-05-22",
+    url: "/blog/casas-prefabricadas-desde-suba-construir-cundinamarca.html",
+    category: "Guías"
+  },
+  {
+    slug: "casas-prefabricadas-norte-bogota-construir-cundinamarca",
+    title: "Casas prefabricadas desde el Norte de Bogotá: cotiza en la ciudad, construye afuera",
+    description:
+      "Guía para Usaquén, Engativá, Suba, Barrios Unidos y Chapinero: cotiza en Fiesta Suba y construye en Cundinamarca con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/fondo4.webp",
+    date: "2026-05-22",
+    url: "/blog/casas-prefabricadas-norte-bogota-construir-cundinamarca.html",
+    category: "Guías"
+  },
+  {
     slug: "guia-casas-prefabricadas-colombia-concasaya",
     title: "Casas prefabricadas en Colombia (2026)",
     description:
