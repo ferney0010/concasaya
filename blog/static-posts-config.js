@@ -3,6 +3,16 @@
 
 export const staticPosts = [
   {
+    slug: "precio-casa-prefabricada-colombia-2026",
+    title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
+    description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/terminada.webp",
+    date: "2026-03-04",
+    url: "/blog/precio-casa-prefabricada-colombia-2026.html",
+    category: "Guías",
+    pinned: true
+  },
+  {
     slug: "casas-prefabricadas-desde-suba-construir-cundinamarca",
     title: "Casas prefabricadas desde Suba: cotiza en Bogotá, construye en Cundinamarca",
     description:
@@ -136,15 +146,6 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/fondo1.webp",
     date: "2026-03-04",
     url: "/blog/comprar-casa-prefabricada-colombia-2026.html",
-    category: "Guías"
-  },
-  {
-    slug: "precio-casa-prefabricada-colombia-2026",
-    title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
-    description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
-    date: "2026-03-04",
-    url: "/blog/precio-casa-prefabricada-colombia-2026.html",
     category: "Guías"
   },
   {
