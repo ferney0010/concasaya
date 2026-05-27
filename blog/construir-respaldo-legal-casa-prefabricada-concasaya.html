@@ -232,6 +232,7 @@
         y.parentNode.insertBefore(t, y);
       })(window, document, "clarity", "script", "tcaaszcmuu");
     </script>
+      <link rel="stylesheet" href="/assets/css/nav-shared.css" />
   </head>
   <body class="bg-white text-dark">
     <header class="relative bg-white shadow-md fixed w-full top-0 z-50">
@@ -245,27 +246,81 @@
             class="h-10 w-auto"
           />
         </a>
-        <div class="hidden lg:flex space-x-6 items-center">
-          <a href="/" class="text-dark hover:text-primary transition duration-300">Inicio</a>
-          <a href="/modelos.html" class="text-dark hover:text-primary transition duration-300">Modelos</a>
+                        <div class="hidden lg:flex nav-desktop-primary items-center">
+          <a href="/" class="text-dark hover:text-primary transition duration-300"
+            >Inicio</a
+          >
+          <a
+            href="/modelos.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Modelos</a
+          >
+          <a
+            href="/cotizador-precios-casas-prefabricadas.html"
+            class="text-dark hover:text-primary transition duration-300 font-semibold"
+            >Cotizador de precios</a
+          >
+
           <div class="relative dropdown">
             <button
+              type="button"
               class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-              <span>Municipios</span>
+              <span>Cobertura</span>
               <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
-            <ul
-              id="nav-municipios-desktop"
-              class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"
-            ></ul>
+            <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
           </div>
-          <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">¿Qué es EPS?</a>
-          <a href="/blog.html" class="text-primary font-bold transition duration-300">Blog</a>
-          <a href="/nosotros.html" class="text-dark hover:text-primary transition duration-300">Sobre Nosotros</a>
+
+          <div class="relative dropdown">
+            <button
+              type="button"
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Empresa</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
+              <li>
+                <a href="/nosotros.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a
+                >
+              </li>
+              <li>
+                <a href="/ventajas.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>¿Qué es EPS?</a
+                >
+              </li>
+              <li>
+                <a href="/galeria.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a
+                >
+              </li>
+              <li>
+                <a href="/faq.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a
+                >
+              </li>
+              <li>
+                <a href="/referidos.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a
+            href="/blog.html"
+            class="text-primary font-bold transition duration-300"
+            >Blog</a
+          >
           <a
             href="/contacto.html"
-            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0"
             >Contacto</a
           >
         </div>
@@ -686,17 +741,10 @@
         duration: 800,
         once: true,
       });
-
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      if (menuBtn && mobileMenu) {
-        menuBtn.addEventListener("click", () => {
-          mobileMenu.classList.toggle("hidden");
-        });
-      }
     </script>
     <script src="/assets/js/municipios.js"></script>
     <script src="/assets/js/nav-municipios.js"></script>
+    <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>
   </body>
 </html>

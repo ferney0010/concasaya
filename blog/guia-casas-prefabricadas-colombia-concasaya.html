@@ -151,6 +151,7 @@
         y.parentNode.insertBefore(t, y);
       })(window, document, "clarity", "script", "tcaaszcmuu");
     </script>
+      <link rel="stylesheet" href="/assets/css/nav-shared.css" />
   </head>
   <body class="bg-white text-dark">
     <header class="relative bg-white shadow-md fixed w-full top-0 z-50">
@@ -158,19 +159,83 @@
         <a href="/" class="flex items-center space-x-3">
           <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto" />
         </a>
-        <div class="hidden lg:flex space-x-6 items-center">
-          <a href="/" class="text-dark hover:text-primary transition duration-300">Inicio</a>
-          <a href="/modelos.html" class="text-dark hover:text-primary transition duration-300">Modelos</a>
+                        <div class="hidden lg:flex nav-desktop-primary items-center">
+          <a href="/" class="text-dark hover:text-primary transition duration-300"
+            >Inicio</a
+          >
+          <a
+            href="/modelos.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Modelos</a
+          >
+          <a
+            href="/cotizador-precios-casas-prefabricadas.html"
+            class="text-dark hover:text-primary transition duration-300 font-semibold"
+            >Cotizador de precios</a
+          >
+
           <div class="relative dropdown">
-            <button class="text-dark hover:text-primary transition duration-300 inline-flex items-center">
-              <span>Municipios</span><i class="fas fa-chevron-down ml-2 text-xs"></i>
+            <button
+              type="button"
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Cobertura</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
             <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
           </div>
-          <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">¿Qué es EPS?</a>
-          <a href="/blog.html" class="text-primary font-bold transition duration-300">Blog</a>
-          <a href="/nosotros.html" class="text-dark hover:text-primary transition duration-300">Sobre Nosotros</a>
-          <a href="/contacto.html" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300">Contacto</a>
+
+          <div class="relative dropdown">
+            <button
+              type="button"
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Empresa</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
+              <li>
+                <a href="/nosotros.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a
+                >
+              </li>
+              <li>
+                <a href="/ventajas.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>¿Qué es EPS?</a
+                >
+              </li>
+              <li>
+                <a href="/galeria.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a
+                >
+              </li>
+              <li>
+                <a href="/faq.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a
+                >
+              </li>
+              <li>
+                <a href="/referidos.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a
+            href="/blog.html"
+            class="text-primary font-bold transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="/contacto.html"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0"
+            >Contacto</a
+          >
         </div>
         <div class="lg:hidden">
           <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none" aria-label="Abrir menú"><i class="fas fa-bars fa-lg"></i></button>
@@ -240,7 +305,7 @@
                 <h3 class="text-2xl font-bold mb-2">¿Necesitas cifras y tiempos para tu municipio?</h3>
                 <p class="text-white/90">El cotizador y el equipo comercial trabajan con medidas reales y la ubicación del lote.</p>
               </div>
-              <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition shadow-xl whitespace-nowrap"><i class="fas fa-calculator mr-2"></i>Ir al cotizador</a>
+              <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold hover:bg-gray-100 transition shadow-xl whitespace-nowrap"><i class="fas fa-calculator mr-2"></i>Ir al cotizador de precios de precios</a>
             </div>
           </div>
 
@@ -263,7 +328,7 @@
             <p>
               Quienes tienen el lote en veredas de altitud media o corredores turísticos pero sin página dedicada en el menú pueden igualmente usar estas fichas como referencia climática:
               muchas decisiones de cubierta y ventanas responden más al estrato térmico que al nombre del casco urbano.
-              Cuando ya tienes fotos del predio y una idea de metros construidos, conviene volver al cotizador con esa información escrita para que la revisión sea ordenada y no dependa de mensajes sueltos en redes sociales.
+              Cuando ya tienes fotos del predio y una idea de metros construidos, conviene volver al cotizador de precios con esa información escrita para que la revisión sea ordenada y no dependa de mensajes sueltos en redes sociales.
             </p>
           </section>
 
@@ -370,7 +435,7 @@
             <p>
               Cuando llevas claridad sobre municipio, sistema constructivo y si necesitas licencia o permisos extra, el siguiente movimiento práctico es hablar con números en la mesa:
               metraje aproximado, nivel de acabado y fecha tentativa de inicio si el predio ya está saneado.
-              El <a href="/cotizador-precios-casas-prefabricadas.html">cotizador en línea</a> ordena esa primera conversación; si prefieres canal directo,
+              El <a href="/cotizador-precios-casas-prefabricadas.html">Cotizador de precios en línea</a> ordena esa primera conversación; si prefieres canal directo,
               <a href="/contacto.html">contacto</a> replica el mismo flujo con humanos detrás.
               Para conocer trayectoria y equipo antes de comprometerte,
               <a href="/nosotros.html">Sobre nosotros</a> describe cómo trabaja CONCASAYA más allá del slogan de industrialización.
@@ -400,7 +465,7 @@
           <div class="flex flex-wrap justify-center gap-4">
             <a href="/modelos.html" class="text-gray-300 hover:text-primary transition">Modelos</a>
             <a href="/galeria.html" class="text-gray-300 hover:text-primary transition">Galería</a>
-            <a href="/cotizador-precios-casas-prefabricadas.html" class="text-gray-300 hover:text-primary transition">Cotizador</a>
+            <a href="/cotizador-precios-casas-prefabricadas.html" class="text-gray-300 hover:text-primary transition">Cotizador de precios</a>
             <a href="/blog.html" class="text-gray-300 hover:text-primary transition">Blog</a>
             <a href="/contacto.html" class="text-gray-300 hover:text-primary transition">Contacto</a>
           </div>
@@ -412,10 +477,6 @@
     <script type="module">
       import { supabase } from '../supabaseClient.js';
       AOS.init({ duration: 800, once: true });
-      const menuBtn = document.getElementById("menu-btn");
-      const mobileMenu = document.getElementById("mobile-menu");
-      if (menuBtn && mobileMenu) menuBtn.addEventListener("click", () => mobileMenu.classList.toggle("hidden"));
-
       const loadGalleryImages = async () => {
         try {
           const { data: images, error } = await supabase
@@ -439,6 +500,7 @@
     </script>
     <script src="/assets/js/municipios.js"></script>
     <script src="/assets/js/nav-municipios.js"></script>
+    <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>
   </body>
 </html>

@@ -202,6 +202,7 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "tcaaszcmuu");
     </script>
+      <link rel="stylesheet" href="/assets/css/nav-shared.css" />
   </head>
   <body class="bg-white text-dark">
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
@@ -209,24 +210,83 @@
         <a href="https://www.concasaya.com/" class="flex items-center space-x-3">
           <img src="https://www.concasaya.com/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto" />
         </a>
-        <div class="hidden lg:flex space-x-6 items-center">
-          <a href="https://www.concasaya.com/" class="text-dark hover:text-primary transition duration-300">Inicio</a>
-          <a href="/modelos.html" class="text-dark hover:text-primary transition duration-300">Modelos</a>
-          <a href="/ventajas.html" class="text-dark hover:text-primary transition duration-300">¿Que es EPS?</a>
+                        <div class="hidden lg:flex nav-desktop-primary items-center">
+          <a href="https://www.concasaya.com/" class="text-dark hover:text-primary transition duration-300"
+            >Inicio</a
+          >
+          <a
+            href="/modelos.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Modelos</a
+          >
+          <a
+            href="/cotizador-precios-casas-prefabricadas.html"
+            class="text-dark hover:text-primary transition duration-300 font-semibold"
+            >Cotizador de precios</a
+          >
+
           <div class="relative dropdown">
-            <button class="text-primary font-bold transition duration-300 inline-flex items-center">
-              <span>Municipios</span>
+            <button
+              type="button"
+              class="text-primary font-bold transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Cobertura</span>
               <i class="fas fa-chevron-down ml-2 text-xs"></i>
             </button>
             <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
           </div>
-          <a href="/galeria.html" class="text-dark hover:text-primary transition duration-300">Galeria</a>
-          <a href="/blog.html" class="text-dark hover:text-primary transition duration-300">Blog</a>
-          <a href="/nosotros.html" class="text-dark hover:text-primary transition duration-300">Sobre Nosotros</a>
-          <a href="/faq.html" class="text-dark hover:text-primary transition duration-300">Preguntas Frecuentes</a>
-          <a href="/referidos.html" class="text-dark hover:text-primary transition duration-300">Plan Referidos</a>
-          <a href="/cotizador-precios-casas-prefabricadas.html" class="text-dark hover:text-primary transition duration-300">Cotizador</a>
-          <a href="/contacto.html" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300">Contacto</a>
+
+          <div class="relative dropdown">
+            <button
+              type="button"
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <span>Empresa</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
+              <li>
+                <a href="/nosotros.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a
+                >
+              </li>
+              <li>
+                <a href="/ventajas.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>¿Qué es EPS?</a
+                >
+              </li>
+              <li>
+                <a href="/galeria.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a
+                >
+              </li>
+              <li>
+                <a href="/faq.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a
+                >
+              </li>
+              <li>
+                <a href="/referidos.html" class="block text-dark hover:text-primary transition duration-300"
+                  ><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <a
+            href="/blog.html"
+            class="text-dark hover:text-primary transition duration-300"
+            >Blog</a
+          >
+          <a
+            href="/contacto.html"
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0"
+            >Contacto</a
+          >
         </div>
         <div class="lg:hidden">
           <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110" aria-label="Menú">
@@ -234,25 +294,68 @@
           </button>
         </div>
       </nav>
-      <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
-        <a href="https://www.concasaya.com/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-home mr-3 text-primary"></i>Inicio</a>
-        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-building mr-3 text-primary"></i>Modelos</a>
+                  <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
+        <a href="https://www.concasaya.com/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
+        >
+        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
+        >
+        <a href="/cotizador-precios-casas-prefabricadas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador de precios</a
+        >
         <div class="relative">
-          <button class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark" id="tablet-dropdown-btn">
-            <span><i class="fas fa-map-marker-alt mr-3 text-primary"></i>Municipios</span>
-            <i id="tablet-dropdown-icon" class="fas fa-chevron-down text-xs menu-icon transition-transform"></i>
+          <button
+            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
+            id="tablet-dropdown-btn"
+          >
+            <span
+              ><i class="fas fa-earth-americas mr-3 text-primary"></i
+              >Cobertura</span
+            >
+            <i
+              id="tablet-dropdown-icon"
+              class="fas fa-chevron-down text-xs menu-icon transition-transform"
+            ></i>
           </button>
           <div id="tablet-dropdown-menu" class="tablet-submenu">
           </div>
         </div>
-        <a href="/ventajas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-info-circle mr-3 text-primary"></i>¿Que es EPS?</a>
-        <a href="/galeria.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-images mr-3 text-primary"></i>Galeria</a>
-        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-blog mr-3 text-primary"></i>Blog</a>
-        <a href="/nosotros.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a>
-        <a href="/faq.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a>
-        <a href="/referidos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a>
-        <a href="/cotizador-precios-casas-prefabricadas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador</a>
-        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"><i class="fas fa-envelope mr-3"></i>Contacto</a>
+        <div class="relative">
+          <button
+            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
+            id="tablet-empresa-dropdown-btn"
+          >
+            <span><i class="fas fa-building mr-3 text-primary"></i>Empresa</span>
+            <i
+              id="tablet-empresa-dropdown-icon"
+              class="fas fa-chevron-down text-xs menu-icon transition-transform"
+            ></i>
+          </button>
+          <div id="tablet-empresa-dropdown-menu" class="tablet-submenu tablet-submenu--empresa">
+            <a href="/nosotros.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+              ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
+            >
+            <a href="/ventajas.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+              ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Qué es EPS?</a
+            >
+            <a href="/galeria.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+              ><i class="fas fa-images mr-3 text-primary"></i>Galería</a
+            >
+            <a href="/faq.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+              ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
+            >
+            <a href="/referidos.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+              ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
+            >
+          </div>
+        </div>
+        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+          ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
+        >
+        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
+          ><i class="fas fa-envelope mr-3"></i>Contacto</a
+        >
       </div>
     </header>
 
@@ -305,9 +408,9 @@
                 <a
                   href="/cotizador-precios-casas-prefabricadas.html"
                   class="inline-flex items-center justify-center bg-amber-500 text-white px-5 py-3 sm:px-6 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base hover:bg-amber-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                  aria-label="Cotizador para Paipa"
+                  aria-label="Cotizador de precios para Paipa"
                 >
-                  <i class="fas fa-calculator mr-2"></i>Cotizador
+                  <i class="fas fa-calculator mr-2"></i>Cotizador de precios
                 </a>
               </div>
 
@@ -836,7 +939,7 @@
           </p>
           <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center">
             <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-white text-teal-900 px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-emerald-50 transition-all duration-300 transform hover:scale-105 shadow-xl">
-              <i class="fas fa-calculator mr-2"></i>Ir al cotizador
+              <i class="fas fa-calculator mr-2"></i>Ir al cotizador de precios
             </a>
             <a href="/contacto.html" class="bg-transparent border-2 border-white text-white px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white hover:text-teal-900 transition-all duration-300 transform hover:scale-105 shadow-xl">
               <i class="fas fa-calendar-check mr-2"></i>Contacto
@@ -938,29 +1041,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 800, once: true });
-      const menuBtn = document.getElementById('menu-btn');
-      const tabletMenu = document.getElementById('tablet-menu');
-      const menuIcon = document.getElementById('menu-icon');
-      if (menuBtn && tabletMenu) {
-        menuBtn.addEventListener('click', () => {
-          const open = tabletMenu.classList.contains('open');
-          tabletMenu.classList.toggle('open');
-          if (open) { menuIcon.classList.remove('fa-times'); menuIcon.classList.add('fa-bars'); }
-          else { menuIcon.classList.remove('fa-bars'); menuIcon.classList.add('fa-times'); }
-        });
-      }
-      const tdb = document.getElementById('tablet-dropdown-btn');
-      const tdm = document.getElementById('tablet-dropdown-menu');
-      const tdi = document.getElementById('tablet-dropdown-icon');
-      if (tdb && tdm) {
-        tdb.addEventListener('click', (e) => { e.preventDefault(); tdm.classList.toggle('open'); tdi?.classList.toggle('open'); });
-      }
-      document.addEventListener('click', (e) => {
-        if (tabletMenu && !tabletMenu.contains(e.target) && menuBtn && !menuBtn.contains(e.target) && tabletMenu.classList.contains('open')) {
-          tabletMenu.classList.remove('open');
-          if (menuIcon) { menuIcon.classList.remove('fa-times'); menuIcon.classList.add('fa-bars'); }
-        }
-      });
       const faqs = document.querySelectorAll('.faq-question');
       faqs.forEach(q => {
         q.addEventListener('click', () => {
@@ -976,6 +1056,7 @@
   
     <script src="/assets/js/municipios.js"></script>
     <script src="/assets/js/nav-municipios.js"></script>
+    <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>
   </body>
 </html>

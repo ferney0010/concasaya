@@ -1,0 +1,80 @@
+/* Navegación compartida — menú Empresa y barra desktop */
+.dropdown-menu--simple {
+  grid-template-columns: 1fr;
+  min-width: 240px;
+  width: max-content;
+  left: 0;
+  right: auto;
+  top: 100%;
+  margin-top: 0.35rem;
+  padding: 0.35rem 0;
+}
+#tablet-empresa-dropdown-menu {
+  grid-template-columns: 1fr;
+  margin-left: 0;
+  border-left: none;
+  background: #f9fafb;
+}
+#tablet-empresa-dropdown-menu.open {
+  max-height: 320px;
+}
+.dropdown-menu--simple li a {
+  display: block;
+  padding: 0.55rem 1rem;
+  margin: 0.15rem 0.4rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.nav-desktop-primary {
+  gap: 1.25rem;
+}
+.nav-desktop-primary > a,
+.nav-desktop-primary > .dropdown > button {
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
+
+/* Menú móvil / tablet (hamburguesa) */
+#tablet-menu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(-10px);
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+#tablet-menu.open {
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  opacity: 1;
+  transform: translateY(0);
+}
+.tablet-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+  border-left: 2px solid #e5e7eb;
+  margin-left: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.tablet-submenu.open {
+  max-height: 600px;
+  overflow-y: auto;
+}
+.menu-icon {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.menu-icon.open {
+  transform: rotate(180deg);
+}
+#menu-btn {
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
