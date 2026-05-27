@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/cotizador-encuesta.html",
+      "destination": "/cotizador-precios-casas-prefabricadas.html",
+      "permanent": true
+    }
+  ]
+}

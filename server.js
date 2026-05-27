@@ -10,6 +10,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
+// Redirect permanente: URL antigua del cotizador
+app.get('/cotizador-encuesta.html', (req, res) => {
+    res.redirect(301, '/cotizador-precios-casas-prefabricadas.html');
+});
+
 // Ruta para el API del chatbot
 app.post('/api/chat', async (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true);

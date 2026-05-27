@@ -1,4 +1,4 @@
-// Sistema basado en JSON - Chatbot CONCASAYA
+﻿// Sistema basado en JSON - Chatbot CONCASAYA
 
 // Variables globales - se inicializarán cuando el DOM esté listo
 let chatbox;
@@ -289,7 +289,7 @@ function navigateToPage(page) {
     'nosotros': '/nosotros.html',
     'faq': '/faq.html',
     'contacto': '/contacto.html',
-    'cotizador': '/cotizador-encuesta.html',
+    'cotizador': '/cotizador-precios-casas-prefabricadas.html',
     'chia': '/pages/chia.html',
     'cajica': '/pages/cajica.html',
     'mosquera': '/pages/mosquera.html',
@@ -762,7 +762,7 @@ Instrucciones CRÍTICAS para tus respuestas:
 - Si el usuario pregunta sobre precios o cotizaciones:
   * Si menciona datos específicos (área, sistema, acabados), puedes dar una estimación aproximada usando los precios por m² proporcionados.
   * IMPORTANTE: Los precios que proporciones deben ser ACCESIBLES a primera vista. NO menciones rangos de precios amplios que puedan confundir o espantar a los usuarios. En su lugar, da ejemplos específicos con los precios actuales (EPS llave en mano 1 piso: $2.100.000/m², EPS llave en mano 2 pisos: $2.600.000/m², Plaqueta obra negra 1 piso: $550.000/m²).
-  * IMPORTANTE: Siempre menciona que es una estimación aproximada y que para una cotización precisa debe contactar al asesor por WhatsApp (314 289 1018) o usar el cotizador completo en /cotizador-encuesta.html.
+  * IMPORTANTE: Siempre menciona que es una estimación aproximada y que para una cotización precisa debe contactar al asesor por WhatsApp (314 289 1018) o usar el cotizador completo en /cotizador-precios-casas-prefabricadas.html.
   * IMPORTANTE: Recuerda que EPS cotiza solo en llave en mano y Plaqueta solo cotiza en obra negra (no gris ni blanca), igual que en el cotizador.
   * Si no tiene suficientes datos, pregunta los parámetros básicos (área, sistema) antes de calcular.
 - Si el usuario pregunta sobre modelos, catálogo o tipos de casas, sugiere visitar /modelos.html pero NO redirijas automáticamente. Solo sugiere y deja que el usuario haga clic cuando quiera.
@@ -771,7 +771,7 @@ Instrucciones CRÍTICAS para tus respuestas:
 - Si el usuario pregunta sobre preguntas frecuentes, sugiere visitar /faq.html pero NO redirijas automáticamente.
 - Si el usuario quiere contacto directo, proporciona los teléfonos (314 289 1018, 316 577 1582) y WhatsApp (573142891018)
 - Si el usuario pregunta sobre un municipio específico donde construyen (como Chía, Cajicá, etc.), proporciona la información relevante y sugiere que pueden visitar la página dedicada del municipio en /pages/[municipio].html cuando quieran más información. NO redirijas automáticamente.
-- Si el usuario quiere una cotización más precisa o detallada, siempre sugiere usar el cotizador completo en /cotizador-encuesta.html pero NO redirijas automáticamente.
+- Si el usuario quiere una cotización más precisa o detallada, siempre sugiere usar el cotizador completo en /cotizador-precios-casas-prefabricadas.html pero NO redirijas automáticamente.
 - IMPORTANTE: NUNCA redirijas automáticamente a páginas. Solo SUGIERE visitarlas y deja que el usuario decida cuándo hacer clic.
 - NO inventes información, precios, tiempos o procedimientos que no estén en la base de conocimiento.
 - Sé conciso, claro y utiliza un tono amable y profesional.
@@ -1255,7 +1255,7 @@ async function handleUserInput() {
       priceMessage += `⚠️ **Importante**: Esta es una estimación aproximada. Los precios finales pueden variar según condiciones específicas del terreno, permisos, transporte y otros factores.\n\n`;
       priceMessage += `Para obtener una **cotización precisa y detallada**, te recomiendo:\n`;
       priceMessage += `• Contactar a nuestro asesor por **WhatsApp al 314 289 1018**\n`;
-      priceMessage += `• O usar nuestro **cotizador completo** en /cotizador-encuesta.html\n\n`;
+      priceMessage += `• O usar nuestro **cotizador completo** en /cotizador-precios-casas-prefabricadas.html\n\n`;
       priceMessage += `Nuestro equipo estará encantado de ayudarte con todos los detalles.`;
       
       const buttons = getActionButtons(message, intent, priceMessage);

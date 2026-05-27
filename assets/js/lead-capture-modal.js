@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
   "use strict";
 
   const currentPath = window.location.pathname.toLowerCase();
@@ -15,7 +15,7 @@
     dismissedKey: "concasayaLeadModalDismissedAt",
     convertedKey: "concasayaLeadModalConvertedAt",
     neverShowKey: "concasayaLeadModalNeverShow",
-    excludedPaths: ["/admin/", "/chatbot.html", "/cotizador-encuesta.html"],
+    excludedPaths: ["/admin/", "/chatbot.html", "/cotizador-precios-casas-prefabricadas.html"],
   };
 
   if (isHomePage) {
