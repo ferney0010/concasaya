@@ -19,6 +19,12 @@
     return val;
   }
 
+  const WHATSAPP_LEAD_NUMBERS = ['573142891018', '573165771582'];
+
+  function getRandomWhatsAppLeadNumber() {
+    return WHATSAPP_LEAD_NUMBERS[Math.floor(Math.random() * WHATSAPP_LEAD_NUMBERS.length)];
+  }
+
   // Estado de la aplicación
   const appState = {
     currentQuestion: 0,
@@ -1618,7 +1624,7 @@
     message += `Te brindamos atención personalizada para tu proyecto.\n\n`;
     message += `¡Gracias por confiar en CONCASAYA! 🏡`;
 
-    const whatsappNumber = '573142891018';
+    const whatsappNumber = getRandomWhatsAppLeadNumber();
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     
     window.open(whatsappUrl, '_blank');
