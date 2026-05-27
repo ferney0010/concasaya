@@ -261,38 +261,42 @@
     // Crear overlay y modal
     const overlay = document.createElement('div');
     overlay.id = 'terms-overlay';
-    overlay.className = 'fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4';
+    overlay.className = 'fixed inset-0 bg-black/50 z-[60] flex items-center justify-center p-4';
     
     const modal = document.createElement('div');
-    modal.className = 'bg-white rounded-xl shadow-2xl max-w-md w-full p-6 relative';
+    modal.className = 'bg-white rounded-xl shadow-2xl w-full max-w-md p-5 sm:p-6 relative max-h-[85vh] overflow-y-auto mx-auto';
     modal.innerHTML = `
-      <div class="text-center mb-4">
-        <i class="fas fa-info-circle text-primary text-4xl mb-3"></i>
-        <h3 class="text-xl font-bold text-dark mb-2">Cotizador Estimado</h3>
+      <div class="text-center mb-3">
+        <i class="fas fa-home text-primary text-3xl mb-2"></i>
+        <h3 class="text-lg font-bold text-dark leading-snug">Cotizador de casas prefabricadas</h3>
+        <p class="text-xs text-primary font-medium mt-0.5">CONCASAYA · Bogotá y Cundinamarca</p>
       </div>
-      <p class="text-sm text-gray-600 mb-5 text-center leading-relaxed">
-        Este cotizador te brinda un <strong>precio estimado aproximado</strong>. Los valores finales pueden variar según condiciones específicas de tu terreno y proyecto.
+      <p class="text-sm text-gray-600 mb-4 text-center leading-snug">
+        Obtén un <strong>precio estimado</strong> de tu proyecto según tipo de vivienda, metros cuadrados, sistema constructivo y ubicación.
       </p>
-      <label class="flex items-start cursor-pointer mb-4">
+      <p class="text-xs text-gray-500 mb-4 text-center leading-snug">
+        Es una <strong>simulación orientativa</strong>; el valor final puede variar según terreno y permisos.
+      </p>
+      <label class="flex items-start gap-2.5 cursor-pointer mb-3">
         <input 
           type="checkbox" 
           id="terms-checkbox"
-          class="mt-1 mr-3 w-4 h-4 text-primary focus:ring-primary rounded cursor-pointer"
+          class="mt-0.5 w-4 h-4 shrink-0 text-primary focus:ring-primary rounded cursor-pointer"
         />
-        <span class="text-sm text-gray-700">Entiendo que este es un cálculo estimado y que los precios finales pueden variar</span>
+        <span class="text-xs sm:text-sm text-gray-700 leading-snug">Entiendo que es una estimación, no una cotización oficial</span>
       </label>
-      <label class="flex items-start cursor-pointer mb-5">
+      <label class="flex items-start gap-2.5 cursor-pointer mb-4">
         <input 
           type="checkbox" 
           id="dont-show-checkbox"
-          class="mt-1 mr-3 w-4 h-4 text-primary focus:ring-primary rounded cursor-pointer"
+          class="mt-0.5 w-4 h-4 shrink-0 text-primary focus:ring-primary rounded cursor-pointer"
         />
-        <span class="text-sm text-gray-600">No volver a mostrar este mensaje</span>
+        <span class="text-xs text-gray-500 leading-snug">No volver a mostrar este mensaje</span>
       </label>
       <button
         id="accept-terms-btn"
         disabled
-        class="w-full px-6 py-3 bg-gray-300 text-gray-500 rounded-lg font-semibold cursor-not-allowed transition duration-300"
+        class="w-full px-5 py-2.5 sm:py-3 bg-gray-300 text-gray-500 rounded-lg text-sm font-semibold cursor-not-allowed transition duration-300"
       >
         Continuar
       </button>
@@ -664,7 +668,7 @@
             <i class="fas fa-lock text-primary text-2xl mr-4 mt-1"></i>
             <div>
               <h3 class="text-lg font-bold text-dark mb-2">¡Estás a un paso de ver tu cotización!</h3>
-              <p class="text-gray-700 text-sm mb-2">Completa tus datos de contacto para <strong>desbloquear tu cotización personalizada</strong> con el precio estimado de tu proyecto.</p>
+              <p class="text-gray-700 text-sm mb-2">Completa tus datos para <strong>ver el precio estimado de tu casa prefabricada</strong> y recibir la cotización por WhatsApp.</p>
               <p class="text-gray-600 text-xs"><i class="fas fa-shield-alt mr-1"></i> Tus datos están seguros. Los usaremos únicamente para contactarte sobre tu proyecto y enviarte información relevante.</p>
             </div>
           </div>
@@ -1446,8 +1450,8 @@
       <div class="result-card text-white rounded-2xl p-4 sm:p-6 md:p-12 mb-6 md:mb-8">
             <div class="text-center mb-6 md:mb-8">
               <i class="fas fa-check-circle text-4xl sm:text-5xl md:text-6xl mb-3 md:mb-4 opacity-90"></i>
-              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">¡Tu Simulación de Cotización Está Lista!</h2>
-              <p class="text-base sm:text-lg md:text-xl opacity-90 mb-2">Hemos calculado un precio estimado basado en tus respuestas</p>
+              <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">¡Tu cotización estimada de casa prefabricada está lista!</h2>
+              <p class="text-base sm:text-lg md:text-xl opacity-90 mb-2">Precio orientativo de tu proyecto prefabricado según las opciones que elegiste</p>
             </div>
 
         <!-- Advertencia importante sobre simulación -->
@@ -1473,7 +1477,7 @@
 
         <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
           <div class="text-center">
-            <p class="text-xs sm:text-sm opacity-80 mb-2">Precio Estimado Total (SIMULACIÓN)</p>
+            <p class="text-xs sm:text-sm opacity-80 mb-2">Precio estimado de casa prefabricada (simulación)</p>
             <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 break-words">$${priceData.total.toLocaleString('es-CO')}</p>
             <p class="text-xs opacity-75 italic px-2">*Valor aproximado. No constituye una cotización oficial.</p>
           </div>

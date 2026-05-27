@@ -191,6 +191,20 @@
         transition: width 0.5s ease;
       }
 
+      #cotizador-header {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+
+      .cotizador-main {
+        padding-top: 6.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .cotizador-main {
+          padding-top: 6.25rem;
+        }
+      }
+
       /* Contenedor de imagen visual */
       .visual-content {
         min-height: 400px;
@@ -567,42 +581,39 @@
     </script>
   </head>
   <body class="bg-gray-50">
-    <!-- Header Simplificado -->
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <a href="/" class="flex items-center space-x-3">
+    <!-- Header + progreso -->
+    <header id="cotizador-header" class="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-100">
+      <div class="container mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="flex items-center justify-between gap-3 py-2.5 sm:py-3">
+          <a href="/" class="shrink-0" aria-label="Volver al inicio CONCASAYA">
             <img
               src="/assets/images/logocasah.webp"
-              alt="CONCASAYA Logo"
-              class="h-10 w-auto"
+              alt="CONCASAYA"
+              class="h-8 w-auto sm:h-10"
             />
           </a>
-          <div class="text-sm text-gray-600">
-            <span class="font-semibold text-primary">Cotizador de precios</span>
+          <p class="text-sm sm:text-base font-semibold text-primary shrink-0">
+            Cotizador de precios
+          </p>
+        </div>
+        <div class="pb-2.5 sm:pb-3">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <span class="text-[11px] sm:text-xs text-gray-500">Tu cotización</span>
+            <span class="text-xs font-semibold text-primary shrink-0" id="progress-percent">10%</span>
+          </div>
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              class="progress-bar h-full rounded-full bg-gradient-to-r from-primary to-primary/80"
+              id="progress-bar"
+              style="width: 10%"
+            ></div>
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Barra de Progreso -->
-    <div class="fixed top-16 left-0 right-0 bg-white shadow-sm z-40">
-      <div class="container mx-auto px-6 py-4">
-        <div class="flex items-center justify-end mb-2">
-          <span class="text-sm font-semibold text-primary" id="progress-percent">10%</span>
-        </div>
-        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-          <div
-            class="progress-bar bg-gradient-to-r from-primary to-primary/80 h-full rounded-full"
-            id="progress-bar"
-            style="width: 10%"
-          ></div>
-        </div>
-      </div>
-    </div>
-
     <!-- Contenedor Principal -->
-    <main class="pt-32 md:pt-44 pb-20 min-h-screen">
+    <main class="cotizador-main pb-20 min-h-screen">
       <div class="container mx-auto px-6 max-w-6xl">
         <!-- SEO Content (oculto visualmente pero accesible para motores de búsqueda) -->
         <div class="sr-only">
