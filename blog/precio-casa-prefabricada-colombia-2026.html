@@ -19,7 +19,7 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m² | CONCASAYA" />
     <meta property="og:description" content="Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos reales y cotización gratuita." />
-    <meta property="og:image" content="https://www.concasaya.com/assets/images/herocasa1.webp" />
+    <meta property="og:image" content="https://www.concasaya.com/assets/images/terminada.webp" />
     <meta property="og:url" content="https://www.concasaya.com/blog/precio-casa-prefabricada-colombia-2026.html" />
     <meta property="og:type" content="article" />
     <meta property="og:locale" content="es_CO" />
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Precios Casa Prefabricada Colombia 2026 por m² | CONCASAYA" />
     <meta name="twitter:description" content="Precios actuales: EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m²." />
-    <meta name="twitter:image" content="https://www.concasaya.com/assets/images/herocasa1.webp" />
+    <meta name="twitter:image" content="https://www.concasaya.com/assets/images/terminada.webp" />
 
     <!-- Schema.org Article Markup -->
     <script type="application/ld+json">
@@ -37,7 +37,7 @@
       "@type": "Article",
       "headline": "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
       "description": "Precios actuales de casas prefabricadas en Colombia 2026. CONCASAYA te muestra precios por m² con ejemplos reales.",
-      "image": "https://www.concasaya.com/assets/images/herocasa1.webp",
+      "image": "https://www.concasaya.com/assets/images/terminada.webp",
       "author": { "@type": "Organization", "name": "CONCASAYA" },
       "publisher": {
         "@type": "Organization",
@@ -72,7 +72,8 @@
     </script>
 
     <style>
-      body { font-family: "Poppins", sans-serif; }
+      html { scroll-behavior: smooth; }
+      body { font-family: "Poppins", sans-serif; background: #f8fafc; }
       .dropdown:hover .dropdown-menu { display: block; }
       .dropdown-menu {
         opacity: 0; visibility: hidden; transform: translateY(10px);
@@ -81,8 +82,13 @@
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15); backdrop-filter: blur(10px);
       }
       .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-      .post-content { line-height: 1.9; color: #4a5568; font-size: 1.125rem; }
-      .post-content h2 { font-size: 2.25rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1.5rem; color: #1a202c; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
+      .post-content {
+        line-height: 1.9; color: #4a5568; font-size: 1.125rem;
+        background: rgba(255, 255, 255, 0.92); border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 28px; padding: clamp(1.25rem, 3vw, 2.5rem);
+        box-shadow: 0 24px 70px rgba(15, 23, 42, 0.08);
+      }
+      .post-content h2 { font-size: 2.25rem; font-weight: 700; margin-top: 0; margin-bottom: 1.5rem; color: #1a202c; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; }
       .post-content h3 { font-size: 1.75rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #2d3748; }
       .post-content p { margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.125rem; }
       .post-content ul, .post-content ol { margin: 1.5rem 0; padding-left: 2.5rem; }
@@ -90,25 +96,239 @@
       .post-content strong { color: #1a202c; font-weight: 700; }
       .post-content a { color: #0077b6; font-weight: 600; }
       .post-content a:hover { text-decoration: underline; }
-      .hero-image { position: relative; height: 60vh; min-height: 400px; max-height: 600px; overflow: hidden; width: 100%; }
-      .hero-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-      @media (max-width: 768px) { .hero-image { height: 50vh; min-height: 300px; } .hero-content h1 { font-size: 1.75rem !important; } }
+      .post-content a.gallery-cta-btn {
+        color: #fff; text-decoration: none;
+      }
+      .post-content a.gallery-cta-btn:hover {
+        color: #fff; text-decoration: none; opacity: 0.92;
+      }
+      .hero-image { position: relative; height: 72vh; min-height: 520px; max-height: 760px; overflow: hidden; width: 100%; isolation: isolate; }
+      .hero-image img { width: 100%; height: 112%; object-fit: cover; display: block; transform: translateY(var(--hero-parallax, 0)); will-change: transform; }
+      @media (max-width: 768px) {
+        .hero-image { height: calc(100svh - 88px); min-height: 500px; max-height: 620px; margin-top: 0; }
+        .hero-content { top: 42%; padding-top: 0.75rem !important; padding-bottom: 1rem !important; }
+        .hero-content h1 { font-size: 1.58rem !important; line-height: 1.16 !important; margin-bottom: 0.75rem !important; }
+        .hero-content p { font-size: 0.9rem !important; line-height: 1.55 !important; }
+      }
       .hero-image::after {
         content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7)); z-index: 1;
+        background:
+          radial-gradient(circle at 20% 20%, rgba(0, 119, 182, 0.45), transparent 34%),
+          linear-gradient(110deg, rgba(13, 27, 42, 0.88), rgba(13, 27, 42, 0.54) 45%, rgba(13, 27, 42, 0.22));
+        z-index: 1;
       }
       .hero-content {
         position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
         z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
       }
+      .hero-eyebrow {
+        display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.13); color: #fff; border-radius: 999px;
+        padding: 0.5rem 1rem; backdrop-filter: blur(10px); margin-bottom: 1rem; font-weight: 700;
+      }
+      .hero-cta-grid { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 1.5rem; }
+      .btn-hero {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+        min-height: 3.25rem; padding: 0.85rem 1.3rem; border-radius: 999px;
+        font-weight: 800; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+      }
+      .btn-hero:hover { transform: translateY(-2px); }
+      .btn-hero-primary { background: #fff; color: #0077b6; box-shadow: 0 18px 45px rgba(255, 255, 255, 0.2); }
+      .btn-hero-whatsapp { background: #22c55e; color: #fff; box-shadow: 0 18px 45px rgba(34, 197, 94, 0.25); }
       .cta-box {
         background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
-        border-radius: 16px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 119, 182, 0.3);
+        border-radius: 28px; padding: 2rem; box-shadow: 0 22px 55px rgba(0, 119, 182, 0.25);
+        position: relative; overflow: hidden;
+      }
+      .cta-box::before {
+        content: ""; position: absolute; inset: -40% auto auto -10%; width: 16rem; height: 16rem;
+        background: rgba(255, 255, 255, 0.16); border-radius: 999px;
+      }
+      .cta-box > * { position: relative; z-index: 1; }
+      .cta-box-actions { width: 100%; min-width: 0; max-width: 100%; }
+      .cta-action-btn {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+        max-width: 100%; box-sizing: border-box; text-align: center; line-height: 1.35;
       }
       .precio-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
       .precio-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
-      .article-img { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+      .article-img { border-radius: 28px; overflow: hidden; box-shadow: 0 24px 70px rgba(15, 23, 42, 0.14); }
       .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+      .article-shell { position: relative; }
+      .article-shell::before {
+        content: ""; position: absolute; inset: 0; pointer-events: none;
+        background:
+          radial-gradient(circle at 10% 8%, rgba(0, 168, 232, 0.13), transparent 28rem),
+          radial-gradient(circle at 90% 35%, rgba(34, 197, 94, 0.1), transparent 26rem);
+      }
+      .article-shell > .container { position: relative; z-index: 1; }
+      .intro-actions {
+        display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem;
+        margin-top: 1.5rem;
+      }
+      .intro-action {
+        display: flex; align-items: center; gap: 0.9rem; padding: 1rem;
+        background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 18px;
+        color: #0f172a; font-weight: 800; transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+      .intro-action:hover { transform: translateY(-2px); border-color: #0077b6; text-decoration: none !important; }
+      .intro-action span {
+        display: grid; place-items: center; flex: 0 0 2.75rem; width: 2.75rem; height: 2.75rem;
+        border-radius: 999px; background: #0077b6; color: #fff;
+      }
+      .intro-action-whatsapp span { background: #22c55e; }
+      .parallax-cta {
+        position: relative; min-height: 360px; border-radius: 34px; overflow: hidden;
+        display: flex; align-items: center; padding: clamp(1.5rem, 4vw, 3rem);
+        background-image:
+          linear-gradient(105deg, rgba(13, 27, 42, 0.9), rgba(13, 27, 42, 0.68), rgba(0, 119, 182, 0.48)),
+          url("/assets/images/herocasa.webp");
+        background-size: cover; background-position: center; background-attachment: fixed;
+        box-shadow: 0 28px 80px rgba(15, 23, 42, 0.2);
+      }
+      .parallax-cta-card {
+        max-width: 640px; color: #fff; background: rgba(13, 27, 42, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 28px; padding: clamp(1.25rem, 3vw, 2rem);
+        backdrop-filter: blur(12px);
+      }
+      .parallax-cta-card h2 { font-size: clamp(1.75rem, 3vw, 2.6rem); line-height: 1.15; font-weight: 800; margin-bottom: 1rem; }
+      .parallax-cta-card p { color: rgba(255, 255, 255, 0.9); margin-bottom: 1.5rem; }
+      .floating-contact {
+        position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 45;
+        display: flex; flex-direction: column; gap: 0.65rem;
+      }
+      .floating-contact a {
+        width: 3.35rem; height: 3.35rem; display: grid; place-items: center; border-radius: 999px;
+        color: #fff; box-shadow: 0 14px 36px rgba(15, 23, 42, 0.22); transition: transform 0.25s ease;
+      }
+      .floating-contact a:hover { transform: translateY(-3px); }
+      .precios-table-wrap { width: 100%; }
+      .precios-table { width: 100%; border-collapse: collapse; }
+      .factores-precio .factores-intro { margin-bottom: 1.75rem; }
+      .factores-grid {
+        display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 1.5rem 0;
+      }
+      @media (min-width: 768px) {
+        .factores-grid { grid-template-columns: repeat(2, 1fr); }
+        .factor-card--wide { grid-column: 1 / -1; }
+      }
+      .factor-card {
+        background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+        border: 1px solid #e2e8f0; border-radius: 20px; padding: 1.25rem 1.35rem;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+      }
+      .factor-card__head {
+        display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.85rem;
+      }
+      .factor-card__icon {
+        width: 2.75rem; height: 2.75rem; border-radius: 14px; background: #0077b6; color: #fff;
+        display: grid; place-items: center; font-size: 1.1rem; flex-shrink: 0;
+      }
+      .factor-card h3 { margin-top: 0; margin-bottom: 0; }
+      .factor-card__head h3 { margin: 0; font-size: 1.2rem; font-weight: 700; color: #1a202c; border: 0; padding: 0; }
+      .factores-precio .factor-tags { padding-left: 0; margin: 0; }
+      .factor-card__lead { font-size: 0.95rem; color: #64748b; margin-bottom: 1rem; line-height: 1.6; }
+      .factor-base {
+        display: inline-flex; align-items: center; gap: 0.5rem; background: #e0f2fe; color: #0369a1;
+        border-radius: 999px; padding: 0.35rem 0.85rem; font-weight: 700; font-size: 0.88rem; margin-bottom: 1rem;
+      }
+      .factor-tags { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.55rem; }
+      .factor-tags li {
+        display: flex; align-items: flex-start; gap: 0.65rem; font-size: 0.92rem; color: #334155; line-height: 1.5;
+      }
+      .factor-tags__badge {
+        flex-shrink: 0; min-width: 3.1rem; text-align: center; background: #0077b6; color: #fff;
+        font-weight: 800; font-size: 0.78rem; border-radius: 8px; padding: 0.2rem 0.45rem;
+      }
+      .factor-mini-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+      .factor-mini {
+        background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 0.75rem;
+        text-align: center;
+      }
+      .factor-mini strong { display: block; font-size: 0.88rem; color: #1a202c; margin-bottom: 0.25rem; }
+      .factor-mini span { font-size: 0.82rem; color: #0077b6; font-weight: 800; }
+      .factor-instal { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.65rem; }
+      @media (min-width: 480px) { .factor-instal { grid-template-columns: repeat(4, 1fr); } }
+      .factor-instal-item {
+        background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 0.85rem 0.5rem; text-align: center;
+      }
+      .factor-instal-item i { color: #0077b6; font-size: 1.15rem; margin-bottom: 0.35rem; }
+      .factor-instal-item strong { display: block; font-size: 0.78rem; color: #64748b; font-weight: 600; margin-bottom: 0.2rem; }
+      .factor-instal-item span { font-size: 0.9rem; font-weight: 800; color: #1a202c; }
+      .factor-acabados { display: grid; grid-template-columns: 1fr; gap: 0.65rem; }
+      @media (min-width: 640px) { .factor-acabados { grid-template-columns: repeat(3, 1fr); } }
+      .factor-acabado {
+        background: #fff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 1rem; border-top: 3px solid #0077b6;
+      }
+      .factor-acabado strong { display: block; font-size: 1rem; color: #1a202c; margin-bottom: 0.35rem; }
+      .factor-acabado span { font-size: 0.88rem; color: #64748b; line-height: 1.5; }
+      .factores-footer {
+        margin-top: 1.5rem; padding: 1rem 1.15rem; background: #f0f9ff; border-radius: 16px;
+        border: 1px solid #bae6fd; font-size: 1rem;
+      }
+      .factores-footer p { margin: 0; }
+      .site-footer-link {
+        color: #cbd5e1; transition: color 0.2s ease;
+        display: flex; align-items: center; gap: 0.35rem;
+      }
+      .site-footer-link:hover { color: #00a8e8; text-decoration: none; }
+      .site-footer-link i { font-size: 0.65rem; color: #0077b6; opacity: 0; transition: opacity 0.2s ease; }
+      .site-footer-link:hover i { opacity: 1; }
+      .site-footer-title {
+        font-weight: 700; font-size: 1.05rem; margin-bottom: 1.25rem; color: #fff;
+        padding-bottom: 0.65rem; border-bottom: 2px solid #0077b6; display: inline-block;
+      }
+      @media (max-width: 768px) {
+        .precios-table-wrap { overflow: visible; }
+        .precios-table thead { display: none; }
+        .precios-table,
+        .precios-table tbody,
+        .precios-table tr,
+        .precios-table td { display: block; width: 100%; }
+        .precios-table tr {
+          margin-bottom: 0.85rem;
+          background: #fff;
+          border: 1px solid #e2e8f0;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+        }
+        .precios-table tr.precios-row--group-start { margin-top: 0.35rem; }
+        .precios-table td {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.7rem 1rem;
+          border-bottom: 1px solid #f1f5f9;
+          text-align: right;
+        }
+        .precios-table td:last-child { border-bottom: 0; }
+        .precios-table td::before {
+          content: attr(data-label);
+          font-weight: 600;
+          color: #64748b;
+          font-size: 0.82rem;
+          text-align: left;
+          flex: 1 1 auto;
+        }
+        .precios-table td[data-label="Precio por m²"] {
+          background: #f0f9ff;
+          font-size: 1.1rem;
+        }
+        .precios-table .precios-row--alt { background: #fff; }
+      }
+      @media (max-width: 768px) {
+        .post-content { border-radius: 22px; }
+        .intro-actions { grid-template-columns: 1fr; }
+        .parallax-cta { background-attachment: scroll; border-radius: 24px; }
+        .floating-contact { right: 0.85rem; bottom: 0.85rem; }
+        .hero-eyebrow { font-size: 0.82rem; padding: 0.42rem 0.8rem; margin-bottom: 0.75rem; }
+        .hero-cta-grid { gap: 0.65rem; margin-top: 1rem; }
+        .btn-hero { min-height: 2.85rem; padding: 0.7rem 1rem; font-size: 0.95rem; }
+        .cta-box { padding: 1.25rem; }
+        .cta-action-btn { width: 100%; font-size: 1rem; padding: 0.85rem 1rem !important; white-space: normal; }
+      }
     </style>
 
     <!-- Clarity Analytics -->
@@ -230,30 +450,54 @@
       </div>
     </header>
 
-    <main class="pt-20">
+    <main class="pt-0 md:pt-20">
       <!-- Hero -->
       <section class="hero-image">
-        <img src="/assets/images/herocasa1.webp" alt="Precios de casas prefabricadas en Colombia 2026 - CONCASAYA" class="w-full h-full object-cover" />
+        <img src="/assets/images/terminada.webp" alt="Casa prefabricada terminada en Colombia - Precios 2026 CONCASAYA" class="w-full h-full object-cover" />
         <div class="hero-content w-full p-4 sm:p-6 md:p-8 lg:p-12">
-          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg leading-tight" data-aos="fade-up">
+          <div class="hero-eyebrow">
+            <i class="fas fa-chart-line"></i>
+            Guía de precios 2026
+          </div>
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg leading-tight">
             Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²
           </h1>
-          <p class="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed" data-aos="fade-up" data-aos-delay="100">
-            Precios actuales de <strong>CONCASAYA</strong>: desde $600.000/m² en plaqueta obra negra hasta $3.450.000/m² en EPS dos pisos obra blanca. Ejemplos reales para 60 m², 80 m² y 120 m².
+          <p class="text-white/90 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">
+            Precios actuales de <strong>CONCASAYA</strong>: desde $600.000/m² en <strong>plaqueta obra negra</strong> hasta $3.450.000/m² en <strong>paneles EPS</strong> dos pisos <strong>obra blanca</strong>. Ejemplos reales para <strong>casa prefabricada 60 m²</strong>, <strong>80 m²</strong> y <strong>120 m²</strong>.
           </p>
+          <div class="hero-cta-grid">
+            <a href="/cotizador-precios-casas-prefabricadas.html" class="btn-hero btn-hero-primary">
+              <i class="fas fa-calculator"></i>
+              Cotizar mi casa
+            </a>
+            <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="btn-hero btn-hero-whatsapp">
+              <i class="fab fa-whatsapp"></i>
+              Hablar por WhatsApp
+            </a>
+          </div>
         </div>
       </section>
 
-      <article class="py-12">
+      <article class="article-shell py-12">
         <div class="container mx-auto px-6 max-w-4xl">
           <!-- Introducción -->
           <div class="post-content" data-aos="fade-up">
             <p class="lead text-xl text-gray-700 font-medium mb-6">
-              Si te preguntas <strong>cuánto cuesta una casa prefabricada en Colombia</strong> en 2026, has llegado al lugar correcto. En <strong>CONCASAYA</strong> trabajamos con precios transparentes por metro cuadrado según el sistema constructivo (paneles EPS o plaqueta de concreto), número de pisos y nivel de acabados. En este artículo te mostramos los <strong>precios actuales por m²</strong> y ejemplos concretos para que tengas una referencia clara antes de solicitar tu cotización.
+              Si te preguntas <strong>cuánto cuesta una casa prefabricada en Colombia</strong> en 2026, has llegado al lugar correcto. En <strong>CONCASAYA</strong> trabajamos con <strong>precios por metro cuadrado</strong> según el <strong>sistema constructivo</strong> (<strong>paneles EPS</strong> o <strong>plaqueta de concreto</strong>), número de pisos y nivel de <strong>acabados</strong>. En este artículo te mostramos los <strong>precios actuales por m²</strong> y ejemplos concretos para que tengas una referencia clara antes de solicitar tu <strong>cotización de casa prefabricada</strong>.
             </p>
             <p>
-              Los precios que verás a continuación corresponden a la tabla oficial de <strong>CONCASAYA</strong> utilizada en nuestro <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios en línea</a>. Son valores de referencia para Bogotá; la ubicación puede ajustar ligeramente el precio final (por ejemplo, Chía o Cajicá +5%, Samacá (Boyacá) +20%). Para una cotización exacta, usa nuestro <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> o <a href="/contacto.html" class="text-primary font-semibold hover:underline">contáctanos</a>.
+              Los <strong>precios de casas prefabricadas en Colombia 2026</strong> que verás a continuación corresponden a la tabla oficial de <strong>CONCASAYA</strong> utilizada en nuestro <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios en línea</a>. Son <strong>valores de referencia para Bogotá</strong>; la <strong>ubicación del lote</strong> puede ajustar el <strong>precio final</strong> (por ejemplo, <strong>Chía</strong> o <strong>Cajicá</strong> +5%, <strong>Samacá (Boyacá)</strong> +20%). Para una <strong>cotización exacta por m²</strong>, usa nuestro <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> o <a href="/contacto.html" class="text-primary font-semibold hover:underline">contáctanos</a>.
             </p>
+            <div class="intro-actions">
+              <a href="/cotizador-precios-casas-prefabricadas.html" class="intro-action">
+                <span><i class="fas fa-calculator"></i></span>
+                Ver precio estimado en el cotizador
+              </a>
+              <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="intro-action intro-action-whatsapp">
+                <span><i class="fab fa-whatsapp"></i></span>
+                Resolver dudas por WhatsApp
+              </a>
+            </div>
           </div>
 
           <!-- Imagen 1 -->
@@ -264,15 +508,32 @@
             <figcaption class="text-center text-sm text-gray-500 mt-2">Proyecto CONCASAYA. Explora más en nuestra <a href="/galeria.html" class="text-primary font-semibold hover:underline">galería</a>.</figcaption>
           </figure>
 
+          <section class="parallax-cta my-12" data-aos="fade-up" aria-label="Cotización de casa prefabricada">
+            <div class="parallax-cta-card">
+              <h2>Convierte estos precios en una cotización para tu lote</h2>
+              <p>Elige el área, <strong>sistema constructivo</strong>, <strong>nivel de acabados</strong> y <strong>ubicación en Cundinamarca o Boyacá</strong> para calcular el <strong>costo de tu casa prefabricada</strong>.</p>
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a href="/cotizador-precios-casas-prefabricadas.html" class="btn-hero btn-hero-primary">
+                  <i class="fas fa-calculator"></i>
+                  Abrir cotizador
+                </a>
+                <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="btn-hero btn-hero-whatsapp">
+                  <i class="fab fa-whatsapp"></i>
+                  Pedir asesoría
+                </a>
+              </div>
+            </div>
+          </section>
+
           <!-- Tabla de precios por m² -->
           <section class="post-content my-12" data-aos="fade-up">
             <h2>Precios por Metro Cuadrado en Colombia 2026</h2>
             <p>
-              Los <strong>precios de casas prefabricadas en Colombia</strong> de <strong>CONCASAYA</strong> se calculan por metro cuadrado según el sistema constructivo y los acabados. Esta es la tabla de precios vigente:
+              Los <strong>precios de casas prefabricadas en Colombia</strong> de <strong>CONCASAYA</strong> se calculan por <strong>metro cuadrado (m²)</strong> según el <strong>sistema constructivo</strong> y los <strong>acabados</strong>. Esta es la <strong>tabla de precios por m² en 2026</strong>:
             </p>
 
-            <div class="overflow-x-auto my-8">
-              <table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
+            <div class="precios-table-wrap my-8">
+              <table class="precios-table w-full border-collapse bg-white rounded-lg overflow-hidden shadow-md">
                 <thead>
                   <tr class="bg-primary text-white">
                     <th class="p-4 text-left">Sistema</th>
@@ -282,22 +543,72 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="border-b border-gray-200"><td class="p-4 font-semibold" rowspan="3">Plaqueta (concreto)</td><td class="p-4" rowspan="3">1 piso</td><td class="p-4">Obra negra</td><td class="p-4 text-right font-bold text-primary">$600.000</td></tr>
-                  <tr class="border-b border-gray-200"><td class="p-4">Obra gris</td><td class="p-4 text-right font-bold">$1.150.000</td></tr>
-                  <tr class="border-b border-gray-200"><td class="p-4">Obra blanca</td><td class="p-4 text-right font-bold">$1.850.000</td></tr>
-                  <tr class="border-b border-gray-200 bg-gray-50"><td class="p-4 font-semibold" rowspan="3">Plaqueta (concreto)</td><td class="p-4" rowspan="3">2 pisos</td><td class="p-4">Obra negra</td><td class="p-4 text-right font-bold text-primary">$700.000</td></tr>
-                  <tr class="border-b border-gray-200 bg-gray-50"><td class="p-4">Obra gris</td><td class="p-4 text-right font-bold">$1.400.000</td></tr>
-                  <tr class="border-b border-gray-200 bg-gray-50"><td class="p-4">Obra blanca</td><td class="p-4 text-right font-bold">$2.350.000</td></tr>
-                  <tr class="border-b border-gray-200"><td class="p-4 font-semibold" rowspan="2">Paneles EPS</td><td class="p-4" rowspan="2">1 piso</td><td class="p-4">Obra gris</td><td class="p-4 text-right font-bold text-primary">$1.450.000</td></tr>
-                  <tr class="border-b border-gray-200"><td class="p-4">Obra blanca</td><td class="p-4 text-right font-bold">$1.950.000</td></tr>
-                  <tr class="bg-gray-50"><td class="p-4 font-semibold" rowspan="2">Paneles EPS</td><td class="p-4" rowspan="2">2 pisos</td><td class="p-4">Obra gris</td><td class="p-4 text-right font-bold text-primary">$2.950.000</td></tr>
-                  <tr class="bg-gray-50"><td class="p-4">Obra blanca</td><td class="p-4 text-right font-bold">$3.450.000</td></tr>
+                  <tr class="precios-row precios-row--group-start border-b border-gray-200">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">1 piso</td>
+                    <td data-label="Acabados" class="p-4">Obra negra</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold text-primary">$600.000</td>
+                  </tr>
+                  <tr class="precios-row border-b border-gray-200">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">1 piso</td>
+                    <td data-label="Acabados" class="p-4">Obra gris</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$1.150.000</td>
+                  </tr>
+                  <tr class="precios-row border-b border-gray-200">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">1 piso</td>
+                    <td data-label="Acabados" class="p-4">Obra blanca</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$1.850.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--group-start precios-row--alt border-b border-gray-200 bg-gray-50">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">2 pisos</td>
+                    <td data-label="Acabados" class="p-4">Obra negra</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold text-primary">$700.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--alt border-b border-gray-200 bg-gray-50">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">2 pisos</td>
+                    <td data-label="Acabados" class="p-4">Obra gris</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$1.400.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--alt border-b border-gray-200 bg-gray-50">
+                    <td data-label="Sistema" class="p-4 font-semibold">Plaqueta (concreto)</td>
+                    <td data-label="Pisos" class="p-4">2 pisos</td>
+                    <td data-label="Acabados" class="p-4">Obra blanca</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$2.350.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--group-start border-b border-gray-200">
+                    <td data-label="Sistema" class="p-4 font-semibold">Paneles EPS</td>
+                    <td data-label="Pisos" class="p-4">1 piso</td>
+                    <td data-label="Acabados" class="p-4">Obra gris</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold text-primary">$1.450.000</td>
+                  </tr>
+                  <tr class="precios-row border-b border-gray-200">
+                    <td data-label="Sistema" class="p-4 font-semibold">Paneles EPS</td>
+                    <td data-label="Pisos" class="p-4">1 piso</td>
+                    <td data-label="Acabados" class="p-4">Obra blanca</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$1.950.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--group-start precios-row--alt bg-gray-50">
+                    <td data-label="Sistema" class="p-4 font-semibold">Paneles EPS</td>
+                    <td data-label="Pisos" class="p-4">2 pisos</td>
+                    <td data-label="Acabados" class="p-4">Obra gris</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold text-primary">$2.950.000</td>
+                  </tr>
+                  <tr class="precios-row precios-row--alt bg-gray-50">
+                    <td data-label="Sistema" class="p-4 font-semibold">Paneles EPS</td>
+                    <td data-label="Pisos" class="p-4">2 pisos</td>
+                    <td data-label="Acabados" class="p-4">Obra blanca</td>
+                    <td data-label="Precio por m²" class="p-4 text-right font-bold">$3.450.000</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
 
             <p>
-              <strong>Nota:</strong> Los paneles EPS no incluyen obra negra; el mínimo es obra gris. La plaqueta de concreto ofrece obra negra como opción inicial. Para conocer las diferencias entre sistemas, lee <a href="/blog/construccion-panel-eps-vs-bloquelon.html" class="text-primary font-semibold hover:underline">Panel EPS vs bloquelón</a> y <a href="/ventajas.html" class="text-primary font-semibold hover:underline">¿Qué es EPS?</a>
+              Nota: los <strong>paneles EPS</strong> no incluyen <strong>obra negra</strong>; el mínimo es <strong>obra gris</strong>. La <strong>plaqueta de concreto</strong> ofrece <strong>obra negra</strong> como opción inicial. Para comparar sistemas, lee <a href="/blog/construccion-panel-eps-vs-bloquelon.html" class="text-primary font-semibold hover:underline">Panel EPS vs bloquelón</a> y <a href="/ventajas.html" class="text-primary font-semibold hover:underline">¿Qué es EPS?</a>
             </p>
           </section>
 
@@ -308,9 +619,16 @@
                 <h3 class="text-2xl font-bold mb-2">¿Quieres tu cotización personalizada?</h3>
                 <p class="text-white/90">Usa nuestro cotizador o contáctanos por WhatsApp</p>
               </div>
-              <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-xl whitespace-nowrap">
-                <i class="fas fa-calculator mr-2"></i>Cotizador de precios en línea
-              </a>
+              <div class="cta-box-actions flex flex-col sm:flex-row gap-3 w-full md:w-auto md:max-w-none">
+                <a href="/cotizador-precios-casas-prefabricadas.html" class="cta-action-btn bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-xl">
+                  <i class="fas fa-calculator shrink-0"></i>
+                  <span>Cotizador de precios en línea</span>
+                </a>
+                <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="cta-action-btn bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition transform hover:scale-105 shadow-xl">
+                  <i class="fab fa-whatsapp shrink-0"></i>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
             </div>
           </div>
 
@@ -318,7 +636,7 @@
           <section class="post-content my-12" data-aos="fade-up">
             <h2>Ejemplos de Precio Total por Área (Bogotá, obra gris)</h2>
             <p>
-              Para que tengas una idea clara de <strong>cuánto cuesta una casa prefabricada en Colombia</strong> según el tamaño, aquí van ejemplos con precios base (sin instalaciones adicionales ni multiplicadores de ubicación). Los valores son aproximados para zona Bogotá, sistema EPS 1 piso obra gris ($1.450.000/m²):
+              Para que tengas una idea clara de <strong>cuánto cuesta una casa prefabricada en Colombia</strong> según el tamaño, aquí van ejemplos de <strong>precio total por área</strong> (sin <strong>instalaciones</strong> ni multiplicadores de ubicación). Valores aproximados para <strong>Bogotá</strong>, <strong>sistema EPS 1 piso obra gris</strong> (<strong>$1.450.000/m²</strong>):
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
@@ -326,24 +644,24 @@
                 <div class="text-4xl text-primary mb-2"><i class="fas fa-home"></i></div>
                 <h3 class="text-xl font-bold text-dark mb-2">Casa 60 m²</h3>
                 <p class="text-2xl font-bold text-primary mb-1">~$87.000.000</p>
-                <p class="text-sm text-gray-600">Ideal para cabaña o vivienda pequeña. Desde 60 millones en <a href="/pages/chia.html" class="text-primary font-semibold hover:underline">Chía</a>, <a href="/pages/mosquera.html" class="text-primary font-semibold hover:underline">Mosquera</a> y municipios similares.</p>
+                <p class="text-sm text-gray-600">Ideal para <strong>cabaña prefabricada</strong> o vivienda pequeña. Desde 60 millones en <a href="/pages/chia.html" class="text-primary font-semibold hover:underline">Chía</a>, <a href="/pages/mosquera.html" class="text-primary font-semibold hover:underline">Mosquera</a> y municipios del <strong>Sabana de Bogotá</strong>.</p>
               </div>
               <div class="precio-card bg-white p-6 rounded-xl shadow-md border border-gray-200">
                 <div class="text-4xl text-primary mb-2"><i class="fas fa-building"></i></div>
                 <h3 class="text-xl font-bold text-dark mb-2">Casa 80 m²</h3>
                 <p class="text-2xl font-bold text-primary mb-1">~$116.000.000</p>
-                <p class="text-sm text-gray-600">Vivienda familiar estándar. Popular en <a href="/pages/cajica.html" class="text-primary font-semibold hover:underline">Cajicá</a>, <a href="/pages/sopo.html" class="text-primary font-semibold hover:underline">Sopó</a>, <a href="/pages/funza.html" class="text-primary font-semibold hover:underline">Funza</a>.</p>
+                <p class="text-sm text-gray-600"><strong>Casa prefabricada familiar</strong> estándar. Popular en <a href="/pages/cajica.html" class="text-primary font-semibold hover:underline">Cajicá</a>, <a href="/pages/sopo.html" class="text-primary font-semibold hover:underline">Sopó</a> y <a href="/pages/funza.html" class="text-primary font-semibold hover:underline">Funza</a>.</p>
               </div>
               <div class="precio-card bg-white p-6 rounded-xl shadow-md border border-gray-200">
                 <div class="text-4xl text-primary mb-2"><i class="fas fa-city"></i></div>
                 <h3 class="text-xl font-bold text-dark mb-2">Casa 120 m²</h3>
                 <p class="text-2xl font-bold text-primary mb-1">~$174.000.000</p>
-                <p class="text-sm text-gray-600">Casa campestre o dos pisos. Desde 120 millones según acabados. Ver <a href="/modelos.html" class="text-primary font-semibold hover:underline">modelos</a>.</p>
+                <p class="text-sm text-gray-600"><strong>Casa campestre prefabricada</strong> o <strong>dos pisos</strong>. Desde 120 millones según <strong>obra gris u obra blanca</strong>. Ver <a href="/modelos.html" class="text-primary font-semibold hover:underline">modelos de casas prefabricadas</a>.</p>
               </div>
             </div>
 
             <p>
-              Estos montos son <strong>solo la construcción</strong>. Las instalaciones (eléctrica, hidráulica, sanitaria, gas) se cotizan aparte. En el <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> puedes incluir instalaciones y ver el total estimado.
+              Estos montos cubren <strong>solo la construcción prefabricada</strong>. Las <strong>instalaciones</strong> (eléctrica, hidráulica, sanitaria y gas) se cotizan aparte. En el <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> puedes incluir instalaciones y ver el <strong>precio total estimado</strong>.
             </p>
           </section>
 
@@ -356,27 +674,108 @@
           </figure>
 
           <!-- Factores que afectan el precio -->
-          <section class="post-content my-12 bg-light p-8 rounded-xl" data-aos="fade-up">
+          <section class="post-content factores-precio my-12" data-aos="fade-up">
             <h2>Factores que Afectan el Precio Final</h2>
-            <p>
-              El <strong>precio de una casa prefabricada en Colombia</strong> puede variar según:
+            <p class="factores-intro">
+              El <strong>precio de una casa prefabricada en Colombia</strong> no depende solo del m². Estos son los ajustes que más influyen en tu cotización:
             </p>
-            <ul>
-              <li><strong>Ubicación:</strong> Bogotá base 1.0; Chía, Cajicá, Funza, Mosquera +5%; Cota, Sopó, Zipaquirá +8%; La Vega, Madrid +10-12%; Samacá (Boyacá) +20%; Sogamoso +20-25%.</li>
-              <li><strong>Tipo de vivienda:</strong> Cabaña 0.9x; casa campestre 1.0x; casa urbana 1.1x; bodega 0.85x.</li>
-              <li><strong>Instalaciones:</strong> Eléctrica ~$500.000, hidráulica ~$400.000, sanitaria ~$600.000, gas ~$300.000 (valores referenciales).</li>
-              <li><strong>Acabados:</strong> Obra negra (solo estructura), obra gris (listo para acabados) u obra blanca (listo para habitar).</li>
-            </ul>
-            <p>
-              Para una cotización exacta, usa el <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> o <a href="/contacto.html" class="text-primary font-semibold hover:underline">solicita asesoría</a>.
-            </p>
+
+            <div class="factores-grid">
+              <article class="factor-card factor-card--wide">
+                <div class="factor-card__head">
+                  <div class="factor-card__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+                  <h3>Ubicación del proyecto</h3>
+                </div>
+                <p class="factor-card__lead"><strong>Bogotá</strong> es la referencia base del <strong>precio por m²</strong>. Según el municipio, el costo puede subir así:</p>
+                <p class="factor-base"><i class="fas fa-city" aria-hidden="true"></i> <strong>Bogotá</strong> · base ×1.0</p>
+                <ul class="factor-tags">
+                  <li><span class="factor-tags__badge">+5%</span><span>Chía, Cajicá, Funza, Mosquera</span></li>
+                  <li><span class="factor-tags__badge">+8%</span><span>Cota, Sopó, Zipaquirá</span></li>
+                  <li><span class="factor-tags__badge">+10-12%</span><span>La Vega, Madrid</span></li>
+                  <li><span class="factor-tags__badge">+20%</span><span>Samacá (Boyacá)</span></li>
+                  <li><span class="factor-tags__badge">+20-25%</span><span>Sogamoso</span></li>
+                </ul>
+              </article>
+
+              <article class="factor-card">
+                <div class="factor-card__head">
+                  <div class="factor-card__icon"><i class="fas fa-house-chimney" aria-hidden="true"></i></div>
+                  <h3>Tipo de vivienda</h3>
+                </div>
+                <p class="factor-card__lead">El uso del inmueble aplica un multiplicador sobre el precio base:</p>
+                <div class="factor-mini-grid">
+                  <div class="factor-mini"><strong>Cabaña</strong><span>×0.9</span></div>
+                  <div class="factor-mini"><strong>Casa campestre</strong><span>×1.0</span></div>
+                  <div class="factor-mini"><strong>Casa urbana</strong><span>×1.1</span></div>
+                  <div class="factor-mini"><strong>Bodega</strong><span>×0.85</span></div>
+                </div>
+              </article>
+
+              <article class="factor-card">
+                <div class="factor-card__head">
+                  <div class="factor-card__icon"><i class="fas fa-plug" aria-hidden="true"></i></div>
+                  <h3>Instalaciones</h3>
+                </div>
+                <p class="factor-card__lead">Se cotizan aparte de la <strong>construcción prefabricada</strong>. <strong>Costos referenciales de instalaciones</strong>:</p>
+                <div class="factor-instal">
+                  <div class="factor-instal-item">
+                    <i class="fas fa-bolt" aria-hidden="true"></i>
+                    <strong>Eléctrica</strong>
+                    <span>~$500.000</span>
+                  </div>
+                  <div class="factor-instal-item">
+                    <i class="fas fa-faucet" aria-hidden="true"></i>
+                    <strong>Hidráulica</strong>
+                    <span>~$400.000</span>
+                  </div>
+                  <div class="factor-instal-item">
+                    <i class="fas fa-toilet" aria-hidden="true"></i>
+                    <strong>Sanitaria</strong>
+                    <span>~$600.000</span>
+                  </div>
+                  <div class="factor-instal-item">
+                    <i class="fas fa-fire" aria-hidden="true"></i>
+                    <strong>Gas</strong>
+                    <span>~$300.000</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="factor-card factor-card--wide">
+                <div class="factor-card__head">
+                  <div class="factor-card__icon"><i class="fas fa-paint-roller" aria-hidden="true"></i></div>
+                  <h3>Nivel de acabados</h3>
+                </div>
+                <p class="factor-card__lead">Define el <strong>precio final</strong> según qué tan lista queda la vivienda:</p>
+                <div class="factor-acabados">
+                  <div class="factor-acabado">
+                    <strong>Obra negra</strong>
+                    <span>Solo estructura. Opción inicial en <strong>plaqueta de concreto</strong>.</span>
+                  </div>
+                  <div class="factor-acabado">
+                    <strong>Obra gris</strong>
+                    <span>Listo para acabados. Mínimo en <strong>paneles EPS</strong>.</span>
+                  </div>
+                  <div class="factor-acabado">
+                    <strong>Obra blanca</strong>
+                    <span>Listo para habitar, con mayor inversión en acabados.</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <div class="factores-footer">
+              <p>
+                Para una <strong>cotización exacta de casa prefabricada</strong> con ubicación, acabados e instalaciones, usa el <a href="/cotizador-precios-casas-prefabricadas.html" class="text-primary font-semibold hover:underline">Cotizador de precios</a> o <a href="/contacto.html" class="text-primary font-semibold hover:underline">solicita asesoría</a>.
+              </p>
+            </div>
           </section>
 
           <!-- Galería de proyectos -->
           <section class="post-content my-12" data-aos="fade-up">
             <h2>Proyectos CONCASAYA: Inspírate con Nuestra Galería</h2>
             <p class="mb-6">
-              Estos son algunos de nuestros proyectos terminados. Las imágenes se cargan desde nuestra galería oficial. Visita la <a href="/galeria.html" class="text-primary font-semibold hover:underline">galería completa</a> para ver más.
+              Estos son algunos de nuestros <strong>proyectos de casas prefabricadas terminadas</strong> en Colombia. Visita la <a href="/galeria.html" class="text-primary font-semibold hover:underline">galería completa de casas prefabricadas</a> para ver más referencias reales.
             </p>
             <div id="gallery-preview" class="gallery-grid my-6">
               <!-- Imágenes estáticas de respaldo -->
@@ -394,8 +793,8 @@
               </a>
             </div>
             <p class="text-center">
-              <a href="/galeria.html" class="inline-flex items-center bg-primary text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition">
-                <i class="fas fa-images mr-2"></i>Ver Galería Completa
+              <a href="/galeria.html" class="gallery-cta-btn inline-flex items-center bg-primary text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition shadow-lg">
+                <i class="fas fa-images mr-2" aria-hidden="true"></i>Ver Galería Completa
               </a>
             </p>
           </section>
@@ -416,12 +815,14 @@
           <!-- CTA Final -->
           <div class="cta-box text-white my-12 text-center" data-aos="fade-up">
             <h3 class="text-2xl font-bold mb-4">¿Listo para conocer el precio exacto de tu proyecto?</h3>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-xl">
-                <i class="fas fa-calculator mr-2"></i>Cotizador de precios en línea
+            <div class="cta-box-actions flex flex-col sm:flex-row gap-4 justify-center w-full max-w-full mx-auto">
+              <a href="/cotizador-precios-casas-prefabricadas.html" class="cta-action-btn bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition transform hover:scale-105 shadow-xl">
+                <i class="fas fa-calculator shrink-0"></i>
+                <span>Cotizador de precios en línea</span>
               </a>
-              <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" class="bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition transform hover:scale-105 shadow-xl">
-                <i class="fab fa-whatsapp mr-2"></i>WhatsApp
+              <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="cta-action-btn bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-green-600 transition transform hover:scale-105 shadow-xl">
+                <i class="fab fa-whatsapp shrink-0"></i>
+                <span>WhatsApp</span>
               </a>
             </div>
           </div>
@@ -435,18 +836,102 @@
       </article>
     </main>
 
-    <!-- Footer simplificado -->
-    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-12 pb-6">
-      <div class="container mx-auto px-6">
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 py-6">
-          <p class="text-sm text-gray-400">&copy; 2026 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.</p>
-          <div class="flex space-x-4">
-            <a href="/modelos.html" class="text-gray-300 hover:text-primary transition">Modelos</a>
-            <a href="/galeria.html" class="text-gray-300 hover:text-primary transition">Galería</a>
-            <a href="/cotizador-precios-casas-prefabricadas.html" class="text-gray-300 hover:text-primary transition">Cotizador de precios</a>
-            <a href="/blog.html" class="text-gray-300 hover:text-primary transition">Blog</a>
-            <a href="/contacto.html" class="text-gray-300 hover:text-primary transition">Contacto</a>
+    <div class="floating-contact" aria-label="Accesos rápidos">
+      <a href="/cotizador-precios-casas-prefabricadas.html" class="bg-primary" aria-label="Abrir cotizador de precios">
+        <i class="fas fa-calculator"></i>
+      </a>
+      <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20saber%20el%20precio%20de%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="bg-green-500" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-14 pb-8 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div class="absolute top-0 left-0 w-80 h-80 bg-primary rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="mb-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div>
+            <p class="text-primary font-bold text-sm uppercase tracking-wide mb-1">Cotización en minutos</p>
+            <h3 class="text-xl md:text-2xl font-bold text-white">Calcula el precio de tu casa prefabricada</h3>
+            <p class="text-gray-300 text-sm mt-2 max-w-xl">Usa precios reales por m², municipio, acabados e instalaciones.</p>
           </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="/cotizador-precios-casas-prefabricadas.html" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-[#0096d6] text-white font-bold px-6 py-3 rounded-full transition">
+              <i class="fas fa-calculator" aria-hidden="true"></i> Cotizador de precios
+            </a>
+            <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full transition">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+          <div>
+            <img src="/assets/images/logocasah.webp" alt="CONCASAYA Prefabricados" class="h-11 w-auto mb-4" loading="lazy" />
+            <p class="text-gray-300 text-sm leading-relaxed mb-5">
+              Precios transparentes de <strong class="text-white font-semibold">casas prefabricadas en Colombia</strong>. Construcción en EPS y plaqueta de concreto con cobertura en Cundinamarca y Boyacá.
+            </p>
+            <div class="flex gap-3">
+              <a href="https://www.tiktok.com/@concasayaprefabricados" target="_blank" rel="noopener" aria-label="TikTok" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-black flex items-center justify-center transition"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/concasaya" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 flex items-center justify-center transition"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/concasaya/" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://wa.me/573142891018" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Cotizar y explorar</h4>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/cotizador-precios-casas-prefabricadas.html" class="site-footer-link font-semibold text-white"><i class="fas fa-chevron-right" aria-hidden="true"></i> Cotizador de precios en línea</a></li>
+              <li><a href="/modelos.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Modelos de casas prefabricadas</a></li>
+              <li><a href="/galeria.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galería de proyectos</a></li>
+              <li><a href="/ventajas.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> ¿Qué es EPS?</a></li>
+              <li><a href="/pages/casas-prefabricadas-colombia.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Colombia</a></li>
+              <li><a href="/faq.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Preguntas frecuentes</a></li>
+              <li><a href="/nosotros.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Sobre nosotros</a></li>
+              <li><a href="/contacto.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Contacto</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Guías de precios</h4>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/blog/precio-casa-prefabricada-colombia-2026.html" class="site-footer-link font-semibold text-white"><i class="fas fa-chevron-right" aria-hidden="true"></i> Precios por m² 2026</a></li>
+              <li><a href="/blog/casas-prefabricadas-en-colombia.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Guía casas prefabricadas Colombia</a></li>
+              <li><a href="/blog/comprar-casa-prefabricada-colombia-2026.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Comprar casa prefabricada 2026</a></li>
+              <li><a href="/blog/venta-casas-prefabricadas-cundinamarca.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Venta en Cundinamarca</a></li>
+              <li><a href="/blog/construccion-panel-eps-vs-bloquelon.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Panel EPS vs bloquelón</a></li>
+              <li><a href="/blog/construccion-prefabricada-vs-tradicional.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Prefabricada vs tradicional</a></li>
+              <li><a href="/blog.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Ver todo el blog</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Precios por municipio</h4>
+            <ul class="space-y-2.5 text-sm mb-6">
+              <li><a href="/pages/chia.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Chía</a></li>
+              <li><a href="/pages/cajica.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Cajicá</a></li>
+              <li><a href="/pages/mosquera.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Mosquera</a></li>
+              <li><a href="/pages/funza.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Funza</a></li>
+              <li><a href="/pages/sopo.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Sopó</a></li>
+              <li><a href="/pages/cota.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Cota</a></li>
+              <li><a href="/pages/zipaquira.html" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Zipaquirá</a></li>
+            </ul>
+            <h4 class="site-footer-title">Contáctanos</h4>
+            <ul class="space-y-2.5 text-sm text-gray-300">
+              <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-primary mt-1" aria-hidden="true"></i><span>Cl. 147 #101-56, Local 64, Bogotá</span></li>
+              <li class="flex items-center gap-2"><i class="fas fa-phone text-primary" aria-hidden="true"></i><a href="tel:+573142891018" class="site-footer-link">314 289 1018</a></li>
+              <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-primary" aria-hidden="true"></i><a href="https://wa.me/573142891018" target="_blank" rel="noopener" class="site-footer-link font-semibold">WhatsApp directo</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700/50 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-gray-400">
+          <p>&copy; 2026 <span class="text-white font-semibold">CONCASAYA</span>. Todos los derechos reservados.</p>
+          <p class="text-xs text-gray-500 text-center md:text-right">Guía de precios de casas prefabricadas en Colombia · Actualizado 2026</p>
         </div>
       </div>
     </footer>
@@ -456,6 +941,16 @@
       import { supabase } from '../supabaseClient.js';
 
       AOS.init({ duration: 800, once: true });
+      const hero = document.querySelector(".hero-image");
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (hero && !prefersReducedMotion) {
+        const updateHeroParallax = () => {
+          const offset = Math.min(window.scrollY * 0.16, 90);
+          hero.style.setProperty("--hero-parallax", `${offset}px`);
+        };
+        updateHeroParallax();
+        window.addEventListener("scroll", updateHeroParallax, { passive: true });
+      }
       // Cargar imágenes de la galería desde Supabase (si existen)
       const loadGalleryImages = async () => {
         try {
