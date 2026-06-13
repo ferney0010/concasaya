@@ -52,7 +52,10 @@ const CSS_BLOCK = `
         100% { opacity: 0; transform: scale(1.25); box-shadow: 0 0 0 0 rgba(0, 119, 182, 0); }
       }
       .chatbot-modal.is-open { opacity: 1; pointer-events: auto; }
-      .chatbot-modal.is-open .chatbot-modal-content { transform: scale(1); }`;
+      .chatbot-modal.is-open .chatbot-modal-content { transform: scale(1); }
+      body:has(#social-bottom-bar) footer {
+        padding-bottom: calc(2rem + 4.75rem + env(safe-area-inset-bottom, 0px)) !important;
+      }`;
 
 function getBarBlock(waHref) {
   return `

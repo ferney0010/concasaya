@@ -78,3 +78,6 @@
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
+
+/* Espacio en el footer para la barra fija de contacto y redes sociales */
+@import url("./social-bottom-bar.css");
