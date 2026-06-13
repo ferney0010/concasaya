@@ -1,10 +1,18 @@
-/* Barra fija inferior: evita que tape el contenido del footer */
+/* Barra fija inferior: espaciador + padding en footer */
 :root {
-  --social-bottom-bar-height: 4.75rem;
+  --social-bottom-bar-height: 5rem;
+}
+
+#social-bottom-bar-spacer {
+  height: calc(
+    var(--social-bottom-bar-height) + env(safe-area-inset-bottom, 0px)
+  );
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
 body:has(#social-bottom-bar) footer {
   padding-bottom: calc(
-    2rem + var(--social-bottom-bar-height) + env(safe-area-inset-bottom, 0px)
+    1.5rem + var(--social-bottom-bar-height) + env(safe-area-inset-bottom, 0px)
   ) !important;
 }

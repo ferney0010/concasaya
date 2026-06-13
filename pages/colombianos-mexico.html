@@ -77,32 +77,7 @@
         background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
         transform: translateX(5px);
       }
-      #tablet-menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.3s ease;
-        opacity: 0;
-      }
-      #tablet-menu.open {
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        opacity: 1;
-      }
-      .tablet-submenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease;
-        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-        border-left: 2px solid #e5e7eb;
-        margin-left: 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-      .tablet-submenu.open {
-        max-height: 45vh;
-        overflow-y: auto;
-      }
-      .municipio-item {
+.municipio-item {
         display: flex;
         align-items: center;
         gap: 0.75rem;
@@ -119,7 +94,8 @@
       }
       @media (min-width: 768px) {
         .hero-bg-mobile { background-attachment: fixed; }
-      }      .cta-attention {
+      }
+      .cta-attention {
         position: relative;
         isolation: isolate;
       }
@@ -773,11 +749,31 @@
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
-          <p>&copy; 2026 CONCASAYA. Todos los derechos reservados.</p>
+                <div class="border-t border-gray-700 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+          <div>
+            <p class="text-sm text-gray-400 mb-2">
+              &copy; 2026 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.
+            </p>
+            <p class="text-xs text-gray-500">
+              Sitio web diseñado para la construcción de casas prefabricadas en Colombia.
+            </p>
+          </div>
+          <div class="flex flex-col items-center gap-2">
+            <p class="text-xs text-gray-500">Desarrollado por</p>
+            <a
+              href="https://www.codifytech.click/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center space-x-2 text-cyan-400"
+            >
+              <span class="font-semibold text-sm">Codify Tech</span>
+              <i class="fas fa-external-link-alt text-xs text-cyan-400"></i>
+            </a>
+          </div>
         </div>
       </div>
     </footer>
+        <div id="social-bottom-bar-spacer" aria-hidden="true"></div>
     <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->
     <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">
       <div id="social-bottom-bar" class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]">
@@ -853,13 +849,40 @@
       })();
     </script>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       AOS.init({ duration: 800, once: true });
 
       document.addEventListener("DOMContentLoaded", () => {
+        const contactForm = document.getElementById("contact-form");
+        if (!contactForm) return;
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const name = document.getElementById("name")?.value || "";
+          const phone = document.getElementById("phone")?.value || "";
+          const email = document.getElementById("email")?.value || "";
+          const city = document.getElementById("city")?.value || "";
+          const message = document.getElementById("message")?.value || "";
+          let text =
+            "Hola CONCASAYA, me gustaría solicitar una cotización.\n\n" +
+            "*Nombre:* " +
+            name +
+            "\n*Teléfono:* " +
+            phone +
+            "\n*Email:* " +
+            email;
+          if (city) text += "\n*Ciudad:* " + city;
+          text += "\n\n*Mensaje:*\n" + message;
+          window.open(
+            "https://wa.me/573142891018?text=" + encodeURIComponent(text),
+            "_blank"
+          );
+          contactForm.reset();
+        });
+      });
     </script>
-    <script src="/assets/js/municipios.js"></script>
+
+<script src="/assets/js/municipios.js"></script>
     <script src="/assets/js/nav-municipios.js"></script>
     <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>

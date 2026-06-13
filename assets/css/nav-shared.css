@@ -1,4 +1,6 @@
 /* Navegación compartida — menú Empresa y barra desktop */
+@import url("./social-bottom-bar.css");
+
 .dropdown-menu--simple {
   grid-template-columns: 1fr;
   min-width: 240px;
@@ -78,6 +80,3 @@
   border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
-
-/* Espacio en el footer para la barra fija de contacto y redes sociales */
-@import url("./social-bottom-bar.css");
