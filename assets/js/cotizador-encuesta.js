@@ -1229,73 +1229,21 @@
     };
 
     const multiplicadoresTipo = {
-      cabaña: 0.9,
-      'casa-campestre': 1.0,
-      'casa-urbana': 1.1,
+      cabaña: 0.82,
+      'casa-campestre': 0.80,
+      'casa-urbana': 0.78,
       bodega: 0.85,
-      oficina: 1.05,
+      oficina: 0.78,
     };
 
-    const costosInstalaciones = {
-      electrica: 500000,
-      hidraulica: 400000,
-      sanitaria: 600000,
-      gas: 300000,
-    };
-
-    // Costos de preparación de terreno eliminados - ya no se incluyen en la cotización
-
-    const multiplicadoresUbicacion = {
-      bogota: 1.0,
-      boyaca: 1.2,
-      cajica: 1.05,
-      chia: 1.05,
-      choconta: 1.12,
-      cota: 1.08,
-      facatativa: 1.08,
-      fusagasuga: 1.12,
-      funza: 1.05,
-      'la-mesa': 1.1,
-      'la-vega': 1.12,
-      madrid: 1.1,
-      'mesitas-del-colegio': 1.1,
-      mosquera: 1.05,
-      pacho: 1.15,
-      'san-francisco': 1.15,
-      samaca: 1.2,
-      sogamoso: 1.25,
-      sopo: 1.08,
-      suba: 1.0,
-      supata: 1.15,
-      tocancipa: 1.1,
-      'villa-de-leyva': 1.15,
-      villadeleyva: 1.15,
-      zipaquira: 1.08,
-      barbosa: 1.2,
-      firavitoba: 1.25,
-      'valle-de-tenza': 1.2,
-      velez: 1.25,
-      subachoque: 1.08,
-      soacha: 1.02,
-      guasca: 1.1,
-      sesquile: 1.1,
-      'la-calera': 1.1,
-      villeta: 1.15,
-      raquira: 1.2,
-      chiquinquira: 1.2,
-      tunja: 1.25,
-      duitama: 1.25,
-      paipa: 1.25,
-      'puente-nacional': 1.25,
-    };
+    // Factor fijo reducido por ubicación (antes hasta 1.25; ahora sin recargo)
+    const FACTOR_UBICACION = 0.72;
 
     const sistema = appState.answers.sistema || 'eps';
     const area = parseInt(appState.answers.area) || 60;
     const tipoVivienda = appState.answers['tipo-vivienda'] || 'casa-campestre';
     const acabados = appState.answers.acabados || (sistema === 'eps' ? 'llave-en-mano' : 'obra-negra');
     const pisos = appState.answers.pisos || '1-piso';
-    const ubicacion = appState.answers.ubicacion || 'bogota';
-    const instalaciones = appState.answers.instalaciones || [];
 
     // Obtener precio por m² según sistema, pisos y acabados
     // Si es EPS y llega un acabado no válido, forzar llave en mano
@@ -1305,17 +1253,13 @@
     }
     const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['llave-en-mano'];
     
-    // Calcular precio base multiplicando precio por m² por el área
+    // Precio base: m² × área, con multiplicadores reducidos (sin recargos)
     let precioBase = precioM2 * area;
-    
-    // Aplicar multiplicadores de tipo de vivienda y ubicación
-    precioBase *= multiplicadoresTipo[tipoVivienda] || 1.0;
-    precioBase *= multiplicadoresUbicacion[ubicacion] || 1.2;
+    precioBase *= multiplicadoresTipo[tipoVivienda] || 0.80;
+    precioBase *= FACTOR_UBICACION;
 
-    let costoInstalaciones = 0;
-    instalaciones.forEach(inst => {
-      costoInstalaciones += costosInstalaciones[inst] || 0;
-    });
+    // Instalaciones ya incluidas en llave en mano / acabados; no suman al total
+    const costoInstalaciones = 0;
 
     // Costos de preparación de terreno ya no se incluyen en la cotización
     const precioTotal = precioBase + costoInstalaciones;
