@@ -728,6 +728,7 @@
       })(window, document, "clarity", "script", "tcaaszcmuu");
     </script>
     <link rel="stylesheet" href="/assets/css/nav-shared.css" />
+    <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
       <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
   </head>
   <body class="bg-white text-dark">
@@ -918,30 +919,48 @@
               </p>
             </div>
 
-            <!-- Palabras clave compactas -->
-            <div class="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 px-2" data-aos="fade-up" data-aos-delay="100">
-              <a href="#catalog" onclick="document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-home mr-1 text-primary text-xs"></i>Casas Campestres
+            <!-- CTAs compactos -->
+            <div
+              class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-stretch sm:items-center px-2 mb-3 lg:mb-4"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <a
+                href="#catalog"
+                onclick="document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' }); return false;"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-6 py-3 sm:py-3.5 lg:py-3 bg-primary text-white rounded-full font-semibold text-base sm:text-lg lg:text-base hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                <i class="fas fa-eye"></i>
+                <span>Ver Modelos</span>
+                <i class="fas fa-arrow-down text-sm opacity-80"></i>
               </a>
-              <a href="/cotizador-precios-casas-prefabricadas.html" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-calculator mr-1 text-primary text-xs"></i>Precios Desde
+              <a
+                href="/cotizador-precios-casas-prefabricadas.html"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-6 py-3 sm:py-3.5 lg:py-3 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-base hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
+              >
+                <i class="fas fa-calculator"></i>
+                <span>Cotizador de precios gratis</span>
               </a>
-              <a href="#catalog" onclick="document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' }); return false;" class="px-2 py-1 bg-white/10 backdrop-blur-sm rounded-full text-white text-xs font-medium border border-white/20 hover:bg-white/20 hover:border-primary/50 transition-all duration-300 transform hover:scale-105 cursor-pointer">
-                <i class="fas fa-pencil-ruler mr-1 text-primary text-xs"></i>Diseños Personalizables
+              <a
+                href="https://wa.me/573142891018?text=Hola%2C%20vi%20los%20modelos%20en%20su%20web.%20%C2%BFPueden%20mostrarme%20los%20disponibles%20con%20precios%20y%20zonas%20de%20cobertura%3F"
+                target="_blank"
+                class="w-full sm:w-auto px-6 sm:px-7 lg:px-6 py-3 sm:py-3.5 lg:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-base hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                <i class="fab fa-whatsapp"></i>
+                <span>Hablar por WhatsApp</span>
               </a>
             </div>
 
-            <!-- CTAs compactos -->
-            <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 justify-center items-center px-2 mb-8 sm:mb-10" data-aos="fade-up" data-aos-delay="200">
-              <a
-                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20modelos%20de%20casas%20prefabricadas."
-                target="_blank"
-                class="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg md:text-xl hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2"
-              >
-                <i class="fab fa-whatsapp"></i>
-                <span>WhatsApp</span>
-              </a>
-            </div>
+            <!-- Microtexto de confianza (reduce friccion) -->
+            <p
+              class="text-xs sm:text-sm text-white/80 text-center px-2"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <i class="fas fa-check-circle mr-1 text-primary"></i>Sin compromiso
+              <span class="mx-2">·</span>Cotización gratis
+              <span class="mx-2">·</span>Respuesta en menos de 24h
+            </p>
 
           </div>
         </div>
@@ -2018,5 +2037,6 @@
     <script src="/assets/js/nav-municipios.js"></script>
     <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>
+    <script src="/assets/js/whatsapp-modal.js"></script>
   </body>
 </html>
