@@ -324,6 +324,7 @@
     })(window, document, "clarity", "script", "tcaaszcmuu");
 </script>
     <link rel="stylesheet" href="/assets/css/nav-shared.css" />
+    <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
       <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
   </head>
   <body class="bg-white text-dark">
@@ -509,18 +510,53 @@
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
               Blog de Casas Prefabricadas
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed">
+            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
               Guías de precios, cómo comprar y consejos prácticos para tu proyecto
             </p>
           </div>
-          
-          <!-- Indicador de scroll animado -->
-          <div class="flex flex-col items-center justify-center mt-12" data-aos="fade-up" data-aos-delay="300">
-            <span class="text-white text-sm mb-2 opacity-80">Explora nuestros artículos</span>
-            <div class="scroll-indicator cursor-pointer" onclick="document.getElementById('blog-list').scrollIntoView({ behavior: 'smooth' })">
-              <i class="fas fa-chevron-down text-white text-2xl"></i>
-            </div>
+
+          <!-- CTAs principales (3 vias de conversion) -->
+          <div
+            class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-stretch sm:items-center px-2 mb-4"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <a
+              href="#blog-list"
+              onclick="document.getElementById('blog-list').scrollIntoView({ behavior: 'smooth' }); return false;"
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-primary text-white rounded-full font-semibold text-base sm:text-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            >
+              <i class="fas fa-newspaper"></i>
+              <span>Ver Artículos</span>
+              <i class="fas fa-arrow-down text-sm opacity-80"></i>
+            </a>
+            <a
+              href="/cotizador-precios-casas-prefabricadas.html"
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
+            >
+              <i class="fas fa-calculator"></i>
+              <span>Cotizador de precios gratis</span>
+            </a>
+            <a
+              href="https://wa.me/573142891018?text=Hola%2C%20vi%20el%20blog%20de%20CONCASAYA.%20%C2%BFPueden%20asesorarme%20con%20mi%20proyecto%20de%20casa%20prefabricada%3F"
+              target="_blank"
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+            >
+              <i class="fab fa-whatsapp"></i>
+              <span>Hablar por WhatsApp</span>
+            </a>
           </div>
+
+          <!-- Microtexto de confianza -->
+          <p
+            class="text-xs sm:text-sm text-white/80 text-center px-2 mb-8"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <i class="fas fa-check-circle mr-1 text-primary"></i>Sin compromiso
+            <span class="mx-2">·</span>Cotización gratis
+            <span class="mx-2">·</span>Respuesta en menos de 24h
+          </p>
         </div>
       </section>
 
@@ -1071,5 +1107,6 @@
     <script src="/assets/js/nav-municipios.js"></script>
     <script src="/assets/js/nav-menu.js"></script>
     <script src="/assets/js/lead-capture-modal.js"></script>
+    <script src="/assets/js/whatsapp-modal.js"></script>
   </body>
 </html>
