@@ -1,472 +1,469 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-    <!-- Página Principal (Máxima Prioridad) -->
+
     <url>
         <loc>https://www.concasaya.com/</loc>
-        <lastmod>2026-01-27</lastmod>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
 
-    <!-- Páginas Principales (Alta Prioridad) -->
     <url>
-        <loc>https://www.concasaya.com/modelos.html</loc>
-        <lastmod>2026-01-27</lastmod>
+        <loc>https://www.concasaya.com/pages/casas-prefabricadas-colombia.html</loc>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
+        <priority>0.95</priority>
+    </url>
+
+    <url>
+        <loc>https://www.concasaya.com/blog.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/contacto.html</loc>
-        <lastmod>2026-01-27</lastmod>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/ventajas.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/galeria.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/cotizador-precios-casas-prefabricadas.html</loc>
-        <lastmod>2026-05-27</lastmod>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/faq.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/galeria.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/modelos.html</loc>
+        <lastmod>2026-06-16</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/nosotros.html</loc>
-        <lastmod>2026-01-27</lastmod>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/faq.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>yearly</changefreq>
+        <loc>https://www.concasaya.com/pages/colombianos-canada.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/casas-prefabricadas-colombia.html</loc>
-        <lastmod>2026-05-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.95</priority>
-    </url>
-
-    <!-- Páginas de Municipios (Prioridad Media-Alta) -->
-    <url>
-        <loc>https://www.concasaya.com/pages/chia.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/cajica.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/sopo.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/zipaquira.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/mosquera.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/madrid.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/funza.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/la-vega.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/tocancipa.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/villadeleyva.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/boyaca.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/samaca.html</loc>
-        <lastmod>2026-04-17</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/cota.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/facatativa.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/fusagasuga.html</loc>
-        <lastmod>2026-05-15</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/choconta.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/la-mesa.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/mesitas-del-colegio.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/pacho.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/san-francisco.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/sogamoso.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/firavitoba.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/valle-de-tenza.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/subachoque.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/supata.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/suba.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/norte-bogota.html</loc>
-        <lastmod>2026-05-22</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/barbosa.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/chiquinquira.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/puente-nacional.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/tunja.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/duitama.html</loc>
-        <lastmod>2026-04-17</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/paipa.html</loc>
-        <lastmod>2026-04-17</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/velez.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/raquira.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/soacha.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/guasca.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/sesquile.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/villeta.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/la-calera.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/santa-marta.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-
-    <!-- Páginas de cobertura internacional (Prioridad Alta) -->
     <url>
         <loc>https://www.concasaya.com/pages/colombianos-en-el-exterior.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/pages/colombianos-estados-unidos.html</loc>
-        <lastmod>2026-04-25</lastmod>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/colombianos-espana.html</loc>
-        <lastmod>2026-04-25</lastmod>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/pages/colombianos-canada.html</loc>
-        <lastmod>2026-04-25</lastmod>
+        <loc>https://www.concasaya.com/pages/colombianos-estados-unidos.html</loc>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/pages/colombianos-mexico.html</loc>
-        <lastmod>2026-04-25</lastmod>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/ventajas.html</loc>
+        <lastmod>2026-06-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.9</priority>
     </url>
 
-    <!-- Páginas Secundarias (Prioridad Media) -->
     <url>
-        <loc>https://www.concasaya.com/referidos.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.6</priority>
+        <loc>https://www.concasaya.com/pages/barbosa.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/boyaca.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/cajica.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/chia.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/chiquinquira.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/choconta.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/cota.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/duitama.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/facatativa.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/firavitoba.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/funza.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/fusagasuga.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/guasca.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/la-calera.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/la-mesa.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/la-vega.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/madrid.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/mesitas-del-colegio.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/mosquera.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/norte-bogota.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/pacho.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/paipa.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/puente-nacional.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/raquira.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/samaca.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/san-francisco.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/sesquile.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/soacha.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/sogamoso.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/sopo.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/suba.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/subachoque.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/supata.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/tocancipa.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/tunja.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/valle-de-tenza.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/velez.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/villadeleyva.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/villeta.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/pages/zipaquira.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
     </url>
 
-    <!-- Entradas del Blog (Prioridad Media) -->
     <url>
         <loc>https://www.concasaya.com/blog/casas-prefabricadas-desde-suba-construir-cundinamarca.html</loc>
-        <lastmod>2026-05-22</lastmod>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/casas-prefabricadas-en-colombia.html</loc>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/blog/casas-prefabricadas-norte-bogota-construir-cundinamarca.html</loc>
-        <lastmod>2026-05-22</lastmod>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/blog/guia-casas-prefabricadas-colombia-concasaya.html</loc>
-        <lastmod>2026-05-15</lastmod>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-2026.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-europa.html</loc>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/blog/construccion-prefabricada-cundinamarca-guia-concasaya.html</loc>
-        <lastmod>2026-05-15</lastmod>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.75</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/blog/construir-respaldo-legal-casa-prefabricada-concasaya.html</loc>
-        <lastmod>2026-04-19</lastmod>
+        <loc>https://www.concasaya.com/blog/guia-casas-prefabricadas-colombia-concasaya.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+
+    <url>
+        <loc>https://www.concasaya.com/blog/construccion-panel-eps-vs-bloquelon.html</loc>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/blog/permisos-adicionales-casas-prefabricadas-colombia.html</loc>
-        <lastmod>2026-04-18</lastmod>
+        <loc>https://www.concasaya.com/blog/construccion-prefabricada-vs-tradicional.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/construir-respaldo-legal-casa-prefabricada-concasaya.html</loc>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/blog/licencia-construccion-casas-prefabricadas-colombia.html</loc>
-        <lastmod>2026-04-17</lastmod>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
-        <loc>https://www.concasaya.com/blog/ventajas-construccion-prefabricada-2026.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/venta-casas-prefabricadas-cundinamarca.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/ventajas-prefabricados-clima-calido-santa-marta.html</loc>
-        <lastmod>2026-01-27</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-2026.html</loc>
-        <lastmod>2026-03-04</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/precio-casa-prefabricada-colombia-2026.html</loc>
-        <lastmod>2026-03-04</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/casas-prefabricadas-en-colombia.html</loc>
-        <lastmod>2026-03-04</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-europa.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html</loc>
-        <lastmod>2026-04-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/construccion-prefabricada-vs-tradicional.html</loc>
-        <lastmod>2026-02-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.concasaya.com/blog/construccion-panel-eps-vs-bloquelon.html</loc>
-        <lastmod>2026-02-08</lastmod>
+        <loc>https://www.concasaya.com/blog/permisos-adicionales-casas-prefabricadas-colombia.html</loc>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
     </url>
     <url>
         <loc>https://www.concasaya.com/blog/plaqueta-concreto-vs-bloquelon.html</loc>
-        <lastmod>2026-02-08</lastmod>
+        <lastmod>2026-06-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/precio-casa-prefabricada-colombia-2026.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/venta-casas-prefabricadas-cundinamarca.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/ventajas-construccion-prefabricada-2026.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://www.concasaya.com/blog/ventajas-prefabricados-clima-calido-santa-marta.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <url>
+        <loc>https://www.concasaya.com/referidos.html</loc>
+        <lastmod>2026-06-13</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+
+    <url>
+        <loc>https://www.concasaya.com/terminos-premio-sorpresa.html</loc>
+        <lastmod>2026-06-08</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.5</priority>
     </url>
 
 </urlset>
