@@ -715,12 +715,12 @@
               <!-- Miniatura 1 - Primer Piso -->
               <div 
                 class="panorama-thumb active cursor-pointer rounded-lg overflow-hidden shadow-lg border-4 border-primary transition-all duration-300 hover:scale-105"
-                data-panorama="/assets/images/360.jpg"
+                data-panorama="/assets/images/360.webp"
                 data-title="Primer Piso"
               >
                 <div class="relative">
                   <img 
-                    src="/assets/images/360.jpg" 
+                    src="/assets/images/360.webp" 
                     alt="Primer Piso"
                     class="w-full h-32 object-cover"
                     onerror="this.src='https://via.placeholder.com/400x200?text=Primer+Piso'"
@@ -1574,7 +1574,7 @@
             // Crear el visor panorámico con Pannellum
             panoramaViewer = pannellum.viewer(panoramaContainer, {
               type: "equirectangular",
-              panorama: "/assets/images/360.jpg",
+              panorama: "/assets/images/360.webp",
               autoLoad: true,
               autoRotate: 0,
               showControls: true,
