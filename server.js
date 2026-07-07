@@ -22,8 +22,10 @@ app.post('/api/chat', async (req, res) => {
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // API Key de Perplexity (hardcoded para uso público temporal)
-    const PERPLEXITY_API_KEY = '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';
+    // API Key de Perplexity: debe estar configurada como variable de entorno.
+    // Chatbot desactivado temporalmente (2026-07); si se reactiva,
+    // configurar PERPLEXITY_API_KEY en Vercel → Settings → Environment Variables.
+    const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
     const PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions';
 

@@ -20,8 +20,10 @@ module.exports = async (req, res) => {
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 
-    // API Key de Perplexity (hardcoded para uso público temporal)
-    const PERPLEXITY_API_KEY = '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';
+    // API Key de Perplexity: debe estar configurada como variable de entorno.
+    // Chatbot desactivado temporalmente (2026-07); si se reactiva,
+    // configurar PERPLEXITY_API_KEY en Vercel → Settings → Environment Variables.
+    const PERPLEXITY_API_KEY = process.env.PERPLEXITY_API_KEY;
 
     console.log('Usando API de Perplexity con modelo sonar-pro');
     const PERPLEXITY_API_URL = 'https://api.perplexity.ai/chat/completions';

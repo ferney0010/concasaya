@@ -16,3 +16,16 @@ body:has(#social-bottom-bar) footer {
     1.5rem + var(--social-bottom-bar-height) + env(safe-area-inset-bottom, 0px)
   ) !important;
 }
+
+/*
+ * Chatbot desactivado temporalmente (2026-07).
+ * El cliente no está conforme con las funciones actuales; se va a
+ * guardar y mejorar en una próxima sesión.
+ * Archivos preservados: chatbot.html, assets/js/chatbot.js.
+ * Para reactivar: borrar este bloque y restaurar la API key en
+ * Vercel (env var PERPLEXITY_API_KEY).
+ */
+#chatbot-floating-btn,
+#chatbot-modal {
+  display: none !important;
+}
