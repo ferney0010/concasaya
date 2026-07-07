@@ -1,0 +1,29 @@
+/* Tailwind input — fuente para el compilado.
+ * Después de `npm run build:css`, este archivo se procesa a
+ * assets/css/tailwind.css (minificado).
+ */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color channels (space-separated RGB) para que los opacity
+ * modifiers tipo `bg-primary/90` funcionen. Ver tailwind.config.js.
+ */
+@layer base {
+  :root {
+    --c-primary:        0 119 182;
+    --c-primary-50:   230 242 248;
+    --c-primary-100:  179 217 232;
+    --c-primary-200:  128 192 216;
+    --c-primary-300:   77 167 200;
+    --c-primary-400:   26 142 184;
+    --c-primary-500:    0 119 182;
+    --c-primary-600:    0  95 148;
+    --c-primary-700:    0  71 114;
+    --c-primary-800:    0  47  80;
+    --c-primary-900:    0  23  46;
+    --c-secondary:     13  27  42;
+    --c-dark:          45  55  72;
+    --c-light:        248 250 252;
+  }
+}

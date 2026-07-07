@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node server.js",
+    "build:css": "tailwindcss -i ./src/tailwind/input.css -o ./assets/css/tailwind.css --minify",
+    "build:css:watch": "tailwindcss -i ./src/tailwind/input.css -o ./assets/css/tailwind.css --watch"
   },
   "keywords": [
     "casas prefabricadas",
@@ -18,5 +20,8 @@
     "express": "^4.18.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }
