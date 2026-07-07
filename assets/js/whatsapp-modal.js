@@ -54,18 +54,18 @@
 
   // === UTILIDADES ===
   function pickAdvisor() {
-    // Rota entre los 3 asesores para que no salga siempre el mismo
-    // (sesion-aware: si reabre el modal en la misma sesion, mantiene el mismo)
+    // Round-robin: cada apertura del modal avanza al siguiente asesor.
+    // La primera vez arranca en 0 (Natalia). Garantiza que los 3 roten
+    // y que ninguno quede fijo en una sesion.
+    var counter = 0;
     try {
       var saved = sessionStorage.getItem(SESSION_KEY);
-      if (saved) {
-        var found = ADVISORS.find(function (a) { return a.name === saved; });
-        if (found) return found;
-      }
+      counter = saved ? parseInt(saved, 10) : 0;
+      if (isNaN(counter) || counter < 0) counter = 0;
     } catch (e) { /* sessionStorage puede no estar disponible */ }
-    var idx = Math.floor(Math.random() * ADVISORS.length);
+    var idx = counter % ADVISORS.length;
     var chosen = ADVISORS[idx];
-    try { sessionStorage.setItem(SESSION_KEY, chosen.name); } catch (e) {}
+    try { sessionStorage.setItem(SESSION_KEY, String(counter + 1)); } catch (e) {}
     return chosen;
   }
 
