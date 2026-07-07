@@ -125,7 +125,7 @@ export const staticPosts = [
     slug: "ventajas-prefabricados-clima-calido-santa-marta",
     title: "Ventajas de Casas Prefabricadas en Clima Cálido: Costa Caribe y más",
     description: "Descubre las ventajas de las casas prefabricadas en clima cálido. CONCASAYA construye en Barranquilla y la Costa Caribe; también en Boyacá (p. ej. Samacá). Aislamiento térmico, resistencia y diseño moderno.",
-    image: "https://www.concasaya.com/assets/images/aislamiento.png",
+    image: "https://www.concasaya.com/assets/images/aislamiento.webp",
     date: "2026-01-15",
     url: "/blog/ventajas-prefabricados-clima-calido-santa-marta.html",
     category: "Guías"
