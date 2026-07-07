@@ -1204,46 +1204,104 @@
 
   // Calcular precio estimado
   function calculatePrice() {
-    // Nueva tabla de precios por m² según sistema constructivo, pisos y acabados
+    // Tabla de precios por m² según sistema constructivo, pisos y acabados
+    // (Ajuste 2026-07: bases subidas a valores reales de mercado para evitar cotizaciones demasiado bajas)
     const preciosPorM2 = {
       'plaqueta': {
         '1-piso': {
-          'obra-negra': 600000,
-          'gris': 1150000,
-          'blanca': 1850000
+          'obra-negra': 800000,
+          'gris': 1350000,
+          'blanca': 2100000
         },
         '2-pisos': {
-          'obra-negra': 700000,
-          'gris': 1400000,
-          'blanca': 2350000
+          'obra-negra': 1000000,
+          'gris': 1650000,
+          'blanca': 2700000
         }
       },
       'eps': {
         '1-piso': {
-          'llave-en-mano': 2100000
+          'llave-en-mano': 2300000
         },
         '2-pisos': {
-          'llave-en-mano': 2600000
+          'llave-en-mano': 2800000
         }
       }
     };
 
     const multiplicadoresTipo = {
-      cabaña: 0.82,
-      'casa-campestre': 0.80,
-      'casa-urbana': 0.78,
-      bodega: 0.85,
-      oficina: 0.78,
+      cabaña: 0.95,
+      'casa-campestre': 1.00,
+      'casa-urbana': 1.05,
+      bodega: 0.90,
+      oficina: 1.00,
     };
 
-    // Factor fijo reducido por ubicación (antes hasta 1.25; ahora sin recargo)
-    const FACTOR_UBICACION = 0.72;
+    // Tabla de factor ubicación por municipio (en vez del 0.72 global anterior)
+    // Bogotá y municipios del corredor norte/sur = 1.00; mientras más lejos, menor factor.
+    const factorUbicacionPorMunicipio = {
+      // Bogotá y corredor cercano (sin recargo)
+      'bogota': 1.00,
+      'suba': 1.00,
+      'norte-bogota': 1.00,
+      'chia': 1.00,
+      'cajica': 1.00,
+      'cota': 1.00,
+      'sopo': 1.00,
+      'la-calera': 1.00,
+      'funza': 1.00,
+      'mosquera': 1.00,
+      'madrid': 1.00,
+      'soacha': 1.00,
+      'tocancipa': 1.00,
+      // Cercanos medios
+      'zipaquira': 0.98,
+      // Cundinamarca centro
+      'choconta': 0.95,
+      'sesquile': 0.95,
+      'guasca': 0.95,
+      'subachoque': 0.95,
+      // Cundinamarca lejano
+      'la-vega': 0.92,
+      'villeta': 0.92,
+      'pacho': 0.92,
+      'la-mesa': 0.92,
+      'mesitas-del-colegio': 0.92,
+      'facatativa': 0.92,
+      'fusagasuga': 0.92,
+      // Boyacá y otros lejanos
+      'tunja': 0.88,
+      'duitama': 0.88,
+      'paipa': 0.88,
+      'samaca': 0.88,
+      'boyaca': 0.88,
+      'sogamoso': 0.88,
+      'firavitoba': 0.88,
+      'valle-de-tenza': 0.88,
+      'villadeleyva': 0.88,
+      'barbosa': 0.88,
+      'san-francisco': 0.88,
+      'supata': 0.88,
+      'puente-nacional': 0.88,
+      'velez': 0.88,
+      'raquira': 0.88,
+      'chiquinquira': 0.88
+    };
+    const FACTOR_UBICACION_DEFAULT = 0.95;
+
+    function getFactorUbicacion(ubicacion) {
+      if (!ubicacion) return FACTOR_UBICACION_DEFAULT;
+      return factorUbicacionPorMunicipio[ubicacion] != null
+        ? factorUbicacionPorMunicipio[ubicacion]
+        : FACTOR_UBICACION_DEFAULT;
+    }
 
     const sistema = appState.answers.sistema || 'eps';
     const area = parseInt(appState.answers.area) || 60;
     const tipoVivienda = appState.answers['tipo-vivienda'] || 'casa-campestre';
     const acabados = appState.answers.acabados || (sistema === 'eps' ? 'llave-en-mano' : 'obra-negra');
     const pisos = appState.answers.pisos || '1-piso';
+    const ubicacion = appState.answers.ubicacion || '';
 
     // Obtener precio por m² según sistema, pisos y acabados
     // Si es EPS y llega un acabado no válido, forzar llave en mano
@@ -1252,11 +1310,11 @@
       acabadosParaCalcular = 'llave-en-mano';
     }
     const precioM2 = preciosPorM2[sistema]?.[pisos]?.[acabadosParaCalcular] || preciosPorM2['eps']['1-piso']['llave-en-mano'];
-    
-    // Precio base: m² × área, con multiplicadores reducidos (sin recargos)
+
+    // Precio base: m² × área, con multiplicador de tipo y factor de ubicación real
     let precioBase = precioM2 * area;
-    precioBase *= multiplicadoresTipo[tipoVivienda] || 0.80;
-    precioBase *= FACTOR_UBICACION;
+    precioBase *= multiplicadoresTipo[tipoVivienda] || 1.00;
+    precioBase *= getFactorUbicacion(ubicacion);
 
     // Instalaciones ya incluidas en llave en mano / acabados; no suman al total
     const costoInstalaciones = 0;
@@ -1390,6 +1448,67 @@
       'gas': 'Instalación de Gas'
     };
 
+    // Flags para avisos de coherencia con el rango de inversión y área mínima
+    const areaNum = parseInt(appState.answers.area) || 0;
+    const esAreaMinima = areaNum > 0 && areaNum < 30;
+    const rangoSeleccionado = appState.answers.presupuesto;
+    const totalCalc = priceData.total;
+    // Límites superiores del rango seleccionado (en millones de COP)
+    const limitesRango = { '18-50': 50000000, '51-100': 100000000 };
+    const limiteRango = limitesRango[rangoSeleccionado];
+    const presupuestoExcede = (limiteRango != null) && totalCalc > limiteRango;
+    const presupuestoAcorde = (limiteRango != null) && totalCalc <= limiteRango;
+
+    // Bloque HTML del precio / aviso de área mínima
+    let bloquePrecioHTML;
+    if (esAreaMinima) {
+      bloquePrecioHTML = `
+        <div class="bg-amber-100 border-2 border-amber-400 rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
+          <div class="flex items-start">
+            <i class="fas fa-info-circle text-amber-600 text-xl sm:text-2xl mr-3 sm:mr-4 mt-1 flex-shrink-0"></i>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base sm:text-lg font-bold text-amber-800 mb-2">Para proyectos menores a 30 m²</h3>
+              <p class="text-xs sm:text-sm text-amber-900 mb-2">El cotizador en línea maneja proyectos a partir de 30 m². Para cotizar tu proyecto te recomendamos agendar una videollamada o escribirnos por WhatsApp para recibir una cotización personalizada.</p>
+              <p class="text-xs sm:text-sm font-semibold text-amber-900">Agenda tu videollamada gratuita y conoce todos los detalles de tu proyecto.</p>
+            </div>
+          </div>
+        </div>
+      `;
+    } else {
+      bloquePrecioHTML = `
+        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
+          <div class="text-center">
+            <p class="text-xs sm:text-sm opacity-80 mb-2">Precio estimado de casa prefabricada (simulación)</p>
+            <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 break-words">$${totalCalc.toLocaleString('es-CO')}</p>
+            <p class="text-xs opacity-75 italic px-2">*Valor aproximado. No constituye una cotización oficial.</p>
+          </div>
+        </div>
+        ${presupuestoExcede ? `
+        <div class="bg-orange-100 border-2 border-orange-400 rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
+          <div class="flex items-start">
+            <i class="fas fa-exclamation-circle text-orange-600 text-xl sm:text-2xl mr-3 sm:mr-4 mt-1 flex-shrink-0"></i>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base sm:text-lg font-bold text-orange-800 mb-2">El valor estimado está por encima del rango que indicaste</h3>
+              <p class="text-xs sm:text-sm text-orange-900 mb-2">Tu cálculo estimado ($${totalCalc.toLocaleString('es-CO')}) supera el rango de inversión que seleccionaste. Esto puede deberse a las características del proyecto (sistema, tamaño, acabados o ubicación).</p>
+              <p class="text-xs sm:text-sm font-semibold text-orange-900">Te recomendamos agendar una videollamada para ajustar el proyecto a tu presupuesto.</p>
+            </div>
+          </div>
+        </div>
+        ` : ''}
+        ${presupuestoAcorde ? `
+        <div class="bg-green-100 border-2 border-green-400 rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
+          <div class="flex items-start">
+            <i class="fas fa-check-circle text-green-600 text-xl sm:text-2xl mr-3 sm:mr-4 mt-1 flex-shrink-0"></i>
+            <div class="min-w-0 flex-1">
+              <h3 class="text-base sm:text-lg font-bold text-green-800 mb-2">El valor estimado está dentro de tu rango de inversión</h3>
+              <p class="text-xs sm:text-sm text-green-900 mb-2">Tu cálculo estimado ($${totalCalc.toLocaleString('es-CO')}) calza con el rango que indicaste. Agenda una videollamada para recibir una cotización precisa.</p>
+            </div>
+          </div>
+        </div>
+        ` : ''}
+      `;
+    }
+
     let summaryHTML = `
       <div class="result-card text-white rounded-2xl p-4 sm:p-6 md:p-12 mb-6 md:mb-8">
             <div class="text-center mb-6 md:mb-8">
@@ -1419,13 +1538,7 @@
           </div>
         </div>
 
-        <div class="bg-white/20 backdrop-blur-sm rounded-xl p-4 sm:p-5 md:p-6 mb-4 md:mb-6">
-          <div class="text-center">
-            <p class="text-xs sm:text-sm opacity-80 mb-2">Precio estimado de casa prefabricada (simulación)</p>
-            <p class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-2 break-words">$${priceData.total.toLocaleString('es-CO')}</p>
-            <p class="text-xs opacity-75 italic px-2">*Valor aproximado. No constituye una cotización oficial.</p>
-          </div>
-        </div>
+        ${bloquePrecioHTML}
 
             <div class="text-center px-2">
               <p class="text-xs sm:text-sm opacity-80 mb-2">Nuestro equipo de expertos revisará tu simulación y te contactará en breve</p>
