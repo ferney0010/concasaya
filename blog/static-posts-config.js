@@ -3,6 +3,16 @@
 
 export const staticPosts = [
   {
+    slug: "casas-prefabricadas-llave-en-mano-colombia",
+    title: "Casas prefabricadas llave en mano en Colombia: precios, qué incluye y cómo cotizar",
+    description:
+      "Guía transaccional para compradores listos: qué debe incluir una casa prefabricada llave en mano, precios por m², acabados, instalaciones y cotización con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/terminada.webp",
+    date: "2026-07-09",
+    url: "/blog/casas-prefabricadas-llave-en-mano-colombia.html",
+    category: "Compra"
+  },
+  {
     slug: "precio-casa-prefabricada-colombia-2026",
     title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
     description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
