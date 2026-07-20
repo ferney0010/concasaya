@@ -21,3 +21,16 @@ Thumbs.db
 # Logs
 logs/
 *.log
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Test artifacts (Chrome DevTools Protocol scripts)
+gallery_items.txt
+gallery_output.txt
+gallery_clean.txt
+
+# Originales del catálogo (solo se usan thumbs/ y medium/ en producción)
+catalogo concasaya/*.webp

@@ -3352,16 +3352,25 @@
             </p>
           </div>
 
-          <div class="flex flex-col items-center gap-2">
-            <p class="text-xs text-gray-500">Desarrollado por</p>
+          <div class="flex flex-col items-center gap-1">
             <a
               href="https://www.codifytech.click/"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center space-x-2 text-cyan-400"
+              aria-label="Codify Tech"
+              class="group inline-flex items-center justify-center gap-2 text-base font-light tracking-wide text-gray-300 hover:text-white transition-colors duration-300"
             >
-              <span class="font-semibold text-sm">Codify Tech</span>
-              <i class="fas fa-external-link-alt text-xs text-cyan-400"></i>
+              <span>Hecho con</span>
+              <span
+                class="text-red-500 text-lg leading-none animate-pulse group-hover:scale-125 transition-transform duration-300 inline-block"
+                aria-hidden="true"
+                >❤</span
+              >
+              <span>por</span>
+              <span
+                class="font-semibold text-cyan-400 group-hover:text-cyan-300 transition-colors duration-300 underline-offset-4 group-hover:underline"
+                >Codify Tech</span
+              >
             </a>
           </div>
         </div>
@@ -3708,10 +3717,10 @@
       }
 
       // Animación pequeña ocasional en la esquina inferior izquierda
-      (function () {
+      function startSmallAnimation() {
         const smallAnimation = document.getElementById("small-animation");
         if (!smallAnimation) {
-          console.error("Elemento small-animation no encontrado");
+          console.warn("Elemento small-animation no encontrado, omitiendo animación");
           return;
         }
 
@@ -3758,7 +3767,14 @@
         } else {
           initAnimation();
         }
-      })();
+      }
+
+      // Diferir hasta que el DOM tenga el elemento small-animation.
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", startSmallAnimation);
+      } else {
+        startSmallAnimation();
+      }
 
       // Efecto Parallax para CTA de Terrenos
       document.addEventListener("DOMContentLoaded", function () {
