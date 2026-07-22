@@ -23,6 +23,16 @@ export const staticPosts = [
     category: "Compra"
   },
   {
+    slug: "casas-modulares-cundinamarca",
+    title: "Casas modulares en Cundinamarca: precios por m², municipios y cómo cotizar",
+    description:
+      "Guía para cotizar casas modulares en Cundinamarca: precios por m², sistema recomendado según municipio (Chía, Cajicá, Zipaquirá, Mosquera), licencias, accesos y cómo cotizar con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/fondo2.webp",
+    date: "2026-07-21",
+    url: "/blog/casas-modulares-cundinamarca.html",
+    category: "Compra"
+  },
+  {
     slug: "precio-casa-prefabricada-colombia-2026",
     title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
     description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
