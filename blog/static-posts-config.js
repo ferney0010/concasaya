@@ -7,7 +7,7 @@ export const staticPosts = [
     title: "Casas prefabricadas llave en mano en Colombia: precios, qué incluye y cómo cotizar",
     description:
       "Guía transaccional para compradores listos: qué debe incluir una casa prefabricada llave en mano, precios por m², acabados, instalaciones y cotización con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/terminada.webp",
+    image: "https://www.concasaya.com/assets/images/herocasa1.webp",
     date: "2026-07-09",
     url: "/blog/casas-prefabricadas-llave-en-mano-colombia.html",
     category: "Compra"
@@ -27,7 +27,7 @@ export const staticPosts = [
     title: "Casas modulares en Cundinamarca: precios por m², municipios y cómo cotizar",
     description:
       "Guía para cotizar casas modulares en Cundinamarca: precios por m², sistema recomendado según municipio (Chía, Cajicá, Zipaquirá, Mosquera), licencias, accesos y cómo cotizar con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/fondo2.webp",
+    image: "https://www.concasaya.com/assets/images/cass3.webp",
     date: "2026-07-21",
     url: "/blog/casas-modulares-cundinamarca.html",
     category: "Compra"
@@ -36,7 +36,7 @@ export const staticPosts = [
     slug: "precio-casa-prefabricada-colombia-2026",
     title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
     description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/terminada.webp",
+    image: "https://www.concasaya.com/assets/images/cassa1.webp",
     date: "2026-03-04",
     url: "/blog/precio-casa-prefabricada-colombia-2026.html",
     category: "Guías",
@@ -57,7 +57,7 @@ export const staticPosts = [
     title: "Casas prefabricadas desde el Norte de Bogotá: cotiza en la ciudad, construye afuera",
     description:
       "Guía para Usaquén, Engativá, Suba, Barrios Unidos y Chapinero: cotiza en Fiesta Suba y construye en Cundinamarca con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/fondo4.webp",
+    image: "https://www.concasaya.com/assets/images/caseta.webp",
     date: "2026-05-22",
     url: "/blog/casas-prefabricadas-norte-bogota-construir-cundinamarca.html",
     category: "Guías"
@@ -67,7 +67,7 @@ export const staticPosts = [
     title: "Casas prefabricadas en Colombia (2026)",
     description:
       "Guía extensa con contexto real: municipios y clima, precios y proceso de compra, licencias, EPS y plaqueta, colombianos en el exterior y cómo seguir con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/fondo4.webp",
+    image: "https://www.concasaya.com/assets/images/campe.jpg",
     date: "2026-05-15",
     url: "/blog/guia-casas-prefabricadas-colombia-concasaya.html",
     category: "Guías"
@@ -77,7 +77,7 @@ export const staticPosts = [
     title: "Construcción prefabricada en Cundinamarca (2026)",
     description:
       "Texto amplio sobre EPS y plaqueta en el departamento: Sabana, Sur y Occidente, licencias y permisos, precios y compra, Boyacá vecino y clientes en el exterior.",
-    image: "https://www.concasaya.com/assets/images/fondo2.webp",
+    image: "https://www.concasaya.com/assets/images/cass4.webp",
     date: "2026-05-15",
     url: "/blog/construccion-prefabricada-cundinamarca-guia-concasaya.html",
     category: "Guías"
@@ -87,7 +87,7 @@ export const staticPosts = [
     title: "Comprar Casa Prefabricada en Colombia desde Estados Unidos y Canadá",
     description:
       "Guía 2026 para colombianos en Estados Unidos y Canadá que quieren comprar casa prefabricada en Colombia: precios, pagos USD/CAD, licencia y seguimiento remoto.",
-    image: "https://www.concasaya.com/assets/images/terminada.webp",
+    image: "https://www.concasaya.com/assets/images/cass2.webp",
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html",
     category: "Guías"
@@ -107,7 +107,7 @@ export const staticPosts = [
     title: "Comprar Casa Prefabricada en Colombia desde el Exterior: Guía para Colombianos",
     description:
       "Guía completa para colombianos en el extranjero que quieren comprar casa prefabricada en Colombia: precios, pagos internacionales, licencia, seguridad legal y seguimiento remoto.",
-    image: "https://www.concasaya.com/assets/images/fondo4.webp",
+    image: "https://www.concasaya.com/assets/images/campe1.webp",
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html",
     category: "Guías"
@@ -146,7 +146,7 @@ export const staticPosts = [
     slug: "venta-casas-prefabricadas-cundinamarca",
     title: "Venta de Casas Prefabricadas en Cundinamarca: Guía Completa 2026",
     description: "Guía completa sobre la venta de casas prefabricadas en Cundinamarca. Descubre por qué CONCASAYA es la mejor opción para tu hogar prefabricado en Bogotá, Chía, Cajicá, Mosquera y más municipios.",
-    image: "https://www.concasaya.com/assets/images/fondo2.webp",
+    image: "https://www.concasaya.com/assets/images/cabaññ1.webp",
     date: "2026-01-15",
     url: "/blog/venta-casas-prefabricadas-cundinamarca.html",
     category: "Guías"
