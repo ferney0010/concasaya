@@ -1010,6 +1010,36 @@
 
       .gallery-tile:hover img { transform: scale(1.08); }
 
+      /* ====== Cabañas Tabs (Con Altillo / De Vidrio) ====== */
+      .cabin-tabs { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 1.25rem; }
+      .cabin-tab { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.625rem 1.25rem; border-radius: 9999px; border: 2px solid #e5e7eb; background: #ffffff; color: #4b5563; font-weight: 600; font-size: 0.9375rem; cursor: pointer; transition: all 0.2s ease; }
+      .cabin-tab:hover:not(.active) { border-color: #f59e0b; color: #f59e0b; }
+      .cabin-tab.active { background: #f59e0b; border-color: #f59e0b; color: #ffffff; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.35); }
+      .cabin-tab i { font-size: 0.875rem; }
+      .cabin-tab-count { display: inline-flex; align-items: center; justify-content: center; min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem; border-radius: 9999px; background: rgba(255,255,255,0.25); font-size: 0.75rem; font-weight: 700; }
+      .cabin-tab:not(.active) .cabin-tab-count { background: #fef3c7; color: #b45309; }
+
+      .cabin-panel { display: none; animation: cabinFadeIn 0.35s ease; }
+      .cabin-panel.active { display: block; }
+      @keyframes cabinFadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+      .cabin-grid-altillo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+      @media (min-width: 640px) { .cabin-grid-altillo { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; } }
+      @media (min-width: 1024px) { .cabin-grid-altillo { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+      .cabin-grid-vidrio { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+      @media (min-width: 768px) { .cabin-grid-vidrio { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 1rem; min-height: 500px; } }
+      @media (min-width: 1024px) { .cabin-grid-vidrio { min-height: 600px; } }
+
+      .cabin-hero { position: relative; aspect-ratio: 4/3; }
+      @media (min-width: 768px) { .cabin-hero { grid-row: 1 / span 2; grid-column: 1; aspect-ratio: auto; height: 100%; } }
+
+      .cabin-hero-badge { position: absolute; top: 0.75rem; left: 0.75rem; background: rgba(245, 158, 11, 0.95); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.65rem; border-radius: 9999px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; letter-spacing: 0.5px; }
+
+      .cabin-thumb-label { position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(0,0,0,0.65); color: #ffffff; font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.55rem; border-radius: 0.375rem; display: inline-flex; align-items: center; gap: 0.3rem; backdrop-filter: blur(4px); pointer-events: none; }
+      .cabin-thumb-label i { font-size: 0.65rem; }
+      .cabin-thumb-label-dark { background: rgba(245, 158, 11, 0.95); color: #ffffff; font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+
       .gallery-tile .tile-label { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 1rem; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); color: white; font-weight: 600; font-size: 0.9rem; }
 
 
@@ -2868,77 +2898,109 @@
 
             </div>
 
-            <span class="ml-auto bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">11 fotos</span>
+            <span class="ml-auto bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">12 fotos</span>
 
           </div>
 
-          <div class="gallery-grid">
+          <!-- ===== TABS: Con Altillo / De Vidrio ===== -->
+          <div class="cabin-tabs" role="tablist" aria-label="Tipos de cabaña">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img253.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+            <button type="button" class="cabin-tab active" role="tab" aria-selected="true" aria-controls="tab-altillo" data-tab="altillo" id="tab-btn-altillo">
+              <i class="fas fa-home"></i>
+              <span>Con Altillo</span>
+              <span class="cabin-tab-count">7</span>
+            </button>
 
-            <img src="catalogo concasaya/thumbs/img253.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            <button type="button" class="cabin-tab" role="tab" aria-selected="false" aria-controls="tab-vidrio" data-tab="vidrio" id="tab-btn-vidrio">
+              <i class="fas fa-gem"></i>
+              <span>De Vidrio</span>
+              <span class="cabin-tab-count">5</span>
+            </button>
 
-          </a>
+          </div>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img273.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <!-- ===== TAB PANEL: Con Altillo ===== -->
+          <div class="cabin-panel active" id="tab-altillo" role="tabpanel" aria-labelledby="tab-btn-altillo" data-panel="altillo">
 
-            <img src="catalogo concasaya/thumbs/img273.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            <p class="text-sm text-gray-500 mb-4"><i class="fas fa-info-circle text-amber-600"></i> Desde $25M · Entrega 45 días · Placa de cimentación incluida</p>
 
-          </a>
+            <div class="cabin-grid-altillo">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img294.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img253.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 253" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img253.webp" srcset="catalogo concasaya/thumbs/img253.webp 400w, catalogo concasaya/medium/img253.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-            <img src="catalogo concasaya/thumbs/img294.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img309.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 309" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img309.webp" srcset="catalogo concasaya/thumbs/img309.webp 400w, catalogo concasaya/medium/img309.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-          </a>
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img305.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 305" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img305.webp" srcset="catalogo concasaya/thumbs/img305.webp 400w, catalogo concasaya/medium/img305.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img297.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img297.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 297" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img297.webp" srcset="catalogo concasaya/thumbs/img297.webp 400w, catalogo concasaya/medium/img297.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-            <img src="catalogo concasaya/thumbs/img297.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img294.webp" role="button" tabindex="0" aria-label="Tiny house 2 niveles" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img294.webp" srcset="catalogo concasaya/thumbs/img294.webp 400w, catalogo concasaya/medium/img294.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Tiny house 2 niveles con deck" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-layer-group"></i> Tiny House</span>
+              </a>
 
-          </a>
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img273.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 273" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img273.webp" srcset="catalogo concasaya/thumbs/img273.webp 400w, catalogo concasaya/medium/img273.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img305.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img271.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 271" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img271.webp" srcset="catalogo concasaya/thumbs/img271.webp 400w, catalogo concasaya/medium/img271.webp 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
+              </a>
 
-            <img src="catalogo concasaya/thumbs/img305.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            </div>
 
-          </a>
+          </div>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img309.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <!-- ===== TAB PANEL: De Vidrio ===== -->
+          <div class="cabin-panel" id="tab-vidrio" role="tabpanel" aria-labelledby="tab-btn-vidrio" data-panel="vidrio" hidden>
 
-            <img src="catalogo concasaya/thumbs/img309.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+            <p class="text-sm text-gray-500 mb-4"><i class="fas fa-gem text-amber-600"></i> Vista 360° · Glamping premium · Deck de madera incluido</p>
 
-          </a>
+            <div class="cabin-grid-vidrio">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img316.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+              <!-- Hero: img325 (2x2 grande a la izquierda) -->
+              <a href="javascript:void(0);" class="gallery-thumb cabin-hero" data-lightbox="catalog" data-href="catalogo concasaya/medium/img325.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio principal" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img325.webp" srcset="catalogo concasaya/thumbs/img325.webp 400w, catalogo concasaya/medium/img325.webp 800w" sizes="(max-width: 1024px) 100vw, 50vw" alt="Cabaña de vidrio CONCASAYA con deck de madera" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-hero-badge">★ Principal</span>
+                <span class="cabin-thumb-label cabin-thumb-label-dark"><i class="fas fa-gem"></i> Vidrio Panorámico</span>
+              </a>
 
-            <img src="catalogo concasaya/thumbs/img316.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <!-- 4 thumbs pequeñas en grid 2x2 a la derecha -->
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img316.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 316" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img316.webp" srcset="catalogo concasaya/thumbs/img316.webp 400w, catalogo concasaya/medium/img316.webp 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
+              </a>
 
-          </a>
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img353.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 353" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img353.webp" srcset="catalogo concasaya/thumbs/img353.webp 400w, catalogo concasaya/medium/img353.webp 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
+              </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img325.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img350.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 350" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img350.webp" srcset="catalogo concasaya/thumbs/img350.webp 400w, catalogo concasaya/medium/img350.webp 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
+              </a>
 
-            <img src="catalogo concasaya/thumbs/img325.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img362.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 362" oncontextmenu="return false" ondragstart="return false">
+                <img src="catalogo concasaya/thumbs/img362.webp" srcset="catalogo concasaya/thumbs/img362.webp 400w, catalogo concasaya/medium/img362.webp 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
+                <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
+              </a>
 
-          </a>
-
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img271.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
-
-            <img src="catalogo concasaya/thumbs/img271.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-
-          </a>
-
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1323.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
-
-            <img src="catalogo concasaya/thumbs/img1323.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-
-          </a>
-
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1333.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
-
-            <img src="catalogo concasaya/thumbs/img1333.webp" alt="Cabañas Prefabricadas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-
-          </a>
+            </div>
 
           </div>
 
@@ -3890,12 +3952,6 @@
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img367.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
-
-            <img src="catalogo concasaya/thumbs/img367.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-
-          </a>
-
           <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img379.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
 
             <img src="catalogo concasaya/thumbs/img379.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
@@ -4784,6 +4840,33 @@
 
     <script src="/assets/js/whatsapp-modal.js"></script>
 
+    <!-- Cabañas Tabs: switch entre Con Altillo / De Vidrio -->
+    <script>
+      (function() {
+        const tabs = document.querySelectorAll('.cabin-tab');
+        const panels = document.querySelectorAll('.cabin-panel');
+        if (!tabs.length || !panels.length) return;
+
+        tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            tabs.forEach(t => {
+              const isActive = t === tab;
+              t.classList.toggle('active', isActive);
+              t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
+            panels.forEach(p => {
+              const isActive = p.dataset.panel === target;
+              p.classList.toggle('active', isActive);
+              if (isActive) { p.removeAttribute('hidden'); } else { p.setAttribute('hidden', ''); }
+            });
+            // Reset lightbox state to avoid stale index after tab switch
+            if (typeof window.__resetLightbox === 'function') { try { window.__resetLightbox(); } catch(e) {} }
+          });
+        });
+      })();
+    </script>
+
   
 
     <!-- Lightbox para galería (contenido y listeners se inicializan UNA sola vez al cargar) -->
@@ -4825,8 +4908,19 @@
         let isLoading = false;
 
         function getThumbs() {
-          return Array.from(document.querySelectorAll('[data-lightbox="catalog"]'));
+          // Excluir thumbs dentro de paneles ocultos (tabs de Cabañas)
+          return Array.from(document.querySelectorAll('[data-lightbox="catalog"]')).filter(function(t) {
+            const panel = t.closest('.cabin-panel');
+            if (panel && panel.hasAttribute('hidden')) return false;
+            return true;
+          });
         }
+
+        // Resetear estado del lightbox cuando se cambian tabs
+        window.__resetLightbox = function() {
+          thumbs = getThumbs();
+          currentIndex = 0;
+        };
 
         function openLightbox(idx) {
           thumbs = getThumbs();
