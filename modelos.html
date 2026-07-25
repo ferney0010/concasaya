@@ -1034,11 +1034,57 @@
       .cabin-hero { position: relative; aspect-ratio: 4/3; }
       @media (min-width: 768px) { .cabin-hero { grid-row: 1 / span 2; grid-column: 1; aspect-ratio: auto; height: 100%; } }
 
-      .cabin-hero-badge { position: absolute; top: 0.75rem; left: 0.75rem; background: rgba(245, 158, 11, 0.95); color: #ffffff; font-size: 0.7rem; font-weight: 700; padding: 0.3rem 0.65rem; border-radius: 9999px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 2; letter-spacing: 0.5px; }
+      /* Labels discretos: ocultos por defecto en el thumb para no tapar la imagen.
+         Aparecen en hover (desktop). En touch/mobile permanecen sutiles. */
+      .cabin-hero-badge {
+        position: absolute; top: 0.6rem; left: 0.6rem;
+        background: rgba(245, 158, 11, 0.92);
+        color: #ffffff; font-size: 0.62rem; font-weight: 700;
+        padding: 0.18rem 0.5rem; border-radius: 9999px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.18); z-index: 2;
+        letter-spacing: 0.4px; line-height: 1.2;
+        display: inline-flex; align-items: center; gap: 0.25rem;
+      }
+      .cabin-thumb-label {
+        position: absolute; bottom: 0.45rem; left: 0.45rem;
+        background: rgba(0,0,0,0.45);
+        color: #ffffff; font-size: 0.66rem; font-weight: 500;
+        padding: 0.18rem 0.5rem; border-radius: 0.3rem;
+        display: inline-flex; align-items: center; gap: 0.28rem;
+        backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+        pointer-events: none; opacity: 0; transform: translateY(4px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .gallery-thumb:hover .cabin-thumb-label,
+      .gallery-thumb:focus-visible .cabin-thumb-label { opacity: 1; transform: translateY(0); }
+      @media (hover: none) {
+        .cabin-thumb-label { opacity: 0.85; transform: none; }
+      }
+      .cabin-thumb-label i { font-size: 0.6rem; }
+      .cabin-thumb-label-dark {
+        background: rgba(245, 158, 11, 0.85);
+        color: #ffffff; font-size: 0.7rem;
+        padding: 0.22rem 0.55rem;
+      }
 
-      .cabin-thumb-label { position: absolute; bottom: 0.5rem; left: 0.5rem; background: rgba(0,0,0,0.65); color: #ffffff; font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.55rem; border-radius: 0.375rem; display: inline-flex; align-items: center; gap: 0.3rem; backdrop-filter: blur(4px); pointer-events: none; }
-      .cabin-thumb-label i { font-size: 0.65rem; }
-      .cabin-thumb-label-dark { background: rgba(245, 158, 11, 0.95); color: #ffffff; font-size: 0.8rem; padding: 0.4rem 0.75rem; }
+      /* ====== Category Gallery Modal (Ver más) ====== */
+      .category-modal-content { max-width: 1100px; padding: 1.75rem 1.75rem 1.5rem; }
+      @media (min-width: 768px) { .category-modal-content { padding: 2.25rem 2.25rem 1.75rem; } }
+      .cat-modal-header { border-bottom: 1px solid #f3f4f6; padding-bottom: 1rem; margin-bottom: 1.25rem; }
+      .cat-modal-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+      .cat-modal-tab { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 0.95rem; border-radius: 9999px; background: #f3f4f6; color: #374151; font-size: 0.85rem; font-weight: 600; border: 1px solid transparent; cursor: pointer; transition: all 0.2s ease; }
+      .cat-modal-tab:hover { background: #e5e7eb; }
+      .cat-modal-tab.active { background: #0077b6; color: #ffffff; border-color: #0077b6; box-shadow: 0 4px 12px rgba(0,119,182,0.25); }
+      .cat-modal-tab .cat-tab-count { background: rgba(255,255,255,0.25); color: inherit; font-size: 0.7rem; padding: 0.1rem 0.5rem; border-radius: 9999px; font-weight: 700; }
+      .cat-modal-tab:not(.active) .cat-tab-count { background: #ffffff; color: #6b7280; }
+      .cat-modal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; max-height: 60vh; overflow-y: auto; padding: 0.25rem; }
+      @media (min-width: 640px) { .cat-modal-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.85rem; } }
+      @media (min-width: 1024px) { .cat-modal-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; } }
+      .cat-modal-grid .gallery-thumb { aspect-ratio: 4/3; border-radius: 0.6rem; overflow: hidden; position: relative; background: #f3f4f6; }
+      .cat-modal-grid .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+      .cat-modal-grid .gallery-thumb:hover img { transform: scale(1.08); }
+      .cat-modal-empty { grid-column: 1 / -1; text-align: center; padding: 3rem 1rem; color: #9ca3af; }
+      .cat-modal-empty i { font-size: 2.5rem; margin-bottom: 0.75rem; display: block; color: #d1d5db; }
 
       .gallery-tile .tile-label { position: absolute; inset: 0; display: flex; align-items: flex-end; padding: 1rem; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%); color: white; font-weight: 600; font-size: 0.9rem; }
 
@@ -1528,7 +1574,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Caba%C3%B1a%2028m%C2%B2%20con%20altillo.%20%C2%BFPueden%20darme%20m%C3%A1s%20informaci%C3%B3n%20y%20precio%3F" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Cabaña 28m² con altillo" data-img="catalogo concasaya/medium/img273.webp" data-specs="Área: 28m² + altillo|Entrega: 45 días llave en mano|Incluye: Placa de cimentación|Habitaciones: 1 + altillo|Ideal para: Glamping, descanso, inversión turística" data-desc="Cabaña prefabricada CONCASAYA de 28 metros cuadrados con altillo. La más vendida por su tamaño y precio. Totalmente terminada, llave en mano, con placa de cimentación incluida. Perfecta para glamping, fincas de descanso o inversión turística en Cundinamarca y Boyacá." data-price="Desde $25.000.000 COP"><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Cabaña 28m² con altillo" data-category="cabana" data-variant="altillo" data-img="catalogo concasaya/medium/img273.webp" data-specs="Área: 28m² + altillo|Entrega: 45 días llave en mano|Incluye: Placa de cimentación|Habitaciones: 1 + altillo|Ideal para: Glamping, descanso, inversión turística" data-desc="Cabaña prefabricada CONCASAYA de 28 metros cuadrados con altillo. La más vendida por su tamaño y precio. Totalmente terminada, llave en mano, con placa de cimentación incluida. Perfecta para glamping, fincas de descanso o inversión turística en Cundinamarca y Boyacá." data-price="Desde $25.000.000 COP"><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1591,7 +1637,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Caba%C3%B1a%20de%20Vidrio.%20%C2%BFPueden%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Cabaña de Vidrio" data-img="catalogo concasaya/medium/img325.webp" data-specs="Estructura: Vidrio + acero negro|Deck: Madera gris tratada|Vistas: 360°|Techo: Vidrio panorámico|Uso: Glamping premium, turismo|Plus: Cama matrimonial visible" data-desc="Cabaña de vidrio con estructura de vidrio panorámica y marco metálico negro, deck de madera gris. Nuestra cabaña más exclusiva para glamping premium en paisajes privilegiados de Cundinamarca y Boyacá. Personalizable al 100%."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Cabaña de Vidrio" data-category="cabana" data-variant="vidrio" data-img="catalogo concasaya/medium/img325.webp" data-specs="Estructura: Vidrio + acero negro|Deck: Madera gris tratada|Vistas: 360°|Techo: Vidrio panorámico|Uso: Glamping premium, turismo|Plus: Cama matrimonial visible" data-desc="Cabaña de vidrio con estructura de vidrio panorámica y marco metálico negro, deck de madera gris. Nuestra cabaña más exclusiva para glamping premium en paisajes privilegiados de Cundinamarca y Boyacá. Personalizable al 100%."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1653,7 +1699,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Tiny%20House%20de%202%20niveles.%20%C2%BFPueden%20darme%20m%C3%A1s%20informaci%C3%B3n%3F" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Tiny House 2 Niveles" data-img="catalogo concasaya/medium/img294.webp" data-specs="Niveles: 2 con deck|Área: 25-35m²|Estructura: Acero + madera|Deck: Madera con barandilla|Ideal para: Turismo, hospedaje, vida minimalista" data-desc="Tiny House compacta de 2 niveles con deck de madera y barandilla metálica. Diseño inteligente para hospedaje turístico o vivienda minimalista en Cundinamarca y Boyacá."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Tiny House 2 Niveles" data-category="cabana" data-variant="altillo" data-img="catalogo concasaya/medium/img294.webp" data-specs="Niveles: 2 con deck|Área: 25-35m²|Estructura: Acero + madera|Deck: Madera con barandilla|Ideal para: Turismo, hospedaje, vida minimalista" data-desc="Tiny House compacta de 2 niveles con deck de madera y barandilla metálica. Diseño inteligente para hospedaje turístico o vivienda minimalista en Cundinamarca y Boyacá."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1753,7 +1799,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20campestre%20en%20plaqueta%20de%201%20piso.%20%C2%BFCu%C3%A1l%20es%20el%20precio%3F" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa campestre colonial en plaqueta 1 piso" data-img="catalogo concasaya/medium/img407.webp" data-specs="Estilo: Colonial campestre|Material: Plaqueta de concreto reforzada|Pisos: 1|Habitaciones: 2-3|Cubierta: Teja de barro|Entrega: 60-90 días|Incluye: Placa, muros, cubierta, instalaciones" data-desc="Casa campestre colonial de 1 piso en plaqueta de concreto reforzada, con techo de teja de barro y jardín con flores. Combina la estética tradicional con materiales modernos de alta durabilidad. Ideal para parejas o familias pequeñas en Cundinamarca y Boyacá."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa campestre colonial en plaqueta 1 piso" data-category="plaqueta" data-variant="todas" data-img="catalogo concasaya/medium/img407.webp" data-specs="Estilo: Colonial campestre|Material: Plaqueta de concreto reforzada|Pisos: 1|Habitaciones: 2-3|Cubierta: Teja de barro|Entrega: 60-90 días|Incluye: Placa, muros, cubierta, instalaciones" data-desc="Casa campestre colonial de 1 piso en plaqueta de concreto reforzada, con techo de teja de barro y jardín con flores. Combina la estética tradicional con materiales modernos de alta durabilidad. Ideal para parejas o familias pequeñas en Cundinamarca y Boyacá."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1817,7 +1863,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20en%20plaqueta%20de%202%20pisos%20con%20balc%C3%B3n.%20%C2%BFCu%C3%A1l%20es%20el%20precio%3F" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa en plaqueta de 2 pisos con balcón y deck" data-img="catalogo concasaya/medium/img1318.webp" data-specs="Material: Plaqueta de concreto reforzada|Pisos: 2 con balcón y deck|Habitaciones: 3-4|Ideal para: Lotes con pendiente en ladera|Entrega: 90-120 días|Cubierta: Teja de barro" data-desc="Casa prefabricada en plaqueta de concreto reforzada de 2 pisos con balcón amplio y deck de madera. Perfecta para lotes con vista en ladera en zonas campestres de Cundinamarca y Boyacá. Diseño campestre con todas las comodidades modernas."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa en plaqueta de 2 pisos con balcón y deck" data-category="plaqueta" data-variant="todas" data-img="catalogo concasaya/medium/img1318.webp" data-specs="Material: Plaqueta de concreto reforzada|Pisos: 2 con balcón y deck|Habitaciones: 3-4|Ideal para: Lotes con pendiente en ladera|Entrega: 90-120 días|Cubierta: Teja de barro" data-desc="Casa prefabricada en plaqueta de concreto reforzada de 2 pisos con balcón amplio y deck de madera. Perfecta para lotes con vista en ladera en zonas campestres de Cundinamarca y Boyacá. Diseño campestre con todas las comodidades modernas."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1881,7 +1927,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Casa%20en%20L%20con%20jard%C3%ADn%20central." target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa en L con jardín central" data-img="catalogo concasaya/medium/img484.webp" data-specs="Forma: L con jardín central|Habitaciones: 3|Baños: 2|Área: 100m²+|Cubierta: Teja de barro|Plus: Patio interior, jardín central" data-desc="Casa prefabricada en forma de L con jardín central. Separa áreas privadas y sociales con un patio interior que favorece ventilación cruzada e iluminación natural. Ideal para vida familiar en la Sabana de Bogotá."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa en L con jardín central" data-category="plaqueta" data-variant="todas" data-img="catalogo concasaya/medium/img484.webp" data-specs="Forma: L con jardín central|Habitaciones: 3|Baños: 2|Área: 100m²+|Cubierta: Teja de barro|Plus: Patio interior, jardín central" data-desc="Casa prefabricada en forma de L con jardín central. Separa áreas privadas y sociales con un patio interior que favorece ventilación cruzada e iluminación natural. Ideal para vida familiar en la Sabana de Bogotá."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -1983,7 +2029,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20campestre%20de%202%20pisos%20con%20jard%C3%ADn." target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa campestre 2 pisos con jardín" data-img="catalogo concasaya/medium/img1199.webp" data-specs="Estilo: Campestre familiar|Pisos: 2|Habitaciones: 3-4|Cubierta: Teja de barro|Jardín: Amplio|Entrega: 90-120 días|Material: Plaqueta de concreto" data-desc="Casa prefabricada de 2 pisos con techo de teja de barro, amplio jardín y diseño campestre. Ideal para familias grandes en Cundinamarca y Boyacá. Construcción robusta en plaqueta de concreto con todas las comodidades modernas."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa campestre 2 pisos con jardín" data-category="2pisos" data-variant="todas" data-img="catalogo concasaya/medium/img1199.webp" data-specs="Estilo: Campestre familiar|Pisos: 2|Habitaciones: 3-4|Cubierta: Teja de barro|Jardín: Amplio|Entrega: 90-120 días|Material: Plaqueta de concreto" data-desc="Casa prefabricada de 2 pisos con techo de teja de barro, amplio jardín y diseño campestre. Ideal para familias grandes en Cundinamarca y Boyacá. Construcción robusta en plaqueta de concreto con todas las comodidades modernas."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2045,7 +2091,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20de%202%20pisos%20con%20balc%C3%B3n%20de%20madera." target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa 2 pisos con balcón de madera" data-img="catalogo concasaya/medium/img545.webp" data-specs="Pisos: 2 con balcón de madera|Habitaciones: 3-4|Baños: 2-3|Cubierta: Teja de barro|Estructura: Plaqueta reforzada|Ideal para: Lotes con vista y pendiente" data-desc="Casa prefabricada de 2 pisos en plaqueta de concreto reforzada con balcón amplio de madera y techo de teja. Vista panorámica, ideal para lotes con pendiente en Cundinamarca y Boyacá."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa 2 pisos con balcón de madera" data-category="2pisos" data-variant="todas" data-img="catalogo concasaya/medium/img545.webp" data-specs="Pisos: 2 con balcón de madera|Habitaciones: 3-4|Baños: 2-3|Cubierta: Teja de barro|Estructura: Plaqueta reforzada|Ideal para: Lotes con vista y pendiente" data-desc="Casa prefabricada de 2 pisos en plaqueta de concreto reforzada con balcón amplio de madera y techo de teja. Vista panorámica, ideal para lotes con pendiente en Cundinamarca y Boyacá."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2108,7 +2154,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20premium%20de%202%20pisos%20con%20balc%C3%B3n%20iluminado." target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa 2 Pisos Premium con Balcón Iluminado" data-img="catalogo concasaya/medium/img557.webp" data-specs="Pisos: 2 con balcón iluminado|Habitaciones: 4|Baños: 3|Iluminación: LED exterior|Cubierta: Teja de barro|Plus: Vistas panorámicas, vida nocturna|Ideal para: Eventos familiares" data-desc="Nuestra casa 2 pisos más espectacular: diseño con balcón iluminado, techos altos y vistas panorámicas. Ideal para eventos familiares y vida nocturna en Cundinamarca. Construcción robusta en plaqueta de concreto con iluminación LED exterior."><i class="fas fa-eye"></i>Ver detalles</button>
+                  <button class="open-modal-btn flex-1 bg-primary hover:bg-primary/90 text-white px-4 py-3 rounded-xl font-semibold transition-all inline-flex items-center justify-center gap-2" data-model="Casa 2 Pisos Premium con Balcón Iluminado" data-category="2pisos" data-variant="todas" data-img="catalogo concasaya/medium/img557.webp" data-specs="Pisos: 2 con balcón iluminado|Habitaciones: 4|Baños: 3|Iluminación: LED exterior|Cubierta: Teja de barro|Plus: Vistas panorámicas, vida nocturna|Ideal para: Eventos familiares" data-desc="Nuestra casa 2 pisos más espectacular: diseño con balcón iluminado, techos altos y vistas panorámicas. Ideal para eventos familiares y vida nocturna en Cundinamarca. Construcción robusta en plaqueta de concreto con iluminación LED exterior."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2172,7 +2218,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20cubo%20moderno%201%20piso." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cubo moderno 1 piso" data-img="assets/images/img1055.webp" data-specs="Estilo: Cubo moderno|Pisos: 1|Material: Concreto visto|Ventanales: Panorámicos" data-desc="Casa tipo cubo de 1 piso con diseño contemporáneo, concreto visto, grandes ventanales y voladizo. Ideal para lotes con pendiente y paisajes montañosos."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cubo moderno 1 piso" data-category="cubo" data-variant="todas" data-img="assets/images/img1055.webp" data-specs="Estilo: Cubo moderno|Pisos: 1|Material: Concreto visto|Ventanales: Panorámicos" data-desc="Casa tipo cubo de 1 piso con diseño contemporáneo, concreto visto, grandes ventanales y voladizo. Ideal para lotes con pendiente y paisajes montañosos."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2200,7 +2246,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20mediterr%C3%A1nea%20de%202%20pisos." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa mediterránea 2 pisos" data-img="assets/images/img1072.webp" data-specs="Estilo: Mediterráneo|Pisos: 2 + piscina|Material: Concreto + madera|Habitaciones: 3-4" data-desc="Casa mediterránea de 2 pisos con piscina, acabados en concreto visto y madera. Diseño contemporáneo para lotes campestres en Cundinamarca y Boyacá."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa mediterránea 2 pisos" data-category="cubo" data-variant="todas" data-img="assets/images/img1072.webp" data-specs="Estilo: Mediterráneo|Pisos: 2 + piscina|Material: Concreto + madera|Habitaciones: 3-4" data-desc="Casa mediterránea de 2 pisos con piscina, acabados en concreto visto y madera. Diseño contemporáneo para lotes campestres en Cundinamarca y Boyacá."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2228,7 +2274,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20cubo%20en%20ladera." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cubo en ladera" data-img="assets/images/img1081.webp" data-specs="Estilo: Cubo en pendiente|Pisos: 2|Deck: Madera|Jardín: Nativo|Ideal para: Lotes con pendiente" data-desc="Casa tipo cubo diseñada para terrenos con pendiente, con deck de madera y jardín con plantas nativas. Estilo minimalista y funcional, ideal para paisajes de montaña."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cubo en ladera" data-category="cubo" data-variant="todas" data-img="assets/images/img1081.webp" data-specs="Estilo: Cubo en pendiente|Pisos: 2|Deck: Madera|Jardín: Nativo|Ideal para: Lotes con pendiente" data-desc="Casa tipo cubo diseñada para terrenos con pendiente, con deck de madera y jardín con plantas nativas. Estilo minimalista y funcional, ideal para paisajes de montaña."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2256,7 +2302,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20moderna%20con%20piscina." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa moderna con piscina" data-img="assets/images/img1061.webp" data-specs="Estilo: Moderno|Plus: Piscina|Fachada: Piedra natural|Iluminación: LED exterior" data-desc="Casa moderna con piscina, fachada en piedra natural e iluminación LED exterior. Diseño contemporáneo para disfrutar en familia."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa moderna con piscina" data-category="cubo" data-variant="todas" data-img="assets/images/img1061.webp" data-specs="Estilo: Moderno|Plus: Piscina|Fachada: Piedra natural|Iluminación: LED exterior" data-desc="Casa moderna con piscina, fachada en piedra natural e iluminación LED exterior. Diseño contemporáneo para disfrutar en familia."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2284,7 +2330,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20c%C3%BAbica%20blanca%20minimalista." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cúbica blanca 2 pisos" data-img="assets/images/img1067.webp" data-specs="Estilo: Cúbico minimalista|Pisos: 2|Color: Blanco|Detalle: Gran ventanal al jardín" data-desc="Casa cúbica blanca minimalista de 2 pisos con gran ventanal hacia el jardín. Líneas limpias y diseño contemporáneo."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cúbica blanca 2 pisos" data-category="cubo" data-variant="todas" data-img="assets/images/img1067.webp" data-specs="Estilo: Cúbico minimalista|Pisos: 2|Color: Blanco|Detalle: Gran ventanal al jardín" data-desc="Casa cúbica blanca minimalista de 2 pisos con gran ventanal hacia el jardín. Líneas limpias y diseño contemporáneo."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2312,7 +2358,7 @@
 
                   <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20casa%20c%C3%BAbica%20en%20concreto%20visto." target="_blank" rel="noopener" class="text-xs bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1"><i class="fab fa-whatsapp"></i>Cotizar</a>
 
-                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cúbica concreto visto" data-img="assets/images/img1087.webp" data-specs="Estilo: Cúbico|Pisos: 2|Material: Concreto visto|Plus: Jardín + piscina" data-desc="Casa cúbica en concreto visto de 2 pisos con jardín y piscina. Estilo industrial contemporáneo."><i class="fas fa-eye"></i>Ver</button>
+                  <button class="open-modal-btn text-xs bg-primary hover:bg-primary/90 text-white px-3 py-2 rounded-full font-semibold inline-flex items-center gap-1" data-model="Casa cúbica concreto visto" data-category="cubo" data-variant="todas" data-img="assets/images/img1087.webp" data-specs="Estilo: Cúbico|Pisos: 2|Material: Concreto visto|Plus: Jardín + piscina" data-desc="Casa cúbica en concreto visto de 2 pisos con jardín y piscina. Estilo industrial contemporáneo."><i class="fas fa-images"></i>Ver más</button>
 
                 </div>
 
@@ -2926,37 +2972,37 @@
 
             <div class="cabin-grid-altillo">
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img253.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 253" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img253.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 253" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img253.webp" srcset="catalogo%20concasaya/thumbs/img253.webp" 400w, "catalogo%20concasaya/medium/img253.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img309.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 309" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img309.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 309" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img309.webp" srcset="catalogo%20concasaya/thumbs/img309.webp" 400w, "catalogo%20concasaya/medium/img309.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img305.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 305" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img305.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 305" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img305.webp" srcset="catalogo%20concasaya/thumbs/img305.webp" 400w, "catalogo%20concasaya/medium/img305.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img297.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 297" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img297.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 297" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img297.webp" srcset="catalogo%20concasaya/thumbs/img297.webp" 400w, "catalogo%20concasaya/medium/img297.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img294.webp" role="button" tabindex="0" aria-label="Tiny house 2 niveles" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img294.webp" role="button" tabindex="0" aria-label="Tiny house 2 niveles" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img294.webp" srcset="catalogo%20concasaya/thumbs/img294.webp" 400w, "catalogo%20concasaya/medium/img294.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Tiny house 2 niveles con deck" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-layer-group"></i> Tiny House</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img273.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 273" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img273.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 273" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img273.webp" srcset="catalogo%20concasaya/thumbs/img273.webp" 400w, "catalogo%20concasaya/medium/img273.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img271.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 271" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img271.webp" role="button" tabindex="0" aria-label="Cabaña con altillo 271" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="altillo">
                 <img src="catalogo concasaya/thumbs/img271.webp" srcset="catalogo%20concasaya/thumbs/img271.webp" 400w, "catalogo%20concasaya/medium/img271.webp" 800w" sizes="(max-width: 640px) 50vw, 33vw" alt="Cabaña prefabricada con altillo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-home"></i> Altillo 28m²</span>
               </a>
@@ -2973,29 +3019,29 @@
             <div class="cabin-grid-vidrio">
 
               <!-- Hero: img325 (2x2 grande a la izquierda) -->
-              <a href="javascript:void(0);" class="gallery-thumb cabin-hero" data-lightbox="catalog" data-href="catalogo concasaya/medium/img325.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio principal" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb cabin-hero" data-lightbox="catalog" data-href="catalogo concasaya/medium/img325.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio principal" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="vidrio">
                 <img src="catalogo concasaya/thumbs/img325.webp" srcset="catalogo%20concasaya/thumbs/img325.webp" 400w, "catalogo%20concasaya/medium/img325.webp" 800w" sizes="(max-width: 1024px) 100vw, 50vw" alt="Cabaña de vidrio CONCASAYA con deck de madera" loading="lazy" decoding="async" class="w-full h-full object-cover" />
-                <span class="cabin-hero-badge">★ Principal</span>
-                <span class="cabin-thumb-label cabin-thumb-label-dark"><i class="fas fa-gem"></i> Vidrio Panorámico</span>
+                <span class="cabin-hero-badge">★ Top</span>
+                <span class="cabin-thumb-label cabin-thumb-label-dark"><i class="fas fa-gem"></i> Panorámico</span>
               </a>
 
               <!-- 4 thumbs pequeñas en grid 2x2 a la derecha -->
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img316.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 316" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img316.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 316" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="vidrio">
                 <img src="catalogo concasaya/thumbs/img316.webp" srcset="catalogo%20concasaya/thumbs/img316.webp" 400w, "catalogo%20concasaya/medium/img316.webp" 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img353.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 353" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img353.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 353" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="vidrio">
                 <img src="catalogo concasaya/thumbs/img353.webp" srcset="catalogo%20concasaya/thumbs/img353.webp" 400w, "catalogo%20concasaya/medium/img353.webp" 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img350.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 350" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img350.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 350" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="vidrio">
                 <img src="catalogo concasaya/thumbs/img350.webp" srcset="catalogo%20concasaya/thumbs/img350.webp" 400w, "catalogo%20concasaya/medium/img350.webp" 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
               </a>
 
-              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img362.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 362" oncontextmenu="return false" ondragstart="return false">
+              <a href="javascript:void(0);" class="gallery-thumb" data-lightbox="catalog" data-href="catalogo concasaya/medium/img362.webp" role="button" tabindex="0" aria-label="Cabaña de vidrio 362" oncontextmenu="return false" ondragstart="return false" data-category="cabana" data-variant="vidrio">
                 <img src="catalogo concasaya/thumbs/img362.webp" srcset="catalogo%20concasaya/thumbs/img362.webp" 400w, "catalogo%20concasaya/medium/img362.webp" 800w" sizes="(max-width: 640px) 50vw, 25vw" alt="Cabaña de vidrio CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
                 <span class="cabin-thumb-label"><i class="fas fa-gem"></i> Vidrio</span>
               </a>
@@ -3030,559 +3076,559 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img376.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img376.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img376.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img454.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img454.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img454.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img503.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img503.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img503.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img562.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img562.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img562.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img587.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img587.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img587.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img611.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img611.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img611.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img686.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img686.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img686.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img692.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img692.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img692.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1264.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1264.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1264.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1269.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1269.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1269.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1280.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1280.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1280.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1286.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1286.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1286.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1301.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1301.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1301.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img214.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img214.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img214.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img404.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img404.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img404.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img407.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img407.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img407.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img413.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img413.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img413.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img423.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img423.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img423.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img426.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img426.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img426.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img434.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img434.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img434.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img439.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img439.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img439.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img457.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img457.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img457.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img465.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img465.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img465.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img471.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img471.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img471.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img478.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img478.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img478.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img484.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img484.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img484.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img489.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img489.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img489.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img492.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img492.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img492.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img508.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img508.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img508.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img516.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img516.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img516.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img523.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img523.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img523.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img529.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img529.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img529.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img569.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img569.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img569.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img575.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img575.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img575.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img581.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img581.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img581.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img599.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img599.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img599.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img605.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img605.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img605.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img617.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img617.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img617.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img623.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img623.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img623.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img630.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img630.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img630.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img636.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img636.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img636.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img642.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img642.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img642.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img662.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img662.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img662.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img669.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img669.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img669.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img680.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img680.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img680.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img703.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img703.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img703.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img709.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img709.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img709.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img718.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img718.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img718.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img724.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img724.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img724.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img731.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img731.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img731.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img734.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img734.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img734.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img741.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img741.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img741.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img744.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img744.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img744.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img748.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img748.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img748.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img751.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img751.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img751.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img756.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img756.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img756.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img761.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img761.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img761.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img768.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img768.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img768.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img774.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img774.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img774.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img791.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img791.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img791.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img799.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img799.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img799.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img804.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img804.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img804.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img814.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img814.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img814.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img821.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img821.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img821.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img827.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img827.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img827.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img831.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img831.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img831.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img834.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img834.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img834.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img845.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img845.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img845.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img852.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img852.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img852.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img855.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img855.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img855.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img862.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img862.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img862.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img867.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img867.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img867.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img874.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img874.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img874.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img880.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img880.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img880.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img884.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img884.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img884.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img890.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img890.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img890.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img593.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img593.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img593.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img896.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img896.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img896.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img908.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img908.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img908.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img927.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img927.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img927.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img945.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img945.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img945.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img988.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img988.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img988.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1011.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1011.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1011.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1018.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1018.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1018.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1026.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1026.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1026.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1032.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1032.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1032.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1037.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1037.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1037.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1043.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1043.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1043.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1049.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1049.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1049.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1258.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1258.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1258.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1275.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1275.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1275.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1291.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1291.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1291.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1297.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1297.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="plaqueta" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1297.webp" alt="Casas en Plaqueta de Concreto CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -3616,109 +3662,109 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img211.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img211.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img211.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img535.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img535.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img535.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img545.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img545.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img545.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img550.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img550.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img550.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img557.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img557.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img557.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img650.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img650.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img650.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1192.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1192.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1192.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1195.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1195.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1195.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1199.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1199.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1199.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1205.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1205.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1205.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1225.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1225.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1225.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1228.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1228.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1228.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1236.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1236.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1236.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1250.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1250.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1250.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img839.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img839.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img839.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img785.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img785.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img785.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img779.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img779.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img779.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1318.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1318.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="2pisos" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1318.webp" alt="Casas Prefabricadas de Dos Pisos CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -3752,49 +3798,49 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1055.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1055.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1055.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1061.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1061.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1061.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1067.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1067.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1067.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1072.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1072.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1072.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1081.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1081.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1081.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1087.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1087.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1087.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1093.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1093.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1093.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1099.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1099.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="cubo" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1099.webp" alt="Casas Tipo Cubo / Mediterráneas CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -3828,7 +3874,7 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1116.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1116.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="eps" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1116.webp" alt="Casas en Sistema EPS CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -3862,151 +3908,151 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img147.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img147.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img147.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img190.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img190.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img190.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img350.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img350.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img350.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img353.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img353.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img353.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1141.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1141.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1141.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1172.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1172.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1172.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1240.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1240.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1240.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1243.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1243.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1243.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1246.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1246.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1246.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1339.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1339.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1339.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1345.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1345.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1345.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1352.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1352.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1352.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1355.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1355.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1355.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1386.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1386.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1386.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img362.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img362.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img362.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img379.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img379.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img379.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img442.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img442.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img442.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img968.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img968.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img968.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img972.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img972.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img972.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1137.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1137.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1137.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1371.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1371.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1371.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1382.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1382.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1382.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img929.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img929.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img929.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img965.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img965.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img965.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1369.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1369.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="materiales" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1369.webp" alt="Materiales y Acabados Interiores CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -4040,31 +4086,31 @@
 
           <div class="gallery-grid">
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img135.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img135.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="proceso" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img135.webp" alt="Proceso Constructivo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img218.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img218.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="proceso" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img218.webp" alt="Proceso Constructivo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img233.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img233.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="proceso" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img233.webp" alt="Proceso Constructivo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1304.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1304.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="proceso" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1304.webp" alt="Proceso Constructivo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
           </a>
 
-          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1360.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA">
+          <a href="javascript:void(0);" class="gallery-thumb group block" data-lightbox="catalog" data-href="catalogo concasaya/medium/img1360.webp" role="button" tabindex="0" aria-label="Ampliar imagen" oncontextmenu="return false" ondragstart="return false" aria-label="Imagen del catálogo CONCASAYA" data-category="proceso" data-variant="default">
 
             <img src="catalogo concasaya/thumbs/img1360.webp" alt="Proceso Constructivo CONCASAYA" loading="lazy" decoding="async" class="w-full h-full object-cover" />
 
@@ -4496,6 +4542,41 @@
 
 
 
+    <!-- Modal de galería por categoría (Ver más) -->
+    <div id="categoryGalleryModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cat-modal-title">
+      <div class="modal-content category-modal-content">
+        <span class="close-btn close-cat-modal" aria-label="Cerrar">&times;</span>
+
+        <div class="cat-modal-header">
+          <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-4">
+            <div>
+              <span id="cat-modal-eyebrow" class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-semibold mb-2 uppercase tracking-wide">Categoría</span>
+              <h2 id="cat-modal-title" class="text-2xl md:text-3xl font-bold text-dark">Galería de modelos</h2>
+              <p id="cat-modal-subtitle" class="text-sm text-gray-500 mt-1">Click en cualquier imagen para verla en tamaño completo</p>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-500">
+              <i class="fas fa-images"></i>
+              <span><strong id="cat-modal-count">0</strong> fotos</span>
+            </div>
+          </div>
+
+          <!-- Tabs para variantes dentro de la categoría -->
+          <div id="cat-modal-tabs" class="cat-modal-tabs" role="tablist" aria-label="Variantes"></div>
+        </div>
+
+        <div id="cat-modal-grid" class="cat-modal-grid"></div>
+
+        <div class="cat-modal-footer mt-6 pt-5 border-t border-gray-200 flex flex-col sm:flex-row gap-3">
+          <a id="cat-modal-whatsapp" href="#" target="_blank" rel="noopener" class="flex-1 text-center bg-green-500 text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-green-600 transition-all inline-flex items-center justify-center gap-2">
+            <i class="fab fa-whatsapp text-xl"></i>Consultar por WhatsApp
+          </a>
+          <a href="/contacto.html" class="flex-1 text-center bg-primary text-white px-6 py-3 rounded-full font-semibold text-base hover:bg-opacity-90 transition-all inline-flex items-center justify-center gap-2">
+            <i class="fas fa-envelope"></i>Solicitar Cotización
+          </a>
+        </div>
+      </div>
+    </div>
+
     <!-- Modal de detalles del modelo -->
 
     <div id="modelModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -4732,7 +4813,15 @@
 
         openModalBtns.forEach((btn) => {
 
-          btn.addEventListener("click", () => {
+          btn.addEventListener("click", (e) => {
+
+            // If this button targets the new "Ver más" gallery modal,
+            // skip the legacy 1-image modal — the new handler (capture phase)
+            // already opened the category modal.
+            if (btn.dataset.category) {
+              e.stopImmediatePropagation();
+              return;
+            }
 
             const model = btn.dataset.model;
 
@@ -4832,6 +4921,169 @@
 
     </script>
 
+    <script>
+      // ====== Category Gallery Modal (Ver más) =========================
+      // Opens a modal showing all thumbs filtered by data-category + data-variant.
+      // Categories defined in tags injected by tag_thumbs_by_gallery.py +
+      // tag_cabin_thumbs.py. Tabs inside the modal allow switching between
+      // variants (e.g. "Con Altillo" / "De Vidrio" for cabanas).
+      (function() {
+        const WA = '573142891018';
+        const modal      = document.getElementById('categoryGalleryModal');
+        if (!modal) { console.warn('[catModal] No existe #categoryGalleryModal'); return; }
+        const titleEl    = document.getElementById('cat-modal-title');
+        const eyebrowEl  = document.getElementById('cat-modal-eyebrow');
+        const subtitleEl = document.getElementById('cat-modal-subtitle');
+        const countEl    = document.getElementById('cat-modal-count');
+        const tabsEl     = document.getElementById('cat-modal-tabs');
+        const gridEl     = document.getElementById('cat-modal-grid');
+        const waBtn      = document.getElementById('cat-modal-whatsapp');
+        const closeBtn   = modal.querySelector('.close-cat-modal');
+
+        // Map of category -> display name + which variants to show as tabs
+        const CAT_META = {
+          cabana:     { name: 'Cabañas Prefabricadas',           eyebrow: 'Cabañas',        variantOrder: ['altillo','vidrio'], variantLabel: { altillo: 'Con Altillo', vidrio: 'De Vidrio' } },
+          plaqueta:   { name: 'Casas en Plaqueta de Concreto',   eyebrow: 'Plaqueta',       variantOrder: ['default'],          variantLabel: { default: 'Todas' } },
+          '2pisos':   { name: 'Casas Prefabricadas de Dos Pisos',eyebrow: '2 Pisos',        variantOrder: ['default'],          variantLabel: { default: 'Todas' } },
+          cubo:       { name: 'Casas Cubo y Mediterráneas',      eyebrow: 'Cubo / Med',     variantOrder: ['default'],          variantLabel: { default: 'Todas' } },
+          eps:        { name: 'Casas en Sistema EPS',            eyebrow: 'Sistema EPS',    variantOrder: ['default'],          variantLabel: { default: 'Todas' } },
+          materiales: { name: 'Materiales y Acabados',           eyebrow: 'Acabados',       variantOrder: ['default'],          variantLabel: { default: 'Todas' } },
+          proceso:    { name: 'Proceso Constructivo',            eyebrow: 'Proceso',        variantOrder: ['default'],          variantLabel: { default: 'Todas' } }
+        };
+
+        // For 'default' variant in script-generated thumbs, normalize to "todas" for UI
+        function normalizeVariant(v) { return v === 'default' ? 'todas' : v; }
+
+        // Open from a card button
+        function openFromCard(btn) {
+          const category = btn.dataset.category;
+          const variant  = btn.dataset.variant || 'todas';
+          const model    = btn.dataset.model || '';
+          const desc     = btn.dataset.desc  || '';
+          open(category, variant, { model, desc });
+        }
+
+        function open(category, variant, ctx) {
+          variant = normalizeVariant(variant);
+          const meta = CAT_META[category];
+          if (!meta) { console.warn('[catModal] unknown category:', category); return; }
+
+          // Pull all thumbs that match the category, regardless of variant
+          // (we render tabs dynamically)
+          const allThumbs = Array.from(document.querySelectorAll(
+            '.gallery-thumb[data-category="' + category + '"]'
+          ));
+          if (allThumbs.length === 0) {
+            console.warn('[catModal] no thumbs for', category);
+          }
+
+          // Build variant buckets (use the variant on each thumb, normalize 'default' -> 'todas')
+          const buckets = {};
+          allThumbs.forEach(function(t) {
+            const v = normalizeVariant(t.dataset.variant || 'todas');
+            (buckets[v] = buckets[v] || []).push(t);
+          });
+
+          // Header
+          titleEl.textContent   = meta.name;
+          eyebrowEl.textContent = meta.eyebrow;
+          subtitleEl.innerHTML  = (ctx && ctx.model)
+            ? '<i class="fas fa-eye text-primary mr-1"></i>Modelos similares a: <strong>' + escapeHtml(ctx.model) + '</strong>'
+            : 'Click en cualquier imagen para verla en tamaño completo';
+
+          // Tabs — use the canonical variantOrder, plus any extra buckets found
+          const variantOrder = meta.variantOrder.map(normalizeVariant);
+          const extraVariants = Object.keys(buckets).filter(function(v) { return variantOrder.indexOf(v) === -1; });
+          const finalOrder = variantOrder.concat(extraVariants);
+          tabsEl.innerHTML = '';
+          finalOrder.forEach(function(v) {
+            const count = (buckets[v] || []).length;
+            if (count === 0) return;
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'cat-modal-tab' + (v === variant ? ' active' : '');
+            btn.dataset.variant = v;
+            btn.setAttribute('role', 'tab');
+            btn.setAttribute('aria-selected', v === variant ? 'true' : 'false');
+            btn.innerHTML = '<span>' + escapeHtml(meta.variantLabel[v] || v) + '</span> <span class="cat-tab-count">' + count + '</span>';
+            btn.addEventListener('click', function() {
+              tabsEl.querySelectorAll('.cat-modal-tab').forEach(function(t) {
+                const isActive = t === btn;
+                t.classList.toggle('active', isActive);
+                t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+              });
+              renderGrid(buckets[v] || []);
+            });
+            tabsEl.appendChild(btn);
+          });
+          // Hide tabs row if only 1 variant
+          tabsEl.style.display = finalOrder.filter(function(v){ return (buckets[v]||[]).length>0; }).length > 1 ? 'flex' : 'none';
+
+          // If requested variant has no images, fall back to first non-empty
+          const fallback = finalOrder.find(function(v){ return (buckets[v]||[]).length>0; });
+          const activeVariant = (buckets[variant] && buckets[variant].length) ? variant : fallback;
+          renderGrid(buckets[activeVariant] || []);
+
+          // WhatsApp link
+          const msg = 'Hola, me interesa ver más modelos de ' + meta.name + (ctx && ctx.model ? ' (similar a ' + ctx.model + ')' : '') + '. ¿Me pueden enviar más información?';
+          waBtn.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        }
+
+        function renderGrid(thumbs) {
+          gridEl.innerHTML = '';
+          countEl.textContent = String(thumbs.length);
+          if (thumbs.length === 0) {
+            const empty = document.createElement('div');
+            empty.className = 'cat-modal-empty';
+            empty.innerHTML = '<i class="fas fa-image"></i><p>No hay imágenes en esta variante todavía.</p>';
+            gridEl.appendChild(empty);
+            return;
+          }
+          thumbs.forEach(function(srcThumb) {
+            // Clone the thumb so we can move it freely; remove the data-category/data-variant
+            // so the in-page lightbox (if it scans) does not double-bind.
+            const clone = srcThumb.cloneNode(true);
+            // Ensure its click triggers the existing lightbox
+            // (existing lightbox uses delegation, so the clone keeps working as long as it's in DOM)
+            gridEl.appendChild(clone);
+          });
+          // Re-query the lightbox thumbs so navigation stays within the modal grid
+          if (typeof window.__resetLightbox === 'function') {
+            try { window.__resetLightbox(); } catch (e) {}
+          }
+        }
+
+        function close() {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+        }
+
+        function escapeHtml(s) {
+          return String(s).replace(/[&<>"']/g, function(c){
+            return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];
+          });
+        }
+
+        // Wire up: every .open-modal-btn that has data-category opens this modal
+        document.querySelectorAll('.open-modal-btn[data-category]').forEach(function(btn) {
+          btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopImmediatePropagation(); // override the original modal handler
+            openFromCard(btn);
+          }, true); // capture phase to beat the older handler
+        });
+
+        closeBtn.addEventListener('click', close);
+        modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
+        document.addEventListener('keydown', function(e) {
+          if (modal.style.display === 'flex' && e.key === 'Escape') close();
+        });
+      })();
+    </script>
+
     <script src="/assets/js/municipios.js"></script>
 
     <script src="/assets/js/nav-municipios.js"></script>
@@ -4908,8 +5160,15 @@
         let isLoading = false;
 
         function getThumbs() {
-          // Excluir thumbs dentro de paneles ocultos (tabs de Cabañas)
+          // Si el modal de categoría está abierto, los thumbs son los clones del grid del modal
+          const catModal = document.getElementById('categoryGalleryModal');
+          if (catModal && catModal.style.display === 'flex') {
+            return Array.from(catModal.querySelectorAll('#cat-modal-grid [data-lightbox="catalog"]'));
+          }
+          // Si no, excluir thumbs dentro de paneles ocultos (tabs de Cabañas)
           return Array.from(document.querySelectorAll('[data-lightbox="catalog"]')).filter(function(t) {
+            // excluir thumbs que estén dentro de cualquier modal oculto
+            if (t.closest('.modal[style*="display: none"]')) return false;
             const panel = t.closest('.cabin-panel');
             if (panel && panel.hasAttribute('hidden')) return false;
             return true;
