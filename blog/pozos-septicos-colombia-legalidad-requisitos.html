@@ -163,6 +163,14 @@
       .norma-table tr:last-child td { border-bottom: none; }
       .norma-table td:first-child { font-weight: 700; color: #0f172a; white-space: nowrap; }
       .norma-table code { background: #f1f5f9; padding: 0.15rem 0.45rem; border-radius: 6px; font-size: 0.85rem; color: #0077b6; font-weight: 700; }
+      .norma-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0 0.5rem; }
+      .norma-card { background: #fff; border: 1px solid #e2e8f0; border-left: 4px solid #0077b6; border-radius: 16px; padding: 1.1rem 1.2rem; box-shadow: 0 8px 24px rgba(15,23,42,0.05); display: flex; flex-direction: column; gap: 0.6rem; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+      .norma-card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(15,23,42,0.1); }
+      .norma-card__head { display: flex; align-items: center; gap: 0.7rem; }
+      .norma-card__icon { width: 2.5rem; height: 2.5rem; border-radius: 999px; background: #e0f2fe; color: #0077b6; display: grid; place-items: center; font-size: 1rem; flex: 0 0 2.5rem; }
+      .norma-card__title { margin: 0; font-size: 1rem; font-weight: 800; color: #0f172a; line-height: 1.25; }
+      .norma-card__body { margin: 0; font-size: 0.95rem; line-height: 1.65; color: #475569; }
+      .norma-card__body strong { color: #0f172a; }
       .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1rem; }
       .step-card { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 18px; padding: 1.25rem; backdrop-filter: blur(8px); }
       .step-card__num { width: 2.55rem; height: 2.55rem; border-radius: 999px; display: grid; place-items: center; background: rgba(255,255,255,0.22); color: #fff; font-weight: 800; margin-bottom: 0.75rem; }
@@ -356,41 +364,61 @@
             <p>
               La regulación de los pozos sépticos en Colombia no es un solo documento: conviven varias normas que se complementan. Si vas a instalar uno, estas son las que te aplican:
             </p>
-            <div class="overflow-x-auto">
-              <table class="norma-table">
-                <thead>
-                  <tr>
-                    <th>Norma</th>
-                    <th>Qué regula</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Resolución 0330 de 2017 (RAS)</td>
-                    <td>Adopta el Reglamento Técnico del Sector de Agua Potable y Saneamiento Básico. El <strong>Título E</strong> es la pieza central: define los criterios de diseño, distancias, materiales, vida útil y postratamiento de tanques sépticos.</td>
-                  </tr>
-                  <tr>
-                    <td>Decreto 1076 de 2015</td>
-                    <td>Decreto Único Reglamentario del sector ambiental. Su <strong>artículo 2.2.3.3.5.1</strong> exige permiso de vertimientos ante la autoridad ambiental competente para toda persona cuya actividad genere vertimientos al suelo o a un cuerpo de agua.</td>
-                  </tr>
-                  <tr>
-                    <td>Decreto 1077 de 2015</td>
-                    <td>Decreto Único Reglamentario del sector vivienda. Su <strong>artículo 2.3.7.1.3.3</strong> regula soluciones individuales de saneamiento para zonas rurales cuando el municipio no ha definido el esquema de ordenamiento territorial aplicable.</td>
-                  </tr>
-                  <tr>
-                    <td>Ley 1955 de 2019 (art. 279)</td>
-                    <td>Plan Nacional de Desarrollo. Exime del permiso de vertimiento a las <strong>soluciones individuales de saneamiento para vivienda rural dispersa</strong> aislada en suelo rural, asociadas a la vida del campo, siempre que se ajusten al RAS.</td>
-                  </tr>
-                  <tr>
-                    <td>Ley 1333 de 2009</td>
-                    <td>Establece el <strong>procedimiento sancionatorio ambiental</strong> en Colombia. Las multas por vertimientos sin permiso o sin tratamiento adecuado van hasta 5.000 SMLMV.</td>
-                  </tr>
-                  <tr>
-                    <td>Resolución 0844 (estudios de suelo)</td>
-                    <td>Exige <strong>apique en temporada invernal</strong> a la profundidad de las estructuras más 2 metros adicionales, para verificar nivel freático y capacidad de infiltración del suelo.</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="norma-cards">
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-book"></i></span>
+                  <h3 class="norma-card__title">Resolución 0330 de 2017 (RAS)</h3>
+                </div>
+                <p class="norma-card__body">
+                  Adopta el Reglamento Técnico del Sector de Agua Potable y Saneamiento Básico. El <strong>Título E</strong> es la pieza central: define los criterios de diseño, distancias, materiales, vida útil y postratamiento de tanques sépticos.
+                </p>
+              </article>
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-leaf"></i></span>
+                  <h3 class="norma-card__title">Decreto 1076 de 2015</h3>
+                </div>
+                <p class="norma-card__body">
+                  Decreto Único Reglamentario del sector ambiental. Su <strong>artículo 2.2.3.3.5.1</strong> exige permiso de vertimientos ante la autoridad ambiental competente para toda persona cuya actividad genere vertimientos al suelo o a un cuerpo de agua.
+                </p>
+              </article>
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-house-chimney"></i></span>
+                  <h3 class="norma-card__title">Decreto 1077 de 2015</h3>
+                </div>
+                <p class="norma-card__body">
+                  Decreto Único Reglamentario del sector vivienda. Su <strong>artículo 2.3.7.1.3.3</strong> regula soluciones individuales de saneamiento para zonas rurales cuando el municipio no ha definido el esquema de ordenamiento territorial aplicable.
+                </p>
+              </article>
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-tractor"></i></span>
+                  <h3 class="norma-card__title">Ley 1955 de 2019 (art. 279)</h3>
+                </div>
+                <p class="norma-card__body">
+                  Plan Nacional de Desarrollo. Exime del permiso de vertimiento a las <strong>soluciones individuales de saneamiento para vivienda rural dispersa</strong> aislada en suelo rural, asociadas a la vida del campo, siempre que se ajusten al RAS.
+                </p>
+              </article>
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-gavel"></i></span>
+                  <h3 class="norma-card__title">Ley 1333 de 2009</h3>
+                </div>
+                <p class="norma-card__body">
+                  Establece el <strong>procedimiento sancionatorio ambiental</strong> en Colombia. Las multas por vertimientos sin permiso o sin tratamiento adecuado van hasta 5.000 SMLMV.
+                </p>
+              </article>
+              <article class="norma-card">
+                <div class="norma-card__head">
+                  <span class="norma-card__icon"><i class="fas fa-mountain"></i></span>
+                  <h3 class="norma-card__title">Resolución 0844 (estudios de suelo)</h3>
+                </div>
+                <p class="norma-card__body">
+                  Exige <strong>apique en temporada invernal</strong> a la profundidad de las estructuras más 2 metros adicionales, para verificar nivel freático y capacidad de infiltración del suelo.
+                </p>
+              </article>
             </div>
             <p class="mt-5">
               En conjunto, estas normas dicen: <strong>si vas a verter aguas residuales al suelo o a un cuerpo de agua, necesitas diseñar bien el sistema, respetar distancias, mantenerlo y, salvo que seas vivienda rural dispersa, tener permiso de la CAR</strong>.
