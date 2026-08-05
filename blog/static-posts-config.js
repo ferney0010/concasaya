@@ -37,7 +37,7 @@ export const staticPosts = [
     title: "Pozos sépticos en Colombia: legalidad, normativa y requisitos 2026",
     description:
       "Guía técnica y legal sobre pozos sépticos en Colombia: Resolución 0330 de 2017 (RAS), Decreto 1076, permiso de vertimientos CAR, exención de vivienda rural dispersa (RURH), distancias mínimas y sanciones. Asesoría con CONCASAYA.",
-    image: "https://www.concasaya.com/assets/images/oasis.webp",
+    image: "https://www.concasaya.com/assets/images/img1355.webp",
     date: "2026-08-04",
     url: "/blog/pozos-septicos-colombia-legalidad-requisitos.html",
     category: "Guías"

@@ -570,6 +570,7 @@
               Cargando entradas del blog...
             </div>
           </div>
+          <div id="blog-pagination" class="flex flex-col items-center mt-12 gap-3"></div>
         </div>
       </section>
     </main>
@@ -930,6 +931,10 @@
       import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
 
       const postsContainer = document.getElementById("blog-posts-container");
+      const paginationContainer = document.getElementById("blog-pagination");
+      const PAGE_SIZE = 9; // posts por página (3 columnas × 3 filas)
+      let currentPage = 1;
+      let allPosts = []; // se llena en loadBlogPosts y se reutiliza al paginar
 
       const loadBlogPosts = async () => {
         // Cargar posts de Supabase
@@ -1009,93 +1014,130 @@
           return;
         }
 
-        postsContainer.innerHTML = "";
-        allPosts.forEach((post, index) => {
-          const article = document.createElement("article");
-          const isPinned = post.pinned === true;
-          article.className = isPinned
-            ? "bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ring-2 ring-primary/40 md:col-span-2 lg:col-span-3"
-            : "bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300";
-          article.setAttribute("data-aos", "fade-up");
-          article.setAttribute("data-aos-delay", isPinned ? "0" : String((index % 3) * 100));
+        // Renderiza una página de posts (slice del array global)
+        const renderPage = (page) => {
+          postsContainer.innerHTML = "";
+          const start = (page - 1) * PAGE_SIZE;
+          const end = start + PAGE_SIZE;
+          const pagePosts = allPosts.slice(start, end);
 
-          // Detectar si es un artículo con video (Cundinamarca, Clima Cálido, Ventajas 2026 o Sismos y Clima)
-          const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
-          const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
-          const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
-          const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
-          const hasVideo = isClimaCalidoPost || isSismosClimaPost;
-          
-          // Determinar qué imagen usar según el artículo
-          let imageSource = "/assets/images/herocasa.webp";
-          if (isClimaCalidoPost) {
-            imageSource = "/assets/images/herocasa.webp";
-          } else if (isSismosClimaPost) {
-            imageSource = "/assets/images/herocasa.webp";
-          }
-          
-          // Detectar si es el artículo sobre seguridad y durabilidad
-          const isSeguridadDurabilidadPost = post.title && (
-            (post.title.includes("casas prefabricadas son seguras") && post.title.includes("durables") && post.title.includes("Colombia")) ||
-            post.title.includes("¿Las casas prefabricadas son seguras y durables? Todo lo que debes saber en Colombia")
-          );
+          pagePosts.forEach((post, index) => {
+            const article = document.createElement("article");
+            const isPinned = post.pinned === true;
+            article.className = isPinned
+              ? "bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ring-2 ring-primary/40 md:col-span-2 lg:col-span-3"
+              : "bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300";
+            article.setAttribute("data-aos", "fade-up");
+            article.setAttribute("data-aos-delay", isPinned ? "0" : String((index % 3) * 100));
 
-          let postMedia;
-          // Si es el artículo de Cundinamarca, usar la imagen de la cabaña si está disponible
-          if (isCundinamarcaPost && cabanaImage) {
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${cabanaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-          } else if (isVentajas2026Post && zipaquiraImage) {
-            // Si es el artículo de Ventajas 2026, usar la imagen de Zipaquirá si está disponible
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${zipaquiraImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-          } else if (isSeguridadDurabilidadPost && chiaImage) {
-            // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-          } else if (hasVideo) {
-            // Mostrar imagen para artículos que antes tenían video
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
-              <img 
-                src="${imageSource}" 
-                alt="${post.title}" 
-                class="w-full h-full object-cover"
-                style="min-height: 200px; max-height: 400px;"
-                loading="lazy"
-              />
-            </div>`;
-          } else if (post.image) {
-            const thumbFlip =
-              post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : "";
-            postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full"${thumbFlip} loading="lazy" /></div>`;
+            // Detectar si es un artículo con video (Cundinamarca, Clima Cálido, Ventajas 2026 o Sismos y Clima)
+            const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
+            const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
+            const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
+            const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
+            const hasVideo = isClimaCalidoPost || isSismosClimaPost;
+
+            // Determinar qué imagen usar según el artículo
+            let imageSource = "/assets/images/herocasa.webp";
+            if (isClimaCalidoPost) {
+              imageSource = "/assets/images/herocasa.webp";
+            } else if (isSismosClimaPost) {
+              imageSource = "/assets/images/herocasa.webp";
+            }
+
+            // Detectar si es el artículo sobre seguridad y durabilidad
+            const isSeguridadDurabilidadPost = post.title && (
+              (post.title.includes("casas prefabricadas son seguras") && post.title.includes("durables") && post.title.includes("Colombia")) ||
+              post.title.includes("¿Las casas prefabricadas son seguras y durables? Todo lo que debes saber en Colombia")
+            );
+
+            let postMedia;
+            // Si es el artículo de Cundinamarca, usar la imagen de la cabaña si está disponible
+            if (isCundinamarcaPost && cabanaImage) {
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${cabanaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+            } else if (isVentajas2026Post && zipaquiraImage) {
+              // Si es el artículo de Ventajas 2026, usar la imagen de Zipaquirá si está disponible
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${zipaquiraImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+            } else if (isSeguridadDurabilidadPost && chiaImage) {
+              // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+            } else if (hasVideo) {
+              // Mostrar imagen para artículos que antes tenían video
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
+                <img
+                  src="${imageSource}"
+                  alt="${post.title}"
+                  class="w-full h-full object-cover"
+                  style="min-height: 200px; max-height: 400px;"
+                  loading="lazy"
+                />
+              </div>`;
+            } else if (post.image) {
+              const thumbFlip =
+                post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : "";
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full"${thumbFlip} loading="lazy" /></div>`;
+            } else {
+              // Placeholder si no hay imagen
+              postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';
+            }
+
+            const pinnedLayout = isPinned
+              ? "block md:grid md:grid-cols-2 md:items-stretch"
+              : "block";
+            const pinnedMediaWrap = isPinned ? "md:min-h-[280px]" : "";
+            const pinnedBody = isPinned ? "md:flex md:flex-col md:justify-center" : "";
+            const categoryLabel = post.category || "Artículo";
+            const pinnedBadge = isPinned
+              ? `<span class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><i class="fas fa-thumbtack" aria-hidden="true"></i> Artículo destacado</span>`
+              : `<span class="text-sm text-primary font-semibold">${categoryLabel}</span>`;
+
+            article.innerHTML = `
+                      <a href="${post.url}" class="${pinnedLayout}">
+                          <div class="${pinnedMediaWrap}">${postMedia}</div>
+                          <div class="p-6 ${pinnedBody}">
+                              ${pinnedBadge}
+                              <h3 class="${isPinned ? "text-2xl md:text-3xl" : "text-xl"} font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
+                              <p class="text-gray-600 mb-4 ${isPinned ? "text-base md:text-lg" : ""}">${post.description}</p>
+                              <span class="font-semibold text-primary hover:underline inline-flex items-center">
+                                  Leer más <i class="fas fa-arrow-right ml-2"></i>
+                              </span>
+                          </div>
+                      </a>
+                  `;
+            postsContainer.appendChild(article);
+          });
+
+          // Construir controles de paginación
+          const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+          if (totalPages <= 1) {
+            paginationContainer.innerHTML = "";
           } else {
-            // Placeholder si no hay imagen
-            postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';
+            const showingFrom = start + 1;
+            const showingTo = Math.min(end, allPosts.length);
+            const counter = `<p class="text-sm text-gray-500">Mostrando <span class="font-semibold text-dark">${showingFrom}–${showingTo}</span> de <span class="font-semibold text-dark">${allPosts.length}</span> artículos</p>`;
+            const prevDisabled = page <= 1;
+            const nextDisabled = page >= totalPages;
+            const prevBtn = `<button type="button" data-page="${page - 1}" class="px-4 py-2 rounded-full border border-gray-300 bg-white text-dark font-semibold hover:bg-gray-100 transition disabled:opacity-40 disabled:cursor-not-allowed"${prevDisabled ? " disabled" : ""}><i class="fas fa-arrow-left mr-2"></i>Anterior</button>`;
+            const nextBtn = `<button type="button" data-page="${page + 1}" class="px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary/90 transition disabled:opacity-40 disabled:cursor-not-allowed"${nextDisabled ? " disabled" : ""}>Siguiente<i class="fas fa-arrow-right ml-2"></i></button>`;
+            paginationContainer.innerHTML = `${counter}<div class="flex items-center gap-3">${prevBtn}${nextBtn}</div>`;
+            // Listeners de los botones
+            paginationContainer.querySelectorAll("button[data-page]").forEach((btn) => {
+              btn.addEventListener("click", () => {
+                const targetPage = parseInt(btn.getAttribute("data-page"), 10);
+                if (!Number.isFinite(targetPage) || targetPage < 1 || targetPage > totalPages) return;
+                currentPage = targetPage;
+                renderPage(currentPage);
+                // Scroll suave al inicio de la lista del blog
+                const list = document.getElementById("blog-list");
+                if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+              });
+            });
           }
+          AOS.refresh();
+        };
 
-          const pinnedLayout = isPinned
-            ? "block md:grid md:grid-cols-2 md:items-stretch"
-            : "block";
-          const pinnedMediaWrap = isPinned ? "md:min-h-[280px]" : "";
-          const pinnedBody = isPinned ? "md:flex md:flex-col md:justify-center" : "";
-          const categoryLabel = post.category || "Artículo";
-          const pinnedBadge = isPinned
-            ? `<span class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><i class="fas fa-thumbtack" aria-hidden="true"></i> Artículo destacado</span>`
-            : `<span class="text-sm text-primary font-semibold">${categoryLabel}</span>`;
-
-          article.innerHTML = `
-                    <a href="${post.url}" class="${pinnedLayout}">
-                        <div class="${pinnedMediaWrap}">${postMedia}</div>
-                        <div class="p-6 ${pinnedBody}">
-                            ${pinnedBadge}
-                            <h3 class="${isPinned ? "text-2xl md:text-3xl" : "text-xl"} font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
-                            <p class="text-gray-600 mb-4 ${isPinned ? "text-base md:text-lg" : ""}">${post.description}</p>
-                            <span class="font-semibold text-primary hover:underline inline-flex items-center">
-                                Leer más <i class="fas fa-arrow-right ml-2"></i>
-                            </span>
-                        </div>
-                    </a>
-                `;
-          postsContainer.appendChild(article);
-        });
-        AOS.refresh();
+        currentPage = 1;
+        renderPage(currentPage);
       };
 
       document.addEventListener("DOMContentLoaded", loadBlogPosts);
