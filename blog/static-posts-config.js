@@ -33,6 +33,16 @@ export const staticPosts = [
     category: "Compra"
   },
   {
+    slug: "pozos-septicos-colombia-legalidad-requisitos",
+    title: "Pozos sépticos en Colombia: legalidad, normativa y requisitos 2026",
+    description:
+      "Guía técnica y legal sobre pozos sépticos en Colombia: Resolución 0330 de 2017 (RAS), Decreto 1076, permiso de vertimientos CAR, exención de vivienda rural dispersa (RURH), distancias mínimas y sanciones. Asesoría con CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/oasis.webp",
+    date: "2026-08-04",
+    url: "/blog/pozos-septicos-colombia-legalidad-requisitos.html",
+    category: "Guías"
+  },
+  {
     slug: "precio-casa-prefabricada-colombia-2026",
     title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
     description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
