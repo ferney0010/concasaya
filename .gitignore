@@ -34,3 +34,6 @@ gallery_clean.txt
 
 # Originales del catálogo (solo se usan thumbs/ y medium/ en producción)
 catalogo concasaya/*.webp
+
+# IndexNow transient payload (regenerado por scripts/submit-indexnow.py)
+indexnow-payload.json
