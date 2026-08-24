@@ -34,6 +34,7 @@ gallery_clean.txt
 
 # Testing temporal (screenshots de QA local, perfiles de Chrome headless)
 tmp-test/
+test-*.cjs
 test-screenshots.cjs
 
 # Originales del catálogo (solo se usan thumbs/ y medium/ en producción)
