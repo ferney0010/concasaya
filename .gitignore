@@ -32,6 +32,10 @@ gallery_items.txt
 gallery_output.txt
 gallery_clean.txt
 
+# Testing temporal (screenshots de QA local, perfiles de Chrome headless)
+tmp-test/
+test-screenshots.cjs
+
 # Originales del catálogo (solo se usan thumbs/ y medium/ en producción)
 catalogo concasaya/*.webp
 
