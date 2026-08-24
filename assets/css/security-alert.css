@@ -47,8 +47,7 @@
 #sa-card {
   position: relative;
   width: 100%;
-  max-width: 540px;
-  /* Que nunca exceda la pantalla, con margen de 12px arriba/abajo */
+  max-width: min(540px, calc(100vw - 24px));
   max-height: calc(100vh - 24px);
   max-height: calc(100dvh - 24px);
   background: #ffffff;
@@ -60,6 +59,7 @@
   transform: translateY(24px) scale(0.96);
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   border-top: 5px solid var(--sa-danger);
+  box-sizing: border-box;
 }
 #sa-backdrop.sa-open #sa-card {
   transform: translateY(0) scale(1);
@@ -148,6 +148,74 @@
   opacity: 0.95;
   line-height: 1.4;
   margin: 0;
+}
+
+/* Lead (texto principal bajo el header) */
+.sa-lead {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--sa-text);
+  margin: 0 0 12px 0;
+}
+
+/* Link directo a la politica con diseno de tarjeta */
+.sa-link-policy {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 1.5px solid #fecaca;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #7f1d1d;
+  transition: all 0.15s ease;
+  margin: 0 0 4px 0;
+}
+.sa-link-policy:hover {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-color: #f87171;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.15);
+}
+.sa-link-policy > i:first-child {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sa-danger);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+.sa-link-policy > div {
+  flex: 1;
+  min-width: 0;
+}
+.sa-link-policy > div strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #7f1d1d;
+  margin-bottom: 2px;
+}
+.sa-link-policy > div span {
+  display: block;
+  font-size: 11.5px;
+  color: #991b1b;
+  font-weight: 400;
+  line-height: 1.3;
+}
+.sa-link-arrow {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: #b91c1c;
+  transition: transform 0.15s ease;
+}
+.sa-link-policy:hover .sa-link-arrow {
+  transform: translateX(3px);
 }
 
 /* ---------- Body (con scroll) ---------- */
