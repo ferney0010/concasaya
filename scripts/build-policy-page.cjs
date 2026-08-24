@@ -109,13 +109,13 @@ const customHead = `  <head>
 const policyContent = `
     <main class="pt-24 sm:pt-28 md:pt-32 pb-20">
       <!-- Hero -->
-      <section class="relative overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-red-900 text-white">
+      <section class="relative overflow-hidden text-white" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #7f1d1d 100%);">
         <div class="absolute inset-0 opacity-10">
           <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
           <div class="absolute bottom-10 right-10 w-60 h-60 bg-yellow-300 rounded-full blur-3xl"></div>
         </div>
         <div class="container mx-auto px-6 py-16 sm:py-20 relative z-10">
-          <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+          <div class="max-w-4xl mx-auto text-center" data-aos="fade-up" style="opacity: 1 !important; transform: none !important;">
             <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest mb-5">
               <i class="fa-solid fa-shield-halved"></i>
               Documento oficial · CONCASAYA

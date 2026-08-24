@@ -327,4 +327,74 @@
   } else {
     init();
   }
+
+  // ============================================================
+  // Fix dropdowns del nav (Empresa / Cobertura)
+  // - Toggle con click en el boton
+  // - Cerrar con click fuera, click en item, o Escape
+  // - Solo desktop (>=1024px). En mobile se usa el menu hamburguesa.
+  // ============================================================
+  function fixDropdowns() {
+    var buttons = document.querySelectorAll('.dropdown > button[aria-haspopup="true"]');
+    if (!buttons.length) return;
+
+    function closeAll(except) {
+      buttons.forEach(function (btn) {
+        if (btn === except) return;
+        btn.setAttribute('aria-expanded', 'false');
+        var menu = btn.parentElement.querySelector('.dropdown-menu');
+        if (menu) {
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateY(10px)';
+          menu.style.pointerEvents = 'none';
+        }
+      });
+    }
+
+    buttons.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        closeAll(btn);
+        var menu = btn.parentElement.querySelector('.dropdown-menu');
+        if (!menu) return;
+        if (expanded) {
+          btn.setAttribute('aria-expanded', 'false');
+          menu.style.opacity = '0';
+          menu.style.visibility = 'hidden';
+          menu.style.transform = 'translateY(10px)';
+          menu.style.pointerEvents = 'none';
+        } else {
+          btn.setAttribute('aria-expanded', 'true');
+          menu.style.opacity = '1';
+          menu.style.visibility = 'visible';
+          menu.style.transform = 'translateY(0)';
+          menu.style.pointerEvents = 'auto';
+        }
+      });
+    });
+
+    // Click fuera cierra todos
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.dropdown')) closeAll(null);
+    });
+
+    // Escape cierra todos
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeAll(null);
+    });
+
+    // Click en un item del menu lo cierra
+    document.querySelectorAll('.dropdown-menu a').forEach(function (a) {
+      a.addEventListener('click', function () { closeAll(null); });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fixDropdowns);
+  } else {
+    fixDropdowns();
+  }
 })();
