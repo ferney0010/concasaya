@@ -39,9 +39,9 @@
       {
         type: 'email',
         icon: 'fa-solid fa-envelope',
-        label: 'Correo oficial',
-        value: 'contacto@concasaya.com',
-        href: 'mailto:contacto@concasaya.com'
+        label: 'Correo de seguridad CONCASAYA (Codify Tech)',
+        value: 'contacto@codifytech.click',
+        href: 'mailto:contacto@codifytech.click'
       },
       {
         type: 'office',
@@ -149,6 +149,10 @@
       '        <i class="fa-solid fa-circle-check"></i>',
       '        <div>Todo pago se realiza unicamente despues de firmar contrato, en cuentas a nombre de <strong>CONCASAYA</strong> y con factura electronica.</div>',
       '      </div>',
+      '      <div class="sa-rule sa-rule--alert">',
+      '        <i class="fa-solid fa-gavel"></i>',
+      '        <div><strong>Todo contrato donde CONCASAYA reciba dinero debe ir firmado por las partes y autenticado ante notaria.</strong> Si no cumple ambas condiciones, no representa compromiso alguno para la empresa y podria tratarse de una suplantacion.</div>',
+      '      </div>',
       '      <div class="sa-channels">',
       '        <p class="sa-channels-title"><i class="fa-solid fa-shield-check"></i> Canales oficiales verificados</p>',
         buildChannelsHTML(),
@@ -157,7 +161,7 @@
       '    <div id="sa-footer">',
       '      <label id="sa-acknowledge">',
       '        <input type="checkbox" id="sa-ack-input" />',
-      '        <span>Confirmo que entendi la alerta, conozco los canales oficiales y se que CONCASAYA no me pedira dinero sin contrato firmado.</span>',
+      '        <span>Confirmo que entendi la alerta, conozco los canales oficiales y se que todo contrato de CONCASAYA debe ir firmado y autenticado ante notaria para que reciba dinero.</span>',
       '      </label>',
       '      <div id="sa-buttons">',
       '        <button type="button" id="sa-btn-policy"><i class="fa-solid fa-file-shield"></i> Ver politica de proteccion</button>',
