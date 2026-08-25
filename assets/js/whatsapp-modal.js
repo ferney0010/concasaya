@@ -95,8 +95,8 @@
     {
       id: 'buscar',
       icon: 'fa-map-location-dot',
-      label: 'Todavia busco lote, orientame',
-      message: 'Todavia no tengo lote y me gustaria orientarme sobre donde y como construir'
+      label: 'Todavia busco lote, que me recomiendan',
+      message: 'Todavia no tengo lote. ¿Que me recomiendan para construir una casa prefabricada?'
     },
     {
       id: 'exterior',
@@ -130,7 +130,7 @@
     if (intentionId === 'lote') {
       body = 'Ya tengo lote propio y quiero cotizar una casa prefabricada';
     } else if (intentionId === 'buscar') {
-      body = 'Todavia no tengo lote y me gustaria orientarme sobre donde y como construir';
+      body = 'Todavia no tengo lote. ¿Que me recomiendan para construir una casa prefabricada?';
     } else if (intentionId === 'exterior') {
       body = 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia';
     }
