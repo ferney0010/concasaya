@@ -109,7 +109,7 @@
   var DEPARTMENTS = [
     { id: 'Cundinamarca', icon: 'fa-mountain-sun', label: 'Cundinamarca' },
     { id: 'Boyaca',       icon: 'fa-mountain',     label: 'Boyaca' },
-    { id: 'Otro',         icon: 'fa-earth-americas', label: 'Otro / ninguno de los anteriores' }
+    { id: 'Otro',         icon: 'fa-earth-americas', label: 'Otro' }
   ];
 
   // === DETECCION DE DEPARTAMENTO POR URL ===
