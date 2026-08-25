@@ -281,13 +281,17 @@
     var target = body.querySelector('[data-wm-step="' + stepName + '"]');
     if (target) {
       target.style.display = '';
-      // Animar entrada
-      var inner = target.querySelector('.wm-actions, .wm-detected-banner');
-      if (inner) {
+      // Animar entrada de TODOS los elementos animables (banner + acciones)
+      var inners = target.querySelectorAll('.wm-actions, .wm-detected-banner');
+      inners.forEach(function (inner) {
         inner.classList.remove('wm-show');
-        void inner.offsetWidth;
-        requestAnimationFrame(function () { inner.classList.add('wm-show'); });
-      }
+      });
+      void target.offsetWidth;
+      requestAnimationFrame(function () {
+        inners.forEach(function (inner) {
+          inner.classList.add('wm-show');
+        });
+      });
     }
     if (stepName === '1') {
       backBtn.style.display = 'none';
