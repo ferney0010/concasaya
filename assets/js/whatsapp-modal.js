@@ -11,52 +11,53 @@
   var WHATSAPP_NUMBER = '573142891018';
   var SESSION_KEY = 'wm_seen_asesor';
 
-  // Mapa slug -> departamento. Slugs de paginas de Concasaya con departamento
-  // identificable por la URL. Santa Marta intencionalmente excluida: no hay
-  // cobertura en la costa, asi que el slug "santa-marta" no auto-detecta.
-  var SLUG_DEPT = {
+  // Mapa slug -> { department, name }. Slugs de paginas de Concasaya con
+  // departamento y nombre de municipio identificables por la URL. Santa Marta
+  // intencionalmente excluida: no hay cobertura en la costa, asi que el slug
+  // "santa-marta" no auto-detecta.
+  var SLUG_INFO = {
     // Cundinamarca
-    'cajica': 'Cundinamarca',
-    'chia': 'Cundinamarca',
-    'cota': 'Cundinamarca',
-    'facatativa': 'Cundinamarca',
-    'funza': 'Cundinamarca',
-    'fusagasuga': 'Cundinamarca',
-    'guasca': 'Cundinamarca',
-    'la-calera': 'Cundinamarca',
-    'la-mesa': 'Cundinamarca',
-    'la-vega': 'Cundinamarca',
-    'madrid': 'Cundinamarca',
-    'mesitas-del-colegio': 'Cundinamarca',
-    'mosquera': 'Cundinamarca',
-    'norte-bogota': 'Cundinamarca',
-    'pacho': 'Cundinamarca',
-    'san-francisco': 'Cundinamarca',
-    'sesquile': 'Cundinamarca',
-    'soacha': 'Cundinamarca',
-    'sopo': 'Cundinamarca',
-    'suba': 'Cundinamarca',
-    'subachoque': 'Cundinamarca',
-    'supata': 'Cundinamarca',
-    'tocancipa': 'Cundinamarca',
-    'villeta': 'Cundinamarca',
-    'zipaquira': 'Cundinamarca',
+    'cajica':            { department: 'Cundinamarca', name: 'Cajica' },
+    'chia':              { department: 'Cundinamarca', name: 'Chia' },
+    'cota':              { department: 'Cundinamarca', name: 'Cota' },
+    'facatativa':        { department: 'Cundinamarca', name: 'Facatativa' },
+    'funza':             { department: 'Cundinamarca', name: 'Funza' },
+    'fusagasuga':        { department: 'Cundinamarca', name: 'Fusagasuga' },
+    'guasca':            { department: 'Cundinamarca', name: 'Guasca' },
+    'la-calera':         { department: 'Cundinamarca', name: 'La Calera' },
+    'la-mesa':           { department: 'Cundinamarca', name: 'La Mesa' },
+    'la-vega':           { department: 'Cundinamarca', name: 'La Vega' },
+    'madrid':            { department: 'Cundinamarca', name: 'Madrid' },
+    'mesitas-del-colegio': { department: 'Cundinamarca', name: 'Mesitas del Colegio' },
+    'mosquera':          { department: 'Cundinamarca', name: 'Mosquera' },
+    'norte-bogota':      { department: 'Cundinamarca', name: 'Norte de Bogota' },
+    'pacho':             { department: 'Cundinamarca', name: 'Pacho' },
+    'san-francisco':     { department: 'Cundinamarca', name: 'San Francisco' },
+    'sesquile':          { department: 'Cundinamarca', name: 'Sesquile' },
+    'soacha':            { department: 'Cundinamarca', name: 'Soacha' },
+    'sopo':              { department: 'Cundinamarca', name: 'Sopo' },
+    'suba':              { department: 'Cundinamarca', name: 'Suba' },
+    'subachoque':        { department: 'Cundinamarca', name: 'Subachoque' },
+    'supata':            { department: 'Cundinamarca', name: 'Supata' },
+    'tocancipa':         { department: 'Cundinamarca', name: 'Tocancipa' },
+    'villeta':           { department: 'Cundinamarca', name: 'Villeta' },
+    'zipaquira':         { department: 'Cundinamarca', name: 'Zipaquira' },
     // Boyaca
-    'barbosa': 'Boyaca',
-    'boyaca': 'Boyaca',
-    'chiquinquira': 'Boyaca',
-    'choconta': 'Boyaca',
-    'duitama': 'Boyaca',
-    'firavitoba': 'Boyaca',
-    'paipa': 'Boyaca',
-    'puente-nacional': 'Boyaca',
-    'raquira': 'Boyaca',
-    'samaca': 'Boyaca',
-    'sogamoso': 'Boyaca',
-    'tunja': 'Boyaca',
-    'valle-de-tenza': 'Boyaca',
-    'velez': 'Boyaca',
-    'villadeleyva': 'Boyaca'
+    'barbosa':           { department: 'Boyaca', name: 'Barbosa' },
+    'boyaca':            { department: 'Boyaca', name: 'Boyaca' },
+    'chiquinquira':      { department: 'Boyaca', name: 'Chiquinquira' },
+    'choconta':          { department: 'Boyaca', name: 'Choconta' },
+    'duitama':           { department: 'Boyaca', name: 'Duitama' },
+    'firavitoba':        { department: 'Boyaca', name: 'Firavitoba' },
+    'paipa':             { department: 'Boyaca', name: 'Paipa' },
+    'puente-nacional':   { department: 'Boyaca', name: 'Puente Nacional' },
+    'raquira':           { department: 'Boyaca', name: 'Raquira' },
+    'samaca':            { department: 'Boyaca', name: 'Samaca' },
+    'sogamoso':          { department: 'Boyaca', name: 'Sogamoso' },
+    'tunja':             { department: 'Boyaca', name: 'Tunja' },
+    'valle-de-tenza':    { department: 'Boyaca', name: 'Valle de Tenza' },
+    'velez':             { department: 'Boyaca', name: 'Velez' },
+    'villadeleyva':      { department: 'Boyaca', name: 'Villa de Leyva' }
   };
 
   var ADVISORS = [
@@ -113,19 +114,18 @@
   ];
 
   // === DETECCION DE DEPARTAMENTO POR URL ===
-  function detectDepartmentFromURL() {
+  function detectFromURL() {
     var path = (window.location.pathname || '').toLowerCase();
     // Extraer el ultimo segmento del path sin .html
     var m = path.match(/\/([^\/?#]+?)(?:\.html)?\/?$/);
     if (!m) return null;
     var slug = m[1];
-    return SLUG_DEPT[slug] || null;
+    return SLUG_INFO[slug] || null;
   }
 
   // === MENSAJE PRE-ARMADO ===
-  function buildMessage(intentionId, departmentId) {
-    var path = window.location.pathname || '/';
-    var head = 'Hola, vengo de concasaya.com' + (path !== '/' ? path : '') + '. ';
+  function buildMessage(intentionId, departmentId, municipality) {
+    var head = '';
     var body = '';
     if (intentionId === 'lote') {
       body = 'Ya tengo lote propio y quiero cotizar una casa prefabricada';
@@ -134,8 +134,12 @@
     } else if (intentionId === 'exterior') {
       body = 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia';
     }
+    // Encabezado con municipio (si fue detectado por URL) o sin el
+    if (municipality) {
+      head = 'Hola, vengo de ' + municipality + ' (' + departmentId + '). ';
+    }
     if (intentionId === 'exterior') {
-      return head + body + '.';
+      return 'Hola. ' + body + '.';
     }
     if (departmentId === 'Cundinamarca') {
       return head + body + ' en Cundinamarca.';
@@ -224,7 +228,7 @@
   var state = {
     intention: null,
     department: null,
-    detectedDepartment: null
+    detectedInfo: null  // { department, name } o null
   };
 
   // === RENDERIZAR PASO 1: INTENCIONES ===
@@ -253,17 +257,19 @@
 
   // === RENDERIZAR PASO 2: DEPARTAMENTO DETECTADO ===
   function renderDetected() {
-    var dept = state.detectedDepartment;
+    var info = state.detectedInfo;
+    var dept = info.department;
+    var name = info.name;
     var icon = (dept === 'Cundinamarca') ? 'fa-mountain-sun' : 'fa-mountain';
     detectedBannerEl.innerHTML = '<i class="fas fa-location-dot wm-detected-pin"></i>' +
       '<div class="wm-detected-text">' +
-        'Detectamos que estas en <strong>' + escapeHtml(dept) + '</strong>' +
-        '<span class="wm-detected-sub">¿Cotizamos aca?</span>' +
+        'Estas viendo la pagina de <strong>' + escapeHtml(name) + '</strong>' +
+        '<span class="wm-detected-sub">¿Cotizamos en ' + escapeHtml(dept) + '?</span>' +
       '</div>';
     detectedActionsEl.innerHTML =
       '<button type="button" class="wm-action wm-action-primary" data-wm-department="' + escapeHtml(dept) + '">' +
         '<i class="fas ' + icon + '"></i>' +
-        '<span>Si, cotizar en ' + escapeHtml(dept) + '</span>' +
+        '<span>Si, cotizar en ' + escapeHtml(name) + '</span>' +
         '<i class="fas fa-arrow-right wm-action-arrow"></i>' +
       '</button>' +
       '<button type="button" class="wm-action" data-wm-department="__other__">' +
@@ -303,7 +309,8 @@
 
   // === ENVIAR A WHATSAPP ===
   function sendToWhatsApp() {
-    var msg = buildMessage(state.intention, state.department);
+    var municipality = (state.detectedInfo && state.intention !== 'exterior') ? state.detectedInfo.name : null;
+    var msg = buildMessage(state.intention, state.department, municipality);
     var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
     close();
     setTimeout(function () { window.open(url, '_blank'); }, 200);
@@ -321,7 +328,7 @@
       return;
     }
     // Paso 2: detectado o manual
-    if (state.detectedDepartment) {
+    if (state.detectedInfo) {
       showStep('2-detected');
     } else {
       showStep('2-manual');
@@ -349,7 +356,7 @@
     // Reset estado
     state.intention = null;
     state.department = null;
-    state.detectedDepartment = detectDepartmentFromURL();
+    state.detectedInfo = detectFromURL();
     // Reset visual: burbuja inicial
     if (helloBubble) {
       helloBubble.textContent = '¡Hola! ¿En que te podemos ayudar?';
@@ -367,7 +374,7 @@
     // Re-render dinamico segun deteccion
     renderIntentions();
     renderDepartments();
-    if (state.detectedDepartment) {
+    if (state.detectedInfo) {
       renderDetected();
     }
     // Mostrar backdrop
