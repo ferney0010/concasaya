@@ -1,7 +1,7 @@
 /* ============================================================
  * Alerta de Seguridad Anti-Estafa - CONCASAYA
- * Modal informativo: flyer bold + X visible + CTA opcional
- * v4: sin obligar al usuario, cierra con X, backdrop, ESC o boton
+ * Modal informativo: imagen literal del flyer + X + boton opcional
+ * v5: minimal, sin bloqueo, el usuario sigue navegando
  * ============================================================ */
 
 :root {
@@ -10,9 +10,6 @@
   --sa-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
   --sa-danger: #dc2626;
   --sa-danger-dark: #991b1b;
-  --sa-amber: #fbbf24;
-  --sa-amber-dark: #d97706;
-  --sa-black: #0f172a;
   --sa-success: #16a34a;
   --sa-line: #e5e7eb;
 }
@@ -21,14 +18,14 @@
 #sa-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.78);
+  background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: var(--sa-z);
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 10px;
+  padding: 12px;
   opacity: 0;
   transition: opacity 0.25s ease;
 }
@@ -39,9 +36,9 @@
 #sa-card {
   position: relative;
   width: 100% !important;
-  max-width: min(560px, calc(100vw - 20px)) !important;
-  max-height: calc(100vh - 20px);
-  max-height: calc(100dvh - 20px);
+  max-width: min(560px, calc(100vw - 24px)) !important;
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
   background: #ffffff;
   border-radius: var(--sa-radius);
   box-shadow: var(--sa-shadow);
@@ -54,7 +51,7 @@
   min-width: 0;
 }
 #sa-card * { box-sizing: border-box; max-width: 100%; }
-#sa-card img { max-width: 100%; }
+#sa-backdrop.sa-open #sa-card { transform: translateY(0) scale(1); }
 
 /* ---------- Boton X visible ---------- */
 #sa-close {
@@ -62,12 +59,12 @@
   top: 10px;
   right: 10px;
   z-index: 5;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid #000;
-  background: #fff;
-  color: #000;
+  border: 3px solid #fff;
+  background: #000;
+  color: #fff;
   font-size: 22px;
   font-weight: 700;
   cursor: pointer;
@@ -76,239 +73,25 @@
   justify-content: center;
   line-height: 1;
   padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: transform 0.15s ease, background 0.15s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-#sa-close:hover { background: #000; color: #fff; transform: rotate(90deg); }
-#sa-close:active { transform: scale(0.92); }
+#sa-close:hover { background: var(--sa-danger); transform: rotate(90deg); }
+#sa-close:active { transform: scale(0.9); }
 
-/* ---------- Flyer (contenido principal) ---------- */
-.sa-flyer {
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Top del flyer: sirena + logo + watermark */
-.sa-flyer-top {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 16px 8px;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
-  gap: 10px;
-  min-width: 0;
-}
-.sa-siren {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.15), 0 6px 14px rgba(220, 38, 38, 0.4);
-  animation: saSirenShake 0.6s ease-in-out infinite;
-}
-@keyframes saSirenShake {
-  0%, 100% { transform: rotate(0); }
-  25%      { transform: rotate(-12deg); }
-  75%      { transform: rotate(12deg); }
-}
-.sa-flyer-brand {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-.sa-flyer-logo {
-  height: 46px;
-  width: auto;
+/* ---------- Imagen del flyer ---------- */
+.sa-flyer-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 200px);
   object-fit: contain;
-  display: block;
-}
-.sa-flyer-logo-text {
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--sa-black);
-  letter-spacing: -0.5px;
-}
-.sa-flyer-tagline {
-  font-size: 11px;
-  color: var(--sa-text-soft);
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  margin-top: 1px;
-}
-.sa-flyer-watermark {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  color: #000;
-  opacity: 0.85;
-}
-
-/* Banner ATENCION */
-.sa-flyer-atention {
-  background: var(--sa-danger);
-  color: #fff;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 900;
-  padding: 12px 16px;
-  letter-spacing: -0.5px;
-  text-transform: uppercase;
-  position: relative;
-  transform: skewY(-2deg);
-  margin: 6px -6px 0;
-  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
-}
-.sa-flyer-atention { transform: skewY(-2deg); }
-.sa-flyer-atention > * { transform: skewY(2deg); display: inline-block; }
-.sa-flyer-atention::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; bottom: -4px;
-  height: 4px;
   background: #000;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
-/* Banner amarillo */
-.sa-flyer-banner {
-  background: var(--sa-amber);
-  color: #000;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 900;
-  padding: 10px 16px;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-}
-
-/* Subhead: No caiga en estafas */
-.sa-flyer-subhead {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--sa-black);
-  padding: 10px 16px 8px;
-  background: #fff;
-}
-.sa-flyer-subhead i { color: var(--sa-danger); font-size: 18px; }
-.sa-flyer-subhead strong { color: #f59e0b; }
-.sa-flyer-line {
-  flex: 1;
-  height: 3px;
-  background: var(--sa-danger);
-  max-width: 36px;
-  border-radius: 2px;
-}
-
-/* 3 cards en grid */
-.sa-flyer-3cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
-  padding: 4px 8px 8px;
-  background: #fff;
-}
-.sa-fcard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 8px 5px;
-  border-radius: 8px;
-  border: 2px solid;
-  gap: 4px;
-}
-.sa-fcard--bad { background: #fef2f2; border-color: var(--sa-danger); }
-.sa-fcard--ok  { background: #f0fdf4; border-color: var(--sa-success); }
-.sa-fcard-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 13px;
-  font-weight: 900;
-  flex-shrink: 0;
-}
-.sa-fcard-icon--bad { background: var(--sa-danger); }
-.sa-fcard-icon--ok  { background: var(--sa-success); }
-.sa-fcard-text strong {
-  display: block;
-  font-size: 10px;
-  font-weight: 800;
-  line-height: 1.15;
-  color: var(--sa-black);
-  text-transform: uppercase;
-  letter-spacing: 0.1px;
-}
-.sa-fcard-text span {
-  display: block;
-  font-size: 9.5px;
-  line-height: 1.2;
-  color: var(--sa-text-soft);
-  font-weight: 500;
-  margin-top: 1px;
-}
-
-/* CTA inferior del flyer */
-.sa-flyer-cta {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: var(--sa-amber);
-  border-top: 2px solid #000;
-  border-bottom: 2px solid #000;
-  padding: 9px 14px;
-}
-.sa-flyer-cta > i {
-  flex-shrink: 0;
-  font-size: 20px;
-  color: #000;
-}
-.sa-flyer-cta > div { flex: 1; min-width: 0; }
-.sa-flyer-cta strong {
-  display: block;
-  font-size: 13px;
-  font-weight: 900;
-  color: #000;
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-}
-.sa-flyer-cta span {
-  display: block;
-  font-size: 10.5px;
-  font-weight: 500;
-  color: #1f2937;
-  margin-top: 1px;
-}
-
-/* ---------- Acciones del modal (X, política, cerrar) ---------- */
+/* ---------- Acciones debajo de la imagen ---------- */
 .sa-flyer-actions {
   display: flex;
   flex-direction: column;
@@ -317,6 +100,7 @@
   background: #fff;
   flex-shrink: 0;
 }
+
 .sa-cta-link {
   display: flex;
   align-items: center;
@@ -391,53 +175,24 @@
 @media (max-width: 380px) {
   #sa-card { max-width: 100%; }
   #sa-backdrop { padding: 6px; }
-  .sa-flyer-top { padding: 14px 12px 6px; }
-  .sa-siren { width: 50px; height: 50px; font-size: 22px; }
-  .sa-flyer-watermark { width: 50px; height: 50px; font-size: 22px; }
-  .sa-flyer-logo { height: 38px; }
-  .sa-flyer-atention { font-size: 24px; padding: 10px 12px; }
-  .sa-flyer-banner { font-size: 15px; padding: 8px 12px; }
-  .sa-flyer-subhead { font-size: 14px; padding: 8px 12px 6px; }
-  .sa-flyer-3cards { gap: 4px; padding: 2px 6px 6px; }
-  .sa-fcard { padding: 6px 4px; }
-  .sa-fcard-icon { width: 22px; height: 22px; font-size: 11px; }
-  .sa-fcard-text strong { font-size: 9px; }
-  .sa-fcard-text span { font-size: 8.5px; }
-  .sa-flyer-cta { padding: 8px 10px; }
-  .sa-flyer-cta strong { font-size: 11.5px; }
-  .sa-flyer-cta span { font-size: 9.5px; }
+  .sa-flyer-img { max-height: calc(100dvh - 180px); }
   .sa-flyer-actions { padding: 10px 12px 12px; }
-  #sa-close { width: 28px; height: 28px; font-size: 18px; top: 8px; right: 8px; }
+  .sa-cta-link { font-size: 12px; padding: 10px 12px; }
+  #sa-btn-confirm { font-size: 12.5px; padding: 11px 12px; }
+  #sa-close { width: 30px; height: 30px; font-size: 18px; top: 8px; right: 8px; }
   #sa-reopen { left: 10px; bottom: 84px; font-size: 11px; padding: 8px 12px; }
 }
 
 @media (min-width: 640px) {
   #sa-backdrop { padding: 20px; }
   #sa-card { max-width: min(620px, calc(100vw - 40px)) !important; }
-  .sa-flyer-top { padding: 22px 22px 10px; }
-  .sa-siren { width: 80px; height: 80px; font-size: 36px; }
-  .sa-flyer-watermark { width: 80px; height: 80px; font-size: 36px; }
-  .sa-flyer-logo { height: 56px; }
-  .sa-flyer-tagline { font-size: 12px; }
-  .sa-flyer-atention { font-size: 40px; padding: 16px 22px; }
-  .sa-flyer-banner { font-size: 22px; padding: 12px 18px; }
-  .sa-flyer-subhead { font-size: 22px; padding: 12px 18px 10px; }
-  .sa-flyer-3cards { gap: 10px; padding: 6px 14px 12px; }
-  .sa-fcard { padding: 12px 8px; gap: 6px; }
-  .sa-fcard-icon { width: 34px; height: 34px; font-size: 16px; }
-  .sa-fcard-text strong { font-size: 12px; }
-  .sa-fcard-text span { font-size: 11px; }
-  .sa-flyer-cta { padding: 12px 18px; }
-  .sa-flyer-cta > i { font-size: 24px; }
-  .sa-flyer-cta strong { font-size: 16px; }
-  .sa-flyer-cta span { font-size: 12px; }
   .sa-flyer-actions { padding: 14px 18px 16px; }
   .sa-cta-link { font-size: 13.5px; padding: 12px 16px; }
   #sa-btn-confirm { font-size: 15px; padding: 13px 16px; }
-  #sa-close { width: 36px; height: 36px; font-size: 24px; top: 12px; right: 12px; }
+  #sa-close { width: 40px; height: 40px; font-size: 26px; top: 12px; right: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sa-siren, #sa-reopen { animation: none; }
+  #sa-reopen { animation: none; }
   #sa-backdrop, #sa-card, #sa-close, #sa-cta-link, #sa-btn-confirm { transition: none; }
 }

@@ -122,64 +122,10 @@
 
   function buildModalHTML() {
     return [
-      '<div id="sa-backdrop" role="dialog" aria-modal="true" aria-labelledby="sa-title">',
+      '<div id="sa-backdrop" role="dialog" aria-modal="true" aria-label="Aviso de seguridad CONCASAYA">',
       '  <div id="sa-card">',
       '    <button type="button" id="sa-close" aria-label="Cerrar aviso">&times;</button>',
-
-      // FLYER: replica del aviso anti-estafa de CONCASAYA
-      '    <div class="sa-flyer">',
-      '      <div class="sa-flyer-top">',
-      '        <div class="sa-siren"><i class="fa-solid fa-bell fa-shake"></i></div>',
-      '        <div class="sa-flyer-brand">',
-      '          <img src="/assets/images/logoconcasaya.webp" alt="CONCASAYA" class="sa-flyer-logo" onerror="this.outerHTML=\'<div class=&quot;sa-flyer-logo-text&quot;>CONCASAYA<\/div>\'" />',
-      '          <span class="sa-flyer-tagline">Prefabricados</span>',
-      '        </div>',
-      '        <div class="sa-flyer-watermark"><i class="fa-solid fa-exclamation"></i></div>',
-      '      </div>',
-
-      '      <div class="sa-flyer-atention">!Atencion!</div>',
-      '      <div class="sa-flyer-banner">Estamos siendo suplantados</div>',
-
-      '      <div class="sa-flyer-subhead">',
-      '        <i class="fa-solid fa-triangle-exclamation"></i>',
-      '        <span>No caiga en <strong>estafas</strong></span>',
-      '        <span class="sa-flyer-line"></span>',
-      '      </div>',
-
-      '      <div class="sa-flyer-3cards">',
-      '        <div class="sa-fcard sa-fcard--bad">',
-      '          <div class="sa-fcard-icon sa-fcard-icon--bad"><i class="fa-solid fa-xmark"></i></div>',
-      '          <div class="sa-fcard-text">',
-      '            <strong>No pedimos anticipos</strong>',
-      '            <span>Ni a cuentas personales ni a terceros</span>',
-      '          </div>',
-      '        </div>',
-      '        <div class="sa-fcard sa-fcard--ok">',
-      '          <div class="sa-fcard-icon sa-fcard-icon--ok"><i class="fa-solid fa-check"></i></div>',
-      '          <div class="sa-fcard-text">',
-      '            <strong>Todo pago despues de firmar contrato</strong>',
-      '            <span>Firmado y autenticado en notaria</span>',
-      '          </div>',
-      '        </div>',
-      '        <div class="sa-fcard sa-fcard--bad">',
-      '          <div class="sa-fcard-icon sa-fcard-icon--bad"><i class="fa-solid fa-xmark"></i></div>',
-      '          <div class="sa-fcard-text">',
-      '            <strong>No recibimos pagos por redes</strong>',
-      '            <span>Ni por perfiles falsos. Solo canales oficiales</span>',
-      '          </div>',
-      '        </div>',
-      '      </div>',
-
-      '      <div class="sa-flyer-cta">',
-      '        <i class="fa-solid fa-shield-halved"></i>',
-      '        <div>',
-      '          <strong>Protegete, verifica y denuncia</strong>',
-      '          <span>Tu seguridad es nuestra prioridad</span>',
-      '        </div>',
-      '      </div>',
-      '    </div>',
-
-      // CTA OPCIONAL: ver politica de proteccion (NO obligatorio)
+      '    <img src="/assets/images/alerta-estafa-concasaya.png" alt="Aviso de seguridad CONCASAYA: estamos siendo suplantados, no caiga en estafas" class="sa-flyer-img" />',
       '    <div class="sa-flyer-actions">',
       '      <a id="sa-btn-policy-link" class="sa-cta-link" href="/proteccion-contra-estafas.html" target="_blank" rel="noopener">',
       '        <i class="fa-solid fa-shield-halved"></i>',
@@ -188,7 +134,6 @@
       '      </a>',
       '      <button type="button" id="sa-btn-confirm"><i class="fa-solid fa-check"></i> Entendido, cerrar</button>',
       '    </div>',
-
       '  </div>',
       '</div>',
       '<button type="button" id="sa-reopen" aria-label="Ver aviso de seguridad"><i class="fa-solid fa-shield-halved"></i> Aviso de seguridad</button>'
