@@ -1,8 +1,9 @@
-// Modal warm-up de WhatsApp
-// - Inyecta el HTML del modal en cualquier pagina que incluya este script
-// - Detecta todos los <a href="https://wa.me/..."> y los intercepta para abrir el modal
-// - Al click en una opcion rapida del modal, cierra el modal y abre WhatsApp con prefill
+// Modal warm-up de WhatsApp con wizard de 2 pasos
+// Paso 1: intención del usuario (3 opciones)
+// Paso 2: departamento (auto-detectado por URL o selección manual)
+// - Detecta el departamento desde el slug del municipio en la URL
 // - 3 perfiles de asesores rotativos al azar al abrir el modal
+// - Mensaje pre-armado incluye intención + departamento + URL de origen
 (function () {
   'use strict';
 
@@ -10,59 +11,149 @@
   var WHATSAPP_NUMBER = '573142891018';
   var SESSION_KEY = 'wm_seen_asesor';
 
+  // Mapa slug -> departamento. Slugs de paginas de Concasaya con departamento
+  // identificable por la URL. Santa Marta intencionalmente excluida: no hay
+  // cobertura en la costa, asi que el slug "santa-marta" no auto-detecta.
+  var SLUG_DEPT = {
+    // Cundinamarca
+    'cajica': 'Cundinamarca',
+    'chia': 'Cundinamarca',
+    'cota': 'Cundinamarca',
+    'facatativa': 'Cundinamarca',
+    'funza': 'Cundinamarca',
+    'fusagasuga': 'Cundinamarca',
+    'guasca': 'Cundinamarca',
+    'la-calera': 'Cundinamarca',
+    'la-mesa': 'Cundinamarca',
+    'la-vega': 'Cundinamarca',
+    'madrid': 'Cundinamarca',
+    'mesitas-del-colegio': 'Cundinamarca',
+    'mosquera': 'Cundinamarca',
+    'norte-bogota': 'Cundinamarca',
+    'pacho': 'Cundinamarca',
+    'san-francisco': 'Cundinamarca',
+    'sesquile': 'Cundinamarca',
+    'soacha': 'Cundinamarca',
+    'sopo': 'Cundinamarca',
+    'suba': 'Cundinamarca',
+    'subachoque': 'Cundinamarca',
+    'supata': 'Cundinamarca',
+    'tocancipa': 'Cundinamarca',
+    'villeta': 'Cundinamarca',
+    'zipaquira': 'Cundinamarca',
+    // Boyaca
+    'barbosa': 'Boyaca',
+    'boyaca': 'Boyaca',
+    'chiquinquira': 'Boyaca',
+    'choconta': 'Boyaca',
+    'duitama': 'Boyaca',
+    'firavitoba': 'Boyaca',
+    'paipa': 'Boyaca',
+    'puente-nacional': 'Boyaca',
+    'raquira': 'Boyaca',
+    'samaca': 'Boyaca',
+    'sogamoso': 'Boyaca',
+    'tunja': 'Boyaca',
+    'valle-de-tenza': 'Boyaca',
+    'velez': 'Boyaca',
+    'villadeleyva': 'Boyaca'
+  };
+
   var ADVISORS = [
     {
       name: 'Natalia',
       role: 'Asesora comercial',
       initial: 'N',
       gradient: 'linear-gradient(135deg, #0077b6 0%, #00b4d8 100%)',
-      welcome: '\u00a1Hola! \u00bfC\u00f3mo te llamas? Cu\u00e9ntame qu\u00e9 tipo de casa buscas y te ayudo a encontrar la ideal.'
+      welcome: '¡Hola! Soy Natalia. Dime qué necesitas hoy y te oriento enseguida.'
     },
     {
       name: 'Alicia',
       role: 'Asesora comercial',
       initial: 'A',
       gradient: 'linear-gradient(135deg, #005f94 0%, #48cae4 100%)',
-      welcome: '\u00a1Hola! Soy Alicia, tu asesora en CONCASAYA. Estoy aqu\u00ed para resolver tus dudas sobre casas prefabricadas.'
+      welcome: '¡Hola! Soy Alicia. Cuentame que tipo de casa estas buscando y te ayudo.'
     },
     {
       name: 'Jorge',
       role: 'Asesor comercial',
       initial: 'J',
       gradient: 'linear-gradient(135deg, #023e8a 0%, #0096c7 100%)',
-      welcome: '\u00a1Hola! Soy Jorge. Dime en qu\u00e9 municipio buscas tu casa y te oriento con precios y tiempos.'
+      welcome: '¡Hola! Soy Jorge. Dime en que zona quieres construir y te oriento con precios.'
     }
   ];
 
-  var ACTIONS = [
+  // === INTENCIONES (PASO 1) ===
+  var INTENTIONS = [
     {
-      label: 'Quiero cotizar mi casa',
-      icon: 'fa-calculator',
-      text: 'Hola, vi su p\u00e1gina y quiero cotizar una casa prefabricada. \u00bfMe pueden ayudar con un estimado?'
+      id: 'lote',
+      icon: 'fa-house-circle-check',
+      label: 'Ya tengo lote, quiero cotizar',
+      message: 'Ya tengo lote propio y quiero cotizar una casa prefabricada'
     },
     {
-      label: 'Ver modelos disponibles',
-      icon: 'fa-house',
-      text: 'Hola, vi los modelos en su web. \u00bfPueden mostrarme los disponibles con precios y zonas de cobertura?'
+      id: 'buscar',
+      icon: 'fa-map-location-dot',
+      label: 'Todavia busco lote, orientame',
+      message: 'Todavia no tengo lote y me gustaria orientarme sobre donde y como construir'
     },
     {
-      label: 'Hablar con un asesor humano',
-      icon: 'fa-headset',
-      text: 'Hola, me gustar\u00eda hablar con un asesor humano sobre una casa prefabricada en Bogot\u00e1 o Cundinamarca.'
+      id: 'exterior',
+      icon: 'fa-globe-americas',
+      label: 'Estoy en el exterior, quiero cotizar',
+      message: 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia'
     }
   ];
+
+  // === DEPARTAMENTOS (PASO 2) ===
+  var DEPARTMENTS = [
+    { id: 'Cundinamarca', icon: 'fa-mountain-sun', label: 'Cundinamarca' },
+    { id: 'Boyaca',       icon: 'fa-mountain',     label: 'Boyaca' },
+    { id: 'Otro',         icon: 'fa-earth-americas', label: 'Otro / ninguno de los anteriores' }
+  ];
+
+  // === DETECCION DE DEPARTAMENTO POR URL ===
+  function detectDepartmentFromURL() {
+    var path = (window.location.pathname || '').toLowerCase();
+    // Extraer el ultimo segmento del path sin .html
+    var m = path.match(/\/([^\/?#]+?)(?:\.html)?\/?$/);
+    if (!m) return null;
+    var slug = m[1];
+    return SLUG_DEPT[slug] || null;
+  }
+
+  // === MENSAJE PRE-ARMADO ===
+  function buildMessage(intentionId, departmentId) {
+    var path = window.location.pathname || '/';
+    var head = 'Hola, vengo de concasaya.com' + (path !== '/' ? path : '') + '. ';
+    var body = '';
+    if (intentionId === 'lote') {
+      body = 'Ya tengo lote propio y quiero cotizar una casa prefabricada';
+    } else if (intentionId === 'buscar') {
+      body = 'Todavia no tengo lote y me gustaria orientarme sobre donde y como construir';
+    } else if (intentionId === 'exterior') {
+      body = 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia';
+    }
+    if (intentionId === 'exterior') {
+      return head + body + '.';
+    }
+    if (departmentId === 'Cundinamarca') {
+      return head + body + ' en Cundinamarca.';
+    }
+    if (departmentId === 'Boyaca') {
+      return head + body + ' en Boyaca.';
+    }
+    return head + body + '. Estoy en otra zona de Colombia.';
+  }
 
   // === UTILIDADES ===
   function pickAdvisor() {
-    // Round-robin: cada apertura del modal avanza al siguiente asesor.
-    // La primera vez arranca en 0 (Natalia). Garantiza que los 3 roten
-    // y que ninguno quede fijo en una sesion.
     var counter = 0;
     try {
       var saved = sessionStorage.getItem(SESSION_KEY);
       counter = saved ? parseInt(saved, 10) : 0;
       if (isNaN(counter) || counter < 0) counter = 0;
-    } catch (e) { /* sessionStorage puede no estar disponible */ }
+    } catch (e) {}
     var idx = counter % ADVISORS.length;
     var chosen = ADVISORS[idx];
     try { sessionStorage.setItem(SESSION_KEY, String(counter + 1)); } catch (e) {}
@@ -78,100 +169,214 @@
       .replace(/'/g, '&#39;');
   }
 
+  // === HTML DEL MODAL ===
   function buildModalHtml(advisor) {
-    var adv = advisor;
-    var actionsHtml = ACTIONS.map(function (a, i) {
-      return '<button type="button" class="wm-action" data-action-idx="' + i + '">' +
-               '<i class="fas ' + a.icon + '"></i>' +
-               '<span>' + escapeHtml(a.label) + '</span>' +
-             '</button>';
-    }).join('');
     return '' +
       '<div id="wm-backdrop" role="dialog" aria-modal="true" aria-labelledby="wm-name" aria-hidden="true">' +
         '<div id="wm-card">' +
           '<div id="wm-header">' +
-            '<div class="wm-avatar" style="background:' + adv.gradient + '">' + adv.initial + '</div>' +
+            '<div class="wm-avatar" style="background:' + advisor.gradient + '">' + advisor.initial + '</div>' +
             '<div class="wm-info">' +
               '<div class="wm-name" id="wm-name">' +
-                '<span>' + escapeHtml(adv.name) + '</span>' +
-                ' <span style="opacity:0.85;font-weight:400;font-size:13px;">\u00b7 ' + escapeHtml(adv.role) + '</span>' +
+                '<span>' + escapeHtml(advisor.name) + '</span>' +
+                ' <span style="opacity:0.85;font-weight:400;font-size:13px;">· ' + escapeHtml(advisor.role) + '</span>' +
               '</div>' +
-              '<div class="wm-status">en l\u00ednea</div>' +
+              '<div class="wm-status">en linea</div>' +
             '</div>' +
             '<button type="button" class="wm-close" aria-label="Cerrar" data-wm-close>' +
               '<i class="fas fa-times"></i>' +
             '</button>' +
           '</div>' +
           '<div id="wm-body">' +
-            '<div class="wm-bubble wm-agent" data-wm-msg="0">\u00a1Hola! \u00bfEn qu\u00e9 te podemos ayudar?</div>' +
+            '<div class="wm-bubble wm-agent" data-wm-bubble="hello">¡Hola! ¿En que te podemos ayudar?</div>' +
             '<div class="wm-bubble wm-typing" data-wm-typing aria-hidden="true">' +
               '<span></span><span></span><span></span>' +
             '</div>' +
-            '<div class="wm-bubble wm-agent" data-wm-msg="1" style="display:none"></div>' +
-            '<div class="wm-actions">' + actionsHtml + '</div>' +
+            // PASO 1: intencion
+            '<div class="wm-step" data-wm-step="1">' +
+              '<div class="wm-step-title">Cuentanos que necesitas</div>' +
+              '<div class="wm-actions" data-wm-intentions></div>' +
+            '</div>' +
+            // PASO 2: departamento detectado
+            '<div class="wm-step" data-wm-step="2-detected" style="display:none">' +
+              '<div class="wm-detected-banner" data-wm-detected-banner></div>' +
+              '<div class="wm-actions" data-wm-detected-actions></div>' +
+            '</div>' +
+            // PASO 2: departamento manual
+            '<div class="wm-step" data-wm-step="2-manual" style="display:none">' +
+              '<div class="wm-step-title">¿En que departamento estas?</div>' +
+              '<div class="wm-actions" data-wm-departments></div>' +
+            '</div>' +
+            // Boton volver
+            '<button type="button" class="wm-back-btn" data-wm-back style="display:none">' +
+              '<i class="fas fa-arrow-left"></i> Cambiar de opcion' +
+            '</button>' +
           '</div>' +
-          '<div id="wm-footer">Conversaci\u00f3n atendida por el equipo de CONCASAYA \u00b7 Respuesta en menos de 24h</div>' +
+          '<div id="wm-footer">Conversacion atendida por el equipo de CONCASAYA · Respuesta en menos de 24h</div>' +
         '</div>' +
       '</div>';
   }
 
   // === ESTADO ===
-  var backdrop, card, body, msgEls, typingEl, actionsEl, currentAdvisor;
+  var backdrop, card, body, typingEl, currentAdvisor;
+  var intentionActionsEl, detectedActionsEl, departmentActionsEl, backBtn;
+  var detectedBannerEl, helloBubble;
+  var state = {
+    intention: null,
+    department: null,
+    detectedDepartment: null
+  };
 
-  // === MOSTRAR BURBUJA + TYPING ===
-  function showMessage(idx, text) {
-    var el = msgEls[idx];
-    if (!el) return;
-    el.textContent = text;
-    el.classList.add('wm-show');
-    el.style.display = '';
+  // === RENDERIZAR PASO 1: INTENCIONES ===
+  function renderIntentions() {
+    intentionActionsEl.innerHTML = INTENTIONS.map(function (i) {
+      var isPrimary = (i.id === 'lote'); // CTA principal: cotizar con lote
+      var cls = 'wm-action' + (isPrimary ? ' wm-action-primary' : '');
+      return '<button type="button" class="' + cls + '" data-wm-intention="' + i.id + '">' +
+               '<i class="fas ' + i.icon + '"></i>' +
+               '<span>' + escapeHtml(i.label) + '</span>' +
+               (isPrimary ? '<i class="fas fa-arrow-right wm-action-arrow"></i>' : '') +
+             '</button>';
+    }).join('');
+  }
+
+  // === RENDERIZAR PASO 2: DEPARTAMENTO MANUAL ===
+  function renderDepartments() {
+    departmentActionsEl.innerHTML = DEPARTMENTS.map(function (d, i) {
+      var cls = 'wm-action' + (i === 0 ? ' wm-action-primary' : '');
+      return '<button type="button" class="' + cls + '" data-wm-department="' + d.id + '">' +
+               '<i class="fas ' + d.icon + '"></i>' +
+               '<span>' + escapeHtml(d.label) + '</span>' +
+             '</button>';
+    }).join('');
+  }
+
+  // === RENDERIZAR PASO 2: DEPARTAMENTO DETECTADO ===
+  function renderDetected() {
+    var dept = state.detectedDepartment;
+    var icon = (dept === 'Cundinamarca') ? 'fa-mountain-sun' : 'fa-mountain';
+    detectedBannerEl.innerHTML = '<i class="fas fa-location-dot wm-detected-pin"></i>' +
+      '<div class="wm-detected-text">' +
+        'Detectamos que estas en <strong>' + escapeHtml(dept) + '</strong>' +
+        '<span class="wm-detected-sub">¿Cotizamos aca?</span>' +
+      '</div>';
+    detectedActionsEl.innerHTML =
+      '<button type="button" class="wm-action wm-action-primary" data-wm-department="' + escapeHtml(dept) + '">' +
+        '<i class="fas ' + icon + '"></i>' +
+        '<span>Si, cotizar en ' + escapeHtml(dept) + '</span>' +
+        '<i class="fas fa-arrow-right wm-action-arrow"></i>' +
+      '</button>' +
+      '<button type="button" class="wm-action" data-wm-department="__other__">' +
+        '<i class="fas fa-rotate"></i>' +
+        '<span>No, es otro departamento</span>' +
+      '</button>';
+  }
+
+  // === MOSTRAR PASO ===
+  function showStep(stepName) {
+    var steps = body.querySelectorAll('.wm-step');
+    for (var i = 0; i < steps.length; i++) {
+      steps[i].style.display = 'none';
+    }
+    var target = body.querySelector('[data-wm-step="' + stepName + '"]');
+    if (target) {
+      target.style.display = '';
+      // Animar entrada
+      var inner = target.querySelector('.wm-actions, .wm-detected-banner');
+      if (inner) {
+        inner.classList.remove('wm-show');
+        void inner.offsetWidth;
+        requestAnimationFrame(function () { inner.classList.add('wm-show'); });
+      }
+    }
+    if (stepName === '1') {
+      backBtn.style.display = 'none';
+    } else {
+      backBtn.style.display = '';
+    }
     body.scrollTop = body.scrollHeight;
   }
 
-  function runTypingThenShow(idx, text, delayBefore) {
-    typingEl.style.display = '';
-    body.scrollTop = body.scrollHeight;
-    setTimeout(function () {
-      typingEl.style.display = 'none';
-      showMessage(idx, text);
-    }, delayBefore);
+  // === ENVIAR A WHATSAPP ===
+  function sendToWhatsApp() {
+    var msg = buildMessage(state.intention, state.department);
+    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    close();
+    setTimeout(function () { window.open(url, '_blank'); }, 200);
+  }
+
+  // === CLICK HANDLERS ===
+  function onIntentionClick(e) {
+    var btn = e.target.closest('[data-wm-intention]');
+    if (!btn) return;
+    var id = btn.getAttribute('data-wm-intention');
+    state.intention = id;
+    if (id === 'exterior') {
+      // Exterior salta departamento: ya segmentado
+      sendToWhatsApp();
+      return;
+    }
+    // Paso 2: detectado o manual
+    if (state.detectedDepartment) {
+      showStep('2-detected');
+    } else {
+      showStep('2-manual');
+    }
+  }
+
+  function onDepartmentClick(e) {
+    var btn = e.target.closest('[data-wm-department]');
+    if (!btn) return;
+    var id = btn.getAttribute('data-wm-department');
+    if (id === '__other__') {
+      // Usuario rechazo la deteccion: mostrar 3 botones manuales
+      state.department = null;
+      showStep('2-manual');
+      return;
+    }
+    state.department = id;
+    sendToWhatsApp();
   }
 
   // === OPEN / CLOSE ===
   function open() {
     if (!backdrop) return;
     currentAdvisor = pickAdvisor();
-    // Reset
-    msgEls[0].textContent = '\u00a1Hola! \u00bfEn qu\u00e9 te podemos ayudar?';
-    msgEls[0].classList.add('wm-show');
-    msgEls[0].style.display = '';
-    msgEls[1].classList.remove('wm-show');
-    msgEls[1].style.display = 'none';
-    msgEls[1].textContent = '';
+    // Reset estado
+    state.intention = null;
+    state.department = null;
+    state.detectedDepartment = detectDepartmentFromURL();
+    // Reset visual: burbuja inicial
+    if (helloBubble) {
+      helloBubble.textContent = '¡Hola! ¿En que te podemos ayudar?';
+      helloBubble.classList.add('wm-show');
+      helloBubble.style.display = '';
+    }
     typingEl.style.display = 'none';
-    actionsEl.classList.remove('wm-show');
-    // Header: actualizar avatar con el asesor elegido
+    // Header
     var avatar = card.querySelector('.wm-avatar');
     var nameEl = card.querySelector('.wm-name');
     avatar.style.background = currentAdvisor.gradient;
     avatar.textContent = currentAdvisor.initial;
     nameEl.innerHTML = '<span>' + escapeHtml(currentAdvisor.name) + '</span>' +
-      ' <span style="opacity:0.85;font-weight:400;font-size:13px;">\u00b7 ' + escapeHtml(currentAdvisor.role) + '</span>';
+      ' <span style="opacity:0.85;font-weight:400;font-size:13px;">· ' + escapeHtml(currentAdvisor.role) + '</span>';
+    // Re-render dinamico segun deteccion
+    renderIntentions();
+    renderDepartments();
+    if (state.detectedDepartment) {
+      renderDetected();
+    }
     // Mostrar backdrop
     backdrop.style.display = 'flex';
     backdrop.setAttribute('aria-hidden', 'false');
-    // Forzar reflow para que la animacion de entrada funcione
     void backdrop.offsetWidth;
     requestAnimationFrame(function () { backdrop.classList.add('wm-open'); });
-    // Secuencia de burbujas
+    // Paso 1
+    showStep('1');
+    // Animar entrada de intenciones despues de un beat
     setTimeout(function () {
-      runTypingThenShow(1, currentAdvisor.welcome, 1200);
-    }, 700);
-    setTimeout(function () {
-      actionsEl.classList.add('wm-show');
-      body.scrollTop = body.scrollHeight;
-    }, 2400);
-    // Cerrar con ESC
+      intentionActionsEl.classList.add('wm-show');
+    }, 350);
     document.addEventListener('keydown', onKey);
   }
 
@@ -185,29 +390,19 @@
 
   function onKey(e) { if (e.key === 'Escape') close(); }
 
-  // === CLICK EN ACCION ===
-  function onAction(e) {
-    var btn = e.target.closest('.wm-action');
-    if (!btn) return;
-    var idx = parseInt(btn.getAttribute('data-action-idx'), 10);
-    var a = ACTIONS[idx];
-    if (!a) return;
-    var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(a.text);
-    close();
-    // Peque\u00f1o delay para que se vea el cierre del modal antes de abrir WhatsApp
-    setTimeout(function () { window.open(url, '_blank'); }, 200);
+  function onBack() {
+    state.intention = null;
+    state.department = null;
+    showStep('1');
   }
 
   // === INTERCEPTAR ENLACES WHATSAPP ===
   function interceptWhatsAppLinks() {
     var links = document.querySelectorAll('a[href^="https://wa.me/"]');
     links.forEach(function (a) {
-      // Evitar duplicar listeners
       if (a.__wmBound) return;
       a.__wmBound = true;
       a.addEventListener('click', function (e) {
-        // Si el link tiene target=_blank, dejamos que se abra normal (caso tipico en la barra social)
-        // pero abrimos nuestro modal primero para warm-up
         e.preventDefault();
         open();
       });
@@ -216,24 +411,28 @@
 
   // === INIT ===
   function init() {
-    // Inyectar el HTML del modal
     var tmp = document.createElement('div');
-    tmp.innerHTML = buildModalHtml(ADVISORS[0]); // placeholder
+    tmp.innerHTML = buildModalHtml(ADVISORS[0]);
     document.body.appendChild(tmp.firstChild);
-    // Capturar referencias
     backdrop = document.getElementById('wm-backdrop');
     card = document.getElementById('wm-card');
     body = document.getElementById('wm-body');
-    msgEls = body.querySelectorAll('[data-wm-msg]');
     typingEl = body.querySelector('[data-wm-typing]');
-    actionsEl = body.querySelector('.wm-actions');
+    helloBubble = body.querySelector('[data-wm-bubble="hello"]');
+    intentionActionsEl = body.querySelector('[data-wm-intentions]');
+    detectedActionsEl = body.querySelector('[data-wm-detected-actions]');
+    departmentActionsEl = body.querySelector('[data-wm-departments]');
+    detectedBannerEl = body.querySelector('[data-wm-detected-banner]');
+    backBtn = body.querySelector('[data-wm-back]');
     // Eventos
     backdrop.addEventListener('click', function (e) {
       if (e.target === backdrop) close();
     });
     card.querySelector('[data-wm-close]').addEventListener('click', close);
-    body.addEventListener('click', onAction);
-    // Interceptar todos los enlaces wa.me existentes
+    intentionActionsEl.addEventListener('click', onIntentionClick);
+    detectedActionsEl.addEventListener('click', onDepartmentClick);
+    departmentActionsEl.addEventListener('click', onDepartmentClick);
+    backBtn.addEventListener('click', onBack);
     interceptWhatsAppLinks();
   }
 

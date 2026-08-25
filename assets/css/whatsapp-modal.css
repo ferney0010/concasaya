@@ -238,7 +238,118 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* === WIZARD: pasos y banners === */
+.wm-step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: stretch;
+  animation: wm-fadein 0.3s ease;
+}
+.wm-step-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #54656f;
+  padding: 0 4px;
+  margin-bottom: 2px;
+}
+
+/* Banner de departamento detectado (caso URL match) */
+.wm-detected-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, #d1fae5 0%, #ecfdf5 100%);
+  border: 1.5px solid #10b981;
+  border-radius: 14px;
+  color: #065f46;
+  font-size: 14px;
+  line-height: 1.35;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.12);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.wm-detected-banner.wm-show { opacity: 1; transform: translateY(0); }
+.wm-detected-pin {
+  font-size: 22px;
+  color: #059669;
+  flex-shrink: 0;
+  animation: wm-pin-bounce 1.5s ease-in-out infinite;
+}
+.wm-detected-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.wm-detected-text strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+.wm-detected-sub {
+  font-size: 12px;
+  color: #047857;
+  opacity: 0.85;
+  font-weight: 500;
+}
+@keyframes wm-pin-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* Accion primaria: destacada con gradiente */
+.wm-action-primary {
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+  font-weight: 700 !important;
+}
+.wm-action-primary:hover {
+  background: linear-gradient(135deg, #1ebe5a 0%, #0f7a6e 100%) !important;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+}
+.wm-action-primary i {
+  color: #fff !important;
+}
+.wm-action-arrow {
+  margin-left: auto;
+  font-size: 13px !important;
+  opacity: 0.85;
+  transition: transform 0.2s;
+}
+.wm-action-primary:hover .wm-action-arrow {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Boton volver al paso anterior */
+.wm-back-btn {
+  align-self: flex-start;
+  background: transparent;
+  border: 0;
+  color: #54656f;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+  margin: 4px 0 0;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background-color 0.15s, color 0.15s;
+}
+.wm-back-btn:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: #111;
+}
+.wm-back-btn i { font-size: 11px; }
+
 @media (prefers-reduced-motion: reduce) {
   #wm-backdrop, #wm-card, .wm-bubble, .wm-actions { transition: none !important; }
-  #wm-header .wm-status::before, .wm-bubble.wm-typing span { animation: none !important; }
+  #wm-header .wm-status::before,
+  .wm-bubble.wm-typing span,
+  .wm-detected-pin { animation: none !important; }
 }
