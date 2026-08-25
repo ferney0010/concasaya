@@ -124,59 +124,69 @@
     return [
       '<div id="sa-backdrop" role="dialog" aria-modal="true" aria-labelledby="sa-title">',
       '  <div id="sa-card">',
+      '    <button type="button" id="sa-close" aria-label="Cerrar aviso">&times;</button>',
 
-      // HEADER: logo + sirena + titulo ATENCION
-      '    <div id="sa-header">',
-      '      <div class="sa-header-top">',
+      // FLYER: replica del aviso anti-estafa de CONCASAYA
+      '    <div class="sa-flyer">',
+      '      <div class="sa-flyer-top">',
       '        <div class="sa-siren"><i class="fa-solid fa-bell fa-shake"></i></div>',
-      '        <img src="/assets/images/logoconcasaya.webp" alt="CONCASAYA" class="sa-logo" onerror="this.style.display=\'none\'" />',
-      '        <div class="sa-header-title">',
-      '          <span class="sa-eyebrow">Aviso urgente</span>',
-      '          <h2 id="sa-title">!Atencion!</h2>',
+      '        <div class="sa-flyer-brand">',
+      '          <img src="/assets/images/logoconcasaya.webp" alt="CONCASAYA" class="sa-flyer-logo" onerror="this.outerHTML=\'<div class=&quot;sa-flyer-logo-text&quot;>CONCASAYA<\/div>\'" />',
+      '          <span class="sa-flyer-tagline">Prefabricados</span>',
       '        </div>',
-      '      </div>',
-      '      <div class="sa-banner-yellow">Estamos siendo suplantados</div>',
-      '      <div class="sa-subhead"><i class="fa-solid fa-triangle-exclamation"></i> No caiga en estafas</div>',
-      '    </div>',
-
-      // BODY: 3 tarjetas
-      '    <div id="sa-body">',
-      '      <div class="sa-grid-3">',
-      '        <div class="sa-card-rule sa-card-rule--bad">',
-      '          <div class="sa-icon-circle sa-icon-circle--bad"><i class="fa-solid fa-xmark"></i></div>',
-      '          <strong>No pedimos anticipos</strong>',
-      '          <span>Ni a cuentas personales ni a terceros</span>',
-      '        </div>',
-      '        <div class="sa-card-rule sa-card-rule--ok">',
-      '          <div class="sa-icon-circle sa-icon-circle--ok"><i class="fa-solid fa-check"></i></div>',
-      '          <strong>Todo pago despues de firmar contrato</strong>',
-      '          <span>Firmado y autenticado en notaria</span>',
-      '        </div>',
-      '        <div class="sa-card-rule sa-card-rule--bad">',
-      '          <div class="sa-icon-circle sa-icon-circle--bad"><i class="fa-solid fa-xmark"></i></div>',
-      '          <strong>No recibimos pagos por redes</strong>',
-      '          <span>Ni por perfiles falsos. Solo canales oficiales</span>',
-      '        </div>',
+      '        <div class="sa-flyer-watermark"><i class="fa-solid fa-exclamation"></i></div>',
       '      </div>',
 
-      // CTA: banner amarillo
-      '      <a id="sa-btn-policy-link" class="sa-cta-yellow" href="/proteccion-contra-estafas.html" target="_blank" rel="noopener">',
-      '        <div class="sa-cta-icon"><i class="fa-solid fa-shield-halved"></i></div>',
-      '        <div class="sa-cta-text">',
+      '      <div class="sa-flyer-atention">!Atencion!</div>',
+      '      <div class="sa-flyer-banner">Estamos siendo suplantados</div>',
+
+      '      <div class="sa-flyer-subhead">',
+      '        <i class="fa-solid fa-triangle-exclamation"></i>',
+      '        <span>No caiga en <strong>estafas</strong></span>',
+      '        <span class="sa-flyer-line"></span>',
+      '      </div>',
+
+      '      <div class="sa-flyer-3cards">',
+      '        <div class="sa-fcard sa-fcard--bad">',
+      '          <div class="sa-fcard-icon sa-fcard-icon--bad"><i class="fa-solid fa-xmark"></i></div>',
+      '          <div class="sa-fcard-text">',
+      '            <strong>No pedimos anticipos</strong>',
+      '            <span>Ni a cuentas personales ni a terceros</span>',
+      '          </div>',
+      '        </div>',
+      '        <div class="sa-fcard sa-fcard--ok">',
+      '          <div class="sa-fcard-icon sa-fcard-icon--ok"><i class="fa-solid fa-check"></i></div>',
+      '          <div class="sa-fcard-text">',
+      '            <strong>Todo pago despues de firmar contrato</strong>',
+      '            <span>Firmado y autenticado en notaria</span>',
+      '          </div>',
+      '        </div>',
+      '        <div class="sa-fcard sa-fcard--bad">',
+      '          <div class="sa-fcard-icon sa-fcard-icon--bad"><i class="fa-solid fa-xmark"></i></div>',
+      '          <div class="sa-fcard-text">',
+      '            <strong>No recibimos pagos por redes</strong>',
+      '            <span>Ni por perfiles falsos. Solo canales oficiales</span>',
+      '          </div>',
+      '        </div>',
+      '      </div>',
+
+      '      <div class="sa-flyer-cta">',
+      '        <i class="fa-solid fa-shield-halved"></i>',
+      '        <div>',
       '          <strong>Protegete, verifica y denuncia</strong>',
       '          <span>Tu seguridad es nuestra prioridad</span>',
       '        </div>',
-      '        <i class="fa-solid fa-arrow-right sa-cta-arrow"></i>',
-      '      </a>',
+      '      </div>',
       '    </div>',
 
-      // FOOTER
-      '    <div id="sa-footer">',
-      '      <label id="sa-acknowledge">',
-      '        <input type="checkbox" id="sa-ack-input" />',
-      '        <span>Entendi. Solo confio en los canales oficiales de CONCASAYA.</span>',
-      '      </label>',
-      '      <button type="button" id="sa-btn-confirm" disabled><i class="fa-solid fa-check"></i> Continuar al sitio</button>',
+      // CTA OPCIONAL: ver politica de proteccion (NO obligatorio)
+      '    <div class="sa-flyer-actions">',
+      '      <a id="sa-btn-policy-link" class="sa-cta-link" href="/proteccion-contra-estafas.html" target="_blank" rel="noopener">',
+      '        <i class="fa-solid fa-shield-halved"></i>',
+      '        <span>Ver politica de proteccion (opcional)</span>',
+      '        <i class="fa-solid fa-arrow-right sa-cta-arrow"></i>',
+      '      </a>',
+      '      <button type="button" id="sa-btn-confirm"><i class="fa-solid fa-check"></i> Entendido, cerrar</button>',
       '    </div>',
 
       '  </div>',
@@ -238,74 +248,48 @@
   // ---- Wire up ----
   function wire() {
     var backdrop  = document.getElementById('sa-backdrop');
-    var ackInput  = document.getElementById('sa-ack-input');
-    var btnPolicy = document.getElementById('sa-btn-policy');
     var btnConfirm= document.getElementById('sa-btn-confirm');
+    var btnClose  = document.getElementById('sa-close');
     var reopenBtn = document.getElementById('sa-reopen');
 
     if (!backdrop) return;
 
-    // Bloquear cierre con click fuera o ESC: la alerta es inescapable hasta confirmar
+    // Click en el backdrop (fuera del card) cierra el modal
     backdrop.addEventListener('click', function (e) {
-      // Solo el contenido de la card evita el cierre
       if (e.target === backdrop) {
-        // Suave "sacudida" del card para indicar que no se cierra afuera
-        var card = document.getElementById('sa-card');
-        if (card) {
-          card.style.transform = 'translateX(-6px)';
-          setTimeout(function(){ card.style.transform = 'translateX(6px)'; }, 70);
-          setTimeout(function(){ card.style.transform = 'translateX(-4px)'; }, 140);
-          setTimeout(function(){ card.style.transform = 'translateX(0)'; }, 210);
-        }
+        close(true);
       }
     });
 
-    if (ackInput) {
-      ackInput.addEventListener('change', function () {
-        var on = ackInput.checked;
-        btnConfirm.disabled = !on;
-        if (on) {
-          btnConfirm.classList.add('sa-btn-confirm--ready');
-        } else {
-          btnConfirm.classList.remove('sa-btn-confirm--ready');
-        }
-      });
-    }
-
-    if (btnPolicy) {
-      btnPolicy.addEventListener('click', function () {
-        window.open(CONFIG.policyUrl, '_blank', 'noopener');
-      });
-    }
-
+    // Boton "Entendido, cerrar"
     if (btnConfirm) {
       btnConfirm.addEventListener('click', function () {
-        if (btnConfirm.disabled) return;
-        if (!ackInput || !ackInput.checked) return;
         close(true);
       });
     }
 
+    // Boton X
+    if (btnClose) {
+      btnClose.addEventListener('click', function () {
+        close(true);
+      });
+    }
+
+    // Boton flotante para reabrir
     if (reopenBtn) {
       reopenBtn.addEventListener('click', function () {
-        // Reabrir pero NO marcar como acknowledged (no persistir en esta sesion)
-        if (ackInput) {
-          ackInput.checked = false;
-          btnConfirm.disabled = true;
-          btnConfirm.classList.remove('sa-btn-confirm--ready');
-        }
         reopenBtn.style.display = 'none';
         open();
       });
     }
 
-    // Bloquear ESC (inescapable)
+    // Escape cierra el modal
     document.addEventListener('keydown', function (e) {
       if (backdrop.classList.contains('sa-open') && e.key === 'Escape') {
         e.preventDefault();
-        e.stopPropagation();
+        close(true);
       }
-    }, true);
+    });
   }
 
   // ---- Init ----
