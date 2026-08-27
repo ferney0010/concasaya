@@ -3,6 +3,17 @@
 
 export const staticPosts = [
   {
+    slug: "casas-prefabricadas-economicas-colombia",
+    title: "Casas prefabricadas económicas en Colombia: opciones reales desde $25M a $50M (2026)",
+    description:
+      "Qué SÍ es, qué NO es, y cómo evitar que te vendan gato por liebre. Rangos de precio reales, qué incluye cada gama, costos ocultos que casi nadie te dice. Guía honesta CONCASAYA.",
+    image: "https://www.concasaya.com/assets/images/og-casas-economicas-colombia.webp",
+    date: "2026-08-27",
+    url: "/blog/casas-prefabricadas-economicas-colombia.html",
+    category: "Compra",
+    pinned: false
+  },
+  {
     slug: "casas-prefabricadas-llave-en-mano-colombia",
     title: "Casas prefabricadas llave en mano en Colombia: precios, qué incluye y cómo cotizar",
     description:
