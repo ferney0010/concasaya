@@ -18,6 +18,21 @@ export const staticPosts = [
     authorInitials: "EC",
   },
   {
+    slug: "casa-prefabricada-para-finca-colombia",
+    title:
+      "Casa prefabricada para finca en Colombia: 5 cosas que tenés que saber antes de comprar (2026)",
+    description:
+      "Casa prefabricada para finca en Colombia 2026: 5 cosas clave antes de comprar (lote, accesos, servicios, clima, licencia rural), precios reales CONCASAYA desde $25M, ventajas vs construcción tradicional, errores comunes y por qué CONCASAYA es la mejor opción para fincas en Cundinamarca, Boyacá y Sabana.",
+    image: "https://www.concasaya.com/assets/images/og-casa-prefabricada-para-finca-colombia.webp",
+    date: "2026-08-27",
+    url: "/blog/casa-prefabricada-para-finca-colombia.html",
+    category: "Compra",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
     slug: "multa-construir-sin-licencia-colombia",
     title:
       "¿Me pueden multar por construir sin licencia en Colombia? Sanciones, montos y cómo legalizar (2026)",
