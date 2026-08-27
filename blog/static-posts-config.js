@@ -3,6 +3,7 @@
 
 export const staticPosts = [
   {
+
     slug: "casas-prefabricadas-economicas-colombia",
     title: "Casas prefabricadas económicas en Colombia: opciones reales desde $25M a $50M (2026)",
     description:
@@ -12,8 +13,12 @@ export const staticPosts = [
     url: "/blog/casas-prefabricadas-economicas-colombia.html",
     category: "Compra",
     pinned: false
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-prefabricadas-llave-en-mano-colombia",
     title: "Casas prefabricadas llave en mano en Colombia: precios, qué incluye y cómo cotizar",
     description:
@@ -22,8 +27,12 @@ export const staticPosts = [
     date: "2026-07-09",
     url: "/blog/casas-prefabricadas-llave-en-mano-colombia.html",
     category: "Compra"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-modulares-colombia",
     title: "Casa modular en Colombia: precios por m², qué incluye y cómo cotizar",
     description:
@@ -32,8 +41,12 @@ export const staticPosts = [
     date: "2026-07-16",
     url: "/blog/casas-modulares-colombia.html",
     category: "Compra"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-modulares-cundinamarca",
     title: "Casas modulares en Cundinamarca: precios por m², municipios y cómo cotizar",
     description:
@@ -42,8 +55,12 @@ export const staticPosts = [
     date: "2026-07-21",
     url: "/blog/casas-modulares-cundinamarca.html",
     category: "Compra"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "pozos-septicos-colombia-legalidad-requisitos",
     title: "Pozos sépticos en Colombia: legalidad, normativa y requisitos 2026",
     description:
@@ -52,8 +69,12 @@ export const staticPosts = [
     date: "2026-08-04",
     url: "/blog/pozos-septicos-colombia-legalidad-requisitos.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "precio-casa-prefabricada-colombia-2026",
     title: "Cuánto Cuesta una Casa Prefabricada en Colombia 2026: Precios por m²",
     description: "Precios actuales de casas prefabricadas en Colombia. EPS desde $1.450.000/m², plaqueta desde $600.000/m². Ejemplos 60m², 80m², 120m². Cotización gratuita con CONCASAYA.",
@@ -62,8 +83,12 @@ export const staticPosts = [
     url: "/blog/precio-casa-prefabricada-colombia-2026.html",
     category: "Guías",
     pinned: true
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-prefabricadas-desde-suba-construir-cundinamarca",
     title: "Casas prefabricadas desde Suba: cotiza en Bogotá, construye en Cundinamarca",
     description:
@@ -72,8 +97,12 @@ export const staticPosts = [
     date: "2026-05-22",
     url: "/blog/casas-prefabricadas-desde-suba-construir-cundinamarca.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-prefabricadas-norte-bogota-construir-cundinamarca",
     title: "Casas prefabricadas desde el Norte de Bogotá: cotiza en la ciudad, construye afuera",
     description:
@@ -82,8 +111,12 @@ export const staticPosts = [
     date: "2026-05-22",
     url: "/blog/casas-prefabricadas-norte-bogota-construir-cundinamarca.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "guia-casas-prefabricadas-colombia-concasaya",
     title: "Casas prefabricadas en Colombia (2026)",
     description:
@@ -92,8 +125,12 @@ export const staticPosts = [
     date: "2026-05-15",
     url: "/blog/guia-casas-prefabricadas-colombia-concasaya.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "construccion-prefabricada-cundinamarca-guia-concasaya",
     title: "Construcción prefabricada en Cundinamarca (2026)",
     description:
@@ -102,8 +139,12 @@ export const staticPosts = [
     date: "2026-05-15",
     url: "/blog/construccion-prefabricada-cundinamarca-guia-concasaya.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "comprar-casa-prefabricada-colombia-desde-estados-unidos-canada",
     title: "Comprar Casa Prefabricada en Colombia desde Estados Unidos y Canadá",
     description:
@@ -112,8 +153,12 @@ export const staticPosts = [
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "comprar-casa-prefabricada-colombia-desde-europa",
     title: "Comprar Casa Prefabricada en Colombia desde Europa: Guía para Colombianos",
     description:
@@ -122,8 +167,12 @@ export const staticPosts = [
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-europa.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "comprar-casa-prefabricada-colombia-desde-el-exterior",
     title: "Comprar Casa Prefabricada en Colombia desde el Exterior: Guía para Colombianos",
     description:
@@ -132,8 +181,12 @@ export const staticPosts = [
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "construir-respaldo-legal-casa-prefabricada-concasaya",
     title: "Construir con respaldo legal: la ventaja de elegir CONCASAYA para tu casa prefabricada",
     description:
@@ -142,8 +195,12 @@ export const staticPosts = [
     date: "2026-04-19",
     url: "/blog/construir-respaldo-legal-casa-prefabricada-concasaya.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "permisos-adicionales-casas-prefabricadas-colombia",
     title: "Permisos adicionales en la construcción de casas prefabricadas: servicios públicos, normas urbanísticas y gestión con CONCASAYA",
     description:
@@ -152,8 +209,12 @@ export const staticPosts = [
     date: "2026-04-18",
     url: "/blog/permisos-adicionales-casas-prefabricadas-colombia.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "licencia-construccion-casas-prefabricadas-colombia",
     title: "Licencia de construcción para casas prefabricadas: requisitos, trámites y acompañamiento legal con CONCASAYA",
     description:
@@ -162,8 +223,12 @@ export const staticPosts = [
     date: "2026-04-17",
     url: "/blog/licencia-construccion-casas-prefabricadas-colombia.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "venta-casas-prefabricadas-cundinamarca",
     title: "Venta de Casas Prefabricadas en Cundinamarca: Guía Completa 2026",
     description: "Guía completa sobre la venta de casas prefabricadas en Cundinamarca. Descubre por qué CONCASAYA es la mejor opción para tu hogar prefabricado en Bogotá, Chía, Cajicá, Mosquera y más municipios.",
@@ -171,8 +236,12 @@ export const staticPosts = [
     date: "2026-01-15",
     url: "/blog/venta-casas-prefabricadas-cundinamarca.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "ventajas-prefabricados-clima-calido-santa-marta",
     title: "Ventajas de Casas Prefabricadas en Clima Cálido: Costa Caribe y más",
     description: "Descubre las ventajas de las casas prefabricadas en clima cálido. CONCASAYA construye en Barranquilla y la Costa Caribe; también en Boyacá (p. ej. Samacá). Aislamiento térmico, resistencia y diseño moderno.",
@@ -180,8 +249,12 @@ export const staticPosts = [
     date: "2026-01-15",
     url: "/blog/ventajas-prefabricados-clima-calido-santa-marta.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "ventajas-construccion-prefabricada-2026",
     title: "Ventajas de Construir en Material Prefabricado en 2026: Guía Completa",
     description: "Descubre las ventajas de construir en material prefabricado en 2026. CONCASAYA te muestra las innovaciones, beneficios, sostenibilidad y tendencias del futuro de la construcción prefabricada en Colombia.",
@@ -189,8 +262,12 @@ export const staticPosts = [
     date: "2026-01-15",
     url: "/blog/ventajas-construccion-prefabricada-2026.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "comprar-casa-prefabricada-colombia-2026",
     title: "Comprar Casa Prefabricada en Colombia 2026: Guía Completa",
     description: "Todo lo que necesitas saber para comprar casa prefabricada en Colombia 2026. CONCASAYA es tu proveedor líder en viviendas prefabricadas en Bogotá, Cundinamarca, Boyacá y más regiones.",
@@ -198,8 +275,12 @@ export const staticPosts = [
     date: "2026-03-04",
     url: "/blog/comprar-casa-prefabricada-colombia-2026.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "casas-prefabricadas-en-colombia",
     title: "Casas Prefabricadas en Colombia 2026: Guía Completa",
     description: "Todo sobre casas prefabricadas en Colombia. CONCASAYA es el líder en Bogotá, Cundinamarca, Boyacá. Precios, ventajas, regiones. Cotización gratuita.",
@@ -207,8 +288,12 @@ export const staticPosts = [
     date: "2026-03-04",
     url: "/blog/casas-prefabricadas-en-colombia.html",
     category: "Guías"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "construccion-panel-eps-vs-bloquelon",
     title: "¿Qué es mejor: panel EPS o bloquelón? Comparativa 2026",
     description: "Comparativa panel EPS vs bloquelón: tiempo, costo, aislamiento. Ventajas del EPS. CONCASAYA en Bogotá y Cundinamarca.",
@@ -216,8 +301,12 @@ export const staticPosts = [
     date: "2026-02-08",
     url: "/blog/construccion-panel-eps-vs-bloquelon.html",
     category: "Comparativas"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "plaqueta-concreto-vs-bloquelon",
     title: "¿Qué es mejor: plaqueta de concreto o bloquelón? Comparativa 2026",
     description: "Comparativa plaqueta de concreto vs bloquelón: acabado, juntas, grietas y durabilidad. La plaqueta gana. CONCASAYA la usa en sus proyectos.",
@@ -225,8 +314,12 @@ export const staticPosts = [
     date: "2026-02-08",
     url: "/blog/plaqueta-concreto-vs-bloquelon.html",
     category: "Comparativas"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   },
   {
+
     slug: "construccion-prefabricada-vs-tradicional",
     title: "Construcción prefabricada vs tradicional: comparativa 2026",
     description: "Comparativa construcción prefabricada vs tradicional: tiempo, costo, calidad y sostenibilidad. Ventajas de la vivienda prefabricada. CONCASAYA en Bogotá y Cundinamarca.",
@@ -234,6 +327,9 @@ export const staticPosts = [
     date: "2026-02-08",
     url: "/blog/construccion-prefabricada-vs-tradicional.html",
     category: "Comparativas"
+      author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
   }
 ];
 

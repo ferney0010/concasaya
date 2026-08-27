@@ -47,6 +47,22 @@
     />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 <style>
+      /* Bloque de autor en la card del blog */
+      .post-meta { font-family: "Poppins", sans-serif; }
+      .post-meta__avatar {
+        width: 36px; height: 36px; border-radius: 50%;
+        background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+        color: #fff; display: grid; place-items: center;
+        font-weight: 800; font-size: 0.78rem; letter-spacing: 0.5px; flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0,119,182,0.25);
+      }
+      .post-meta__name { color: #0f172a; }
+      .post-meta__date { color: #64748b; margin-top: 1px; }
+      .post-meta__sep {
+        width: 1px; height: 28px; background: #e2e8f0; margin: 0 0.15rem;
+      }
+      .post-meta__time i { color: #0077b6; }
+
       body {
         font-family: "Poppins", sans-serif;
       }
@@ -1105,7 +1121,34 @@
             const categoryLabel = post.category || "Artículo";
             const pinnedBadge = isPinned
               ? `<span class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><i class="fas fa-thumbtack" aria-hidden="true"></i> Artículo destacado</span>`
-              : `<span class="text-sm text-primary font-semibold">${categoryLabel}</span>`;
+              : `<span class="text-sm text-primary font-semibold uppercase tracking-wide">${categoryLabel}</span>`;
+
+            // Bloque de autor + fecha + tiempo de lectura (estilo SinMulta)
+            const authorName = post.author || "Equipo CONCASAYA";
+            const authorInitials = post.authorInitials || (authorName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase());
+            const readTime = post.readTime || "8 min de lectura";
+            let dateLabel = "";
+            if (post.date) {
+              try {
+                const d = new Date(post.date);
+                if (!isNaN(d.getTime())) {
+                  dateLabel = d.toLocaleDateString("es-CO", { year: "numeric", month: "long", day: "numeric" });
+                }
+              } catch (e) {}
+            }
+            const authorBlock = `
+              <div class="post-meta flex items-center gap-2.5 mt-4 pt-4 border-t border-gray-100 text-sm text-gray-500">
+                <div class="post-meta__avatar">${authorInitials}</div>
+                <div class="flex flex-col leading-tight">
+                  <span class="post-meta__name font-semibold text-dark">${authorName}</span>
+                  ${dateLabel ? `<span class="post-meta__date text-xs">${dateLabel}</span>` : ""}
+                </div>
+                <span class="post-meta__sep" aria-hidden="true"></span>
+                <div class="post-meta__time inline-flex items-center gap-1 text-xs text-gray-500">
+                  <i class="fas fa-clock" aria-hidden="true"></i> ${readTime}
+                </div>
+              </div>
+            `;
 
             article.innerHTML = `
                       <a href="${post.url}" class="${pinnedLayout}">
@@ -1114,7 +1157,8 @@
                               ${pinnedBadge}
                               <h3 class="${isPinned ? "text-2xl md:text-3xl" : "text-xl"} font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
                               <p class="text-gray-600 mb-4 ${isPinned ? "text-base md:text-lg" : ""}">${post.description}</p>
-                              <span class="font-semibold text-primary hover:underline inline-flex items-center">
+                              ${authorBlock}
+                              <span class="font-semibold text-primary hover:underline inline-flex items-center mt-3">
                                   Leer más <i class="fas fa-arrow-right ml-2"></i>
                               </span>
                           </div>
