@@ -12,7 +12,7 @@ export const staticPosts = [
     date: "2026-08-27",
     url: "/blog/casas-prefabricadas-economicas-colombia.html",
     category: "Compra",
-    pinned: false
+    pinned: false,
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -26,7 +26,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/herocasa1.webp",
     date: "2026-07-09",
     url: "/blog/casas-prefabricadas-llave-en-mano-colombia.html",
-    category: "Compra"
+    category: "Compra",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -40,7 +40,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/casa2.webp",
     date: "2026-07-16",
     url: "/blog/casas-modulares-colombia.html",
-    category: "Compra"
+    category: "Compra",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -54,7 +54,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/cass3.webp",
     date: "2026-07-21",
     url: "/blog/casas-modulares-cundinamarca.html",
-    category: "Compra"
+    category: "Compra",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -68,7 +68,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/img1355.webp",
     date: "2026-08-04",
     url: "/blog/pozos-septicos-colombia-legalidad-requisitos.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -82,7 +82,7 @@ export const staticPosts = [
     date: "2026-03-04",
     url: "/blog/precio-casa-prefabricada-colombia-2026.html",
     category: "Guías",
-    pinned: true
+    pinned: true,
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -96,7 +96,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/fondo3.webp",
     date: "2026-05-22",
     url: "/blog/casas-prefabricadas-desde-suba-construir-cundinamarca.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -110,7 +110,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/caseta.webp",
     date: "2026-05-22",
     url: "/blog/casas-prefabricadas-norte-bogota-construir-cundinamarca.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -124,7 +124,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/campe.jpg",
     date: "2026-05-15",
     url: "/blog/guia-casas-prefabricadas-colombia-concasaya.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -138,7 +138,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/cass4.webp",
     date: "2026-05-15",
     url: "/blog/construccion-prefabricada-cundinamarca-guia-concasaya.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -152,7 +152,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/cass2.webp",
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-estados-unidos-canada.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -166,7 +166,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/colonial.webp",
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-europa.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -180,7 +180,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/campe1.webp",
     date: "2026-04-25",
     url: "/blog/comprar-casa-prefabricada-colombia-desde-el-exterior.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -194,7 +194,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/casal1.webp",
     date: "2026-04-19",
     url: "/blog/construir-respaldo-legal-casa-prefabricada-concasaya.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -208,7 +208,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/casco.webp",
     date: "2026-04-18",
     url: "/blog/permisos-adicionales-casas-prefabricadas-colombia.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -222,7 +222,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/planos.webp",
     date: "2026-04-17",
     url: "/blog/licencia-construccion-casas-prefabricadas-colombia.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -235,7 +235,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/cabaññ1.webp",
     date: "2026-01-15",
     url: "/blog/venta-casas-prefabricadas-cundinamarca.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -248,7 +248,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/aislamiento.webp",
     date: "2026-01-15",
     url: "/blog/ventajas-prefabricados-clima-calido-santa-marta.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -261,7 +261,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/eficiente.webp",
     date: "2026-01-15",
     url: "/blog/ventajas-construccion-prefabricada-2026.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -274,7 +274,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/fondo1.webp",
     date: "2026-03-04",
     url: "/blog/comprar-casa-prefabricada-colombia-2026.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -287,7 +287,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/cabaña.webp",
     date: "2026-03-04",
     url: "/blog/casas-prefabricadas-en-colombia.html",
-    category: "Guías"
+    category: "Guías",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -300,7 +300,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/paneleps.webp",
     date: "2026-02-08",
     url: "/blog/construccion-panel-eps-vs-bloquelon.html",
-    category: "Comparativas"
+    category: "Comparativas",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -313,7 +313,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/resistencia.webp",
     date: "2026-02-08",
     url: "/blog/plaqueta-concreto-vs-bloquelon.html",
-    category: "Comparativas"
+    category: "Comparativas",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
@@ -326,7 +326,7 @@ export const staticPosts = [
     image: "https://www.concasaya.com/assets/images/herocasa.webp",
     date: "2026-02-08",
     url: "/blog/construccion-prefabricada-vs-tradicional.html",
-    category: "Comparativas"
+    category: "Comparativas",
       author: "Equipo CONCASAYA",
     readTime: "8 min de lectura",
     authorInitials: "EC",
