@@ -1,6 +1,13 @@
-// OG image SIN TEXTO — solo fondo visual atmosférico.
-// El hero del artículo y la card del blog muestran texto.
-// Este OG image se usa solo para compartir el link (WhatsApp/redes/Google).
+// Genera el OG image del nuevo post (cluster Compra) con:
+// - Color sólido de la categoría (azul Concasaya)
+// - Título del post en blanco bold, centrado y sin estiramiento
+// - Tag de categoría arriba a la izquierda
+// - Logo CONCASAYA + concasaya.com arriba a la derecha
+// - SIN burbujas (solo gradiente + textura de puntos muy sutil)
+// Este OG se usa como miniatura de la card del blog y como preview OG al compartir.
+//
+// IMPORTANTE: solo generar para el post actual y los futuros. NO regenerar
+// los OG de los 24 posts existentes (cada uno conserva su imagen original).
 import sharp from "sharp";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,101 +15,121 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outPath = join(__dirname, "..", "assets", "images", "og-casas-economicas-colombia.webp");
 
-const C = {
-  blueDeep: "#0a2540",
-  blue: "#0077b6",
-  blueMid: "#023e7d",
-  cyan: "#00d4ff",
+const colors = {
+  bgDarker: "#0a2540",
+  bg: "#0077b6",
+  bgDeep: "#023e7d",
+  accent: "#00d4ff",
   yellow: "#ffd166",
-  pink: "#ff5d8f",
-  green: "#10e0a0",
+  label: "COMPRA"
 };
+
+const title = "Casas prefabricadas económicas en Colombia";
+
+// Split manual en 3 líneas balanceadas, cada una ≤ 32 chars para que
+// quepan en 1080px sin necesidad de textLength (sin estiramiento).
+const lines = [
+  "Casas prefabricadas",
+  "económicas en Colombia:",
+  "opciones reales $25M–$50M"
+];
+
+// Sin textLength: dejar que cada línea tenga su ancho natural.
+// fontSize se elige para que la línea más larga quepa cómodo en 1080px.
+const titleSize = 60;
+const lineHeight = 72;
+const blockWidth = 1080; // ancho máximo deseado
+const cx = 600;          // centro horizontal
+const cy = 330;          // centro vertical (un poco abajo del centro real 315
+                         // para dejar aire arriba con el tag COMPRA)
+
+// Medimos aprox. el ancho renderizado para validar que la línea más
+// larga cabe. Helvetica bold ~ 0.58 del fontSize por glyph promedio.
+const longest = lines.reduce((a, b) => (a.length > b.length ? a : b));
+const approxWidth = longest.length * titleSize * 0.58;
+if (approxWidth > blockWidth) {
+  console.warn(
+    `⚠ La línea más larga (${longest.length} chars) mide ~${Math.round(
+      approxWidth
+    )}px, excede ${blockWidth}px.`
+  );
+}
+
+function esc(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+// Centrado vertical real: el primer tspan lleva dy para subir medio bloque,
+// y los siguientes bajan lineHeight cada uno.
+const firstDy = -((lines.length - 1) * lineHeight) / 2;
+const tspans = lines
+  .map(
+    (line, i) =>
+      `<tspan x="0" dy="${i === 0 ? firstDy : lineHeight}">${esc(line)}</tspan>`
+  )
+  .join("");
 
 const svg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <!-- Gradiente azul sólido (diagonal) -->
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="${C.blueDeep}"/>
-      <stop offset="55%" stop-color="${C.blue}"/>
-      <stop offset="100%" stop-color="${C.blueMid}"/>
+      <stop offset="0%" stop-color="${colors.bgDarker}"/>
+      <stop offset="55%" stop-color="${colors.bg}"/>
+      <stop offset="100%" stop-color="${colors.bgDeep}"/>
     </linearGradient>
-
-    <!-- Glows de acento (esquinas) -->
-    <radialGradient id="glowTR" cx="92%" cy="12%" r="40%">
-      <stop offset="0%" stop-color="rgba(0,212,255,0.45)"/>
-      <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
-    </radialGradient>
-    <radialGradient id="glowBL" cx="8%" cy="92%" r="40%">
-      <stop offset="0%" stop-color="rgba(255,93,143,0.35)"/>
-      <stop offset="100%" stop-color="rgba(255,93,143,0)"/>
-    </radialGradient>
-    <radialGradient id="glowBR" cx="90%" cy="85%" r="30%">
-      <stop offset="0%" stop-color="rgba(16,224,160,0.30)"/>
-      <stop offset="100%" stop-color="rgba(16,224,160,0)"/>
-    </radialGradient>
-
-    <!-- Patrón de puntos (textura principal) -->
-    <pattern id="dots" x="0" y="0" width="28" height="28" patternUnits="userSpaceOnUse">
-      <circle cx="14" cy="14" r="1.4" fill="rgba(255,255,255,0.22)"/>
+    <pattern id="dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <circle cx="16" cy="16" r="1" fill="rgba(255,255,255,0.14)"/>
     </pattern>
-    <pattern id="dotsFine" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-      <circle cx="7" cy="7" r="0.7" fill="rgba(255,255,255,0.10)"/>
-    </pattern>
-
-    <!-- Filtro blur para acentos -->
-    <filter id="softBlur"><feGaussianBlur stdDeviation="20"/></filter>
   </defs>
 
-  <!-- FONDO BASE -->
+  <!-- Fondo color sólido de la categoría (sin burbujas) -->
   <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glowTR)"/>
-  <rect width="1200" height="630" fill="url(#glowBL)"/>
-  <rect width="1200" height="630" fill="url(#glowBR)"/>
-  <rect width="1200" height="630" fill="url(#dotsFine)"/>
   <rect width="1200" height="630" fill="url(#dots)"/>
 
-  <!-- ACENTOS DECORATIVOS DIFUMINADOS (esquinas) -->
-  <g filter="url(#softBlur)" opacity="0.65">
-    <circle cx="1100" cy="100" r="100" fill="${C.cyan}"/>
-    <circle cx="100" cy="540" r="110" fill="${C.pink}"/>
-    <circle cx="1080" cy="540" r="80" fill="${C.green}"/>
+  <!-- Tag de categoría (esquina sup-izq) -->
+  <g transform="translate(60, 60)">
+    <rect x="0" y="0" width="170" height="44" rx="22" ry="22"
+          fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.45)" stroke-width="1.5"/>
+    <circle cx="22" cy="22" r="5" fill="${colors.accent}"/>
+    <text x="100" y="29" font-family="Helvetica, Arial, sans-serif" font-size="15"
+          font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="2">
+      ${colors.label}
+    </text>
   </g>
 
-  <!-- Forma geométrica abstracta: casa estilizada (silueta, sin texto) -->
-  <g opacity="0.18" transform="translate(820, 200)">
-    <!-- Casa grande -->
-    <path d="M 0 200 L 0 100 L 110 0 L 220 100 L 220 200 Z" fill="none" stroke="${C.cyan}" stroke-width="2"/>
-    <!-- Ventana -->
-    <rect x="60" y="120" width="40" height="40" fill="none" stroke="${C.cyan}" stroke-width="2"/>
-    <!-- Puerta -->
-    <rect x="120" y="130" width="50" height="70" fill="none" stroke="${C.cyan}" stroke-width="2"/>
-    <!-- Casa pequeña al lado -->
-    <path d="M 250 200 L 250 140 L 320 80 L 390 140 L 390 200 Z" fill="none" stroke="${C.pink}" stroke-width="2"/>
-    <rect x="290" y="150" width="30" height="30" fill="none" stroke="${C.pink}" stroke-width="2"/>
+  <!-- Logo CONCASAYA (esquina sup-der) -->
+  <g transform="translate(1140, 78)">
+    <text x="0" y="0" font-family="Helvetica, Arial, sans-serif" font-size="15"
+          font-weight="800" fill="rgba(255,255,255,0.95)" text-anchor="end" letter-spacing="2.5">
+      CONCASAYA
+    </text>
+    <text x="0" y="20" font-family="Helvetica, Arial, sans-serif" font-size="11"
+          font-weight="500" fill="rgba(255,255,255,0.6)" text-anchor="end" letter-spacing="0.3">
+      concasaya.com
+    </text>
   </g>
 
-  <!-- Líneas decorativas esquinas (esquinas tipo tarjeta) -->
-  <g stroke="${C.white}" stroke-width="2" opacity="0.20" fill="none">
-    <path d="M 40 90 L 40 40 L 90 40"/>
-    <path d="M 1110 40 L 1160 40 L 1160 90"/>
-    <path d="M 40 540 L 40 590 L 90 590"/>
-    <path d="M 1110 590 L 1160 590 L 1160 540"/>
+  <!-- Título centrado (sin textLength, ancho natural) -->
+  <g transform="translate(${cx}, ${cy})">
+    <text font-family="Helvetica, Arial, sans-serif" font-size="${titleSize}"
+          font-weight="900" fill="#ffffff" text-anchor="middle"
+          style="text-shadow: 0 2px 18px rgba(0,0,0,0.4);">
+      ${tspans}
+    </text>
   </g>
 
-  <!-- Círculos decorativos pequeños (no compitiendo con texto) -->
-  <g opacity="0.7">
-    <circle cx="180" cy="120" r="6" fill="${C.yellow}"/>
-    <circle cx="200" cy="160" r="3" fill="${C.cyan}"/>
-    <circle cx="160" cy="170" r="4" fill="${C.pink}"/>
-    <circle cx="1000" cy="500" r="5" fill="${C.green}"/>
-    <circle cx="1020" cy="470" r="3" fill="${C.yellow}"/>
-  </g>
+  <!-- Línea de acento amarilla centrada debajo del título -->
+  <rect x="${cx - 30}" y="${cy + (lines.length * lineHeight) / 2 + 12}"
+        width="60" height="4" rx="2" fill="${colors.yellow}"/>
 </svg>`;
 
 await sharp(Buffer.from(svg))
   .resize(1200, 630)
-  .webp({ quality: 92, effort: 5 })
+  .webp({ quality: 92, effort: 4 })
   .toFile(outPath);
 
-console.log(`✓ OG image (sin texto, solo visual) generado: ${outPath}`);
+console.log(`✓ OG image regenerado: ${outPath}`);
+console.log(`  ${lines.length} líneas, fontSize ${titleSize}, línea más larga: ${longest.length} chars (~${Math.round(approxWidth)}px)`);
