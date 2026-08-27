@@ -18,6 +18,21 @@ export const staticPosts = [
     authorInitials: "EC",
   },
   {
+    slug: "multa-construir-sin-licencia-colombia",
+    title:
+      "¿Me pueden multar por construir sin licencia en Colombia? Sanciones, montos y cómo legalizar (2026)",
+    description:
+      "Multa por construir sin licencia en Colombia 2026: montos reales por estrato (de $8.7M a $43.7M por m²), 5 sanciones que te pueden poner, cómo legalizar con reconocimiento de edificación y por qué CONCASAYA te sale más barato desde el inicio.",
+    image: "https://www.concasaya.com/assets/images/og-multa-construir-sin-licencia-colombia.webp",
+    date: "2026-08-27",
+    url: "/blog/multa-construir-sin-licencia-colombia.html",
+    category: "Guías",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
     slug: "casas-prefabricadas-llave-en-mano-colombia",
     title:
       "Casas prefabricadas llave en mano en Colombia: precios, qué incluye y cómo cotizar",
