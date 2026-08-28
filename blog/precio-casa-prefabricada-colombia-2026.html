@@ -92,14 +92,18 @@
       }
       .hero-image { position: relative; height: 72vh; min-height: 520px; max-height: 760px; overflow: hidden; width: 100%; isolation: isolate; }
       .hero-image img { width: 100%; height: 112%; object-fit: cover; display: block; transform: translateY(var(--hero-parallax, 0)); will-change: transform; }
-      @media (max-width: 768px) {
-        .hero-image { height: auto; min-height: 0; max-height: none; margin-top: 0; padding: 1.5rem 0 2rem; }
-        .hero-content { top: 0; transform: none; position: relative; padding-top: 0.75rem !important; padding-bottom: 1rem !important; }
-        .hero-left h1 { font-size: 1.6rem !important; line-height: 1.18 !important; margin-bottom: 0.75rem !important; }
-        .hero-left p { font-size: 0.9rem !important; line-height: 1.55 !important; }
-        .hero-cta-card { padding: 1.25rem 1.25rem 1.15rem; }
-        .hero-cta-card__title { font-size: 1.1rem; }
-        .hero-cta-card__price { font-size: 1.4rem; }
+      @media (max-width: 1023px) {
+        .hero-image { height: auto; min-height: 0; max-height: none; margin-top: 0; padding: 1.5rem 0 2.5rem; }
+        .hero-content { top: 0; transform: none; position: relative; padding-top: 1rem !important; padding-bottom: 0 !important; }
+        .hero-left h1 { font-size: 1.9rem !important; line-height: 1.18 !important; margin-bottom: 0.85rem !important; }
+        .hero-left p { font-size: 0.95rem !important; line-height: 1.5 !important; }
+        .hero-right { order: 1; }
+        .hero-cta-card { max-width: 480px; margin: 0 auto; padding: 1.25rem 1.25rem 1.15rem; }
+        .hero-cta-card__title { font-size: 1.2rem; }
+        .hero-cta-estimate__value { font-size: 1.15rem; }
+      }
+      @media (max-width: 480px) {
+        .hero-left h1 { font-size: 1.75rem !important; }
       }
       .hero-image::after {
         content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
@@ -339,17 +343,16 @@
       .hero-left { min-width: 0; }
       .hero-right { min-width: 0; }
       @media (min-width: 1024px) {
-        .hero-grid { grid-template-columns: minmax(0, 1.15fr) 380px; gap: 3rem; }
+        .hero-grid { grid-template-columns: minmax(0, 1.1fr) 400px; gap: 3rem; }
       }
-      @media (max-width: 1023px) {
-        .hero-cta-card { max-width: 460px; margin-left: auto; margin-right: auto; }
-      }
+
+      /* Mini-cotizador dentro del card */
       .hero-cta-card {
         background: rgba(255, 255, 255, 0.97);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-radius: 22px;
-        padding: 1.5rem 1.5rem 1.4rem;
+        padding: 1.4rem 1.4rem 1.3rem;
         box-shadow: 0 25px 60px rgba(0, 0, 0, 0.28);
         border: 1px solid rgba(255, 255, 255, 0.6);
       }
@@ -359,22 +362,47 @@
         color: #fff; font-size: 0.72rem; font-weight: 800; letter-spacing: 1.2px;
         text-transform: uppercase;
         padding: 0.35rem 0.75rem; border-radius: 999px;
-        margin-bottom: 0.85rem;
+        margin-bottom: 0.7rem;
       }
       .hero-cta-card__title {
-        color: #0a2540; font-size: 1.25rem; font-weight: 800; line-height: 1.25;
-        margin: 0 0 1rem 0;
+        color: #0a2540; font-size: 1.3rem; font-weight: 800; line-height: 1.2;
+        margin: 0 0 0.35rem 0;
       }
-      .hero-cta-card__price { color: #0077b6; font-size: 1.6rem; font-weight: 900; }
-      .hero-cta-card__list {
-        list-style: none; padding: 0; margin: 0 0 1.1rem 0;
-        display: flex; flex-direction: column; gap: 0.55rem;
+      .hero-cta-card__lead {
+        color: #475569; font-size: 0.85rem; line-height: 1.4;
+        margin: 0 0 0.95rem 0;
       }
-      .hero-cta-card__list li {
-        display: flex; align-items: flex-start; gap: 0.55rem;
-        font-size: 0.9rem; color: #1e293b; line-height: 1.4;
+      .hero-cta-form { display: flex; flex-direction: column; gap: 0.65rem; }
+      .hero-cta-field { display: flex; flex-direction: column; gap: 0.25rem; }
+      .hero-cta-field__label {
+        color: #334155; font-size: 0.78rem; font-weight: 700;
       }
-      .hero-cta-card__list li i { color: #10b981; margin-top: 0.15rem; flex-shrink: 0; }
+      .hero-cta-input {
+        width: 100%;
+        padding: 0.7rem 0.85rem;
+        border: 1.5px solid #cbd5e1; border-radius: 10px;
+        background: #fff; color: #0f172a; font-size: 0.95rem; font-weight: 600;
+        font-family: inherit;
+        transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      }
+      .hero-cta-input:focus {
+        outline: none; border-color: #0077b6;
+        box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.15);
+      }
+      .hero-cta-estimate {
+        display: flex; flex-direction: column; gap: 0.15rem;
+        background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+        border-left: 3px solid #0077b6; border-radius: 10px;
+        padding: 0.7rem 0.85rem; margin-top: 0.25rem;
+      }
+      .hero-cta-estimate__label {
+        color: #0369a1; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.4px;
+        text-transform: uppercase;
+      }
+      .hero-cta-estimate__value {
+        color: #0a2540; font-size: 1.15rem; font-weight: 900;
+        font-variant-numeric: tabular-nums;
+      }
       .hero-cta-card__btn {
         display: flex; align-items: center; justify-content: center; gap: 0.55rem;
         width: 100%;
@@ -382,16 +410,16 @@
         padding: 0.9rem 1rem; border-radius: 999px; text-decoration: none;
         box-shadow: 0 12px 30px rgba(37, 211, 102, 0.35);
         transition: transform 0.2s ease, background 0.2s ease;
+        border: 0; cursor: pointer; font-family: inherit;
+        margin-top: 0.25rem;
       }
       .hero-cta-card__btn:hover { background: #1ebe5d; transform: translateY(-2px); }
-      .hero-cta-card__link {
-        display: block; text-align: center; margin-top: 0.7rem;
-        color: #0077b6; font-weight: 700; font-size: 0.88rem;
-        text-decoration: none;
+      .hero-cta-card__trust {
+        display: flex; align-items: center; justify-content: center; gap: 0.35rem;
+        color: #64748b; font-size: 0.75rem;
+        margin: 0.7rem 0 0 0;
       }
-      .hero-cta-card__link:hover { text-decoration: underline; }
-      .hero-cta-card__link i { margin-left: 0.3rem; transition: transform 0.2s ease; }
-      .hero-cta-card__link:hover i { transform: translateX(3px); }
+      .hero-cta-card__trust i { color: #10b981; }
 
       /* Layout de 2 columnas: contenido + sidebar */
       .article-layout {
@@ -608,35 +636,53 @@
                 <i class="fas fa-chart-line"></i>
                 Guía de precios 2026
               </div>
-              <h1 class="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-3 sm:mb-3 drop-shadow-lg leading-tight">
+              <h1 class="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-5xl font-bold text-white mb-3 sm:mb-4 drop-shadow-lg leading-tight">
                 Casas prefabricadas en Colombia 2026: precios reales por m²
               </h1>
-              <p class="text-white/90 text-sm sm:text-base md:text-lg max-w-2xl leading-relaxed mb-1">
+              <p class="text-white/95 text-base sm:text-lg md:text-xl max-w-2xl leading-snug mb-1">
                 Desde <strong>$600.000/m²</strong> en plaqueta obra negra hasta <strong>$3.450.000/m²</strong> en EPS dos pisos obra blanca. Ejemplos para 60, 80 y 120 m².
               </p>
-              <p class="text-white/80 text-sm sm:text-base max-w-2xl leading-relaxed">
+              <p class="text-white/85 text-sm sm:text-base max-w-2xl leading-snug">
                 Cabañas desde <strong>$25M</strong> con placa incluida · Bogotá, Cundinamarca, Boyacá.
               </p>
             </div>
 
-            <!-- Columna derecha: CTA card transaccional -->
+            <!-- Columna derecha: mini-cotizador visual con mensaje contextual a WhatsApp -->
             <div class="hero-right">
               <div class="hero-cta-card">
                 <span class="hero-cta-card__tag">
-                  <i class="fas fa-bolt"></i> Cotizá en 30 segundos
+                  <i class="fas fa-calculator"></i> Cotizá en 1 minuto
                 </span>
-                <h3 class="hero-cta-card__title">Tu casa desde <span class="hero-cta-card__price">$25M</span> con placa incluida</h3>
-                <ul class="hero-cta-card__list">
-                  <li><i class="fas fa-check"></i> Cotización gratis, sin compromiso</li>
-                  <li><i class="fas fa-check"></i> Respuesta por WhatsApp en menos de 24h</li>
-                  <li><i class="fas fa-check"></i> Licencia de obra gestionada por nosotros</li>
-                </ul>
-                <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada%20con%20los%20precios%202026" target="_blank" rel="noopener" class="hero-cta-card__btn">
-                  <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
-                </a>
-                <a href="/cotizador-precios-casas-prefabricadas.html" class="hero-cta-card__link">
-                  O usar el cotizador en línea <i class="fas fa-arrow-right"></i>
-                </a>
+                <h3 class="hero-cta-card__title">Calculá tu precio ahora</h3>
+                <p class="hero-cta-card__lead">Elegí metros y sistema. Te pasamos el estimado por WhatsApp.</p>
+
+                <form class="hero-cta-form" id="hero-cotizador" onsubmit="return false;">
+                  <label class="hero-cta-field">
+                    <span class="hero-cta-field__label">¿Cuántos m² necesitás?</span>
+                    <input type="number" id="hero-m2" min="20" max="500" step="10" value="60" inputmode="numeric" class="hero-cta-input" />
+                  </label>
+                  <label class="hero-cta-field">
+                    <span class="hero-cta-field__label">¿Qué sistema preferís?</span>
+                    <select id="hero-sistema" class="hero-cta-input">
+                      <option value="plaqueta-negra">Plaqueta obra negra (más económico)</option>
+                      <option value="plaqueta-gris" selected>Plaqueta obra gris (recomendado)</option>
+                      <option value="plaqueta-blanca">Plaqueta obra blanca (llave en mano)</option>
+                      <option value="eps-gris">Paneles EPS obra gris</option>
+                      <option value="eps-blanca">Paneles EPS obra blanca</option>
+                    </select>
+                  </label>
+                  <div class="hero-cta-estimate" id="hero-estimate" aria-live="polite">
+                    <span class="hero-cta-estimate__label">Precio estimado:</span>
+                    <span class="hero-cta-estimate__value" id="hero-estimate-value">$69M - $104M</span>
+                  </div>
+                  <a href="#" id="hero-wa-btn" target="_blank" rel="noopener" class="hero-cta-card__btn">
+                    <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+                  </a>
+                </form>
+
+                <p class="hero-cta-card__trust">
+                  <i class="fas fa-lock"></i> Sin compromiso · Respuesta en menos de 24h
+                </p>
               </div>
             </div>
           </div>
@@ -1253,5 +1299,61 @@ const hero = document.querySelector(".hero-image");
     </script>
 
     <script src="/assets/js/whatsapp-modal.js"></script>
+
+    <!-- Mini-cotizador del hero: actualiza precio estimado y mensaje de WhatsApp -->
+    <script>
+      (function () {
+        const m2Input = document.getElementById('hero-m2');
+        const sistemaSelect = document.getElementById('hero-sistema');
+        const estimateValue = document.getElementById('hero-estimate-value');
+        const waBtn = document.getElementById('hero-wa-btn');
+        if (!m2Input || !sistemaSelect || !estimateValue || !waBtn) return;
+
+        // Precios CONCASAYA por m² (precios base Bogotá, 2026)
+        const precios = {
+          'plaqueta-negra': 600000,
+          'plaqueta-gris': 1150000,
+          'plaqueta-blanca': 1850000,
+          'eps-gris': 1450000,
+          'eps-blanca': 1950000
+        };
+        const sistemaLabel = {
+          'plaqueta-negra': 'plaqueta obra negra',
+          'plaqueta-gris': 'plaqueta obra gris',
+          'plaqueta-blanca': 'plaqueta obra blanca',
+          'eps-gris': 'paneles EPS obra gris',
+          'eps-blanca': 'paneles EPS obra blanca'
+        };
+
+        function formatMillones(n) {
+          if (n >= 1000000) return '$' + Math.round(n / 1000000) + 'M';
+          if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+          return '$' + Math.round(n);
+        }
+
+        function calcular() {
+          const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
+          const sistema = sistemaSelect.value;
+          const base = precios[sistema] || 1150000;
+          const total = base * m2;
+          // Rango +/- 10% por variación de costos
+          const min = total * 0.9;
+          const max = total * 1.1;
+          estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
+          // Construir mensaje de WhatsApp contextual
+          const msg = 'Hola CONCASAYA, quiero cotizar una casa prefabricada de ' + m2 + ' m² en ' + sistemaLabel[sistema] + ' (precios 2026).';
+          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+        }
+
+        m2Input.addEventListener('input', calcular);
+        sistemaSelect.addEventListener('change', calcular);
+        m2Input.addEventListener('blur', () => {
+          const v = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
+          m2Input.value = v;
+          calcular();
+        });
+        calcular(); // inicial
+      })();
+    </script>
   </body>
 </html>
