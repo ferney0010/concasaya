@@ -393,6 +393,13 @@
         color: #0a2540; font-size: 1.15rem; font-weight: 900;
         font-variant-numeric: tabular-nums;
       }
+      .hero-cta-estimate__disclaimer {
+        display: flex; align-items: flex-start; gap: 0.4rem;
+        background: #fef3c7; border-left: 3px solid #f59e0b; border-radius: 8px;
+        padding: 0.55rem 0.7rem; margin: 0.6rem 0 0 0;
+        color: #78350f; font-size: 0.72rem; line-height: 1.4;
+      }
+      .hero-cta-estimate__disclaimer i { color: #b45309; margin-top: 0.1rem; flex-shrink: 0; }
       .hero-cta-card__btn {
         display: flex; align-items: center; justify-content: center; gap: 0.55rem;
         width: 100%;
@@ -693,12 +700,24 @@
                       <option value="eps-blanca">Paneles EPS obra blanca</option>
                     </select>
                   </label>
+                  <label class="hero-cta-field">
+                    <span class="hero-cta-field__label">¿En qué zona estás?</span>
+                    <select id="hero-zona" class="hero-cta-input">
+                      <option value="bogota-sabana" selected>Bogotá o Sabana (Chía, Cajicá, Zipaquirá, Soacha)</option>
+                      <option value="cundinamarca">Otro municipio de Cundinamarca</option>
+                      <option value="boyaca">Boyacá (Tunja, Duitama, Sogamoso, Samacá)</option>
+                      <option value="otro">Otro departamento del país</option>
+                    </select>
+                  </label>
                   <div class="hero-cta-estimate" id="hero-estimate" aria-live="polite">
-                    <span class="hero-cta-estimate__label">Precio estimado:</span>
-                    <span class="hero-cta-estimate__value" id="hero-estimate-value">$69M - $104M</span>
+                    <span class="hero-cta-estimate__label">Referencia inicial (muy preliminar):</span>
+                    <span class="hero-cta-estimate__value" id="hero-estimate-value">$50M - $100M</span>
                   </div>
+                  <p class="hero-cta-estimate__disclaimer">
+                    <i class="fas fa-info-circle"></i> Este número es solo un punto de partida. El precio real depende de ubicación, acabados, instalaciones completas (baño, cocina, eléctricas), placa, transporte, movimiento de tierra y licencia de obra. Un asesor de CONCASAYA te da el número exacto en menos de 24h.
+                  </p>
                   <a href="#" id="hero-wa-btn" target="_blank" rel="noopener" class="hero-cta-card__btn">
-                    <i class="fab fa-whatsapp"></i> Cotizar por WhatsApp
+                    <i class="fab fa-whatsapp"></i> Pedir cotización por WhatsApp
                   </a>
                 </form>
 
@@ -1322,16 +1341,17 @@ const hero = document.querySelector(".hero-image");
 
     <script src="/assets/js/whatsapp-modal.js"></script>
 
-    <!-- Mini-cotizador del hero: actualiza precio estimado y mensaje de WhatsApp -->
+    <!-- Mini-cotizador del hero: actualiza referencia inicial y mensaje de WhatsApp -->
     <script>
       (function () {
         const m2Input = document.getElementById('hero-m2');
         const sistemaSelect = document.getElementById('hero-sistema');
+        const zonaSelect = document.getElementById('hero-zona');
         const estimateValue = document.getElementById('hero-estimate-value');
         const waBtn = document.getElementById('hero-wa-btn');
-        if (!m2Input || !sistemaSelect || !estimateValue || !waBtn) return;
+        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn) return;
 
-        // Precios CONCASAYA por m² (precios base Bogotá, 2026)
+        // Precios CONCASAYA por m² (precios base Bogotá/Sabana, 2026)
         const precios = {
           'plaqueta-negra': 600000,
           'plaqueta-gris': 1150000,
@@ -1346,6 +1366,19 @@ const hero = document.querySelector(".hero-image");
           'eps-gris': 'paneles EPS obra gris',
           'eps-blanca': 'paneles EPS obra blanca'
         };
+        // Multiplicador por zona (transporte, acceso, regulación local)
+        const zonaMult = {
+          'bogota-sabana': 1.0,
+          'cundinamarca': 1.07,
+          'boyaca': 1.18,
+          'otro': 1.25
+        };
+        const zonaLabel = {
+          'bogota-sabana': 'Bogotá/Sabana',
+          'cundinamarca': 'Cundinamarca (otro municipio)',
+          'boyaca': 'Boyacá',
+          'otro': 'otro departamento'
+        };
 
         function formatMillones(n) {
           if (n >= 1000000) return '$' + Math.round(n / 1000000) + 'M';
@@ -1356,19 +1389,29 @@ const hero = document.querySelector(".hero-image");
         function calcular() {
           const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
           const sistema = sistemaSelect.value;
+          const zona = zonaSelect.value;
           const base = precios[sistema] || 1150000;
-          const total = base * m2;
-          // Rango +/- 10% por variación de costos
-          const min = total * 0.9;
-          const max = total * 1.1;
+          const multZona = zonaMult[zona] || 1.0;
+          // Precio base × m² × multiplicador de zona
+          // Rango amplio (referencia preliminar) para reflejar costos ocultos típicos
+          const baseCalc = base * m2 * multZona;
+          const min = baseCalc * 0.85;  // -15% (caso favorable)
+          const max = baseCalc * 1.55;  // +55% (casa habitable llave en mano con instalaciones)
           estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
-          // Construir mensaje de WhatsApp contextual
-          const msg = 'Hola CONCASAYA, quiero cotizar una casa prefabricada de ' + m2 + ' m² en ' + sistemaLabel[sistema] + ' (precios 2026).';
+
+          // Construir mensaje de WhatsApp con TODOS los datos + nota de que es referencial
+          const msg = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
+            '• Metros²: ' + m2 + ' m²\n' +
+            '• Sistema: ' + sistemaLabel[sistema] + '\n' +
+            '• Zona: ' + zonaLabel[zona] + '\n' +
+            '• Referencia inicial vista en la web: ' + formatMillones(min) + ' - ' + formatMillones(max) + ' (sé que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)\n' +
+            '¿Me pueden pasar una cotización real con estos datos?';
           waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
         }
 
         m2Input.addEventListener('input', calcular);
         sistemaSelect.addEventListener('change', calcular);
+        zonaSelect.addEventListener('change', calcular);
         m2Input.addEventListener('blur', () => {
           const v = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
           m2Input.value = v;
