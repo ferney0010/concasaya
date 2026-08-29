@@ -1323,7 +1323,7 @@
     <link rel="stylesheet" href="/assets/css/security-alert.css" />
       <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
   </head>
-  <body class="bg-white text-dark">
+  <body class="bg-white text-dark overflow-x-hidden">
     <header class="bg-white shadow-md fixed w-full top-0 z-50">
       <nav
         class="container mx-auto px-6 py-3 flex justify-between items-center"
@@ -2741,6 +2741,217 @@
             class="mt-12 flex justify-center items-center space-x-2"
             data-aos="fade-up"
           ></div>
+        </div>
+      </section>
+
+      <!-- Cobertura principal: 12 municipios top + link a cobertura completa.
+           Schema ItemList en @graph (ver más abajo en JSON-LD) -->
+      <section id="coverage" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-dark mb-4">
+              Construimos en tu municipio
+            </h2>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+              Más de 825 municipios en Colombia. Estos son algunos donde
+              tenemos proyectos recientes y equipo disponible para construir
+              tu casa prefabricada.
+            </p>
+          </div>
+          <ul
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+            role="list"
+          >
+            <li data-aos="fade-up" data-aos-delay="50" class="min-w-0">
+              <a
+                href="/"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Bogotá D.C.
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Bogotá</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="100">
+              <a
+                href="/pages/chia.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Chía
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="150">
+              <a
+                href="/pages/cajica.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Cajicá
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="200">
+              <a
+                href="/pages/zipaquira.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Zipaquirá
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="250">
+              <a
+                href="/pages/sopo.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Sopó
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="300">
+              <a
+                href="/pages/funza.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Funza
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="350">
+              <a
+                href="/pages/mosquera.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Mosquera
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="400">
+              <a
+                href="/pages/madrid.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Madrid
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="450">
+              <a
+                href="/pages/tocancipa.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Tocancipá
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Cundinamarca</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="500">
+              <a
+                href="/pages/tunja.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Tunja
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Boyacá</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="550">
+              <a
+                href="/pages/villadeleyva.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Villa de Leyva
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Boyacá</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-delay="600">
+              <a
+                href="/pages/barbosa.html"
+                class="group block p-5 border border-gray-200 rounded-xl hover:border-primary hover:shadow-lg transition h-full min-w-0"
+              >
+                <i class="fas fa-map-marker-alt text-primary text-xl mb-3 block"></i>
+                <h3 class="font-bold text-dark group-hover:text-primary transition text-lg break-words">
+                  Barbosa
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Santander</p>
+                <span class="text-sm text-primary font-semibold mt-2 inline-flex items-center gap-1 whitespace-nowrap">
+                  Ver cobertura <i class="fas fa-arrow-right text-xs"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <div class="text-center mt-12" data-aos="fade-up">
+            <a
+              href="/pages/casas-prefabricadas-colombia.html"
+              class="inline-flex items-center gap-2 bg-dark text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-opacity-90 transition"
+            >
+              Ver cobertura completa (53 municipios)
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
       </section>
 
