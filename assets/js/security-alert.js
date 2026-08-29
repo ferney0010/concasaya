@@ -241,17 +241,11 @@
   function init() {
     inject();
     wire();
-    if (shouldShow()) {
-      // Mostrar inmediatamente (sin delay) para bloquear al usuario antes que haga click
-      // Usamos requestAnimationFrame para asegurar que el DOM esta pintado
-      requestAnimationFrame(function () {
-        open();
-      });
-    } else {
-      // No mostrar alerta, pero dejar el boton de reabrir visible
-      var reopenBtn = document.getElementById('sa-reopen');
-      if (reopenBtn) reopenBtn.style.display = 'inline-flex';
-    }
+    // No se abre automaticamente: el usuario debe hacer clic en el
+    // boton flotante "Aviso de seguridad" (esquina inferior izquierda)
+    // para ver el modal. Asi no bloquea la primera impresion de la pagina.
+    var reopenBtn = document.getElementById('sa-reopen');
+    if (reopenBtn) reopenBtn.style.display = 'inline-flex';
   }
 
   // Asegurar que FontAwesome este disponible para los iconos
