@@ -140,6 +140,17 @@ function renderNavMunicipios() {
       "  #nav-municipios-desktop{display:none!important;}",
       "}",
       // === Menú tablet/mobile (hamburger) — colapsables por departamento ===
+      // IMPORTANTE: #tablet-dropdown-menu tiene la clase "tablet-submenu" en el HTML
+      // que le aplica display:grid; grid-template-columns:1fr 1fr (de nav-shared.css).
+      // Lo sobrescribimos para que sea una sola columna en mobile.
+      "#tablet-dropdown-menu{",
+      "  display:block!important;",
+      "  grid-template-columns:none!important;",
+      "  max-width:100%!important;",
+      "  margin-left:0!important;",
+      "  border-left:none!important;",
+      "  background:transparent!important;",
+      "}",
       "#tablet-menu.open{max-height:calc(100vh - 64px)!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;}",
       // Sección "Ver toda la cobertura" (link principal)
       "#tablet-dropdown-menu{box-sizing:border-box;max-width:100%;}",
