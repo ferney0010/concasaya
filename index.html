@@ -67,6 +67,16 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#0077b6" />
 
+    <!-- Preload de la hero image para mejorar LCP (Core Web Vitals).
+         Se descarga en paralelo con el HTML en vez de esperar al CSS. -->
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/images/herocasa.webp"
+      type="image/webp"
+      fetchpriority="high"
+    />
+
     <!-- Fonts & Styles -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
