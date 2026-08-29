@@ -1779,6 +1779,25 @@
                     <option value="otro">Otro departamento del país</option>
                   </select>
                 </label>
+                
+                <div class="hero-cta-field">
+                  <span class="hero-cta-field__label">¿Ya tienes lote donde construir?</span>
+                  <div class="hero-cta-lote-toggle" role="radiogroup" aria-label="¿Ya tienes lote?">
+                    <button type="button" class="hero-cta-lote-btn" data-lote="si">
+                      <i class="fas fa-map-marker-alt"></i> Sí, ya tengo lote
+                    </button>
+                    <button type="button" class="hero-cta-lote-btn" data-lote="no">
+                      <i class="fas fa-search"></i> Aún no, ayúdenme
+                    </button>
+                  </div>
+                  <input type="hidden" id="hero-lote-tiene" value="" />
+                </div>
+                <label class="hero-cta-field hero-cta-lote-ubicacion" id="hero-lote-ubicacion-wrap" style="display:none;">
+                  <span class="hero-cta-field__label">¿En qué municipio / vereda?</span>
+                  <input type="text" id="hero-lote-ubicacion" placeholder="Ej: Chía, vereda Bojacá" autocomplete="address-level2" class="hero-cta-input" />
+                </label>
+
+
                 <div class="hero-cta-estimate" id="hero-estimate" aria-live="polite">
                   <span class="hero-cta-estimate__label">Referencia inicial (muy preliminar):</span>
                   <span class="hero-cta-estimate__value" id="hero-estimate-value">$50M - $100M</span>
@@ -4489,6 +4508,8 @@
           const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
           const sistema = sistemaSelect.value;
           const zona = zonaSelect.value;
+          const tieneLote = (document.getElementById('hero-lote-tiene')?.value || '').trim();
+          const ubicLote = (document.getElementById('hero-lote-ubicacion')?.value || '').trim();
           const base = precios[sistema] || 1150000;
           const multZona = zonaMult[zona] || 1.0;
           // Rango amplio (referencia preliminar) para reflejar costos ocultos típicos
@@ -4497,21 +4518,94 @@
           const max = baseCalc * 1.55;
           estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
 
-          const msg = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
-            '• Metros²: ' + m2 + ' m²\n' +
-            '• Sistema: ' + sistemaLabel[sistema] + '\n' +
-            '• Zona: ' + zonaLabel[zona] + '\n' +
-            '• Referencia inicial vista en la web: ' + formatMillones(min) + ' - ' + formatMillones(max) + ' (sé que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)\n' +
-            '¿Me pueden pasar una cotización real con estos datos?';
-          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+          // Construir mensaje de WhatsApp con TODOS los datos del mini-cotizador
+          const lines = [];
+          lines.push('Hola CONCASAYA, quiero cotizar una casa prefabricada.');
+          lines.push('• Metros\u00b2: ' + m2 + ' m\u00b2');
+          lines.push('• Sistema: ' + sistemaLabel[sistema]);
+          lines.push('• Zona: ' + zonaLabel[zona]);
+          if (tieneLote === 'si') {
+            lines.push('• Lote: S\u00ed, ya tengo lote' + (ubicLote ? ' (' + ubicLote + ')' : ' (ubicaci\u00f3n por confirmar)'));
+          } else if (tieneLote === 'no') {
+            lines.push('• Lote: A\u00fan no tengo lote, necesito ayuda para encontrar uno');
+          } else {
+            lines.push('• Lote: (no especificado)');
+          }
+          lines.push('• Referencia inicial vista en la web: ' + formatMillones(min) + ' - ' + formatMillones(max) + ' (s\u00e9 que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)');
+          lines.push('\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?');
+          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(lines.join('\n'));
+        }
+        }
         }
 
         m2Input.addEventListener('input', calcular);
+
+        // Toggle "¿Ya tienes lote?"
+        const loteButtons = document.querySelectorAll('.hero-cta-lote-btn');
+        const loteTiene = document.getElementById('hero-lote-tiene');
+        const loteUbicWrap = document.getElementById('hero-lote-ubicacion-wrap');
+        const loteUbic = document.getElementById('hero-lote-ubicacion');
+        loteButtons.forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            loteButtons.forEach(function (b) { b.classList.remove('is-active'); });
+            btn.classList.add('is-active');
+            if (loteTiene) loteTiene.value = btn.getAttribute('data-lote');
+            if (loteUbicWrap) {
+              loteUbicWrap.style.display = (btn.getAttribute('data-lote') === 'si') ? '' : 'none';
+            }
+            calcular();
+          });
+        });
+        if (loteUbic) loteUbic.addEventListener('input', calcular);
+        const nombreInput = document.getElementById('hero-nombre');
+        const municipioSelect = document.getElementById('hero-municipio');
+        if (nombreInput) nombreInput.addEventListener('input', calcular);
+        if (municipioSelect) municipioSelect.addEventListener('change', calcular);
         sistemaSelect.addEventListener('change', calcular);
         zonaSelect.addEventListener('change', calcular);
         calcular();
       })();
     </script>
 
-  </body>
+  
+      /* === Mini-cotizador: filtro "¿Ya tienes lote?" === */
+      .hero-cta-lote-toggle {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.4rem;
+      }
+      .hero-cta-lote-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.35rem;
+        padding: 0.55rem 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #475569;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-family: inherit;
+      }
+      .hero-cta-lote-btn:hover {
+        border-color: #0077b6;
+        color: #0077b6;
+        background: #eff6ff;
+      }
+      .hero-cta-lote-btn.is-active[data-lote="si"] {
+        background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+        color: #fff;
+        border-color: #0077b6;
+      }
+      .hero-cta-lote-btn.is-active[data-lote="no"] {
+        background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+        color: #fff;
+        border-color: #f59e0b;
+      }
+      .hero-cta-lote-btn i { font-size: 0.78rem; }
+
+</body>
 </html>
