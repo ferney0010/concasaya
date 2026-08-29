@@ -350,11 +350,14 @@
   }
 
   // === OPEN / CLOSE ===
-  function open() {
+  // intentionId (opcional): si viene de un enlace con data-wm-intent, se
+  // pre-selecciona la intencion y se salta el paso 1 para no volver a
+  // preguntar lo mismo. Valores validos: 'lote' | 'buscar' | 'exterior'.
+  function open(intentionId) {
     if (!backdrop) return;
     currentAdvisor = pickAdvisor();
-    // Reset estado
-    state.intention = null;
+    // Reset estado. Si el trigger ya definio la intencion, la conservamos.
+    state.intention = intentionId || null;
     state.department = null;
     state.detectedInfo = detectFromURL();
     // Reset visual: burbuja inicial
@@ -382,12 +385,24 @@
     backdrop.setAttribute('aria-hidden', 'false');
     void backdrop.offsetWidth;
     requestAnimationFrame(function () { backdrop.classList.add('wm-open'); });
-    // Paso 1
-    showStep('1');
-    // Animar entrada de intenciones despues de un beat
-    setTimeout(function () {
-      intentionActionsEl.classList.add('wm-show');
-    }, 350);
+    // Decidir paso inicial
+    if (intentionId === 'exterior') {
+      // Exterior ya segmentado: salta directo a WhatsApp
+      sendToWhatsApp();
+    } else if (intentionId) {
+      // Intencion pre-seleccionada: ir directo a paso 2
+      if (state.detectedInfo) {
+        showStep('2-detected');
+      } else {
+        showStep('2-manual');
+      }
+    } else {
+      // Sin intencion previa: paso 1 normal
+      showStep('1');
+      setTimeout(function () {
+        intentionActionsEl.classList.add('wm-show');
+      }, 350);
+    }
     document.addEventListener('keydown', onKey);
   }
 
@@ -408,6 +423,9 @@
   }
 
   // === INTERCEPTAR ENLACES WHATSAPP ===
+  // Si el enlace tiene data-wm-intent, se pre-selecciona la intencion
+  // y se salta el paso 1 del modal. Asi no se vuelve a preguntar lo
+  // mismo cuando el usuario ya eligio desde una tarjeta visible.
   function interceptWhatsAppLinks() {
     var links = document.querySelectorAll('a[href^="https://wa.me/"]');
     links.forEach(function (a) {
@@ -415,7 +433,8 @@
       a.__wmBound = true;
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        open();
+        var intent = a.getAttribute('data-wm-intent');
+        open(intent);
       });
     });
   }
