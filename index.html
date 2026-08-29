@@ -373,14 +373,13 @@
         }
       }
 
-      /* Estilos del slider de imágenes con efecto de superposición */
+      /* Estilos del slider de imágenes con efecto de superposición.
+         NO usar display:flex aqui porque sobreescribe la clase `hidden`
+         de Tailwind y el card se ve en mobile. */
       .hero-slider {
         position: relative;
         width: 100%;
         min-height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         border-radius: 20px;
         overflow: visible;
       }
@@ -1741,7 +1740,7 @@
 
     <main>
       <section
-        class="relative bg-cover bg-center flex items-center justify-center py-20 sm:py-24 md:py-32 lg:py-0 pt-24 sm:pt-20 lg:pt-0 hero-section"
+        class="relative bg-cover bg-center flex items-center justify-center py-24 sm:py-28 md:py-32 lg:py-0 pt-32 sm:pt-28 lg:pt-0 hero-section"
         style="
           background-image: url('assets/images/herocasa.webp');
           min-height: 95vh;
