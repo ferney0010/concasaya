@@ -1,13 +1,7 @@
 // Render del dropdown "Cobertura" en el header + "Cobertura" en el tablet-menu.
-// Mejoras v2:
-// - Buscador en tiempo real (desktop y mobile)
-// - Items más grandes y respirados
-// - Iconos consistentes (fa-map-marker-alt para municipios/países)
-// - Municipios agrupados por departamento con sticky headers
-// - Hover/active states claros (bg-blue-50, border-l-primary)
-// - Scrollbar custom fina
-// - Footer del dropdown con link a cobertura completa
-// - Totalmente responsive (desktop, tablet, mobile)
+// v3: layout limpio tipo mega-menu, 4 columnas en desktop, sin buscador ni iconos
+// en los items, header con badge descriptivo, footer con pills de departamentos.
+// Mobile: lista vertical simple, items grandes y respirados, secciones claras.
 function renderNavMunicipios() {
   var municipios = window.MUNICIPIOS || [];
   var paises = window.PAISES || [];
@@ -23,39 +17,10 @@ function renderNavMunicipios() {
   var match = pathname.match(/\/pages\/([a-z0-9-]+)\.html$/i);
   if (match) currentSlug = match[1];
 
-  // Mapeo de municipio → departamento (para agrupar visualmente)
-  var DEPTOS = {
-    // Cundinamarca
-    "chia": "Cundinamarca", "cajica": "Cundinamarca", "cota": "Cundinamarca",
-    "mosquera": "Cundinamarca", "zipaquira": "Cundinamarca", "sopo": "Cundinamarca",
-    "funza": "Cundinamarca", "la-vega": "Cundinamarca", "madrid": "Cundinamarca",
-    "tocancipa": "Cundinamarca", "facatativa": "Cundinamarca", "fusagasuga": "Cundinamarca",
-    "guasca": "Cundinamarca", "la-calera": "Cundinamarca", "la-mesa": "Cundinamarca",
-    "mesitas-del-colegio": "Cundinamarca", "pacho": "Cundinamarca", "sesquile": "Cundinamarca",
-    "soacha": "Cundinamarca", "suba": "Cundinamarca", "subachoque": "Cundinamarca",
-    "supata": "Cundinamarca", "villeta": "Cundinamarca", "norte-bogota": "Cundinamarca",
-    // Boyacá
-    "tunja": "Boyacá", "duitama": "Boyacá", "paipa": "Boyacá", "samaca": "Boyacá",
-    "boyaca": "Boyacá", "choconta": "Boyacá", "chiquinquira": "Boyacá",
-    "firavitoba": "Boyacá", "raquira": "Boyacá", "sogamoso": "Boyacá",
-    "valle-de-tenza": "Boyacá", "villadeleyva": "Boyacá",
-    // Santander
-    "barbosa": "Santander", "puente-nacional": "Santander", "velez": "Santander",
-    "san-francisco": "Santander",
-    // Otros
-    "santa-marta": "Magdalena",
-    "casas-prefabricadas-colombia": null  // es la página general, no municipio
-  };
-
   function esc(s) {
     var div = document.createElement("div");
     div.textContent = s;
     return div.innerHTML;
-  }
-
-  function deptoOf(slug) {
-    if (DEPTOS.hasOwnProperty(slug)) return DEPTOS[slug];
-    return "Otros";
   }
 
   function injectCoverageStyles() {
@@ -64,200 +29,175 @@ function renderNavMunicipios() {
     var style = document.createElement("style");
     style.id = "coverage-nav-responsive-styles";
     style.textContent = [
-      // === Contenedor desktop ===
+      // === Contenedor desktop (mega-menu limpio) ===
       "#nav-municipios-desktop{",
-      "  left:auto!important;right:0!important;top:calc(100% + 8px);",
-      "  width:min(94vw,820px);min-width:min(94vw,820px)!important;",
-      "  max-height:min(78vh,calc(100vh - 100px));",
-      "  background:#fff;border-radius:16px;",
-      "  box-shadow:0 20px 50px rgba(0,0,0,.18),0 0 0 1px rgba(0,0,0,.04);",
+      "  left:auto!important;right:0!important;top:calc(100% + 6px);",
+      "  width:min(96vw,920px);min-width:min(96vw,920px)!important;",
+      "  max-height:min(82vh,calc(100vh - 90px));",
+      "  background:#fff;border-radius:14px;",
+      "  box-shadow:0 18px 50px rgba(15,23,42,.14),0 0 0 1px rgba(15,23,42,.04);",
       "  display:flex;flex-direction:column;",
       "  overflow:hidden;",
       "  z-index:60;",
       "}",
-      // === Header con buscador ===
+      // === Header con badge ===
       "#nav-municipios-desktop .coverage-header{",
-      "  padding:0.9rem 1.1rem 0.8rem;",
-      "  background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);",
-      "  border-bottom:1px solid #e2e8f0;",
-      "  position:sticky;top:0;z-index:5;",
+      "  padding:1rem 1.4rem 0.9rem;",
+      "  border-bottom:1px solid #eef2f6;",
       "}",
-      "#nav-municipios-desktop .coverage-search{",
-      "  position:relative;",
-      "  display:flex;align-items:center;",
+      "#nav-municipios-desktop .coverage-header-title{",
+      "  display:inline-flex;align-items:center;gap:0.5rem;",
+      "  font-size:0.78rem;font-weight:800;",
+      "  color:#0a2540;letter-spacing:0.01em;",
       "}",
-      "#nav-municipios-desktop .coverage-search i{",
-      "  position:absolute;left:0.85rem;",
-      "  color:#94a3b8;font-size:0.85rem;",
-      "  pointer-events:none;",
+      "#nav-municipios-desktop .coverage-header-title .coverage-count{",
+      "  color:#0077b6;font-weight:700;",
       "}",
-      "#nav-municipios-desktop .coverage-search input{",
-      "  width:100%;",
-      "  padding:0.55rem 0.75rem 0.55rem 2.3rem;",
-      "  font-size:0.875rem;",
-      "  border:1.5px solid #e2e8f0;",
-      "  border-radius:10px;",
-      "  background:#fff;color:#0a2540;",
-      "  transition:border-color .15s ease,box-shadow .15s ease;",
-      "}",
-      "#nav-municipios-desktop .coverage-search input:focus{",
-      "  outline:none;border-color:#0077b6;",
-      "  box-shadow:0 0 0 3px rgba(0,119,182,.15);",
-      "}",
-      "#nav-municipios-desktop .coverage-search input::placeholder{color:#94a3b8;}",
-      // === Body scrollable ===
+      // === Body grid 4 columnas ===
       "#nav-municipios-desktop .coverage-body{",
       "  flex:1 1 auto;",
       "  overflow-y:auto;",
       "  overscroll-behavior:contain;",
       "  -webkit-overflow-scrolling:touch;",
-      "  padding:0.4rem 0.6rem 0.4rem;",
+      "  padding:1.1rem 1.4rem 0.4rem;",
+      "  display:grid;",
+      "  grid-template-columns:repeat(4,minmax(0,1fr));",
+      "  gap:0.5rem 1.6rem;",
       "}",
       // Scrollbar custom fina
       "#nav-municipios-desktop .coverage-body::-webkit-scrollbar{width:8px;}",
       "#nav-municipios-desktop .coverage-body::-webkit-scrollbar-track{background:transparent;}",
       "#nav-municipios-desktop .coverage-body::-webkit-scrollbar-thumb{",
-      "  background:#cbd5e1;border-radius:4px;border:2px solid #fff;",
+      "  background:#cbd5e1;border-radius:4px;",
       "}",
       "#nav-municipios-desktop .coverage-body::-webkit-scrollbar-thumb:hover{background:#94a3b8;}",
-      // === Section title (sticky) ===
+      // === Section title (subtítulo de columna) ===
       "#nav-municipios-desktop .coverage-section-title{",
-      "  position:sticky;top:-0.4rem;",
-      "  z-index:3;",
-      "  padding:0.7rem 0.85rem 0.35rem;",
       "  font-size:0.7rem;font-weight:800;",
       "  text-transform:uppercase;letter-spacing:0.08em;",
-      "  color:#0369a1;",
-      "  background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.95) 80%,rgba(255,255,255,0) 100%);",
+      "  color:#0077b6;",
+      "  margin:0 0 0.55rem;padding:0;",
+      "  grid-column:span 1;",
       "}",
-      "#nav-municipios-desktop .coverage-section-title i{margin-right:0.45rem;opacity:0.7;}",
-      // === Item (link) ===
+      "#nav-municipios-desktop .coverage-section-title .coverage-section-count{",
+      "  color:#94a3b8;font-weight:600;margin-left:0.3rem;",
+      "}",
+      // Sub-sección (dentro de una columna)
+      "#nav-municipios-desktop .coverage-subsection-title{",
+      "  font-size:0.65rem;font-weight:700;",
+      "  text-transform:uppercase;letter-spacing:0.06em;",
+      "  color:#0077b6;opacity:0.75;",
+      "  margin:0.85rem 0 0.35rem;padding:0;",
+      "}",
+      // === Item (link) limpio, sin iconos ===
       "#nav-municipios-desktop .municipio-item{",
-      "  display:flex;align-items:center;gap:0.55rem;",
-      "  padding:0.55rem 0.75rem;",
-      "  margin:1px 0;",
-      "  font-size:0.875rem;line-height:1.3;",
-      "  color:#1e293b;text-decoration:none;",
-      "  border-radius:8px;",
-      "  border-left:3px solid transparent;",
-      "  transition:background .12s ease,color .12s ease,border-color .12s ease,transform .12s ease;",
+      "  display:block;",
+      "  padding:0.45rem 0;",
+      "  font-size:0.95rem;line-height:1.35;",
+      "  color:#334155;text-decoration:none;",
+      "  transition:color .12s ease,padding-left .12s ease;",
       "  min-width:0;",
       "}",
       "#nav-municipios-desktop .municipio-item:hover{",
-      "  background:#eff6ff;color:#0077b6;",
-      "  border-left-color:#0077b6;",
-      "  transform:translateX(2px);",
+      "  color:#0077b6;",
+      "  padding-left:0.3rem;",
       "}",
       "#nav-municipios-desktop .municipio-item.is-current{",
-      "  background:#dbeafe;color:#0077b6;font-weight:700;",
-      "  border-left-color:#0077b6;",
+      "  color:#0077b6;font-weight:700;",
       "}",
-      "#nav-municipios-desktop .municipio-icon{",
-      "  width:16px;min-width:16px;font-size:0.8rem;",
-      "  color:#0077b6;flex-shrink:0;",
-      "  text-align:center;",
-      "}",
-      "#nav-municipios-desktop .coverage-name{",
-      "  flex:1 1 auto;min-width:0;",
-      "  overflow-wrap:break-word;",
-      "}",
-      "#nav-municipios-desktop .municipio-item.is-hidden{display:none;}",
-      // === Países grid (5 columnas) ===
-      "#nav-municipios-desktop .coverage-countries-grid{",
-      "  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));",
-      "  gap:0.25rem;margin:0 0 0.4rem;padding:0;list-style:none;",
-      "}",
-      "#nav-municipios-desktop .coverage-countries-grid .municipio-item{",
-      "  flex-direction:column;align-items:center;gap:0.25rem;",
-      "  padding:0.55rem 0.4rem;text-align:center;font-size:0.78rem;",
-      "}",
-      "#nav-municipios-desktop .coverage-countries-grid .municipio-icon{font-size:1rem;}",
-      // === Footer con CTA ===
+      // === Footer con pills ===
       "#nav-municipios-desktop .coverage-footer{",
-      "  padding:0.7rem 1rem;",
-      "  background:#f8fafc;",
-      "  border-top:1px solid #e2e8f0;",
-      "  text-align:center;",
+      "  padding:0.9rem 1.4rem 1rem;",
+      "  border-top:1px solid #eef2f6;",
+      "  background:#fafbfc;",
       "}",
-      "#nav-municipios-desktop .coverage-footer a{",
-      "  display:inline-flex;align-items:center;gap:0.4rem;",
-      "  color:#0077b6;font-weight:700;font-size:0.85rem;",
+      "#nav-municipios-desktop .coverage-footer-pills{",
+      "  display:flex;flex-wrap:wrap;gap:0.4rem;",
+      "  margin-bottom:0.65rem;",
+      "}",
+      "#nav-municipios-desktop .coverage-pill{",
+      "  display:inline-flex;align-items:center;gap:0.3rem;",
+      "  padding:0.3rem 0.7rem;",
+      "  font-size:0.78rem;font-weight:600;",
+      "  color:#0077b6;background:#e0f2fe;",
+      "  border-radius:999px;",
       "  text-decoration:none;",
-      "  padding:0.35rem 0.6rem;border-radius:6px;",
       "  transition:background .12s ease;",
       "}",
-      "#nav-municipios-desktop .coverage-footer a:hover{background:#e0f2fe;}",
+      "#nav-municipios-desktop .coverage-pill:hover{background:#bae6fd;}",
+      "#nav-municipios-desktop .coverage-pill i{font-size:0.7rem;}",
+      "#nav-municipios-desktop .coverage-footer-cta{",
+      "  display:inline-flex;align-items:center;gap:0.4rem;",
+      "  font-size:0.85rem;font-weight:700;",
+      "  color:#0a2540;text-decoration:none;",
+      "  padding:0.45rem 0.7rem;border-radius:8px;",
+      "  transition:background .12s ease;",
+      "}",
+      "#nav-municipios-desktop .coverage-footer-cta:hover{background:#e0f2fe;color:#0077b6;}",
       // === Tablet breakpoints ===
       "@media (max-width:1180px){",
-      "  #nav-municipios-desktop{width:min(94vw,640px);}",
-      "  #nav-municipios-desktop .coverage-countries-grid{grid-template-columns:repeat(5,minmax(0,1fr));}",
+      "  #nav-municipios-desktop{width:min(96vw,720px);}",
+      "  #nav-municipios-desktop .coverage-body{grid-template-columns:repeat(3,minmax(0,1fr));}",
       "}",
       "@media (max-width:1023px){",
       "  #nav-municipios-desktop{display:none!important;}",
       "}",
-      // === Menú tablet/mobile (hamburger) ===
+      // === Menú tablet/mobile (hamburger) — limpio ===
       "#tablet-menu.open{max-height:calc(100vh - 64px)!important;overflow-y:auto!important;-webkit-overflow-scrolling:touch;}",
-      "#tablet-dropdown-menu .coverage-search-wrap{",
-      "  padding:0.8rem 1rem 0.5rem;",
-      "  background:linear-gradient(180deg,#f8fafc 0%,#fff 100%);",
-      "  border-bottom:1px solid #e2e8f0;",
-      "}",
-      "#tablet-dropdown-menu .coverage-search{position:relative;}",
-      "#tablet-dropdown-menu .coverage-search i{",
-      "  position:absolute;left:0.95rem;top:50%;transform:translateY(-50%);",
-      "  color:#94a3b8;font-size:0.9rem;pointer-events:none;",
-      "}",
-      "#tablet-dropdown-menu .coverage-search input{",
-      "  width:100%;",
-      "  padding:0.7rem 0.85rem 0.7rem 2.6rem;",
-      "  font-size:0.95rem;",
-      "  border:1.5px solid #e2e8f0;border-radius:10px;",
-      "  background:#fff;color:#0a2540;",
-      "}",
-      "#tablet-dropdown-menu .coverage-search input:focus{",
-      "  outline:none;border-color:#0077b6;",
-      "  box-shadow:0 0 0 3px rgba(0,119,182,.15);",
-      "}",
       "#tablet-dropdown-menu .coverage-section-title{",
-      "  padding:0.9rem 1.5rem 0.4rem;",
+      "  padding:1rem 1.5rem 0.4rem;",
       "  font-size:0.72rem;font-weight:800;text-transform:uppercase;",
-      "  letter-spacing:0.08em;color:#0369a1;",
+      "  letter-spacing:0.08em;color:#0077b6;",
+      "  background:#f8fafc;",
+      "  border-top:1px solid #e2e8f0;",
+      "}",
+      "#tablet-dropdown-menu .coverage-section-title:first-child{",
+      "  border-top:none;",
       "}",
       "#tablet-dropdown-menu .municipio-item{",
-      "  display:flex;align-items:center;gap:0.6rem;",
-      "  padding:0.75rem 1.5rem;",
-      "  font-size:0.95rem;line-height:1.3;",
-      "  color:#1e293b;text-decoration:none;",
+      "  display:block;",
+      "  padding:0.7rem 1.5rem;",
+      "  font-size:1rem;line-height:1.4;",
+      "  color:#334155;text-decoration:none;",
       "  border-left:3px solid transparent;",
-      "  transition:background .12s ease,color .12s ease,border-color .12s ease;",
+      "  transition:background .12s ease,color .12s ease,border-color .12s ease,padding-left .12s ease;",
       "}",
       "#tablet-dropdown-menu .municipio-item:hover{",
       "  background:#eff6ff;color:#0077b6;border-left-color:#0077b6;",
+      "  padding-left:1.8rem;",
       "}",
       "#tablet-dropdown-menu .municipio-item.is-current{",
       "  background:#dbeafe;color:#0077b6;font-weight:700;border-left-color:#0077b6;",
       "}",
-      "#tablet-dropdown-menu .municipio-icon{",
-      "  width:18px;min-width:18px;font-size:0.9rem;color:#0077b6;",
-      "  text-align:center;",
-      "}",
-      "#tablet-dropdown-menu .municipio-item.is-hidden{display:none;}",
       "#tablet-dropdown-menu .coverage-footer{",
-      "  padding:0.9rem 1.5rem 1.1rem;",
+      "  padding:1rem 1.5rem 1.2rem;",
       "  border-top:1px solid #e2e8f0;background:#f8fafc;",
       "}",
-      "#tablet-dropdown-menu .coverage-footer a{",
+      "#tablet-dropdown-menu .coverage-footer-pills{",
+      "  display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.7rem;",
+      "}",
+      "#tablet-dropdown-menu .coverage-pill{",
+      "  display:inline-flex;align-items:center;gap:0.3rem;",
+      "  padding:0.4rem 0.8rem;",
+      "  font-size:0.82rem;font-weight:600;",
+      "  color:#0077b6;background:#e0f2fe;",
+      "  border-radius:999px;text-decoration:none;",
+      "}",
+      "#tablet-dropdown-menu .coverage-footer-cta{",
       "  display:flex;align-items:center;justify-content:center;gap:0.5rem;",
-      "  color:#0077b6;font-weight:700;font-size:0.95rem;",
-      "  text-decoration:none;padding:0.7rem 1rem;",
-      "  background:#fff;border:1.5px solid #e2e8f0;border-radius:10px;",
-      "  transition:background .12s ease,border-color .12s ease;",
+      "  color:#fff;background:#0077b6;font-weight:700;font-size:0.95rem;",
+      "  text-decoration:none;padding:0.8rem 1rem;",
+      "  border-radius:10px;",
+      "  transition:background .12s ease;",
       "}",
-      "#tablet-dropdown-menu .coverage-footer a:hover{",
-      "  background:#eff6ff;border-color:#0077b6;",
-      "}",
+      "#tablet-dropdown-menu .coverage-footer-cta:hover{background:#023e7d;}",
       "@media (max-width:640px){",
-      "  #tablet-dropdown-menu.open{max-height:56vh!important;}",
+      "  #tablet-dropdown-menu.open{max-height:60vh!important;}",
+      "}",
+      "@media (max-width:420px){",
+      "  #tablet-dropdown-menu .coverage-section-title{padding:0.85rem 1.1rem 0.3rem;}",
+      "  #tablet-dropdown-menu .municipio-item{padding:0.65rem 1.1rem;font-size:0.95rem;}",
+      "  #tablet-dropdown-menu .coverage-footer{padding:0.9rem 1.1rem 1.1rem;}",
       "}",
     ].join("");
     document.head.appendChild(style);
@@ -277,169 +217,188 @@ function renderNavMunicipios() {
     }
   }
 
-  // ============ RENDER DESKTOP ============
   var isCurrentCol = currentSlug === colSlug;
 
-  // Helper: render de un item (link)
-  function renderItem(href, label, isCurrent, opts) {
-    opts = opts || {};
-    var icon = opts.icon || '<i class="fas fa-map-marker-alt municipio-icon"></i>';
-    var searchKey = (opts.searchKey || label).toLowerCase();
-    var currentClass = isCurrent ? " is-current" : "";
-    return '<li><a class="municipio-item' + currentClass + '" ' +
-      'data-coverage-search="' + esc(searchKey) + '" ' +
-      'href="' + esc(href) + '">' +
-      icon +
-      '<span class="coverage-name">' + esc(label) + '</span>' +
-      '</a></li>';
-  }
-
-  // Header con buscador
+  // ============ RENDER DESKTOP ============
+  // Header con badge descriptivo
+  var totalCount = municipios.length + paises.length + 1; // +1 = Colombia general
   var desktopHtml = '' +
     '<div class="coverage-header">' +
-      '<div class="coverage-search">' +
-        '<i class="fas fa-search"></i>' +
-        '<input type="text" id="coverage-search-desktop" placeholder="Buscar municipio o país..." autocomplete="off" />' +
+      '<div class="coverage-header-title">' +
+        '<i class="fas fa-earth-americas" style="color:#0077b6;"></i>' +
+        'Ver toda la cobertura <span class="coverage-count">(' + (municipios.length + paises.length + 1) + ' ciudades y municipios)</span>' +
       '</div>' +
     '</div>' +
     '<div class="coverage-body">';
 
-  // Sección: Colombia (general)
-  desktopHtml += '<div class="coverage-section-title"><i class="fas fa-flag"></i>Colombia</div>';
-  desktopHtml += renderItem(
-    colHref,
-    "Casas prefabricadas en Colombia",
-    isCurrentCol,
-    { icon: '<i class="fas fa-flag municipio-icon"></i>', searchKey: "colombia casas prefabricadas" }
-  );
+  // === COLUMNA 1: Colombia (general) + Bogotá + Sabana ===
+  desktopHtml += '<div class="coverage-section-title">Colombia</div>';
+  desktopHtml += '<a class="municipio-item' + (isCurrentCol ? " is-current" : "") + '" href="' + colHref + '">Casas prefabricadas en Colombia</a>';
 
-  // Sección: Países
-  if (paises.length) {
-    desktopHtml += '<div class="coverage-section-title"><i class="fas fa-earth-americas"></i>Países</div>';
-    desktopHtml += '<ul class="coverage-countries-grid">';
-    for (var p = 0; p < paises.length; p++) {
-      var pais = paises[p];
-      var paisHref = baseHref + pais.slug + ".html";
-      var paisNombre = pais.nombre;
-      var paisIcon = '<i class="' + (pais.icono || "fas fa-globe-americas") + ' municipio-icon"></i>';
-      var isCurrentPais = currentSlug === pais.slug;
-      desktopHtml += renderItem(
-        paisHref, paisNombre, isCurrentPais,
-        { icon: paisIcon, searchKey: paisNombre + " " + pais.slug }
-      );
-    }
-    desktopHtml += '</ul>';
+  // Bogotá D.C. + Sabana
+  desktopHtml += '<div class="coverage-subsection-title">Bogotá y Sabana</div>';
+  var bogotaSabana = ["Bogotá D.C.", "Chía", "Cajicá", "Zipaquirá", "Sopó", "Cota", "Suba", "Norte de Bogotá", "Funza", "Mosquera", "Madrid", "Tocancipá"];
+  for (var i = 0; i < municipios.length; i++) {
+    var m = municipios[i];
+    if (bogotaSabana.indexOf(m.nombre) === -1) continue;
+    var href = baseHref + m.slug + ".html";
+    var isCurrent = currentSlug === m.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrent ? " is-current" : "") + '" href="' + href + '">' + esc(m.nombre) + '</a>';
   }
 
-  // Sección: Municipios (agrupados por departamento)
-  if (municipios.length) {
-    // Agrupar por departamento
-    var byDepto = {};
-    for (var i = 0; i < municipios.length; i++) {
-      var m = municipios[i];
-      var d = deptoOf(m.slug) || "Otros";
-      if (!byDepto[d]) byDepto[d] = [];
-      byDepto[d].push(m);
-    }
-    // Orden de departamentos (los que tienen más primero, después alfabético)
-    var deptoOrder = Object.keys(byDepto).sort(function (a, b) {
-      if (a === "Otros") return 1;
-      if (b === "Otros") return -1;
-      return byDepto[b].length - byDepto[a].length;
-    });
-
-    for (var dIdx = 0; dIdx < deptoOrder.length; dIdx++) {
-      var depto = deptoOrder[dIdx];
-      var items = byDepto[depto];
-      var iconClass = depto === "Bogotá D.C." || depto === "Cundinamarca" || depto === "Boyacá" || depto === "Santander"
-        ? "fas fa-map-marker-alt" : "fas fa-thumbtack";
-      desktopHtml += '<div class="coverage-section-title"><i class="' + iconClass + '"></i>' + esc(depto) + ' <span style="opacity:0.5;font-weight:600;font-size:0.65rem;margin-left:0.3rem">(' + items.length + ')</span></div>';
-      for (var j = 0; j < items.length; j++) {
-        var mun = items[j];
-        var munHref = baseHref + mun.slug + ".html";
-        var isCurrentMun = currentSlug === mun.slug;
-        desktopHtml += renderItem(munHref, mun.nombre, isCurrentMun);
-      }
-    }
+  // === COLUMNA 2: Cundinamarca (resto) ===
+  desktopHtml += '<div class="coverage-section-title">Cundinamarca <span class="coverage-section-count">resto</span></div>';
+  var cundiResto = ["La Vega", "La Calera", "La Mesa", "Guasca", "Sesquilé", "Soacha", "Facatativá", "Fusagasugá", "Pacho", "Mesitas del Colegio", "Subachoque", "Supatá", "Villeta"];
+  for (var j = 0; j < municipios.length; j++) {
+    var mc = municipios[j];
+    if (cundiResto.indexOf(mc.nombre) === -1) continue;
+    var hrefc = baseHref + mc.slug + ".html";
+    var isCurrentC = currentSlug === mc.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrentC ? " is-current" : "") + '" href="' + hrefc + '">' + esc(mc.nombre) + '</a>';
   }
 
-  // Mensaje "sin resultados" (oculto por defecto)
-  desktopHtml += '<div class="coverage-no-results" style="display:none;padding:1.5rem 1rem;text-align:center;color:#64748b;font-size:0.85rem;">' +
-    '<i class="fas fa-search" style="font-size:1.5rem;display:block;margin-bottom:0.5rem;color:#cbd5e1;"></i>' +
-    'Sin resultados. <a href="' + coberturaCompletaHref + '" style="color:#0077b6;font-weight:700;">Ver cobertura completa</a>.' +
-    '</div>';
+  // === COLUMNA 3: Boyacá ===
+  desktopHtml += '<div class="coverage-section-title">Boyacá</div>';
+  var boyacaList = ["Tunja", "Villa de Leyva", "Duitama", "Sogamoso", "Paipa", "Samacá", "Boyacá", "Chiquinquirá", "Chocontá", "Firavitoba", "Ráquira", "Valle de Tenza"];
+  for (var k = 0; k < municipios.length; k++) {
+    var mb = municipios[k];
+    if (boyacaList.indexOf(mb.nombre) === -1) continue;
+    var hrefb = baseHref + mb.slug + ".html";
+    var isCurrentB = currentSlug === mb.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrentB ? " is-current" : "") + '" href="' + hrefb + '">' + esc(mb.nombre) + '</a>';
+  }
+
+  // === COLUMNA 4: Santander + Magdalena + Países ===
+  desktopHtml += '<div class="coverage-section-title">Santander</div>';
+  var santanderList = ["Barbosa", "Vélez", "Puente Nacional", "San Francisco"];
+  for (var ks = 0; ks < municipios.length; ks++) {
+    var ms = municipios[ks];
+    if (santanderList.indexOf(ms.nombre) === -1) continue;
+    var hrefs = baseHref + ms.slug + ".html";
+    var isCurrentS = currentSlug === ms.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrentS ? " is-current" : "") + '" href="' + hrefs + '">' + esc(ms.nombre) + '</a>';
+  }
+
+  // Magdalena
+  desktopHtml += '<div class="coverage-subsection-title">Magdalena</div>';
+  for (var km = 0; km < municipios.length; km++) {
+    var mm = municipios[km];
+    if (mm.nombre !== "Santa Marta") continue;
+    var hrefm = baseHref + mm.slug + ".html";
+    var isCurrentM = currentSlug === mm.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrentM ? " is-current" : "") + '" href="' + hrefm + '">' + esc(mm.nombre) + '</a>';
+  }
+
+  // Países
+  desktopHtml += '<div class="coverage-subsection-title">En el exterior</div>';
+  for (var p = 0; p < paises.length; p++) {
+    var pais = paises[p];
+    var paisHref = baseHref + pais.slug + ".html";
+    var isCurrentP = currentSlug === pais.slug;
+    desktopHtml += '<a class="municipio-item' + (isCurrentP ? " is-current" : "") + '" href="' + paisHref + '">' + esc(pais.nombre) + '</a>';
+  }
 
   desktopHtml += '</div>'; // cierre coverage-body
 
-  // Footer con CTA
+  // === Footer con pills ===
   desktopHtml += '<div class="coverage-footer">' +
-    '<a href="' + coberturaCompletaHref + '">' +
-    'Ver cobertura completa <i class="fas fa-arrow-right"></i>' +
+    '<div class="coverage-footer-pills">' +
+      '<a class="coverage-pill" href="' + colHref + '"><i class="fas fa-flag"></i> Colombia</a>' +
+      '<a class="coverage-pill" href="/pages/chia.html"><i class="fas fa-map-marker-alt"></i> Chía</a>' +
+      '<a class="coverage-pill" href="/pages/cajica.html"><i class="fas fa-map-marker-alt"></i> Cajicá</a>' +
+      '<a class="coverage-pill" href="/pages/zipaquira.html"><i class="fas fa-map-marker-alt"></i> Zipaquirá</a>' +
+      '<a class="coverage-pill" href="/pages/sopo.html"><i class="fas fa-map-marker-alt"></i> Sopó</a>' +
+      '<a class="coverage-pill" href="/pages/funza.html"><i class="fas fa-map-marker-alt"></i> Funza</a>' +
+      '<a class="coverage-pill" href="/pages/mosquera.html"><i class="fas fa-map-marker-alt"></i> Mosquera</a>' +
+      '<a class="coverage-pill" href="/pages/tunja.html"><i class="fas fa-map-marker-alt"></i> Tunja</a>' +
+      '<a class="coverage-pill" href="/pages/villadeleyva.html"><i class="fas fa-map-marker-alt"></i> Villa de Leyva</a>' +
+      '<a class="coverage-pill" href="/pages/barbosa.html"><i class="fas fa-map-marker-alt"></i> Barbosa</a>' +
+    '</div>' +
+    '<a class="coverage-footer-cta" href="' + coberturaCompletaHref + '">' +
+      'Ver cobertura completa <i class="fas fa-arrow-right"></i>' +
     '</a>' +
     '</div>';
 
   // ============ RENDER MOBILE (tablet-menu) ============
-  var mobileHtml = '' +
-    '<div class="coverage-search-wrap">' +
-      '<div class="coverage-search">' +
-        '<i class="fas fa-search"></i>' +
-        '<input type="text" id="coverage-search-mobile" placeholder="Buscar municipio o país..." autocomplete="off" />' +
-      '</div>' +
-    '</div>';
+  var mobileHtml = '';
 
   // Colombia
-  mobileHtml += '<div class="coverage-section-title"><i class="fas fa-flag"></i>Colombia</div>';
-  mobileHtml += '<a class="municipio-item' + (isCurrentCol ? " is-current" : "") + '" ' +
-    'data-coverage-search="colombia casas prefabricadas" ' +
-    'href="' + colHref + '"><i class="fas fa-flag municipio-icon"></i><span class="coverage-name">Casas prefabricadas en Colombia</span></a>';
+  mobileHtml += '<div class="coverage-section-title">Colombia</div>';
+  mobileHtml += '<a class="municipio-item' + (isCurrentCol ? " is-current" : "") + '" href="' + colHref + '">Casas prefabricadas en Colombia</a>';
+
+  // Bogotá y Sabana
+  mobileHtml += '<div class="coverage-section-title">Bogotá y Sabana</div>';
+  for (var mi = 0; mi < municipios.length; mi++) {
+    var mmi = municipios[mi];
+    if (bogotaSabana.indexOf(mmi.nombre) === -1) continue;
+    var hrefmi = baseHref + mmi.slug + ".html";
+    var isCurrentMi = currentSlug === mmi.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMi ? " is-current" : "") + '" href="' + hrefmi + '">' + esc(mmi.nombre) + '</a>';
+  }
+
+  // Cundinamarca resto
+  mobileHtml += '<div class="coverage-section-title">Cundinamarca</div>';
+  for (var mj = 0; mj < municipios.length; mj++) {
+    var mmj = municipios[mj];
+    if (cundiResto.indexOf(mmj.nombre) === -1) continue;
+    var hrefmj = baseHref + mmj.slug + ".html";
+    var isCurrentMj = currentSlug === mmj.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMj ? " is-current" : "") + '" href="' + hrefmj + '">' + esc(mmj.nombre) + '</a>';
+  }
+
+  // Boyacá
+  mobileHtml += '<div class="coverage-section-title">Boyacá</div>';
+  for (var mk = 0; mk < municipios.length; mk++) {
+    var mmk = municipios[mk];
+    if (boyacaList.indexOf(mmk.nombre) === -1) continue;
+    var hrefmk = baseHref + mmk.slug + ".html";
+    var isCurrentMk = currentSlug === mmk.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMk ? " is-current" : "") + '" href="' + hrefmk + '">' + esc(mmk.nombre) + '</a>';
+  }
+
+  // Santander
+  mobileHtml += '<div class="coverage-section-title">Santander</div>';
+  for (var mn = 0; mn < municipios.length; mn++) {
+    var mmn = municipios[mn];
+    if (santanderList.indexOf(mmn.nombre) === -1) continue;
+    var hrefmn = baseHref + mmn.slug + ".html";
+    var isCurrentMn = currentSlug === mmn.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMn ? " is-current" : "") + '" href="' + hrefmn + '">' + esc(mmn.nombre) + '</a>';
+  }
+
+  // Magdalena
+  mobileHtml += '<div class="coverage-section-title">Magdalena</div>';
+  for (var mo = 0; mo < municipios.length; mo++) {
+    var mmo = municipios[mo];
+    if (mmo.nombre !== "Santa Marta") continue;
+    var hrefmo = baseHref + mmo.slug + ".html";
+    var isCurrentMo = currentSlug === mmo.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMo ? " is-current" : "") + '" href="' + hrefmo + '">' + esc(mmo.nombre) + '</a>';
+  }
 
   // Países
-  if (paises.length) {
-    mobileHtml += '<div class="coverage-section-title"><i class="fas fa-earth-americas"></i>Países</div>';
-    for (var mp = 0; mp < paises.length; mp++) {
-      var mpP = paises[mp];
-      var mpHref = baseHref + mpP.slug + ".html";
-      var mpIcon = '<i class="' + (mpP.icono || "fas fa-globe-americas") + ' municipio-icon"></i>';
-      var mpCurrent = currentSlug === mpP.slug;
-      mobileHtml += '<a class="municipio-item' + (mpCurrent ? " is-current" : "") + '" ' +
-        'data-coverage-search="' + esc(mpP.nombre + " " + mpP.slug) + '" ' +
-        'href="' + mpHref + '">' + mpIcon + '<span class="coverage-name">' + esc(mpP.nombre) + '</span></a>';
-    }
+  mobileHtml += '<div class="coverage-section-title">En el exterior</div>';
+  for (var mp = 0; mp < paises.length; mp++) {
+    var paism = paises[mp];
+    var hrefmp = baseHref + paism.slug + ".html";
+    var isCurrentMp = currentSlug === paism.slug;
+    mobileHtml += '<a class="municipio-item' + (isCurrentMp ? " is-current" : "") + '" href="' + hrefmp + '">' + esc(paism.nombre) + '</a>';
   }
 
-  // Municipios por departamento
-  if (municipios.length) {
-    var byDeptoM = {};
-    for (var mi = 0; mi < municipios.length; mi++) {
-      var mm = municipios[mi];
-      var md = deptoOf(mm.slug) || "Otros";
-      if (!byDeptoM[md]) byDeptoM[md] = [];
-      byDeptoM[md].push(mm);
-    }
-    var deptoOrderM = Object.keys(byDeptoM).sort(function (a, b) {
-      if (a === "Otros") return 1;
-      if (b === "Otros") return -1;
-      return byDeptoM[b].length - byDeptoM[a].length;
-    });
-    for (var mdIdx = 0; mdIdx < deptoOrderM.length; mdIdx++) {
-      var mdepto = deptoOrderM[mdIdx];
-      var mitems = byDeptoM[mdepto];
-      var mIcon = "fas fa-map-marker-alt";
-      mobileHtml += '<div class="coverage-section-title"><i class="' + mIcon + '"></i>' + esc(mdepto) + ' (' + mitems.length + ')</div>';
-      for (var mj = 0; mj < mitems.length; mj++) {
-        var mmun = mitems[mj];
-        var mmHref = baseHref + mmun.slug + ".html";
-        var mmCurrent = currentSlug === mmun.slug;
-        mobileHtml += '<a class="municipio-item' + (mmCurrent ? " is-current" : "") + '" ' +
-          'data-coverage-search="' + esc(mmun.nombre.toLowerCase()) + '" ' +
-          'href="' + mmHref + '"><i class="fas fa-map-marker-alt municipio-icon"></i><span class="coverage-name">' + esc(mmun.nombre) + '</span></a>';
-      }
-    }
-  }
-
+  // Footer con pills + CTA
   mobileHtml += '<div class="coverage-footer">' +
-    '<a href="' + coberturaCompletaHref + '">' +
-    'Ver cobertura completa <i class="fas fa-arrow-right"></i>' +
+    '<div class="coverage-footer-pills">' +
+      '<a class="coverage-pill" href="/pages/chia.html">Chía</a>' +
+      '<a class="coverage-pill" href="/pages/cajica.html">Cajicá</a>' +
+      '<a class="coverage-pill" href="/pages/zipaquira.html">Zipaquirá</a>' +
+      '<a class="coverage-pill" href="/pages/sopo.html">Sopó</a>' +
+      '<a class="coverage-pill" href="/pages/funza.html">Funza</a>' +
+      '<a class="coverage-pill" href="/pages/mosquera.html">Mosquera</a>' +
+      '<a class="coverage-pill" href="/pages/tunja.html">Tunja</a>' +
+      '<a class="coverage-pill" href="/pages/villadeleyva.html">Villa de Leyva</a>' +
+    '</div>' +
+    '<a class="coverage-footer-cta" href="' + coberturaCompletaHref + '">' +
+      'Ver cobertura completa <i class="fas fa-arrow-right"></i>' +
     '</a>' +
     '</div>';
 
@@ -452,48 +411,6 @@ function renderNavMunicipios() {
   if (desktopEl) desktopEl.innerHTML = desktopHtml;
   if (mobileEl) mobileEl.innerHTML = mobileHtml;
   updateCoverageLabels();
-
-  // ============ LÓGICA DEL BUSCADOR ============
-  function attachSearch(inputId, containerEl) {
-    var input = document.getElementById(inputId);
-    if (!input || !containerEl) return;
-    input.addEventListener("input", function () {
-      var q = input.value.trim().toLowerCase();
-      var items = containerEl.querySelectorAll(".municipio-item");
-      var visible = 0;
-      items.forEach(function (it) {
-        var key = (it.getAttribute("data-coverage-search") || "").toLowerCase();
-        var match = q === "" || key.indexOf(q) !== -1;
-        it.classList.toggle("is-hidden", !match);
-        if (match) visible++;
-      });
-      // Mostrar/ocultar secciones según tengan items visibles
-      var titles = containerEl.querySelectorAll(".coverage-section-title");
-      titles.forEach(function (t) {
-        // Buscar el siguiente hermano hasta el próximo title y ver si hay items visibles
-        var hasVisible = false;
-        var next = t.nextElementSibling;
-        while (next && !next.classList.contains("coverage-section-title")) {
-          if (next.classList.contains("municipio-item") && !next.classList.contains("is-hidden")) {
-            hasVisible = true; break;
-          }
-          if (next.tagName === "UL" || next.tagName === "DIV") {
-            var nested = next.querySelectorAll ? next.querySelectorAll(".municipio-item:not(.is-hidden)") : [];
-            if (nested.length > 0) { hasVisible = true; break; }
-          }
-          next = next.nextElementSibling;
-        }
-        t.style.display = hasVisible ? "" : "none";
-      });
-      // Mensaje sin resultados
-      var noResults = containerEl.querySelector(".coverage-no-results");
-      if (noResults) {
-        noResults.style.display = (visible === 0 && q !== "") ? "block" : "none";
-      }
-    });
-  }
-  attachSearch("coverage-search-desktop", desktopEl);
-  attachSearch("coverage-search-mobile", mobileEl);
 
   // ============ FOOTER (preservado) ============
   if (footerEl) {
