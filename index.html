@@ -323,9 +323,19 @@
       /* Hero a altura completa en móvil */
       @media (max-width: 1023px) {
         .hero-section {
-          min-height: 100vh !important;
-          height: 100vh !important;
+          min-height: auto !important;
+          height: auto !important;
+          align-items: flex-start !important;
+          padding-top: 5.5rem !important;
+          padding-bottom: 1.5rem !important;
         }
+        .hero-container {
+          grid-template-columns: 1fr !important;
+          gap: 1.5rem !important;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
+        .hero-slider { order: 2; max-width: 480px; margin: 0 auto; width: 100%; }
       }
 
       /* Layout mixto del hero para PC */
@@ -1741,10 +1751,7 @@
     <main>
       <section
         class="relative bg-cover bg-center flex items-center justify-center py-24 sm:py-28 md:py-32 lg:py-0 pt-32 sm:pt-28 lg:pt-0 hero-section"
-        style="
-          background-image: url('assets/images/herocasa.webp');
-          min-height: 95vh;
-        "
+        style="background-image: url('assets/images/herocasa.webp');"
       >
         <!-- Overlay con gradiente -->
         <div
@@ -1830,8 +1837,8 @@
 
           <!-- CTA del hero: tarjeta-modal autosuficiente de 2 pasos (intención + departamento).
                No abre otro modal — el card se actualiza solo entre pasos. Al elegir departamento
-               abre WhatsApp directo. Solo visible en desktop (lg+). En mobile se ven los CTAs. -->
-          <div class="hero-slider hidden lg:block">
+               abre WhatsApp directo. En mobile se apila debajo del texto; en desktop va a la derecha. -->
+          <div class="hero-slider">
             <div class="hero-cta-card hero-cta-card--modal" id="hero-wa-inline">
               <div class="hero-cta-card--modal__header">
                 <div class="hero-cta-card--modal__avatar">A</div>
