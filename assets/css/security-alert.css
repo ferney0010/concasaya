@@ -10,6 +10,8 @@
   --sa-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
   --sa-danger: #dc2626;
   --sa-danger-dark: #991b1b;
+  --sa-primary: #0077b6;
+  --sa-primary-dark: #023e7d;
   --sa-success: #16a34a;
   --sa-line: #e5e7eb;
 }
@@ -143,13 +145,16 @@
 #sa-btn-confirm:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(22, 163, 74, 0.4); }
 #sa-btn-confirm:active { transform: scale(0.98); }
 
-/* ---------- Floating reopen button ---------- */
+/* ---------- Floating reopen button ----------
+   Color amable (azul corporativo) para no ahuyentar al usuario.
+   El modal/X/link mantienen tonos serios porque allí SÍ está el contenido
+   de seguridad. Este botón flotante es solo el disparador. */
 #sa-reopen {
   position: fixed;
   left: 16px;
   bottom: 88px;
   z-index: 90;
-  background: linear-gradient(135deg, var(--sa-danger) 0%, var(--sa-danger-dark) 100%);
+  background: linear-gradient(135deg, var(--sa-primary) 0%, var(--sa-primary-dark) 100%);
   color: #fff;
   border: none;
   border-radius: 999px;
@@ -157,17 +162,17 @@
   font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 18px rgba(0, 119, 182, 0.4);
   display: none;
   align-items: center;
   gap: 6px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
   animation: saReopenPulse 2.4s ease-in-out infinite;
 }
-#sa-reopen:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(220, 38, 38, 0.5); }
+#sa-reopen:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0, 119, 182, 0.5); }
 @keyframes saReopenPulse {
-  0%, 100% { box-shadow: 0 6px 18px rgba(220, 38, 38, 0.4); }
-  50%      { box-shadow: 0 6px 18px rgba(220, 38, 38, 0.75); }
+  0%, 100% { box-shadow: 0 6px 18px rgba(0, 119, 182, 0.4); }
+  50%      { box-shadow: 0 6px 18px rgba(0, 119, 182, 0.75); }
 }
 #sa-reopen i { font-size: 13px; }
 
