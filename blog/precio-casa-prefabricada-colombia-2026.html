@@ -766,7 +766,7 @@
                   <p class="hero-cta-estimate__disclaimer">
                     <i class="fas fa-info-circle"></i> Este número es solo un punto de partida. El precio real depende de ubicación, acabados, instalaciones completas (baño, cocina, eléctricas), placa, transporte, movimiento de tierra y licencia de obra. Un asesor de CONCASAYA te da el número exacto en menos de 24h.
                   </p>
-                  <a href="javascript:void(0)" id="hero-wa-btn" class="hero-cta-card__btn">
+                  <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20mi%20casa%20prefabricada" target="_blank" rel="noopener" class="hero-cta-card__btn">
                     <i class="fab fa-whatsapp"></i> Pedir cotización por WhatsApp
                   </a>
                 </form>
@@ -1347,46 +1347,57 @@ const hero = document.querySelector(".hero-image");
     <script src="/assets/js/nav-menu.js"></script>
     
     <script>
-      (function () {
+            (function () {
         const m2Input = document.getElementById('hero-m2');
         const sistemaSelect = document.getElementById('hero-sistema');
         const zonaSelect = document.getElementById('hero-zona');
         const estimateValue = document.getElementById('hero-estimate-value');
         const waBtn = document.getElementById('hero-wa-btn');
+        const waBtnFloating = document.getElementById('hero-wa-btn-floating');
         const modal = document.getElementById('hero-wa-modal');
-        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn || !modal) return;
+        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn) return;
 
         const precios = {
-          'plaqueta-negra': 600000,
-          'plaqueta-gris': 1150000,
-          'plaqueta-blanca': 1850000,
-          'eps-gris': 1450000,
-          'eps-blanca': 1950000
+          'plaqueta-negra': 600000, 'plaqueta-gris': 1150000, 'plaqueta-blanca': 1850000,
+          'eps-gris': 1450000, 'eps-blanca': 1950000
         };
         const sistemaLabel = {
-          'plaqueta-negra': 'plaqueta obra negra',
-          'plaqueta-gris': 'plaqueta obra gris',
-          'plaqueta-blanca': 'plaqueta obra blanca',
-          'eps-gris': 'paneles EPS obra gris',
+          'plaqueta-negra': 'plaqueta obra negra', 'plaqueta-gris': 'plaqueta obra gris',
+          'plaqueta-blanca': 'plaqueta obra blanca', 'eps-gris': 'paneles EPS obra gris',
           'eps-blanca': 'paneles EPS obra blanca'
         };
-        const zonaMult = {
-          'bogota-sabana': 1.0,
-          'cundinamarca': 1.07,
-          'boyaca': 1.18,
-          'otro': 1.25
-        };
+        const zonaMult = { 'bogota-sabana': 1.0, 'cundinamarca': 1.07, 'boyaca': 1.18, 'otro': 1.25 };
         const zonaLabel = {
-          'bogota-sabana': 'Bogotá/Sabana',
-          'cundinamarca': 'Cundinamarca (otro municipio)',
-          'boyaca': 'Boyacá',
-          'otro': 'otro departamento'
+          'bogota-sabana': 'Bogotá/Sabana', 'cundinamarca': 'Cundinamarca (otro municipio)',
+          'boyaca': 'Boyacá', 'otro': 'otro departamento'
         };
 
         function formatMillones(n) {
           if (n >= 1000000) return '$' + Math.round(n / 1000000) + 'M';
           if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
           return '$' + Math.round(n);
+        }
+
+        function buildMsgMini(opt, data) {
+          const ref = formatMillones(data.min) + ' - ' + formatMillones(data.max);
+          const base = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
+            '• Metros\u00b2: ' + data.m2 + ' m\u00b2\n' +
+            '• Sistema: ' + sistemaLabel[data.sistema] + '\n' +
+            '• Zona: ' + zonaLabel[data.zona] + '\n' +
+            '• Referencia inicial vista en la web: ' + ref + ' (s\u00e9 que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)\n';
+          if (opt === 'lote') return base + '\u00bfMe pueden ayudar con la cotizaci\u00f3n real? Tengo el lote listo.';
+          if (opt === 'busco') return base + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar?';
+          if (opt === 'exterior') return base + 'Estoy en el exterior. \u00bfC\u00f3mo manejan la log\u00edstica?';
+          return base + '\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?';
+        }
+
+        function buildMsgFloating(opt) {
+          const base = 'Hola CONCASAYA, quiero cotizar mi casa prefabricada.\n' +
+            'Vi su p\u00e1gina y me interesa recibir m\u00e1s informaci\u00f3n sobre sistemas, precios y tiempos.\n';
+          if (opt === 'lote') return base + 'Tengo el lote listo. \u00bfMe pueden ayudar con la cotizaci\u00f3n?';
+          if (opt === 'busco') return base + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar?';
+          if (opt === 'exterior') return base + 'Estoy en el exterior. \u00bfC\u00f3mo manejan la log\u00edstica?';
+          return base + '\u00bfMe pueden pasar m\u00e1s informaci\u00f3n?';
         }
 
         function calcular() {
@@ -1402,63 +1413,51 @@ const hero = document.querySelector(".hero-image");
           return { m2, sistema, zona, min, max };
         }
 
-        // Mensajes pre-armados según la opción elegida
-        function buildMsg(opt, data) {
-          const ref = formatMillones(data.min) + ' - ' + formatMillones(data.max);
-          const base = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
-            '• Metros\u00b2: ' + data.m2 + ' m\u00b2\n' +
-            '• Sistema: ' + sistemaLabel[data.sistema] + '\n' +
-            '• Zona: ' + zonaLabel[data.zona] + '\n' +
-            '• Referencia inicial vista en la web: ' + ref + ' (s\u00e9 que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)\n';
-          if (opt === 'lote') {
-            return base + '\u00bfMe pueden ayudar con la cotizaci\u00f3n real y los siguientes pasos? Tengo el lote listo.';
-          } else if (opt === 'busco') {
-            return base + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar para encontrar el lote ideal y arrancar el proyecto?';
-          } else if (opt === 'exterior') {
-            return base + 'Estoy en el exterior y quiero empezar el proyecto a distancia. \u00bfC\u00f3mo manejan la log\u00edstica y los pagos internacionales?';
-          }
-          return base + '\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?';
+        // 1) Botón del MINI-COTIZADOR: actualiza href dinámicamente. NO modal.
+        function updateWaBtnHref() {
+          const data = calcular();
+          const msg = buildMsgMini('default', data);
+          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
         }
+        m2Input.addEventListener('input', updateWaBtnHref);
+        sistemaSelect.addEventListener('change', updateWaBtnHref);
+        zonaSelect.addEventListener('change', updateWaBtnHref);
+        updateWaBtnHref();
 
-        // Abrir modal al hacer click en el botón principal
-        waBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          modal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        });
-
-        // Cerrar modal (backdrop, X, ESC)
-        function cerrarModal() {
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
-        }
-        modal.querySelectorAll('[data-hero-wa-close]').forEach(function (el) {
-          el.addEventListener('click', cerrarModal);
-        });
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') cerrarModal();
-        });
-
-        // Click en cada opción: armar mensaje + abrir WhatsApp
-        modal.querySelectorAll('[data-hero-wa-opt]').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            const opt = btn.getAttribute('data-hero-wa-opt');
-            const data = calcular();
-            const msg = buildMsg(opt, data);
-            const url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
-            window.open(url, '_blank', 'noopener,noreferrer');
-            cerrarModal();
+        // 2) Botón FLOTANTE: abre el modal con mensaje genérico
+        if (waBtnFloating && modal) {
+          waBtnFloating.addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
           });
-        });
 
-        // Listeners de inputs (actualizan el rango en vivo)
-        m2Input.addEventListener('input', calcular);
-        sistemaSelect.addEventListener('change', calcular);
-        zonaSelect.addEventListener('change', calcular);
+          modal.querySelectorAll('[data-hero-wa-opt]').forEach(function (btn) {
+            if (!btn.dataset.floatBound) {
+              btn.dataset.floatBound = '1';
+              btn.addEventListener('click', function () {
+                const opt = btn.getAttribute('data-hero-wa-opt');
+                const msg = buildMsgFloating(opt);
+                const url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+                window.open(url, '_blank', 'noopener,noreferrer');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+              });
+            }
+          });
 
-        // Cálculo inicial
-        calcular();
-      })();
+          function cerrarModal() {
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+          }
+          modal.querySelectorAll('[data-hero-wa-close]').forEach(function (el) {
+            el.addEventListener('click', cerrarModal);
+          });
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') cerrarModal();
+          });
+        }
+      })();;
     </script>
   
       /* === Mini-cotizador: filtro "¿Ya tienes lote?" === */
@@ -1748,52 +1747,5 @@ const hero = document.querySelector(".hero-image");
     </div>
 
   
-    <!-- Listener del botón flotante: abre el modal con un mensaje genérico -->
-    <script>
-      (function () {
-        var btn = document.getElementById('hero-wa-btn-floating');
-        var modal = document.getElementById('hero-wa-modal');
-        if (!btn || !modal) return;
-
-        // Para el botón flotante, usamos un mensaje genérico (no asumimos
-        // que el cliente haya usado el mini-cotizador)
-        var baseMsg = 'Hola CONCASAYA, quiero cotizar mi casa prefabricada.\nVi su p\u00e1gina y me interesa recibir m\u00e1s informaci\u00f3n sobre sistemas, precios y tiempos.\n';
-
-        btn.addEventListener('click', function (e) {
-          e.preventDefault();
-          modal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-
-          // Sobrescribir el handler de las opciones para este caso
-          // (guardamos referencia al handler original y lo restauramos al cerrar)
-          var opts = modal.querySelectorAll('[data-hero-wa-opt]');
-          var originalHandlers = [];
-          opts.forEach(function (optBtn, idx) {
-            // Capturamos el handler previo y lo restauramos
-            var newClick = function () {
-              var opt = optBtn.getAttribute('data-hero-wa-opt');
-              var msg = baseMsg;
-              if (opt === 'lote') {
-                msg = baseMsg + 'Tengo el lote listo. \u00bfMe pueden ayudar con la cotizaci\u00f3n?';
-              } else if (opt === 'busco') {
-                msg = baseMsg + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar?';
-              } else if (opt === 'exterior') {
-                msg = baseMsg + 'Estoy en el exterior. \u00bfC\u00f3mo manejan la log\u00edstica?';
-              }
-              var url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
-              window.open(url, '_blank', 'noopener,noreferrer');
-              modal.setAttribute('aria-hidden', 'true');
-              document.body.style.overflow = '';
-            };
-            // Guardamos handler original
-            if (!optBtn.dataset.floatHandler) {
-              optBtn.dataset.floatHandler = '1';
-              optBtn.addEventListener('click', newClick);
-            }
-          });
-        });
-      })();
-    </script>
-
   </body>
 </html>

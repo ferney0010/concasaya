@@ -1724,7 +1724,8 @@
                 <span>Cotizar gratis</span>
               </a>
               <a
-                href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20vi%20su%20p%C3%A1gina%20y%20me%20interesa%20una%20casa%20prefabricada.%20%C2%BFMe%20pueden%20dar%20m%C3%A1s%20informaci%C3%B3n%3F"
+                href="javascript:void(0)"
+                id="hero-wa-btn-hero"
                 target="_blank"
                 class="w-full sm:w-auto px-6 sm:px-7 lg:px-6 py-4 sm:py-3.5 lg:py-3 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg lg:text-base hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl whitespace-nowrap"
               >
@@ -1792,7 +1793,7 @@
                 <p class="hero-cta-estimate__disclaimer">
                   <i class="fas fa-info-circle"></i> Este número es solo un punto de partida. El precio real depende de ubicación, acabados, instalaciones completas (baño, cocina, eléctricas), placa, transporte, movimiento de tierra y licencia de obra. Un asesor de CONCASAYA te da el número exacto en menos de 24h.
                 </p>
-                <a href="javascript:void(0)" id="hero-wa-btn" class="hero-cta-card__btn">
+                <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20mi%20casa%20prefabricada" target="_blank" rel="noopener" class="hero-cta-card__btn">
                   <i class="fab fa-whatsapp"></i> Pedir cotización por WhatsApp
                 </a>
               </form>
@@ -4437,14 +4438,15 @@
          para que se vea la animación. Sin JS, el HTML "fallback" muestra el
          número real (no +0). -->
     <script>
-      (function () {
+            (function () {
         const m2Input = document.getElementById('hero-m2');
         const sistemaSelect = document.getElementById('hero-sistema');
         const zonaSelect = document.getElementById('hero-zona');
         const estimateValue = document.getElementById('hero-estimate-value');
         const waBtn = document.getElementById('hero-wa-btn');
+        const waBtnHero = document.getElementById('hero-wa-btn-hero');
         const modal = document.getElementById('hero-wa-modal');
-        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn || !modal) return;
+        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn) return;
 
         const precios = {
           'plaqueta-negra': 600000,
@@ -4479,21 +4481,7 @@
           return '$' + Math.round(n);
         }
 
-        function calcular() {
-          const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
-          const sistema = sistemaSelect.value;
-          const zona = zonaSelect.value;
-          const base = precios[sistema] || 1150000;
-          const multZona = zonaMult[zona] || 1.0;
-          const baseCalc = base * m2 * multZona;
-          const min = baseCalc * 0.85;
-          const max = baseCalc * 1.55;
-          estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
-          return { m2, sistema, zona, min, max };
-        }
-
-        // Mensajes pre-armados según la opción elegida
-        function buildMsg(opt, data) {
+        function buildMsgMini(opt, data) {
           const ref = formatMillones(data.min) + ' - ' + formatMillones(data.max);
           const base = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
             '• Metros\u00b2: ' + data.m2 + ' m\u00b2\n' +
@@ -4510,45 +4498,78 @@
           return base + '\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?';
         }
 
-        // Abrir modal al hacer click en el botón principal
-        waBtn.addEventListener('click', function (e) {
-          e.preventDefault();
-          modal.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        });
-
-        // Cerrar modal (backdrop, X, ESC)
-        function cerrarModal() {
-          modal.setAttribute('aria-hidden', 'true');
-          document.body.style.overflow = '';
+        function buildMsgHero(opt) {
+          const base = 'Hola CONCASAYA, vi su p\u00e1gina y quiero cotizar mi casa prefabricada.\n' +
+            'Necesito m\u00e1s informaci\u00f3n sobre sistemas, precios y tiempos.\n';
+          if (opt === 'lote') {
+            return base + 'Tengo el lote listo. \u00bfMe pueden ayudar con la cotizaci\u00f3n?';
+          } else if (opt === 'busco') {
+            return base + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar?';
+          } else if (opt === 'exterior') {
+            return base + 'Estoy en el exterior. \u00bfC\u00f3mo manejan la log\u00edstica?';
+          }
+          return base + '\u00bfMe pueden pasar m\u00e1s informaci\u00f3n?';
         }
-        modal.querySelectorAll('[data-hero-wa-close]').forEach(function (el) {
-          el.addEventListener('click', cerrarModal);
-        });
-        document.addEventListener('keydown', function (e) {
-          if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') cerrarModal();
-        });
 
-        // Click en cada opción: armar mensaje + abrir WhatsApp
-        modal.querySelectorAll('[data-hero-wa-opt]').forEach(function (btn) {
-          btn.addEventListener('click', function () {
-            const opt = btn.getAttribute('data-hero-wa-opt');
-            const data = calcular();
-            const msg = buildMsg(opt, data);
-            const url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
-            window.open(url, '_blank', 'noopener,noreferrer');
-            cerrarModal();
+        function calcular() {
+          const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
+          const sistema = sistemaSelect.value;
+          const zona = zonaSelect.value;
+          const base = precios[sistema] || 1150000;
+          const multZona = zonaMult[zona] || 1.0;
+          const baseCalc = base * m2 * multZona;
+          const min = baseCalc * 0.85;
+          const max = baseCalc * 1.55;
+          estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
+          return { m2, sistema, zona, min, max };
+        }
+
+        // 1) Botón del MINI-COTIZADOR: actualizar href dinámicamente con el mensaje
+        //    pre-armado. NO abre modal — va directo a WhatsApp.
+        function updateWaBtnHref() {
+          const data = calcular();
+          const msg = buildMsgMini('default', data);
+          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+        }
+        m2Input.addEventListener('input', updateWaBtnHref);
+        sistemaSelect.addEventListener('change', updateWaBtnHref);
+        zonaSelect.addEventListener('change', updateWaBtnHref);
+        updateWaBtnHref();
+
+        // 2) Botón WhatsApp del HERO: abre el modal con mensaje genérico
+        if (waBtnHero && modal) {
+          waBtnHero.addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
           });
-        });
 
-        // Listeners de inputs (actualizan el rango en vivo)
-        m2Input.addEventListener('input', calcular);
-        sistemaSelect.addEventListener('change', calcular);
-        zonaSelect.addEventListener('change', calcular);
+          modal.querySelectorAll('[data-hero-wa-opt]').forEach(function (btn) {
+            if (!btn.dataset.heroBound) {
+              btn.dataset.heroBound = '1';
+              btn.addEventListener('click', function () {
+                const opt = btn.getAttribute('data-hero-wa-opt');
+                const msg = buildMsgHero(opt);
+                const url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+                window.open(url, '_blank', 'noopener,noreferrer');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+              });
+            }
+          });
 
-        // Cálculo inicial
-        calcular();
-      })();
+          function cerrarModal() {
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+          }
+          modal.querySelectorAll('[data-hero-wa-close]').forEach(function (el) {
+            el.addEventListener('click', cerrarModal);
+          });
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') cerrarModal();
+          });
+        }
+      })();;
     </script>
 
   
