@@ -1792,7 +1792,7 @@
                 <p class="hero-cta-estimate__disclaimer">
                   <i class="fas fa-info-circle"></i> Este número es solo un punto de partida. El precio real depende de ubicación, acabados, instalaciones completas (baño, cocina, eléctricas), placa, transporte, movimiento de tierra y licencia de obra. Un asesor de CONCASAYA te da el número exacto en menos de 24h.
                 </p>
-                <a href="#" id="hero-wa-btn" target="_blank" rel="noopener" class="hero-cta-card__btn">
+                <a href="javascript:void(0)" id="hero-wa-btn" class="hero-cta-card__btn">
                   <i class="fab fa-whatsapp"></i> Pedir cotización por WhatsApp
                 </a>
               </form>
@@ -4596,7 +4596,7 @@
       .hero-wa-modal {
         position: fixed;
         inset: 0;
-        z-index: 70;
+        z-index: 200;
         display: none;
         align-items: center;
         justify-content: center;
@@ -4788,7 +4788,12 @@
       }
       .hero-wa-modal__footer i { color: #16a34a; }
       @media (max-width: 420px) {
-        .hero-wa-modal__card { max-width: 100%; }
+        .hero-wa-modal__card { max-width: 100%; border-radius: 12px; }
+        .hero-wa-modal__body { padding: 0.85rem 0.85rem 0.5rem; }
+        .hero-wa-modal__header { padding: 0.7rem 0.85rem; }
+        .hero-wa-modal__opt { font-size: 0.8rem; padding: 0.7rem 0.8rem; gap: 0.55rem; }
+        .hero-wa-modal__greeting { font-size: 0.88rem; }
+        .hero-wa-modal__sub { font-size: 0.72rem; }
         .hero-wa-modal__opt { font-size: 0.82rem; padding: 0.75rem 0.85rem; }
       }
 
