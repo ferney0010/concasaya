@@ -383,13 +383,14 @@
         }
       }
 
-      /* Estilos del slider de imágenes con efecto de superposición.
-         NO usar display:flex aqui porque sobreescribe la clase `hidden`
-         de Tailwind y el card se ve en mobile. */
+      /* Wrapper del card modal. display:flex + align-items:center
+         para centrar el card verticalmente en su celda del grid. */
       .hero-slider {
         position: relative;
         width: 100%;
-        min-height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 20px;
         overflow: visible;
       }
