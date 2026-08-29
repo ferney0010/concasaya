@@ -754,22 +754,9 @@
                     </select>
                   </label>
                   
-                <div class="hero-cta-field">
-                  <span class="hero-cta-field__label">¿Ya tienes lote donde construir?</span>
-                  <div class="hero-cta-lote-toggle" role="radiogroup" aria-label="¿Ya tienes lote?">
-                    <button type="button" class="hero-cta-lote-btn" data-lote="si">
-                      <i class="fas fa-map-marker-alt"></i> Sí, ya tengo lote
-                    </button>
-                    <button type="button" class="hero-cta-lote-btn" data-lote="no">
-                      <i class="fas fa-search"></i> Aún no, ayúdenme
-                    </button>
-                  </div>
+                
                   <input type="hidden" id="hero-lote-tiene" value="" />
                 </div>
-                <label class="hero-cta-field hero-cta-lote-ubicacion" id="hero-lote-ubicacion-wrap" style="display:none;">
-                  <span class="hero-cta-field__label">¿En qué municipio / vereda?</span>
-                  <input type="text" id="hero-lote-ubicacion" placeholder="Ej: Chía, vereda Bojacá" autocomplete="address-level2" class="hero-cta-input" />
-                </label>
 
 
                 <div class="hero-cta-estimate" id="hero-estimate" aria-live="polite">
@@ -1361,60 +1348,14 @@ const hero = document.querySelector(".hero-image");
     
     <script>
       (function () {
-        const tocLinks = document.querySelectorAll('#toc-list a[href^="#"]');
-        if (!tocLinks.length) return;
-        const sections = Array.from(tocLinks)
-          .map(link => {
-            const id = link.getAttribute('href').slice(1);
-            return { id, link, target: document.getElementById(id) };
-          })
-          .filter(item => item.target);
-        if (!sections.length) return;
-        const setActive = (activeId) => {
-          tocLinks.forEach(l => l.classList.remove('is-active'));
-          if (activeId) {
-            const found = sections.find(s => s.id === activeId);
-            if (found) found.link.classList.add('is-active');
-          }
-        };
-        const observer = new IntersectionObserver(
-          (entries) => {
-            const visible = entries
-              .filter(e => e.isIntersecting)
-              .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
-            if (visible.length > 0) setActive(visible[0].target.id);
-          },
-          { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
-        );
-        sections.forEach(s => observer.observe(s.target));
-        tocLinks.forEach(link => {
-          link.addEventListener('click', (e) => {
-            const target = document.getElementById(link.getAttribute('href').slice(1));
-            if (target) {
-              e.preventDefault();
-              const offset = 100;
-              const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
-              window.scrollTo({ top, behavior: 'smooth' });
-              setActive(link.getAttribute('href').slice(1));
-            }
-          });
-        });
-      })();
-    </script>
-
-    <script src="/assets/js/whatsapp-modal.js"></script>
-
-    <!-- Mini-cotizador del hero: actualiza referencia inicial y mensaje de WhatsApp -->
-    <script>
-      (function () {
         const m2Input = document.getElementById('hero-m2');
         const sistemaSelect = document.getElementById('hero-sistema');
         const zonaSelect = document.getElementById('hero-zona');
         const estimateValue = document.getElementById('hero-estimate-value');
         const waBtn = document.getElementById('hero-wa-btn');
-        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn) return;
+        const modal = document.getElementById('hero-wa-modal');
+        if (!m2Input || !sistemaSelect || !zonaSelect || !estimateValue || !waBtn || !modal) return;
 
-        // Precios CONCASAYA por m² (precios base Bogotá/Sabana, 2026)
         const precios = {
           'plaqueta-negra': 600000,
           'plaqueta-gris': 1150000,
@@ -1429,7 +1370,6 @@ const hero = document.querySelector(".hero-image");
           'eps-gris': 'paneles EPS obra gris',
           'eps-blanca': 'paneles EPS obra blanca'
         };
-        // Multiplicador por zona (transporte, acceso, regulación local)
         const zonaMult = {
           'bogota-sabana': 1.0,
           'cundinamarca': 1.07,
@@ -1453,67 +1393,71 @@ const hero = document.querySelector(".hero-image");
           const m2 = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
           const sistema = sistemaSelect.value;
           const zona = zonaSelect.value;
-          const tieneLote = (document.getElementById('hero-lote-tiene')?.value || '').trim();
-          const ubicLote = (document.getElementById('hero-lote-ubicacion')?.value || '').trim();
           const base = precios[sistema] || 1150000;
           const multZona = zonaMult[zona] || 1.0;
-          // Rango amplio (referencia preliminar) para reflejar costos ocultos típicos
           const baseCalc = base * m2 * multZona;
           const min = baseCalc * 0.85;
           const max = baseCalc * 1.55;
           estimateValue.textContent = formatMillones(min) + ' - ' + formatMillones(max);
+          return { m2, sistema, zona, min, max };
+        }
 
-          // Construir mensaje de WhatsApp con TODOS los datos del mini-cotizador
-          const lines = [];
-          lines.push('Hola CONCASAYA, quiero cotizar una casa prefabricada.');
-          lines.push('• Metros\u00b2: ' + m2 + ' m\u00b2');
-          lines.push('• Sistema: ' + sistemaLabel[sistema]);
-          lines.push('• Zona: ' + zonaLabel[zona]);
-          if (tieneLote === 'si') {
-            lines.push('• Lote: S\u00ed, ya tengo lote' + (ubicLote ? ' (' + ubicLote + ')' : ' (ubicaci\u00f3n por confirmar)'));
-          } else if (tieneLote === 'no') {
-            lines.push('• Lote: A\u00fan no tengo lote, necesito ayuda para encontrar uno');
-          } else {
-            lines.push('• Lote: (no especificado)');
+        // Mensajes pre-armados según la opción elegida
+        function buildMsg(opt, data) {
+          const ref = formatMillones(data.min) + ' - ' + formatMillones(data.max);
+          const base = 'Hola CONCASAYA, quiero cotizar una casa prefabricada.\n' +
+            '• Metros\u00b2: ' + data.m2 + ' m\u00b2\n' +
+            '• Sistema: ' + sistemaLabel[data.sistema] + '\n' +
+            '• Zona: ' + zonaLabel[data.zona] + '\n' +
+            '• Referencia inicial vista en la web: ' + ref + ' (s\u00e9 que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)\n';
+          if (opt === 'lote') {
+            return base + '\u00bfMe pueden ayudar con la cotizaci\u00f3n real y los siguientes pasos? Tengo el lote listo.';
+          } else if (opt === 'busco') {
+            return base + 'A\u00fan no tengo lote definido. \u00bfMe pueden asesorar para encontrar el lote ideal y arrancar el proyecto?';
+          } else if (opt === 'exterior') {
+            return base + 'Estoy en el exterior y quiero empezar el proyecto a distancia. \u00bfC\u00f3mo manejan la log\u00edstica y los pagos internacionales?';
           }
-          lines.push('• Referencia inicial vista en la web: ' + formatMillones(min) + ' - ' + formatMillones(max) + ' (s\u00e9 que es muy preliminar, faltan acabados, instalaciones, licencia, transporte, etc.)');
-          lines.push('\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?');
-          waBtn.href = 'https://wa.me/573142891018?text=' + encodeURIComponent(lines.join('\n'));
-        }
-        }
+          return base + '\u00bfMe pueden pasar una cotizaci\u00f3n real con estos datos?';
         }
 
-        m2Input.addEventListener('input', calcular);
+        // Abrir modal al hacer click en el botón principal
+        waBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.style.overflow = 'hidden';
+        });
 
-        // Toggle "¿Ya tienes lote?"
-        const loteButtons = document.querySelectorAll('.hero-cta-lote-btn');
-        const loteTiene = document.getElementById('hero-lote-tiene');
-        const loteUbicWrap = document.getElementById('hero-lote-ubicacion-wrap');
-        const loteUbic = document.getElementById('hero-lote-ubicacion');
-        loteButtons.forEach(function (btn) {
+        // Cerrar modal (backdrop, X, ESC)
+        function cerrarModal() {
+          modal.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+        modal.querySelectorAll('[data-hero-wa-close]').forEach(function (el) {
+          el.addEventListener('click', cerrarModal);
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') cerrarModal();
+        });
+
+        // Click en cada opción: armar mensaje + abrir WhatsApp
+        modal.querySelectorAll('[data-hero-wa-opt]').forEach(function (btn) {
           btn.addEventListener('click', function () {
-            loteButtons.forEach(function (b) { b.classList.remove('is-active'); });
-            btn.classList.add('is-active');
-            if (loteTiene) loteTiene.value = btn.getAttribute('data-lote');
-            if (loteUbicWrap) {
-              loteUbicWrap.style.display = (btn.getAttribute('data-lote') === 'si') ? '' : 'none';
-            }
-            calcular();
+            const opt = btn.getAttribute('data-hero-wa-opt');
+            const data = calcular();
+            const msg = buildMsg(opt, data);
+            const url = 'https://wa.me/573142891018?text=' + encodeURIComponent(msg);
+            window.open(url, '_blank', 'noopener,noreferrer');
+            cerrarModal();
           });
         });
-        if (loteUbic) loteUbic.addEventListener('input', calcular);
-        const nombreInput = document.getElementById('hero-nombre');
-        const municipioSelect = document.getElementById('hero-municipio');
-        if (nombreInput) nombreInput.addEventListener('input', calcular);
-        if (municipioSelect) municipioSelect.addEventListener('change', calcular);
+
+        // Listeners de inputs (actualizan el rango en vivo)
+        m2Input.addEventListener('input', calcular);
         sistemaSelect.addEventListener('change', calcular);
         zonaSelect.addEventListener('change', calcular);
-        m2Input.addEventListener('blur', () => {
-          const v = Math.max(20, Math.min(500, parseInt(m2Input.value) || 60));
-          m2Input.value = v;
-          calcular();
-        });
-        calcular(); // inicial
+
+        // Cálculo inicial
+        calcular();
       })();
     </script>
   
@@ -1556,5 +1500,247 @@ const hero = document.querySelector(".hero-image");
       }
       .hero-cta-lote-btn i { font-size: 0.78rem; }
 
-</body>
+
+      /* === Modal estilo WhatsApp (mini-cotizador) === */
+      .hero-wa-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 70;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+      }
+      .hero-wa-modal[aria-hidden="false"] { display: flex; }
+      .hero-wa-modal__backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        animation: heroWaFade 0.2s ease;
+      }
+      @keyframes heroWaFade { from { opacity: 0; } to { opacity: 1; } }
+      .hero-wa-modal__card {
+        position: relative;
+        width: 100%;
+        max-width: 380px;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        transform: translateY(10px) scale(0.97);
+        animation: heroWaPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        max-height: calc(100vh - 24px);
+        max-height: calc(100dvh - 24px);
+        display: flex;
+        flex-direction: column;
+      }
+      @keyframes heroWaPop {
+        from { transform: translateY(10px) scale(0.97); opacity: 0; }
+        to { transform: translateY(0) scale(1); opacity: 1; }
+      }
+      .hero-wa-modal__header {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.85rem 1rem;
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        color: #fff;
+      }
+      .hero-wa-modal__avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: #fff;
+        color: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        font-weight: 800;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      }
+      .hero-wa-modal__name {
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hero-wa-modal__role {
+        font-weight: 500;
+        opacity: 0.95;
+      }
+      .hero-wa-modal__status {
+        font-size: 0.75rem;
+        margin: 0;
+        opacity: 0.95;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      .hero-wa-modal__dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 6px #4ade80;
+        animation: heroWaPulse 2s ease-in-out infinite;
+      }
+      @keyframes heroWaPulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.4; }
+      }
+      .hero-wa-modal__close {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+        transition: background 0.15s ease;
+      }
+      .hero-wa-modal__close:hover { background: rgba(255, 255, 255, 0.35); }
+      .hero-wa-modal__body {
+        padding: 1.1rem 1rem 0.6rem;
+        background: #fff;
+        flex: 1 1 auto;
+        overflow-y: auto;
+      }
+      .hero-wa-modal__greeting {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0a2540;
+        margin: 0 0 0.15rem;
+        line-height: 1.3;
+      }
+      .hero-wa-modal__sub {
+        font-size: 0.78rem;
+        color: #64748b;
+        margin: 0 0 0.8rem;
+      }
+      .hero-wa-modal__options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .hero-wa-modal__opt {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.85rem 1rem;
+        background: #f0fdf4;
+        border: 1.5px solid #bbf7d0;
+        border-radius: 12px;
+        color: #0a2540;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-align: left;
+        cursor: pointer;
+        transition: all 0.15s ease;
+        font-family: inherit;
+        text-decoration: none;
+      }
+      .hero-wa-modal__opt:hover {
+        background: #dcfce7;
+        border-color: #86efac;
+        transform: translateY(-1px);
+      }
+      .hero-wa-modal__opt i:first-child {
+        color: #16a34a;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .hero-wa-modal__opt span { flex: 1 1 auto; }
+      .hero-wa-modal__opt--primary {
+        background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+        color: #fff;
+        border-color: transparent;
+      }
+      .hero-wa-modal__opt--primary i:first-child { color: #fff; }
+      .hero-wa-modal__opt--primary:hover {
+        background: linear-gradient(135deg, #1ebe5d 0%, #0f7264 100%);
+        border-color: transparent;
+      }
+      .hero-wa-modal__arrow {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        transition: transform 0.15s ease;
+      }
+      .hero-wa-modal__opt--primary:hover .hero-wa-modal__arrow {
+        transform: translateX(3px);
+        opacity: 1;
+      }
+      .hero-wa-modal__footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        padding: 0.65rem 1rem 0.85rem;
+        background: #fff;
+        color: #64748b;
+        font-size: 0.72rem;
+        text-align: center;
+        line-height: 1.3;
+        border-top: 1px solid #f1f5f9;
+      }
+      .hero-wa-modal__footer i { color: #16a34a; }
+      @media (max-width: 420px) {
+        .hero-wa-modal__card { max-width: 100%; }
+        .hero-wa-modal__opt { font-size: 0.82rem; padding: 0.75rem 0.85rem; }
+      }
+
+
+    <!-- Modal: opciones de WhatsApp después del mini-cotizador -->
+    <div id="hero-wa-modal" class="hero-wa-modal" aria-hidden="true" role="dialog" aria-labelledby="hero-wa-modal-title">
+      <div class="hero-wa-modal__backdrop" data-hero-wa-close></div>
+      <div class="hero-wa-modal__card" role="document">
+        <header class="hero-wa-modal__header">
+          <div class="hero-wa-modal__avatar">A</div>
+          <div class="flex-1 min-w-0">
+            <p class="hero-wa-modal__name">Alicia <span class="hero-wa-modal__role">· Asesora comercial</span></p>
+            <p class="hero-wa-modal__status"><span class="hero-wa-modal__dot"></span> en línea</p>
+          </div>
+          <button type="button" class="hero-wa-modal__close" data-hero-wa-close aria-label="Cerrar">
+            <i class="fas fa-times"></i>
+          </button>
+        </header>
+        <div class="hero-wa-modal__body">
+          <p class="hero-wa-modal__greeting">¡Hola! ¿En qué te podemos ayudar?</p>
+          <p class="hero-wa-modal__sub">Cuéntanos que necesitas</p>
+          <div class="hero-wa-modal__options" role="list">
+            <button type="button" class="hero-wa-modal__opt hero-wa-modal__opt--primary" data-hero-wa-opt="lote">
+              <i class="fas fa-home"></i>
+              <span>Ya tengo lote, quiero cotizar</span>
+              <i class="fas fa-arrow-right hero-wa-modal__arrow"></i>
+            </button>
+            <button type="button" class="hero-wa-modal__opt" data-hero-wa-opt="busco">
+              <i class="fas fa-map-marked-alt"></i>
+              <span>Todavía busco lote, que me recomienden</span>
+            </button>
+            <button type="button" class="hero-wa-modal__opt" data-hero-wa-opt="exterior">
+              <i class="fas fa-globe-americas"></i>
+              <span>Estoy en el exterior, quiero cotizar</span>
+            </button>
+          </div>
+        </div>
+        <footer class="hero-wa-modal__footer">
+          <i class="fas fa-shield-halved"></i>
+          <span>Conversación atendida por el equipo de CONCASAYA · Respuesta en menos de 24h</span>
+        </footer>
+      </div>
+    </div>
+
+  </body>
 </html>
