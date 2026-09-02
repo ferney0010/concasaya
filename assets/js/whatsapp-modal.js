@@ -67,20 +67,6 @@
       initial: 'N',
       gradient: 'linear-gradient(135deg, #0077b6 0%, #00b4d8 100%)',
       welcome: '¡Hola! Soy Natalia. Dime qué necesitas hoy y te oriento enseguida.'
-    },
-    {
-      name: 'Alicia',
-      role: 'Asesora comercial',
-      initial: 'A',
-      gradient: 'linear-gradient(135deg, #005f94 0%, #48cae4 100%)',
-      welcome: '¡Hola! Soy Alicia. Cuentame que tipo de casa estas buscando y te ayudo.'
-    },
-    {
-      name: 'Jorge',
-      role: 'Asesor comercial',
-      initial: 'J',
-      gradient: 'linear-gradient(135deg, #023e8a 0%, #0096c7 100%)',
-      welcome: '¡Hola! Soy Jorge. Dime en que zona quieres construir y te oriento con precios.'
     }
   ];
 
