@@ -1,0 +1,9 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>skip</title>
+<script>
+  // Pre-set security alert localStorage so it doesn't show
+  try { localStorage.setItem('concasaya_sa_ack_v1', JSON.stringify({ack:true,ts:Date.now(),version:1})); } catch(e) {}
+  // Redirect to the index (skip the hero image for faster load)
+  setTimeout(function(){ location.replace('/?_skip_alert=1'); }, 50);
+</script>
+</head><body>Setting up...</body></html>
