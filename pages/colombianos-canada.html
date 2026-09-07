@@ -104,9 +104,27 @@
         70% { opacity: 0; transform: scale(1.25); box-shadow: 0 0 0 12px rgba(0, 119, 182, 0); }
         100% { opacity: 0; transform: scale(1.25); box-shadow: 0 0 0 0 rgba(0, 119, 182, 0); }
       }
+      .chatbot-modal.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .chatbot-modal.is-open .chatbot-modal-content {
+        transform: scale(1);
+      }
+      .chatbot-modal-content {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
       @media (max-width: 640px) {
+        .chatbot-modal-content {
+          border-radius: 0;
+          max-height: 100vh;
+          max-height: 100dvh;
+        }
       }
       @media (min-width: 641px) {
+        .chatbot-modal-content {
+          border: 1px solid rgba(0, 119, 182, 0.2);
+        }
       }
     </style>
 
@@ -727,9 +745,12 @@
       </div>
     </footer>
         <div id="social-bottom-bar-spacer" aria-hidden="true"></div>
-    <!-- Barra inferior con WhatsApp y redes sociales -->
+    <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->
     <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">
       <div id="social-bottom-bar" class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]">
+        <button type="button" id="chatbot-floating-btn" aria-label="Abrir asistente virtual" class="cta-attention w-11 h-11 rounded-full flex items-center justify-center bg-white border border-primary/40 text-primary shadow-md transition-all duration-300 hover:bg-white hover:border-primary hover:-translate-y-0.5 hover:scale-110">
+          <i class="fas fa-robot text-lg"></i>
+        </button>
         <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20vivo%20en%20el%20exterior%20y%20estoy%20interesado%20en%20una%20casa%20prefabricada%20en%20Colombia." target="_blank" aria-label="WhatsApp" class="cta-attention cta-attention-whatsapp w-11 h-11 rounded-full flex items-center justify-center bg-white border border-green-400/60 text-green-600 shadow-md transition-all duration-300 hover:bg-white hover:border-green-500 hover:-translate-y-0.5 hover:scale-110 relative">
           <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white shadow-[0_0_0_2px_rgba(239,68,68,0.6)] animate-pulse"></span>
           <i class="fab fa-whatsapp text-lg"></i>
@@ -746,7 +767,58 @@
       </div>
     </div>
 
-    
+    <!-- Modal del Chatbot -->
+    <div id="chatbot-modal" class="chatbot-modal fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-all duration-300" aria-hidden="true" aria-modal="true" role="dialog">
+      <div class="chatbot-modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm" data-close-modal></div>
+      <div class="chatbot-modal-content relative flex flex-col w-full h-full sm:max-w-4xl sm:max-h-[90vh] sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-white transform transition-all duration-300 scale-95">
+        <div class="chatbot-modal-header flex-shrink-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/90 text-white shadow-md">
+          <span class="font-semibold text-sm sm:text-base flex items-center gap-2"><i class="fas fa-robot"></i>Asistente Virtual CONCASAYA</span>
+          <button type="button" id="chatbot-modal-close" aria-label="Cerrar chatbot" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/30 transition-colors duration-200">
+            <i class="fas fa-times text-lg"></i>
+          </button>
+        </div>
+        <div class="chatbot-modal-body flex-1 min-h-0 relative">
+          <iframe id="chatbot-iframe" src="about:blank" title="Asistente Virtual CONCASAYA" class="absolute inset-0 w-full h-full border-0"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const chatbotModal = document.getElementById("chatbot-modal");
+        const chatbotFloatingBtn = document.getElementById("chatbot-floating-btn");
+        const chatbotModalClose = document.getElementById("chatbot-modal-close");
+        const chatbotIframe = document.getElementById("chatbot-iframe");
+
+        function openChatbotModal() {
+          if (!chatbotModal || !chatbotIframe) return;
+          chatbotIframe.src = "/chatbot.html";
+          chatbotModal.classList.add("is-open");
+          chatbotModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+          document.addEventListener("keydown", handleChatbotModalEscape);
+        }
+
+        function closeChatbotModal() {
+          if (!chatbotModal) return;
+          chatbotModal.classList.remove("is-open");
+          chatbotModal.setAttribute("aria-hidden", "true");
+          document.body.style.overflow = "";
+          document.removeEventListener("keydown", handleChatbotModalEscape);
+        }
+
+        function handleChatbotModalEscape(event) {
+          if (event.key === "Escape") closeChatbotModal();
+        }
+
+        if (chatbotFloatingBtn) chatbotFloatingBtn.addEventListener("click", openChatbotModal);
+        if (chatbotModalClose) chatbotModalClose.addEventListener("click", closeChatbotModal);
+        if (chatbotModal) {
+          const backdrop = chatbotModal.querySelector("[data-close-modal]");
+          if (backdrop) backdrop.addEventListener("click", closeChatbotModal);
+        }
+      })();
+    </script>
 
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
