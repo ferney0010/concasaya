@@ -48,7 +48,7 @@ const SPACER =
   '    <div id="social-bottom-bar-spacer" aria-hidden="true"></div>\n';
 
 const BAR_COMMENT =
-  "<!-- Barra inferior con chatbot, WhatsApp y redes sociales -->";
+  "<!-- Barra inferior con WhatsApp y redes sociales -->";
 
 function walk(dir, files = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

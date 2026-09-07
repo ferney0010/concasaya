@@ -594,7 +594,7 @@ const finalHtml =
   '    ' + footerSection + '\n' +
   '\n' +
   '    <div id="social-bottom-bar-spacer" aria-hidden="true"></div>\n' +
-  '    <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->\n' +
+  '    <!-- Barra inferior con WhatsApp y redes sociales -->\n' +
   '    <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">\n' +
   '      <div id="social-bottom-bar" class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]">\n' +
   '        <a href="https://wa.me/573142891018" target="_blank" rel="noopener" class="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-full font-semibold transition shadow-lg" aria-label="WhatsApp">\n' +

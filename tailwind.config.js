@@ -6,8 +6,6 @@ module.exports = {
     './blog/**/*.html',
     './assets/js/**/*.js'
   ],
-  // chatbot.html cubierto por './*.html' (sus clases dinámicas en chatbot.js
-  // siguen funcionando si alguien navega a /chatbot.html directo).
   // Snippets y admin no se incluyen en content (Tailwind v3 los ignora).
   darkMode: 'class',
   theme: {
@@ -35,15 +33,8 @@ module.exports = {
       }
     }
   },
-  // Clases dinámicas que el purger no detecta en HTML (vienen de chatbot.js)
-  // o arbitrary values con caracteres especiales que el extractor no parsea bien.
+  // Clases con arbitrary values que el extractor de Tailwind no parsea bien.
   safelist: [
-    'animate-user-message',
-    'animate-bot-message',
-    'animate-new-message',
-    'message-bubble',
-    'copy-btn',
-    'suggestion-chip',
     'sm:gap-3.5',
     'sm:gap-2.5',
     'sm:py-3.5',

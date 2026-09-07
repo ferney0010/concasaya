@@ -1,27 +1,18 @@
 {
   "name": "concasaya-website",
   "version": "1.0.0",
-  "description": "Sitio web de CONCASAYA con chatbot con IA",
-  "main": "server.js",
+  "description": "Sitio web de CONCASAYA (casas prefabricadas en Colombia)",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js",
     "build:css": "tailwindcss -i ./src/tailwind/input.css -o ./assets/css/tailwind.css --minify",
     "build:css:watch": "tailwindcss -i ./src/tailwind/input.css -o ./assets/css/tailwind.css --watch",
     "optimize:images": "node scripts/optimize-images.cjs"
   },
   "keywords": [
     "casas prefabricadas",
-    "CONCASAYA",
-    "chatbot"
+    "CONCASAYA"
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2"
-  },
   "devDependencies": {
     "sharp": "^0.35.3",
     "tailwindcss": "^3.4.17"

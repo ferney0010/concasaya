@@ -1,5 +1,5 @@
 /**
- * Añade la barra inferior (chatbot + WhatsApp + redes) a municipios que no la tienen.
+ * Añade la barra inferior (WhatsApp + redes) a municipios que no la tienen.
  * Solo reemplaza el bloque "fixed bottom-5 right-5" - no toca nada más.
  */
 const fs = require("fs");
@@ -51,8 +51,6 @@ const CSS_BLOCK = `
         70% { opacity: 0; transform: scale(1.25); box-shadow: 0 0 0 12px rgba(0, 119, 182, 0); }
         100% { opacity: 0; transform: scale(1.25); box-shadow: 0 0 0 0 rgba(0, 119, 182, 0); }
       }
-      .chatbot-modal.is-open { opacity: 1; pointer-events: auto; }
-      .chatbot-modal.is-open .chatbot-modal-content { transform: scale(1); }
       body:has(#social-bottom-bar) footer {
         padding-bottom: calc(2rem + 4.75rem + env(safe-area-inset-bottom, 0px)) !important;
       }`;
@@ -60,12 +58,9 @@ const CSS_BLOCK = `
 function getBarBlock(waHref) {
   return `
     <div id="social-bottom-bar-spacer" aria-hidden="true"></div>
-    <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->
+    <!-- Barra inferior con WhatsApp y redes sociales -->
     <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">
       <div id="social-bottom-bar" class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]">
-        <button type="button" id="chatbot-floating-btn" aria-label="Abrir asistente virtual" class="cta-attention w-11 h-11 rounded-full flex items-center justify-center bg-white border border-primary/40 text-primary shadow-md transition-all duration-300 hover:bg-white hover:border-primary hover:-translate-y-0.5 hover:scale-110">
-          <i class="fas fa-robot text-lg"></i>
-        </button>
         <a href="${waHref}" target="_blank" aria-label="WhatsApp" class="cta-attention cta-attention-whatsapp w-11 h-11 rounded-full flex items-center justify-center bg-white border border-green-400/60 text-green-600 shadow-md transition-all duration-300 hover:bg-white hover:border-green-500 hover:-translate-y-0.5 hover:scale-110 relative">
           <span class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white shadow-[0_0_0_2px_rgba(239,68,68,0.6)] animate-pulse"></span>
           <i class="fab fa-whatsapp text-lg"></i>
@@ -80,31 +75,7 @@ function getBarBlock(waHref) {
           <i class="fab fa-facebook-f text-lg"></i>
         </a>
       </div>
-    </div>
-    <div id="chatbot-modal" class="chatbot-modal fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-all duration-300" aria-hidden="true" aria-modal="true" role="dialog">
-      <div class="chatbot-modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm" data-close-modal></div>
-      <div class="chatbot-modal-content relative flex flex-col w-full h-full sm:max-w-4xl sm:max-h-[90vh] sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-white transform transition-all duration-300 scale-95">
-        <div class="chatbot-modal-header flex-shrink-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/90 text-white shadow-md">
-          <span class="font-semibold text-sm sm:text-base flex items-center gap-2"><i class="fas fa-robot"></i> Asistente Virtual CONCASAYA</span>
-          <button type="button" id="chatbot-modal-close" aria-label="Cerrar chatbot" class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/30 transition-colors duration-200">
-            <i class="fas fa-times text-lg"></i>
-          </button>
-        </div>
-        <div class="chatbot-modal-body flex-1 min-h-0 relative">
-          <iframe id="chatbot-iframe" src="about:blank" title="Asistente Virtual CONCASAYA" class="absolute inset-0 w-full h-full border-0"></iframe>
-        </div>
-      </div>
-    </div>
-    <script>
-      (function(){
-        var m=document.getElementById("chatbot-modal"),btn=document.getElementById("chatbot-floating-btn"),closeBtn=document.getElementById("chatbot-modal-close"),iframe=document.getElementById("chatbot-iframe");
-        function openModal(){if(iframe)iframe.src="/chatbot.html";if(m){m.classList.add("is-open");m.setAttribute("aria-hidden","false");}document.body.style.overflow="hidden";document.addEventListener("keydown",onEsc);}
-        function closeModal(){if(m){m.classList.remove("is-open");m.setAttribute("aria-hidden","true");}document.body.style.overflow="";document.removeEventListener("keydown",onEsc);}
-        function onEsc(e){if(e.key==="Escape")closeModal();}
-        if(btn)btn.addEventListener("click",openModal);if(closeBtn)closeBtn.addEventListener("click",closeModal);
-        if(m){var b=m.querySelector("[data-close-modal]");if(b)b.addEventListener("click",closeModal);}
-      })();
-    <\/script>`;
+    </div>`;
 }
 
 // Regex: div con "fixed" + "bottom" + "right" + "z-50" (ambas variantes: bottom-5 right-5 o bottom-4 sm:bottom-5 right-4 sm:right-5)
@@ -122,10 +93,8 @@ for (const m of MUNICIPIOS) {
     continue;
   }
   let changed = false;
-  if (!c.includes("chatbot-modal.is-open")) {
-    c = c.replace("</style>", CSS_BLOCK + "\n    </style>");
-    changed = true;
-  }
+  c = c.replace("</style>", CSS_BLOCK + "\n    </style>");
+  changed = true;
   const waHref = getWhatsAppHref(m.nombre);
   const barBlock = getBarBlock(waHref);
   if (FLOATING_BLOCK_RE.test(c)) {
