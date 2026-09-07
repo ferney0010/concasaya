@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Asistente Virtual - CONCASAYA | Casas Prefabricadas</title>
+    <meta
+      name="description"
+      content="Consulta información sobre casas prefabricadas, sistemas constructivos, precios, modelos y más. ¡Nuestro asistente virtual de CONCASAYA te ayuda!"
+    />
+    <meta
+      property="og:title"
+      content="Asistente Virtual - CONCASAYA | Casas Prefabricadas"
+    /> 
+    <meta
+      property="og:description"
+      content="Consulta información sobre casas prefabricadas, sistemas constructivos, precios, modelos y más. ¡Nuestro asistente virtual de CONCASAYA te ayuda!"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/assets/images/logoconcasaya.webp" />
+    <meta
+      property="og:image:alt"
+      content="Asistente virtual de CONCASAYA"
+    />
+    <meta property="og:site_name" content="CONCASAYA" />
+    <meta property="og:locale" content="es_CO" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Asistente Virtual - CONCASAYA | Casas Prefabricadas"
+    />
+    <meta
+      name="twitter:description"
+      content="Consulta información sobre casas prefabricadas, sistemas constructivos, precios, modelos y más. ¡Nuestro asistente virtual de CONCASAYA te ayuda!"
+    />
+    <meta name="twitter:image" content="/assets/images/logoconcasaya.webp" />
+    <meta
+      name="twitter:image:alt"
+      content="Asistente virtual de CONCASAYA"
+    />
+
+    <meta name="theme-color" content="#0077b6" />
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="/assets/images/logo.ico" type="image/x-icon" />
+<style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        overflow-x: hidden;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #0077b6 0%, #005f94 50%, #004772 100%);
+        background-attachment: fixed;
+        position: relative;
+        overflow: hidden;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(0, 119, 182, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 95, 148, 0.3) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(0, 71, 114, 0.2) 0%, transparent 50%);
+        animation: backgroundShift 20s ease-in-out infinite;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .dark body {
+        background: linear-gradient(135deg, #00172e 0%, #002f50 50%, #004772 100%);
+      }
+      .dark body::before {
+        background: 
+          radial-gradient(circle at 20% 50%, rgba(0, 23, 46, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(0, 47, 80, 0.4) 0%, transparent 50%),
+          radial-gradient(circle at 40% 20%, rgba(0, 71, 114, 0.3) 0%, transparent 50%);
+      }
+      @keyframes backgroundShift {
+        0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        50% { transform: scale(1.1) rotate(5deg); opacity: 0.8; }
+      }
+      .chat-container {
+        width: 100%;
+        height: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        backdrop-filter: blur(20px);
+        position: relative;
+        z-index: 1;
+        animation: containerFadeIn 0.6s ease-out;
+      }
+      @keyframes containerFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      #chatbox {
+        flex-grow: 1;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        padding: 1.5rem 1rem;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.98));
+        backdrop-filter: blur(10px);
+        position: relative;
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #chatbox::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(0, 119, 182, 0.3), transparent);
+        animation: shimmer 3s infinite;
+      }
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      .dark #chatbox {
+        background: linear-gradient(to bottom, rgba(17,24,39,0.95), rgba(17,24,39,0.98));
+      }
+      #chatbox::-webkit-scrollbar {
+        width: 6px;
+      }
+      #chatbox::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 10px;
+      }
+      #chatbox::-webkit-scrollbar-thumb {
+        background: rgba(156, 163, 175, 0.5);
+        border-radius: 10px;
+        transition: background 0.2s;
+      }
+      #chatbox::-webkit-scrollbar-thumb:hover {
+        background: rgba(156, 163, 175, 0.8);
+      }
+      .dark #chatbox::-webkit-scrollbar-thumb {
+        background: rgba(75, 85, 99, 0.5);
+      }
+      .dark #chatbox::-webkit-scrollbar-thumb:hover {
+        background: rgba(75, 85, 99, 0.8);
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(15px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(30px) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-30px) scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) scale(1);
+        }
+      }
+      @keyframes bounceIn {
+        0% {
+          opacity: 0;
+          transform: scale(0.3) translateY(20px);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.05);
+        }
+        70% {
+          transform: scale(0.9);
+        }
+        100% {
+          transform: scale(1) translateY(0);
+        }
+      }
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      @keyframes glow {
+        0%, 100% {
+          box-shadow: 0 0 20px rgba(0, 119, 182, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 30px rgba(0, 119, 182, 0.6);
+        }
+      }
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      @keyframes typing {
+        0%, 60%, 100% {
+          transform: translateY(0);
+        }
+        30% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-new-message {
+        animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .animate-user-message {
+        animation: slideInRight 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .animate-bot-message {
+        animation: slideInLeft 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .animate-bounce-in {
+        animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+      .typing-indicator {
+        display: inline-flex;
+        gap: 6px;
+        padding: 10px 14px;
+        align-items: center;
+      }
+      .typing-indicator span {
+        height: 10px;
+        width: 10px;
+        border-radius: 50%;
+        background: currentColor;
+        animation: typing 1.4s infinite;
+        box-shadow: 0 0 8px currentColor;
+      }
+      .typing-indicator span:nth-child(1) {
+        animation-delay: 0s;
+      }
+      .typing-indicator span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-indicator span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .copy-btn {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: none;
+        color: #6b7280;
+        cursor: pointer;
+        opacity: 0;
+        transition: all 0.2s;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+      }
+      .dark .copy-btn {
+        background: rgba(0, 0, 0, 0.2);
+        color: #9ca3af;
+      }
+      .message-bubble:hover .copy-btn {
+        opacity: 1;
+      }
+      .copy-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+      }
+      .copy-btn:active {
+        transform: scale(0.95);
+      }
+      .scroll-to-bottom {
+        position: fixed;
+        bottom: 120px;
+        right: calc(50% - 400px);
+        background: linear-gradient(135deg, #0077b6 0%, #005f94 100%);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 48px;
+        height: 48px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(0, 119, 182, 0.4);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        z-index: 10;
+        animation: float 3s ease-in-out infinite;
+      }
+      .scroll-to-bottom:hover {
+        background: linear-gradient(135deg, #005f94 0%, #004772 100%);
+        transform: translateY(-4px) scale(1.1);
+        box-shadow: 0 8px 25px rgba(0, 119, 182, 0.6);
+      }
+      .scroll-to-bottom:active {
+        transform: translateY(-2px) scale(1.05);
+      }
+      .scroll-to-bottom.visible {
+        display: flex;
+        animation: bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), float 3s ease-in-out infinite 0.5s;
+      }
+      /* Responsive Design */
+      @media (max-width: 1024px) {
+        .chat-container {
+          max-width: 100%;
+          margin: 0;
+          border-radius: 0;
+        }
+        .scroll-to-bottom {
+          right: 24px;
+        }
+      }
+      @media (max-width: 768px) {
+        body {
+          padding: 0;
+        }
+        .chat-container {
+          height: 100vh;
+          border-radius: 0;
+          max-width: 100vw;
+          width: 100%;
+        }
+        #chatbox {
+          padding: 1rem 0.75rem;
+          max-width: 100%;
+          width: 100%;
+          box-sizing: border-box;
+        }
+        .message-bubble {
+          padding: 0.875rem !important;
+          font-size: 0.875rem;
+          max-width: 100% !important;
+        }
+        .scroll-to-bottom {
+          right: 16px;
+          bottom: 100px;
+          width: 44px;
+          height: 44px;
+        }
+        .header-gradient {
+          padding: 0.75rem 1rem !important;
+        }
+        .header-gradient h1 {
+          font-size: 0.875rem !important;
+        }
+        .header-gradient p {
+          font-size: 0.7rem !important;
+        }
+        .input-container {
+          padding: 0.75rem !important;
+        }
+        #userInput {
+          padding: 0.75rem !important;
+          font-size: 0.875rem;
+        }
+        #sendButton {
+          width: 48px !important;
+          padding: 0.75rem !important;
+        }
+        #suggestions {
+          padding: 0.75rem 0.5rem !important;
+        }
+        .suggestion-chip {
+          font-size: 0.7rem !important;
+          padding: 0.5rem 0.75rem !important;
+        }
+      }
+      @media (max-width: 480px) {
+        html, body {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+        #chatbox {
+          padding: 0.75rem 0.5rem;
+          max-width: 100vw;
+          width: 100%;
+          box-sizing: border-box;
+          -webkit-overflow-scrolling: touch;
+        }
+        .message-bubble {
+          padding: 0.75rem !important;
+          max-width: 95% !important;
+          width: auto;
+          font-size: 14px !important;
+        }
+        .flex.mb-4 {
+          max-width: 95% !important;
+        }
+        .chat-container {
+          max-width: 100vw;
+          width: 100vw;
+          height: 100vh;
+          height: -webkit-fill-available;
+        }
+        #userInput {
+          font-size: 16px !important; /* Previene zoom en iOS */
+        }
+        .scroll-to-bottom {
+          right: 12px;
+          bottom: 90px;
+          width: 40px;
+          height: 40px;
+        }
+        .header-gradient {
+          padding: 0.5rem 0.75rem !important;
+        }
+        .header-gradient img {
+          height: 2rem !important;
+        }
+        .input-container {
+          padding: 0.5rem !important;
+        }
+        #userInput {
+          padding: 0.625rem !important;
+          font-size: 0.8rem;
+        }
+        #sendButton {
+          width: 44px !important;
+          padding: 0.625rem !important;
+        }
+      }
+      @media (min-width: 1400px) {
+        .chat-container {
+          max-width: 900px;
+        }
+      }
+      .header-gradient {
+        background: linear-gradient(135deg, #0077b6 0%, #005f94 50%, #004772 100%);
+        box-shadow: 0 4px 20px rgba(0, 119, 182, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+      .header-gradient::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: headerGlow 8s ease-in-out infinite;
+      }
+      @keyframes headerGlow {
+        0%, 100% {
+          transform: translate(0, 0) scale(1);
+        }
+        50% {
+          transform: translate(20px, 20px) scale(1.1);
+        }
+      }
+      .header-gradient > * {
+        position: relative;
+        z-index: 1;
+      }
+      .header-gradient img {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+      }
+      .header-gradient img:hover {
+        transform: scale(1.1) rotate(5deg);
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+      }
+      .dark .header-gradient {
+        background: linear-gradient(135deg, #00172e 0%, #002f50 50%, #004772 100%);
+      }
+      .suggestion-chip {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .suggestion-chip::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(0, 119, 182, 0.1), transparent);
+        transition: left 0.5s;
+      }
+      .suggestion-chip:hover::before {
+        left: 100%;
+      }
+      .suggestion-chip:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 119, 182, 0.2);
+        border-color: rgba(0, 119, 182, 0.3);
+      }
+      .suggestion-chip:active {
+        transform: translateY(-1px) scale(0.98);
+      }
+      .input-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s;
+      }
+      .dark .input-container {
+        background: rgba(31, 41, 55, 0.95);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.2);
+      }
+      #userInput:focus {
+        transform: scale(1);
+        box-shadow: 0 0 0 3px rgba(0, 119, 182, 0.1);
+        font-size: 16px; /* Previene zoom en iOS */
+      }
+      @supports (-webkit-touch-callout: none) {
+        /* Estilos específicos para iOS */
+        #userInput {
+          font-size: 16px !important; /* Previene zoom automático en iOS */
+        }
+        .chat-container {
+          max-height: 100vh;
+          max-height: -webkit-fill-available;
+        }
+        body {
+          max-height: 100vh;
+          max-height: -webkit-fill-available;
+        }
+      }
+      .send-button {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      .send-button::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+      .send-button:hover:not(:disabled)::before {
+        width: 300px;
+        height: 300px;
+      }
+      .send-button:hover:not(:disabled) {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(0, 119, 182, 0.4);
+      }
+      .send-button:active:not(:disabled) {
+        transform: scale(0.95) rotate(0deg);
+      }
+      .send-button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none !important;
+      }
+      code {
+        background: rgba(0, 0, 0, 0.05);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.9em;
+        transition: all 0.2s;
+      }
+      code:hover {
+        background: rgba(0, 119, 182, 0.1);
+        transform: scale(1.05);
+      }
+      .dark code {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .dark code:hover {
+        background: rgba(0, 119, 182, 0.2);
+      }
+      pre {
+        background: rgba(0, 0, 0, 0.05);
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: hidden;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+        margin: 8px 0;
+        transition: all 0.3s;
+      }
+      pre:hover {
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.1);
+        transform: translateY(-2px);
+      }
+      .dark pre {
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .message-bubble {
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        box-sizing: border-box;
+      }
+      .message-bubble:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+      }
+      .message-bubble * {
+        max-width: 100%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      /* Estilos para el modal de bienvenida */
+      #welcomeModal.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      
+      #welcomeModal.show > div {
+        scale: 1;
+        opacity: 1;
+      }
+      
+      #welcomeModal.hide {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      #welcomeModal.hide > div {
+        scale: 0.95;
+        opacity: 0;
+      }
+    </style>
+    <!-- Clarity Analytics -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "tcaaszcmuu");
+    </script>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+    <!-- Modal de Bienvenida -->
+    <div
+      id="welcomeModal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none"
+    >
+      <div
+        class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl max-w-lg w-full mx-4 transform transition-all duration-300 scale-95 opacity-0 border border-gray-200 dark:border-gray-700"
+      >
+        <div class="relative p-6 md:p-8">
+          <!-- Botón cerrar -->
+          <button
+            id="closeWelcomeModal"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+            aria-label="Cerrar"
+          >
+            <i class="fa-solid fa-times text-xl"></i>
+          </button>
+
+          <!-- Contenido -->
+          <div class="text-center mb-6">
+            <div class="mb-4 flex justify-center">
+              <div class="relative">
+                <img
+                  src="/assets/images/logoconcasaya.webp"
+                  alt="Logo CONCASAYA"
+                  class="h-20 w-auto object-contain animate-float"
+                />
+                <div class="absolute -top-2 -right-2 bg-primary-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm animate-bounce">
+                  <i class="fa-solid fa-robot"></i>
+                </div>
+              </div>
+            </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent">
+              ¡Bienvenido!
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 text-base">
+              Asistente Virtual de CONCASAYA
+            </p>
+          </div>
+
+          <div class="space-y-4 mb-6 text-left">
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-primary-50 dark:bg-primary-900/20 border border-primary-100 dark:border-primary-800">
+              <div class="flex-shrink-0 mt-1">
+                <i class="fa-solid fa-circle-info text-primary-600 dark:text-primary-400"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 font-medium mb-1">
+                  ¿Qué puedo hacer por ti?
+                </p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                  Puedo ayudarte con información sobre casas prefabricadas, sistemas constructivos, precios, modelos y más.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <div class="flex-shrink-0 mt-1">
+                <i class="fa-solid fa-calculator text-yellow-500"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 font-medium mb-1">
+                  Cotizaciones aproximadas
+                </p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                  Puedo darte una estimación rápida del precio de tu proyecto o dirigirte al cotizador completo.
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700">
+              <div class="flex-shrink-0 mt-1">
+                <i class="fa-solid fa-headset text-green-500"></i>
+              </div>
+              <div>
+                <p class="text-sm text-gray-700 dark:text-gray-300 font-medium mb-1">
+                  Contacto directo
+                </p>
+                <p class="text-xs text-gray-600 dark:text-gray-400">
+                  Si necesitas ayuda adicional, puedo proporcionarte los datos de contacto de CONCASAYA.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Checkbox para no volver a mostrar -->
+          <div class="mb-6 flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+            <input
+              type="checkbox"
+              id="dontShowAgain"
+              class="w-4 h-4 text-primary-600 border-gray-300 rounded focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label for="dontShowAgain" class="cursor-pointer">
+              No volver a mostrar este mensaje
+            </label>
+          </div>
+
+          <!-- Botón de acción -->
+          <button
+            id="startChatButton"
+            class="w-full bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+          >
+            <span>Comenzar</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="chat-container bg-white dark:bg-gray-900 shadow-xl flex flex-col overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg md:my-4"
+    >
+      <div
+        id="header-container"
+        class="header-gradient flex-shrink-0 flex items-center justify-between px-4 py-3 shadow-lg"
+      >
+        <div class="flex items-center gap-3">
+          <img
+            src="/assets/images/logoconcasaya.webp"
+            alt="Logo CONCASAYA"
+            class="h-12 w-auto object-contain shadow-md"
+          />
+          <div>
+            <h1 class="text-white font-semibold text-base md:text-lg leading-tight">CONCASAYA</h1>
+            <p class="text-white/80 text-xs">Asistente Virtual</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button
+            id="clearChatButton"
+            title="Limpiar chat"
+            class="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-base transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm hover:rotate-12"
+          >
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <button
+            id="theme-toggle"
+            title="Cambiar tema"
+            class="p-2.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-base transition-all duration-300 hover:scale-110 active:scale-95 backdrop-blur-sm hover:rotate-180"
+          >
+            <i
+              id="theme-icon-light"
+              class="fa-solid fa-sun hidden dark:inline"
+            ></i>
+            <i
+              id="theme-icon-dark"
+              class="fa-solid fa-moon inline dark:hidden"
+            ></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="chatbox" class="flex-grow overflow-y-auto p-4"></div>
+
+      <div
+        id="suggestions"
+        class="flex-shrink-0 flex flex-wrap gap-2 px-4 pb-2 justify-center border-t border-gray-200 dark:border-gray-700 pt-3"
+      ></div>
+
+      <div
+        class="input-container flex-shrink-0 flex p-3 border-t border-gray-200/50 dark:border-gray-700/50 shadow-lg"
+      >
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Pregúntame sobre casas prefabricadas, precios, modelos..."
+          class="flex-1 p-3.5 rounded-l-xl border border-gray-300/50 dark:border-gray-600/50 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:bg-gray-800/50 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 transition-all"
+          maxlength="500"
+          autocomplete="off"
+          inputmode="text"
+        />
+        <button
+          id="sendButton"
+          class="send-button bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white p-3.5 rounded-r-xl focus:outline-none focus:ring-2 focus:ring-primary-500 flex items-center justify-center w-14 shadow-lg"
+          title="Enviar mensaje"
+        >
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+      <button
+        id="scrollToBottomBtn"
+        class="scroll-to-bottom"
+        title="Ir al final"
+        aria-label="Ir al final del chat"
+      >
+        <i class="fa-solid fa-arrow-down"></i>
+      </button>
+
+      <footer
+        class="flex-shrink-0 text-center py-2.5 border-t border-gray-200/50 dark:border-gray-700/50 bg-gray-50/80 dark:bg-gray-800/80 backdrop-blur-sm"
+      >
+        <p class="text-xs text-gray-500 dark:text-gray-400">
+          <i class="fa-solid fa-robot mr-1.5"></i>
+          Asistente Virtual de CONCASAYA
+        </p>
+      </footer>
+    </div>
+
+    <!-- Cargar script principal -->
+    <script src="/assets/js/chatbot.js"></script>
+  </body>
+</html>
