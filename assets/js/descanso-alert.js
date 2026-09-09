@@ -3,43 +3,30 @@
  * Modal inescapable que se muestra automaticamente al abrir
  * cualquier pagina que incluya este script.
  *
- * - Aparece en la primera carga (modal inescapable con backdrop).
- * - Persistencia 7 dias: no se vuelve a mostrar al mismo usuario
- *   durante una semana (localStorage).
- * - Solo se cierra con la X o el boton "Entendido".
- * - Copy literal aprobado por el cliente (2026-09-09).
+ * - Aparece UNA VEZ por sesion (sessionStorage): al abrir la
+ *   pestaña. No se vuelve a mostrar en refreshes / navegacion
+ *   interna de la misma sesion, pero SI aparece cuando el
+ *   usuario cierra la pestaña y vuelve a entrar.
+ * - Solo se cierra con la X o el boton "Entendido, cerrar".
+ * - Imagen oficial del cliente (2026-09-09).
  * ============================================================ */
 (function () {
   'use strict';
 
-  var CONFIG = {
-    storageKey: 'concasaya_da_ack_v1',
-    showAgainAfterDays: 7
-  };
+  var STORAGE_KEY = 'concasaya_da_ack_v1';
 
-  // ---- Persistencia ----
+  // ---- Persistencia por sesion ----
   function shouldShow() {
     try {
-      var raw = localStorage.getItem(CONFIG.storageKey);
-      if (!raw) return true;
-      var data = JSON.parse(raw);
-      if (!data || !data.ack) return true;
-      if (CONFIG.showAgainAfterDays <= 0) return true;
-      var ageMs = Date.now() - (data.ts || 0);
-      var maxMs = CONFIG.showAgainAfterDays * 24 * 60 * 60 * 1000;
-      return ageMs > maxMs;
+      return !sessionStorage.getItem(STORAGE_KEY);
     } catch (e) {
       return true;
     }
   }
   function markAcknowledged() {
     try {
-      localStorage.setItem(CONFIG.storageKey, JSON.stringify({
-        ack: true,
-        ts: Date.now(),
-        version: 1
-      }));
-    } catch (e) { /* sin localStorage, no pasa nada */ }
+      sessionStorage.setItem(STORAGE_KEY, '1');
+    } catch (e) { /* sin sessionStorage, no pasa nada */ }
   }
 
   // ---- HTML ----
@@ -86,12 +73,12 @@
     lockScroll(true);
   }
 
-  function close(persist) {
+  function close() {
     var backdrop = document.getElementById('da-backdrop');
     if (!backdrop) return;
     backdrop.classList.remove('da-open');
     lockScroll(false);
-    if (persist) markAcknowledged();
+    markAcknowledged();
     setTimeout(function () {
       backdrop.style.display = 'none';
     }, 300);
@@ -105,26 +92,23 @@
 
     if (!backdrop) return;
 
-    // Click en el backdrop (fuera del card) NO cierra el modal
-    // (es inescapable para que el usuario se entere de la pausa).
-
     if (btnConfirm) {
       btnConfirm.addEventListener('click', function () {
-        close(true);
+        close();
       });
     }
 
     if (btnClose) {
       btnClose.addEventListener('click', function () {
-        close(true);
+        close();
       });
     }
 
-    // Escape tambien cierra (con persistencia)
+    // Escape tambien cierra
     document.addEventListener('keydown', function (e) {
       if (backdrop.classList.contains('da-open') && e.key === 'Escape') {
         e.preventDefault();
-        close(true);
+        close();
       }
     });
   }
@@ -133,7 +117,7 @@
   function init() {
     inject();
     wire();
-    // Aparece automaticamente al cargar (con persistencia 7 dias)
+    // Aparece una vez por sesion (al abrir la pestaña)
     if (shouldShow()) {
       open();
     }
