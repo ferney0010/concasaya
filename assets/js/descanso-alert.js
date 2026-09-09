@@ -48,7 +48,7 @@
       '<div id="da-backdrop" role="dialog" aria-modal="true" aria-label="Aviso de pausa CONCASAYA">',
       '  <div id="da-card">',
       '    <button type="button" id="da-close" aria-label="Cerrar aviso">&times;</button>',
-      '    <img src="/assets/images/pausa-concasaya.jpeg" alt="CONCASAYA - Pausa programada por agenda completa" class="da-flyer-img" />',
+      '    <img src="/assets/images/pausa-concasaya.png" alt="CONCASAYA - Pausa programada por agenda completa" class="da-flyer-img" />',
       '    <div class="da-actions">',
       '      <button type="button" id="da-btn-confirm"><i class="fa-solid fa-check"></i> Entendido, cerrar</button>',
       '    </div>',
