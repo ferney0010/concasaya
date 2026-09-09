@@ -6,6 +6,8 @@
  * - Persistencia 7 dias: no se vuelve a mostrar durante una semana
  *   (la logica de localStorage esta en descanso-alert.js).
  * - Solo se cierra con la X o el boton "Entendido, cerrar".
+ * - El modal muestra la imagen oficial del cliente con el copy
+ *   literal de la pausa (assets/images/pausa-concasaya.jpeg).
  * ============================================================ */
 
 :root {
@@ -14,10 +16,6 @@
   --da-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
   --da-primary: #0077b6;
   --da-primary-dark: #023e7d;
-  --da-warm: #f59e0b;
-  --da-warm-dark: #d97706;
-  --da-text: #0f172a;
-  --da-text-soft: #475569;
 }
 
 /* ---------- Backdrop ---------- */
@@ -42,7 +40,7 @@
 #da-card {
   position: relative;
   width: 100% !important;
-  max-width: min(520px, calc(100vw - 24px)) !important;
+  max-width: min(640px, calc(100vw - 24px)) !important;
   max-height: calc(100vh - 24px);
   max-height: calc(100dvh - 24px);
   background: #ffffff;
@@ -59,31 +57,16 @@
 #da-card * { box-sizing: border-box; max-width: 100%; }
 #da-backdrop.da-open #da-card { transform: translateY(0) scale(1); }
 
-/* ---------- Header ---------- */
-.da-header {
-  background: linear-gradient(135deg, var(--da-primary) 0%, var(--da-primary-dark) 100%);
-  color: #fff;
-  padding: 22px 22px 20px;
-  position: relative;
-  flex-shrink: 0;
-  text-align: center;
-}
-.da-header-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.18);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-.da-header-icon i { font-size: 22px; color: #fde68a; }
-.da-header h2 {
-  font-size: 18px;
-  font-weight: 800;
-  line-height: 1.25;
-  margin: 0;
+/* ---------- Imagen del flyer (literal del cliente) ---------- */
+.da-flyer-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: calc(100dvh - 140px);
+  object-fit: contain;
+  background: #fff;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* ---------- Boton X ---------- */
@@ -92,13 +75,13 @@
   top: 10px;
   right: 10px;
   z-index: 5;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  background: rgba(0, 0, 0, 0.18);
+  border: 3px solid #fff;
+  background: #000;
   color: #fff;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 700;
   cursor: pointer;
   display: flex;
@@ -106,37 +89,18 @@
   justify-content: center;
   line-height: 1;
   padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
   transition: transform 0.15s ease, background 0.15s ease;
 }
-#da-close:hover { background: rgba(0, 0, 0, 0.4); transform: rotate(90deg); }
+#da-close:hover { background: #dc2626; transform: rotate(90deg); }
 #da-close:active { transform: scale(0.9); }
-
-/* ---------- Cuerpo del mensaje ---------- */
-.da-body {
-  padding: 18px 20px 6px;
-  background: #fff;
-  overflow-y: auto;
-  flex: 1 1 auto;
-}
-.da-body p {
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--da-text-soft);
-  margin: 0 0 10px;
-}
-.da-body p:last-child { margin-bottom: 0; }
-.da-body p strong { color: var(--da-text); }
-.da-body .da-emphasis {
-  color: var(--da-warm-dark);
-  font-weight: 700;
-}
 
 /* ---------- Accion principal ---------- */
 .da-actions {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 14px 20px 18px;
+  padding: 12px 14px 14px;
   background: #fff;
   flex-shrink: 0;
 }
@@ -145,8 +109,8 @@
   border: none;
   border-radius: 9px;
   padding: 12px 14px;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 13.5px;
+  font-weight: 800;
   cursor: pointer;
   background: linear-gradient(135deg, var(--da-primary) 0%, var(--da-primary-dark) 100%);
   color: #fff;
@@ -154,7 +118,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 #da-btn-confirm:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0, 119, 182, 0.4); }
@@ -164,23 +130,17 @@
 @media (max-width: 380px) {
   #da-card { max-width: 100%; }
   #da-backdrop { padding: 6px; }
-  .da-header { padding: 18px 16px 16px; }
-  .da-header h2 { font-size: 16px; }
-  .da-body { padding: 14px 16px 4px; }
-  .da-actions { padding: 12px 16px 14px; }
-  #da-btn-confirm { font-size: 13px; padding: 11px 12px; }
-  #da-close { width: 28px; height: 28px; font-size: 16px; top: 8px; right: 8px; }
+  .da-flyer-img { max-height: calc(100dvh - 120px); }
+  .da-actions { padding: 10px 12px 12px; }
+  #da-btn-confirm { font-size: 12.5px; padding: 11px 12px; }
+  #da-close { width: 30px; height: 30px; font-size: 18px; top: 8px; right: 8px; }
 }
 
 @media (min-width: 640px) {
   #da-backdrop { padding: 20px; }
-  .da-header { padding: 24px 24px 20px; }
-  .da-header h2 { font-size: 20px; }
-  .da-body { padding: 20px 24px 6px; }
-  .da-body p { font-size: 14px; }
-  .da-actions { padding: 16px 24px 20px; }
+  .da-actions { padding: 14px 18px 16px; }
   #da-btn-confirm { font-size: 15px; padding: 13px 16px; }
-  #da-close { width: 36px; height: 36px; font-size: 22px; top: 12px; right: 12px; }
+  #da-close { width: 40px; height: 40px; font-size: 26px; top: 12px; right: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
