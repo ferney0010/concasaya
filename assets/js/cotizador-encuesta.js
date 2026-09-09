@@ -244,13 +244,13 @@
     },
     {
           id: 'contacto',
-          title: 'Datos de contacto',
-          subtitle: 'Completa tus datos para ver tu cotización personalizada',
+          title: 'Datos de contacto (opcional)',
+          subtitle: 'Solo los pedimos si decides enviar tu cotización a nuestro equipo de WhatsApp',
           type: 'form',
           fields: [
-            { id: 'nombre', label: 'Nombre Completo', type: 'text', required: true, placeholder: 'Ej: Juan Pérez' },
-            { id: 'telefono', label: 'Teléfono', type: 'tel', required: true, placeholder: 'Ej: 3001234567' },
-            { id: 'email', label: 'Email', type: 'email', required: true, placeholder: 'Ej: juan@email.com' }
+            { id: 'nombre', label: 'Nombre Completo', type: 'text', required: false, placeholder: 'Ej: Juan Pérez' },
+            { id: 'telefono', label: 'Teléfono', type: 'tel', required: false, placeholder: 'Ej: 3001234567' },
+            { id: 'email', label: 'Email', type: 'email', required: false, placeholder: 'Ej: juan@email.com' }
           ],
           hasVisual: false
         }
@@ -665,11 +665,15 @@
       questionHTML += `
         <div class="bg-gradient-to-r from-primary/10 to-primary/5 border-l-4 border-primary rounded-lg p-6 mb-6">
           <div class="flex items-start">
-            <i class="fas fa-lock text-primary text-2xl mr-4 mt-1"></i>
+            <i class="fas fa-info-circle text-primary text-2xl mr-4 mt-1"></i>
             <div>
-              <h3 class="text-lg font-bold text-dark mb-2">¡Estás a un paso de ver tu cotización!</h3>
-              <p class="text-gray-700 text-sm mb-2">Completa tus datos para <strong>ver el precio estimado de tu casa prefabricada</strong> y recibir la cotización por WhatsApp.</p>
-              <p class="text-gray-600 text-xs"><i class="fas fa-shield-alt mr-1"></i> Tus datos están seguros. Los usaremos únicamente para contactarte sobre tu proyecto y enviarte información relevante.</p>
+              <h3 class="text-lg font-bold text-dark mb-2">¡Ya casi terminas!</h3>
+              <p class="text-gray-700 text-sm mb-2">Tienes <strong>dos opciones</strong>:</p>
+              <ul class="text-gray-700 text-sm mb-3 list-disc list-inside space-y-1">
+                <li>Dejar tus datos aqui y hacer click en <strong>"Ver mi cotización"</strong> para ver el precio. Si despues quieres enviarla a nuestro equipo por WhatsApp, te los vamos a pedir en ese momento.</li>
+                <li>O simplemente hacer click en <strong>"Ver mi cotización"</strong> sin dejar datos, y decidir despues.</li>
+              </ul>
+              <p class="text-gray-600 text-xs"><i class="fas fa-shield-alt mr-1"></i> Tus datos están seguros. Los usaremos únicamente para contactarte sobre tu proyecto.</p>
             </div>
           </div>
         </div>
@@ -751,11 +755,10 @@
         // Scroll suave al inicio
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
-        // Es la última pregunta - enviar por WhatsApp primero
-        sendToWhatsApp();
-        setTimeout(() => {
-          showResults();
-        }, 500);
+        // Es la última pregunta - mostrar resultados directamente.
+        // El envio por WhatsApp es opcional y se hace desde un boton
+        // en la pantalla de resultados (pausa por agenda - sep 2026).
+        showResults();
       }
     }, 200);
   }
@@ -1021,17 +1024,15 @@
   function updateNextButton() {
     const btnNext = document.getElementById('btn-next');
     if (!btnNext) return;
-    
+
     const question = questions[appState.currentQuestion];
     let isValid = false;
 
     if (question.type === 'form') {
-      isValid = question.fields.every(field => {
-        if (field.required) {
-          return appState.answers[field.id] && appState.answers[field.id].trim() !== '';
-        }
-        return true;
-      });
+      // El form de contacto es 100% opcional: el resultado se ve
+      // sin pedir datos. Los datos solo se piden al enviar a WhatsApp
+      // (pausa por agenda - sep 2026).
+      isValid = true;
     } else if (question.type === 'checkbox') {
       isValid = appState.answers[question.id] && appState.answers[question.id].length > 0;
     } else if (question.type === 'range') {
@@ -1049,15 +1050,13 @@
       const span = btnNext.querySelector('span');
       const icon = btnNext.querySelector('i');
       if (span) {
-        span.textContent = isValid ? 'Ver mi Cotización' : 'Completa tus datos';
+        span.textContent = 'Ver mi Cotización';
         if (icon) {
-          icon.className = isValid ? 'fas fa-unlock ml-2' : 'fas fa-arrow-right ml-2';
+          icon.className = 'fas fa-unlock ml-2';
         }
       } else {
         // Si no tiene span, crear uno
-        btnNext.innerHTML = isValid 
-          ? '<span>Ver mi Cotización</span><i class="fas fa-unlock ml-2"></i>' 
-          : '<span>Completa tus datos</span><i class="fas fa-arrow-right ml-2"></i>';
+        btnNext.innerHTML = '<span>Ver mi Cotización</span><i class="fas fa-unlock ml-2"></i>';
       }
     } else {
       // Restaurar texto normal si no es la última pregunta
@@ -1090,19 +1089,15 @@
       btnNext.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         const question = questions[appState.currentQuestion];
         if (!question) return;
-        
+
         let isValid = false;
 
         if (question.type === 'form') {
-          isValid = question.fields.every(field => {
-            if (field.required) {
-              return appState.answers[field.id] && appState.answers[field.id].trim() !== '';
-            }
-            return true;
-          });
+          // Form de contacto es opcional: siempre valido
+          isValid = true;
         } else if (question.type === 'checkbox') {
           isValid = appState.answers[question.id] && appState.answers[question.id].length > 0;
         } else if (question.type === 'range') {
@@ -1115,21 +1110,8 @@
         }
 
         if (isValid) {
-          // Validar campos de formulario si es la última pregunta
-          if (question.type === 'form') {
-            let formValid = true;
-            question.fields.forEach(field => {
-              if (field.required) {
-                const fieldElement = document.getElementById(`field-${field.id}`);
-                if (fieldElement && !validateField(field.id, fieldElement)) {
-                  formValid = false;
-                }
-              }
-            });
-            if (!formValid) {
-              return;
-            }
-          }
+          // Form de contacto es opcional, no se valida nada aqui
+          // (los datos se piden al enviar a WhatsApp desde el resultado)
 
           // Reproducir sonido de éxito
           playSuccessSound();
@@ -1153,12 +1135,10 @@
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 200);
           } else {
-            // Es la última pregunta (contacto) - enviar por WhatsApp primero
-            sendToWhatsApp();
-            // Luego mostrar resultados
-            setTimeout(() => {
-              showResults();
-            }, 500);
+            // Es la última pregunta (contacto) - mostrar resultados directamente.
+            // El envio por WhatsApp es opcional desde un boton en la
+            // pantalla de resultados (pausa por agenda - sep 2026).
+            showResults();
           }
         } else {
           // Mostrar mensaje de validación
@@ -1582,6 +1562,205 @@
     `;
 
     resultsContainer.innerHTML = summaryHTML;
+
+    // Botones opcionales al final del resultado: el envio a WhatsApp
+    // ahora es decision del usuario, no un paso automatico
+    // (pausa por agenda - sep 2026).
+    var actionButtonsHTML = [
+      '<div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 mt-6">',
+      '  <p class="text-sm text-gray-700 text-center mb-4 font-semibold">\u00bfQu\u00e9 quieres hacer ahora?</p>',
+      '  <div class="grid grid-cols-1 md:grid-cols-2 gap-3">',
+      '    <button',
+      '      type="button"',
+      '      id="btn-send-whatsapp"',
+      '      class="px-6 py-3 text-white rounded-lg font-semibold transition duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"',
+      '      style="background-color:#25D366;"',
+      '      onmouseover="this.style.backgroundColor=\'#1da851\'"',
+      '      onmouseout="this.style.backgroundColor=\'#25D366\'"',
+      '    >',
+      '      <i class="fab fa-whatsapp text-lg"></i>',
+      '      <span>Enviar mi cotizaci\u00f3n a WhatsApp</span>',
+      '    </button>',
+      '    <button',
+      '      type="button"',
+      '      id="btn-new-quote"',
+      '      class="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-semibold transition duration-300 flex items-center justify-center gap-2"',
+      '    >',
+      '      <i class="fas fa-redo"></i>',
+      '      <span>Empezar nueva cotizaci\u00f3n</span>',
+      '    </button>',
+      '  </div>',
+      '  <p class="text-xs text-gray-500 text-center mt-4">',
+      '    <i class="fas fa-info-circle mr-1"></i>',
+      '    El env\u00edo a WhatsApp es opcional. Puedes guardar esta cotizaci\u00f3n para comparar o comenzar una nueva cuando quieras.',
+      '  </p>',
+      '</div>'
+    ].join('\n');
+
+    resultsContainer.innerHTML = summaryHTML + actionButtonsHTML;
+
+    // Wire up de los botones de accion
+    var btnSendWA = document.getElementById('btn-send-whatsapp');
+    if (btnSendWA) {
+      btnSendWA.addEventListener('click', function () {
+        handleSendToWhatsApp();
+      });
+    }
+
+    var btnNewQuote = document.getElementById('btn-new-quote');
+    if (btnNewQuote) {
+      btnNewQuote.addEventListener('click', function () {
+        resetApp();
+      });
+    }
+  }
+
+  // Maneja el click en "Enviar a WhatsApp": si faltan datos de
+  // contacto, abre un mini-modal para pedirlos. Si estan, abre
+  // WhatsApp directamente. (Pausa por agenda - sep 2026.)
+  function handleSendToWhatsApp() {
+    var nombre = (appState.answers.nombre || '').trim();
+    var telefono = (appState.answers.telefono || '').trim();
+    var email = (appState.answers.email || '').trim();
+
+    if (!nombre || !telefono || !email) {
+      showContactModal();
+      return;
+    }
+    sendToWhatsApp();
+  }
+
+  // Mini-modal que pide los datos de contacto SOLO cuando el usuario
+  // decide enviar a WhatsApp. NO bloquea el resultado.
+  function showContactModal() {
+    if (document.getElementById('contact-modal-overlay')) return;
+
+    var overlay = document.createElement('div');
+    overlay.id = 'contact-modal-overlay';
+    overlay.className = 'fixed inset-0 bg-black/60 z-[70] flex items-center justify-center p-4';
+
+    var modal = document.createElement('div');
+    modal.className = 'bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto mx-auto';
+    modal.innerHTML = [
+      '<button type="button" id="contact-modal-close" aria-label="Cerrar" class="absolute top-3 right-3 w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-700 text-xl font-bold flex items-center justify-center">&times;</button>',
+      '<div class="text-center mb-4">',
+      '  <div class="w-14 h-14 rounded-full mx-auto mb-3 flex items-center justify-center" style="background-color:#dcfce7;">',
+      '    <i class="fab fa-whatsapp text-2xl" style="color:#25D366;"></i>',
+      '  </div>',
+      '  <h3 class="text-xl font-bold text-gray-900 mb-1">Enviar mi cotizaci\u00f3n a WhatsApp</h3>',
+      '  <p class="text-sm text-gray-600">Necesitamos estos datos para que el equipo de CONCASAYA te contacte.</p>',
+      '</div>',
+      '<div class="space-y-3">',
+      '  <div>',
+      '    <label class="block text-sm font-semibold text-gray-700 mb-1">Nombre Completo <span class="text-red-500">*</span></label>',
+      '    <input type="text" id="contact-modal-nombre" placeholder="Ej: Juan P\u00e9rez"',
+      '      class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base" />',
+      '  </div>',
+      '  <div>',
+      '    <label class="block text-sm font-semibold text-gray-700 mb-1">Tel\u00e9fono <span class="text-red-500">*</span></label>',
+      '    <input type="tel" id="contact-modal-telefono" placeholder="Ej: 3001234567" pattern="[0-9]{10,15}"',
+      '      class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base" />',
+      '  </div>',
+      '  <div>',
+      '    <label class="block text-sm font-semibold text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>',
+      '    <input type="email" id="contact-modal-email" placeholder="Ej: juan@email.com"',
+      '      class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary text-base" />',
+      '  </div>',
+      '</div>',
+      '<p id="contact-modal-error" class="hidden text-sm text-red-600 mt-3 text-center font-semibold"></p>',
+      '<div class="mt-5 flex flex-col gap-2">',
+      '  <button type="button" id="contact-modal-submit"',
+      '    class="w-full px-6 py-3 text-white rounded-lg font-semibold transition duration-300 flex items-center justify-center gap-2 shadow-md"',
+      '    style="background-color:#25D366;"',
+      '    onmouseover="this.style.backgroundColor=\'#1da851\'"',
+      '    onmouseout="this.style.backgroundColor=\'#25D366\'">',
+      '    <i class="fab fa-whatsapp"></i>',
+      '    <span>Enviar por WhatsApp</span>',
+      '  </button>',
+      '  <button type="button" id="contact-modal-cancel"',
+      '    class="w-full px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-semibold transition duration-300">',
+      '    Cancelar',
+      '  </button>',
+      '</div>'
+    ].join('\n');
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Bloquear scroll mientras el modal esta abierto
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
+
+    function closeModal() {
+      overlay.remove();
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('contact-modal-close').addEventListener('click', closeModal);
+    document.getElementById('contact-modal-cancel').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeModal();
+    });
+    document.addEventListener('keydown', function escHandler(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+        document.removeEventListener('keydown', escHandler);
+      }
+    });
+
+    document.getElementById('contact-modal-submit').addEventListener('click', function () {
+      var n = document.getElementById('contact-modal-nombre').value.trim();
+      var t = document.getElementById('contact-modal-telefono').value.trim();
+      var em = document.getElementById('contact-modal-email').value.trim();
+      var err = document.getElementById('contact-modal-error');
+
+      if (!n || !t || !em) {
+        err.textContent = 'Por favor completa todos los campos para enviar por WhatsApp.';
+        err.classList.remove('hidden');
+        return;
+      }
+      if (!/^[0-9]{10,15}$/.test(t)) {
+        err.textContent = 'Ingresa un tel\u00e9fono v\u00e1lido (10-15 d\u00edgitos, solo n\u00fameros).';
+        err.classList.remove('hidden');
+        return;
+      }
+      if (!/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i.test(em)) {
+        err.textContent = 'Ingresa un email v\u00e1lido.';
+        err.classList.remove('hidden');
+        return;
+      }
+
+      // Guardar en el estado del cotizador y enviar
+      appState.answers.nombre = n;
+      appState.answers.telefono = t;
+      appState.answers.email = em;
+      closeModal();
+      sendToWhatsApp();
+    });
+  }
+
+  // Resetear el cotizador a su estado inicial
+  function resetApp() {
+    appState.currentQuestion = 0;
+    appState.answers = {};
+
+    var container = document.getElementById('questions-container');
+    var resultsContainer = document.getElementById('results-container');
+    var navButtons = document.getElementById('navigation-buttons');
+
+    if (container) container.classList.remove('hidden');
+    if (resultsContainer) resultsContainer.classList.add('hidden');
+    if (navButtons) navButtons.classList.remove('hidden');
+
+    // Re-renderizar primera pregunta
+    renderQuestion();
+    updateProgress();
+    updateNextButton();
+    updateBackButton();
+
+    // Scroll al inicio
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   // Enviar por WhatsApp
@@ -1702,7 +1881,8 @@
     toggleCheckbox: toggleCheckbox,
     updateFormField: updateFormField,
     validateField: validateField,
-    sendToWhatsApp: sendToWhatsApp
+    sendToWhatsApp: sendToWhatsApp,
+    resetApp: resetApp
   };
 
   // Inicializar cuando el DOM esté listo
