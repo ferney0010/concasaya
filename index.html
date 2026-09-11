@@ -1836,54 +1836,16 @@
             </p>
           </div>
 
-          <!-- CTA del hero: tarjeta-modal autosuficiente de 2 pasos (intención + departamento).
-               No abre otro modal — el card se actualiza solo entre pasos. Al elegir departamento
-               abre WhatsApp directo. En mobile se apila debajo del texto; en desktop va a la derecha. -->
+          <!-- CTA del hero: flyer oficial de pausa por agenda (sep 2026).
+               Reemplaza la tarjeta-modal de WhatsApp de Natalia durante la pausa. -->
           <div class="hero-slider">
-            <div class="hero-cta-card hero-cta-card--modal" id="hero-wa-inline">
-              <div class="hero-cta-card--modal__header">
-                <div class="hero-cta-card--modal__avatar">N</div>
-                <div class="flex-1 min-w-0">
-                  <p class="hero-cta-card--modal__name">Natalia <span class="hero-cta-card--modal__role">· Asesora comercial</span></p>
-                  <p class="hero-cta-card--modal__status"><span class="hero-cta-card--modal__dot"></span> en línea</p>
-                </div>
-              </div>
-
-              <!-- PASO 1: intención -->
-              <div class="hero-cta-card--modal__body" data-step="1">
-                <p class="hero-cta-card--modal__greeting">¡Hola! ¿En qué te podemos ayudar?</p>
-                <p class="hero-cta-card--modal__sub">Cuéntanos que necesitas</p>
-                <div class="hero-cta-card--modal__options">
-                  <button type="button" class="hero-cta-card--modal__opt hero-cta-card--modal__opt--primary" data-intent="lote">
-                    <i class="fas fa-home"></i>
-                    <span>Ya tengo lote, quiero cotizar</span>
-                    <i class="fas fa-arrow-right hero-cta-card--modal__arrow"></i>
-                  </button>
-                  <button type="button" class="hero-cta-card--modal__opt" data-intent="buscar">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span>Todavía busco lote, que me recomienden</span>
-                  </button>
-                  <button type="button" class="hero-cta-card--modal__opt" data-intent="exterior">
-                    <i class="fas fa-globe-americas"></i>
-                    <span>Estoy en el exterior, quiero cotizar</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- PASO 2: departamento (se muestra tras elegir intención) -->
-              <div class="hero-cta-card--modal__body" data-step="2" style="display:none">
-                <p class="hero-cta-card--modal__greeting" data-step2-greeting>¿En qué zona vas a construir?</p>
-                <p class="hero-cta-card--modal__sub" data-step2-sub>Selecciona tu departamento</p>
-                <div class="hero-cta-card--modal__options" data-step2-options></div>
-                <button type="button" class="hero-cta-card--modal__back" data-step2-back>
-                  <i class="fas fa-arrow-left"></i> Cambiar de opción
-                </button>
-              </div>
-
-              <p class="hero-cta-card--modal__footer">
-                <i class="fas fa-shield-halved"></i>
-                <span>Conversación atendida por el equipo de CONCASAYA · Respuesta en menos de 24h</span>
-              </p>
+            <div class="hero-cta-card hero-cta-card--pausa" id="hero-pausa-inline">
+              <img
+                src="/assets/images/pausa-concasaya.png"
+                alt="CONCASAYA - Pausa programada por agenda completa"
+                class="hero-cta-card--pausa__img"
+                loading="eager"
+              />
             </div>
           </div>
 
@@ -4507,162 +4469,12 @@
     <script src="/assets/js/whatsapp-modal.js"></script>
     <script src="/assets/js/descanso-alert.js"></script>
 
-    <!-- Tarjeta-modal del hero: 2 pasos en el mismo card (intencion + departamento).
-         No abre el modal global. Al elegir departamento, abre WhatsApp directo. -->
-    <script>
-      (function () {
-        var card = document.getElementById('hero-wa-inline');
-        if (!card) return;
-        var step1 = card.querySelector('[data-step="1"]');
-        var step2 = card.querySelector('[data-step="2"]');
-        var greeting2 = card.querySelector('[data-step2-greeting]');
-        var sub2 = card.querySelector('[data-step2-sub]');
-        var options2 = card.querySelector('[data-step2-options]');
-        var backBtn = card.querySelector('[data-step2-back]');
+    <!-- Pausa por agenda (sep 2026): la tarjeta-modal del hero
+         ahora muestra la imagen oficial de pausa en lugar de la
+         tarjeta de WhatsApp de Natalia. El JS de los 2 pasos se
+         elimino porque el HTML ya no expone los data-step / data-
+         intent que buscaba. -->
 
-        var SLUG_INFO = {
-          'cajica': { department: 'Cundinamarca', name: 'Cajica' },
-          'chia': { department: 'Cundinamarca', name: 'Chia' },
-          'cota': { department: 'Cundinamarca', name: 'Cota' },
-          'facatativa': { department: 'Cundinamarca', name: 'Facatativa' },
-          'funza': { department: 'Cundinamarca', name: 'Funza' },
-          'fusagasuga': { department: 'Cundinamarca', name: 'Fusagasuga' },
-          'guasca': { department: 'Cundinamarca', name: 'Guasca' },
-          'la-calera': { department: 'Cundinamarca', name: 'La Calera' },
-          'la-mesa': { department: 'Cundinamarca', name: 'La Mesa' },
-          'la-vega': { department: 'Cundinamarca', name: 'La Vega' },
-          'madrid': { department: 'Cundinamarca', name: 'Madrid' },
-          'mesitas-del-colegio': { department: 'Cundinamarca', name: 'Mesitas del Colegio' },
-          'mosquera': { department: 'Cundinamarca', name: 'Mosquera' },
-          'norte-bogota': { department: 'Cundinamarca', name: 'Norte de Bogota' },
-          'pacho': { department: 'Cundinamarca', name: 'Pacho' },
-          'soacha': { department: 'Cundinamarca', name: 'Soacha' },
-          'sopo': { department: 'Cundinamarca', name: 'Sopo' },
-          'suba': { department: 'Cundinamarca', name: 'Suba' },
-          'tocancipa': { department: 'Cundinamarca', name: 'Tocancipa' },
-          'zipaquira': { department: 'Cundinamarca', name: 'Zipaquira' },
-          'barbosa': { department: 'Boyaca', name: 'Barbosa' },
-          'boyaca': { department: 'Boyaca', name: 'Boyaca' },
-          'chiquinquira': { department: 'Boyaca', name: 'Chiquinquira' },
-          'duitama': { department: 'Boyaca', name: 'Duitama' },
-          'paipa': { department: 'Boyaca', name: 'Paipa' },
-          'sogamoso': { department: 'Boyaca', name: 'Sogamoso' },
-          'tunja': { department: 'Boyaca', name: 'Tunja' },
-          'villadeleyva': { department: 'Boyaca', name: 'Villa de Leyva' }
-        };
-        var DEPARTMENTS = [
-          { id: 'Cundinamarca', icon: 'fa-mountain-sun', label: 'Cundinamarca' },
-          { id: 'Boyaca', icon: 'fa-mountain', label: 'Boyaca' },
-          { id: 'Otro', icon: 'fa-earth-americas', label: 'Otro departamento' }
-        ];
-        var state = { intention: null, department: null, detected: null };
-
-        function detectFromURL() {
-          var path = (window.location.pathname || '').toLowerCase();
-          var m = path.match(/\/([^\/?#]+?)(?:\.html)?\/?$/);
-          if (!m) return null;
-          return SLUG_INFO[m[1]] || null;
-        }
-
-        function buildMessage() {
-          var intentionId = state.intention;
-          var departmentId = state.department;
-          var municipality = (state.detected && intentionId !== 'exterior') ? state.detected.name : null;
-          var body = '';
-          if (intentionId === 'lote') body = 'Ya tengo lote propio y quiero cotizar una casa prefabricada';
-          else if (intentionId === 'buscar') body = 'Todavia no tengo lote. Que me recomiendan para construir una casa prefabricada?';
-          else if (intentionId === 'exterior') body = 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia';
-          var head = '';
-          if (municipality) head = 'Hola, vengo de ' + municipality + ' (' + departmentId + '). ';
-          if (intentionId === 'exterior') return 'Hola. ' + body + '.';
-          if (departmentId === 'Cundinamarca') return head + body + ' en Cundinamarca.';
-          if (departmentId === 'Boyaca') return head + body + ' en Boyaca.';
-          return head + body + '. Estoy en otra zona de Colombia.';
-        }
-
-        function sendToWhatsApp() {
-          var url = 'https://wa.me/573142891018?text=' + encodeURIComponent(buildMessage());
-          window.open(url, '_blank', 'noopener,noreferrer');
-        }
-
-        function renderDetectedStep() {
-          var info = state.detected;
-          var icon = (info.department === 'Cundinamarca') ? 'fa-mountain-sun' : 'fa-mountain';
-          greeting2.textContent = 'Detectamos tu ubicacion';
-          sub2.textContent = 'Estas en ' + info.name + ', ' + info.department;
-          options2.innerHTML =
-            '<button type="button" class="hero-cta-card--modal__opt hero-cta-card--modal__opt--primary" data-dept="' + info.department + '">' +
-              '<i class="fas ' + icon + '"></i>' +
-              '<span>Si, cotizar en ' + info.name + '</span>' +
-              '<i class="fas fa-arrow-right hero-cta-card--modal__arrow"></i>' +
-            '</button>' +
-            '<button type="button" class="hero-cta-card--modal__opt" data-dept="__other__">' +
-              '<i class="fas fa-rotate"></i>' +
-              '<span>No, es otro departamento</span>' +
-            '</button>';
-        }
-
-        function renderManualStep() {
-          greeting2.textContent = 'En que departamento estas?';
-          sub2.textContent = 'Selecciona para continuar';
-          options2.innerHTML = DEPARTMENTS.map(function (d, i) {
-            var cls = 'hero-cta-card--modal__opt' + (i === 0 ? ' hero-cta-card--modal__opt--primary' : '');
-            return '<button type="button" class="' + cls + '" data-dept="' + d.id + '">' +
-              '<i class="fas ' + d.icon + '"></i>' +
-              '<span>' + d.label + '</span>' +
-            '</button>';
-          }).join('');
-        }
-
-        function showStep2() {
-          state.detected = detectFromURL();
-          if (state.detected) {
-            renderDetectedStep();
-          } else {
-            renderManualStep();
-          }
-          step1.style.display = 'none';
-          step2.style.display = '';
-        }
-
-        function showStep1() {
-          state.intention = null;
-          state.department = null;
-          step1.style.display = '';
-          step2.style.display = 'none';
-        }
-
-        // Click en opciones de intención
-        card.addEventListener('click', function (e) {
-          var intentBtn = e.target.closest('[data-intent]');
-          if (intentBtn) {
-            state.intention = intentBtn.getAttribute('data-intent');
-            if (state.intention === 'exterior') {
-              state.department = 'Otro';
-              sendToWhatsApp();
-              return;
-            }
-            showStep2();
-            return;
-          }
-          var deptBtn = e.target.closest('[data-dept]');
-          if (deptBtn) {
-            var id = deptBtn.getAttribute('data-dept');
-            if (id === '__other__') {
-              state.detected = null;
-              renderManualStep();
-              return;
-            }
-            state.department = id;
-            sendToWhatsApp();
-            return;
-          }
-          if (e.target.closest('[data-step2-back]')) {
-            showStep1();
-          }
-        });
-      })();
-    </script>
 
 
 
