@@ -788,18 +788,17 @@
       </section>
 
       <script type="module">
-        import { supabase } from "../supabaseClient.js";
+        // import supabase removed: usa gallery.json local
 
         const galleryPreviewContainer = document.getElementById(
           "gallery-preview-container"
         );
 
         const loadRecentImages = async () => {
-          const { data: images, error } = await supabase
-            .from("concasaya_gallery_images")
-            .select("*")
-            .order("created_at", { ascending: false })
-            .limit(5);
+          const response = await fetch("/assets/data/gallery.json");
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const data = await response.json();
+          const images = (data.images || []).slice(0, 5);
 
           if (error || !images || images.length === 0) {
             galleryPreviewContainer.innerHTML =

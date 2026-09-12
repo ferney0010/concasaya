@@ -3351,12 +3351,11 @@
           galleryImagesStarted = true;
 
           try {
-            const { supabase } = await import("./supabaseClient.js");
-            const { data: images, error } = await supabase
-              .from("concasaya_gallery_images")
-              .select("*")
-              .order("created_at", { ascending: false })
-              .limit(9);
+            // import supabase removed: usa gallery.json local
+            const response = await fetch("/assets/data/gallery.json");
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const data = await response.json();
+          const images = (data.images || []).slice(0, 9);
 
             if (error || !images || images.length === 0) {
               galleryPreviewContainer.innerHTML =

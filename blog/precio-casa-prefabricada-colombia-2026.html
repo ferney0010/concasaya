@@ -1262,7 +1262,7 @@
       </div>
     </footer>
 <script type="module">
-      import { supabase } from '../supabaseClient.js';
+      // import supabase removed: usa gallery.json local
 const hero = document.querySelector(".hero-image");
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (hero && !prefersReducedMotion) {
@@ -1276,18 +1276,17 @@ const hero = document.querySelector(".hero-image");
       // Cargar imágenes de la galería desde Supabase (si existen)
       const loadGalleryImages = async () => {
         try {
-          const { data: images, error } = await supabase
-            .from("concasaya_gallery_images")
-            .select("image_url, title")
-            .limit(8)
-            .order("created_at", { ascending: false });
+          const response = await fetch("/assets/data/gallery.json");
+          if (!response.ok) throw new Error("HTTP " + response.status);
+          const data = await response.json();
+          const images = (data.images || []).slice(0, 8);
 
           if (!error && images && images.length > 0) {
             const container = document.getElementById("gallery-preview");
             if (container) {
               container.innerHTML = images.map(img => `
                 <a href="/galeria.html" class="block overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition">
-                  <img src="${img.image_url}" alt="${img.title || 'Proyecto CONCASAYA'}" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" loading="lazy" />
+                  <img src="${"/assets/images/" + img.file}" alt="${img.title || 'Proyecto CONCASAYA'}" class="w-full h-48 object-cover hover:scale-105 transition-transform duration-300" loading="lazy" />
                 </a>
               `).join("");
             }
