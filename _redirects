@@ -1,0 +1,5 @@
+# Cloudflare Pages redirects
+# Equivalente al antiguo vercel.json (redirects permanentes)
+# Formato: /ruta-vieja /ruta-nueva 301
+
+/cotizador-encuesta.html /cotizador-precios-casas-prefabricadas.html 301
