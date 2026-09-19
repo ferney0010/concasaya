@@ -2430,6 +2430,31 @@
               </div>
             </article>
 
+            <!-- SIDEBAR: CTA fuerte para llenar espacio vacio -->
+            <aside class="catalogo-sidebar" aria-label="Cotiza tu casa personalizada">
+              <div class="catalogo-sidebar-inner">
+                <span class="catalogo-sidebar-eyebrow">Tu modelo ideal</span>
+                <h3 class="catalogo-sidebar-titulo">No encuentras tu modelo?</h3>
+                <p class="catalogo-sidebar-desc">
+                  Disenamos tu casa desde cero. Adaptamos distribucion, ampliamos espacios o lo ajustamos a tu lote y presupuesto.
+                </p>
+                <ul class="catalogo-sidebar-beneficios">
+                  <li><i class="fas fa-check"></i> Asesoria gratis por WhatsApp</li>
+                  <li><i class="fas fa-check"></i> Cotizacion en menos de 24h</li>
+                  <li><i class="fas fa-check"></i> Diseno personalizado a tu lote</li>
+                </ul>
+                <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20busco%20una%20casa%20prefabricada%20con%20diseno%20personalizado%20a%20mi%20lote.%20%C2%BFPueden%20ayudarme%3F"
+                   class="catalogo-sidebar-cta" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> Hablar con un asesor
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+                <div class="catalogo-sidebar-foot">
+                  <i class="fas fa-shield-alt"></i>
+                  <span>Sin compromiso · Respuesta en menos de 24h</span>
+                </div>
+              </div>
+            </aside>
+
           </div>
 
           <!-- Mensaje cuando no hay resultados -->
@@ -4762,6 +4787,143 @@
         display: inline-flex;
         align-items: center;
         gap: 0.3rem;
+      }
+
+      /* === Sidebar CTA al final del catalogo (llena el espacio vacio) === */
+      .catalogo-sidebar {
+        grid-column: span 2;
+        background: linear-gradient(135deg, #0077b6 0%, #005a8c 100%);
+        border-radius: 0 0 20px 20px;
+        padding: 2rem;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: stretch;
+        min-height: 100%;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      }
+      .catalogo-sidebar::before {
+        content: '';
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,0.10);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .catalogo-sidebar::after {
+        content: '';
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 240px;
+        height: 240px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .catalogo-sidebar-inner {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 0.85rem;
+        width: 100%;
+      }
+      .catalogo-sidebar-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.85rem;
+        background: rgba(255,255,255,0.18);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        width: fit-content;
+      }
+      .catalogo-sidebar-titulo {
+        font-size: 1.7rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.15;
+        color: #fff;
+      }
+      .catalogo-sidebar-desc {
+        font-size: 0.95rem;
+        color: rgba(255,255,255,0.92);
+        margin: 0;
+        line-height: 1.5;
+      }
+      .catalogo-sidebar-beneficios {
+        list-style: none;
+        padding: 0;
+        margin: 0.3rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .catalogo-sidebar-beneficios li {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.92rem;
+        font-weight: 600;
+        color: #fff;
+      }
+      .catalogo-sidebar-beneficios li i {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 22px;
+        height: 22px;
+        background: rgba(255,255,255,0.20);
+        border-radius: 50%;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+      }
+      .catalogo-sidebar-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        padding: 0.95rem 1.4rem;
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: #fff !important;
+        border-radius: 999px;
+        font-size: 1rem;
+        font-weight: 800;
+        text-decoration: none;
+        box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35);
+        transition: all 0.2s ease;
+        margin-top: 0.5rem;
+        width: fit-content;
+      }
+      .catalogo-sidebar-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+        color: #fff !important;
+      }
+      .catalogo-sidebar-foot {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.78rem;
+        color: rgba(255,255,255,0.85);
+        margin-top: 0.4rem;
+      }
+      .catalogo-sidebar-foot i { color: #fbbf24; }
+      @media (max-width: 1024px) {
+        .catalogo-sidebar { grid-column: span 3; }
+      }
+      @media (max-width: 640px) {
+        .catalogo-sidebar { grid-column: span 1; padding: 1.5rem; }
+        .catalogo-sidebar-titulo { font-size: 1.3rem; }
       }
 
       /* FAQ items */
