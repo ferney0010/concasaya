@@ -2282,8 +2282,7 @@
                 <div class="tab-image-container">
                   <img class="tab-pane active" data-pane="foto" loading="eager" decoding="async"
                        src="assets/images/modelos/plaqueta-basico-60m2.webp"
-                       alt="Casa prefabricada plaqueta 60 m2 Concasaya"
-                       style="object-position: center 75%" />
+                       alt="Casa prefabricada plaqueta 60 m2 Concasaya" />
                   <img class="tab-pane" data-pane="plano" loading="eager" decoding="async"
                        src="assets/images/modelos/plaqueta-basico-60m2-plano.webp"
                        alt="Plano casa prefabricada plaqueta 60 m2 Concasaya" />
@@ -4795,7 +4794,7 @@
         aspect-ratio: 4/3;
         min-height: 280px;
         overflow: hidden;
-        background: #f1f5f9;
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -4803,8 +4802,7 @@
       .tab-image-container img.tab-pane {
         position: absolute; inset: 0;
         width: 100%; height: 100%;
-        object-fit: cover;
-        object-position: center;
+        object-fit: contain;
         display: block;
         opacity: 0;
         transition: opacity 0.35s ease;
