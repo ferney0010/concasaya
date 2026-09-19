@@ -2180,19 +2180,27 @@
        ============================================================ -->
 
       <!-- Header del catalogo + contador -->
-      <section id="indice" class="py-10 sm:py-14 bg-gradient-to-b from-white to-gray-50">
+      <section id="indice" class="py-8 sm:py-10 bg-gradient-to-b from-white to-gray-50">
         <div class="container mx-auto px-4 sm:px-6">
-          <div class="text-center mb-6" data-aos="fade-up">
+          <div class="text-center mb-5" data-aos="fade-up">
             <span class="section-eyebrow mb-3 inline-flex"><i class="fas fa-th-large"></i> Catalogo 2026</span>
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-3 leading-tight">
-              Elige tu casa prefabricada <span class="text-primary">lista para cotizar</span>
-            </h2>
-            <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              7 modelos con foto real, plano y precio desde <strong class="text-primary">$25 millones</strong>. Cotiza por WhatsApp en menos de 24h.
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-3 leading-tight">
+              Tu casa prefabricada desde <span class="text-primary">$25M</span>
+            </h1>
+            <p class="text-base sm:text-lg text-gray-600 max-w-xl mx-auto mb-5">
+              7 modelos con foto, plano y precio. Cotiza por WhatsApp.
             </p>
-            <p class="text-sm text-gray-500 mt-3">
-              <span id="modelos-contador">Mostrando 7 modelos</span>
-            </p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+              <a href="#modelos-grid" class="hero-cta-primary">
+                <i class="fab fa-whatsapp"></i> Cotizar ahora
+              </a>
+              <button type="button" id="hero-filtros-btn" class="hero-cta-secondary">
+                <i class="fas fa-sliders-h"></i> Filtrar
+              </button>
+              <a href="#diseno-personalizado" class="hero-cta-ghost">
+                <i class="fas fa-pen-ruler"></i> Diseno a medida
+              </a>
+            </div>
           </div>
 
           <!-- FILTROS (desplegable cerrado por defecto) -->
@@ -5090,6 +5098,50 @@
       }
       /* Cursor pointer para las imagenes del catalogo que se pueden ampliar */
       .tab-image-container { cursor: zoom-in; }
+
+      /* === Botones del hero (acceso directo) === */
+      .hero-cta-primary, .hero-cta-secondary, .hero-cta-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.3rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: 2px solid transparent;
+        line-height: 1.2;
+      }
+      .hero-cta-primary {
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(37, 211, 102, 0.30);
+      }
+      .hero-cta-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 22px rgba(37, 211, 102, 0.40);
+        color: #fff;
+      }
+      .hero-cta-secondary {
+        background: #fff;
+        color: #0077b6;
+        border-color: #0077b6;
+      }
+      .hero-cta-secondary:hover {
+        background: rgba(0, 119, 182, 0.08);
+        transform: translateY(-1px);
+      }
+      .hero-cta-ghost {
+        background: transparent;
+        color: #475569;
+        border-color: #cbd5e1;
+      }
+      .hero-cta-ghost:hover {
+        background: rgba(0,0,0,0.04);
+        color: #0f172a;
+      }
       </style>
 
 
@@ -5199,6 +5251,17 @@
     var filtrosToggle = document.getElementById('filtros-toggle');
     var filtrosWrapper = document.getElementById('filtros-wrapper');
     var filtrosBadge = document.getElementById('filtros-toggle-count');
+    function openFiltros() {
+      if (!filtrosWrapper || !filtrosToggle) return;
+      filtrosWrapper.hidden = false;
+      filtrosToggle.setAttribute('aria-expanded', 'true');
+      filtrosToggle.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+    function closeFiltros() {
+      if (!filtrosWrapper || !filtrosToggle) return;
+      filtrosWrapper.hidden = true;
+      filtrosToggle.setAttribute('aria-expanded', 'false');
+    }
     if (filtrosToggle && filtrosWrapper) {
       function updateFiltrosBadge() {
         if (!filtrosBadge) return;
@@ -5210,15 +5273,17 @@
         filtrosBadge.setAttribute('data-count', String(activeCount));
       }
       filtrosToggle.addEventListener('click', function() {
-        var expanded = filtrosToggle.getAttribute('aria-expanded') === 'true';
-        if (expanded) {
-          filtrosWrapper.hidden = true;
-          filtrosToggle.setAttribute('aria-expanded', 'false');
-        } else {
-          filtrosWrapper.hidden = false;
-          filtrosToggle.setAttribute('aria-expanded', 'true');
-        }
+        if (filtrosToggle.getAttribute('aria-expanded') === 'true') closeFiltros();
+        else openFiltros();
       });
+      // Boton "Filtrar" del hero abre el desplegable
+      var heroFiltrosBtn = document.getElementById('hero-filtros-btn');
+      if (heroFiltrosBtn) {
+        heroFiltrosBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          openFiltros();
+        });
+      }
       // Actualizar badge cada vez que cambia un filtro
       var observerInterval = setInterval(updateFiltrosBadge, 200);
       updateFiltrosBadge();
