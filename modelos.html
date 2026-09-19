@@ -2449,13 +2449,25 @@
                   <i class="fas fa-arrow-right"></i>
                 </a>
                 <div class="catalogo-sidebar-ubicacion">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <div class="catalogo-sidebar-ubicacion-texto">
-                    <strong>Visita nuestra oficina</strong>
-                    <span>Cl. 147 #101-56 Local 64 · Centro Comercial Fiesta · Bogota</span>
-                    <a href="https://maps.app.goo.gl/qGv5S1qG6Gy5KZ4A7" target="_blank" rel="noopener">
-                      <i class="fas fa-external-link-alt"></i> Ver en Google Maps
-                    </a>
+                  <div class="catalogo-sidebar-ubicacion-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div class="catalogo-sidebar-ubicacion-texto">
+                      <strong>Visita nuestra oficina</strong>
+                      <span>Cl. 147 #101-56 Local 64 · Centro Comercial Fiesta · Bogota</span>
+                      <a href="https://maps.app.goo.gl/qGv5S1qG6Gy5KZ4A7" target="_blank" rel="noopener">
+                        <i class="fas fa-external-link-alt"></i> Abrir en Google Maps
+                      </a>
+                    </div>
+                  </div>
+                  <div class="catalogo-sidebar-mapa">
+                    <iframe
+                      src="https://maps.google.com/maps?q=Cl.+147+%23101-56+Local+64+Bogota+Colombia&output=embed"
+                      width="100%" height="180" style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      title="Ubicacion oficina CONCASAYA Bogota">
+                    </iframe>
                   </div>
                 </div>
                 <div class="catalogo-sidebar-foot">
@@ -4930,16 +4942,21 @@
       .catalogo-sidebar-foot i { color: #fbbf24; }
 
       .catalogo-sidebar-ubicacion {
-        display: flex;
-        align-items: flex-start;
-        gap: 0.7rem;
         padding: 0.85rem 1rem;
         background: rgba(255,255,255,0.10);
         border: 1px solid rgba(255,255,255,0.20);
         border-radius: 12px;
         margin-top: 0.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
       }
-      .catalogo-sidebar-ubicacion > i {
+      .catalogo-sidebar-ubicacion-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+      }
+      .catalogo-sidebar-ubicacion-header > i {
         color: #fbbf24;
         font-size: 1.1rem;
         margin-top: 0.15rem;
@@ -4977,6 +4994,16 @@
       .catalogo-sidebar-ubicacion-texto a:hover {
         color: #fde68a;
         text-decoration: underline;
+      }
+      .catalogo-sidebar-mapa {
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+      }
+      .catalogo-sidebar-mapa iframe {
+        display: block;
+        width: 100%;
       }
       @media (max-width: 1024px) {
         .catalogo-sidebar { grid-column: span 3; }
