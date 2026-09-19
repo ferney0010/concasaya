@@ -148,7 +148,7 @@ const jsonLd = {
       "url": "https://www.concasaya.com/pages/casas-prefabricadas-colombia.html",
       "name": "Casas Prefabricadas en Colombia | Cobertura Completa CONCASAYA",
       "alternateName": "Casas Prefabricadas Colombia - CONCASAYA",
-      "description": "Casas prefabricadas en Colombia con CONCASAYA: 41 municipios en Bogotá, Cundinamarca, Boyacá, Santander y Magdalena + 5 países en el exterior. Más de 10 años de experiencia, 12.000 proyectos entregados. Paneles EPS y plaqueta de concreto desde $600K/m².",
+      "description": "Casas prefabricadas en Colombia con CONCASAYA: 41 municipios en Bogotá, Cundinamarca, Boyacá, Santander y Magdalena + 5 países en el exterior. Más de 15 años de experiencia, 12.000 proyectos entregados. Paneles EPS y plaqueta de concreto desde $600K/m².",
       "inLanguage": "es-CO",
       "isPartOf": {
         "@type": "WebSite",

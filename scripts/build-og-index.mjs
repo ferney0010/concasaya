@@ -28,7 +28,7 @@ const colors = {
 const lines = [
   "Casas Prefabricadas",
   "en Bogotá y Cundinamarca",
-  "+12.000 proyectos · 10 años",
+  "+12.000 proyectos · 15 años",
 ];
 
 const titleSize = 60;

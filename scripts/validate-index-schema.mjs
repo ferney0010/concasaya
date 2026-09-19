@@ -26,7 +26,7 @@ const checks = [
   { pattern: /\+10<\/p>\s*<p class="text-gray-300">Años de Experiencia/, name: 'contador +10 visible' },
   { pattern: /\+98%/, name: 'contador +98% visible' },
   { pattern: /\+825/, name: 'contador +825 visible' },
-  { pattern: /Más de 10 años construyendo casas prefabricadas en Colombia/, name: 'h2 AEO' },
+  { pattern: /Más de 15 años construyendo casas prefabricadas en Colombia/, name: 'h2 AEO' },
   { pattern: /counter-number[\s\S]*?innerText = prefix \+ '0' \+ suffix/, name: 'script reset contadores' },
   { pattern: /hasOfferCatalog/, name: 'hasOfferCatalog en schema' },
   { pattern: /FAQPage/, name: 'FAQPage en schema' },

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es_CO">
   <head>
     <meta charset="UTF-8" />
@@ -39,7 +39,7 @@
     />
     <meta
       property="og:description"
-      content="Más de 10 años construyendo casas prefabricadas con paneles EPS y plaqueta de concreto. +12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios. Cotiza tu proyecto hoy."
+      content="Más de 15 años construyendo casas prefabricadas con paneles EPS y plaqueta de concreto. +12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios. Cotiza tu proyecto hoy."
     />
     <meta
       property="og:image"
@@ -49,7 +49,7 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Casas Prefabricadas en Bogotá y Cundinamarca. +12.000 proyectos entregados en 10 años. CONCASAYA."
+      content="Casas Prefabricadas en Bogotá y Cundinamarca. +12.000 proyectos entregados en 15 años. CONCASAYA."
     />
     <meta property="og:url" content="https://www.concasaya.com/" />
     <meta property="og:type" content="website" />
@@ -64,7 +64,7 @@
     />
     <meta
       name="twitter:description"
-      content="Más de 10 años construyendo casas prefabricadas con paneles EPS y plaqueta de concreto. +12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios."
+      content="Más de 15 años construyendo casas prefabricadas con paneles EPS y plaqueta de concreto. +12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios."
     />
     <meta
       name="twitter:image"
@@ -111,7 +111,7 @@
           "url": "https://www.concasaya.com/",
           "logo": "https://www.concasaya.com/assets/images/logoconcasaya.webp",
           "image": "https://www.concasaya.com/assets/images/herocasa.webp",
-          "description": "Constructora colombiana especializada en casas prefabricadas con paneles EPS y plaqueta de concreto. Más de 10 años de experiencia, más de 12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios de Colombia. Cobertura en Bogotá, Cundinamarca, Boyacá y Santander.",
+          "description": "Constructora colombiana especializada en casas prefabricadas con paneles EPS y plaqueta de concreto. Más de 15 años de experiencia, más de 12.000 proyectos entregados, 98% de clientes satisfechos y presencia en 825 municipios de Colombia. Cobertura en Bogotá, Cundinamarca, Boyacá y Santander.",
           "foundingDate": "2018",
           "slogan": "Construyendo confianza, un proyecto a la vez",
           "telephone": "+57-314-289-1018",
@@ -236,7 +236,7 @@
               "name": "¿Cuántos años de experiencia tiene CONCASAYA?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "CONCASAYA tiene más de 10 años de experiencia construyendo casas prefabricadas en Colombia, con más de 12.000 proyectos entregados en 825 municipios del país."
+                "text": "CONCASAYA tiene más de 15 años de experiencia construyendo casas prefabricadas en Colombia, con más de 12.000 proyectos entregados en 825 municipios del país."
               }
             },
             {
@@ -1431,6 +1431,192 @@
         .hero-cta-card__title { font-size: 1.05rem; }
       }
 
+      /* === Tarjeta de respaldo legal y tecnico (reemplaza al flyer Pausa) === */
+      .hero-trust-card {
+        position: relative;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 1.5rem 1.5rem 1.4rem;
+        box-shadow:
+          0 1px 0 rgba(255, 255, 255, 0.8) inset,
+          0 22px 60px rgba(7, 38, 76, 0.32),
+          0 4px 14px rgba(7, 38, 76, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        text-align: left;
+        color: #0f172a;
+        max-width: 460px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      /* Accent vertical izquierdo (signature CONCASAYA) */
+      .hero-trust-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background: linear-gradient(180deg, #0077b6 0%, #00b4d8 50%, #10b981 100%);
+        border-radius: 20px 0 0 20px;
+      }
+      .hero-trust-card__tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: linear-gradient(135deg, rgba(0, 119, 182, 0.10) 0%, rgba(0, 180, 216, 0.10) 100%);
+        color: #0077b6;
+        border: 1px solid rgba(0, 119, 182, 0.20);
+        border-radius: 999px;
+        padding: 0.32rem 0.85rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin: 0 0 0.7rem;
+      }
+      .hero-trust-card__tag i {
+        font-size: 0.7rem;
+        color: #10b981;
+      }
+      .hero-trust-card__title {
+        font-size: 1.22rem;
+        line-height: 1.22;
+        font-weight: 800;
+        color: #0c4a6e;
+        margin: 0 0 0.55rem;
+        letter-spacing: -0.015em;
+      }
+      .hero-trust-card__lead {
+        font-size: 0.92rem;
+        line-height: 1.4;
+        color: #334155;
+        margin: 0 0 0.85rem;
+      }
+      .hero-trust-card__sub {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #0077b6;
+        margin: 0 0 0.5rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+      .hero-trust-card__list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 0.95rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.42rem;
+      }
+      .hero-trust-card__list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.55rem;
+        font-size: 0.88rem;
+        line-height: 1.35;
+        color: #1f2937;
+        font-weight: 500;
+      }
+      .hero-trust-card__list i {
+        flex-shrink: 0;
+        width: 19px;
+        height: 19px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        color: #fff;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        margin-top: 2px;
+        box-shadow: 0 2px 6px rgba(16, 185, 129, 0.35);
+      }
+      .hero-trust-card__close {
+        font-size: 0.85rem;
+        font-style: italic;
+        color: #475569;
+        line-height: 1.4;
+        margin: 0 0 0.95rem;
+        padding-top: 0.7rem;
+        border-top: 1px solid rgba(15, 23, 42, 0.08);
+      }
+      .hero-trust-card__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        width: 100%;
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: #fff;
+        border: 0;
+        border-radius: 999px;
+        padding: 0.85rem 1.2rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow: 0 6px 18px rgba(37, 211, 102, 0.35), 0 1px 0 rgba(255,255,255,0.25) inset;
+        transition: transform 0.15s, box-shadow 0.15s;
+        margin: 0 0 0.85rem;
+        letter-spacing: 0.005em;
+      }
+      .hero-trust-card__cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45), 0 1px 0 rgba(255,255,255,0.25) inset;
+      }
+      .hero-trust-card__cta:active {
+        transform: translateY(-1px);
+      }
+      .hero-trust-card__cta i {
+        font-size: 1.1rem;
+      }
+      .hero-trust-card__cta-arrow {
+        font-size: 0.85rem !important;
+        margin-left: auto;
+        transition: transform 0.15s;
+      }
+      .hero-trust-card__cta:hover .hero-trust-card__cta-arrow {
+        transform: translateX(3px);
+      }
+      .hero-trust-card__brand {
+        font-size: 0.74rem;
+        color: #0c4a6e;
+        margin: 0;
+        letter-spacing: 0.01em;
+        text-align: center;
+      }
+      .hero-trust-card__brand strong {
+        font-weight: 800;
+        background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      @media (max-width: 640px) {
+        .hero-trust-card { padding: 1.25rem 1.2rem 1.15rem; border-radius: 18px; }
+        .hero-trust-card__title { font-size: 1.08rem; }
+        .hero-trust-card__lead { font-size: 0.86rem; }
+        .hero-trust-card__list li { font-size: 0.83rem; }
+        .hero-trust-card__close { font-size: 0.8rem; }
+        .hero-trust-card__cta { font-size: 0.9rem; padding: 0.78rem 1rem; }
+      }
+      @media (min-width: 1024px) and (max-width: 1279px) {
+        .hero-trust-card { max-width: 400px; padding: 1.3rem 1.2rem 1.2rem; }
+        .hero-trust-card__title { font-size: 1.13rem; }
+      }
+      @media (min-width: 1280px) {
+        .hero-trust-card { max-width: 470px; padding: 1.75rem 1.7rem 1.6rem; }
+        .hero-trust-card__title { font-size: 1.34rem; }
+        .hero-trust-card__lead { font-size: 0.97rem; }
+        .hero-trust-card__list li { font-size: 0.94rem; }
+        .hero-trust-card__cta { font-size: 1rem; padding: 0.95rem 1.3rem; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-trust-card, .hero-trust-card__cta, .hero-trust-card__cta-arrow { transition: none !important; }
+      }
+
       /* === Tarjeta-modal visible en el hero (Natalia, 3 opciones) === */
       .hero-cta-card--modal {
         padding: 0;
@@ -1839,13 +2025,32 @@
           <!-- CTA del hero: flyer oficial de pausa por agenda (sep 2026).
                Reemplaza la tarjeta-modal de WhatsApp de Natalia durante la pausa. -->
           <div class="hero-slider">
-            <div class="hero-cta-card hero-cta-card--pausa" id="hero-pausa-inline">
-              <img
-                src="/assets/images/pausa-concasaya.png"
-                alt="CONCASAYA - Pausa programada por agenda completa"
-                class="hero-cta-card--pausa__img"
-                loading="eager"
-              />
+            <div class="hero-trust-card" id="hero-trust-card">
+              <span class="hero-trust-card__tag">
+                <i class="fas fa-shield-halved" aria-hidden="true"></i>
+                Respaldo legal y técnico
+              </span>
+              <h3 class="hero-trust-card__title">Construimos con respaldo legal y técnico</h3>
+              <p class="hero-trust-card__lead">En CONCASAYA no solo levantamos tu casa: la construimos correctamente.</p>
+              <p class="hero-trust-card__sub">Te asesoramos en:</p>
+              <ul class="hero-trust-card__list">
+                <li><i class="fas fa-check" aria-hidden="true"></i> Diseño de tu vivienda</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Cumplimiento de la normativa aplicable</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Documentación completa para licencia</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Sistema constructivo prefabricado</li>
+                <li><i class="fas fa-check" aria-hidden="true"></i> Manejo de aguas residuales según tu proyecto</li>
+              </ul>
+              <p class="hero-trust-card__close">Construir bien es construir seguro. Cumplimos las normas desde el primer día.</p>
+              <a
+                href="https://wa.me/573142891018?text=Hola%20Concasaya%2C%20quiero%20asesor%C3%ADa%20sobre%20mi%20lote"
+                class="hero-trust-card__cta"
+                data-wm-intent="lote"
+              >
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                <span>Hablar con un asesor</span>
+                <i class="fas fa-arrow-right hero-trust-card__cta-arrow" aria-hidden="true"></i>
+              </a>
+              <p class="hero-trust-card__brand"><strong>CONCASAYA</strong> — Prefabricados con respaldo, diseño y cumplimiento.</p>
             </div>
           </div>
 
@@ -1879,7 +2084,7 @@
         <div class="container mx-auto px-6">
           <div class="text-center mb-12" data-aos="fade-up">
             <h2 class="text-3xl md:text-4xl font-bold">
-              Más de 10 años construyendo casas prefabricadas en Colombia
+              Más de 15 años construyendo casas prefabricadas en Colombia
             </h2>
             <p class="text-lg text-gray-300 mt-2 max-w-3xl mx-auto">
               Empresa colombiana líder en construcción de casas prefabricadas con paneles EPS y plaqueta de concreto. Más de 12.000 proyectos entregados y presencia en 825 municipios del país.
@@ -1905,10 +2110,10 @@
               <i class="fas fa-medal fa-3x text-primary mb-4"></i>
               <p
                 class="text-4xl font-bold counter-number"
-                data-target="10"
+                data-target="15"
                 data-prefix="+"
               >
-                +10
+                +15
               </p>
               <p class="text-gray-300">Años de Experiencia</p>
             </div>
@@ -2424,7 +2629,7 @@
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-dark" itemprop="author">Equipo CONCASAYA</p>
-                  <p class="text-xs text-gray-500">Constructora · 10 años de experiencia</p>
+                  <p class="text-xs text-gray-500">Constructora · 15 años de experiencia</p>
                 </div>
               </div>
 

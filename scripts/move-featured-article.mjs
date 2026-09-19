@@ -122,7 +122,7 @@ const featuredBlock = `
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-dark" itemprop="author">Equipo CONCASAYA</p>
-                  <p class="text-xs text-gray-500">Constructora · 10 años de experiencia</p>
+                  <p class="text-xs text-gray-500">Constructora · 15 años de experiencia</p>
                 </div>
               </div>
 

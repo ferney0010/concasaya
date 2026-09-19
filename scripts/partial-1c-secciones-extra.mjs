@@ -541,7 +541,7 @@ const newSections = `
         <div class="max-w-3xl mx-auto text-center mb-10">
           <p class="text-xs sm:text-sm font-bold text-primary uppercase tracking-widest mb-2">Respaldo y garantía</p>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-dark mb-4">
-            10 años construyendo casas prefabricadas con respaldo legal
+            15 años construyendo casas prefabricadas con respaldo legal
           </h2>
           <p class="text-base sm:text-lg text-gray-600">
             CONCASAYA es una empresa colombiana formal, constituida en 2018, con cubrimiento nacional y todos los respaldos legales para tu tranquilidad.
