@@ -2180,32 +2180,32 @@
        ============================================================ -->
 
       <!-- Header del catalogo + contador -->
-      <section id="indice" class="py-12 sm:py-16 bg-gradient-to-b from-white to-gray-50">
+      <section id="indice" class="py-10 sm:py-14 bg-gradient-to-b from-white to-gray-50">
         <div class="container mx-auto px-4 sm:px-6">
-          <div class="text-center mb-8" data-aos="fade-up">
+          <div class="text-center mb-6" data-aos="fade-up">
             <span class="section-eyebrow mb-3 inline-flex"><i class="fas fa-th-large"></i> Catalogo 2026</span>
-            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-4">
-              7 modelos base, <span class="text-primary">totalmente personalizables</span>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-dark mb-3 leading-tight">
+              Elige tu casa prefabricada <span class="text-primary">lista para cotizar</span>
             </h2>
             <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto">
-              Estos son los modelos mas vendidos. Si ninguno se ajusta a tu vision, disenos personalizados desde cero.
+              7 modelos con foto real, plano y precio desde <strong class="text-primary">$25 millones</strong>. Cotiza por WhatsApp en menos de 24h.
             </p>
             <p class="text-sm text-gray-500 mt-3">
               <span id="modelos-contador">Mostrando 7 modelos</span>
             </p>
           </div>
 
-          <!-- FILTROS -->
+          <!-- FILTROS (desplegable cerrado por defecto) -->
           <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-            <div class="filtros-wrapper">
-              <div class="filtros-header">
-                <h3 class="filtros-header-title">
-                  <i class="fas fa-sliders-h"></i> Filtra los modelos
-                </h3>
-                <span class="filtros-header-hint hidden sm:inline-flex text-xs text-gray-500">
-                  <i class="fas fa-mouse-pointer mr-1"></i> Click para combinar
-                </span>
-              </div>
+            <div class="filtros-toggle-wrap">
+              <button type="button" id="filtros-toggle" class="filtros-toggle-btn" aria-expanded="false" aria-controls="filtros-wrapper">
+                <i class="fas fa-sliders-h"></i>
+                <span>Filtrar modelos</span>
+                <span class="filtros-toggle-badge" id="filtros-toggle-count" data-count="0">0</span>
+                <i class="fas fa-chevron-down filtros-toggle-arrow"></i>
+              </button>
+            </div>
+            <div class="filtros-wrapper" id="filtros-wrapper" hidden>
               <div class="filtros-grid">
                 <!-- Filtro por sistema -->
                 <div class="filtro-grupo">
@@ -4575,12 +4575,65 @@
       }
 
       /* === Sistema de filtros (Matriz 7) === */
+      .filtros-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.7rem 1.15rem;
+        background: #fff;
+        border: 1px solid rgba(0, 119, 182, 0.20);
+        border-radius: 999px;
+        color: #0f172a;
+        font-size: 0.92rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        transition: all 0.2s ease;
+        margin: 0 auto 0.9rem;
+      }
+      .filtros-toggle-btn:hover {
+        background: rgba(0, 119, 182, 0.05);
+        border-color: rgba(0, 119, 182, 0.40);
+        transform: translateY(-1px);
+      }
+      .filtros-toggle-btn > i:first-child { color: #0077b6; }
+      .filtros-toggle-arrow {
+        color: #64748b;
+        transition: transform 0.25s ease;
+        margin-left: 0.15rem;
+      }
+      .filtros-toggle-btn[aria-expanded="true"] .filtros-toggle-arrow {
+        transform: rotate(180deg);
+        color: #0077b6;
+      }
+      .filtros-toggle-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.3rem;
+        height: 1.3rem;
+        padding: 0 0.4rem;
+        background: #0077b6;
+        color: #fff;
+        border-radius: 999px;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+      .filtros-toggle-badge:empty,
+      .filtros-toggle-badge[data-count="0"] { display: none; }
+      /* Centrar el toggle cuando esta solo */
+      .filtros-toggle-wrap { display: flex; justify-content: center; }
       .filtros-wrapper {
         background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
         border: 1px solid rgba(0, 119, 182, 0.10);
         border-radius: 20px;
         padding: 1.5rem 1.75rem 1.4rem;
         box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        animation: filtrosOpen 0.3s ease;
+      }
+      @keyframes filtrosOpen {
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
       .filtros-header {
         display: flex;
@@ -5141,6 +5194,35 @@
 
     // Inicializar contador
     if (contador) contador.textContent = 'Mostrando ' + cards.length + ' modelos';
+
+    // === Toggle del desplegable de filtros ===
+    var filtrosToggle = document.getElementById('filtros-toggle');
+    var filtrosWrapper = document.getElementById('filtros-wrapper');
+    var filtrosBadge = document.getElementById('filtros-toggle-count');
+    if (filtrosToggle && filtrosWrapper) {
+      function updateFiltrosBadge() {
+        if (!filtrosBadge) return;
+        var activeCount = 0;
+        document.querySelectorAll('.filtro-btn.active').forEach(function(b) {
+          if (b.dataset.valor && b.dataset.valor !== 'all') activeCount++;
+        });
+        filtrosBadge.textContent = activeCount;
+        filtrosBadge.setAttribute('data-count', String(activeCount));
+      }
+      filtrosToggle.addEventListener('click', function() {
+        var expanded = filtrosToggle.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          filtrosWrapper.hidden = true;
+          filtrosToggle.setAttribute('aria-expanded', 'false');
+        } else {
+          filtrosWrapper.hidden = false;
+          filtrosToggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+      // Actualizar badge cada vez que cambia un filtro
+      var observerInterval = setInterval(updateFiltrosBadge, 200);
+      updateFiltrosBadge();
+    }
   })();
   </script>
 
