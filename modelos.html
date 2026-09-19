@@ -2196,49 +2196,62 @@
           </div>
 
           <!-- FILTROS -->
-          <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-5 sm:p-6 border border-gray-100" data-aos="fade-up" data-aos-delay="100">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <!-- Filtro por sistema -->
-              <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
-                  <i class="fas fa-layer-group text-primary mr-1"></i> Sistema
-                </label>
-                <div class="flex flex-wrap gap-2" data-filtro-grupo="sistema">
-                  <button class="filtro-btn active" data-filtro="sistema" data-valor="all">Todos</button>
-                  <button class="filtro-btn" data-filtro="sistema" data-valor="plaqueta">Plaqueta</button>
-                  <button class="filtro-btn" data-filtro="sistema" data-valor="eps">EPS</button>
-                  <button class="filtro-btn" data-filtro="sistema" data-valor="cabana">Cabana/Tiny</button>
+          <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <div class="filtros-wrapper">
+              <div class="filtros-header">
+                <h3 class="filtros-header-title">
+                  <i class="fas fa-sliders-h"></i> Filtra los modelos
+                </h3>
+                <span class="filtros-header-hint hidden sm:inline-flex text-xs text-gray-500">
+                  <i class="fas fa-mouse-pointer mr-1"></i> Click para combinar
+                </span>
+              </div>
+              <div class="filtros-grid">
+                <!-- Filtro por sistema -->
+                <div class="filtro-grupo">
+                  <div class="filtro-grupo-label">
+                    <i class="fas fa-layer-group"></i> Sistema constructivo
+                  </div>
+                  <div class="filtro-opciones" data-filtro-grupo="sistema">
+                    <button class="filtro-btn active" data-filtro="sistema" data-valor="all">Todos <span class="filtro-count">7</span></button>
+                    <button class="filtro-btn" data-filtro="sistema" data-valor="plaqueta">Plaqueta <span class="filtro-count">3</span></button>
+                    <button class="filtro-btn" data-filtro="sistema" data-valor="eps">EPS <span class="filtro-count">2</span></button>
+                    <button class="filtro-btn" data-filtro="sistema" data-valor="cabana">Cabaña/Tiny <span class="filtro-count">2</span></button>
+                  </div>
+                </div>
+                <!-- Filtro por tamano -->
+                <div class="filtro-grupo">
+                  <div class="filtro-grupo-label">
+                    <i class="fas fa-ruler-combined"></i> Tamaño
+                  </div>
+                  <div class="filtro-opciones" data-filtro-grupo="m2">
+                    <button class="filtro-btn active" data-filtro="m2" data-valor="all">Todos <span class="filtro-count">7</span></button>
+                    <button class="filtro-btn" data-filtro="m2" data-valor="pequeno">Pequeño (25-60) <span class="filtro-count">3</span></button>
+                    <button class="filtro-btn" data-filtro="m2" data-valor="mediano">Mediano (80-90) <span class="filtro-count">2</span></button>
+                    <button class="filtro-btn" data-filtro="m2" data-valor="grande">Grande (110-120) <span class="filtro-count">2</span></button>
+                  </div>
+                </div>
+                <!-- Filtro por habitaciones -->
+                <div class="filtro-grupo">
+                  <div class="filtro-grupo-label">
+                    <i class="fas fa-bed"></i> Habitaciones
+                  </div>
+                  <div class="filtro-opciones" data-filtro-grupo="habitaciones">
+                    <button class="filtro-btn active" data-filtro="habitaciones" data-valor="all">Todas <span class="filtro-count">7</span></button>
+                    <button class="filtro-btn" data-filtro="habitaciones" data-valor="1">1+ <span class="filtro-count">2</span></button>
+                    <button class="filtro-btn" data-filtro="habitaciones" data-valor="2">2+ <span class="filtro-count">3</span></button>
+                    <button class="filtro-btn" data-filtro="habitaciones" data-valor="3">3+ <span class="filtro-count">2</span></button>
+                  </div>
                 </div>
               </div>
-              <!-- Filtro por tamano -->
-              <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
-                  <i class="fas fa-ruler-combined text-primary mr-1"></i> Tamano
-                </label>
-                <div class="flex flex-wrap gap-2" data-filtro-grupo="m2">
-                  <button class="filtro-btn active" data-filtro="m2" data-valor="all">Todos</button>
-                  <button class="filtro-btn" data-filtro="m2" data-valor="pequeno">Pequeno (25-60)</button>
-                  <button class="filtro-btn" data-filtro="m2" data-valor="mediano">Mediano (80-90)</button>
-                  <button class="filtro-btn" data-filtro="m2" data-valor="grande">Grande (110-120)</button>
-                </div>
+              <div class="filtros-footer">
+                <span class="filtros-footer-info" id="modelos-contador">
+                  <strong>Mostrando 7</strong> modelos
+                </span>
+                <button id="filtro-limpiar" type="button">
+                  <i class="fas fa-undo"></i> Limpiar filtros
+                </button>
               </div>
-              <!-- Filtro por habitaciones -->
-              <div>
-                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">
-                  <i class="fas fa-bed text-primary mr-1"></i> Habitaciones
-                </label>
-                <div class="flex flex-wrap gap-2" data-filtro-grupo="habitaciones">
-                  <button class="filtro-btn active" data-filtro="habitaciones" data-valor="all">Todas</button>
-                  <button class="filtro-btn" data-filtro="habitaciones" data-valor="1">1+</button>
-                  <button class="filtro-btn" data-filtro="habitaciones" data-valor="2">2+</button>
-                  <button class="filtro-btn" data-filtro="habitaciones" data-valor="3">3+</button>
-                </div>
-              </div>
-            </div>
-            <div class="mt-4 flex justify-end">
-              <button id="filtro-limpiar" class="text-sm text-gray-500 hover:text-primary transition-colors inline-flex items-center gap-1">
-                <i class="fas fa-undo"></i> Limpiar filtros
-              </button>
             </div>
           </div>
         </div>
@@ -2290,11 +2303,10 @@
                 <p class="card-precio">Desde <strong>$85 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="Plaqueta Basico 60m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20el%20modelo%20Plaqueta%20Basico%20pero%20quiero%20adaptarlo%20a%20mi%20lote.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="Plaqueta Basico 60m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2340,11 +2352,10 @@
                 <p class="card-precio">Desde <strong>$110 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="Plaqueta Familiar 90m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20el%20modelo%20Plaqueta%20Familiar%20pero%20quiero%20adaptarlo%20a%20mi%20lote.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="Plaqueta Familiar 90m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2390,11 +2401,10 @@
                 <p class="card-precio">Desde <strong>$155 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="Plaqueta Premium 120m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20el%20modelo%20Plaqueta%20Premium%20pero%20quiero%20adaptarlo%20a%20mi%20lote.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="Plaqueta Premium 120m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2440,11 +2450,10 @@
                 <p class="card-precio">Desde <strong>$115 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="EPS Familiar 80m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20el%20modelo%20EPS%20Familiar%20pero%20quiero%20adaptarlo%20a%20mi%20lote.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="EPS Familiar 80m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2490,11 +2499,10 @@
                 <p class="card-precio">Desde <strong>$145 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="EPS Premium 110m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20el%20modelo%20EPS%20Premium%20pero%20quiero%20adaptarlo%20a%20mi%20lote.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="EPS Premium 110m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2540,11 +2548,10 @@
                 <p class="card-precio">Desde <strong>$25 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="Cabana 28m2 + altillo" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Cabana%2028m2%20pero%20quiero%20adaptarla%20a%20mi%20proyecto.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="Cabana 28m2 + altillo" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -2590,11 +2597,10 @@
                 <p class="card-precio">Desde <strong>$35 millones</strong></p>
                 <p class="card-microcopy">Modelo base. Cambiamos distribucion, ampliamos o lo ajustamos a tu lote.</p>
                 <div class="cta-grupo">
-                  <a href="#contacto" class="cta-primario">
+                  <a href="#contacto" class="cta-primario" data-cotizar-modelo="Tiny House 25m2" data-cotizar-intent="cotizar">
                     <i class="fab fa-whatsapp"></i> Cotizar este modelo
                   </a>
-                  <a href="https://wa.me/573142891018?text=Hola%2C%20me%20interesa%20la%20Tiny%20House%2025m2%20pero%20quiero%20adaptarla%20a%20mi%20proyecto.%20%C2%BFPodemos%20hablar%3F"
-                     class="cta-secundario" data-wm-intent="lote" target="_blank" rel="noopener">
+                  <a href="#contacto" class="cta-secundario" data-cotizar-modelo="Tiny House 25m2" data-cotizar-intent="adaptar">
                     <i class="fas fa-pen-ruler"></i> Adaptar este diseno
                   </a>
                 </div>
@@ -4568,29 +4574,162 @@
         text-transform: uppercase;
       }
 
-      /* Filtros */
+      /* === Sistema de filtros (Matriz 7) === */
+      .filtros-wrapper {
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+        border: 1px solid rgba(0, 119, 182, 0.10);
+        border-radius: 20px;
+        padding: 1.5rem 1.75rem 1.4rem;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      }
+      .filtros-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.1rem;
+        padding-bottom: 0.9rem;
+        border-bottom: 1px dashed rgba(0, 119, 182, 0.18);
+      }
+      .filtros-header-title {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #0f172a;
+        margin: 0;
+      }
+      .filtros-header-title i {
+        color: #0077b6;
+        font-size: 1rem;
+      }
+      .filtros-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.1rem 1.25rem;
+      }
+      @media (max-width: 768px) {
+        .filtros-grid { grid-template-columns: 1fr; gap: 1rem; }
+      }
+      .filtro-grupo {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.05);
+        border-radius: 14px;
+        padding: 0.75rem 0.9rem 0.9rem;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+      .filtro-grupo:hover {
+        border-color: rgba(0, 119, 182, 0.25);
+        box-shadow: 0 2px 8px rgba(0, 119, 182, 0.08);
+      }
+      .filtro-grupo-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        font-size: 0.72rem;
+        font-weight: 700;
+        color: #0077b6;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 0.55rem;
+      }
+      .filtro-grupo-label i {
+        font-size: 0.85rem;
+      }
+      .filtro-opciones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
       .filtro-btn {
-        padding: 0.45rem 0.85rem;
-        background: #f3f4f6;
-        color: #374151;
-        border: 1px solid #e5e7eb;
+        padding: 0.42rem 0.78rem;
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid transparent;
         border-radius: 999px;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
         font-weight: 600;
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.18s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        line-height: 1.2;
       }
-      .filtro-btn:hover { background: rgba(0, 119, 182, 0.08); border-color: rgba(0, 119, 182, 0.30); color: #0077b6; }
-      .filtro-btn.active { background: #0077b6; color: #fff; border-color: #0077b6; box-shadow: 0 2px 8px rgba(0, 119, 182, 0.25); }
+      .filtro-btn:hover {
+        background: rgba(0, 119, 182, 0.08);
+        border-color: rgba(0, 119, 182, 0.30);
+        color: #0077b6;
+        transform: translateY(-1px);
+      }
+      .filtro-btn.active {
+        background: linear-gradient(135deg, #0077b6 0%, #005a8c 100%);
+        color: #fff;
+        border-color: #0077b6;
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.30);
+      }
+      .filtro-btn .filtro-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.3rem;
+        height: 1.3rem;
+        padding: 0 0.35rem;
+        background: rgba(0,0,0,0.08);
+        border-radius: 999px;
+        font-size: 0.68rem;
+        font-weight: 700;
+      }
+      .filtro-btn.active .filtro-count {
+        background: rgba(255,255,255,0.25);
+        color: #fff;
+      }
+      .filtros-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1rem;
+        padding-top: 0.9rem;
+        border-top: 1px dashed rgba(0, 119, 182, 0.18);
+      }
+      .filtros-footer-info {
+        font-size: 0.82rem;
+        color: #64748b;
+      }
+      .filtros-footer-info strong {
+        color: #0077b6;
+        font-weight: 700;
+      }
+      #filtro-limpiar {
+        font-size: 0.82rem;
+        color: #64748b;
+        font-weight: 600;
+        cursor: pointer;
+        transition: color 0.2s ease;
+        background: transparent;
+        border: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.7rem;
+        border-radius: 8px;
+      }
+      #filtro-limpiar:hover {
+        color: #0077b6;
+        background: rgba(0, 119, 182, 0.06);
+      }
 
       /* Cards de modelos */
       .modelo-card {
         position: relative;
         background: #fff;
-        border-radius: 20px;
+        border-radius: 0 0 20px 20px;
         overflow: hidden;
         box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
         border: 1px solid rgba(0,0,0,0.06);
+        border-top: 0;
         transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
@@ -4779,6 +4918,123 @@
       }
       .modelo-card.hidden { animation: none; }
 
+      /* === Lightbox para ampliar imagenes del catalogo === */
+      #catalogo-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: rgba(0, 0, 0, 0.92);
+        backdrop-filter: blur(8px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        cursor: zoom-out;
+      }
+      #catalogo-lightbox.is-open {
+        display: flex !important;
+        opacity: 1;
+      }
+      #catalogo-lightbox.is-open .lightbox-inner {
+        animation: lightboxZoom 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+      }
+      @keyframes lightboxZoom {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .lightbox-inner {
+        position: relative;
+        max-width: 95vw;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      #catalogo-lightbox img {
+        max-width: 100%;
+        max-height: 85vh;
+        object-fit: contain;
+        border-radius: 12px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        cursor: default;
+        background: #fff;
+      }
+      .lightbox-caption {
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 600;
+        text-align: center;
+        background: rgba(0,0,0,0.5);
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        backdrop-filter: blur(10px);
+      }
+      .lightbox-close {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        width: 44px;
+        height: 44px;
+        background: #fff;
+        color: #0f172a;
+        border: 0;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        line-height: 1;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        transition: transform 0.2s ease, background 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+      .lightbox-close:hover {
+        background: #ef4444;
+        color: #fff;
+        transform: scale(1.1) rotate(90deg);
+      }
+      .lightbox-hint {
+        position: fixed;
+        bottom: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 1.2rem;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(10px);
+        color: rgba(255,255,255,0.85);
+        padding: 0.55rem 1.2rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        z-index: 1;
+      }
+      .lightbox-hint span {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+      .lightbox-hint kbd {
+        background: rgba(255,255,255,0.18);
+        padding: 0.1rem 0.45rem;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+      @media (max-width: 640px) {
+        #catalogo-lightbox { padding: 1rem; }
+        #catalogo-lightbox img { max-height: 75vh; }
+        .lightbox-close { width: 38px; height: 38px; font-size: 1.25rem; top: -6px; right: -6px; }
+        .lightbox-hint { display: none; }
+      }
+      /* Cursor pointer para las imagenes del catalogo que se pueden ampliar */
+      .tab-image-container { cursor: zoom-in; }
+
       </style>
 
 
@@ -4883,6 +5139,103 @@
 
     // Inicializar contador
     if (contador) contador.textContent = 'Mostrando ' + cards.length + ' modelos';
+  })();
+  </script>
+
+  <!-- ============================================================
+       LIGHTBOX DEL CATALOGO: Click en cualquier imagen para ampliar
+       ============================================================ -->
+  <div id="catalogo-lightbox" role="dialog" aria-modal="true" aria-labelledby="catalogo-lightbox-caption" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button type="button" class="lightbox-close" aria-label="Cerrar imagen ampliada">&times;</button>
+      <img id="catalogo-lightbox-img" src="" alt="" />
+      <div class="lightbox-caption" id="catalogo-lightbox-caption"></div>
+    </div>
+    <div class="lightbox-hint">
+      <span><kbd>ESC</kbd> cerrar</span>
+      <span><kbd>Click fuera</kbd> cerrar</span>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    'use strict';
+    // === Lightbox para imagenes del catalogo ===
+    var lb       = document.getElementById('catalogo-lightbox');
+    var lbImg    = document.getElementById('catalogo-lightbox-img');
+    var lbCap    = document.getElementById('catalogo-lightbox-caption');
+    var lbClose  = lb ? lb.querySelector('.lightbox-close') : null;
+    var lastFocused = null;
+
+    function openLightbox(src, alt) {
+      if (!lb || !lbImg) return;
+      lastFocused = document.activeElement;
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      if (lbCap) lbCap.textContent = alt || '';
+      lb.classList.add('is-open');
+      lb.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (lbClose) setTimeout(function() { lbClose.focus(); }, 100);
+    }
+
+    function closeLightbox() {
+      if (!lb) return;
+      lb.classList.remove('is-open');
+      lb.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
+    }
+
+    // Click en cualquier imagen del catalogo abre el lightbox
+    document.querySelectorAll('.tab-image-container img.tab-pane').forEach(function(img) {
+      img.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        openLightbox(img.src, img.alt);
+      });
+    });
+
+    // Cerrar: boton X, click fuera de la imagen, ESC
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lb) lb.addEventListener('click', function(e) {
+      if (e.target === lb) closeLightbox();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (!lb || !lb.classList.contains('is-open')) return;
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       CTAs DE CADA CARD: Abrir cotizador con modelo pre-seleccionado
+       ============================================================ -->
+  <script>
+  (function() {
+    'use strict';
+    // Interceptar clicks en los CTAs de las cards del catalogo
+    document.querySelectorAll('.cta-primario[data-cotizar-modelo], .cta-secundario[data-cotizar-modelo]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var modelo = btn.getAttribute('data-cotizar-modelo');
+        var intent = btn.getAttribute('data-cotizar-intent') || 'cotizar';
+        if (typeof window.CotizadorEncuesta !== 'undefined' && typeof window.CotizadorEncuesta.start === 'function') {
+          window.CotizadorEncuesta.start(modelo, intent);
+        } else {
+          // Fallback: abrir el anchor original o el wa.me
+          var href = btn.getAttribute('href');
+          if (href && href.indexOf('#') === 0) {
+            // anchor: dejar que el navegador lo maneje (cuestionario no esta en la pagina)
+            var target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          } else if (href) {
+            window.open(href, '_blank');
+          }
+        }
+      });
+    });
   })();
   </script>
 

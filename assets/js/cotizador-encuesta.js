@@ -1827,10 +1827,21 @@
     message += `👤 Nombre: ${nombre}\n`;
     message += `📱 Teléfono: ${telefono}\n`;
     message += `📧 Email: ${email}\n\n`;
+
+    // Bloque destacado cuando viene del catalogo Matriz 7 con modelo pre-seleccionado
+    var modeloInteres = appState.answers['modelo-interes'];
+    var tipoConsulta  = appState.answers['tipo-consulta'];
+    if (modeloInteres && modeloInteres !== 'No especificado') {
+      message += `🏗️ *MODELO DE INTERÉS*\n`;
+      message += `👉 ${modeloInteres}\n`;
+      if (tipoConsulta) message += `📌 Tipo de consulta: ${tipoConsulta}\n`;
+      message += `\n`;
+    }
+
     message += `*RESUMEN DEL PROYECTO*\n\n`;
 
     Object.keys(appState.answers).forEach(key => {
-      if (key !== 'nombre' && key !== 'telefono' && key !== 'email') {
+      if (key !== 'nombre' && key !== 'telefono' && key !== 'email' && key !== 'modelo-interes' && key !== 'tipo-consulta') {
         const label = questionLabels[key] || key;
         let value = appState.answers[key];
         
@@ -1882,8 +1893,44 @@
     updateFormField: updateFormField,
     validateField: validateField,
     sendToWhatsApp: sendToWhatsApp,
-    resetApp: resetApp
+    resetApp: resetApp,
+    start: startCotizador
   };
+
+  // Funcion para abrir el cotizador con un modelo pre-seleccionado
+  // Llamada desde las cards del catalogo: window.CotizadorEncuesta.start('Plaqueta Basico 60m2', 'cotizar' o 'adaptar')
+  function startCotizador(modelo, intent) {
+    // Guardar modelo de interes en el estado
+    appState.answers['modelo-interes'] = modelo || 'No especificado';
+    appState.answers['tipo-consulta'] = intent === 'adaptar' ? 'Adaptar diseno a mi lote' : 'Cotizar modelo del catalogo';
+
+    // Marcar terminos como aceptados y arrancar directamente
+    appState.termsAccepted = true;
+    try { localStorage.setItem('cotizador-terms-dont-show', 'true'); } catch (e) {}
+
+    appState.currentQuestion = 0;
+
+    var container = document.getElementById('questions-container');
+    var resultsContainer = document.getElementById('results-container');
+    var navButtons = document.getElementById('navigation-buttons');
+
+    if (container) container.classList.remove('hidden');
+    if (resultsContainer) resultsContainer.classList.add('hidden');
+    if (navButtons) navButtons.classList.remove('hidden');
+
+    // Inicializar UI
+    if (typeof renderQuestion === 'function') renderQuestion();
+    if (typeof updateProgress === 'function') updateProgress();
+    if (typeof setupEventListeners === 'function') setupEventListeners();
+    if (typeof updateNextButton === 'function') updateNextButton();
+    if (typeof updateBackButton === 'function') updateBackButton();
+
+    // Scroll al cotizador
+    var cotizador = document.getElementById('cotizador-encuesta') || document.getElementById('cotizador') || container;
+    if (cotizador && cotizador.scrollIntoView) {
+      cotizador.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
 
   // Inicializar cuando el DOM esté listo
   if (document.readyState === 'loading') {
