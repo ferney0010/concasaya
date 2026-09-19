@@ -158,16 +158,22 @@
     if (municipality) {
       head = 'Hola, vengo de ' + municipality + ' (' + departmentId + '). ';
     }
+    // Bloque destacado: modelo de interes (cuando viene de una card del catalogo)
+    var modeloBlock = '';
+    if (state.modeloInteres) {
+      var tipoTxt = state.adaptarADiseno ? 'Quiero ADAPTAR este diseno a mi lote' : 'Quiero COTIZAR este modelo';
+      modeloBlock = '*MODELO DE INTERES*\n' + tipoTxt + ': ' + state.modeloInteres + '\n\n';
+    }
     if (intentionId === 'exterior') {
-      return 'Hola. ' + body + '.';
+      return modeloBlock + 'Hola. ' + body + '.';
     }
     if (departmentId === 'Cundinamarca') {
-      return head + body + ' en Cundinamarca.';
+      return modeloBlock + head + body + ' en Cundinamarca.';
     }
     if (departmentId === 'Boyaca') {
-      return head + body + ' en Boyaca.';
+      return modeloBlock + head + body + ' en Boyaca.';
     }
-    return head + body + '. Estoy en otra zona de Colombia.';
+    return modeloBlock + head + body + '. Estoy en otra zona de Colombia.';
   }
 
   // === MENSAJE PRE-ARMADO CON CHECKLIST COMPLETADO ===
@@ -186,6 +192,13 @@
     var lines = [];
     lines.push('*NUEVA COTIZACION — CONCASAYA*');
     lines.push('');
+    // Bloque destacado: modelo de interes (cuando viene de una card del catalogo)
+    if (state.modeloInteres) {
+      var tipoTxt = state.adaptarADiseno ? 'Quiero ADAPTAR este diseno a mi lote' : 'Quiero COTIZAR este modelo';
+      lines.push('*MODELO DE INTERES*');
+      lines.push(tipoTxt + ': ' + state.modeloInteres);
+      lines.push('');
+    }
     lines.push('Hola, te escribo para cotizar mi casa prefabricada.');
     if (municipality) {
       lines.push('Vengo de ' + municipality + ' (' + departmentId + ').');
@@ -335,6 +348,8 @@
     intention: null,
     department: null,
     detectedInfo: null,        // { department, name } o null
+    modeloInteres: null,       // nombre del modelo pre-seleccionado desde una card (ej: "Plaqueta Basico 60m2")
+    adaptarADiseno: false,     // true si el usuario queria "adaptar" este modelo a su lote
     checklistAnswers: [],      // [true|false] por cada pregunta respondida
     checklistIndex: 0,         // indice de la pregunta actual (0 a CHECKLIST_TOTAL-1)
     checklistCompleted: false  // true solo si respondio las 17 preguntas
@@ -732,7 +747,13 @@
     lastProgressWidth = 0;
     // Reset visual: burbuja inicial
     if (helloBubble) {
-      helloBubble.textContent = '¡Hola! ¿En que te podemos ayudar?';
+      // Personalizar saludo cuando viene con modelo pre-seleccionado
+      var helloText = '¡Hola! ¿En que te podemos ayudar?';
+      if (state.modeloInteres) {
+        var tipoTxt = state.adaptarADiseno ? 'adaptar a tu lote' : 'cotizar';
+        helloText = '¡Hola! Veo que te interesa ' + tipoTxt + ' el modelo *' + state.modeloInteres + '*. Cuentame, ¿como te podemos ayudar?';
+      }
+      helloBubble.textContent = helloText;
       helloBubble.classList.add('wm-show');
       helloBubble.style.display = '';
     }
@@ -823,6 +844,7 @@
   // Si el enlace tiene data-wm-intent, se pre-selecciona la intencion
   // y se salta el paso 1 del modal. Asi no se vuelve a preguntar lo
   // mismo cuando el usuario ya eligio desde una tarjeta visible.
+  // Si tiene data-wm-modelo, lo guarda para incluirlo en el resumen final.
   function interceptWhatsAppLinks() {
     var links = document.querySelectorAll('a[href^="https://wa.me/"]');
     links.forEach(function (a) {
@@ -830,7 +852,12 @@
       a.__wmBound = true;
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        var intent = a.getAttribute('data-wm-intent');
+        var intent   = a.getAttribute('data-wm-intent');
+        var modelo   = a.getAttribute('data-wm-modelo');
+        var adaptar  = a.getAttribute('data-wm-adaptar') === '1';
+        // Guardar el modelo y el flag de adaptar para incluirlo en el mensaje final
+        state.modeloInteres  = modelo || null;
+        state.adaptarADiseno = !!adaptar;
         open(intent);
       });
     });
