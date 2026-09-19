@@ -151,6 +151,42 @@
   align-self: flex-start;
   border-top-left-radius: 4px;
 }
+/* Burbuja del usuario: verde claro a la derecha, estilo WhatsApp */
+.wm-bubble.wm-bubble-user {
+  background: var(--wm-bubble-user);
+  color: #111;
+  align-self: flex-end;
+  border-top-right-radius: 4px;
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 6px;
+  max-width: 84%;
+}
+.wm-bubble-text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+.wm-bubble-checks {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  font-size: 11px;
+  color: #53bdeb; /* azul WhatsApp doble check */
+  flex-shrink: 0;
+  align-self: flex-end;
+  margin-bottom: -2px;
+}
+.wm-bubble-checks i:nth-child(2) {
+  margin-left: -4px;
+}
+/* Animacion: el segundo check aparece despues (como enviando -> entregado) */
+.wm-bubble-checks i:nth-child(2) {
+  opacity: 0;
+  animation: wm-check-2-in 0.25s ease 0.5s forwards;
+}
+@keyframes wm-check-2-in {
+  to { opacity: 1; }
+}
 .wm-bubble.wm-typing {
   background: var(--wm-bubble-agent);
   color: transparent;
@@ -347,9 +383,373 @@
 }
 .wm-back-btn i { font-size: 11px; }
 
+/* === WIZARD: paso 3 — checklist conversacional de lote === */
+.wm-checklist-progress {
+  padding: 0 2px;
+  margin-bottom: 14px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.wm-checklist-progress.wm-show { opacity: 1; transform: translateY(0); }
+.wm-checklist-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 119, 182, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.06);
+}
+.wm-checklist-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #25D366 0%, #128C7E 100%);
+  border-radius: 999px;
+  transition: width 0.7s cubic-bezier(0.25, 0.1, 0.25, 1);
+  box-shadow: 0 0 8px rgba(37, 211, 102, 0.35);
+}
+
+.wm-checklist-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(0, 119, 182, 0.08);
+  color: #0077b6;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.wm-checklist-section-tag.wm-show { opacity: 1; transform: translateY(0); }
+.wm-checklist-section-tag i { font-size: 9px; }
+
+.wm-checklist-question {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #111;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  margin-bottom: 12px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+.wm-checklist-question.wm-show { opacity: 1; transform: translateY(0); }
+.wm-checklist-question strong { color: #0077b6; }
+
+.wm-yn-actions {
+  display: flex;
+  gap: 10px;
+  align-self: stretch;
+}
+.wm-yn-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #1f2937;
+  transition: background-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s, transform 0.3s, background-color 0.15s, box-shadow 0.15s;
+}
+.wm-yn-btn.wm-show { opacity: 1; transform: translateY(0); }
+.wm-yn-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+.wm-yn-btn:active { transform: translateY(0); }
+.wm-yn-btn i { font-size: 13px; }
+
+.wm-yn-yes {
+  border-color: var(--wm-accent);
+  color: var(--wm-accent);
+}
+.wm-yn-yes:hover {
+  background: var(--wm-accent);
+  color: #fff;
+}
+.wm-yn-yes:hover i { color: #fff; }
+
+.wm-yn-no {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+.wm-yn-no:hover {
+  background: #ef4444;
+  color: #fff;
+}
+.wm-yn-no:hover i { color: #fff; }
+
+.wm-checklist-final-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 18px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.30);
+  margin-top: 4px;
+  align-self: stretch;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+  opacity: 0;
+  transform: translateY(8px);
+}
+.wm-checklist-final-cta.wm-show { opacity: 1; transform: translateY(0); }
+.wm-checklist-final-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.40);
+}
+
+.wm-final-screen-note {
+  font-size: 11px;
+  color: #6b7280;
+  margin: 8px 0 0;
+  font-style: italic;
+  text-align: center;
+}
+
+/* === PANTALLA FINAL — cierre con logo + frase === */
+.wm-final-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 22px;
+  text-align: center;
+  background: #ECE5DD;
+  align-self: stretch;
+  min-height: 220px;
+  animation: wm-fadein 0.45s ease;
+}
+.wm-final-screen-logo {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 900;
+  font-size: 26px;
+  letter-spacing: 0.06em;
+  color: #0077b6;
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.wm-final-screen-logo::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+  border-radius: 8px;
+  display: inline-block;
+  flex-shrink: 0;
+  -webkit-text-fill-color: initial;
+  position: relative;
+}
+.wm-final-screen-logo::after {
+  content: "C";
+  position: absolute;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 900;
+  margin-left: 8px;
+}
+.wm-final-screen-logo-text {
+  background: linear-gradient(135deg, #0077b6 0%, #00b4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.wm-final-screen-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+  margin: 0;
+  line-height: 1.25;
+}
+.wm-final-screen-sub {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0077b6;
+  margin: 0;
+  line-height: 1.3;
+}
+.wm-final-screen-cta {
+  font-size: 12.5px;
+  color: #54656f;
+  line-height: 1.45;
+  margin: 4px 0 0;
+  max-width: 280px;
+}
+.wm-final-screen-spinner {
+  margin-top: 6px;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e5e7eb;
+  border-top-color: var(--wm-accent);
+  border-radius: 50%;
+  animation: wm-spin 0.8s linear infinite;
+}
+@keyframes wm-spin {
+  to { transform: rotate(360deg); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #wm-backdrop, #wm-card, .wm-bubble, .wm-actions { transition: none !important; }
   #wm-header .wm-status::before,
   .wm-bubble.wm-typing span,
   .wm-detected-pin { animation: none !important; }
+  .wm-final-screen-spinner { animation: none !important; }
+  .wm-checklist-progress-fill { transition: none !important; }
+  .wm-checklist-section-body { transition: none !important; }
+  .wm-checklist-section-title::after { transition: none !important; }
+}
+
+/* === RESPONSIVE: celular (max-width 480px) === */
+@media (max-width: 480px) {
+  #wm-backdrop {
+    padding: 0;
+    align-items: flex-end;
+  }
+  #wm-card {
+    max-width: 100%;
+    width: 100%;
+    max-height: 96vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+  }
+  #wm-backdrop.wm-open #wm-card {
+    transform: translateY(0);
+  }
+  #wm-header {
+    padding: 12px 14px;
+  }
+  #wm-header .wm-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+  #wm-header .wm-name {
+    font-size: 14px;
+  }
+  #wm-body {
+    padding: 14px 12px 12px;
+    gap: 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .wm-step-title {
+    font-size: 12.5px;
+  }
+  .wm-action {
+    padding: 12px 14px;
+    font-size: 13.5px;
+  }
+  .wm-back-btn {
+    font-size: 11.5px;
+    padding: 8px 10px;
+  }
+  /* Checklist en celular */
+  .wm-checklist-intro {
+    padding: 11px 12px;
+    font-size: 12.5px;
+  }
+  .wm-checklist-progress {
+    font-size: 11.5px;
+  }
+  .wm-checklist-section {
+    padding: 10px 12px;
+  }
+  .wm-checklist-section-title {
+    padding: 6px 0;
+    font-size: 10.5px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .wm-checklist-item {
+    padding: 10px 8px;
+    gap: 11px;
+  }
+  .wm-checklist-box {
+    width: 22px;
+    height: 22px;
+  }
+  .wm-checklist-label {
+    font-size: 13px;
+  }
+  .wm-checklist-final-cta {
+    padding: 14px 16px;
+    font-size: 13.5px;
+    position: sticky;
+    bottom: 0;
+    margin-top: 8px;
+    box-shadow: 0 -4px 14px rgba(0,0,0,0.08);
+  }
+  /* Pantalla final en celular */
+  .wm-final-screen {
+    padding: 24px 18px;
+    min-height: 280px;
+  }
+  .wm-final-screen-logo {
+    font-size: 22px;
+  }
+  .wm-final-screen-logo::before {
+    width: 32px;
+    height: 32px;
+  }
+  .wm-final-screen-logo::after {
+    font-size: 18px;
+  }
+  .wm-final-screen-title {
+    font-size: 16px;
+  }
+  .wm-final-screen-sub {
+    font-size: 14px;
+  }
+  .wm-final-screen-cta {
+    font-size: 12px;
+    max-width: 260px;
+  }
+  #wm-footer {
+    padding: 8px 12px 10px;
+    font-size: 10.5px;
+  }
+}
+
+/* === RESPONSIVE: tablet pequena (481px-640px) === */
+@media (min-width: 481px) and (max-width: 640px) {
+  #wm-card {
+    max-width: 92vw;
+  }
+}
+
+/* === RESPONSIVE: safe area iOS (notch / home indicator) === */
+@supports (padding: max(0px)) {
+  @media (max-width: 480px) {
+    #wm-body {
+      padding-bottom: max(12px, env(safe-area-inset-bottom));
+    }
+    #wm-footer {
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+    }
+  }
 }
