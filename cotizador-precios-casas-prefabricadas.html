@@ -810,5 +810,38 @@
     <script src="/assets/js/municipios.js"></script>
     <script src="/assets/js/cotizador-encuesta.js"></script>
     <script src="/assets/js/whatsapp-modal.js"></script>
+    <script>
+      // Pre-cargar modelo de interes desde la URL (?modelo=...&intent=...)
+      // Llamado desde las cards del catalogo Matriz 7
+      (function() {
+        'use strict';
+        function getURLParams() {
+          var p = new URLSearchParams(window.location.search);
+          return {
+            modelo: p.get('modelo'),
+            intent: p.get('intent')
+          };
+        }
+        function startWithParams() {
+          var p = getURLParams();
+          if (!p.modelo) return;
+          if (typeof window.CotizadorEncuesta === 'undefined' || typeof window.CotizadorEncuesta.start !== 'function') {
+            setTimeout(startWithParams, 150);
+            return;
+          }
+          // Limpiar la URL para que un refresh no reabra el cuestionario
+          try {
+            var cleanUrl = window.location.pathname;
+            window.history.replaceState({}, '', cleanUrl);
+          } catch (e) {}
+          window.CotizadorEncuesta.start(p.modelo, p.intent || 'cotizar');
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function() { setTimeout(startWithParams, 300); });
+        } else {
+          setTimeout(startWithParams, 300);
+        }
+      })();
+    </script>
   </body>
 </html>
