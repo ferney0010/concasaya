@@ -2448,6 +2448,16 @@
                   <i class="fab fa-whatsapp"></i> Hablar con un asesor
                   <i class="fas fa-arrow-right"></i>
                 </a>
+                <div class="catalogo-sidebar-ubicacion">
+                  <i class="fas fa-map-marker-alt"></i>
+                  <div class="catalogo-sidebar-ubicacion-texto">
+                    <strong>Visita nuestra oficina</strong>
+                    <span>Cl. 147 #101-56 Local 64 · Centro Comercial Fiesta · Bogota</span>
+                    <a href="https://maps.app.goo.gl/qGv5S1qG6Gy5KZ4A7" target="_blank" rel="noopener">
+                      <i class="fas fa-external-link-alt"></i> Ver en Google Maps
+                    </a>
+                  </div>
+                </div>
                 <div class="catalogo-sidebar-foot">
                   <i class="fas fa-shield-alt"></i>
                   <span>Sin compromiso · Respuesta en menos de 24h</span>
@@ -4918,6 +4928,56 @@
         margin-top: 0.4rem;
       }
       .catalogo-sidebar-foot i { color: #fbbf24; }
+
+      .catalogo-sidebar-ubicacion {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.7rem;
+        padding: 0.85rem 1rem;
+        background: rgba(255,255,255,0.10);
+        border: 1px solid rgba(255,255,255,0.20);
+        border-radius: 12px;
+        margin-top: 0.4rem;
+      }
+      .catalogo-sidebar-ubicacion > i {
+        color: #fbbf24;
+        font-size: 1.1rem;
+        margin-top: 0.15rem;
+        flex-shrink: 0;
+      }
+      .catalogo-sidebar-ubicacion-texto {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        min-width: 0;
+      }
+      .catalogo-sidebar-ubicacion-texto strong {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+      }
+      .catalogo-sidebar-ubicacion-texto span {
+        font-size: 0.82rem;
+        color: rgba(255,255,255,0.85);
+        line-height: 1.35;
+      }
+      .catalogo-sidebar-ubicacion-texto a {
+        font-size: 0.8rem;
+        color: #fbbf24;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        margin-top: 0.2rem;
+        width: fit-content;
+      }
+      .catalogo-sidebar-ubicacion-texto a:hover {
+        color: #fde68a;
+        text-decoration: underline;
+      }
       @media (max-width: 1024px) {
         .catalogo-sidebar { grid-column: span 3; }
       }
