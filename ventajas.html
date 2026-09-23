@@ -998,13 +998,27 @@
 
           />
 
-          <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 md:from-black/85 md:via-black/55 md:to-transparent"></div>
+          <!-- Capa base oscura para oscurecer toda la imagen -->
+
+          <div class="absolute inset-0 bg-black/45"></div>
+
+          <!-- Gradiente horizontal: lado izquierdo mas claro, derecho mas oscuro (donde va el texto) -->
+
+          <div class="absolute inset-0 bg-gradient-to-r from-black/30 via-black/55 to-black/85 md:from-black/10 md:via-black/55 md:to-black/85"></div>
+
+          <!-- Viñeta vertical sutil para enfocar el centro vertical -->
+
+          <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30"></div>
 
         </div>
 
-        <div class="relative z-10 container mx-auto px-6 py-20 md:py-28 lg:py-36 min-h-[480px] md:min-h-[560px] lg:min-h-[640px] flex items-center">
+        <div class="relative z-10 container mx-auto px-6 py-20 md:py-28 lg:py-36 min-h-[480px] md:min-h-[560px] lg:min-h-[640px] flex items-center md:justify-end">
 
-          <div class="max-w-2xl w-full md:ml-auto md:text-right text-center text-white" data-aos="fade-left">
+          <!-- Caja oscura difuminada detrás del bloque de texto en desktop -->
+
+          <div class="hidden md:block absolute right-0 top-0 bottom-0 w-1/2 lg:w-5/12 bg-gradient-to-l from-black/70 via-black/40 to-transparent pointer-events-none" aria-hidden="true"></div>
+
+          <div class="relative max-w-2xl w-full md:text-right text-center text-white" data-aos="fade-left">
 
             <span class="inline-flex items-center bg-primary/95 text-white px-4 py-2 rounded-full text-xs md:text-sm font-semibold mb-5 md:mb-6 shadow-lg">
 
