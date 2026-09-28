@@ -3,6 +3,50 @@
 
 export const staticPosts = [
   {
+    slug: "plazo-construccion-casa-prefabricada-colombia",
+    title:
+      "Cuánto Tarda una Casa Prefabricada en Colombia: El Plazo Real, Fase por Fase (2026)",
+    description:
+      "Plazos reales de construcción de casas prefabricadas en Colombia fase por fase: cabañas en 45 días, casas familiares en 60-90 días. Lo que NO cuenta en el plazo y por qué te lo adelantan.",
+    image: "https://www.concasaya.com/assets/images/og-plazo-construccion-casa-prefabricada-colombia.webp",
+    date: "2026-09-28",
+    url: "/blog/plazo-construccion-casa-prefabricada-colombia.html",
+    category: "Compra",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
+    slug: "errores-comprar-casa-prefabricada-colombia",
+    title:
+      "7 Errores al Comprar Casa Prefabricada en Colombia (y Cómo Evitarlos) (2026)",
+    description:
+      "Los 7 errores que más plata hacen perder al comprar casa prefabricada en Colombia (precio sin placa, contrato laxo, acabados indefinidos) y cómo evitarlos. Checklist para comparar cotizaciones.",
+    image: "https://www.concasaya.com/assets/images/og-errores-comprar-casa-prefabricada-colombia.webp",
+    date: "2026-09-28",
+    url: "/blog/errores-comprar-casa-prefabricada-colombia.html",
+    category: "Guías",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
+    slug: "casas-prefabricadas-boyaca",
+    title: "Casas Prefabricadas en Boyacá: Precios, Plazos y Cómo Cotizar (2026)",
+    description:
+      "Casas prefabricadas en Boyacá 2026: precios reales por municipio (Tunja, Duitama, Sogamoso, Chiquinquirá), por qué el precio incluye +20% de transporte, plazos de entrega y cómo cotizar sin sorpresas.",
+    image: "https://www.concasaya.com/assets/images/og-casas-prefabricadas-boyaca.webp",
+    date: "2026-09-28",
+    url: "/blog/casas-prefabricadas-boyaca.html",
+    category: "Compra",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "8 min de lectura",
+    authorInitials: "EC",
+  },
+  {
     slug: "casas-prefabricadas-economicas-colombia",
     title:
       "Casas prefabricadas económicas en Colombia: opciones reales desde $25M a $50M (2026)",
