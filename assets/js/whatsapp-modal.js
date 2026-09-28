@@ -170,6 +170,10 @@
       var tipoTxt = state.adaptarADiseno ? 'Quiero ADAPTAR este diseno a mi lote' : 'Quiero COTIZAR este modelo';
       modeloBlock = '*MODELO DE INTERES*\n' + tipoTxt + ': ' + state.modeloInteres + '\n\n';
     }
+    // Que pidio el cliente segun el boton que pulso (videollamada, terrenos...)
+    if (state.mensajeBoton) {
+      modeloBlock += '*MOTIVO DE CONTACTO*\n' + state.mensajeBoton + '\n\n';
+    }
     if (intentionId === 'exterior') {
       return modeloBlock + 'Hola. ' + body + '.';
     }
@@ -362,6 +366,7 @@
     detectedInfo: null,        // { department, name } o null
     modeloInteres: null,       // nombre del modelo pre-seleccionado desde una card (ej: "Plaqueta Basico 60m2")
     adaptarADiseno: false,     // true si el usuario queria "adaptar" este modelo a su lote
+    mensajeBoton: null,        // texto del data-wm-msg del boton (que pidio el cliente)
     checklistAnswers: [],      // [true|false] por cada pregunta respondida
     checklistIndex: 0,         // indice de la pregunta actual (0 a CHECKLIST_TOTAL-1)
     checklistCompleted: false  // true solo si respondio las 17 preguntas
@@ -867,6 +872,9 @@
   // y se salta el paso 1 del modal. Asi no se vuelve a preguntar lo
   // mismo cuando el usuario ya eligio desde una tarjeta visible.
   // Si tiene data-wm-modelo, lo guarda para incluirlo en el resumen final.
+  // Si tiene data-wm-msg, ese texto se antepone al mensaje final para que el
+  // asesor sepa QUE pidio el cliente (videollamada, terrenos, etc.), que es
+  // informacion que se perdia al pasar por el modal.
   function interceptWhatsAppLinks() {
     var links = document.querySelectorAll('a[href^="https://wa.me/"]');
     links.forEach(function (a) {
@@ -877,9 +885,11 @@
         var intent   = a.getAttribute('data-wm-intent');
         var modelo   = a.getAttribute('data-wm-modelo');
         var adaptar  = a.getAttribute('data-wm-adaptar') === '1';
+        var msgExtra = a.getAttribute('data-wm-msg');
         // Guardar el modelo y el flag de adaptar para incluirlo en el mensaje final
         state.modeloInteres  = modelo || null;
         state.adaptarADiseno = !!adaptar;
+        state.mensajeBoton  = msgExtra || null;
         open(intent);
       });
     });
