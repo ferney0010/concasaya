@@ -92,12 +92,18 @@
     }
   ];
 
-  // === FEATURE FLAG: filtro estricto de lote ===
-  // Si el <body> tiene data-wm-strict-lote, el flujo 'lote' agrega un paso 3
-  // con checklist obligatorio de requisitos antes de abrir WhatsApp.
-  // Default: false para no afectar las otras 69 paginas ya desplegadas.
+  // === FILTRO DE LOTE: DESACTIVADO PERMANENTEMENTE ===
+  // Historial: en una sesion anterior se implemento un checklist de 17
+  // preguntas de requisitos del lote (documentacion, viabilidad, servicios,
+  // permisos) antes de permitir el contacto por WhatsApp. La tasa de
+  // conversion cayoMUCHO: la gente abandonaba el modal antes de llegar
+  // al asesor.
+  // Decision (Ferney, 2026-09-28): volver al flujo corto. Se pregunta solo
+  // 1) si tiene lote / todavia busca lote / esta en el exterior, y
+  // 2) el municipio se detecta SOLO desde la pagina de origen.
+  // El codigo del checklist se conserva abajo, inerte, por si la duena
+  // quiere reactivarlo mas adelante. NO volver a engancharlo sin permiso.
   var STRICT_LOTE = false;
-  try { STRICT_LOTE = document.body && document.body.dataset && document.body.dataset.wmStrictLote !== undefined; } catch (e) {}
 
   // === CHECKLIST CONVERSACIONAL DE LOTE (paso 3, solo si STRICT_LOTE) ===
   // Lista plana de 17 requisitos. Cada uno se muestra como una pregunta
@@ -166,6 +172,12 @@
     }
     if (intentionId === 'exterior') {
       return modeloBlock + 'Hola. ' + body + '.';
+    }
+    // Si el texto ya es una pregunta (caso "todavia busco lote"), no le
+    // colgamos "en Cundinamarca" al final: queda "? en Boyaca." y se lee mal.
+    // En ese caso el municipio ya va en el encabezado.
+    if (/\?$/.test(body)) {
+      return modeloBlock + head + body;
     }
     if (departmentId === 'Cundinamarca') {
       return modeloBlock + head + body + ' en Cundinamarca.';
@@ -627,11 +639,16 @@
   // final con logo + frase durante ~1.5s y luego abre wa.me. Esto replica
   // exactamente el flujo aprobado por la duena del sitio.
   function sendToWhatsApp() {
-    var municipality = (state.detectedInfo && state.intention !== 'exterior') ? state.detectedInfo.name : null;
+    var hasDetected = !!state.detectedInfo && state.intention !== 'exterior';
+    var municipality = hasDetected ? state.detectedInfo.name : null;
+    // Si el municipio vino de la URL, el departamento es el del municipio:
+    // el cliente nunca lo eligio, pero igual lo necesitamos para armar el
+    // mensaje. Sin esto el mensaje caia en "estoy en otra zona de Colombia".
+    var department = state.department || (hasDetected ? state.detectedInfo.department : null);
     var cameFromChecklist = (STRICT_LOTE && state.intention === 'lote' && state.checklistCompleted);
     var msg = cameFromChecklist
-      ? buildMessageWithChecklist(state.intention, state.department, municipality)
-      : buildMessage(state.intention, state.department, municipality);
+      ? buildMessageWithChecklist(state.intention, department, municipality)
+      : buildMessage(state.intention, department, municipality);
     var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
     if (cameFromChecklist) {
       showStep('4-final');
@@ -660,21 +677,24 @@
     showUserBubble(intention.label);
     // 2) Ocultar las opciones del paso 1 (se reemplazan por la burbuja)
     intentionActionsEl.style.display = 'none';
-    // Exterior: salta departamento, va directo a WhatsApp
+    // Exterior: ya esta claro que no hay lote local, va directo a WhatsApp
     if (id === 'exterior') {
       setTimeout(function () { sendToWhatsApp(); }, 700);
       return;
     }
-    // 3) Agente pregunta el departamento (typing + burbuja)
-    var nextStep = state.detectedInfo ? '2-detected' : '2-manual';
-    var questionHtml;
+    // 3) Si la pagina de origen ya nos dice el municipio, NO preguntamos nada
+    // mas: despedimos al cliente y lo mandamos directo al asesor. Esto es lo
+    // que subio las conversiones (el cliente solo responde 1 pregunta).
     if (state.detectedInfo) {
-      questionHtml = 'Veo que estas en la pagina de <strong>' + state.detectedInfo.name + '</strong>. ¿Cotizamos en <strong>' + state.detectedInfo.department + '</strong>?';
-    } else {
-      questionHtml = '¿En que departamento estas?';
+      agentSpeak('¡Perfecto! Te conecto con un asesor de <strong>' + escapeHtml(state.detectedInfo.name) + '</strong>.', 650, function () {
+        sendToWhatsApp();
+      });
+      return;
     }
-    agentSpeak(questionHtml, 650, function () {
-      showStep(nextStep);
+    // 4) Sin municipio detectable (index, blog, catalogo general): recien ahi
+    // preguntamos el departamento para que el asesor sepa desde donde llega.
+    agentSpeak('¿En que departamento estas?', 650, function () {
+      showStep('2-manual');
     });
   }
 
@@ -785,13 +805,15 @@
     if (intentionId === 'exterior') {
       // Exterior ya segmentado: salta directo a WhatsApp
       sendToWhatsApp();
+    } else if (intentionId && state.detectedInfo) {
+      // Intencion pre-seleccionada + municipio conocido por URL: el cliente
+      // ya eligio que quiere y la pagina ya dice donde esta. Sin preguntas.
+      agentSpeak('¡Perfecto! Te conecto con un asesor de <strong>' + escapeHtml(state.detectedInfo.name) + '</strong>.', 650, function () {
+        sendToWhatsApp();
+      });
     } else if (intentionId) {
-      // Intencion pre-seleccionada: ir directo a paso 2
-      if (state.detectedInfo) {
-        showStep('2-detected');
-      } else {
-        showStep('2-manual');
-      }
+      // Intencion pre-seleccionada sin municipio detectable: preguntamos dept.
+      showStep('2-manual');
     } else {
       // Sin intencion previa: paso 1 normal
       showStep('1');
