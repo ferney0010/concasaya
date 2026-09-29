@@ -330,7 +330,7 @@
             '<div class="wm-step" data-wm-step="3-checklist" style="display:none">' +
               '<div data-wm-checklist-area></div>' +
             '</div>' +
-            // PANTALLA FINAL: cierre con logo + frase + boton enviar (siempre habilitado)
+            // PANTALLA FINAL (checklist): cierre con logo + frase + boton enviar
             '<div class="wm-step" data-wm-step="4-final" style="display:none">' +
               '<div class="wm-final-screen">' +
                 '<div class="wm-final-screen-logo">' +
@@ -344,6 +344,24 @@
                   '<span>Enviar a WhatsApp</span>' +
                 '</button>' +
                 '<p class="wm-final-screen-note">Si falta algun requisito, el equipo te orientara igual en WhatsApp.</p>' +
+              '</div>' +
+            '</div>' +
+            // PANTALLA FINAL (flujo normal): el usuario abre WhatsApp con un
+            // click real. Nunca se abre solo con window.open() porque los
+            // navegadores bloquean las ventanas emergentes que no provienen
+            // de un click directo del usuario.
+            '<div class="wm-step" data-wm-step="5-enviar" style="display:none">' +
+              '<div class="wm-final-screen">' +
+                '<div class="wm-final-screen-icon">' +
+                  '<i class="fab fa-whatsapp"></i>' +
+                '</div>' +
+                '<h3 class="wm-final-screen-title">Listo, te falta un paso</h3>' +
+                '<p class="wm-final-screen-cta">Pulsa el boton para abrir WhatsApp con tu mensaje listo. Ahi te atendemos al instante.</p>' +
+                '<button type="button" class="wm-send-btn wm-show" data-wm-open-wa>' +
+                  '<i class="fab fa-whatsapp"></i>' +
+                  '<span>Abrir WhatsApp</span>' +
+                '</button>' +
+                '<p class="wm-final-screen-note">Se abre WhatsApp con tu solicitud ya escrita.</p>' +
               '</div>' +
             '</div>' +
             // Boton volver
@@ -367,6 +385,7 @@
     modeloInteres: null,       // nombre del modelo pre-seleccionado desde una card (ej: "Plaqueta Basico 60m2")
     adaptarADiseno: false,     // true si el usuario queria "adaptar" este modelo a su lote
     mensajeBoton: null,        // texto del data-wm-msg del boton (que pidio el cliente)
+    pendingUrl: null,          // URL de WhatsApp lista, se abre al pulsar el boton
     checklistAnswers: [],      // [true|false] por cada pregunta respondida
     checklistIndex: 0,         // indice de la pregunta actual (0 a CHECKLIST_TOTAL-1)
     checklistCompleted: false  // true solo si respondio las 17 preguntas
@@ -517,15 +536,15 @@
       });
     }
     // Mostrar/ocultar boton volver segun paso
-    if (stepName === '1' || stepName === '4-final') {
+    if (stepName === '1' || stepName === '4-final' || stepName === '5-enviar') {
       backBtn.style.display = 'none';
     } else {
       backBtn.style.display = '';
     }
-    // Scroll inteligente: paso 1 y pantalla final mantienen el scroll arriba
+    // Scroll inteligente: paso 1 y pantallas finales mantienen el scroll arriba
     // (las opciones o el cierre quedan visibles desde el inicio). Pasos 2/3
     // bajan al fondo para mostrar el contenido nuevo.
-    if (stepName === '1' || stepName === '4-final') {
+    if (stepName === '1' || stepName === '4-final' || stepName === '5-enviar') {
       body.scrollTop = 0;
     } else {
       body.scrollTop = body.scrollHeight;
@@ -655,15 +674,15 @@
       ? buildMessageWithChecklist(state.intention, department, municipality)
       : buildMessage(state.intention, department, municipality);
     var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    // Guardamos la URL para abrirla SOLO cuando el usuario pulse el boton.
+    // Abrirla con window.open() desde un setTimeout lo bloquea el navegador:
+    // la llamada deja de estar dentro del click del usuario y Chrome/Safari
+    // la tratan como ventana emergente no solicitada.
+    state.pendingUrl = url;
     if (cameFromChecklist) {
       showStep('4-final');
-      setTimeout(function () {
-        close();
-        setTimeout(function () { window.open(url, '_blank'); }, 200);
-      }, 1600);
     } else {
-      close();
-      setTimeout(function () { window.open(url, '_blank'); }, 200);
+      showStep('5-enviar');
     }
   }
 
@@ -857,6 +876,24 @@
     showStep('1');
   }
 
+  // === ABRIR WHATSAPP CON UN CLICK REAL DEL USUARIO ===
+  // Esta es la unica funcion que abre WhatsApp, y se invoca SIEMPRE desde un
+  // click directo. Nunca desde un setTimeout: los navegadores bloquean
+  // window.open() cuando la llamada ya no viene del gesto del usuario.
+  function openWhatsAppNow() {
+    var url = state.pendingUrl;
+    if (!url) return;
+    state.pendingUrl = null;
+    var w = window.open(url, '_blank');
+    // Si el navegador lo bloquea (deberia ser raro ya que es un click real),
+    // abrimos la misma URL en la pestana actual para no perder el lead.
+    if (!w) {
+      window.location.href = url;
+      return;
+    }
+    close();
+  }
+
   // === CLICK EN BOTON "ENVIAR A WHATSAPP" DEL CHECKLIST ===
   // El boton de envio esta siempre habilitado; el usuario puede enviar
   // el mensaje a WhatsApp incluso si no cumple todos los requisitos.
@@ -864,7 +901,18 @@
     var btn = e.target.closest('[data-wm-checklist-send]');
     if (!btn) return;
     state.checklistCompleted = true;
-    sendToWhatsApp();
+    // Recalcula el mensaje con los datos del checklist y lo abre de una vez.
+    var msg = buildMessageWithChecklist(state.intention, state.department,
+      (state.detectedInfo && state.intention !== 'exterior') ? state.detectedInfo.name : null);
+    state.pendingUrl = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    openWhatsAppNow();
+  }
+
+  // === CLICK EN BOTON "ABRIR WHATSAPP" (flujo normal, paso 5) ===
+  function onOpenWhatsAppClick(e) {
+    var btn = e.target.closest('[data-wm-open-wa]');
+    if (!btn) return;
+    openWhatsAppNow();
   }
 
   // === INTERCEPTAR ENLACES WHATSAPP ===
@@ -928,6 +976,9 @@
     }
     var sendBtn = body.querySelector('[data-wm-checklist-send]');
     if (sendBtn) sendBtn.addEventListener('click', onChecklistSendClick);
+    // Boton "Abrir WhatsApp" del flujo normal: abre con click real del usuario
+    var openWaBtn = body.querySelector('[data-wm-open-wa]');
+    if (openWaBtn) openWaBtn.addEventListener('click', onOpenWhatsAppClick);
     interceptWhatsAppLinks();
   }
 
