@@ -63,6 +63,36 @@ Los 3 deben dar 200 OK. El 308 redirect inicial de `www` → `sin www` es compor
 - Imágenes placeholder en `assets/images/` raíz (cabaña18, casa2, cubo1, colonial, casal1, etc.)
 - Tabs Foto/Plano sin JS — usan CSS `peer-checked/foto:` y `peer-checked/plano:`
 
+## Nuevo artículo de blog — checklist obligatorio
+
+Antes de dar por terminado un artículo nuevo en `blog/`, verificar estos 6 puntos. Omitir cualquiera deja la página rota o sin SEO.
+
+1. **Librerías base en el `<head>`** (si faltan, la página se ve sin estilos ni iconos):
+   ```html
+   <link rel="stylesheet" href="/assets/css/tailwind.css" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+   <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
+   <link rel="stylesheet" href="/assets/css/blog-concasaya.css" />
+   ```
+   Los artículos usan clases de Tailwind (`bg-white`, `text-dark`, `inline-flex`, `rounded-full`) e iconos `fa-*`, así que ambas librerías son obligatorias.
+2. **Favicon y theme-color**:
+   ```html
+   <link rel="icon" href="/assets/images/logoconcasaya.webp" sizes="any" />
+   <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
+   <meta name="theme-color" content="#0077b6" />
+   ```
+3. **OG image 1200x630** en `assets/images/og-<slug>.webp` generada con `node scripts/build-og-nuevos-blogs.mjs` (agregar el post al array `posts`). Mismo `og:image` en el JSON-LD `image`.
+4. **Meta OG completas**: `og:locale` (es_CO), `article:published_time`, `article:modified_time`, `article:author`, `article:section`, `article:tag`.
+5. **Registro en dos lugares**: `blog/static-posts-config.js` (listado del blog) y `sitemap.xml`.
+6. **Validar antes de commitear**:
+   ```powershell
+   node scripts/check-texto-corrupto.cjs "blog/<slug>.html"
+   ```
+   Detecta caracteres CJK y mezclas de idiomas que se cuelan al escribir HTML largo en español.
+
+### OJO: no correr `scripts/build-blog-og-images.mjs`
+Ese script regenera la OG de **todos** los posts y sobrescribe fotos reales de los que no tienen OG dedicada (`casa2.webp`, `herocasa1.webp`, `cass3.webp`…). Usar solo `build-og-nuevos-blogs.mjs` para artículos nuevos.
+
 ## Server local para preview
 
 ```powershell
@@ -72,6 +102,8 @@ node server.js
 ```
 
 **Importante**: el background task de bash mata el server a los 30 minutos exactos. Si pasa, simplemente relanzarlo. No es un bug, es un límite del sistema.
+
+**El `ENOENT: favicon.ico` que aparece en el log es normal**: el archivo no existe en el repo, pero Cloudflare sirve un favicon por su cuenta (`concasaya.com/favicon.ico` responde 200). No es un error a corregir.
 
 ## Memoria del proyecto
 
