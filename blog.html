@@ -1,790 +1,1579 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      Blog - CONCASAYA | Novedades y Consejos sobre Casas Prefabricadas
-    </title>
-    <meta
-      name="description"
-      content="Mantente al día con las últimas tendencias, consejos de construcción y proyectos de CONCASAYA. Lee nuestro blog para aprender más sobre viviendas prefabricadas."
-    />
-    <meta
-      name="keywords"
-      content="blog casas prefabricadas, construcción, diseño de interiores, consejos, CONCASAYA"
-    />
-
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      href="https://www.concasaya.com/assets/images/logo.ico"
-      type="image/x-icon"
-    />
-    <link
-      rel="icon"
-      href="https://www.concasaya.com/assets/images/logoconcasaya.webp"
-      sizes="any"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://www.concasaya.com/assets/images/logoconcasaya.webp"
-    />
-    
-    <meta name="theme-color" content="#0077b6" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="/assets/css/tailwind.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-<style>
-      /* Bloque de autor en la card del blog */
-      .post-meta { font-family: "Poppins", sans-serif; }
-      .post-meta__avatar {
-        width: 36px; height: 36px; border-radius: 50%;
-        background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
-        color: #fff; display: grid; place-items: center;
-        font-weight: 800; font-size: 0.78rem; letter-spacing: 0.5px; flex-shrink: 0;
-        box-shadow: 0 2px 8px rgba(0,119,182,0.25);
-      }
-      .post-meta__name { color: #0f172a; }
-      .post-meta__date { color: #64748b; margin-top: 1px; }
-      .post-meta__sep {
-        width: 1px; height: 28px; background: #e2e8f0; margin: 0 0.15rem;
-      }
-      .post-meta__time i { color: #0077b6; }
-
-      body {
-        font-family: "Poppins", sans-serif;
-      }
-      .dropdown:hover .dropdown-menu {
-        display: grid;
-      }
-      .dropdown-menu {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateY(10px);
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
-        display: grid;
-        border-radius: 12px;
-        padding: 0.5rem 0;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
-        backdrop-filter: blur(10px);
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.5rem;
-        column-gap: 0.5rem;
-      }
-      .dropdown:hover .dropdown-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateY(0);
-      }
-      
-      /* Dropdown en móvil - 2 columnas */
-      @media (max-width: 768px) {
-        .dropdown-menu {
-          grid-template-columns: repeat(2, 1fr);
-          min-width: auto !important;
-          width: 100%;
-          max-width: 100%;
-          padding: 0.25rem 0;
-        }
-        .dropdown-menu li a {
-          font-size: 0.75rem;
-          padding: 0.375rem 0.5rem;
-          margin: 0.125rem 0.25rem;
-        }
-        .municipio-item {
-          font-size: 0.75rem;
-          gap: 0.5rem;
-          padding-left: 0.25rem;
-        }
-        .municipio-icon {
-          width: 14px;
-          font-size: 0.7rem;
-        }
-        /* Estilos para tablet-submenu en móvil */
-        .tablet-submenu {
-          padding: 0.25rem 0;
-        }
-        .tablet-submenu .municipio-item {
-          font-size: 0.7rem;
-          padding: 0.5rem 0.75rem;
-          gap: 0.4rem;
-        }
-        .tablet-submenu .municipio-icon {
-          width: 12px;
-          font-size: 0.65rem;
-        }
-      }
-      .dropdown-menu li a {
-        border-radius: 8px;
-        margin: 0.25rem 0.5rem;
-        transition: all 0.3s ease;
-      }
-      .dropdown-menu li a:hover {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
-        transform: translateX(5px);
-        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
-      }
-      
-      /* Menú mejorado para tablet y móvil - Estilo Moderno */
-      #tablet-menu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
-        opacity: 0;
-        transform: translateY(-10px);
-        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      }
-      #tablet-menu.open {
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .tablet-menu-item {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border-left: 4px solid transparent;
-        position: relative;
-        overflow: hidden;
-      }
-      .tablet-menu-item::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 0;
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
-        transition: width 0.3s ease;
-      }
-      .tablet-menu-item:hover::before {
-        width: 100%;
-      }
-      .tablet-menu-item:hover {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.08) 0%, rgba(0, 119, 182, 0.03) 100%);
-        border-left-color: #0077b6;
-        transform: translateX(8px);
-        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.15);
-      }
-      .tablet-menu-item.active {
-        background: linear-gradient(90deg, rgba(0, 119, 182, 0.12) 0%, rgba(0, 119, 182, 0.05) 100%);
-        border-left-color: #0077b6;
-        color: #0077b6;
-        font-weight: 600;
-        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.2);
-      }
-      .tablet-menu-item i {
-        transition: transform 0.3s ease, color 0.3s ease;
-      }
-      .tablet-menu-item:hover i {
-        transform: scale(1.2);
-        color: #0077b6;
-      }
-      .tablet-submenu {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
-        border-left: 2px solid #e5e7eb;
-        margin-left: 1rem;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 0;
-      }
-      .tablet-submenu.open {
-        max-height: 600px;
-      }
-      @media (max-width: 768px) {
-        .tablet-submenu.open {
-          max-height: 45vh;
-          overflow-y: auto;
-          -webkit-overflow-scrolling: touch;
-        }
-      }
-      .menu-icon {
-        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-      .menu-icon.open {
-        transform: rotate(90deg);
-      }
-      
-      /* Iconos para municipios en dropdown desktop - Estilo Moderno */
-      .municipio-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        transition: all 0.3s ease;
-        position: relative;
-        padding-left: 0.5rem;
-      }
-      .municipio-item::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 3px;
-        height: 0;
-        background: linear-gradient(180deg, #0077b6 0%, #00a8e8 100%);
-        transition: height 0.3s ease;
-        border-radius: 0 2px 2px 0;
-      }
-      .municipio-item:hover::before {
-        height: 60%;
-      }
-      .municipio-icon {
-        width: 20px;
-        text-align: center;
-        color: #0077b6;
-        transition: all 0.3s ease;
-      }
-      .municipio-item:hover .municipio-icon {
-        transform: scale(1.3) rotate(5deg);
-        color: #00a8e8;
-      }
-      
-      /* Botón hamburguesa mejorado */
-      #menu-btn {
-        position: relative;
-        padding: 0.5rem;
-        border-radius: 0.5rem;
-        transition: all 0.3s ease;
-      }
-      #menu-btn:hover {
-        background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
-        transform: scale(1.1);
-      }
-      #menu-btn:active {
-        transform: scale(0.95);
-      }
-      
-      /* Animación para el indicador de scroll */
-      @keyframes scroll-bounce {
-        0%, 100% {
-          transform: translateY(0);
-          opacity: 0.7;
-        }
-        50% {
-          transform: translateY(10px);
-          opacity: 1;
-        }
-      }
-      
-      .scroll-indicator {
-        animation: scroll-bounce 2s ease-in-out infinite;
-      }
-
-      /* Barra inferior de redes sociales */
-      .cta-attention {
-        position: relative;
-        isolation: isolate;
-      }
-      .cta-attention::before {
-        content: "";
-        position: absolute;
-        inset: -4px;
-        border-radius: 9999px;
-        border: 2px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.55);
-        opacity: 0.9;
-        transform: scale(0.9);
-        animation: ctaPulse 2.2s ease-out infinite;
-        z-index: -1;
-      }
-      .cta-attention-whatsapp::before {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
-        border-color: rgba(34, 197, 94, 0.5);
-      }
-      @keyframes ctaPulse {
-        0% {
-          opacity: 0.9;
-          transform: scale(0.9);
-          box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.5);
-        }
-        70% {
-          opacity: 0;
-          transform: scale(1.25);
-          box-shadow: 0 0 0 12px rgba(0, 119, 182, 0);
-        }
-        100% {
-          opacity: 0;
-          transform: scale(1.25);
-          box-shadow: 0 0 0 0 rgba(0, 119, 182, 0);
-        }
-      }
-      .chatbot-modal.is-open {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .chatbot-modal.is-open .chatbot-modal-content {
-        transform: scale(1);
-      }
-    </style>
-    <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "tcaaszcmuu");
-</script>
-    <link rel="stylesheet" href="/assets/css/nav-shared.css" />
-    <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
-      <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
-  </head>
-  <body class="bg-white text-dark">
-  <header class="bg-white shadow-md fixed w-full top-0 z-50">
-      <nav
-        class="container mx-auto px-6 py-3 flex justify-between items-center"
-      >
-        <a href="https://www.concasaya.com/" class="flex items-center space-x-3">
-          <img
-            src="https://www.concasaya.com/assets/images/logocasah.webp"
-            alt="CONCASAYA Logo"
-            class="h-10 w-auto"
-          />
-        </a>
-                        <div class="hidden lg:flex nav-desktop-primary items-center">
-          <a href="https://www.concasaya.com/" class="text-dark hover:text-primary transition duration-300"
-            >Inicio</a
-          >
-          <a
-            href="/modelos.html"
-            class="text-dark hover:text-primary transition duration-300"
-            >Modelos</a
-          >
-          <a
-            href="/cotizador-precios-casas-prefabricadas.html"
-            class="text-dark hover:text-primary transition duration-300 font-semibold"
-            >Cotizador de precios</a
-          >
-
-          <div class="relative dropdown">
-            <button
-              type="button"
-              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span>Cobertura</span>
-              <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
-          </div>
-
-          <div class="relative dropdown">
-            <button
-              type="button"
-              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <span>Empresa</span>
-              <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
-              <li>
-                <a href="/nosotros.html" class="block text-dark hover:text-primary transition duration-300"
-                  ><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a
-                >
-              </li>
-              <li>
-                <a href="/ventajas.html" class="block text-dark hover:text-primary transition duration-300"
-                  ><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>¿Qué es EPS?</a
-                >
-              </li>
-              <li>
-                <a href="/galeria.html" class="block text-dark hover:text-primary transition duration-300"
-                  ><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a
-                >
-              </li>
-              <li>
-                <a href="/faq.html" class="block text-dark hover:text-primary transition duration-300"
-                  ><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a
-                >
-              </li>
-              <li>
-                <a href="/referidos.html" class="block text-dark hover:text-primary transition duration-300"
-                  ><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <a
-            href="/blog.html"
-            class="text-primary font-bold transition duration-300"
-            >Blog</a
-          >
-          <a
-            href="/contacto.html"
-            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0"
-            >Contacto</a
-          >
-        </div>
-        <div class="lg:hidden">
-          <button
-            id="menu-btn"
-            class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110"
-            aria-label="Menú"
-          >
-            <i id="menu-icon" class="fas fa-bars fa-lg"></i>
-          </button>
-        </div>
-      </nav>
-                        <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
-        <a href="https://www.concasaya.com/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
-          ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
-        >
-        <a href="/modelos.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
-          ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
-        >
-        <a href="/cotizador-precios-casas-prefabricadas.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
-          ><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador de precios</a
-        >
-        <div class="relative">
-          <button
-            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
-            id="tablet-dropdown-btn"
-          >
-            <span
-              ><i class="fas fa-earth-americas mr-3 text-primary"></i
-              >Cobertura</span
-            >
-            <i
-              id="tablet-dropdown-icon"
-              class="fas fa-chevron-down text-xs menu-icon transition-transform"
-            ></i>
-          </button>
-          <div id="tablet-dropdown-menu" class="tablet-submenu">
-          </div>
-        </div>
-        <div class="relative">
-          <button
-            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
-            id="tablet-empresa-dropdown-btn"
-          >
-            <span><i class="fas fa-building mr-3 text-primary"></i>Empresa</span>
-            <i
-              id="tablet-empresa-dropdown-icon"
-              class="fas fa-chevron-down text-xs menu-icon transition-transform"
-            ></i>
-          </button>
-          <div id="tablet-empresa-dropdown-menu" class="tablet-submenu tablet-submenu--empresa">
-            <a href="/nosotros.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
-              ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
-            >
-            <a href="/ventajas.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
-              ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Qué es EPS?</a
-            >
-            <a href="/galeria.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
-              ><i class="fas fa-images mr-3 text-primary"></i>Galería</a
-            >
-            <a href="/faq.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
-              ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
-            >
-            <a href="/referidos.html" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
-              ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
-            >
-          </div>
-        </div>
-        <a href="/blog.html" class="tablet-menu-item block py-3 px-6 text-base font-medium active"
-          ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
-        >
-        <a href="/contacto.html" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
-          ><i class="fas fa-envelope mr-3"></i>Contacto</a
-        >
-      </div>
-    </header>
-
-    <main class="pt-20">
-      <section
-        class="relative py-20 md:py-24 bg-cover bg-center bg-gradient-to-br from-secondary via-secondary to-gray-800 overflow-hidden"
-        style="
-          background-image: linear-gradient(135deg, rgba(13, 26, 42, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%), url('https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-        "
-      >
-        <!-- Elementos decorativos de fondo -->
-        <div class="absolute inset-0 opacity-10">
-          <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-          <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-        </div>
-        
-        <div class="container relative z-10 mx-auto px-6">
-          <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-              Blog de Casas Prefabricadas
-            </h1>
-            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
-              Guías de precios, cómo comprar y consejos prácticos para tu proyecto
-            </p>
-          </div>
-
-          <!-- CTAs principales (3 vias de conversion) -->
-          <div
-            class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-stretch sm:items-center px-2 mb-4"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <a
-              href="#blog-list"
-              onclick="document.getElementById('blog-list').scrollIntoView({ behavior: 'smooth' }); return false;"
-              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-primary text-white rounded-full font-semibold text-base sm:text-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-            >
-              <i class="fas fa-newspaper"></i>
-              <span>Ver Artículos</span>
-              <i class="fas fa-arrow-down text-sm opacity-80"></i>
-            </a>
-            <a
-              href="/cotizador-precios-casas-prefabricadas.html"
-              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
-            >
-              <i class="fas fa-calculator"></i>
-              <span>Cotizador de precios gratis</span>
-            </a>
-            <a
-              href="https://wa.me/573142891018?text=Hola%2C%20vi%20el%20blog%20de%20CONCASAYA.%20%C2%BFPueden%20asesorarme%20con%20mi%20proyecto%20de%20casa%20prefabricada%3F"
-              target="_blank"
-              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-            >
-              <i class="fab fa-whatsapp"></i>
-              <span>Hablar por WhatsApp</span>
-            </a>
-          </div>
-
-          <!-- Microtexto de confianza -->
-          <p
-            class="text-xs sm:text-sm text-white/80 text-center px-2 mb-8"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            <i class="fas fa-check-circle mr-1 text-primary"></i>Sin compromiso
-            <span class="mx-2">·</span>Cotización gratis
-            <span class="mx-2">·</span>Respuesta en menos de 24h
-          </p>
-        </div>
-      </section>
-
-      <section id="blog-list" class="py-20">
-        <div class="container mx-auto px-6">
-          <div
-            id="blog-posts-container"
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <div class="text-center w-full col-span-full">
-              Cargando entradas del blog...
-            </div>
-          </div>
-          <div id="blog-pagination" class="flex flex-col items-center mt-12 gap-3"></div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
-      <!-- Decoración de fondo -->
-      <div class="absolute inset-0 opacity-5">
-        <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
-        <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
-      </div>
-      
-      <div class="container mx-auto px-6 relative z-10">
-        <!-- Sección principal del footer -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          <!-- Información de la empresa -->
-          <div class="lg:col-span-1">
-            <div class="mb-6">
-              <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-12 w-auto mb-4">
-            </div>
-            <p class="text-gray-300 leading-relaxed mb-6">
-              Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
-              y en EPS de alta calidad en Colombia.
-            </p>
-            <!-- Redes sociales -->
-            <div class="flex space-x-4">
-              <a
-                href="https://www.tiktok.com/@concasayaprefabricados"
-                target="_blank"
-                aria-label="TikTok"
-                class="w-10 h-10 rounded-full bg-gray-700 hover:bg-black flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              >
-                <i class="fab fa-tiktok"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/concasaya"
-                target="_blank"
-                aria-label="Instagram"
-                class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 hover:from-purple-700 hover:via-pink-600 hover:to-yellow-500 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                href="https://www.facebook.com/concasaya/"
-                target="_blank"
-                aria-label="Facebook"
-                class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              >
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="https://wa.me/573142891018"
-                target="_blank"
-                aria-label="WhatsApp"
-                class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
-              >
-                <i class="fab fa-whatsapp"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Zonas de Cobertura -->
-          <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
-              Zonas de Cobertura
-            </h4>
-            <ul class="space-y-3">
-              <li>
-                <a href="/pages/chia.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Casas Prefabricadas en Chía</span>
-                </a>
-              </li>
-              <li>
-                <a href="/pages/cajica.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Casas Prefabricadas en Cajicá</span>
-                </a>
-              </li>
-              <li>
-                <a href="/pages/mosquera.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Casas Prefabricadas en Mosquera</span>
-                </a>
-              </li>
-              <li>
-                <a href="/pages/zipaquira.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Casas Prefabricadas en Zipaquirá</span>
-                </a>
-              </li>
-              <li>
-                <a href="/pages/sopo.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Casas Prefabricadas en Sopó</span>
-                </a>
-              </li>
-              <li>
-                <a href="/pages/funza.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Ver más municipios...</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Enlaces rápidos -->
-          <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
-              Enlaces Rápidos
-            </h4>
-            <ul class="space-y-3">
-              <li>
-                <a href="/modelos.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Modelos de Casas</span>
-                </a>
-              </li>
-              <li>
-                <a href="/ventajas.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>¿Qué es EPS?</span>
-                </a>
-              </li>
-              <li>
-                <a href="/blog.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Blog de Construcción</span>
-                </a>
-              </li>
-              <li>
-                <a href="/faq.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Preguntas Frecuentes</span>
-                </a>
-              </li>
-              
-
-              <li>
-                <a href="/nosotros.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Sobre Nosotros</span>
-                </a>
-              </li>
-              <li>
-                <a href="/contacto.html" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
-                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
-                  <span>Contacto</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Información de contacto -->
-          <div>
-            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
-              Contáctanos
-            </h4>
-            <ul class="space-y-4">
-              <li class="flex items-start">
-                <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
-                <span class="text-gray-300">Cl. 147 #101-56, Local 64, Bogotá</span>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone text-primary mr-3"></i>
-                <a href="tel:+573142891018" class="text-gray-300 hover:text-primary transition-colors">314 289 1018</a>
-              </li>
-              <li class="flex items-center">
-                <i class="fas fa-phone text-primary mr-3"></i>
-                <a href="tel:+573165771582" class="text-gray-300 hover:text-primary transition-colors">316 577 1582</a>
-              </li>
-              <li class="flex items-center">
-                <i class="fab fa-whatsapp text-primary mr-3 text-lg"></i>
-                <a
-                  href="https://wa.me/573142891018"
-                  target="_blank"
-                  class="text-gray-300 hover:text-primary transition-colors font-semibold"
-                >
-                  Enviar Mensaje
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Línea divisoria -->
-        <div class="border-t border-gray-700/50 my-8"></div>
-
-        <!-- Copyright y créditos -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-6">
-          <div class="text-center md:text-left">
-            <p class="text-sm text-gray-400 mb-2">
-              &copy; 2026 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.
-            </p>
-            <p class="text-xs text-gray-500">
-              Sitio web diseñado para la construcción de casas prefabricadas en Colombia.
-            </p>
-          </div>
-          
+﻿<!DOCTYPE html>
+
+<html lang="es">
+
+  <head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>
+
+      Blog - CONCASAYA | Novedades y Consejos sobre Casas Prefabricadas
+
+    </title>
+
+    <link rel="canonical" href="https://www.concasaya.com/blog" />
+
+    <meta
+
+      name="description"
+
+      content="Mantente al día con las últimas tendencias, consejos de construcción y proyectos de CONCASAYA. Lee nuestro blog para aprender más sobre viviendas prefabricadas."
+
+    />
+
+    <meta
+
+      name="keywords"
+
+      content="blog casas prefabricadas, construcción, diseño de interiores, consejos, CONCASAYA"
+
+    />
+
+
+
+    <!-- Favicon -->
+
+    <link
+
+      rel="icon"
+
+      href="https://www.concasaya.com/assets/images/logo.ico"
+
+      type="image/x-icon"
+
+    />
+
+    <link
+
+      rel="icon"
+
+      href="https://www.concasaya.com/assets/images/logoconcasaya.webp"
+
+      sizes="any"
+
+    />
+
+    <link
+
+      rel="apple-touch-icon"
+
+      href="https://www.concasaya.com/assets/images/logoconcasaya.webp"
+
+    />
+
+    
+
+    <meta name="theme-color" content="#0077b6" />
+
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+
+      rel="stylesheet"
+
+    />
+
+
+
+    <link rel="stylesheet" href="/assets/css/tailwind.css" />
+
+    <link
+
+      rel="stylesheet"
+
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+
+    />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<style>
+
+      /* Bloque de autor en la card del blog */
+
+      .post-meta { font-family: "Poppins", sans-serif; }
+
+      .post-meta__avatar {
+
+        width: 36px; height: 36px; border-radius: 50%;
+
+        background: linear-gradient(135deg, #0077b6 0%, #00a8e8 100%);
+
+        color: #fff; display: grid; place-items: center;
+
+        font-weight: 800; font-size: 0.78rem; letter-spacing: 0.5px; flex-shrink: 0;
+
+        box-shadow: 0 2px 8px rgba(0,119,182,0.25);
+
+      }
+
+      .post-meta__name { color: #0f172a; }
+
+      .post-meta__date { color: #64748b; margin-top: 1px; }
+
+      .post-meta__sep {
+
+        width: 1px; height: 28px; background: #e2e8f0; margin: 0 0.15rem;
+
+      }
+
+      .post-meta__time i { color: #0077b6; }
+
+
+
+      body {
+
+        font-family: "Poppins", sans-serif;
+
+      }
+
+      .dropdown:hover .dropdown-menu {
+
+        display: grid;
+
+      }
+
+      .dropdown-menu {
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transform: translateY(10px);
+
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+
+        display: grid;
+
+        border-radius: 12px;
+
+        padding: 0.5rem 0;
+
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+
+        backdrop-filter: blur(10px);
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 0.5rem;
+
+        column-gap: 0.5rem;
+
+      }
+
+      .dropdown:hover .dropdown-menu {
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transform: translateY(0);
+
+      }
+
+      
+
+      /* Dropdown en móvil - 2 columnas */
+
+      @media (max-width: 768px) {
+
+        .dropdown-menu {
+
+          grid-template-columns: repeat(2, 1fr);
+
+          min-width: auto !important;
+
+          width: 100%;
+
+          max-width: 100%;
+
+          padding: 0.25rem 0;
+
+        }
+
+        .dropdown-menu li a {
+
+          font-size: 0.75rem;
+
+          padding: 0.375rem 0.5rem;
+
+          margin: 0.125rem 0.25rem;
+
+        }
+
+        .municipio-item {
+
+          font-size: 0.75rem;
+
+          gap: 0.5rem;
+
+          padding-left: 0.25rem;
+
+        }
+
+        .municipio-icon {
+
+          width: 14px;
+
+          font-size: 0.7rem;
+
+        }
+
+        /* Estilos para tablet-submenu en móvil */
+
+        .tablet-submenu {
+
+          padding: 0.25rem 0;
+
+        }
+
+        .tablet-submenu .municipio-item {
+
+          font-size: 0.7rem;
+
+          padding: 0.5rem 0.75rem;
+
+          gap: 0.4rem;
+
+        }
+
+        .tablet-submenu .municipio-icon {
+
+          width: 12px;
+
+          font-size: 0.65rem;
+
+        }
+
+      }
+
+      .dropdown-menu li a {
+
+        border-radius: 8px;
+
+        margin: 0.25rem 0.5rem;
+
+        transition: all 0.3s ease;
+
+      }
+
+      .dropdown-menu li a:hover {
+
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+
+        transform: translateX(5px);
+
+        box-shadow: 0 4px 12px rgba(0, 119, 182, 0.15);
+
+      }
+
+      
+
+      /* Menú mejorado para tablet y móvil - Estilo Moderno */
+
+      #tablet-menu {
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, transform 0.4s ease;
+
+        opacity: 0;
+
+        transform: translateY(-10px);
+
+        background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+      }
+
+      #tablet-menu.open {
+
+        max-height: calc(100vh - 80px);
+
+        overflow-y: auto;
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+      }
+
+      .tablet-menu-item {
+
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        border-left: 4px solid transparent;
+
+        position: relative;
+
+        overflow: hidden;
+
+      }
+
+      .tablet-menu-item::before {
+
+        content: '';
+
+        position: absolute;
+
+        left: 0;
+
+        top: 0;
+
+        height: 100%;
+
+        width: 0;
+
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+
+        transition: width 0.3s ease;
+
+      }
+
+      .tablet-menu-item:hover::before {
+
+        width: 100%;
+
+      }
+
+      .tablet-menu-item:hover {
+
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.08) 0%, rgba(0, 119, 182, 0.03) 100%);
+
+        border-left-color: #0077b6;
+
+        transform: translateX(8px);
+
+        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.15);
+
+      }
+
+      .tablet-menu-item.active {
+
+        background: linear-gradient(90deg, rgba(0, 119, 182, 0.12) 0%, rgba(0, 119, 182, 0.05) 100%);
+
+        border-left-color: #0077b6;
+
+        color: #0077b6;
+
+        font-weight: 600;
+
+        box-shadow: -4px 0 12px rgba(0, 119, 182, 0.2);
+
+      }
+
+      .tablet-menu-item i {
+
+        transition: transform 0.3s ease, color 0.3s ease;
+
+      }
+
+      .tablet-menu-item:hover i {
+
+        transform: scale(1.2);
+
+        color: #0077b6;
+
+      }
+
+      .tablet-submenu {
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+
+        border-left: 2px solid #e5e7eb;
+
+        margin-left: 1rem;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 0;
+
+      }
+
+      .tablet-submenu.open {
+
+        max-height: 600px;
+
+      }
+
+      @media (max-width: 768px) {
+
+        .tablet-submenu.open {
+
+          max-height: 45vh;
+
+          overflow-y: auto;
+
+          -webkit-overflow-scrolling: touch;
+
+        }
+
+      }
+
+      .menu-icon {
+
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      }
+
+      .menu-icon.open {
+
+        transform: rotate(90deg);
+
+      }
+
+      
+
+      /* Iconos para municipios en dropdown desktop - Estilo Moderno */
+
+      .municipio-item {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 0.75rem;
+
+        transition: all 0.3s ease;
+
+        position: relative;
+
+        padding-left: 0.5rem;
+
+      }
+
+      .municipio-item::before {
+
+        content: '';
+
+        position: absolute;
+
+        left: 0;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        width: 3px;
+
+        height: 0;
+
+        background: linear-gradient(180deg, #0077b6 0%, #00a8e8 100%);
+
+        transition: height 0.3s ease;
+
+        border-radius: 0 2px 2px 0;
+
+      }
+
+      .municipio-item:hover::before {
+
+        height: 60%;
+
+      }
+
+      .municipio-icon {
+
+        width: 20px;
+
+        text-align: center;
+
+        color: #0077b6;
+
+        transition: all 0.3s ease;
+
+      }
+
+      .municipio-item:hover .municipio-icon {
+
+        transform: scale(1.3) rotate(5deg);
+
+        color: #00a8e8;
+
+      }
+
+      
+
+      /* Botón hamburguesa mejorado */
+
+      #menu-btn {
+
+        position: relative;
+
+        padding: 0.5rem;
+
+        border-radius: 0.5rem;
+
+        transition: all 0.3s ease;
+
+      }
+
+      #menu-btn:hover {
+
+        background: linear-gradient(135deg, rgba(0, 119, 182, 0.1) 0%, rgba(0, 119, 182, 0.05) 100%);
+
+        transform: scale(1.1);
+
+      }
+
+      #menu-btn:active {
+
+        transform: scale(0.95);
+
+      }
+
+      
+
+      /* Animación para el indicador de scroll */
+
+      @keyframes scroll-bounce {
+
+        0%, 100% {
+
+          transform: translateY(0);
+
+          opacity: 0.7;
+
+        }
+
+        50% {
+
+          transform: translateY(10px);
+
+          opacity: 1;
+
+        }
+
+      }
+
+      
+
+      .scroll-indicator {
+
+        animation: scroll-bounce 2s ease-in-out infinite;
+
+      }
+
+
+
+      /* Barra inferior de redes sociales */
+
+      .cta-attention {
+
+        position: relative;
+
+        isolation: isolate;
+
+      }
+
+      .cta-attention::before {
+
+        content: "";
+
+        position: absolute;
+
+        inset: -4px;
+
+        border-radius: 9999px;
+
+        border: 2px solid rgba(255, 255, 255, 0.4);
+
+        box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.55);
+
+        opacity: 0.9;
+
+        transform: scale(0.9);
+
+        animation: ctaPulse 2.2s ease-out infinite;
+
+        z-index: -1;
+
+      }
+
+      .cta-attention-whatsapp::before {
+
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55);
+
+        border-color: rgba(34, 197, 94, 0.5);
+
+      }
+
+      @keyframes ctaPulse {
+
+        0% {
+
+          opacity: 0.9;
+
+          transform: scale(0.9);
+
+          box-shadow: 0 0 0 0 rgba(0, 119, 182, 0.5);
+
+        }
+
+        70% {
+
+          opacity: 0;
+
+          transform: scale(1.25);
+
+          box-shadow: 0 0 0 12px rgba(0, 119, 182, 0);
+
+        }
+
+        100% {
+
+          opacity: 0;
+
+          transform: scale(1.25);
+
+          box-shadow: 0 0 0 0 rgba(0, 119, 182, 0);
+
+        }
+
+      }
+
+      .chatbot-modal.is-open {
+
+        opacity: 1;
+
+        pointer-events: auto;
+
+      }
+
+      .chatbot-modal.is-open .chatbot-modal-content {
+
+        transform: scale(1);
+
+      }
+
+    </style>
+
+    <script type="text/javascript">
+
+    (function(c,l,a,r,i,t,y){
+
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+
+    })(window, document, "clarity", "script", "tcaaszcmuu");
+
+</script>
+
+    <link rel="stylesheet" href="/assets/css/nav-shared.css" />
+
+    <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
+
+      <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
+
+  </head>
+
+  <body class="bg-white text-dark">
+
+  <header class="bg-white shadow-md fixed w-full top-0 z-50">
+
+      <nav
+
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
+
+      >
+
+        <a href="https://www.concasaya.com/" class="flex items-center space-x-3">
+
+          <img
+
+            src="https://www.concasaya.com/assets/images/logocasah.webp"
+
+            alt="CONCASAYA Logo"
+
+            class="h-10 w-auto"
+
+          />
+
+        </a>
+
+                        <div class="hidden lg:flex nav-desktop-primary items-center">
+
+          <a href="https://www.concasaya.com/" class="text-dark hover:text-primary transition duration-300"
+
+            >Inicio</a
+
+          >
+
+          <a
+
+            href="/modelos"
+
+            class="text-dark hover:text-primary transition duration-300"
+
+            >Modelos</a
+
+          >
+
+          <a
+
+            href="/cotizador-precios-casas-prefabricadas"
+
+            class="text-dark hover:text-primary transition duration-300 font-semibold"
+
+            >Cotizador de precios</a
+
+          >
+
+
+
+          <div class="relative dropdown">
+
+            <button
+
+              type="button"
+
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+
+              aria-haspopup="true"
+
+              aria-expanded="false"
+
+            >
+
+              <span>Cobertura</span>
+
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+
+            </button>
+
+            <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
+
+          </div>
+
+
+
+          <div class="relative dropdown">
+
+            <button
+
+              type="button"
+
+              class="text-dark hover:text-primary transition duration-300 inline-flex items-center"
+
+              aria-haspopup="true"
+
+              aria-expanded="false"
+
+            >
+
+              <span>Empresa</span>
+
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
+
+              <li>
+
+                <a href="/nosotros" class="block text-dark hover:text-primary transition duration-300"
+
+                  ><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a
+
+                >
+
+              </li>
+
+              <li>
+
+                <a href="/ventajas" class="block text-dark hover:text-primary transition duration-300"
+
+                  ><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>¿Qué es EPS?</a
+
+                >
+
+              </li>
+
+              <li>
+
+                <a href="/galeria" class="block text-dark hover:text-primary transition duration-300"
+
+                  ><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a
+
+                >
+
+              </li>
+
+              <li>
+
+                <a href="/faq" class="block text-dark hover:text-primary transition duration-300"
+
+                  ><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a
+
+                >
+
+              </li>
+
+              <li>
+
+                <a href="/referidos" class="block text-dark hover:text-primary transition duration-300"
+
+                  ><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a
+
+                >
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <a
+
+            href="/blog"
+
+            class="text-primary font-bold transition duration-300"
+
+            >Blog</a
+
+          >
+
+          <a
+
+            href="/contacto"
+
+            class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0"
+
+            >Contacto</a
+
+          >
+
+        </div>
+
+        <div class="lg:hidden">
+
+          <button
+
+            id="menu-btn"
+
+            class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110"
+
+            aria-label="Menú"
+
+          >
+
+            <i id="menu-icon" class="fas fa-bars fa-lg"></i>
+
+          </button>
+
+        </div>
+
+      </nav>
+
+                        <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
+
+        <a href="https://www.concasaya.com/" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+
+          ><i class="fas fa-home mr-3 text-primary"></i>Inicio</a
+
+        >
+
+        <a href="/modelos" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+
+          ><i class="fas fa-building mr-3 text-primary"></i>Modelos</a
+
+        >
+
+        <a href="/cotizador-precios-casas-prefabricadas" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"
+
+          ><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador de precios</a
+
+        >
+
+        <div class="relative">
+
+          <button
+
+            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
+
+            id="tablet-dropdown-btn"
+
+          >
+
+            <span
+
+              ><i class="fas fa-earth-americas mr-3 text-primary"></i
+
+              >Cobertura</span
+
+            >
+
+            <i
+
+              id="tablet-dropdown-icon"
+
+              class="fas fa-chevron-down text-xs menu-icon transition-transform"
+
+            ></i>
+
+          </button>
+
+          <div id="tablet-dropdown-menu" class="tablet-submenu">
+
+          </div>
+
+        </div>
+
+        <div class="relative">
+
+          <button
+
+            class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark"
+
+            id="tablet-empresa-dropdown-btn"
+
+          >
+
+            <span><i class="fas fa-building mr-3 text-primary"></i>Empresa</span>
+
+            <i
+
+              id="tablet-empresa-dropdown-icon"
+
+              class="fas fa-chevron-down text-xs menu-icon transition-transform"
+
+            ></i>
+
+          </button>
+
+          <div id="tablet-empresa-dropdown-menu" class="tablet-submenu tablet-submenu--empresa">
+
+            <a href="/nosotros" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+
+              ><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a
+
+            >
+
+            <a href="/ventajas" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+
+              ><i class="fas fa-info-circle mr-3 text-primary"></i>¿Qué es EPS?</a
+
+            >
+
+            <a href="/galeria" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+
+              ><i class="fas fa-images mr-3 text-primary"></i>Galería</a
+
+            >
+
+            <a href="/faq" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+
+              ><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a
+
+            >
+
+            <a href="/referidos" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"
+
+              ><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a
+
+            >
+
+          </div>
+
+        </div>
+
+        <a href="/blog" class="tablet-menu-item block py-3 px-6 text-base font-medium active"
+
+          ><i class="fas fa-blog mr-3 text-primary"></i>Blog</a
+
+        >
+
+        <a href="/contacto" class="tablet-menu-item block py-3 px-6 text-base font-medium text-white bg-primary rounded-lg mx-4 my-2 hover:opacity-90 transition"
+
+          ><i class="fas fa-envelope mr-3"></i>Contacto</a
+
+        >
+
+      </div>
+
+    </header>
+
+
+
+    <main class="pt-20">
+
+      <section
+
+        class="relative py-20 md:py-24 bg-cover bg-center bg-gradient-to-br from-secondary via-secondary to-gray-800 overflow-hidden"
+
+        style="
+
+          background-image: linear-gradient(135deg, rgba(13, 26, 42, 0.85) 0%, rgba(45, 55, 72, 0.85) 100%), url('https://images.pexels.com/photos/265076/pexels-photo-265076.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+
+        "
+
+      >
+
+        <!-- Elementos decorativos de fondo -->
+
+        <div class="absolute inset-0 opacity-10">
+
+          <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+
+        </div>
+
+        
+
+        <div class="container relative z-10 mx-auto px-6">
+
+          <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+
+              Blog de Casas Prefabricadas
+
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-200 mb-8 leading-relaxed">
+
+              Guías de precios, cómo comprar y consejos prácticos para tu proyecto
+
+            </p>
+
+          </div>
+
+
+
+          <!-- CTAs principales (3 vias de conversion) -->
+
+          <div
+
+            class="flex flex-col sm:flex-row gap-3 lg:gap-4 justify-center items-stretch sm:items-center px-2 mb-4"
+
+            data-aos="fade-up"
+
+            data-aos-delay="200"
+
+          >
+
+            <a
+
+              href="#blog-list"
+
+              onclick="document.getElementById('blog-list').scrollIntoView({ behavior: 'smooth' }); return false;"
+
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-primary text-white rounded-full font-semibold text-base sm:text-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+
+            >
+
+              <i class="fas fa-newspaper"></i>
+
+              <span>Ver Artículos</span>
+
+              <i class="fas fa-arrow-down text-sm opacity-80"></i>
+
+            </a>
+
+            <a
+
+              href="/cotizador-precios-casas-prefabricadas"
+
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-500 text-white rounded-full font-semibold text-base sm:text-lg hover:from-orange-600 hover:via-orange-500 hover:to-yellow-600 transition-all duration-300 transform hover:scale-110 hover:shadow-2xl inline-flex items-center justify-center gap-2 shadow-xl border-2 border-orange-300/50 hover:border-orange-200"
+
+            >
+
+              <i class="fas fa-calculator"></i>
+
+              <span>Cotizador de precios gratis</span>
+
+            </a>
+
+            <a
+
+              href="https://wa.me/573142891018?text=Hola%2C%20vi%20el%20blog%20de%20CONCASAYA.%20%C2%BFPueden%20asesorarme%20con%20mi%20proyecto%20de%20casa%20prefabricada%3F"
+
+              target="_blank"
+
+              class="w-full sm:w-auto px-6 sm:px-7 py-3 sm:py-3.5 bg-green-500 text-white rounded-full font-semibold text-base sm:text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+
+            >
+
+              <i class="fab fa-whatsapp"></i>
+
+              <span>Hablar por WhatsApp</span>
+
+            </a>
+
+          </div>
+
+
+
+          <!-- Microtexto de confianza -->
+
+          <p
+
+            class="text-xs sm:text-sm text-white/80 text-center px-2 mb-8"
+
+            data-aos="fade-up"
+
+            data-aos-delay="300"
+
+          >
+
+            <i class="fas fa-check-circle mr-1 text-primary"></i>Sin compromiso
+
+            <span class="mx-2">·</span>Cotización gratis
+
+            <span class="mx-2">·</span>Respuesta en menos de 24h
+
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <section id="blog-list" class="py-20">
+
+        <div class="container mx-auto px-6">
+
+          <div
+
+            id="blog-posts-container"
+
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+
+          >
+
+            <div class="text-center w-full col-span-full">
+
+              Cargando entradas del blog...
+
+            </div>
+
+          </div>
+
+          <div id="blog-pagination" class="flex flex-col items-center mt-12 gap-3"></div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+
+    <footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-16 pb-8 relative overflow-hidden">
+
+      <!-- Decoración de fondo -->
+
+      <div class="absolute inset-0 opacity-5">
+
+        <div class="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl"></div>
+
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl"></div>
+
+      </div>
+
+      
+
+      <div class="container mx-auto px-6 relative z-10">
+
+        <!-- Sección principal del footer -->
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+
+          <!-- Información de la empresa -->
+
+          <div class="lg:col-span-1">
+
+            <div class="mb-6">
+
+              <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-12 w-auto mb-4">
+
+            </div>
+
+            <p class="text-gray-300 leading-relaxed mb-6">
+
+              Construyendo los hogares del futuro, hoy. Viviendas prefabricadas
+
+              y en EPS de alta calidad en Colombia.
+
+            </p>
+
+            <!-- Redes sociales -->
+
+            <div class="flex space-x-4">
+
+              <a
+
+                href="https://www.tiktok.com/@concasayaprefabricados"
+
+                target="_blank"
+
+                aria-label="TikTok"
+
+                class="w-10 h-10 rounded-full bg-gray-700 hover:bg-black flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+
+              >
+
+                <i class="fab fa-tiktok"></i>
+
+              </a>
+
+              <a
+
+                href="https://www.instagram.com/concasaya"
+
+                target="_blank"
+
+                aria-label="Instagram"
+
+                class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 hover:from-purple-700 hover:via-pink-600 hover:to-yellow-500 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+
+              >
+
+                <i class="fab fa-instagram"></i>
+
+              </a>
+
+              <a
+
+                href="https://www.facebook.com/concasaya/"
+
+                target="_blank"
+
+                aria-label="Facebook"
+
+                class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+
+              >
+
+                <i class="fab fa-facebook-f"></i>
+
+              </a>
+
+              <a
+
+                href="https://wa.me/573142891018"
+
+                target="_blank"
+
+                aria-label="WhatsApp"
+
+                class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+
+              >
+
+                <i class="fab fa-whatsapp"></i>
+
+              </a>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Zonas de Cobertura -->
+
+          <div>
+
+            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+
+              Zonas de Cobertura
+
+            </h4>
+
+            <ul class="space-y-3">
+
+              <li>
+
+                <a href="/pages/chia" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Casas Prefabricadas en Chía</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/pages/cajica" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Casas Prefabricadas en Cajicá</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/pages/mosquera" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Casas Prefabricadas en Mosquera</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/pages/zipaquira" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Casas Prefabricadas en Zipaquirá</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/pages/sopo" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Casas Prefabricadas en Sopó</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/pages/funza" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Ver más municipios...</span>
+
+                </a>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <!-- Enlaces rápidos -->
+
+          <div>
+
+            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+
+              Enlaces Rápidos
+
+            </h4>
+
+            <ul class="space-y-3">
+
+              <li>
+
+                <a href="/modelos" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Modelos de Casas</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/ventajas" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>¿Qué es EPS?</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/blog" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Blog de Construcción</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/faq" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Preguntas Frecuentes</span>
+
+                </a>
+
+              </li>
+
+              
+
+
+
+              <li>
+
+                <a href="/nosotros" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Sobre Nosotros</span>
+
+                </a>
+
+              </li>
+
+              <li>
+
+                <a href="/contacto" class="text-gray-300 hover:text-primary transition-colors duration-200 flex items-center group">
+
+                  <i class="fas fa-chevron-right text-xs mr-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity"></i>
+
+                  <span>Contacto</span>
+
+                </a>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+
+
+          <!-- Información de contacto -->
+
+          <div>
+
+            <h4 class="font-bold text-lg mb-6 text-white relative pb-3 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-0.5 after:bg-primary">
+
+              Contáctanos
+
+            </h4>
+
+            <ul class="space-y-4">
+
+              <li class="flex items-start">
+
+                <i class="fas fa-map-marker-alt text-primary mr-3 mt-1"></i>
+
+                <span class="text-gray-300">Cl. 147 #101-56, Local 64, Bogotá</span>
+
+              </li>
+
+              <li class="flex items-center">
+
+                <i class="fas fa-phone text-primary mr-3"></i>
+
+                <a href="tel:+573142891018" class="text-gray-300 hover:text-primary transition-colors">314 289 1018</a>
+
+              </li>
+
+              <li class="flex items-center">
+
+                <i class="fas fa-phone text-primary mr-3"></i>
+
+                <a href="tel:+573165771582" class="text-gray-300 hover:text-primary transition-colors">316 577 1582</a>
+
+              </li>
+
+              <li class="flex items-center">
+
+                <i class="fab fa-whatsapp text-primary mr-3 text-lg"></i>
+
+                <a
+
+                  href="https://wa.me/573142891018"
+
+                  target="_blank"
+
+                  class="text-gray-300 hover:text-primary transition-colors font-semibold"
+
+                >
+
+                  Enviar Mensaje
+
+                </a>
+
+              </li>
+
+            </ul>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- Línea divisoria -->
+
+        <div class="border-t border-gray-700/50 my-8"></div>
+
+
+
+        <!-- Copyright y créditos -->
+
+        <div class="flex flex-col md:flex-row justify-between items-center gap-4 pt-6">
+
+          <div class="text-center md:text-left">
+
+            <p class="text-sm text-gray-400 mb-2">
+
+              &copy; 2026 <span class="font-semibold text-white">CONCASAYA</span>. Todos los derechos reservados.
+
+            </p>
+
+            <p class="text-xs text-gray-500">
+
+              Sitio web diseñado para la construcción de casas prefabricadas en Colombia.
+
+            </p>
+
+          </div>
+
+          
+
 <div class="flex flex-col items-center gap-2">
             <p class="text-xs text-gray-500">Desarrollado por</p>
             <a
@@ -796,403 +1585,802 @@
               <span class="font-semibold text-sm">Codify Tech</span>
               <i class="fas fa-external-link-alt text-xs text-cyan-400"></i>
             </a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-        <div id="social-bottom-bar-spacer" aria-hidden="true"></div>
-    <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->
-    <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">
-      <div
-        id="social-bottom-bar"
-        class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]"
-      >
-        <!-- Botón Chatbot -->
-        <button
-          type="button"
-          id="chatbot-floating-btn"
-          aria-label="Abrir asistente virtual"
-          class="cta-attention w-11 h-11 rounded-full flex items-center justify-center bg-white border border-primary/40 text-primary shadow-md transition-all duration-300 hover:bg-white hover:border-primary hover:-translate-y-0.5 hover:scale-110"
-        >
-          <i class="fas fa-robot text-lg"></i>
-        </button>
-
-        <!-- Botón WhatsApp -->
-        <a
-          href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
-          target="_blank"
-          aria-label="WhatsApp"
-          class="cta-attention cta-attention-whatsapp w-11 h-11 rounded-full flex items-center justify-center bg-white border border-green-400/60 text-green-600 shadow-md transition-all duration-300 hover:bg-white hover:border-green-500 hover:-translate-y-0.5 hover:scale-110 relative"
-        >
-          <span
-            class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white shadow-[0_0_0_2px_rgba(239,68,68,0.6)] animate-pulse"
-          ></span>
-          <i class="fab fa-whatsapp text-lg"></i>
-        </a>
-
-        <!-- Redes sociales siempre visibles -->
-        <a
-          href="https://www.tiktok.com/@concasayaprefabricados"
-          target="_blank"
-          aria-label="TikTok"
-          class="w-11 h-11 rounded-full flex items-center justify-center bg-black/80 backdrop-blur-sm border border-white/20 text-white shadow-md transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
-        >
-          <i class="fab fa-tiktok text-lg"></i>
-        </a>
-        <a
-          href="https://www.instagram.com/concasaya"
-          target="_blank"
-          aria-label="Instagram"
-          class="w-11 h-11 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white shadow-md backdrop-blur-sm border border-white/30 transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
-        >
-          <i class="fab fa-instagram text-lg"></i>
-        </a>
-        <a
-          href="https://www.facebook.com/concasaya/"
-          target="_blank"
-          aria-label="Facebook"
-          class="w-11 h-11 rounded-full flex items-center justify-center bg-blue-600/90 hover:bg-blue-700 text-white shadow-md backdrop-blur-sm border border-white/20 transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
-        >
-          <i class="fab fa-facebook-f text-lg"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Modal del Chatbot -->
-    <div
-      id="chatbot-modal"
-      class="chatbot-modal fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-all duration-300"
-      aria-hidden="true"
-      aria-modal="true"
-      role="dialog"
-    >
-      <div
-        class="chatbot-modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm"
-        data-close-modal
-      ></div>
-      <div
-        class="chatbot-modal-content relative flex flex-col w-full h-full sm:max-w-4xl sm:max-h-[90vh] sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-white transform transition-all duration-300 scale-95"
-      >
-        <div class="chatbot-modal-header flex-shrink-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/90 text-white shadow-md">
-          <span class="font-semibold text-sm sm:text-base flex items-center gap-2">
-            <i class="fas fa-robot"></i>
-            Asistente Virtual CONCASAYA
-          </span>
-          <button
-            type="button"
-            id="chatbot-modal-close"
-            aria-label="Cerrar chatbot"
-            class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/30 transition-colors duration-200"
-          >
-            <i class="fas fa-times text-lg"></i>
-          </button>
-        </div>
-        <div class="chatbot-modal-body flex-1 min-h-0 relative">
-          <iframe
-            id="chatbot-iframe"
-            src="about:blank"
-            title="Asistente Virtual CONCASAYA"
-            class="absolute inset-0 w-full h-full border-0"
-          ></iframe>
-        </div>
-      </div>
-    </div>
-
-    <script>
-      const chatbotModal = document.getElementById("chatbot-modal");
-      const chatbotFloatingBtn = document.getElementById("chatbot-floating-btn");
-      const chatbotModalClose = document.getElementById("chatbot-modal-close");
-      const chatbotIframe = document.getElementById("chatbot-iframe");
-
-      function openChatbotModal() {
-        if (!chatbotModal || !chatbotIframe) return;
-        chatbotIframe.src = "/chatbot.html";
-        chatbotModal.classList.add("is-open");
-        chatbotModal.setAttribute("aria-hidden", "false");
-        document.body.style.overflow = "hidden";
-        document.addEventListener("keydown", handleChatbotModalEscape);
-      }
-
-      function closeChatbotModal() {
-        if (!chatbotModal) return;
-        chatbotModal.classList.remove("is-open");
-        chatbotModal.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        document.removeEventListener("keydown", handleChatbotModalEscape);
-      }
-
-      function handleChatbotModalEscape(e) {
-        if (e.key === "Escape") closeChatbotModal();
-      }
-
-      if (chatbotFloatingBtn) {
-        chatbotFloatingBtn.addEventListener("click", openChatbotModal);
-      }
-      if (chatbotModalClose) {
-        chatbotModalClose.addEventListener("click", closeChatbotModal);
-      }
-      chatbotModal?.querySelector("[data-close-modal]")?.addEventListener("click", closeChatbotModal);
-    </script>
-
-    <script type="module">
-      import { supabase } from "./supabaseClient.js";
-      import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
-
-      const postsContainer = document.getElementById("blog-posts-container");
-      const paginationContainer = document.getElementById("blog-pagination");
-      const PAGE_SIZE = 9; // posts por página (3 columnas × 3 filas)
-      let currentPage = 1;
-      let allPosts = []; // se llena en loadBlogPosts y se reutiliza al paginar
-
-      const loadBlogPosts = async () => {
-        // Cargar posts de Supabase
-        let supabasePosts = [];
-        const { data: posts, error } = await supabase
-          .from("concasaya_blog_posts")
-          .select("*")
-          .order("created_at", { ascending: false });
-
-        if (!error && posts) {
-          supabasePosts = posts.map(post => ({
-            id: post.id,
-            title: post.title,
-            description: post.content ? post.content.substring(0, 150) + "..." : "",
-            image: post.image_url || null,
-            date: post.created_at,
-            url: `/blog/post.html?id=${post.id}`,
-            type: "supabase"
-          }));
-        }
-
-        // Convertir posts estáticos al mismo formato
-        const staticPostsFormatted = staticPosts.map(post => ({
-          id: post.slug,
-          title: post.title,
-          description: post.description,
-          image: post.image || null,
-          date: post.date,
-          url: post.url,
-          type: "static",
-          category: post.category || "Artículo",
-          pinned: post.pinned === true,
-          flipThumbnailHorizontal: post.flipThumbnailHorizontal === true
-        }));
-
-        // Buscar la imagen del artículo de la cabaña
-        const cabanaPost = supabasePosts.find(p => 
-          p.title && (
-            (p.title.includes("Diseña tu Cabaña Única") && p.title.includes("Personalización y Presupuesto Justo")) ||
-            p.title.includes("Diseña tu Cabaña Única: Personalización y Presupuesto Justo")
-          )
-        );
-        const cabanaImage = cabanaPost ? cabanaPost.image : null;
-
-        // Buscar la imagen del artículo de Zipaquirá
-        const zipaquiraPost = supabasePosts.find(p => 
-          p.title && (
-            (p.title.includes("Cuánto Cuesta una Casa Prefabricada en Zipaquirá") && p.title.includes("Dónde Comprarla")) ||
-            p.title.includes("¿Cuánto Cuesta una Casa Prefabricada en Zipaquirá y Dónde Comprarla?")
-          )
-        );
-        const zipaquiraImage = zipaquiraPost ? zipaquiraPost.image : null;
-
-        // Buscar la imagen del artículo de Chía
-        const chiaPost = supabasePosts.find(p => 
-          p.title && (
-            (p.title.includes("Casas Prefabricadas en Chía") && p.title.includes("Guía Definitiva de Precios") && p.title.includes("Lotes y Permisos")) ||
-            p.title.includes("Casas Prefabricadas en Chía: Guía Definitiva de Precios, Lotes y Permisos")
-          )
-        );
-        const chiaImage = chiaPost ? chiaPost.image : null;
-
-        // Fijados arriba; el resto por fecha (más recientes primero)
-        const allPosts = [...supabasePosts, ...staticPostsFormatted].sort((a, b) => {
-          if (a.pinned && !b.pinned) return -1;
-          if (!a.pinned && b.pinned) return 1;
-          const dateA = new Date(a.date);
-          const dateB = new Date(b.date);
-          return dateB - dateA;
-        });
-
-        applyThumbnailFlipEffective(allPosts);
-
-        if (allPosts.length === 0) {
-          postsContainer.innerHTML =
-            '<p class="col-span-full text-center">Aún no hay entradas en el blog. ¡Vuelve pronto!</p>';
-          return;
-        }
-
-        // Renderiza una página de posts (slice del array global)
-        const renderPage = (page) => {
-          postsContainer.innerHTML = "";
-          const start = (page - 1) * PAGE_SIZE;
-          const end = start + PAGE_SIZE;
-          const pagePosts = allPosts.slice(start, end);
-
-          pagePosts.forEach((post, index) => {
-            const article = document.createElement("article");
-            const isPinned = post.pinned === true;
-            article.className = isPinned
-              ? "bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ring-2 ring-primary/40 md:col-span-2 lg:col-span-3"
-              : "bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300";
-            article.setAttribute("data-aos", "fade-up");
-            article.setAttribute("data-aos-delay", isPinned ? "0" : String((index % 3) * 100));
-
-            // Detectar si es un artículo con video (Cundinamarca, Clima Cálido, Ventajas 2026 o Sismos y Clima)
-            const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
-            const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
-            const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
-            const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
-            const hasVideo = isClimaCalidoPost || isSismosClimaPost;
-
-            // Determinar qué imagen usar según el artículo
-            let imageSource = "/assets/images/herocasa.webp";
-            if (isClimaCalidoPost) {
-              imageSource = "/assets/images/herocasa.webp";
-            } else if (isSismosClimaPost) {
-              imageSource = "/assets/images/herocasa.webp";
-            }
-
-            // Detectar si es el artículo sobre seguridad y durabilidad
-            const isSeguridadDurabilidadPost = post.title && (
-              (post.title.includes("casas prefabricadas son seguras") && post.title.includes("durables") && post.title.includes("Colombia")) ||
-              post.title.includes("¿Las casas prefabricadas son seguras y durables? Todo lo que debes saber en Colombia")
-            );
-
-            let postMedia;
-            // Si es el artículo de Cundinamarca, usar la imagen de la cabaña si está disponible
-            if (isCundinamarcaPost && cabanaImage) {
-              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${cabanaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-            } else if (isVentajas2026Post && zipaquiraImage) {
-              // Si es el artículo de Ventajas 2026, usar la imagen de Zipaquirá si está disponible
-              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${zipaquiraImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-            } else if (isSeguridadDurabilidadPost && chiaImage) {
-              // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
-              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
-            } else if (hasVideo) {
-              // Mostrar imagen para artículos que antes tenían video
-              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
-                <img
-                  src="${imageSource}"
-                  alt="${post.title}"
-                  class="w-full h-full object-cover"
-                  style="min-height: 200px; max-height: 400px;"
-                  loading="lazy"
-                />
-              </div>`;
-            } else if (post.image) {
-              const thumbFlip =
-                post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : "";
-              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full"${thumbFlip} loading="lazy" /></div>`;
-            } else {
-              // Placeholder si no hay imagen
-              postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';
-            }
-
-            const pinnedLayout = isPinned
-              ? "block md:grid md:grid-cols-2 md:items-stretch"
-              : "block";
-            const pinnedMediaWrap = isPinned ? "md:min-h-[280px]" : "";
-            const pinnedBody = isPinned ? "md:flex md:flex-col md:justify-center" : "";
-            const categoryLabel = post.category || "Artículo";
-            const pinnedBadge = isPinned
-              ? `<span class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><i class="fas fa-thumbtack" aria-hidden="true"></i> Artículo destacado</span>`
-              : `<span class="text-sm text-primary font-semibold uppercase tracking-wide">${categoryLabel}</span>`;
-
-            // Bloque de autor + fecha + tiempo de lectura (estilo SinMulta)
-            const authorName = post.author || "Equipo CONCASAYA";
-            const authorInitials = post.authorInitials || (authorName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase());
-            const readTime = post.readTime || "8 min de lectura";
-            let dateLabel = "";
-            if (post.date) {
-              try {
-                const d = new Date(post.date);
-                if (!isNaN(d.getTime())) {
-                  dateLabel = d.toLocaleDateString("es-CO", { year: "numeric", month: "long", day: "numeric" });
-                }
-              } catch (e) {}
-            }
-            const authorBlock = `
-              <div class="post-meta flex items-center gap-2.5 mt-4 pt-4 border-t border-gray-100 text-sm text-gray-500">
-                <div class="post-meta__avatar">${authorInitials}</div>
-                <div class="flex flex-col leading-tight">
-                  <span class="post-meta__name font-semibold text-dark">${authorName}</span>
-                  ${dateLabel ? `<span class="post-meta__date text-xs">${dateLabel}</span>` : ""}
-                </div>
-                <span class="post-meta__sep" aria-hidden="true"></span>
-                <div class="post-meta__time inline-flex items-center gap-1 text-xs text-gray-500">
-                  <i class="fas fa-clock" aria-hidden="true"></i> ${readTime}
-                </div>
-              </div>
-            `;
-
-            article.innerHTML = `
-                      <a href="${post.url}" class="${pinnedLayout}">
-                          <div class="${pinnedMediaWrap}">${postMedia}</div>
-                          <div class="p-6 ${pinnedBody}">
-                              ${pinnedBadge}
-                              <h3 class="${isPinned ? "text-2xl md:text-3xl" : "text-xl"} font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
-                              <p class="text-gray-600 mb-4 ${isPinned ? "text-base md:text-lg" : ""}">${post.description}</p>
-                              ${authorBlock}
-                              <span class="font-semibold text-primary hover:underline inline-flex items-center mt-3">
-                                  Leer más <i class="fas fa-arrow-right ml-2"></i>
-                              </span>
-                          </div>
-                      </a>
-                  `;
-            postsContainer.appendChild(article);
-          });
-
-          // Construir controles de paginación
-          const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
-          if (totalPages <= 1) {
-            paginationContainer.innerHTML = "";
-          } else {
-            const showingFrom = start + 1;
-            const showingTo = Math.min(end, allPosts.length);
-            const counter = `<p class="text-sm text-gray-500">Mostrando <span class="font-semibold text-dark">${showingFrom}–${showingTo}</span> de <span class="font-semibold text-dark">${allPosts.length}</span> artículos</p>`;
-            const prevDisabled = page <= 1;
-            const nextDisabled = page >= totalPages;
-            const prevBtn = `<button type="button" data-page="${page - 1}" class="px-4 py-2 rounded-full border border-gray-300 bg-white text-dark font-semibold hover:bg-gray-100 transition disabled:opacity-40 disabled:cursor-not-allowed"${prevDisabled ? " disabled" : ""}><i class="fas fa-arrow-left mr-2"></i>Anterior</button>`;
-            const nextBtn = `<button type="button" data-page="${page + 1}" class="px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary/90 transition disabled:opacity-40 disabled:cursor-not-allowed"${nextDisabled ? " disabled" : ""}>Siguiente<i class="fas fa-arrow-right ml-2"></i></button>`;
-            paginationContainer.innerHTML = `${counter}<div class="flex items-center gap-3">${prevBtn}${nextBtn}</div>`;
-            // Listeners de los botones
-            paginationContainer.querySelectorAll("button[data-page]").forEach((btn) => {
-              btn.addEventListener("click", () => {
-                const targetPage = parseInt(btn.getAttribute("data-page"), 10);
-                if (!Number.isFinite(targetPage) || targetPage < 1 || targetPage > totalPages) return;
-                currentPage = targetPage;
-                renderPage(currentPage);
-                // Scroll suave al inicio de la lista del blog
-                const list = document.getElementById("blog-list");
-                if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
-              });
-            });
-          }
-          AOS.refresh();
-        };
-
-        currentPage = 1;
-        renderPage(currentPage);
-      };
-
-      document.addEventListener("DOMContentLoaded", loadBlogPosts);
-    </script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init({
-        duration: 800,
-        once: true,
-      });
-
-      // Menú tablet/móvil mejorado con animaciones modernas
-    </script>
-  
-    <script src="/assets/js/municipios.js"></script>
-    <script src="/assets/js/nav-municipios.js"></script>
-    <script src="/assets/js/nav-menu.js"></script>
-    <script src="/assets/js/whatsapp-modal.js"></script>
+          </div>
 
-  </body>
-</html>
+        </div>
+
+      </div>
+
+    </footer>
+
+
+
+        <div id="social-bottom-bar-spacer" aria-hidden="true"></div>
+
+    <!-- Barra inferior con chatbot, WhatsApp y redes sociales -->
+
+    <div class="fixed inset-x-0 bottom-0 z-40 flex justify-center">
+
+      <div
+
+        id="social-bottom-bar"
+
+        class="flex items-center gap-3 px-4 py-3 w-full justify-center bg-white/10 backdrop-blur-md border-t border-white/15 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]"
+
+      >
+
+        <!-- Botón Chatbot -->
+
+        <button
+
+          type="button"
+
+          id="chatbot-floating-btn"
+
+          aria-label="Abrir asistente virtual"
+
+          class="cta-attention w-11 h-11 rounded-full flex items-center justify-center bg-white border border-primary/40 text-primary shadow-md transition-all duration-300 hover:bg-white hover:border-primary hover:-translate-y-0.5 hover:scale-110"
+
+        >
+
+          <i class="fas fa-robot text-lg"></i>
+
+        </button>
+
+
+
+        <!-- Botón WhatsApp -->
+
+        <a
+
+          href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20estoy%20interesado%20en%20una%20casa%20prefabricada.%20Me%20gustar%C3%ADa%20recibir%20m%C3%A1s%20informaci%C3%B3n."
+
+          target="_blank"
+
+          aria-label="WhatsApp"
+
+          class="cta-attention cta-attention-whatsapp w-11 h-11 rounded-full flex items-center justify-center bg-white border border-green-400/60 text-green-600 shadow-md transition-all duration-300 hover:bg-white hover:border-green-500 hover:-translate-y-0.5 hover:scale-110 relative"
+
+        >
+
+          <span
+
+            class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-red-500 border-2 border-white shadow-[0_0_0_2px_rgba(239,68,68,0.6)] animate-pulse"
+
+          ></span>
+
+          <i class="fab fa-whatsapp text-lg"></i>
+
+        </a>
+
+
+
+        <!-- Redes sociales siempre visibles -->
+
+        <a
+
+          href="https://www.tiktok.com/@concasayaprefabricados"
+
+          target="_blank"
+
+          aria-label="TikTok"
+
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-black/80 backdrop-blur-sm border border-white/20 text-white shadow-md transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
+
+        >
+
+          <i class="fab fa-tiktok text-lg"></i>
+
+        </a>
+
+        <a
+
+          href="https://www.instagram.com/concasaya"
+
+          target="_blank"
+
+          aria-label="Instagram"
+
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 text-white shadow-md backdrop-blur-sm border border-white/30 transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
+
+        >
+
+          <i class="fab fa-instagram text-lg"></i>
+
+        </a>
+
+        <a
+
+          href="https://www.facebook.com/concasaya/"
+
+          target="_blank"
+
+          aria-label="Facebook"
+
+          class="w-11 h-11 rounded-full flex items-center justify-center bg-blue-600/90 hover:bg-blue-700 text-white shadow-md backdrop-blur-sm border border-white/20 transition-transform duration-200 hover:-translate-y-0.5 hover:scale-110"
+
+        >
+
+          <i class="fab fa-facebook-f text-lg"></i>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Modal del Chatbot -->
+
+    <div
+
+      id="chatbot-modal"
+
+      class="chatbot-modal fixed inset-0 z-[100] flex items-center justify-center p-0 sm:p-4 opacity-0 pointer-events-none transition-all duration-300"
+
+      aria-hidden="true"
+
+      aria-modal="true"
+
+      role="dialog"
+
+    >
+
+      <div
+
+        class="chatbot-modal-backdrop absolute inset-0 bg-black/60 backdrop-blur-sm"
+
+        data-close-modal
+
+      ></div>
+
+      <div
+
+        class="chatbot-modal-content relative flex flex-col w-full h-full sm:max-w-4xl sm:max-h-[90vh] sm:h-[85vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-white transform transition-all duration-300 scale-95"
+
+      >
+
+        <div class="chatbot-modal-header flex-shrink-0 flex items-center justify-between px-4 py-3 bg-gradient-to-r from-primary to-primary/90 text-white shadow-md">
+
+          <span class="font-semibold text-sm sm:text-base flex items-center gap-2">
+
+            <i class="fas fa-robot"></i>
+
+            Asistente Virtual CONCASAYA
+
+          </span>
+
+          <button
+
+            type="button"
+
+            id="chatbot-modal-close"
+
+            aria-label="Cerrar chatbot"
+
+            class="w-10 h-10 rounded-full flex items-center justify-center bg-white/20 hover:bg-white/30 transition-colors duration-200"
+
+          >
+
+            <i class="fas fa-times text-lg"></i>
+
+          </button>
+
+        </div>
+
+        <div class="chatbot-modal-body flex-1 min-h-0 relative">
+
+          <iframe
+
+            id="chatbot-iframe"
+
+            src="about:blank"
+
+            title="Asistente Virtual CONCASAYA"
+
+            class="absolute inset-0 w-full h-full border-0"
+
+          ></iframe>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <script>
+
+      const chatbotModal = document.getElementById("chatbot-modal");
+
+      const chatbotFloatingBtn = document.getElementById("chatbot-floating-btn");
+
+      const chatbotModalClose = document.getElementById("chatbot-modal-close");
+
+      const chatbotIframe = document.getElementById("chatbot-iframe");
+
+
+
+      function openChatbotModal() {
+
+        if (!chatbotModal || !chatbotIframe) return;
+
+        chatbotIframe.src = "/chatbot.html";
+
+        chatbotModal.classList.add("is-open");
+
+        chatbotModal.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+
+        document.addEventListener("keydown", handleChatbotModalEscape);
+
+      }
+
+
+
+      function closeChatbotModal() {
+
+        if (!chatbotModal) return;
+
+        chatbotModal.classList.remove("is-open");
+
+        chatbotModal.setAttribute("aria-hidden", "true");
+
+        document.body.style.overflow = "";
+
+        document.removeEventListener("keydown", handleChatbotModalEscape);
+
+      }
+
+
+
+      function handleChatbotModalEscape(e) {
+
+        if (e.key === "Escape") closeChatbotModal();
+
+      }
+
+
+
+      if (chatbotFloatingBtn) {
+
+        chatbotFloatingBtn.addEventListener("click", openChatbotModal);
+
+      }
+
+      if (chatbotModalClose) {
+
+        chatbotModalClose.addEventListener("click", closeChatbotModal);
+
+      }
+
+      chatbotModal?.querySelector("[data-close-modal]")?.addEventListener("click", closeChatbotModal);
+
+    </script>
+
+
+
+    <script type="module">
+
+      import { supabase } from "./supabaseClient.js";
+
+      import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
+
+
+
+      const postsContainer = document.getElementById("blog-posts-container");
+
+      const paginationContainer = document.getElementById("blog-pagination");
+
+      const PAGE_SIZE = 9; // posts por página (3 columnas × 3 filas)
+
+      let currentPage = 1;
+
+      let allPosts = []; // se llena en loadBlogPosts y se reutiliza al paginar
+
+
+
+      const loadBlogPosts = async () => {
+
+        // Cargar posts de Supabase
+
+        let supabasePosts = [];
+
+        const { data: posts, error } = await supabase
+
+          .from("concasaya_blog_posts")
+
+          .select("*")
+
+          .order("created_at", { ascending: false });
+
+
+
+        if (!error && posts) {
+
+          supabasePosts = posts.map(post => ({
+
+            id: post.id,
+
+            title: post.title,
+
+            description: post.content ? post.content.substring(0, 150) + "..." : "",
+
+            image: post.image_url || null,
+
+            date: post.created_at,
+
+            url: `/blog/post.html?id=${post.id}`,
+
+            type: "supabase"
+
+          }));
+
+        }
+
+
+
+        // Convertir posts estáticos al mismo formato
+
+        const staticPostsFormatted = staticPosts.map(post => ({
+
+          id: post.slug,
+
+          title: post.title,
+
+          description: post.description,
+
+          image: post.image || null,
+
+          date: post.date,
+
+          url: post.url,
+
+          type: "static",
+
+          category: post.category || "Artículo",
+
+          pinned: post.pinned === true,
+
+          flipThumbnailHorizontal: post.flipThumbnailHorizontal === true
+
+        }));
+
+
+
+        // Buscar la imagen del artículo de la cabaña
+
+        const cabanaPost = supabasePosts.find(p => 
+
+          p.title && (
+
+            (p.title.includes("Diseña tu Cabaña Única") && p.title.includes("Personalización y Presupuesto Justo")) ||
+
+            p.title.includes("Diseña tu Cabaña Única: Personalización y Presupuesto Justo")
+
+          )
+
+        );
+
+        const cabanaImage = cabanaPost ? cabanaPost.image : null;
+
+
+
+        // Buscar la imagen del artículo de Zipaquirá
+
+        const zipaquiraPost = supabasePosts.find(p => 
+
+          p.title && (
+
+            (p.title.includes("Cuánto Cuesta una Casa Prefabricada en Zipaquirá") && p.title.includes("Dónde Comprarla")) ||
+
+            p.title.includes("¿Cuánto Cuesta una Casa Prefabricada en Zipaquirá y Dónde Comprarla?")
+
+          )
+
+        );
+
+        const zipaquiraImage = zipaquiraPost ? zipaquiraPost.image : null;
+
+
+
+        // Buscar la imagen del artículo de Chía
+
+        const chiaPost = supabasePosts.find(p => 
+
+          p.title && (
+
+            (p.title.includes("Casas Prefabricadas en Chía") && p.title.includes("Guía Definitiva de Precios") && p.title.includes("Lotes y Permisos")) ||
+
+            p.title.includes("Casas Prefabricadas en Chía: Guía Definitiva de Precios, Lotes y Permisos")
+
+          )
+
+        );
+
+        const chiaImage = chiaPost ? chiaPost.image : null;
+
+
+
+        // Fijados arriba; el resto por fecha (más recientes primero)
+
+        const allPosts = [...supabasePosts, ...staticPostsFormatted].sort((a, b) => {
+
+          if (a.pinned && !b.pinned) return -1;
+
+          if (!a.pinned && b.pinned) return 1;
+
+          const dateA = new Date(a.date);
+
+          const dateB = new Date(b.date);
+
+          return dateB - dateA;
+
+        });
+
+
+
+        applyThumbnailFlipEffective(allPosts);
+
+
+
+        if (allPosts.length === 0) {
+
+          postsContainer.innerHTML =
+
+            '<p class="col-span-full text-center">Aún no hay entradas en el blog. ¡Vuelve pronto!</p>';
+
+          return;
+
+        }
+
+
+
+        // Renderiza una página de posts (slice del array global)
+
+        const renderPage = (page) => {
+
+          postsContainer.innerHTML = "";
+
+          const start = (page - 1) * PAGE_SIZE;
+
+          const end = start + PAGE_SIZE;
+
+          const pagePosts = allPosts.slice(start, end);
+
+
+
+          pagePosts.forEach((post, index) => {
+
+            const article = document.createElement("article");
+
+            const isPinned = post.pinned === true;
+
+            article.className = isPinned
+
+              ? "bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 ring-2 ring-primary/40 md:col-span-2 lg:col-span-3"
+
+              : "bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300";
+
+            article.setAttribute("data-aos", "fade-up");
+
+            article.setAttribute("data-aos-delay", isPinned ? "0" : String((index % 3) * 100));
+
+
+
+            // Detectar si es un artículo con video (Cundinamarca, Clima Cálido, Ventajas 2026 o Sismos y Clima)
+
+            const isCundinamarcaPost = post.url && post.url.includes("venta-casas-prefabricadas-cundinamarca");
+
+            const isClimaCalidoPost = post.url && post.url.includes("ventajas-prefabricados-clima-calido-santa-marta");
+
+            const isVentajas2026Post = post.url && post.url.includes("ventajas-construccion-prefabricada-2026");
+
+            const isSismosClimaPost = post.title && post.title.includes("Comportamiento de las casas prefabricadas frente a sismos y clima en Colombia");
+
+            const hasVideo = isClimaCalidoPost || isSismosClimaPost;
+
+
+
+            // Determinar qué imagen usar según el artículo
+
+            let imageSource = "/assets/images/herocasa.webp";
+
+            if (isClimaCalidoPost) {
+
+              imageSource = "/assets/images/herocasa.webp";
+
+            } else if (isSismosClimaPost) {
+
+              imageSource = "/assets/images/herocasa.webp";
+
+            }
+
+
+
+            // Detectar si es el artículo sobre seguridad y durabilidad
+
+            const isSeguridadDurabilidadPost = post.title && (
+
+              (post.title.includes("casas prefabricadas son seguras") && post.title.includes("durables") && post.title.includes("Colombia")) ||
+
+              post.title.includes("¿Las casas prefabricadas son seguras y durables? Todo lo que debes saber en Colombia")
+
+            );
+
+
+
+            let postMedia;
+
+            // Si es el artículo de Cundinamarca, usar la imagen de la cabaña si está disponible
+
+            if (isCundinamarcaPost && cabanaImage) {
+
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${cabanaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+
+            } else if (isVentajas2026Post && zipaquiraImage) {
+
+              // Si es el artículo de Ventajas 2026, usar la imagen de Zipaquirá si está disponible
+
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${zipaquiraImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+
+            } else if (isSeguridadDurabilidadPost && chiaImage) {
+
+              // Si es el artículo sobre seguridad y durabilidad, usar la imagen de Chía si está disponible
+
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${chiaImage}" alt="${post.title}" class="w-full h-auto object-cover max-h-full" loading="lazy" /></div>`;
+
+            } else if (hasVideo) {
+
+              // Mostrar imagen para artículos que antes tenían video
+
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden relative" style="min-height: 200px; max-height: 400px;">
+
+                <img
+
+                  src="${imageSource}"
+
+                  alt="${post.title}"
+
+                  class="w-full h-full object-cover"
+
+                  style="min-height: 200px; max-height: 400px;"
+
+                  loading="lazy"
+
+                />
+
+              </div>`;
+
+            } else if (post.image) {
+
+              const thumbFlip =
+
+                post.thumbnailFlipEffective === true ? ' style="transform: scaleX(-1);"' : "";
+
+              postMedia = `<div class="w-full bg-gray-50 flex items-center justify-center overflow-hidden" style="min-height: 200px; max-height: 400px;"><img src="${post.image}" alt="${post.title}" class="w-full h-auto object-cover max-h-full"${thumbFlip} loading="lazy" /></div>`;
+
+            } else {
+
+              // Placeholder si no hay imagen
+
+              postMedia = '<div class="w-full h-56 bg-gradient-to-br from-primary to-secondary flex items-center justify-center"><i class="fas fa-newspaper text-white text-4xl"></i></div>';
+
+            }
+
+
+
+            const pinnedLayout = isPinned
+
+              ? "block md:grid md:grid-cols-2 md:items-stretch"
+
+              : "block";
+
+            const pinnedMediaWrap = isPinned ? "md:min-h-[280px]" : "";
+
+            const pinnedBody = isPinned ? "md:flex md:flex-col md:justify-center" : "";
+
+            const categoryLabel = post.category || "Artículo";
+
+            const pinnedBadge = isPinned
+
+              ? `<span class="inline-flex items-center gap-1.5 bg-primary text-white text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3"><i class="fas fa-thumbtack" aria-hidden="true"></i> Artículo destacado</span>`
+
+              : `<span class="text-sm text-primary font-semibold uppercase tracking-wide">${categoryLabel}</span>`;
+
+
+
+            // Bloque de autor + fecha + tiempo de lectura (estilo SinMulta)
+
+            const authorName = post.author || "Equipo CONCASAYA";
+
+            const authorInitials = post.authorInitials || (authorName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase());
+
+            const readTime = post.readTime || "8 min de lectura";
+
+            let dateLabel = "";
+
+            if (post.date) {
+
+              try {
+
+                const d = new Date(post.date);
+
+                if (!isNaN(d.getTime())) {
+
+                  dateLabel = d.toLocaleDateString("es-CO", { year: "numeric", month: "long", day: "numeric" });
+
+                }
+
+              } catch (e) {}
+
+            }
+
+            const authorBlock = `
+
+              <div class="post-meta flex items-center gap-2.5 mt-4 pt-4 border-t border-gray-100 text-sm text-gray-500">
+
+                <div class="post-meta__avatar">${authorInitials}</div>
+
+                <div class="flex flex-col leading-tight">
+
+                  <span class="post-meta__name font-semibold text-dark">${authorName}</span>
+
+                  ${dateLabel ? `<span class="post-meta__date text-xs">${dateLabel}</span>` : ""}
+
+                </div>
+
+                <span class="post-meta__sep" aria-hidden="true"></span>
+
+                <div class="post-meta__time inline-flex items-center gap-1 text-xs text-gray-500">
+
+                  <i class="fas fa-clock" aria-hidden="true"></i> ${readTime}
+
+                </div>
+
+              </div>
+
+            `;
+
+
+
+            article.innerHTML = `
+
+                      <a href="${post.url}" class="${pinnedLayout}">
+
+                          <div class="${pinnedMediaWrap}">${postMedia}</div>
+
+                          <div class="p-6 ${pinnedBody}">
+
+                              ${pinnedBadge}
+
+                              <h3 class="${isPinned ? "text-2xl md:text-3xl" : "text-xl"} font-bold my-2 text-dark hover:text-primary transition-colors">${post.title}</h3>
+
+                              <p class="text-gray-600 mb-4 ${isPinned ? "text-base md:text-lg" : ""}">${post.description}</p>
+
+                              ${authorBlock}
+
+                              <span class="font-semibold text-primary hover:underline inline-flex items-center mt-3">
+
+                                  Leer más <i class="fas fa-arrow-right ml-2"></i>
+
+                              </span>
+
+                          </div>
+
+                      </a>
+
+                  `;
+
+            postsContainer.appendChild(article);
+
+          });
+
+
+
+          // Construir controles de paginación
+
+          const totalPages = Math.max(1, Math.ceil(allPosts.length / PAGE_SIZE));
+
+          if (totalPages <= 1) {
+
+            paginationContainer.innerHTML = "";
+
+          } else {
+
+            const showingFrom = start + 1;
+
+            const showingTo = Math.min(end, allPosts.length);
+
+            const counter = `<p class="text-sm text-gray-500">Mostrando <span class="font-semibold text-dark">${showingFrom}–${showingTo}</span> de <span class="font-semibold text-dark">${allPosts.length}</span> artículos</p>`;
+
+            const prevDisabled = page <= 1;
+
+            const nextDisabled = page >= totalPages;
+
+            const prevBtn = `<button type="button" data-page="${page - 1}" class="px-4 py-2 rounded-full border border-gray-300 bg-white text-dark font-semibold hover:bg-gray-100 transition disabled:opacity-40 disabled:cursor-not-allowed"${prevDisabled ? " disabled" : ""}><i class="fas fa-arrow-left mr-2"></i>Anterior</button>`;
+
+            const nextBtn = `<button type="button" data-page="${page + 1}" class="px-4 py-2 rounded-full bg-primary text-white font-semibold hover:bg-primary/90 transition disabled:opacity-40 disabled:cursor-not-allowed"${nextDisabled ? " disabled" : ""}>Siguiente<i class="fas fa-arrow-right ml-2"></i></button>`;
+
+            paginationContainer.innerHTML = `${counter}<div class="flex items-center gap-3">${prevBtn}${nextBtn}</div>`;
+
+            // Listeners de los botones
+
+            paginationContainer.querySelectorAll("button[data-page]").forEach((btn) => {
+
+              btn.addEventListener("click", () => {
+
+                const targetPage = parseInt(btn.getAttribute("data-page"), 10);
+
+                if (!Number.isFinite(targetPage) || targetPage < 1 || targetPage > totalPages) return;
+
+                currentPage = targetPage;
+
+                renderPage(currentPage);
+
+                // Scroll suave al inicio de la lista del blog
+
+                const list = document.getElementById("blog-list");
+
+                if (list) list.scrollIntoView({ behavior: "smooth", block: "start" });
+
+              });
+
+            });
+
+          }
+
+          AOS.refresh();
+
+        };
+
+
+
+        currentPage = 1;
+
+        renderPage(currentPage);
+
+      };
+
+
+
+      document.addEventListener("DOMContentLoaded", loadBlogPosts);
+
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+
+      AOS.init({
+
+        duration: 800,
+
+        once: true,
+
+      });
+
+
+
+      // Menú tablet/móvil mejorado con animaciones modernas
+
+    </script>
+
+  
+
+    <script src="/assets/js/municipios.js"></script>
+
+    <script src="/assets/js/nav-municipios.js"></script>
+
+    <script src="/assets/js/nav-menu.js"></script>
+
+    <script src="/assets/js/whatsapp-modal.js"></script>
+
+
+  </body>
+
+</html>
+

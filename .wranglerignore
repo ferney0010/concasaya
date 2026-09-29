@@ -1,0 +1,35 @@
+# Wrangler Pages: archivos y directorios excluidos del deploy.
+# Cloudflare Pages tiene un limite de 25 MiB por archivo, y no todo lo que
+# esta en este repo debe llegar a produccion.
+
+# Staging / backups de deploys anteriores
+.deploy-staging/
+
+# Scripts temporales de Mavis (.tmp-*.js, .tmp-*.py)
+.tmp-*
+
+# Backups generados durante transformaciones
+*.bak
+
+# Tests locales (incluye modelos ML >25 MiB que rompen el deploy)
+tmp-test/
+
+# Logs y caches
+.wrangler/
+node_modules/
+
+# Archivos del repo que no son sitio
+.git/
+.gitattributes
+.gitignore
+server.js
+package.json
+package-lock.json
+tailwind.config.js
+supabaseClient.js
+b678cced33e54befb1a4fe9e27ee5bbd.txt
+indexnow-payload.json
+knowledge_base.json
+verify.py
+_dev-skip-alert.html
+README*

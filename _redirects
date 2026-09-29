@@ -2,4 +2,32 @@
 # Equivalente al antiguo vercel.json (redirects permanentes)
 # Formato: /ruta-vieja /ruta-nueva 301
 
-/cotizador-encuesta.html /cotizador-precios-casas-prefabricadas.html 301
+/cotizador-encuesta.html /cotizador-precios-casas-prefabricadas 301
+
+# ------------------------------------------------------------------
+# Canonico del sitio: https://www.concasaya.com/
+#
+# Antes el apex (concasaya.com) servia 200 con el mismo contenido que el
+# www, dividiendo las senales entre dos hosts para la misma pagina.
+# Con estas reglas el apex pasa por 301 y todas las visitas convergen al
+# host canonico. Solo matchean peticiones cuyo host es "concasaya.com";
+# las peticiones a www NO matchean y se sirven normalmente.
+# ------------------------------------------------------------------
+
+https://concasaya.com/*  https://www.concasaya.com/:splat  301
+http://concasaya.com/*  https://www.concasaya.com/:splat 301
+
+# ------------------------------------------------------------------
+# .deploy-staging/ es una carpeta de staging que se estaba publicando
+# en produccion: 715 archivos duplicados con los canonicals viejos
+# (con .html) y enlaces internos rotos. Google podia rastrearla y
+# competia con las paginas reales por las mismas consultas.
+#
+# .wranglerignore ya la excluye, pero Cloudflare Pages seguia
+# sirviendola. En vez de borrar la carpeta (que se regenera con
+# scripts/stage-cloudflare-deploy.js), la redirigimos a la pagina
+# real equivalente: /.deploy-staging/modelos -> /modelos.
+# Asi no queda contenido duplicado rastreable.
+# ------------------------------------------------------------------
+
+/.deploy-staging/*  /:splat  200
