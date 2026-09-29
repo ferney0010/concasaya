@@ -347,21 +347,23 @@
               '</div>' +
             '</div>' +
             // PANTALLA FINAL (flujo normal): el usuario abre WhatsApp con un
-            // click real. Nunca se abre solo con window.open() porque los
-            // navegadores bloquean las ventanas emergentes que no provienen
-            // de un click directo del usuario.
+            // click real. Es un <a href> de verdad, no un window.open() de JS:
+            // la navegacion por enlace initiated por el usuario NUNCA se
+            // bloquea, ni siquiera desde JS, y no depende de que el popup
+            // blocker este configurado de cierta forma.
             '<div class="wm-step" data-wm-step="5-enviar" style="display:none">' +
               '<div class="wm-final-screen">' +
                 '<div class="wm-final-screen-icon">' +
                   '<i class="fab fa-whatsapp"></i>' +
                 '</div>' +
-                '<h3 class="wm-final-screen-title">Listo, te falta un paso</h3>' +
-                '<p class="wm-final-screen-cta">Pulsa el boton para abrir WhatsApp con tu mensaje listo. Ahi te atendemos al instante.</p>' +
-                '<button type="button" class="wm-send-btn wm-show" data-wm-open-wa>' +
+                '<h3 class="wm-final-screen-title">Listo, tu mensaje esta listo</h3>' +
+                '<p class="wm-final-screen-cta">Pulsa el boton verde para abrir WhatsApp. Tu solicitud ya va escrita, solo tienes que enviarla.</p>' +
+                '<a href="#" class="wm-send-btn wm-show" data-wm-open-wa target="_blank" rel="noopener">' +
                   '<i class="fab fa-whatsapp"></i>' +
                   '<span>Abrir WhatsApp</span>' +
-                '</button>' +
-                '<p class="wm-final-screen-note">Se abre WhatsApp con tu solicitud ya escrita.</p>' +
+                '</a>' +
+                '<p class="wm-final-screen-note">Si no se abre, copia este enlace y pegalo en tu navegador:</p>' +
+                '<a class="wm-fallback-link" data-wm-open-wa-fallback href="#">Ver el enlace de WhatsApp</a>' +
               '</div>' +
             '</div>' +
             // Boton volver
@@ -674,15 +676,29 @@
       ? buildMessageWithChecklist(state.intention, department, municipality)
       : buildMessage(state.intention, department, municipality);
     var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
-    // Guardamos la URL para abrirla SOLO cuando el usuario pulse el boton.
-    // Abrirla con window.open() desde un setTimeout lo bloquea el navegador:
-    // la llamada deja de estar dentro del click del usuario y Chrome/Safari
-    // la tratan como ventana emergente no solicitada.
+    // Guardamos la URL y la escribimos en los enlaces reales de la pantalla
+    // final. Al ser <a href>, el navegador navega de forma nativa: esto NUNCA
+    // se bloquea como ventana emergente, porque no depende de window.open().
     state.pendingUrl = url;
     if (cameFromChecklist) {
       showStep('4-final');
     } else {
+      // Escribir el href ANTES de mostrar el paso evita que el usuario pueda
+      // pulsar el boton con un href vacio.
+      writeFinalLinks(url);
       showStep('5-enviar');
+    }
+  }
+
+  // Escribe la URL de WhatsApp en los enlaces de la pantalla final.
+  function writeFinalLinks(url) {
+    var main = document.querySelector('[data-wm-open-wa]');
+    if (main) main.setAttribute('href', url);
+    var fb = document.querySelector('[data-wm-open-wa-fallback]');
+    if (fb) {
+      fb.setAttribute('href', url);
+      fb.setAttribute('target', '_blank');
+      fb.setAttribute('rel', 'noopener');
     }
   }
 
@@ -909,10 +925,19 @@
   }
 
   // === CLICK EN BOTON "ABRIR WHATSAPP" (flujo normal, paso 5) ===
+  // NO se llama a window.open() ni se hace preventDefault: el <a href> que
+  // hay debajo navega de forma nativa y el navegador nunca lo bloquea. Aqui
+  // solo cerramos el modal para que el usuario vea la pantalla de WhatsApp.
   function onOpenWhatsAppClick(e) {
     var btn = e.target.closest('[data-wm-open-wa]');
     if (!btn) return;
-    openWhatsAppNow();
+    var url = state.pendingUrl;
+    // Red de seguridad: si por lo que sea el href no quedo escrito, lo
+    // escribimos ahora mismo. Sigue siendo un click real del usuario.
+    if (url && (!btn.getAttribute('href') || btn.getAttribute('href') === '#')) {
+      btn.setAttribute('href', url);
+    }
+    setTimeout(function () { close(); }, 300);
   }
 
   // === INTERCEPTAR ENLACES WHATSAPP ===

@@ -565,6 +565,19 @@
 }
 .wm-send-btn:active { transform: translateY(0); }
 
+/* Enlace de respaldo: por si el navegador hace algo raro con la pestana
+   nueva, el cliente siempre puede copiar y pegar el enlace de WhatsApp. */
+.wm-fallback-link {
+  display: block;
+  margin-top: 8px;
+  font-size: 11px;
+  color: #0077b6;
+  text-decoration: underline;
+  word-break: break-all;
+  opacity: 0.85;
+}
+.wm-fallback-link:hover { opacity: 1; }
+
 .wm-final-screen-note {
   font-size: 11px;
   color: #6b7280;
