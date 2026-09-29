@@ -101,7 +101,19 @@ node server.js
 # El server responde en http://localhost:3000
 ```
 
-**Importante**: el background task de bash mata el server a los 30 minutos exactos. Si pasa, simplemente relanzarlo. No es un bug, es un límite del sistema.
+**Importante**: si el server se lanza como background task de bash, el sistema lo mata a los 30 minutos exactos. Para evitarlo, lanzarlo **desacoplado** (así sobrevive indefinidamente):
+
+```powershell
+Set-Location "C:\Workspace\concasaya"
+# Matar el que hubiera antes en el puerto 3000
+Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue |
+  ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }
+Start-Sleep -Seconds 1
+Start-Process -FilePath "node" -ArgumentList "server.js" `
+  -WorkingDirectory "C:\Workspace\concasaya" -WindowStyle Hidden
+```
+
+Verificar con `Invoke-WebRequest http://localhost:3000 -UseBasicParsing` (debe dar 200).
 
 **El `ENOENT: favicon.ico` que aparece en el log es normal**: el archivo no existe en el repo, pero Cloudflare sirve un favicon por su cuenta (`concasaya.com/favicon.ico` responde 200). No es un error a corregir.
 
