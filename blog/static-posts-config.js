@@ -9,7 +9,7 @@ export const staticPosts = [
     description:
       "Precio de casa prefabricada en Villa de Leyva 2026: los 5 modelos con su precio real de lista desde $24.845.900, el desglose por m² con el ajuste de Boyacá, qué se cobra aparte y por qué el centro histórico exige mínimo 120 m².",
     image:
-      "https://www.concasaya.com/assets/images/og-precio-casa-prefabricada-villa-de-leyva.webp",
+      "https://www.concasaya.com/assets/images/og-miniatura-precio-villa-de-leyva.webp",
     date: "2026-10-08",
     url: "/blog/precio-casa-prefabricada-villa-de-leyva.html",
     category: "Compra",
