@@ -46,6 +46,13 @@ const posts = [
     lines: ["Consecuencias de no", "radicar la licencia", "de construcción"],
     titleSize: 56,
   },
+  {
+    slug: "precio-casa-prefabricada-villa-de-leyva",
+    category: "Compra",
+    label: "PRECIOS",
+    lines: ["Precio de casa", "prefabricada en", "Villa de Leyva"],
+    titleSize: 56,
+  },
 ];
 
 function esc(s) {
