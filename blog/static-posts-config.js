@@ -3,6 +3,21 @@
 
 export const staticPosts = [
   {
+    slug: "consecuencias-no-radicar-licencia-construccion-colombia",
+    title:
+      "Consecuencias de No Radicar la Licencia de Construcción Antes de Construir (2026)",
+    description:
+      "Qué pasa si no radicas la licencia antes de edificar: 7 consecuencias reales (obra paralizada, servicios cortados, no escriturar, no hipoteca), el error de radicar incompleta y cómo funciona el silencio administrativo positivo.",
+    image: "https://www.concasaya.com/assets/images/og-consecuencias-no-radicar-licencia-construccion-colombia.webp",
+    date: "2026-10-01",
+    url: "/blog/consecuencias-no-radicar-licencia-construccion-colombia.html",
+    category: "Guías",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
     slug: "plazo-construccion-casa-prefabricada-colombia",
     title:
       "Cuánto Tarda una Casa Prefabricada en Colombia: El Plazo Real, Fase por Fase (2026)",

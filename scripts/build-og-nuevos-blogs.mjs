@@ -39,6 +39,13 @@ const posts = [
     lines: ["Casas prefabricadas", "en Boyacá:", "precios y plazos"],
     titleSize: 56,
   },
+  {
+    slug: "consecuencias-no-radicar-licencia-construccion-colombia",
+    category: "Guías",
+    label: "LICENCIAS",
+    lines: ["Consecuencias de no", "radicar la licencia", "de construcción"],
+    titleSize: 56,
+  },
 ];
 
 function esc(s) {
