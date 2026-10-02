@@ -53,6 +53,13 @@ const posts = [
     lines: ["Precio de casa", "prefabricada en", "Villa de Leyva"],
     titleSize: 56,
   },
+  {
+    slug: "proceso-construccion-casa-prefabricada",
+    category: "Guías",
+    label: "PROCESO",
+    lines: ["Cronograma de", "construcción de tu", "casa prefabricada"],
+    titleSize: 54,
+  },
 ];
 
 function esc(s) {
