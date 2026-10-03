@@ -2154,6 +2154,128 @@
       </section>
 
     
+<!-- CTA de catalogo: despues de los modelos, antes de la FAQ -->
+      <section id="cta-catalogo" class="pg-section relative overflow-hidden" style="background-color:#12591F;">
+        <div class="pg-layer pg-layer--cta-modelos"></div>
+        <div class="absolute inset-0 cta-veil"></div>
+
+        <!-- Tarjeta de entrega y transporte -->
+        <div class="absolute z-20 hidden lg:flex items-center rounded-2xl bg-white px-5 py-3.5 shadow-xl" style="top:2rem;right:1.5rem;gap:1.25rem;">
+          <span class="flex items-center gap-3">
+            <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background:#EAF3E7;color:#236331;"><i class="fas fa-map-marker-alt"></i></span>
+            <span>
+              <span class="block text-xs text-gray-500">Entrega en</span>
+              <span class="block text-sm font-semibold" style="color:#0D1B2A;">Bogotá, Cundinamarca<br />y Boyacá</span>
+            </span>
+          </span>
+          <span class="cta-sep-v"></span>
+          <span class="flex items-center gap-3">
+            <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background:#EAF3E7;color:#236331;"><i class="fas fa-truck"></i></span>
+            <span>
+              <span class="block text-sm font-semibold" style="color:#0D1B2A;">Transporte<br />e instalación</span>
+            </span>
+          </span>
+        </div>
+
+        <div class="container relative z-10 mx-auto px-6 py-20 md:py-24">
+          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide shadow-sm" style="background:rgba(234,243,231,.95);color:#236331;">
+            <i class="fas fa-house"></i>Catálogo 2026
+          </span>
+
+          <h2 class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight" style="color:#0D1B2A;max-width:22ch;">
+            Conoce nuestros<br /><span style="color:#236331;">modelos de casas prefabricadas</span>
+          </h2>
+
+          <p class="mt-4 max-w-2xl text-base leading-relaxed" style="color:#2D3748;">
+            Diseños funcionales, modernos y resistentes. Con planos, áreas, precios y opciones de personalización.
+          </p>
+
+          <ul class="mt-8 flex flex-wrap items-start cta-features">
+            <li class="cta-feature">
+              <span class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style="background:#D8EEDD;color:#236331;"><i class="fas fa-house text-xl"></i></span>
+              <span class="block mt-3 text-sm font-semibold" style="color:#0D1B2A;">Diseños<br />variados</span>
+            </li>
+            <li class="cta-feature">
+              <span class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style="background:#D6E7F7;color:#1976D2;"><i class="fas fa-table-cells text-xl"></i></span>
+              <span class="block mt-3 text-sm font-semibold" style="color:#0D1B2A;">Planos<br />detallados</span>
+            </li>
+            <li class="cta-feature">
+              <span class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style="background:#FDF0D0;color:#1A1A1A;"><i class="fas fa-dollar-sign text-xl"></i></span>
+              <span class="block mt-3 text-sm font-semibold" style="color:#0D1B2A;">Precios<br />actualizados</span>
+            </li>
+            <li class="cta-feature">
+              <span class="flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center" style="background:#D8EEDD;color:#236331;"><i class="fas fa-sliders text-xl"></i></span>
+              <span class="block mt-3 text-sm font-semibold" style="color:#0D1B2A;">Personaliza<br />a tu medida</span>
+            </li>
+          </ul>
+
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a href="#catalogo-modelos" class="inline-flex items-center gap-2 rounded-full px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:opacity-90 hover:shadow-xl" style="background:#12591F;">
+              <i class="fas fa-file-lines"></i>Ver catálogo de modelos<i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" class="inline-flex items-center gap-2 rounded-full bg-white px-6 py-4 text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl" style="color:#236331;" data-wm-msg="Quiero cotizar un modelo del catálogo">
+              <span class="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center" style="background:#EAF3E7;color:#25D366;"><i class="fab fa-whatsapp"></i></span>Cotiza por WhatsApp<i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CSS de pagina para los separadores verticales de este bloque -->
+      <style>
+        .cta-feature { position: relative; flex: 1 1 160px; max-width: 220px; }
+        .cta-sep-v { display: block; width: 1px; height: 46px; background: #E2E8F0; }
+        @media (min-width: 900px) {
+          .cta-feature + .cta-feature::before {
+            content: "";
+            position: absolute;
+            left: -0.65rem;
+            top: 6px;
+            bottom: 10px;
+            width: 1px;
+            background: #E2E8F0;
+          }
+        }
+        @media (min-width: 900px) and (max-width: 1200px) {
+          .cta-sep-v { display: none; }
+        }
+
+        /* Parallax del fondo de este bloque con GSAP ScrollTrigger.
+           Patron copiado de index.html: la capa es 18% mas alta que la seccion
+           y se desplaza mas lento que el scroll, lo que produce la profundidad.
+           Importante: la opacidad NUNCA se toca en CSS. Si GSAP no carga o el
+           usuario pide menos movimiento, el bloque se ve estatico y completo. */
+        .pg-section { position: relative; overflow: hidden; }
+        .pg-layer {
+          position: absolute; inset: 0; z-index: 0; pointer-events: none;
+          background-position: center; background-repeat: no-repeat; background-size: cover;
+          will-change: transform; transform: translate3d(0, 0, 0) scale(1.18);
+        }
+        .pg-layer--cta-modelos {
+          background-image: url("/assets/images/hero-cta-modelos.webp");
+          background-position: center 48%;
+        }
+        .cta-veil {
+          background: linear-gradient(90deg,
+            rgba(255,255,255,.92) 0%, rgba(255,255,255,.80) 24%,
+            rgba(255,255,255,.46) 44%, rgba(255,255,255,.10) 62%,
+            rgba(255,255,255,0) 74%);
+        }
+        /* Movil: la imagen es panoramica (2.73:1), asi que con "cover" solo se
+           ve una franja angosta. Centrada caia en el valle y la casa no aparecia,
+           por eso se desplaza a la derecha, que es donde esta la casa.
+           El velo pasa a ser vertical para que el texto quede legible en todo
+           el ancho de la pantalla. */
+        @media (max-width: 767px) {
+          .pg-layer--cta-modelos { background-position: 75% center; }
+          .cta-veil {
+            background: linear-gradient(180deg,
+              rgba(255,255,255,.86) 0%, rgba(255,255,255,.80) 55%,
+              rgba(255,255,255,.88) 100%);
+          }
+        }
+        @media (prefers-reduced-motion: reduce) { .pg-layer { transform: none !important; } }
+      </style>
+
       <!-- Respuesta directa + FAQ visible: AEO (respuestas citables) y GEO
            (el texto visible es la fuente que leen los motores de IA).
            Debe coincidir EXACTAMENTE con el FAQPage del JSON-LD. -->
@@ -5029,6 +5151,71 @@
       if (e.key === 'Escape') closeLightbox();
     });
   })();
+  </script>
+
+  <!-- GSAP 3.12.5: animacion del bloque CTA de catalogo.
+       Cargado al final del body, igual que en index.html, para que no
+       bloquee el render ni afecte el LCP de la pagina. -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Parallax del fondo (mismo archivo que ya usa el home, sin modificar) -->
+  <script src="/assets/js/parallax-cta.js"></script>
+
+  <script>
+    /* Entrada del contenido del bloque CTA.
+       Reglas de seguridad, en este orden:
+       1. Si GSAP no cargo, la funcion retorna y el bloque se ve normal,
+          porque el estado inicial (opacity 0) se aplica desde JS, nunca en CSS.
+       2. Si el usuario pide menos movimiento, la funcion retorna.
+       3. Se usa fromTo (no from) y clearProps al terminar, para que ningun
+          estilo inline deje el texto invisible. */
+    (function () {
+      "use strict";
+
+      function iniciarEntrada() {
+        var seccion = document.getElementById("cta-catalogo");
+        if (!seccion) return;
+
+        if (typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
+          return;
+        }
+
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        var gsap = window.gsap;
+        gsap.registerPlugin(window.ScrollTrigger);
+
+        var bloques = seccion.querySelectorAll(":scope > .container > *");
+        if (!bloques.length) return;
+
+        gsap.fromTo(
+          bloques,
+          { opacity: 0, y: 26 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.65,
+            ease: "power2.out",
+            stagger: 0.09,
+            clearProps: "opacity,transform",
+            scrollTrigger: {
+              trigger: seccion,
+              start: "top 82%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", iniciarEntrada);
+      } else {
+        iniciarEntrada();
+      }
+    })();
   </script>
 
   
