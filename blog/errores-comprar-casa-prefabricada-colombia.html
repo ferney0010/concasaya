@@ -88,6 +88,7 @@
   </script>
 
   <link rel="stylesheet" href="/assets/css/tailwind.css" />
+  <link rel="stylesheet" href="/assets/css/nav-shared.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
   <link rel="stylesheet" href="/assets/css/blog-concasaya.css" />
@@ -96,7 +97,74 @@
   <link rel="apple-touch-icon" href="/assets/images/logoconcasaya.webp" />
   <meta name="theme-color" content="#0077b6" />
 </head>
-<body class="bg-white text-dark">
+<body class="bg-white text-dark overflow-x-hidden">
+<header class="bg-white shadow-md fixed w-full top-0 z-50">
+      <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <img src="/assets/images/logocasah.webp" alt="CONCASAYA Logo" class="h-10 w-auto" />
+        </a>
+        <div class="hidden lg:flex nav-desktop-primary items-center">
+          <a href="/" class="text-primary font-bold transition duration-300">Inicio</a>
+          <a href="/modelos" class="text-dark hover:text-primary transition duration-300">Modelos</a>
+          <a href="/cotizador-precios-casas-prefabricadas" class="text-dark hover:text-primary transition duration-300 font-semibold">Cotizador de precios</a>
+          <div class="relative dropdown">
+            <button type="button" class="text-dark hover:text-primary transition duration-300 inline-flex items-center" aria-haspopup="true" aria-expanded="false">
+              <span>Cobertura</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul id="nav-municipios-desktop" class="dropdown-menu absolute hidden text-dark pt-2 min-w-[600px] bg-white rounded-lg shadow-xl"></ul>
+          </div>
+          <div class="relative dropdown">
+            <button type="button" class="text-dark hover:text-primary transition duration-300 inline-flex items-center" aria-haspopup="true" aria-expanded="false">
+              <span>Empresa</span>
+              <i class="fas fa-chevron-down ml-2 text-xs"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu--simple absolute text-dark bg-white rounded-lg shadow-xl">
+              <li><a href="/nosotros" class="block text-dark hover:text-primary transition duration-300"><i class="fas fa-users mr-2 text-primary w-4 text-center"></i>Sobre Nosotros</a></li>
+              <li><a href="/ventajas" class="block text-dark hover:text-primary transition duration-300"><i class="fas fa-info-circle mr-2 text-primary w-4 text-center"></i>Sistemas Constructivos</a></li>
+              <li><a href="/galeria" class="block text-dark hover:text-primary transition duration-300"><i class="fas fa-images mr-2 text-primary w-4 text-center"></i>Galería</a></li>
+              <li><a href="/faq" class="block text-dark hover:text-primary transition duration-300"><i class="fas fa-question-circle mr-2 text-primary w-4 text-center"></i>Preguntas Frecuentes</a></li>
+              <li><a href="/referidos" class="block text-dark hover:text-primary transition duration-300"><i class="fas fa-gift mr-2 text-primary w-4 text-center"></i>Plan Referidos</a></li>
+            </ul>
+          </div>
+          <a href="/blog" class="text-dark hover:text-primary transition duration-300">Blog</a>
+          <a href="/contacto" class="bg-primary text-white px-4 py-2 rounded-full hover:opacity-90 transition duration-300 shrink-0">Contacto</a>
+        </div>
+        <div class="lg:hidden">
+          <button id="menu-btn" class="text-dark hover:text-primary focus:outline-none transition-transform duration-300 hover:scale-110" aria-label="Menú">
+            <i id="menu-icon" class="fas fa-bars fa-lg"></i>
+          </button>
+        </div>
+      </nav>
+      <div id="tablet-menu" class="lg:hidden bg-white border-t shadow-lg">
+        <a href="/" class="tablet-menu-item block py-3 px-6 text-base font-medium"><i class="fas fa-home mr-3 text-primary"></i>Inicio</a>
+        <a href="/modelos" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-building mr-3 text-primary"></i>Modelos</a>
+        <a href="/cotizador-precios-casas-prefabricadas" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-calculator mr-3 text-primary"></i>Cotizador de precios</a>
+        <div class="relative">
+          <button class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark" id="tablet-dropdown-btn">
+            <span><i class="fas fa-earth-americas mr-3 text-primary"></i>Cobertura</span>
+            <i id="tablet-dropdown-icon" class="fas fa-chevron-down text-xs menu-icon transition-transform"></i>
+          </button>
+          <div id="tablet-dropdown-menu" class="tablet-submenu"></div>
+        </div>
+        <div class="relative">
+          <button class="tablet-menu-item w-full text-left flex items-center justify-between py-3 px-6 text-base font-medium text-dark" id="tablet-empresa-dropdown-btn">
+            <span><i class="fas fa-building mr-3 text-primary"></i>Empresa</span>
+            <i id="tablet-empresa-dropdown-icon" class="fas fa-chevron-down text-xs menu-icon transition-transform"></i>
+          </button>
+          <div id="tablet-empresa-dropdown-menu" class="tablet-submenu tablet-submenu--empresa">
+            <a href="/nosotros" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"><i class="fas fa-users mr-3 text-primary"></i>Sobre Nosotros</a>
+            <a href="/ventajas" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"><i class="fas fa-info-circle mr-3 text-primary"></i>Sistemas Constructivos</a>
+            <a href="/galeria" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"><i class="fas fa-images mr-3 text-primary"></i>Galería</a>
+            <a href="/faq" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"><i class="fas fa-question-circle mr-3 text-primary"></i>Preguntas Frecuentes</a>
+            <a href="/referidos" class="tablet-menu-item block py-3 px-8 text-sm font-medium text-dark"><i class="fas fa-gift mr-3 text-primary"></i>Plan Referidos</a>
+          </div>
+        </div>
+        <a href="/blog" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-newspaper mr-3 text-primary"></i>Blog</a>
+        <a href="/contacto" class="tablet-menu-item block py-3 px-6 text-base font-medium bg-primary text-white rounded-none"><i class="fas fa-envelope mr-3"></i>Contacto</a>
+      </div>
+    </header>
+
   <section class="og-hero">
     <div class="og-hero__content">
       <nav class="og-breadcrumb" aria-label="Ruta de navegación">
@@ -393,6 +461,97 @@
     </aside>
   </div>
 
+<footer class="bg-gradient-to-b from-gray-900 via-gray-800 to-gray-900 text-white pt-14 pb-8 relative overflow-hidden">
+      <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div class="absolute top-0 left-0 w-80 h-80 bg-primary rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-secondary rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <div class="mb-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div>
+            <p class="text-primary font-bold text-sm uppercase tracking-wide mb-1">Cotización en minutos</p>
+            <h3 class="text-xl md:text-2xl font-bold text-white">Calcula el precio de tu casa prefabricada</h3>
+            <p class="text-gray-300 text-sm mt-2 max-w-xl">Usa precios reales por m², municipio, acabados e instalaciones.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="/cotizador-precios-casas-prefabricadas" class="inline-flex items-center justify-center gap-2 bg-primary hover:bg-[#0096d6] text-white font-bold px-6 py-3 rounded-full transition">
+              <i class="fas fa-calculator" aria-hidden="true"></i> Cotizador de precios
+            </a>
+            <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-bold px-6 py-3 rounded-full transition">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
+          <div>
+            <img src="/assets/images/logocasah.webp" alt="CONCASAYA Prefabricados" class="h-11 w-auto mb-4" loading="lazy" />
+            <p class="text-gray-300 text-sm leading-relaxed mb-5">
+              Precios transparentes de <strong class="text-white font-semibold">casas prefabricadas en Colombia</strong>. Construcción en EPS y plaqueta de concreto con cobertura en Cundinamarca y Boyacá.
+            </p>
+            <div class="flex gap-3">
+              <a href="https://www.tiktok.com/@concasayaprefabricados" target="_blank" rel="noopener" aria-label="TikTok" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-black flex items-center justify-center transition"><i class="fab fa-tiktok"></i></a>
+              <a href="https://www.instagram.com/concasaya" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-yellow-400 flex items-center justify-center transition"><i class="fab fa-instagram"></i></a>
+              <a href="https://www.facebook.com/concasaya/" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full bg-blue-600 hover:bg-blue-700 flex items-center justify-center transition"><i class="fab fa-facebook-f"></i></a>
+              <a href="https://wa.me/573142891018" target="_blank" rel="noopener" aria-label="WhatsApp" class="w-10 h-10 rounded-full bg-green-500 hover:bg-green-600 flex items-center justify-center transition"><i class="fab fa-whatsapp"></i></a>
+            </div>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Cotizar y explorar</h4>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/cotizador-precios-casas-prefabricadas" class="site-footer-link font-semibold text-white"><i class="fas fa-chevron-right" aria-hidden="true"></i> Cotizador de precios en línea</a></li>
+              <li><a href="/modelos" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Modelos de casas prefabricadas</a></li>
+              <li><a href="/galeria" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Galería de proyectos</a></li>
+              <li><a href="/ventajas" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> ¿Qué es EPS?</a></li>
+              <li><a href="/pages/casas-prefabricadas-colombia" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Colombia</a></li>
+              <li><a href="/faq" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Preguntas frecuentes</a></li>
+              <li><a href="/nosotros" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Sobre nosotros</a></li>
+              <li><a href="/contacto" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Contacto</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Guías de precios</h4>
+            <ul class="space-y-2.5 text-sm">
+              <li><a href="/blog/precio-casa-prefabricada-colombia-2026" class="site-footer-link font-semibold text-white"><i class="fas fa-chevron-right" aria-hidden="true"></i> Precios por m² 2026</a></li>
+              <li><a href="/blog/casas-prefabricadas-en-colombia" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Guía casas prefabricadas Colombia</a></li>
+              <li><a href="/blog/comprar-casa-prefabricada-colombia-2026" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Comprar casa prefabricada 2026</a></li>
+              <li><a href="/blog/venta-casas-prefabricadas-cundinamarca" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Venta en Cundinamarca</a></li>
+              <li><a href="/blog/construccion-panel-eps-vs-bloquelon" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Panel EPS vs bloquelón</a></li>
+              <li><a href="/blog/construccion-prefabricada-vs-tradicional" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Prefabricada vs tradicional</a></li>
+              <li><a href="/blog" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Ver todo el blog</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="site-footer-title">Precios por municipio</h4>
+            <ul class="space-y-2.5 text-sm mb-6">
+              <li><a href="/pages/chia" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Chía</a></li>
+              <li><a href="/pages/cajica" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Cajicá</a></li>
+              <li><a href="/pages/mosquera" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Mosquera</a></li>
+              <li><a href="/pages/funza" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Funza</a></li>
+              <li><a href="/pages/sopo" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Sopó</a></li>
+              <li><a href="/pages/cota" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Cota</a></li>
+              <li><a href="/pages/zipaquira" class="site-footer-link"><i class="fas fa-chevron-right" aria-hidden="true"></i> Casas prefabricadas en Zipaquirá</a></li>
+            </ul>
+            <h4 class="site-footer-title">Contáctanos</h4>
+            <ul class="space-y-2.5 text-sm text-gray-300">
+              <li class="flex items-start gap-2"><i class="fas fa-map-marker-alt text-primary mt-1" aria-hidden="true"></i><span>Cl. 147 #101-56, Local 64, Bogotá</span></li>
+              <li class="flex items-center gap-2"><i class="fas fa-phone text-primary" aria-hidden="true"></i><a href="tel:+573142891018" class="site-footer-link">314 289 1018</a></li>
+              <li class="flex items-center gap-2"><i class="fab fa-whatsapp text-primary" aria-hidden="true"></i><a href="https://wa.me/573142891018" target="_blank" rel="noopener" class="site-footer-link font-semibold">WhatsApp directo</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-gray-700/50 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-gray-400">
+          <p>&copy; 2026 <span class="text-white font-semibold">CONCASAYA</span>. Todos los derechos reservados.</p>
+          <p class="text-xs text-gray-500 text-center md:text-right">7 Errores al Comprar Casa Prefabricada en Colombia · Actualizado 2026</p>
+        </div>
+      </div>
+    </footer>
+
   <script>
     (function () {
       const tocLinks = document.querySelectorAll('#toc-list a[href^="#"]');
@@ -436,6 +595,9 @@
     })();
   </script>
 
+  <script src="/assets/js/municipios.js"></script>
+  <script src="/assets/js/nav-municipios.js"></script>
+  <script src="/assets/js/nav-menu.js"></script>
   <script src="/assets/js/whatsapp-modal.js"></script>
 
   <!-- Clarity Analytics -->
