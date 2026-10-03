@@ -52,7 +52,7 @@ export const staticPosts = [
     title:
       "7 Errores al Comprar Casa Prefabricada en Colombia (y Cómo Evitarlos) (2026)",
     description:
-      "Los 7 errores que más plata hacen perder al comprar casa prefabricada en Colombia (precio sin placa, contrato laxo, acabados indefinidos) y cómo evitarlos. Checklist para comparar cotizaciones.",
+      "Los 7 errores que más plata hacen perder al comprar casa prefabricada en Colombia: soluciones demasiado fáciles, dejarse llevar por el precio, lote ilegal y creer que no necesita licencia. Cada uno con su solución.",
     image: "https://www.concasaya.com/assets/images/og-errores-comprar-casa-prefabricada-colombia.webp",
     date: "2026-09-28",
     url: "/blog/errores-comprar-casa-prefabricada-colombia.html",
