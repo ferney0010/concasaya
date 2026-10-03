@@ -2176,20 +2176,13 @@
         <div class="pg-layer pg-layer--cta-modelos"></div>
         <div class="absolute inset-0 cta-veil"></div>
 
-        <!-- Tarjeta de entrega y transporte -->
-        <div class="absolute z-20 hidden lg:flex items-center rounded-2xl bg-white px-5 py-3.5 shadow-xl" style="top:2rem;right:1.5rem;gap:1.25rem;">
+        <!-- Tarjeta de cobertura -->
+        <div class="absolute z-20 hidden lg:flex items-center rounded-2xl bg-white px-5 py-3.5 shadow-xl" style="top:2rem;right:1.5rem;">
           <span class="flex items-center gap-3">
             <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background:#EAF3E7;color:#236331;"><i class="fas fa-map-marker-alt"></i></span>
             <span>
               <span class="block text-xs text-gray-500">Entrega en</span>
               <span class="block text-sm font-semibold" style="color:#0D1B2A;">Bogotá, Cundinamarca<br />y Boyacá</span>
-            </span>
-          </span>
-          <span class="cta-sep-v"></span>
-          <span class="flex items-center gap-3">
-            <span class="flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center" style="background:#EAF3E7;color:#236331;"><i class="fas fa-truck"></i></span>
-            <span>
-              <span class="block text-sm font-semibold" style="color:#0D1B2A;">Transporte<br />e instalación</span>
             </span>
           </span>
         </div>
@@ -2240,7 +2233,6 @@
       <!-- CSS de pagina para los separadores verticales de este bloque -->
       <style>
         .cta-feature { position: relative; flex: 1 1 160px; max-width: 220px; }
-        .cta-sep-v { display: block; width: 1px; height: 46px; background: #E2E8F0; }
         @media (min-width: 900px) {
           .cta-feature + .cta-feature::before {
             content: "";
@@ -2251,9 +2243,6 @@
             width: 1px;
             background: #E2E8F0;
           }
-        }
-        @media (min-width: 900px) and (max-width: 1200px) {
-          .cta-sep-v { display: none; }
         }
 
         /* Parallax del fondo de este bloque con GSAP ScrollTrigger.
