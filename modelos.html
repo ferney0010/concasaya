@@ -1564,12 +1564,18 @@
         <main class="pt-20">
       <!-- Header de la pagina de catalogo -->
             <!-- HERO: catalogo de modelos -->
-      <section class="relative overflow-hidden" style="background-color:#0D1B2A;">
-        <div class="absolute inset-0" style="background-image:url('/assets/images/hero-modelos-casa-valle.webp');background-size:cover;background-position:center 45%;background-repeat:no-repeat;"></div>
+      <section id="hero-modelos" class="pg-section relative overflow-hidden" style="background-color:#0D1B2A;">
+        <!-- Capa del fondo. El parallax (parallax-cta.js) mueve este elemento
+             y el zoom lento "ken burns" mueve su hijo .hero-kb, que lleva la
+             misma imagen: al ser el mismo archivo, el navegador la descarga
+             una sola vez. El estado inicial de ambas es 100% visible en CSS. -->
+        <div class="pg-layer pg-layer--hero-modelos">
+          <div class="hero-kb"></div>
+        </div>
         <div class="absolute inset-0" style="background:linear-gradient(90deg,rgba(255,255,255,.90) 0%,rgba(255,255,255,.74) 22%,rgba(255,255,255,.40) 43%,rgba(255,255,255,.08) 59%,rgba(255,255,255,0) 71%);"></div>
 
         <!-- Tarjeta de cobertura -->
-        <div class="absolute z-20 hidden lg:flex items-center gap-3 rounded-2xl px-4 py-3 shadow-xl" style="top:6.5rem;right:1.5rem;background:rgba(13,27,42,.55);backdrop-filter:blur(6px);">
+        <div class="absolute z-20 hidden lg:flex items-center gap-3 rounded-2xl px-4 py-3 shadow-xl" id="hero-cobertura" style="top:6.5rem;right:1.5rem;background:rgba(13,27,42,.55);backdrop-filter:blur(6px);">
           <span class="flex-shrink-0 w-10 h-10 rounded-full bg-white flex items-center justify-center" style="color:#2E7D32;">
             <i class="fas fa-map-marker-alt"></i>
           </span>
@@ -1580,7 +1586,7 @@
         </div>
 
         <div class="container relative z-10 mx-auto px-6 pt-24 md:pt-32 pb-8">
-          <span class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide shadow-sm" style="background:rgba(232,245,233,.92);color:#2E7D32;">
+          <span id="hero-badge" class="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide shadow-sm" style="background:rgba(232,245,233,.92);color:#2E7D32;">
             <i class="fas fa-house"></i>Casas prefabricadas en Colombia
           </span>
 
@@ -1588,7 +1594,7 @@
             Tu casa ideal,<br />
             <span style="color:#0077B6;">más cerca de lo que</span><br />
             <span class="relative inline-block">imaginas
-              <svg viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:-2px;bottom:-0.35em;width:104%;height:0.5em;">
+              <svg id="hero-pincecel" viewBox="0 0 240 14" preserveAspectRatio="none" aria-hidden="true" style="position:absolute;left:-2px;bottom:-0.35em;width:104%;height:0.5em;">
                 <path d="M3 9.5C48 4 130 2.5 237 7.5c-88 4.5-176 5.5-234 2z" fill="#43A047"/>
               </svg>
             </span>
@@ -1609,7 +1615,7 @@
             </a>
           </div>
 
-          <ul class="mt-8 flex flex-wrap gap-4">
+          <ul id="hero-checks" class="mt-8 flex flex-wrap gap-4">
             <li class="flex items-center gap-2 text-sm font-medium" style="color:#2D3748;">
               <span class="flex-shrink-0 w-5 h-5 rounded-full text-white flex items-center justify-center" style="background:#2E7D32;"><i class="fas fa-check text-xs"></i></span>Asesoría personalizada
             </li>
@@ -1624,7 +1630,7 @@
 
         <!-- Tarjeta de beneficios: contenida dentro del hero, con fondo de la foto debajo -->
         <div class="container relative z-10 mx-auto px-6 pb-12">
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 rounded-3xl bg-white px-8 py-10" style="box-shadow:0 20px 55px rgba(13,27,42,.18);">
+          <div id="hero-beneficios" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 rounded-3xl bg-white px-8 py-10" style="box-shadow:0 20px 55px rgba(13,27,42,.18);">
             <div class="beneficio-item flex items-start gap-4">
               <span class="flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center" style="background:#E8F5E9;color:#2E7D32;"><i class="fas fa-house-circle-check text-xl"></i></span>
               <span class="min-w-0">
@@ -1661,6 +1667,17 @@
            verticales entre beneficios, como en la referencia. -->
       <style>
         .beneficio-item { position: relative; }
+        /* Capa del fondo del hero. El zoom lento lo anima GSAP sobre este hijo,
+           no sobre .pg-layer, para no pelearse con el parallax que mueve el
+           padre. Sin JS la imagen se ve normal: aqui nunca se pone opacity 0. */
+        .pg-layer--hero-modelos { background-color: #0D1B2A; }
+        .hero-kb {
+          position: absolute; inset: 0;
+          background-image: url("/assets/images/hero-modelos-casa-valle.webp");
+          background-position: center 45%; background-repeat: no-repeat; background-size: cover;
+          will-change: transform;
+        }
+        @media (prefers-reduced-motion: reduce) { .hero-kb { transform: none !important; } }
         @media (min-width: 1024px) {
           .beneficio-item + .beneficio-item::before {
             content: "";
@@ -5214,6 +5231,93 @@
         document.addEventListener("DOMContentLoaded", iniciarEntrada);
       } else {
         iniciarEntrada();
+      }
+    })();
+  </script>
+
+  <script>
+    /* Efectos del hero.
+       Lo que NO se anima, a proposito: el H1, el parrafo y los dos botones.
+       El H1 es el elemento LCP de esta pagina y los botones son los puntos de
+       conversion; esconderlos tras una animacion cuesta Lighthouse y ventas.
+       Se animan el fondo y los elementos secundarios, que son los que dan
+       sensacion de calidad sin tocar lo que convierte. */
+    (function () {
+      "use strict";
+
+      function iniciarHero() {
+        var hero = document.getElementById("hero-modelos");
+        if (!hero) return;
+
+        if (typeof window.gsap === "undefined" || typeof window.ScrollTrigger === "undefined") {
+          return;
+        }
+
+        if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        var gsap = window.gsap;
+        gsap.registerPlugin(window.ScrollTrigger);
+
+        /* 1. Zoom lento sobre el fondo. Una sola pasada de 18s, sin bucle
+           infinito, para no gastar bateria con una repeticion eterna. */
+        var kb = hero.querySelector(".hero-kb");
+        if (kb) {
+          gsap.fromTo(
+            kb,
+            { scale: 1 },
+            { scale: 1.07, duration: 18, ease: "none", clearProps: "transform" }
+          );
+        }
+
+        /* 2. Entrada escalonada de los elementos secundarios del hero. */
+        var entrada = [
+          document.getElementById("hero-badge"),
+          document.getElementById("hero-cobertura"),
+          document.getElementById("hero-checks"),
+          document.getElementById("hero-beneficios"),
+        ].filter(Boolean);
+
+        if (entrada.length) {
+          gsap.fromTo(
+            entrada,
+            { opacity: 0, y: 22 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out",
+              stagger: 0.1,
+              delay: 0.15,
+              clearProps: "opacity,transform",
+            }
+          );
+        }
+
+        /* 3. Trazo del pincel verde bajo la palabra "imaginas".
+           Se anima el SVG, no el texto: el H1 nunca cambia de opacidad. */
+        var pincel = document.getElementById("hero-pincecel");
+        if (pincel) {
+          gsap.fromTo(
+            pincel,
+            { scaleX: 0, opacity: 0, transformOrigin: "left center" },
+            {
+              scaleX: 1,
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.out",
+              delay: 0.55,
+              clearProps: "transform,opacity",
+            }
+          );
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", iniciarHero);
+      } else {
+        iniciarHero();
       }
     })();
   </script>
