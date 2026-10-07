@@ -51,6 +51,14 @@ Los 3 deben dar 200 OK. El 308 redirect inicial de `www` → `sin www` es compor
 - `cotizador-precios-casas-prefabricadas.html` — calculadora de precios
 - `pages/<municipio>.html` — landing pages de municipios (~70 archivos)
 
+## Patrón de hero de municipio (APROBADO por el cliente)
+`docs/patron-hero-municipios.md` — implementé y aprobado en `pages/villadeleyva.html` (2026-10-06).
+Antes de construir un hero nuevo en `pages/`, **leer ese archivo y replicarlo**: incluye el
+efecto de blur con caída espacial (`mask-image` sobre `backdrop-filter`), el aislamiento
+obligatorio entre móvil y escritorio con media queries excluyentes, el bloque de precio con
+descuento del catálogo y el checklist de verificación. También documenta que
+`chrome --headless --screenshot` miente en móvil y hay que usar CDP.
+
 ## Archivos críticos del cliente (NUNCA tocar sin confirmación explícita)
 - `assets/css/whatsapp-modal.css` + `assets/js/whatsapp-modal.js` — modal warm-up de WhatsApp
 - `assets/js/chatbot.js` — chatbot de IA

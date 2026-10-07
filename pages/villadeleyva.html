@@ -527,16 +527,280 @@
       }
       .chatbot-modal.is-open { opacity: 1; pointer-events: auto; }
       .chatbot-modal.is-open .chatbot-modal-content { transform: scale(1); }
-      /* Hero: en movil la tarjeta puede ser mas alta que el viewport.
-         min-h + bg-fixed evita que la imagen se estire o se corte. */
+            /* ============================================================
+         HERO VILLA DE LEYVA - replica de la referencia del cliente
+         Fondo a sangre con la casa a la derecha; el bloque de texto va
+         alineado a la izquierda sobre la zona clara del cielo, por eso
+         el texto es oscuro y no blanco como en el hero del index.
+         El velo es solo para el lado izquierdo: la foto se ve limpia.
+         ============================================================ */
+      .hero-villa {
+        position: relative;
+        background-image: url('/assets/images/hero-nuevo/fondo-villa-hero.webp');
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        min-height: 88vh;
+        display: flex;
+        align-items: center;
+        padding-top: 96px;
+        padding-bottom: 56px;
+        overflow: hidden;
+      }
+      .hero-villa::before {
+        display: none;
+      }
+      .hero-villa__inner {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 clamp(1.25rem, 5vw, 5.5rem);
+      }
+      .hero-villa__text { max-width: 38rem; }
+      /* Badge: pastilla clara con borde fino, como en la referencia */
+      .hv-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(22, 40, 60, 0.12);
+        color: #16283c;
+        border-radius: 999px;
+        padding: 0.5rem 1.05rem;
+        font-size: 0.7rem;
+        font-weight: 800;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        box-shadow: 0 2px 10px rgba(16, 32, 48, 0.08);
+      }
+      .hv-badge i { color: #2f9e56; font-size: 0.8rem; }
+      /* Titular: dos lineas, la segunda en verde y mas grande */
+      .hv-title {
+        margin: 1.1rem 0 0;
+        font-size: clamp(1.9rem, 4vw, 2.75rem);
+        line-height: 1.04;
+        font-weight: 800;
+        color: #0d2032;
+        letter-spacing: -0.028em;
+        /* Evita que "en" quede solo en su linea cuando el titular parte. */
+        text-wrap: balance;
+        /* Sin velo blanco: el texto se despega de la foto con un halo
+           blanco suave en vez de una capa opaca encima. */
+        text-shadow: 0 2px 4px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.9),
+          0 0 44px rgba(255, 255, 255, 0.65);
+      }
+      .hv-title em {
+        display: block;
+        font-style: normal;
+        color: #1a7434;
+        font-weight: 800;
+        font-size: 1.3em;
+        letter-spacing: -0.03em;
+        margin-top: 0.05em;
+      }
+      .hv-lead {
+        margin: 0.95rem 0 0;
+        font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+        line-height: 1.5;
+        font-weight: 500;
+        color: #1d2b38;
+        max-width: 27rem;
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 1), 0 0 16px rgba(255, 255, 255, 0.95),
+          0 0 38px rgba(255, 255, 255, 0.7);
+      }
+      /* 3 beneficios con icono verde encima y separadores verticales */
+      .hv-perks {
+        list-style: none;
+        margin: 1.5rem 0 0;
+        padding: 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.35rem;
+      }
+      .hv-perk {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+        padding: 0 0.9rem;
+        font-size: 0.74rem;
+        font-weight: 700;
+        line-height: 1.28;
+        color: #14222e;
+        text-shadow: 0 1px 4px rgba(255, 255, 255, 1), 0 0 14px rgba(255, 255, 255, 0.95),
+          0 0 32px rgba(255, 255, 255, 0.7);
+      }
+      .hv-perk + .hv-perk { border-left: 1px solid rgba(255, 255, 255, 0.85); }
+      .hv-perk__ico {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 11px;
+        background: linear-gradient(140deg, #46a85e 0%, #2b8a49 100%);
+        color: #fff;
+        font-size: 0.92rem;
+        box-shadow: 0 6px 14px rgba(43, 138, 73, 0.28);
+      }
+      /* Botones: verde solido + blanco con borde oscuro */
+      .hv-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.8rem;
+        margin-top: 1.7rem;
+      }
+      .hv-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        border-radius: 999px;
+        padding: 0.82rem 1.5rem;
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      }
+      .hv-btn--solid {
+        background: linear-gradient(100deg, #4fa85c 0%, #3d9350 100%);
+        color: #fff;
+        border: 1.5px solid rgba(255, 255, 255, 0.55);
+        box-shadow: 0 10px 22px rgba(43, 138, 73, 0.3);
+      }
+      .hv-btn--solid:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(43, 138, 73, 0.36); color: #fff; }
+      .hv-btn--ghost {
+        background: #fff;
+        color: #1f3348;
+        border: 1.5px solid rgba(31, 51, 72, 0.35);
+        box-shadow: 0 6px 16px rgba(16, 32, 48, 0.1);
+      }
+      .hv-btn--ghost:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(16, 32, 48, 0.14); color: #1f3348; }
+      .hv-btn__arrow { font-size: 0.8rem; }
+      /* Movil: la foto se convierte en una banda propia arriba y el texto va
+         sobre blanco. Con la foto de fondo a pantalla completa, cover ampliaraba
+         tanto la imagen que el texto caia encima de las ventanas oscuras de la
+         casa y no se leia. Asi el hero se lee igual que en escritorio, sin
+         capas de opacidad ni halos. */
+      .hero-villa__bg { display: none; }
       @media (max-width: 767px) {
         .hero-villa {
-          background-attachment: fixed;
-          background-size: cover;
+          min-height: 0;
+          background-image: none;
+          background-color: #ffffff;
+          padding-top: 0;
+          padding-bottom: 36px;
+          /* Columna: la banda de foto va arriba y el texto debajo. En fila
+             el header fijo se comia el badge y la foto no tomaba ancho. */
+          flex-direction: column;
+          align-items: stretch;
         }
-        .hero-villa .hero-card {
+        .hero-villa::before {
+          display: none;
+        }
+        .hero-villa__bg {
+          display: block;
+          height: 44vh;
+          min-height: 230px;
+          /* El header es fixed: sin este margen la banda queda debajo de el. */
           margin-top: 64px;
+          background-image: url('/assets/images/hero-nuevo/fondo-villa-hero.webp');
+          background-size: cover;
+          background-position: center 40%;
         }
+        .hero-villa__inner { padding-top: 1.35rem; }
+        .hero-villa__text { max-width: 100%; }
+        .hv-perk { padding: 0 0.45rem; font-size: 0.68rem; }
+        .hv-perk__ico { width: 34px; height: 34px; font-size: 0.85rem; }
+        .hv-ctas { flex-direction: column; align-items: stretch; }
+        .hv-btn { width: 100%; }
+        /* Sobre fondo blanco el halo blanco solo emborronaria el texto. */
+        .hv-title,
+        .hv-lead,
+        .hv-perk {
+          text-shadow: none;
+        }
+      }
+      /* ============================================================
+         ESCRITORIO: foto distinta (mas abierta, atardecer) + panel
+         negro desenfocado con texto claro. Todo lo de aqui es
+         min-width 768px, asi que la version movil de arriba queda
+         exactamente igual.
+         ============================================================ */
+      @media (min-width: 768px) {
+        .hero-villa {
+          background-image: url('/assets/images/hero-nuevo/fondo-villa-hero-pc.webp');
+          background-position: center 45%;
+        }
+        /* El desenfoque se aplica a todo el ancho y luego se ENMASCARA para que se
+           apague solo hacia la casa: sin la mascara, backdrop-filter no tiene
+           forma de desvanecerse y o blurea la casa entera o se nota un corte
+           vertical. La mascara llega a cero justo antes de donde empieza la
+           casa, asi que la fachada queda nitida. */
+        .hero-villa::before {
+          display: block;
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(
+            100deg,
+            rgba(6, 26, 16, 0.84) 0%,
+            rgba(6, 26, 16, 0.7) 26%,
+            rgba(6, 26, 16, 0.34) 40%,
+            rgba(6, 26, 16, 0) 54%
+          );
+          -webkit-mask-image: linear-gradient(
+            100deg,
+            #000 0%,
+            #000 30%,
+            rgba(0, 0, 0, 0.45) 40%,
+            rgba(0, 0, 0, 0) 52%
+          );
+          mask-image: linear-gradient(
+            100deg,
+            #000 0%,
+            #000 30%,
+            rgba(0, 0, 0, 0.45) 40%,
+            rgba(0, 0, 0, 0) 52%
+          );
+          backdrop-filter: blur(7px) saturate(1.08);
+          -webkit-backdrop-filter: blur(7px) saturate(1.08);
+          pointer-events: none;
+        }
+        .hv-badge {
+          background: rgba(6, 26, 16, 0.5);
+          border: 1.5px solid rgba(255, 255, 255, 0.85);
+          color: #ffffff;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.28);
+        }
+        .hv-badge i { color: #86f08f; }
+        .hv-title {
+          color: #ffffff;
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 24px rgba(0, 0, 0, 0.35);
+        }
+        .hv-title em {
+          color: #86f08f;
+          text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45), 0 0 24px rgba(0, 0, 0, 0.35);
+        }
+        .hv-lead {
+          color: rgba(255, 255, 255, 0.94);
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .hv-perk {
+          color: #ffffff;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .hv-perk + .hv-perk { border-left: 1px solid rgba(255, 255, 255, 0.4); }
+        .hv-btn--ghost {
+          background: rgba(255, 255, 255, 0.96);
+          color: #14222e;
+          border-color: rgba(255, 255, 255, 0.9);
+        }
+        .hv-btn--ghost:hover { background: #fff; color: #14222e; }
       }
       /* AOS aplica translate3d(100px,0,0) a los elementos fade-left/fade-right
          antes de animarlos. Eso genera scroll horizontal en movil.
@@ -556,7 +820,35 @@
           grid-template-columns: repeat(5, minmax(0, 1fr));
         }
       }
-    </style>
+    
+      /* ============================================================
+         BLOQUE DE PRECIO CON DESCUENTO (mismo criterio que modelos.html)
+         El 'antes' sale de multiplicar el precio vigente por 1.15 y
+         redondear a centena de millar; el % que se muestra se RECALCULA
+         sobre esos numeros ya redondeados (queda 13% en los 5 modelos).
+         IMPORTANTE: el precio en JSON-LD, FAQ y metas sigue siendo
+         SIEMPRE el precio real vigente, nunca el tachado.
+         Variante --stack: aqui las tarjetas son mucho mas angostas
+         (5 en una fila), asi que antes/ahora van apilados en vez de
+         lado a lado, que no cabrian.
+         ============================================================ */
+      .mp-precio__badge {
+        display: inline-flex; align-items: center; gap: 0.3rem;
+        background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+        color: #fff; font-size: 0.62rem; font-weight: 800;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        padding: 0.28rem 0.5rem; border-radius: 9999px;
+        box-shadow: 0 4px 12px rgba(225, 29, 72, 0.32); white-space: nowrap;
+      }
+      .mp-precio__ahorra { font-size: 0.68rem; font-weight: 800; color: #e11d48; }
+      .mp-precio__label { font-size: 0.6rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; margin-bottom: 0.15rem; }
+      .mp-precio__antes {
+        font-size: 0.92rem; font-weight: 700; color: #94a3b8; line-height: 1.1;
+        text-decoration: line-through; text-decoration-color: #e11d48;
+        text-decoration-thickness: 2px;
+      }
+      .mp-precio__ahora { font-size: 1.4rem; font-weight: 800; color: rgb(0 119 182); line-height: 1; letter-spacing: -0.02em; }
+</style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -765,68 +1057,56 @@
     </header>
 
     <main>
-      <!-- HERO -->
-      <section
-        class="hero-villa min-h-screen md:h-screen bg-cover bg-center flex items-center justify-center"
-        style="background-image: url('/assets/images/fondo4.webp');"
-      >
-        <div class="container mx-auto px-4 sm:px-6 pt-20 pb-10 sm:pt-24 sm:pb-12 md:py-24" data-aos="fade-up">
-          <div class="hero-card bg-white bg-opacity-92 backdrop-blur-sm p-5 sm:p-8 md:p-10 rounded-2xl max-w-4xl mx-auto shadow-2xl">
-            <div class="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-5">
-              <span class="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-sm font-medium bg-primary/10 text-primary">
-                <i class="fas fa-location-dot mr-1.5"></i>Villa de Leyva, Boyacá
-              </span>
-              <span class="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-sm font-medium bg-emerald-100 text-emerald-800">
-                <i class="fas fa-tag mr-1.5"></i>Desde $24,8 millones
-              </span>
-              <span class="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-sm font-medium bg-amber-100 text-amber-800">
-                <i class="fas fa-campground mr-1.5"></i>Cabañas para invertir
-              </span>
-            </div>
+      <!-- HERO: replica de la referencia del cliente -->
+      <section class="hero-villa">
+        <div class="hero-villa__bg" aria-hidden="true"></div>
+        <div class="hero-villa__inner">
+          <div class="hero-villa__text">
+            <span class="hv-badge">
+              <i class="fas fa-house" aria-hidden="true"></i>
+              Casas prefabricadas en Villa de Leyva
+            </span>
 
-            <h1 class="text-[1.6rem] sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark mb-2.5 sm:mb-4 leading-tight">
-              Casas prefabricadas en <span class="text-primary">Villa de Leyva</span>
+            <h1 class="hv-title">
+              Tu casa prefabricada en
+              <em>Villa de Leyva</em>
             </h1>
-            <p class="text-dark/85 text-[13px] sm:text-base md:text-lg mb-4 sm:mb-5 max-w-3xl leading-relaxed">
-              Pueblo Patrimonio de Boyacá, uno de los destinos turísticos más demandados del país.
-              En CONCASAYA <strong>vendemos cabañas y casas de campo de 25 a 84 m²</strong> terminadas y lista para usar en finca, descanso o turismo,
-              con precio real de lista desde $24.845.900 y
-              montaje en semanas y acompañamiento completo de la licencia de construcción.
+
+            <p class="hv-lead">
+              Diseños modernos con el encanto colonial. Rápidas, seguras y duraderas.
             </p>
 
-            <div class="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-4 mb-4 sm:mb-6">
+            <ul class="hv-perks">
+              <li class="hv-perk">
+                <span class="hv-perk__ico" aria-hidden="true"><i class="fas fa-bolt"></i></span>
+                <span>Construcción<br />rápida</span>
+              </li>
+              <li class="hv-perk">
+                <span class="hv-perk__ico" aria-hidden="true"><i class="fas fa-shield-halved"></i></span>
+                <span>Alta resistencia<br />y seguridad</span>
+              </li>
+              <li class="hv-perk">
+                <span class="hv-perk__ico" aria-hidden="true"><i class="fas fa-leaf"></i></span>
+                <span>Económicas<br />y sostenibles</span>
+              </li>
+            </ul>
+
+            <div class="hv-ctas">
+              <a href="#modelos-villa" class="hv-btn hv-btn--solid" aria-label="Ver modelos de casas para Villa de Leyva">
+                <i class="fas fa-house" aria-hidden="true"></i>
+                Ver modelos de casas
+                <i class="fas fa-arrow-right hv-btn__arrow" aria-hidden="true"></i>
+              </a>
               <a
                 href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20cabana%20o%20casa%20prefabricada%20en%20Villa%20de%20Leyva.%20Quiero%20recibir%20precio%20y%20plazos%20de%20entrega."
                 target="_blank"
-                class="inline-flex items-center justify-center bg-green-500 text-white px-5 py-3 sm:px-6 sm:py-3.5 rounded-full font-semibold text-[13px] sm:text-base hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                rel="noopener"
+                class="hv-btn hv-btn--ghost"
                 aria-label="Cotizar casa prefabricada en Villa de Leyva por WhatsApp"
               >
-                <i class="fab fa-whatsapp mr-2"></i>Cotizar por WhatsApp
+                <i class="fas fa-calculator" aria-hidden="true"></i>
+                Cotizar mi proyecto
               </a>
-              <a
-                href="/cotizador-precios-casas-prefabricadas"
-                class="inline-flex items-center justify-center bg-amber-500 text-white px-5 py-3 sm:px-6 sm:py-3.5 rounded-full font-semibold text-[13px] sm:text-base hover:bg-amber-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
-                aria-label="Calcular precio de proyecto en Villa de Leyva"
-              >
-                <i class="fas fa-calculator mr-2"></i>Calcular mi proyecto
-              </a>
-              <a
-                href="#modelos-villa"
-                class="inline-flex items-center justify-center bg-white text-primary border-2 border-primary px-5 py-3 sm:px-6 sm:py-3.5 rounded-full font-semibold text-[13px] sm:text-base hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 shadow-md"
-                aria-label="Ver modelos recomendados para Villa de Leyva"
-              >
-                <i class="fas fa-images mr-2"></i>Ver modelos
-              </a>
-            </div>
-
-            <div class="border-t border-gray-200 pt-3 sm:pt-5 mt-1 sm:mt-2">
-              <p class="text-[11px] sm:text-sm text-gray-500 mb-1.5 sm:mb-2">Respuesta rápida</p>
-              <p class="text-gray-700 text-[13px] sm:text-base leading-relaxed">
-                ¿Cuánto cuesta y se puede construir? <strong>Desde $24.845.900</strong> y
-                <strong>sí se puede</strong>, siempre que el lote esté fuera del Centro Histórico
-                (donde la norma exige mínimo 120 m² y prohíbe sótanos). Construimos en veredas,
-                Sáchica, Sutamarchán, Ráquira y Tinjacá.
-              </p>
             </div>
           </div>
         </div>
@@ -914,10 +1194,16 @@
                   <p class="text-[11px] text-gray-500 leading-relaxed mb-3 hidden sm:block">El m&aacute;s econ&oacute;mico para casa de descanso.</p>
 
                   <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por s&oacute;lo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">
-                      $24.845.900
-                    </p>
+  <div class="flex items-center gap-1.5 flex-wrap mb-2">
+    <span class="mp-precio__badge"><i class="fas fa-tag" aria-hidden="true"></i>Ahorra 13%</span>
+    <span class="mp-precio__ahorra">Ahorras $3.654.100</span>
+  </div>
+  <div class="mb-2.5">
+    <p class="mp-precio__label">Antes</p>
+    <p class="mp-precio__antes">$28.500.000</p>
+    <p class="mp-precio__label mt-1.5">Ahora</p>
+    <p class="mp-precio__ahora">$24.845.900</p>
+  </div>
                     <a
                       href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20El%20Moral%2036m2%20por%20%2424.845.900.%20%C2%BFTienen%20disponibilidad%20para%20Villa%20de%20Leyva%3F"
                       target="_blank"
@@ -973,10 +1259,16 @@
                   <p class="text-[11px] text-gray-500 leading-relaxed mb-3 hidden sm:block">Mejor equilibrio inversi&oacute;n / tarifa.</p>
 
                   <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por s&oacute;lo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">
-                      $44.460.000
-                    </p>
+  <div class="flex items-center gap-1.5 flex-wrap mb-2">
+    <span class="mp-precio__badge"><i class="fas fa-tag" aria-hidden="true"></i>Ahorra 13%</span>
+    <span class="mp-precio__ahorra">Ahorras $6.640.000</span>
+  </div>
+  <div class="mb-2.5">
+    <p class="mp-precio__label">Antes</p>
+    <p class="mp-precio__antes">$51.100.000</p>
+    <p class="mp-precio__label mt-1.5">Ahora</p>
+    <p class="mp-precio__ahora">$44.460.000</p>
+  </div>
                     <a
                       href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Caba%C3%B1a%20La%20Vega%2054m2%20por%20%2444.460.000.%20%C2%BFMe%20pueden%20enviar%20m%C3%A1s%20informaci%C3%B3n%3F"
                       target="_blank"
@@ -1032,10 +1324,16 @@
                   <p class="text-[11px] text-gray-500 leading-relaxed mb-3 hidden sm:block">Un solo piso, ideal para vereda.</p>
 
                   <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por s&oacute;lo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">
-                      $55.368.200
-                    </p>
+  <div class="flex items-center gap-1.5 flex-wrap mb-2">
+    <span class="mp-precio__badge"><i class="fas fa-tag" aria-hidden="true"></i>Ahorra 13%</span>
+    <span class="mp-precio__ahorra">Ahorras $8.331.800</span>
+  </div>
+  <div class="mb-2.5">
+    <p class="mp-precio__label">Antes</p>
+    <p class="mp-precio__antes">$63.700.000</p>
+    <p class="mp-precio__label mt-1.5">Ahora</p>
+    <p class="mp-precio__ahora">$55.368.200</p>
+  </div>
                     <a
                       href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%2080m2%20de%201%20piso%20por%20%2455.368.200.%20%C2%BFTienen%20disponibilidad%3F"
                       target="_blank"
@@ -1115,10 +1413,16 @@
                   <p class="text-[11px] text-gray-500 leading-relaxed mb-3 hidden sm:block">Para familia que recibe visitas.</p>
 
                   <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por s&oacute;lo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">
-                      $62.429.500
-                    </p>
+  <div class="flex items-center gap-1.5 flex-wrap mb-2">
+    <span class="mp-precio__badge"><i class="fas fa-tag" aria-hidden="true"></i>Ahorra 13%</span>
+    <span class="mp-precio__ahorra">Ahorras $9.370.500</span>
+  </div>
+  <div class="mb-2.5">
+    <p class="mp-precio__label">Antes</p>
+    <p class="mp-precio__antes">$71.800.000</p>
+    <p class="mp-precio__label mt-1.5">Ahora</p>
+    <p class="mp-precio__ahora">$62.429.500</p>
+  </div>
                     <a
                       href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20Firavitoba%2084m2%20por%20%2462.429.500.%20%C2%BFMe%20env%C3%ADan%20m%C3%A1s%20informaci%C3%B3n%3F"
                       target="_blank"
@@ -1198,10 +1502,16 @@
                   <p class="text-[11px] text-gray-500 leading-relaxed mb-3 hidden sm:block">La m&aacute;s vendida del cat&aacute;logo.</p>
 
                   <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por s&oacute;lo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">
-                      $63.750.000
-                    </p>
+  <div class="flex items-center gap-1.5 flex-wrap mb-2">
+    <span class="mp-precio__badge"><i class="fas fa-tag" aria-hidden="true"></i>Ahorra 13%</span>
+    <span class="mp-precio__ahorra">Ahorras $9.550.000</span>
+  </div>
+  <div class="mb-2.5">
+    <p class="mp-precio__label">Antes</p>
+    <p class="mp-precio__antes">$73.300.000</p>
+    <p class="mp-precio__label mt-1.5">Ahora</p>
+    <p class="mp-precio__ahora">$63.750.000</p>
+  </div>
                     <a
                       href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Caba%C3%B1a%20de%20Vidrio%2025m2%20por%20%2463.750.000.%20%C2%BFMe%20pueden%20enviar%20m%C3%A1s%20informaci%C3%B3n%20y%20disponibilidad%3F"
                       target="_blank"
