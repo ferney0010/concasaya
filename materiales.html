@@ -316,8 +316,31 @@
     border: 1px solid #e6eaf0;
     border-radius: 16px;
     padding: 2rem 1.75rem 1.5rem;
+    overflow: hidden;
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
     transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  }
+
+  /* Capa de foto de la tarjeta. El margen negativo la sube hasta el borde
+     superior de la card y la pega a los bordes laterales. */
+  .mc-media {
+    display: block;
+    margin: -2rem -1.75rem 1.35rem;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: #eef2f6;
+  }
+  .mc-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .4s ease;
+  }
+  .mc-card:hover .mc-media img { transform: scale(1.04); }
+
+  @media (max-width: 639px) {
+    .mc-media { aspect-ratio: 16 / 9; }
   }
   .mc-card:hover {
     transform: translateY(-5px);
@@ -1524,6 +1547,11 @@
 
         <div class="mc-grid">
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-plaqueta-concreto.webp"
+               alt="Placas de concreto prefabricadas apiladas sobre palés en el patio de obra"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
         <h3 class="mc-title">Plaqueta de concreto</h3>
         <p class="mc-text">La placa de concreto prefabricada que usamos en los muros de nuestro sistema constructivo. Se entrega lista para instalar y reduce el tiempo de obra frente al muro convencional.</p>
@@ -1534,6 +1562,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-tejas-cubierta.webp"
+               alt="Tejas de barro color terracota apiladas para la cubierta de una casa campestre"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-house" aria-hidden="true"></i></span>
         <h3 class="mc-title">Tejas para cubierta</h3>
         <p class="mc-text">Tejas cerámicas y poliméricas para cubierta. Se cotizan por el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.</p>
@@ -1544,6 +1577,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-cerchas-metalicas.webp"
+               alt="Cerchas metálicas prefabricadas apiladas frente a una casa con cubierta de teja"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-vector-square" aria-hidden="true"></i></span>
         <h3 class="mc-title">Cerchas metálicas</h3>
         <p class="mc-text">Cerchas o trusses metálicos prefabricados: la estructura triangular que sostiene la cubierta. Es la pieza que define la forma del techo y permite un montaje rápido sin encofrado tradicional.</p>
@@ -1554,6 +1592,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-perfileria-tubo.webp"
+               alt="Estructura de acero con columnas y vigas montadas, con perfiles listados en obra"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-industry" aria-hidden="true"></i></span>
         <h3 class="mc-title">Estructura en acero galvanizado</h3>
         <p class="mc-text">Columnas y vigas de acero galvanizado que forman la estructura principal. Es lo que da rigidez y resistencia a la casa ante sismo y viento.</p>
@@ -1564,6 +1607,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-entremiso-metalico.webp"
+               alt="Entrepiso metálico corrugado instalado como piso de una casa en construcción"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
         <h3 class="mc-title">Entrepiso metálico</h3>
         <p class="mc-text">Entrepiso o deck metálico para el piso y los niveles interiores. Funciona como base del piso terminado y como diafragma rigidizador de la estructura.</p>
@@ -1574,6 +1622,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-estructura-acero.webp"
+               alt="Perfiles y tubos de acero galvanizado apilados para pórticos y estructuras"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i></span>
         <h3 class="mc-title">Perfilería y tubo estructural</h3>
         <p class="mc-text">Perfilería metálica y tubo estructural para pórticos, vigas de amarre, columnas y estructuras de soporte. Se cortan a la medida de tu proyecto.</p>
@@ -1584,6 +1637,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-muros-secos.webp"
+               alt="Interior de casa en construcción con tabiquería y muros en seco ya instalados"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon"><i class="fas fa-grip-lines" aria-hidden="true"></i></span>
         <h3 class="mc-title">Muros en seco y tabiquería</h3>
         <p class="mc-text">Sistema de tabiquería y muros en seco para particiones interiores. Acaba rápido, no necesita cura de pañete y deja el interior listo para pintar.</p>
@@ -1594,6 +1652,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-proyecto-completo.webp"
+               alt="Casa prefabricada en construcción con tejas, perfiles y placas de concreto en obra"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon mc-icon--amber"><i class="fas fa-helmet-safety" aria-hidden="true"></i></span>
         <h3 class="mc-title">¿Necesitas el proyecto completo?</h3>
         <p class="mc-text">También puedes llevarte la casa completa: compramos el material, lo transportamos y lo montamos con nuestro equipo. Es la opción más segura en plazo y en costo final.</p>
@@ -1603,6 +1666,11 @@
       </article>
 
       <article class="mc-card" data-aos="fade-up">
+        <div class="mc-media">
+          <img src="/assets/images/materiales/mat-lote.webp"
+               alt="Desarrollo residencial con calles, servicios y lotes entre montañas"
+               width="800" height="500" loading="lazy" decoding="async">
+        </div>
         <span class="mc-icon mc-icon--emerald"><i class="fas fa-map-location-dot" aria-hidden="true"></i></span>
         <h3 class="mc-title">¿Buscas lote para construir?</h3>
         <p class="mc-text">Estamos habilitando el catálogo de lotes de CONCASAYA. Te enviamos la información completa —ubicación, área, precio y condiciones de pago— directo por WhatsApp, sin compromiso.</p>

@@ -42,3 +42,12 @@ catalogo concasaya/*.webp
 
 # IndexNow transient payload (regenerado por scripts/submit-indexnow.py)
 indexnow-payload.json
+
+# Basura de trabajo: copias de deploy, scripts y backups de una sola vez.
+# Nada de esto se versiona; se regenera con los scripts de scripts/.
+.deploy-staging/
+.tmp-*
+scripts/.tmp-*
+*.bak
+/tmp-*.png
+/tmp-*.js
