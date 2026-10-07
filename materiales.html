@@ -295,17 +295,177 @@
     .mat-lead { text-shadow: none; }
   }
 
-  /* --- Tarjetas del catálogo --- */
-  .mat-card {
-    transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-    border: 1px solid #e5e7eb;
+  /* --- Tarjetas del catálogo ---
+     NOTA: el CSS de Tailwind del sitio está compilado con purge, así que
+     clases como p-7 o lg:grid-cols-3 NO existen y se pierden silenciosamente.
+     Por eso este bloque y el de pasos usan clases propias (.mc-*, .st-*) en
+     vez de depender de utilidades de Tailwind. */
+  .mc-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
-  .mat-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -18px rgba(0,119,182,.45); border-color: #0077b6; }
-  .mat-icon {
-    width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-    background: #e0f2fe; color: #0077b6; font-size: 1.5rem;
+  @media (min-width: 640px) { .mc-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .mc-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .mc-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #ffffff;
+    border: 1px solid #e6eaf0;
+    border-radius: 16px;
+    padding: 2rem 1.75rem 1.5rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
+  .mc-card:hover {
+    transform: translateY(-5px);
+    border-color: #0077b6;
+    box-shadow: 0 22px 45px -24px rgba(0, 119, 182, .5);
+  }
+
+  .mc-icon {
+    width: 54px;
+    height: 54px;
+    flex: none;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(140deg, #e0f2fe, #cfe9fb);
+    color: #0077b6;
+    font-size: 1.35rem;
+    margin-bottom: 1.15rem;
+  }
+  .mc-icon--amber { background: linear-gradient(140deg, #fef3c7, #fde68a); color: #b45309; }
+  .mc-icon--emerald { background: linear-gradient(140deg, #d1fae5, #a7f3d0); color: #047857; }
+
+  .mc-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #0d2032;
+    margin: 0 0 0.65rem;
+  }
+  .mc-text {
+    flex: 1 1 auto;
+    font-size: 0.925rem;
+    line-height: 1.65;
+    color: #55636f;
+    margin: 0 0 1.35rem;
+  }
+  .mc-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: flex-start;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0077b6;
+    padding-top: 1rem;
+    border-top: 1px solid #eef2f6;
+    width: 100%;
+    transition: color .2s ease;
+  }
+  .mc-cta:hover { color: #005f8f; }
+  .mc-cta--plain {
+    border-top: 0;
+    padding-top: 0;
+    background: none;
+    width: auto;
+  }
+  .mc-cta--wa {
+    background: #047857;
+    border: 0;
+    color: #fff;
+    justify-content: center;
+    padding: 0.8rem 1.25rem;
+    border-radius: 999px;
+    width: 100%;
+  }
+  .mc-cta--wa:hover { background: #065f46; }
+
+  /* --- Pasos "Cómo cotizas" ---
+     Antes el numero iba en -top-4/-left-4 y terminaba encima del titulo. */
+  .st-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .st-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .st-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #e6eaf0;
+    border-radius: 16px;
+    padding: 2.6rem 1.6rem 1.75rem;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  }
+  .st-card::before {
+    content: "";
+    position: absolute;
+    left: 1.6rem;
+    right: 1.6rem;
+    top: 0;
+    height: 3px;
+    border-radius: 0 0 4px 4px;
+    background: linear-gradient(90deg, #0077b6, #38bdf8);
+  }
+  .st-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    background: #0077b6;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  .st-title {
+    font-size: 1.08rem;
+    font-weight: 700;
+    color: #0d2032;
+    margin: 0 0 0.5rem;
+  }
+  .st-text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #55636f;
+    margin: 0;
+  }
+
   .mat-answer { border-left: 4px solid #0077b6; background: #f0f9ff; }
+  /* --- A quién le sirve --- */
+  .au-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (min-width: 768px) { .au-grid { grid-template-columns: repeat(3, 1fr); } }
+  .au-item { text-align: center; }
+  .au-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.1rem;
+    border-radius: 999px;
+    background: #e0f2fe;
+    color: #0077b6;
+    font-size: 1.45rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .au-title { font-size: 1.08rem; font-weight: 700; color: #0d2032; margin: 0 0 0.45rem; }
+  .au-text { font-size: 0.92rem; line-height: 1.65; color: #55636f; margin: 0; }
 </style>
 
 <!-- Schema.org: grafo completo para SEO, GEO y AEO -->
@@ -1362,142 +1522,93 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up">
-        <div class="mat-icon mb-5"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Plaqueta de concreto</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          La placa de concreto prefabricada que usamos en los muros de nuestro sistema
-          constructivo. Se entrega lista para instalar y reduce el tiempo de obra frente al
-          muro convencional.
-        </p>
+        <div class="mc-grid">
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Plaqueta de concreto</h3>
+        <p class="mc-text">La placa de concreto prefabricada que usamos en los muros de nuestro sistema constructivo. Se entrega lista para instalar y reduce el tiempo de obra frente al muro convencional.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20PLAQUETA%20DE%20CONCRETO%20para%20mi%20obra"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar plaqueta
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up" data-aos-delay="50">
-        <div class="mat-icon mb-5"><i class="fas fa-house" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Tejas para cubierta</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Tejas cerámicas y poliméricas para cubierta. Se cotizan por el número de unidades
-          que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-house" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Tejas para cubierta</h3>
+        <p class="mc-text">Tejas cerámicas y poliméricas para cubierta. Se cotizan por el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJAS%20para%20cubierta"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar tejas
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-        <div class="mat-icon mb-5"><i class="fas fa-vector-square" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Cerchas metálicas</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Cerchas o trusses metálicos prefabricados: la estructura triangular que sostiene la
-          cubierta. Es la pieza que define la forma del techo y permite un montaje rápido
-          sin encofrado tradicional.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-vector-square" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Cerchas metálicas</h3>
+        <p class="mc-text">Cerchas o trusses metálicos prefabricados: la estructura triangular que sostiene la cubierta. Es la pieza que define la forma del techo y permite un montaje rápido sin encofrado tradicional.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20CERCHAS%20MET%C3%81LICAS"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar cerchas
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up">
-        <div class="mat-icon mb-5"><i class="fas fa-industry" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Estructura en acero galvanizado</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Columnas y vigas de acero galvanizado que forman la estructura principal. Es lo que
-          da rigidez y resistencia a la casa ante sismo y viento.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-industry" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Estructura en acero galvanizado</h3>
+        <p class="mc-text">Columnas y vigas de acero galvanizado que forman la estructura principal. Es lo que da rigidez y resistencia a la casa ante sismo y viento.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20ESTRUCTURA%20EN%20ACERO%20GALVANIZADO"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar acero
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up" data-aos-delay="50">
-        <div class="mat-icon mb-5"><i class="fas fa-layer-group" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Entrepiso metálico</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Entrepiso o deck metálico para el piso y los niveles interiores. Funciona como base
-          del piso terminado y como diafragma rigidizador de la estructura.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Entrepiso metálico</h3>
+        <p class="mc-text">Entrepiso o deck metálico para el piso y los niveles interiores. Funciona como base del piso terminado y como diafragma rigidizador de la estructura.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20ENTREPISO%20MET%C3%81LICO"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar entrepiso
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up" data-aos-delay="100">
-        <div class="mat-icon mb-5"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Perfilería y tubo estructural</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Perfilería metálica y tubo estructural para pórticos, vigas de amarre, columnas y
-          estructuras de soporte. Se cortan a la medida de tu proyecto.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Perfilería y tubo estructural</h3>
+        <p class="mc-text">Perfilería metálica y tubo estructural para pórticos, vigas de amarre, columnas y estructuras de soporte. Se cortan a la medida de tu proyecto.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20PERFILER%C3%8DA%20Y%20TUBO%20ESTRUCTURAL"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar perfilería
         </a>
       </article>
 
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm" data-aos="fade-up">
-        <div class="mat-icon mb-5"><i class="fas fa-grip-lines" aria-hidden="true"></i></div>
-        <h3 class="text-xl font-bold text-dark mb-2">Muros en seco y tabiquería</h3>
-        <p class="text-gray-600 leading-relaxed mb-5">
-          Sistema de tabiquería y muros en seco para particiones interiores. Acaba rápido,
-          no necesita cura de pañete y deja el interior listo para pintar.
-        </p>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon"><i class="fas fa-grip-lines" aria-hidden="true"></i></span>
+        <h3 class="mc-title">Muros en seco y tabiquería</h3>
+        <p class="mc-text">Sistema de tabiquería y muros en seco para particiones interiores. Acaba rápido, no necesita cura de pañete y deja el interior listo para pintar.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20MUROS%20EN%20SECO%20Y%20TABIQUER%C3%8DA"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-           target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar muros en seco
         </a>
       </article>
 
-      <!-- Bloque constructivo -->
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm border-primary/40 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="50">
-        <div>
-          <div class="mat-icon mb-5 bg-amber-100 text-amber-700"><i class="fas fa-helmet-safety" aria-hidden="true"></i></div>
-          <h3 class="text-xl font-bold text-dark mb-2">¿Necesitas el proyecto completo?</h3>
-          <p class="text-gray-600 leading-relaxed mb-5">
-            También puedes llevarte la casa completa: compramos el material, lo transportamos
-            y lo montamos con nuestro equipo. Es la opción más segura en plazo y en costo final.
-          </p>
-        </div>
-        <a href="/modelos"
-           class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
-          <i class="fas fa-house mr-1" aria-hidden="true"></i> Ver modelos de casas
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon mc-icon--amber"><i class="fas fa-helmet-safety" aria-hidden="true"></i></span>
+        <h3 class="mc-title">¿Necesitas el proyecto completo?</h3>
+        <p class="mc-text">También puedes llevarte la casa completa: compramos el material, lo transportamos y lo montamos con nuestro equipo. Es la opción más segura en plazo y en costo final.</p>
+        <a href="/modelos" class="mc-cta mc-cta--plain">
+          <i class="fas fa-house" aria-hidden="true"></i> Ver modelos de casas
         </a>
       </article>
 
-      <!-- Bloque lotes -->
-      <article class="mat-card bg-white rounded-2xl p-7 shadow-sm border-emerald-300 flex flex-col justify-between" data-aos="fade-up" data-aos-delay="100">
-        <div>
-          <div class="mat-icon mb-5 bg-emerald-100 text-emerald-700"><i class="fas fa-map-location-dot" aria-hidden="true"></i></div>
-          <h3 class="text-xl font-bold text-dark mb-2">¿Buscas lote para construir?</h3>
-          <p class="text-gray-600 leading-relaxed mb-5">
-            Estamos habilitando el catálogo de lotes de CONCASAYA. Por ahora te enviamos la
-            información completa —ubicación, área, precio y condiciones de pago— directamente
-            por WhatsApp, sin compromiso.
-          </p>
-          <span class="inline-block bg-emerald-50 text-emerald-800 text-xs font-semibold px-3 py-1 rounded-full mb-5">
-            Disponible por WhatsApp
-          </span>
-        </div>
+      <article class="mc-card" data-aos="fade-up">
+        <span class="mc-icon mc-icon--emerald"><i class="fas fa-map-location-dot" aria-hidden="true"></i></span>
+        <h3 class="mc-title">¿Buscas lote para construir?</h3>
+        <p class="mc-text">Estamos habilitando el catálogo de lotes de CONCASAYA. Te enviamos la información completa —ubicación, área, precio y condiciones de pago— directo por WhatsApp, sin compromiso.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20LOS%20LOTES%20que%20tienen%20disponibles"
-           class="inline-flex items-center gap-2 bg-emerald-600 text-white font-semibold px-5 py-3 rounded-full hover:bg-emerald-700 transition"
-           target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp text-xl" aria-hidden="true"></i> Quiero ver los lotes
+           class="mc-cta mc-cta--wa" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Quiero ver los lotes
         </a>
       </article>
 
@@ -1517,34 +1628,28 @@
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="text-center p-6" data-aos="fade-up">
-        <div class="mat-icon mx-auto mb-4"><i class="fas fa-helmet-safety" aria-hidden="true"></i></div>
-        <h3 class="text-lg font-bold text-dark mb-2">Constructores y maestros de obra</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Si ya tienes el diseño y la cuadrilla, te vendemos el material con entrega en tu obra.
-        </p>
+    <div class="au-grid">
+      <div class="au-item" data-aos="fade-up">
+        <span class="au-icon"><i class="fas fa-helmet-safety" aria-hidden="true"></i></span>
+        <h3 class="au-title">Constructores y maestros de obra</h3>
+        <p class="au-text">Si ya tienes el diseño y la cuadrilla, te vendemos el material con entrega en tu obra.</p>
       </div>
-      <div class="text-center p-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="mat-icon mx-auto mb-4"><i class="fas fa-user-tie" aria-hidden="true"></i></div>
-        <h3 class="text-lg font-bold text-dark mb-2">Diseñadores y arquitectos</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Apoya tus proyectos con los componentes que usamos en casas prefabricadas, probados en obra real.
-        </p>
+      <div class="au-item" data-aos="fade-up" data-aos-delay="100">
+        <span class="au-icon"><i class="fas fa-user-tie" aria-hidden="true"></i></span>
+        <h3 class="au-title">Diseñadores y arquitectos</h3>
+        <p class="au-text">Apoya tus proyectos con los componentes que usamos en casas prefabricadas, probados en obra real.</p>
       </div>
-      <div class="text-center p-6" data-aos="fade-up" data-aos-delay="200">
-        <div class="mat-icon mx-auto mb-4"><i class="fas fa-home" aria-hidden="true"></i></div>
-        <h3 class="text-lg font-bold text-dark mb-2">Particulares con su proyecto</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-          Si estás construyendo tu casa por etapas, cotiza solo el material de la etapa que vas a ejecutar.
-        </p>
+      <div class="au-item" data-aos="fade-up" data-aos-delay="200">
+        <span class="au-icon"><i class="fas fa-home" aria-hidden="true"></i></span>
+        <h3 class="au-title">Particulares con su proyecto</h3>
+        <p class="au-text">Si estás construyendo tu casa por etapas, cotiza solo el material de la etapa que vas a ejecutar.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- CÓMO FUNCIONA -->
-<section class="py-16 md:py-20 bg-gray-50">
+<section id="pasos" class="py-16 md:py-20 bg-gray-50">
   <div class="container mx-auto px-6">
     <div class="max-w-3xl mx-auto text-center mb-12" data-aos="fade-up">
       <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4">
@@ -1555,26 +1660,26 @@
       </p>
     </div>
 
-    <ol class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <li class="bg-white rounded-2xl p-7 shadow-sm relative" data-aos="fade-up">
-        <span class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg">1</span>
-        <h3 class="text-lg font-bold text-dark mb-2">Nos escribes por WhatsApp</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
+    <ol class="st-grid">
+      <li class="st-card" data-aos="fade-up">
+        <span class="st-num">1</span>
+        <h3 class="st-title">Nos escribes por WhatsApp</h3>
+        <p class="st-text">
           Cuéntanos qué material necesitas y para qué municipio es la entrega. Si tienes planos,
           mándalos: nos acelera la cotización.
         </p>
       </li>
-      <li class="bg-white rounded-2xl p-7 shadow-sm relative" data-aos="fade-up" data-aos-delay="100">
-        <span class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg">2</span>
-        <h3 class="text-lg font-bold text-dark mb-2">Tecotizamos el valor</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
+      <li class="st-card" data-aos="fade-up" data-aos-delay="100">
+        <span class="st-num">2</span>
+        <h3 class="st-title">Tecotizamos el valor</h3>
+        <p class="st-text">
           Calculamos las unidades que pide tu proyecto, el precio y el costo de transporte a tu zona.
         </p>
       </li>
-      <li class="bg-white rounded-2xl p-7 shadow-sm relative" data-aos="fade-up" data-aos-delay="200">
-        <span class="absolute -top-4 -left-4 w-10 h-10 rounded-full bg-primary text-white font-bold flex items-center justify-center text-lg">3</span>
-        <h3 class="text-lg font-bold text-dark mb-2">Entregamos en tu obra</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
+      <li class="st-card" data-aos="fade-up" data-aos-delay="200">
+        <span class="st-num">3</span>
+        <h3 class="st-title">Entregamos en tu obra</h3>
+        <p class="st-text">
           Coordinamos la entrega en la fecha que tu cronograma necesita. Si además quieres el
           montaje, lo cotizamos aparte.
         </p>
