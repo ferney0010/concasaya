@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Materiales para Construcción Prefabricada | Plaqueta, Tejas y Estructuras | CONCASAYA</title>
-<meta name="description" content="Compra materiales para construcción prefabricada en Colombia: plaqueta de concreto, tejas, cerchas metálicas, estructura en acero, entrepiso y perfilería. Suministro para constructores y maestros de obra. Cotiza por WhatsApp." />
-<meta name="keywords" content="materiales construcción prefabricada, plaqueta de concreto, tejas para cubierta, cerchas metálicas, estructura acero galvanizado, entrepiso metálico, perfilería estructural, venta de materiales construcción Colombia, materiales para constructores, materiales para obra, suministro de materiales Colombia, materiales prefabricados Bogotá" />
+<title>Materiales para Construcción Prefabricada | Plaqueta de Concreto y Teja de Barro | CONCASAYA</title>
+<meta name="description" content="Compra materiales para construcción prefabricada en Colombia: plaqueta de concreto y teja de barro. Suministro para constructores y maestros de obra. Cotiza por WhatsApp." />
+<meta name="keywords" content="plaqueta de concreto, teja de barro, venta de teja de barro Colombia, plaqueta de concreto precio, materiales construcción prefabricada, venta de materiales construcción Colombia, materiales para constructores, materiales para obra, suministro de materiales Colombia, materiales prefabricados Bogotá" />
 <link rel="canonical" href="https://www.concasaya.com/materiales" />
 <!-- Favicon -->
 <link rel="icon" href="https://www.concasaya.com/assets/images/logo.ico" type="image/x-icon" />
@@ -13,11 +13,11 @@
 <link rel="apple-touch-icon" href="https://www.concasaya.com/assets/images/logoconcasaya.webp" />
 <!-- Open Graph -->
 <meta property="og:title" content="Materiales para Construcción Prefabricada | CONCASAYA" />
-<meta property="og:description" content="Plaqueta de concreto, tejas, cerchas metálicas, estructura en acero, entrepiso y perfilería. Suministro de materiales para obras en toda Colombia. Cotiza sin compromiso por WhatsApp." />
+<meta property="og:description" content="Plaqueta de concreto y teja de barro. Suministro de materiales para obras en toda Colombia. Cotiza sin compromiso por WhatsApp." />
 <meta property="og:image" content="https://www.concasaya.com/assets/images/og-materiales.webp" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Catálogo de materiales para construcción prefabricada de CONCASAYA: plaqueta, tejas, cerchas y estructuras metálicas." />
+<meta property="og:image:alt" content="Catálogo de materiales para construcción prefabricada de CONCASAYA: plaqueta de concreto y teja de barro." />
 <meta property="og:url" content="https://www.concasaya.com/materiales" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="es_CO" />
@@ -25,7 +25,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Materiales para Construcción Prefabricada | CONCASAYA" />
-<meta name="twitter:description" content="Plaqueta, tejas, cerchas, acero, entrepiso y perfilería para obras en toda Colombia. Cotiza por WhatsApp." />
+<meta name="twitter:description" content="Plaqueta de concreto y teja de barro para obras en toda Colombia. Cotiza por WhatsApp." />
 <meta name="twitter:image" content="https://www.concasaya.com/assets/images/og-materiales.webp" />
 <meta name="theme-color" content="#0077b6" />
 <!-- Preload de la foto del hero para mejorar el LCP (Core Web Vitals) -->
@@ -303,10 +303,11 @@
   .mc-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
+  @media (min-width: 640px) { .mc-grid { gap: 1.5rem; } }
+  /* 4 tarjetas: 2 columnas equilibra mejor que 3 (dejaba una fila de 1 sola). */
   @media (min-width: 640px) { .mc-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .mc-grid { grid-template-columns: repeat(3, 1fr); } }
 
   .mc-card {
     display: flex;
@@ -320,6 +321,10 @@
     box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
     transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
   }
+
+  /* Las dos tarjetas de venta cruzada (proyecto completo y lotes) no son
+     material: se pintan distinto para que no se confundan con el catálogo. */
+  .mc-card--cross { background: #fbfcfe; border-style: dashed; }
 
   /* Capa de foto de la tarjeta. El margen negativo la sube hasta el borde
      superior de la card y la pega a los bordes laterales. */
@@ -381,33 +386,79 @@
   .mc-cta {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     align-self: flex-start;
     font-size: 0.9rem;
     font-weight: 700;
     color: #0077b6;
-    padding-top: 1rem;
-    border-top: 1px solid #eef2f6;
     width: 100%;
-    transition: color .2s ease;
-  }
-  .mc-cta:hover { color: #005f8f; }
-  .mc-cta--plain {
-    border-top: 0;
-    padding-top: 0;
-    background: none;
-    width: auto;
-  }
-  .mc-cta--wa {
-    background: #047857;
-    border: 0;
-    color: #fff;
-    justify-content: center;
+    min-height: 48px;              /* objetivo tactil comodo en celular */
     padding: 0.8rem 1.25rem;
     border-radius: 999px;
-    width: 100%;
+    background: #0077b6;
+    color: #fff;
+    text-align: center;
+    transition: background .2s ease, transform .2s ease;
   }
+  .mc-cta:hover { background: #005f8f; }
+  .mc-cta:active { transform: scale(.985); }
+
+  /* En escritorio el enlace baja a la version ligera: texto con filete arriba,
+     que no compite con la foto de la tarjeta. */
+  @media (min-width: 640px) {
+    .mc-cta {
+      min-height: 0;
+      padding: 1rem 0 0;
+      border-radius: 0;
+      background: none;
+      color: #0077b6;
+      justify-content: flex-start;
+      border-top: 1px solid #eef2f6;
+    }
+    .mc-cta:hover { background: none; color: #005f8f; }
+  }
+
+  /* En movil es un boton con borde: sin fondo, el texto azul sobre blanco
+     queda casi invisible al taparlo con el dedo. */
+  .mc-cta--plain {
+    border-top: 0;
+    padding-top: 0.8rem;
+    background: none;
+    color: #0077b6;
+    box-shadow: inset 0 0 0 1.5px #cfe4f2;
+  }
+  .mc-cta--plain:hover { background: #f2f8fd; color: #005f8f; }
+
+  @media (min-width: 640px) {
+    .mc-cta--plain {
+      border-top: 0;
+      padding-top: 0.8rem;
+      width: 100%;
+      background: none;
+      color: #0077b6;
+      box-shadow: inset 0 0 0 1.5px #cfe4f2;
+    }
+    .mc-cta--plain:hover { background: #f2f8fd; }
+  }
+
+  .mc-cta--wa { background: #047857; color: #fff; }
   .mc-cta--wa:hover { background: #065f46; }
+  @media (min-width: 640px) {
+    .mc-cta--wa {
+      border-top: 0;
+      padding-top: 0.8rem;
+      background: #047857;
+      color: #fff;
+    }
+    .mc-cta--wa:hover { background: #065f46; }
+  }
+
+  /* En movil el texto largo de la CTA ("Quiero ver los lotes") no cabe en una
+     sola linea: se deja fluir en dos sin romper la caja. */
+  @media (max-width: 400px) {
+    .mc-cta { font-size: 0.85rem; padding: 0.75rem 1rem; }
+  }
 
   /* --- Pasos "Cómo cotizas" ---
      Antes el numero iba en -top-4/-left-4 y terminaba encima del titulo. */
@@ -501,7 +552,7 @@
       "@id": "https://www.concasaya.com/materiales#webpage",
       "url": "https://www.concasaya.com/materiales",
       "name": "Materiales para Construcción Prefabricada | CONCASAYA",
-      "description": "Venta de materiales para construcción prefabricada: plaqueta de concreto, tejas, cerchas metálicas, estructura en acero, entrepiso y perfilería.",
+      "description": "Venta de materiales para construcción prefabricada: plaqueta de concreto y teja de barro.",
       "inLanguage": "es-CO",
       "isPartOf": { "@id": "https://www.concasaya.com/#website" },
       "about": { "@id": "https://www.concasaya.com/materiales#service" },
@@ -513,7 +564,7 @@
       "@id": "https://www.concasaya.com/materiales#service",
       "name": "Venta de materiales para construcción prefabricada",
       "serviceType": "Suministro de materiales de construcción",
-      "description": "CONCASAYA suministra materiales para construcción prefabricada: plaqueta de concreto, tejas para cubierta, cerchas metálicas, estructura en acero galvanizado, entrepiso metálico y perfilería estructural. Disponible para constructores, maestros de obra y proyectos de casa prefabricada en toda Colombia.",
+      "description": "CONCASAYA suministra materiales para construcción prefabricada: plaqueta de concreto y teja de barro. Disponible para constructores, maestros de obra y proyectos de casa prefabricada en toda Colombia.",
       "provider": { "@id": "https://www.concasaya.com/#organization" },
       "areaServed": { "@type": "Country", "name": "Colombia" },
       "availableChannel": {
@@ -530,12 +581,7 @@
       "name": "Catálogo de materiales de construcción",
       "itemListElement": [
         { "@type": "Offer", "position": 1, "itemOffered": { "@type": "Product", "name": "Plaqueta de concreto", "description": "Placa de concreto prefabricada para muros, tabiques y cerramientos de sistemas constructivos." } },
-        { "@type": "Offer", "position": 2, "itemOffered": { "@type": "Product", "name": "Tejas para cubierta", "description": "Tejas cerámicas y poliméricas para cubiertas, con corte a la medida del proyecto." } },
-        { "@type": "Offer", "position": 3, "itemOffered": { "@type": "Product", "name": "Cerchas metálicas", "description": "Cerchas o trusses metálicos prefabricados para la estructura de la cubierta." } },
-        { "@type": "Offer", "position": 4, "itemOffered": { "@type": "Product", "name": "Estructura en acero galvanizado", "description": "Columnas y vigas de acero galvanizado para la estructura principal de la casa." } },
-        { "@type": "Offer", "position": 5, "itemOffered": { "@type": "Product", "name": "Entrepiso metálico", "description": "Entrepiso o deck metálico para pisos y entrepisos de estructuras prefabricadas." } },
-        { "@type": "Offer", "position": 6, "itemOffered": { "@type": "Product", "name": "Perfilería y tubo estructural", "description": "Perfilería metálica y tubo estructural para pórticos, vigas y columnas." } },
-        { "@type": "Offer", "position": 7, "itemOffered": { "@type": "Product", "name": "Muros en seco y tabiquería", "description": "Sistema de muros en seco y tabiquería para acabados interiores y particiones." } }
+        { "@type": "Offer", "position": 2, "itemOffered": { "@type": "Product", "name": "Teja de barro", "description": "Teja de barro cocido color terracota para cubiertas, cotizada por el número de unidades que requiere el proyecto." } }
       ]
     },
     {
@@ -553,7 +599,7 @@
         {
           "@type": "Question",
           "name": "¿Qué materiales para construcción prefabricada venden?",
-          "acceptedAnswer": { "@type": "Answer", "text": "CONCASAYA suministra plaqueta de concreto, tejas para cubierta, cerchas metálicas, estructura en acero galvanizado (columnas y vigas), entrepiso metálico, perfilería y tubo estructural, y muros en seco para tabiquería y particiones." }
+          "acceptedAnswer": { "@type": "Answer", "text": "CONCASAYA suministra dos materiales para construcción prefabricada: plaqueta de concreto para muros y cerramientos, y teja de barro para cubiertas." }
         },
         {
           "@type": "Question",
@@ -592,9 +638,8 @@
       "knowsAbout": [
         "Construcción prefabricada",
         "Plaqueta de concreto",
-        "Estructuras metálicas",
-        "Cerchas y cubiertas",
-        "Construcción en seco"
+        "Teja de barro",
+        "Cubiertas"
       ],
       "availableLanguage": { "@type": "Language", "name": "Spanish", "alternateName": "es" }
     }
@@ -1466,8 +1511,8 @@
         <span class="mat-badge"><i class="fas fa-industry" aria-hidden="true"></i>Suministro de materiales de construcción</span>
         <h1 class="mat-title">Materiales para <em>construcción prefabricada</em> en toda Colombia</h1>
         <p class="mat-lead">
-          Además de construir casas completas, CONCASAYA suministra los componentes que usa en ellas:
-          plaqueta de concreto, tejas, cerchas metálicas, estructura en acero, entrepiso y perfilería.
+          Además de construir casas completas, CONCASAYA suministra los materiales que usa en ellas:
+          plaqueta de concreto y teja de barro.
           Si tienes tu propia obra o tu propio constructor, te vendemos solo el material.
         </p>
         <ul class="mat-perks">
@@ -1514,18 +1559,13 @@
       </h2>
       <div class="mat-answer rounded-r-lg p-6 md:p-8 mb-6">
         <p class="text-dark text-base md:text-lg leading-relaxed">
-          CONCASAYA suministra siete familias de materiales para construcción prefabricada:
-          <strong>plaqueta de concreto</strong> para muros y cerramientos,
-          <strong>tejas</strong> para cubiertas,
-          <strong>cerchas metálicas</strong> para la estructura de la cubierta,
-          <strong>estructura en acero galvanizado</strong> (columnas y vigas),
-          <strong>entrepiso metálico</strong> para pisos,
-          <strong>perfilería y tubo estructural</strong> para pórticos, y
-          <strong>muros en seco y tabiquería</strong> para particiones interiores.
+          CONCASAYA suministra dos materiales para construcción prefabricada:
+          <strong>plaqueta de concreto</strong> para muros y cerramientos, y
+          <strong>teja de barro</strong> para cubiertas.
         </p>
       </div>
       <p class="text-gray-600 leading-relaxed">
-        Todos los materiales se piden <strong>a cotizar</strong>: el valor cambia según cantidad,
+        Los dos se piden <strong>a cotizar</strong>: el valor cambia según cantidad,
         acabado y zona de entrega. Escríbenos por WhatsApp con la referencia que necesitas y te
         respondemos el valor de tu pedido, sin compromiso y sin llamadas de venta.
       </p>
@@ -1541,11 +1581,12 @@
         Catálogo de <span class="text-primary">materiales</span>
       </h2>
       <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-        Cada componente que usamos en nuestras casas, disponible también suelto para tu obra.
+        Suministramos los materiales que usamos en nuestros muros y cubiertas, disponibles
+        sueltos para tu obra.
       </p>
     </div>
 
-        <div class="mc-grid">
+    <div class="mc-grid">
       <article class="mc-card" data-aos="fade-up">
         <div class="mc-media">
           <img src="/assets/images/materiales/mat-plaqueta-concreto.webp"
@@ -1568,90 +1609,15 @@
                width="800" height="500" loading="lazy" decoding="async">
         </div>
         <span class="mc-icon"><i class="fas fa-house" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Tejas para cubierta</h3>
-        <p class="mc-text">Tejas cerámicas y poliméricas para cubierta. Se cotizan por el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJAS%20para%20cubierta"
+        <h3 class="mc-title">Teja de barro</h3>
+        <p class="mc-text">Teja de barro cocido color terracota para cubierta. Es la que usamos en nuestros techos: se cotiza por el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.</p>
+        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJA%20DE%20BARRO%20para%20cubierta"
            class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar tejas
+          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar teja de barro
         </a>
       </article>
 
-      <article class="mc-card" data-aos="fade-up">
-        <div class="mc-media">
-          <img src="/assets/images/materiales/mat-cerchas-metalicas.webp"
-               alt="Cerchas metálicas prefabricadas apiladas frente a una casa con cubierta de teja"
-               width="800" height="500" loading="lazy" decoding="async">
-        </div>
-        <span class="mc-icon"><i class="fas fa-vector-square" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Cerchas metálicas</h3>
-        <p class="mc-text">Cerchas o trusses metálicos prefabricados: la estructura triangular que sostiene la cubierta. Es la pieza que define la forma del techo y permite un montaje rápido sin encofrado tradicional.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20CERCHAS%20MET%C3%81LICAS"
-           class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar cerchas
-        </a>
-      </article>
-
-      <article class="mc-card" data-aos="fade-up">
-        <div class="mc-media">
-          <img src="/assets/images/materiales/mat-perfileria-tubo.webp"
-               alt="Estructura de acero con columnas y vigas montadas, con perfiles listados en obra"
-               width="800" height="500" loading="lazy" decoding="async">
-        </div>
-        <span class="mc-icon"><i class="fas fa-industry" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Estructura en acero galvanizado</h3>
-        <p class="mc-text">Columnas y vigas de acero galvanizado que forman la estructura principal. Es lo que da rigidez y resistencia a la casa ante sismo y viento.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20ESTRUCTURA%20EN%20ACERO%20GALVANIZADO"
-           class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar acero
-        </a>
-      </article>
-
-      <article class="mc-card" data-aos="fade-up">
-        <div class="mc-media">
-          <img src="/assets/images/materiales/mat-entremiso-metalico.webp"
-               alt="Entrepiso metálico corrugado instalado como piso de una casa en construcción"
-               width="800" height="500" loading="lazy" decoding="async">
-        </div>
-        <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Entrepiso metálico</h3>
-        <p class="mc-text">Entrepiso o deck metálico para el piso y los niveles interiores. Funciona como base del piso terminado y como diafragma rigidizador de la estructura.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20ENTREPISO%20MET%C3%81LICO"
-           class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar entrepiso
-        </a>
-      </article>
-
-      <article class="mc-card" data-aos="fade-up">
-        <div class="mc-media">
-          <img src="/assets/images/materiales/mat-estructura-acero.webp"
-               alt="Perfiles y tubos de acero galvanizado apilados para pórticos y estructuras"
-               width="800" height="500" loading="lazy" decoding="async">
-        </div>
-        <span class="mc-icon"><i class="fas fa-ruler-horizontal" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Perfilería y tubo estructural</h3>
-        <p class="mc-text">Perfilería metálica y tubo estructural para pórticos, vigas de amarre, columnas y estructuras de soporte. Se cortan a la medida de tu proyecto.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20PERFILER%C3%8DA%20Y%20TUBO%20ESTRUCTURAL"
-           class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar perfilería
-        </a>
-      </article>
-
-      <article class="mc-card" data-aos="fade-up">
-        <div class="mc-media">
-          <img src="/assets/images/materiales/mat-muros-secos.webp"
-               alt="Interior de casa en construcción con tabiquería y muros en seco ya instalados"
-               width="800" height="500" loading="lazy" decoding="async">
-        </div>
-        <span class="mc-icon"><i class="fas fa-grip-lines" aria-hidden="true"></i></span>
-        <h3 class="mc-title">Muros en seco y tabiquería</h3>
-        <p class="mc-text">Sistema de tabiquería y muros en seco para particiones interiores. Acaba rápido, no necesita cura de pañete y deja el interior listo para pintar.</p>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20MUROS%20EN%20SECO%20Y%20TABIQUER%C3%8DA"
-           class="mc-cta" target="_blank" rel="noopener">
-          <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar muros en seco
-        </a>
-      </article>
-
-      <article class="mc-card" data-aos="fade-up">
+      <article class="mc-card mc-card--cross" data-aos="fade-up">
         <div class="mc-media">
           <img src="/assets/images/materiales/mat-proyecto-completo.webp"
                alt="Casa prefabricada en construcción con tejas, perfiles y placas de concreto en obra"
@@ -1665,7 +1631,7 @@
         </a>
       </article>
 
-      <article class="mc-card" data-aos="fade-up">
+      <article class="mc-card mc-card--cross" data-aos="fade-up">
         <div class="mc-media">
           <img src="/assets/images/materiales/mat-lote.webp"
                alt="Desarrollo residencial con calles, servicios y lotes entre montañas"
@@ -1817,11 +1783,8 @@
         </summary>
         <div class="px-5 sm:px-6 pb-5 text-gray-600 leading-relaxed">
           <p>
-            CONCASAYA suministra <strong>plaqueta de concreto</strong> para muros y cerramientos,
-            <strong>tejas</strong> para cubiertas, <strong>cerchas metálicas</strong> para la estructura
-            de la cubierta, <strong>estructura en acero galvanizado</strong> (columnas y vigas),
-            <strong>entrepiso metálico</strong> para pisos, <strong>perfilería y tubo estructural</strong>
-            para pórticos, y <strong>muros en seco y tabiquería</strong> para particiones interiores.
+            CONCASAYA suministra <strong>plaqueta de concreto</strong> para muros y cerramientos
+            y <strong>teja de barro</strong> para cubiertas.
           </p>
         </div>
       </details>

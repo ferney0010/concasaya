@@ -10,6 +10,21 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
+// Cloudflare Pages sirve URLs "pretty" (/materiales -> materiales.html).
+// Express no lo hace, asi que replicamos esa resolucion para que el preview
+// local navegue igual que produccion.
+app.use((req, res, next) => {
+    if (req.method !== 'GET' || req.path.includes('.')) return next();
+    const base = path.join(__dirname, req.path);
+    const fs = require('fs');
+    for (const candidate of [base + '.html', path.join(base, 'index.html')]) {
+        if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
+            return res.sendFile(candidate);
+        }
+    }
+    next();
+});
+
 // Redirect permanente: URL antigua del cotizador
 app.get('/cotizador-encuesta.html', (req, res) => {
     res.redirect(301, '/cotizador-precios-casas-prefabricadas.html');
