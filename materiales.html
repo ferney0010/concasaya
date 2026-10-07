@@ -110,6 +110,41 @@
     gap: 0.85rem;
     margin-top: 1.6rem;
   }
+
+  /* --- Perks con icono (referencia de diseño) --- */
+  .mat-perks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+    margin: 1.9rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .mat-perk {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    color: #ffffff;
+    font-size: 0.78rem;
+    line-height: 1.25;
+    font-weight: 500;
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+  }
+  .mat-perk__ico {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 999px;
+    border: 1.5px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #86f08f;
+  }
   .mat-btn {
     display: inline-flex;
     align-items: center;
@@ -142,28 +177,30 @@
   /* --- Escritorio: tema oscuro, foto a sangre y blur con caída --- */
   @media (min-width: 768px) {
     .hero-mat {
-      min-height: 560px;
+      min-height: 600px;
       padding: 96px 0 104px;
       background-image: url('/assets/images/hero-nuevo/hero-materiales-pc.webp');
       background-size: cover;
-      background-position: center 58%;
+      background-position: center 62%;
       background-repeat: no-repeat;
     }
     /* El desenfoque NO se puede desvanecer con un degradado normal:
        backdrop-filter se aplica uniforme. Se resuelve enmascarándolo con
-       mask-image en degradado, que sí controla su visibilidad. */
+       mask-image en degradado, que sí controla su visibilidad.
+       En esta foto la casa arranca al 32% del ancho, así que la máscara
+       llega a cero en 44%: el texto queda cubierto y la casa nítida. */
     .hero-mat::before {
       display: block;
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(100deg,
-        rgba(4, 26, 44, 0.86) 0%, rgba(4, 26, 44, 0.72) 28%,
-        rgba(4, 26, 44, 0.36) 44%, rgba(4, 26, 44, 0) 60%);
+        rgba(4, 26, 44, 0.88) 0%, rgba(4, 26, 44, 0.78) 28%,
+        rgba(4, 26, 44, 0.4) 42%, rgba(4, 26, 44, 0) 54%);
       -webkit-mask-image: linear-gradient(100deg,
-        #000 0%, #000 34%, rgba(0, 0, 0, 0.45) 46%, rgba(0, 0, 0, 0) 60%);
+        #000 0%, #000 28%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0) 50%);
       mask-image: linear-gradient(100deg,
-        #000 0%, #000 34%, rgba(0, 0, 0, 0.45) 46%, rgba(0, 0, 0, 0) 60%);
+        #000 0%, #000 28%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0) 50%);
       backdrop-filter: blur(7px) saturate(1.08);
       -webkit-backdrop-filter: blur(7px) saturate(1.08);
       pointer-events: none;
@@ -171,6 +208,10 @@
     }
     .mat-title { font-size: 3rem; }
     .mat-lead { font-size: 1.1rem; }
+    /* Columna de texto mas estrecha: en esta foto la casa arranca al 32%
+       del ancho, asi que el texto no debe pasar de ahi o invadir la zona
+       donde el desenfoque ya se apago. */
+    .hero-mat__text { max-width: 560px; }
   }
 
   /* --- Móvil: APROBADO. Foto en banda propia arriba + texto sobre blanco.
@@ -219,6 +260,26 @@
     .mat-title em { color: #1a7434; }
 
     .mat-lead { color: #41525f; font-size: 0.95rem; margin-top: 0.85rem; }
+
+    /* Perks sobre fondo blanco: sin halo y con icono verde solido. */
+    .mat-perks { gap: 0.9rem 1.15rem; margin-top: 1.5rem; }
+    .mat-perk {
+      color: #0d2032;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-shadow: none;
+      gap: 0.5rem;
+    }
+    .mat-perk__ico {
+      width: 36px;
+      height: 36px;
+      font-size: 0.82rem;
+      background: #eaf7ee;
+      border-color: #bfe3c9;
+      color: #1a7434;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
 
     .mat-ctas { flex-direction: column; align-items: stretch; margin-top: 1.35rem; }
     .mat-btn { width: 100%; font-size: 0.95rem; padding: 0.95rem 1.25rem; }
@@ -1226,21 +1287,35 @@
           plaqueta de concreto, tejas, cerchas metálicas, estructura en acero, entrepiso y perfilería.
           Si tienes tu propia obra o tu propio constructor, te vendemos solo el material.
         </p>
+        <ul class="mat-perks">
+          <li class="mat-perk">
+            <span class="mat-perk__ico"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+            <span>Construcción<br />rápida</span>
+          </li>
+          <li class="mat-perk">
+            <span class="mat-perk__ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></span>
+            <span>Resistentes<br />y seguras</span>
+          </li>
+          <li class="mat-perk">
+            <span class="mat-perk__ico"><i class="fas fa-leaf" aria-hidden="true"></i></span>
+            <span>Económicas<br />y sostenibles</span>
+          </li>
+        </ul>
         <div class="mat-ctas">
           <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20materiales%20de%20construcci%C3%B3n%20prefabricada%20con%20CONCASAYA"
              class="mat-btn mat-btn--solid" target="_blank" rel="noopener">
             <i class="fab fa-whatsapp" aria-hidden="true"></i>
-            Cotizar materiales
+            Cotizar mi proyecto
             <i class="fas fa-arrow-right mat-btn__arrow" aria-hidden="true"></i>
           </a>
           <a href="#catalogo" class="mat-btn mat-btn--ghost">
-            <i class="fas fa-list" aria-hidden="true"></i>
-            Ver el catálogo
+            <i class="fas fa-th" aria-hidden="true"></i>
+            Ver catálogo de materiales
           </a>
-        </div>
+        </ul>
         <p class="mat-note">
           <i class="fas fa-truck mr-2" aria-hidden="true"></i>
-          Bogotá · Cundinamarca · Boyacá · Santander — y evaluación de envío a otras zonas.
+          Suministro en Bogotá, Cundinamarca, Boyacá y Santander
         </p>
       </div>
     </div>
