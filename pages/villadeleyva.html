@@ -713,6 +713,17 @@
           background-position: center 40%;
         }
         .hero-villa__inner { padding-top: 1.35rem; }
+        /* Badge en una sola linea: en movil el texto completo no cabia con el
+           tamano de escritorio y saltaba de linea dejando el nombre del
+           municipio solo al final. Achicando cuerpo y espaciado entra
+           entero, que es lo que se lee mejor en pantalla chica. */
+        .hv-badge {
+          align-items: center;
+          font-size: 0.62rem;
+          letter-spacing: 0.07em;
+          padding: 0.45rem 0.8rem;
+        }
+        .hv-badge i { font-size: 0.72rem; }
         .hero-villa__text { max-width: 100%; }
         .hv-perk { padding: 0 0.45rem; font-size: 0.68rem; }
         .hv-perk__ico { width: 34px; height: 34px; font-size: 0.85rem; }
@@ -2001,9 +2012,27 @@
               Fachadas, interiores y detalles de casas prefabricadas CONCASAYA.
             </p>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 max-w-5xl mx-auto mb-10">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 max-w-5xl mx-auto mb-10">
+            <a href="/galeria" class="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" data-aos="zoom-in" data-aos-delay="100">
+              <img src="/assets/images/galeria-villa-casa-teja-madera.webp" alt="Casa prefabricada de dos pisos con cubierta de teja y baranda roja en Villa de Leyva" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="1400" height="788" />
+              <span class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3">
+                <span class="text-white text-xs sm:text-sm font-semibold"><i class="fas fa-images mr-1"></i>Ver más</span>
+              </span>
+            </a>
+            <a href="/galeria" class="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" data-aos="zoom-in" data-aos-delay="200">
+              <img src="/assets/images/galeria-villa-casa-blanca-zocalo.webp" alt="Casa prefabricada blanca de dos pisos con zócalo de piedra y baranda roja" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="1308" height="1202" />
+              <span class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3">
+                <span class="text-white text-xs sm:text-sm font-semibold"><i class="fas fa-images mr-1"></i>Ver más</span>
+              </span>
+            </a>
             <a href="/galeria" class="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" data-aos="zoom-in" data-aos-delay="300">
-              <img src="/assets/images/bodega2.webp" alt="Obra prefabricada industrial" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="600" height="450" />
+              <img src="/assets/images/galeria-villa-casa-atardecer-montanas.webp" alt="Casa prefabricada con cubierta de teja naranja al atardecer entre las montañas de Villa de Leyva" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="1087" height="1446" />
+              <span class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3">
+                <span class="text-white text-xs sm:text-sm font-semibold"><i class="fas fa-images mr-1"></i>Ver más</span>
+              </span>
+            </a>
+            <a href="/galeria" class="group relative overflow-hidden rounded-xl shadow-md aspect-[4/3] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2" data-aos="zoom-in" data-aos-delay="400">
+              <img src="/assets/images/galeria-villa-casa-porche-verde.webp" alt="Casa prefabricada con porche, estructura oscura y techo de teja sobre terreno en pendiente" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" width="1400" height="881" />
               <span class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center pb-3">
                 <span class="text-white text-xs sm:text-sm font-semibold"><i class="fas fa-images mr-1"></i>Ver más</span>
               </span>
@@ -2014,7 +2043,7 @@
               href="/galeria"
               class="inline-flex items-center justify-center bg-primary text-white px-8 py-3 rounded-full font-bold text-sm sm:text-base hover:bg-primary/90 transition-all duration-300 shadow-lg hover:scale-105"
             >
-              <i class="fas fa-images mr-2"></i>Abrir galería completa
+              <i class="fas fa-images mr-2"></i>Ver m&aacute;s fotos
             </a>
           </div>
         </div>
