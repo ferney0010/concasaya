@@ -187,31 +187,38 @@
     /* El desenfoque NO se puede desvanecer con un degradado normal:
        backdrop-filter se aplica uniforme. Se resuelve enmascarándolo con
        mask-image en degradado, que sí controla su visibilidad.
-       En esta foto la casa arranca al 32% del ancho, así que la máscara
-       llega a cero en 44%: el texto queda cubierto y la casa nítida. */
+       2026-10-07: la veladura oscura y el blur terminaban en el 50% y se
+       cruzaban sobre la casa, apagándola a partir del 32%. Ahora ambos
+       degradados se cierran en el 32%, justo antes de que empiece el alero,
+       así que la casa se ve limpia: sin oscurecer y sin desenfocar.
+       El texto llega hasta el 27%, asi que sigue entrando de sobra. */
     .hero-mat::before {
       display: block;
       content: "";
       position: absolute;
       inset: 0;
       background: linear-gradient(100deg,
-        rgba(4, 26, 44, 0.88) 0%, rgba(4, 26, 44, 0.78) 28%,
-        rgba(4, 26, 44, 0.4) 42%, rgba(4, 26, 44, 0) 54%);
+        rgba(4, 26, 44, 0.86) 0%, rgba(4, 26, 44, 0.78) 20%,
+        rgba(4, 26, 44, 0.45) 30%, rgba(4, 26, 44, 0) 35%);
       -webkit-mask-image: linear-gradient(100deg,
-        #000 0%, #000 28%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0) 50%);
+        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
       mask-image: linear-gradient(100deg,
-        #000 0%, #000 28%, rgba(0, 0, 0, 0.45) 40%, rgba(0, 0, 0, 0) 50%);
-      backdrop-filter: blur(7px) saturate(1.08);
-      -webkit-backdrop-filter: blur(7px) saturate(1.08);
+        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
+      backdrop-filter: blur(8px) saturate(1.04);
+      -webkit-backdrop-filter: blur(8px) saturate(1.04);
       pointer-events: none;
       z-index: 1;
     }
-    .mat-title { font-size: 3rem; }
-    .mat-lead { font-size: 1.1rem; }
-    /* Columna de texto mas estrecha: en esta foto la casa arranca al 32%
-       del ancho, asi que el texto no debe pasar de ahi o invadir la zona
-       donde el desenfoque ya se apago. */
-    .hero-mat__text { max-width: 560px; }
+    .mat-title { font-size: 3rem; text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5); }
+    .mat-lead { font-size: 1.05rem; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+    /* Sin veladura oscura sobre la foto, el halo es lo que sostiene el
+       contraste del texto en los bordes donde el degradado ya se apago. */
+    .mat-perk { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
+    .mat-note { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
+    /* Columna de texto mas estrecha: tiene que caber DENTRO de la zona
+       oscura del degradado (que cierra en el 35%). Si el texto se pasa, el
+       parrafo cae sobre la pared blanca de la casa y deja de leerse. */
+    .hero-mat__text { max-width: 480px; }
   }
 
   /* --- Móvil: APROBADO. Foto en banda propia arriba + texto sobre blanco.
@@ -2214,7 +2221,7 @@
 
                 <i class="fas fa-phone text-primary mr-3"></i>
 
-                <a href="tel:+573165771582" class="text-gray-300 hover:text-primary transition-colors">316 577 1582</a>
+                <a href="tel:+573209575171" class="text-gray-300 hover:text-primary transition-colors">320 957 5171</a>
 
               </li>
 

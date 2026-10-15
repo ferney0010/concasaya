@@ -33,8 +33,8 @@
         type: 'whatsapp',
         icon: 'fa-brands fa-whatsapp',
         label: 'WhatsApp secundario',
-        value: '+57 316 577 1582',
-        href: 'https://wa.me/573165771582?text=Hola%20CONCASAYA%2C%20necesito%20verificar%20un%20canal%20de%20contacto%20antes%20de%20realizar%20un%20pago.'
+        value: '+57 320 957 5171',
+        href: 'https://wa.me/573209575171?text=Hola%20CONCASAYA%2C%20necesito%20verificar%20un%20canal%20de%20contacto%20antes%20de%20realizar%20un%20pago.'
       },
       {
         type: 'email',

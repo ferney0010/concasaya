@@ -19,7 +19,7 @@
     return val;
   }
 
-  const WHATSAPP_LEAD_NUMBERS = ['573142891018', '573165771582'];
+  const WHATSAPP_LEAD_NUMBERS = ['573142891018', '573209575171'];
 
   function getRandomWhatsAppLeadNumber() {
     return WHATSAPP_LEAD_NUMBERS[Math.floor(Math.random() * WHATSAPP_LEAD_NUMBERS.length)];

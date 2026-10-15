@@ -2,6 +2,16 @@
 
 Sitio web de CONCASAYA, cliente principal de Ferney. **Regla crítica**: NUNCA hacer algo que perjudique este proyecto. Ante la duda, no tocar.
 
+## 🚨 REGLA DE DEPLOY — NUNCA GitHub, SOLO Cloudflare wrangler
+
+**En este proyecto NUNCA se despliega con GitHub. El único mecanismo de deploy es `wrangler pages deploy`.**
+
+- `git push` **NO despliega nada**. No hay `.github/workflows`, no hay CI. El repo de GitHub es **solo respaldo de código**.
+- Cuando Ferney dice **"haz push"**, en este proyecto significa **"correr el deploy con wrangler"**, no subir a GitHub.
+- **Nunca** informar "ya hice push" como si el cambio estuviera en producción. Decir `el código está en GitHub; falta el deploy con wrangler` — o mejor, correr el deploy si lo pide.
+- Verificar siempre con regex contra el HTML servido por `concasaya.com` que los valores nuevos están y los viejos no. No confiar en el mensaje de éxito de wrangler.
+- Ojo: reglas genéricas de otros proyectos (p. ej. "Vercel autodespliega en el push") **NO aplican aquí**.
+
 ## Stack
 - HTML estático + Tailwind local compilado (Tailwind v3.4.19 con CSS variables para opacity)
 - Deploy: Cloudflare Pages directo con wrangler (NO Vercel, NO GitHub integration)
@@ -43,6 +53,55 @@ foreach ($u in $urls) {
 ```
 
 Los 3 deben dar 200 OK. El 308 redirect inicial de `www` → `sin www` es comportamiento normal de Cloudflare.
+
+**Eso NO alcanza**: los 200 solo confirman que el sitio responde, no que sirvió el archivo correcto.
+Pedir el HTML y buscar los valores nuevos y viejos:
+
+```powershell
+$r = Invoke-WebRequest "https://concasaya.com/modelos" -UseBasicParsing -Headers @{ 'Cache-Control'='no-cache' }
+$r.Content -match '59\.725\.900'   # nuevo -> True
+$r.Content -match 'Ahorra 13%'     # viejo -> False
+```
+
+## Estado actual del catálogo (2026-10-07)
+
+Precios reales que el cliente suministró por WhatsApp. El bloque de precio de cada card muestra
+"Precio" (referencia, tachado en rojo) y "Precio con descuento" (el real). **Sin badge de
+porcentaje** — el descuento ya está aplicado sobre el valor.
+
+| Modelo | Precio | Precio con descuento |
+|---|---|---|
+| Cabaña de Vidrio 25m² | $63.750.000 | $59.725.900 |
+| Casa El Moral 36m² | $24.845.900 | $23.127.700 |
+| Cabaña La Vega 54m² | $44.460.000 | $41.580.690 |
+| Casa Firavitoba 70m² | $62.429.500 | $56.797.500 |
+| Casa 80m² | $63.700.000 | $55.368.200 ← **PRECISO PENDIENTE** |
+
+**Pendientes conocidos** (no resolver sin el dato del cliente):
+1. Casa 80m² sigue con el precio viejo — falta su mensaje de WhatsApp.
+2. Firavitoba 70m² usa el plano de 84m² (`casa-firavitoba-84m2-plano.webp`) — falta el plano nuevo.
+3. `pages/villadeleyva.html` desactualizada: Cabaña, El Moral y Firavitoba con precios viejos.
+4. Cimentación inconsistente: 3 cards dicen "no incluye", 2 dicen "incluida"; el FAQ de Google
+   afirma que sí. Falta confirmar la regla real del cliente.
+
+Cualquier cambio de precio debe propagarse a: la card, el CTA de WhatsApp, el `price` del JSON-LD,
+el FAQ visible, el FAQ de Google y las metas OG/Twitter —incluido el rango "desde/hasta" del
+catálogo, que cambia cuando el modelo más caro deja de serlo.
+
+## Notas técnicas de este proyecto
+
+- Las tabs Foto/Plano usan `:has()` en `modelos.html` para resaltar el label activo. El patrón
+  `peer-checked` **no funciona** ahí porque los `<label>` viven dentro de un `<div>` absoluto y
+  no son hermanos de los `<input>`. Las imágenes sí alternan porque esas sí son hermanas.
+- Al medir estilos con `getComputedStyle` hay que **esperar la transición** (~200 ms, dos
+  `requestAnimationFrame`); leer justo después de cambiar el estado devuelve el valor a mitad
+  de camino y parece que el CSS no aplicó.
+- Los planos se guardan en 2400x1792 (4:3 exacto) y se muestran con `object-cover`. Si el plano
+  viene en otra proporción hay que **paddearlo** con fondo blanco, y dejar ~20% de aire abajo
+  porque la barra de tabs va superpuesta ahí.
+- `server.js` resuelve URLs sin extensión (`/materiales` → `materiales.html`) replicando lo que
+  hace Cloudflare Pages, para que el preview local navegue como producción.
+- El listado del blog está en `/blog.html`, **no** en `/blog/` (no hay `index.html` en la carpeta).
 
 ## Estructura de páginas importantes
 - `index.html` — homepage

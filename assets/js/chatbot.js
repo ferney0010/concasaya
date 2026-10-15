@@ -47,9 +47,9 @@ function hideWelcomeModal() {
 // Endpoint del API - funcionará automáticamente en Vercel
 const API_ENDPOINT = "/api/chat";
 
-const CONTACT_INFO = "314 289 1018 o 316 577 1582";
+const CONTACT_INFO = "314 289 1018 o 320 957 5171";
 const WHATSAPP_NUMBER = "573142891018";
-const CONTACT_MAIN_INFO_SOURCE = "314 289 1018, 316 577 1582 o WhatsApp";
+const CONTACT_MAIN_INFO_SOURCE = "314 289 1018, 320 957 5171 o WhatsApp";
 
 // Configuración: Usar JSON en lugar de Supabase
 const KNOWLEDGE_BASE_URL = "/knowledge_base.json";
@@ -739,7 +739,7 @@ Tu propósito principal es:
 
 Información de contacto de CONCASAYA:
 - Teléfono Principal: 314 289 1018
-- Teléfono Alternativo: 316 577 1582
+- Teléfono Alternativo: 320 957 5171
 - WhatsApp: 573142891018
 - Dirección: Cl. 147 #101-56 Local 64, Bogotá (Centro Comercial Fiesta, Suba)
 - Ubicación: Centro Comercial Fiesta, Suba - Al lado del Portal de Suba de TransMilenio, muy cerca a la estación La Campiña
@@ -769,7 +769,7 @@ Instrucciones CRÍTICAS para tus respuestas:
 - Si el usuario pregunta sobre ventajas de construcción prefabricada, sugiere visitar /ventajas.html pero NO redirijas automáticamente.
 - Si el usuario pregunta sobre información de la empresa, sugiere visitar /nosotros.html pero NO redirijas automáticamente.
 - Si el usuario pregunta sobre preguntas frecuentes, sugiere visitar /faq.html pero NO redirijas automáticamente.
-- Si el usuario quiere contacto directo, proporciona los teléfonos (314 289 1018, 316 577 1582) y WhatsApp (573142891018)
+- Si el usuario quiere contacto directo, proporciona los teléfonos (314 289 1018, 320 957 5171) y WhatsApp (573142891018)
 - Si el usuario pregunta sobre un municipio específico donde construyen (como Chía, Cajicá, etc.), proporciona la información relevante y sugiere que pueden visitar la página dedicada del municipio en /pages/[municipio].html cuando quieran más información. NO redirijas automáticamente.
 - Si el usuario quiere una cotización más precisa o detallada, siempre sugiere usar el cotizador completo en /cotizador-precios-casas-prefabricadas.html pero NO redirijas automáticamente.
 - IMPORTANTE: NUNCA redirijas automáticamente a páginas. Solo SUGIERE visitarlas y deja que el usuario decida cuándo hacer clic.
