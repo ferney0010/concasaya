@@ -60,6 +60,13 @@ const posts = [
     lines: ["Cronograma de", "construcción de tu", "casa prefabricada"],
     titleSize: 54,
   },
+  {
+    slug: "casas-prefabricadas-en-bogota-guia-constructora",
+    category: "Guías",
+    label: "RESEÑAS",
+    lines: ["Casas prefabricadas", "en Bogotá: cómo elegir", "tu constructora"],
+    titleSize: 52,
+  },
 ];
 
 function esc(s) {

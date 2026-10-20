@@ -3,6 +3,22 @@
 
 export const staticPosts = [
   {
+    slug: "casas-prefabricadas-en-bogota-guia-constructora",
+    title:
+      "Casas Prefabricadas en Bogotá: 93 Reseñas de Clientes y Guía para Elegir Constructora",
+    description:
+      "Guía 2026 para elegir constructora de casas prefabricadas en Bogotá: 7 criterios verificables, 9.6/10 en 93 reseñas de clientes en el directorio Constructoras en Colombia y cómo cotizar tu modelo desde $23.127.700.",
+    image:
+      "https://www.concasaya.com/assets/images/og-casas-prefabricadas-en-bogota-guia-constructora.webp",
+    date: "2026-10-19",
+    url: "/blog/casas-prefabricadas-en-bogota-guia-constructora.html",
+    category: "Guías",
+    pinned: false,
+    author: "Equipo CONCASAYA",
+    readTime: "9 min de lectura",
+    authorInitials: "EC",
+  },
+  {
     slug: "precio-casa-prefabricada-villa-de-leyva",
     title:
       "Precio de Casa Prefabricada en Villa de Leyva 2026: Cuánto Cuesta de Realidad",
