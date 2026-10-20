@@ -167,11 +167,34 @@ Antes de dar por terminado un artículo nuevo en `blog/`, verificar estos 6 punt
 3. **OG image 1200x630** en `assets/images/og-<slug>.webp` generada con `node scripts/build-og-nuevos-blogs.mjs` (agregar el post al array `posts`). Mismo `og:image` en el JSON-LD `image`.
 4. **Meta OG completas**: `og:locale` (es_CO), `article:published_time`, `article:modified_time`, `article:author`, `article:section`, `article:tag`.
 5. **Registro en dos lugares**: `blog/static-posts-config.js` (listado del blog) y `sitemap.xml`.
-6. **Validar antes de commitear**:
+6. **Bump del `?v=` del listado** (paso 7 del flujo, ver abajo): sin esto el artículo nuevo **no se ve**
+   en `/blog` para quien ya había visitado la página.
+7. **Validar antes de commitear**:
    ```powershell
    node scripts/check-texto-corrupto.cjs "blog/<slug>.html"
    ```
    Detecta caracteres CJK y mezclas de idiomas que se cuelan al escribir HTML largo en español.
+
+### Por qué el artículo "no aparece" en el listado (2026-10-19)
+
+El listado de `/blog` se arma en el cliente con `blog/static-posts-config.js`, y ese archivo se sirve
+con `Cache-Control: public, max-age=14400, must-revalidate` (4 horas de cache en el navegador).
+
+El archivo `_headers` de la raíz **no sirve como fix en producción**: la zona de `www.concasaya.com`
+tiene una regla de caché a nivel de zona que sobrescribe el `Cache-Control` de los assets y lo deja
+en 14400. En `*.pages.dev` sí se ve `max-age=0`, pero el dominio real no.
+
+**Por eso el import en `blog.html` lleva un `?v=`:**
+```js
+import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js?v=20261019";
+```
+Al ser una URL nueva, el navegador no la tiene cacheada y la descarga al instante. **Cada vez que se
+publique un post hay que subir ese `?v=`** (formato `?v=AAAAMMDD-N`); es el único paso que garantiza
+que el artículo se vea de inmediato en `/blog` y no 4 horas después.
+
+Dato de referencia: el grid muestra 9 artículos por página (`PAGE_SIZE = 9`) y el post con
+`pinned: true` ocupa el bloque grande de "Artículo destacado" arriba. El orden del grid es por fecha
+descendente, así que el post más nuevo queda **primero en el grid**, debajo del destacado.
 
 ### OJO: no correr `scripts/build-blog-og-images.mjs`
 Ese script regenera la OG de **todos** los posts y sobrescribe fotos reales de los que no tienen OG dedicada (`casa2.webp`, `herocasa1.webp`, `cass3.webp`…). Usar solo `build-og-nuevos-blogs.mjs` para artículos nuevos.
