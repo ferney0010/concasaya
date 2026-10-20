@@ -88,6 +88,22 @@ Cualquier cambio de precio debe propagarse a: la card, el CTA de WhatsApp, el `p
 el FAQ visible, el FAQ de Google y las metas OG/Twitter —incluido el rango "desde/hasta" del
 catálogo, que cambia cuando el modelo más caro deja de serlo.
 
+## Ficha en directorios de terceros (2026-10-19)
+
+CONCASAYA tiene ficha en **Constructoras en Colombia** (`constructorafortaleza.com.co`): 9.6/10 con
+93 reseñas de clientes. Es la única fuente de autoridad de terceros que tenemos, así que **no
+quitarla ni "corregirla"**: el artículo `blog/casas-prefabricadas-en-bogota-guia-constructora.html`
+hace cross-link a esa ficha y al directorio de Bogotá.
+
+Esa ficha tiene **dos datos desactualizados** que hay que pedirles corregir (no repetirlos en
+nuestro sitio):
+
+1. Dice que trabajamos con **paneles EPS**. Hoy los sistemas son **plaqueta de concreto, construcción
+   en seco y construcción modular** (ver `ventajas.html`). Nunca afirmar EPS en contenido nuevo.
+2. Publica el teléfono secundario **316 577 1582**, que ya no es el vigente (**320 957 5171**).
+   Los teléfonos correctos están en el JSON-LD de `index.html`.
+3. También menciona la marca anterior "Kaprecol" — no se usa en nuestro contenido.
+
 ## Notas técnicas de este proyecto
 
 - Las tabs Foto/Plano usan `:has()` en `modelos.html` para resaltar el label activo. El patrón
