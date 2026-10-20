@@ -1,0 +1,8 @@
+# Reglas de cache por ruta (Cloudflare Pages)
+#
+# El listado del blog se arma en el cliente con este archivo. Si queda
+# cacheado en el navegador, un articulo nuevo no aparece hasta que expira
+# la cache (4 h) y el visitante ve la lista vieja. Se sirve sin cache para
+# que el listado este siempre al dia.
+/blog/static-posts-config.js
+  Cache-Control: public, max-age=0, must-revalidate

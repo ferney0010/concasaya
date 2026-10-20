@@ -1873,7 +1873,11 @@
 
       import { supabase } from "./supabaseClient.js";
 
-      import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js";
+      // v=20261019: rompe la cache del navegador para que un post nuevo
+      // aparezca de inmediato. Ademas /blog/static-posts-config.js se sirve
+      // con max-age=0 (ver _headers), asi que desde ese momento la lista
+      // siempre se revalida y no hay que volver a tocar este ?v.
+      import { staticPosts, applyThumbnailFlipEffective } from "./blog/static-posts-config.js?v=20261019";
 
 
 
