@@ -122,6 +122,38 @@ y en el FAQ de personalización (visible + JSON-LD).
 (`assets/images/modelos/cabana-vidrio-25m2-800.webp`). Si el cliente confirma que también
 ofrece teja para ese modelo, se agrega el ítem a su card.
 
+## Imágenes con marca de agua de IA (2026-10-25)
+
+**32 imágenes del repo tienen la estrella de 4 puntas de Gemini en la esquina inferior derecha.**
+El cliente recibió una queja de que "los modelos parecían hechos con IA". Ya se añadió la sección
+`#proyectos-reales` en `modelos.html` (fotos de obra entregada + 93 reseñas de terceros) y se
+reescribieron los alt del catálogo a "Modelo real de casa prefabricada".
+
+Lista exacta (verificada con montaje de esquinas, `scripts/montaje-marca-ia.mjs`):
+
+```
+aislamiento.webp   aula1.webp        bodega1.webp       bodega2.webp
+bodegaaa.jpg       cabaña18.webp     cabaññ1.webp       campe1.webp
+casa2.webp         casal1.webp       casco.webp         caseta.webp
+cass2.webp         cass3.webp        cass4.webp         cocina.webp
+colonial.webp      cubo.jpg          fondo1.webp        fondo2.webp
+fondo3.webp        fondo4.webp       fondo5.webp        herocasa.webp
+herocasa1.webp     img1055.webp      img1304.webp       img1318.webp
+mezanine.webp      sala.webp         terminada.webp     tiniy1.webp
+```
+
+Las 5 fotos del catálogo (`assets/images/modelos/*.webp`) **NO** tienen marca. `img1333.webp` es
+dudosa (revisar).
+
+**Pendiente**: el cliente va a mandar material real nuevo para reemplazarlas. Al llegar, reemplazar
+en `assets/data/gallery.json` (13 de las 32 están en la galería: `cabaññ1`, `img1055`, `cubo1`,
+`tiniy1`, `mezanine`, `bodega1`, `bodega2`, `bodegaaa`, `caseta`, `cass2`, `cass3`, `cass4`,
+`colonial`) y en las landings que las usan. Si una imagen se queda con la marca, quitarle la esquina
+con crop (no hay parche inpaint disponible).
+
+**Aviso**: `img214.webp` está titulando "Casa campestre con teja de barro" en la galería pero es un
+**pozo séptico**. Corregir al reemplazar.
+
 ## Ficha en directorios de terceros (2026-10-19)
 
 CONCASAYA tiene ficha en **Constructoras en Colombia** (`constructorafortaleza.com.co`): 9.6/10 con
