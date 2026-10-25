@@ -129,27 +129,33 @@ El cliente recibió una queja de que "los modelos parecían hechos con IA". Ya s
 `#proyectos-reales` en `modelos.html` (fotos de obra entregada + 93 reseñas de terceros) y se
 reescribieron los alt del catálogo a "Modelo real de casa prefabricada".
 
-Lista exacta (verificada con montaje de esquinas, `scripts/montaje-marca-ia.mjs`):
+**Estado 2026-10-25 (16:30)**: la marca **ya fue eliminada** de las 32 — se recortó la esquina de cada
+una (`scripts/recortar-marca-ia.mjs`, con detección real de la estrella por color crema) y se
+actualizaron los `width/height` del HTML (`scripts/actualizar-dimensiones.mjs`, 19 tags en 5
+archivos). Verificado con un montaje de control: **cero estrellas restantes**. Las fotos quedaron
+intactas; solo se perdió la esquina inferior derecha (entre 11% y 52% del área, según dónde
+estaba la estrella).
 
+Las 32 imágenes:
 ```
 aislamiento.webp   aula1.webp        bodega1.webp       bodega2.webp
 bodegaaa.jpg       cabaña18.webp     cabaññ1.webp       campe1.webp
 casa2.webp         casal1.webp       casco.webp         caseta.webp
 cass2.webp         cass3.webp        cass4.webp         cocina.webp
-colonial.webp      cubo.jpg          fondo1.webp        fondo2.webp
+colonial.webp      cubo1.webp        fondo1.webp        fondo2.webp
 fondo3.webp        fondo4.webp       fondo5.webp        herocasa.webp
 herocasa1.webp     img1055.webp      img1304.webp       img1318.webp
 mezanine.webp      sala.webp         terminada.webp     tiniy1.webp
 ```
 
-Las 5 fotos del catálogo (`assets/images/modelos/*.webp`) **NO** tienen marca. `img1333.webp` es
+Las 5 fotos del catálogo (`assets/images/modelos/*.webp`) **NO** tenían marca. `img1333.webp` es
 dudosa (revisar).
 
-**Pendiente**: el cliente va a mandar material real nuevo para reemplazarlas. Al llegar, reemplazar
-en `assets/data/gallery.json` (13 de las 32 están en la galería: `cabaññ1`, `img1055`, `cubo1`,
-`tiniy1`, `mezanine`, `bodega1`, `bodega2`, `bodegaaa`, `caseta`, `cass2`, `cass3`, `cass4`,
-`colonial`) y en las landings que las usan. Si una imagen se queda con la marca, quitarle la esquina
-con crop (no hay parche inpaint disponible).
+**Pendiente**: el cliente va a mandar material real nuevo para reemplazar estas 32. Al llegar,
+reemplazar en `assets/data/gallery.json` (13 de las 32 están en la galería: `cabaññ1`, `img1055`,
+`cubo1`, `tiniy1`, `mezanine`, `bodega1`, `bodega2`, `bodegaaa`, `caseta`, `cass2`, `cass3`,
+`cass4`, `colonial`) y en las landings que las usan. **Si el material nuevo viene sin marca de
+agua, no hay que recortar nada.**
 
 **Aviso**: `img214.webp` está titulando "Casa campestre con teja de barro" en la galería pero es un
 **pozo séptico**. Corregir al reemplazar.
