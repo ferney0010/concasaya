@@ -9,7 +9,7 @@
 
     <meta
       name="description"
-      content="Casa de campo prefabricada en Villa de Leyva desde $24.845.900. 3 modelos de 36 a 84 m² para tu finca, con licencia gestionada y entrega en 60-90 días. Cotiza por WhatsApp."
+      content="Casa de campo prefabricada en Villa de Leyva desde $23.127.700. 3 modelos de 36 a 80 m² para tu finca, con licencia gestionada y entrega en 60-90 días. Cotiza por WhatsApp."
     />
     <meta
       name="keywords"
@@ -43,11 +43,11 @@
     />
     <meta
       property="og:description"
-      content="Casa de campo desde $24.845.900 en vereda de Boyacá. Construimos, gestionamos la licencia y entregamos. Tú decides dónde y cuándo usarla."
+      content="Casa de campo desde $23.127.700 en vereda de Boyacá. Construimos, gestionamos la licencia y entregamos. Tú decides dónde y cuándo usarla."
     />
     <meta
       property="og:image"
-      content="https://www.concasaya.com/assets/images/modelos/casa-firavitoba-84m2.webp"
+      content="https://www.concasaya.com/assets/images/modelos/casa-firavitoba-70m2.webp"
     />
     <meta
       property="og:url"
@@ -80,7 +80,7 @@
             "@id": "https://www.concasaya.com/pages/casas-de-campo-villa-de-leyva.html#webpage",
             "url": "https://www.concasaya.com/pages/casas-de-campo-villa-de-leyva.html",
             "name": "Casas de campo prefabricadas en Villa de Leyva | CONCASAYA",
-            "description": "Casas de campo prefabricadas en Villa de Leyva y Boyaca desde $24.845.900. Construimos, gestionamos la licencia y entregamos terminada.",
+            "description": "Casas de campo prefabricadas en Villa de Leyva y Boyaca desde $23.127.700. Construimos, gestionamos la licencia y entregamos terminada.",
             "inLanguage": "es-CO",
             "isPartOf": {
               "@type": "WebSite",
@@ -143,7 +143,7 @@
                 "name": "Cuanto cuesta una casa de campo en Villa de Leyva?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Desde 24.845.900 pesos la Casa El Moral de 36 m2 con 2 alcobas. La Casa 80 m2 de un piso cuesta 55.368.200 y la Casa Firavitoba de 84 m2 con 3 alcobas y 2 banos cuesta 62.429.500. Los precios no incluyen placa de cimentacion."
+                  "text": "Desde 23.127.700 pesos la Casa El Moral de 36 m2 con 2 alcobas. La Casa 80 m2 de un piso cuesta 55.368.200 y la Casa Firavitoba de 70 m2 con 3 alcobas y 2 banos cuesta 56.797.500. Los precios no incluyen placa de cimentacion."
                 }
               },
               {
@@ -466,7 +466,63 @@
           grid-template-columns: repeat(3, minmax(0, 1fr));
         }
       }
-    </style>
+    
+      /* ====== Catalogo de modelos (traido de modelos.html) ====== */
+      .modelo-card {
+        position: relative;
+        background: #fff;
+        border-radius: 0 0 20px 20px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+        border: 1px solid rgba(0,0,0,0.06);
+        border-top: 0;
+        transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;}
+      .modelo-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 22px 44px -8px rgba(0, 119, 182, 0.18), 0 4px 12px rgba(0,0,0,0.06);
+        border-color: rgba(0, 119, 182, 0.20);}
+      .modelo-card .card-body { padding: 1.4rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 0.65rem; flex: 1;}
+      .modelo-card .card-categoria {
+        display: inline-flex; align-items: center; gap: 0.35rem;
+        font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em;
+        text-transform: uppercase; color: #0077b6;
+        background: rgba(0, 119, 182, 0.08);
+        padding: 0.3rem 0.7rem; border-radius: 999px;
+        align-self: flex-start;}
+      .modelo-card .card-title {
+        font-size: 1.45rem; font-weight: 800; color: #0f172a; margin: 0; line-height: 1.15;}
+      .modelo-card .card-tagline { font-size: 0.88rem; color: #64748b; margin: 0; line-height: 1.35;}
+      .modelo-card .card-specs {
+        list-style: none; padding: 0; margin: 0.4rem 0 0;
+        display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem;}
+      .modelo-card .card-specs li {
+        display: flex; align-items: center; gap: 0.4rem;
+        font-size: 0.84rem; color: #475569;}
+      .modelo-card .card-specs i { color: #0077b6; width: 14px; flex-shrink: 0;}
+      .modelo-card .card-precio {
+        font-size: 0.92rem; color: #334155; margin: 0.4rem 0 0;
+        padding-top: 0.7rem; border-top: 1px dashed rgba(0,0,0,0.10);}
+      .modelo-card .card-precio strong { color: #0077b6; font-size: 1.25rem; font-weight: 800;}
+      .modelo-card .card-microcopy {
+        font-size: 0.78rem; color: #64748b; font-style: italic;
+        background: rgba(0, 119, 182, 0.04);
+        padding: 0.5rem 0.7rem; border-radius: 8px;
+        border-left: 3px solid #0077b6;
+        margin: 0.3rem 0 0;}
+      .modelo-card.hidden { display: none !important;}
+      .modelo-card { animation: cardFadeIn 0.5s ease both;}
+      .modelo-card.hidden { animation: none;}
+      .mp-precio__cols { display: flex; align-items: flex-end; justify-content: space-between; gap: 0.75rem;}
+      .mp-precio__nota { font-size: 0.7rem; color: #64748b; margin-top: 0.55rem;}
+      .mp-precio__terminos {
+        font-size: 0.68rem; color: #94a3b8; margin-top: 0.2rem;}
+      @keyframes cardFadeIn {
+              from { opacity: 0; transform: translateY(8px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+</style>
     <script type="text/javascript">
       (function (c, l, a, r, i, t, y) {
         c[a] =
@@ -693,7 +749,7 @@
                 <i class="fas fa-tree mr-1.5"></i>Casa de campo
               </span>
               <span class="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-sm font-medium bg-emerald-100 text-emerald-800">
-                <i class="fas fa-tag mr-1.5"></i>Desde $24.845.900
+                <i class="fas fa-tag mr-1.5"></i>Desde $23.127.700
               </span>
               <span class="inline-flex items-center px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-sm font-medium bg-amber-100 text-amber-800">
                 <i class="fas fa-snowflake mr-1.5"></i>Clima de Boyacá
@@ -715,8 +771,8 @@
             <p class="text-dark/85 text-[13px] sm:text-base md:text-lg mb-4 sm:mb-5 max-w-3xl leading-relaxed">
               Un pueblo patrimonio a <strong>1.900 metros</strong>, con noches que bajan a 5 grados y
               veredas donde todavía no llega el acueducto. En CONCASAYA construimos
-              <strong>casas de campo de 36 a 84 m²</strong> pensadas para ese clima y esa realidad:
-              con licencia gestionada, entrega en 60 a 90 días y desde $24.845.900.
+              <strong>casas de campo de 36 a 80 m²</strong> pensadas para ese clima y esa realidad:
+              con licencia gestionada, entrega en 60 a 90 días y desde $23.127.700.
             </p>
 
             <div class="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-4 mb-4 sm:mb-6">
@@ -734,7 +790,7 @@
             <div class="border-t border-gray-200 pt-3 sm:pt-5 mt-1 sm:mt-2">
               <p class="text-[11px] sm:text-sm text-gray-500 mb-1.5 sm:mb-2">Respuesta rápida</p>
               <p class="text-gray-700 text-[13px] sm:text-base leading-relaxed">
-                ¿Cuánto cuesta y cuánto tarda? <strong>Desde $24.845.900</strong> y
+                ¿Cuánto cuesta y cuánto tarda? <strong>Desde $23.127.700</strong> y
                 <strong>60 a 90 días</strong> con licencia. Sí, hay que resolver agua, energía y
                 pozo séptico antes de construir, y eso lo revisamos con tu lote.
               </p>
@@ -744,152 +800,555 @@
       </section>
 
       <!-- MODELOS -->
-      <section id="modelos-campo" class="py-14 sm:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6">
-          <div class="text-center mb-8 sm:mb-10" data-aos="fade-up">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3">
-              Modelos para casa de campo
-            </h2>
-            <p class="text-sm sm:text-lg text-gray-600 max-w-3xl mx-auto">
-              Tres tamaños según cuántos van a la finca y cuántas noches se quedan.
-              Precio real de lista, sin placa de cimentación.
-            </p>
-          </div>
+      <section id="catalogo-modelos" class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-6">
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 grid-modelos-campo gap-4 sm:gap-5">
+          <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" style="color:#0D1B2A;">Catálogo de casas prefabricadas 2026: 5 modelos desde $23.127.700</h2>
+          <p class="text-center text-gray-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+            Todos los modelos son personalizables. La placa de cimentación, las instalaciones y los muebles se cotizan aparte.
+            Toca cada modelo para ver fotos, planos, especificaciones y precio.
+          </p>
 
-            <article class="modelo-card group flex flex-col" id="campo-casa-el-moral-36m2" data-aos="fade-up">
-              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col">
+          <!-- Grid: 1 col mobile, 2 cols tablet, 3 cols desktop -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+            <!-- ============================================ -->
+            <!-- MODELO 1: CABAÑA DE VIDRIO 25M2              -->
+            <!-- ============================================ -->
+            <article class="modelo-card group" id="cabana-vidrio-25m2">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+
+                <!-- Imagen del modelo con tabs Foto / Plano (peer-checked, sin JS) -->
                 <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
-                  <input type="radio" name="tab-campo-moral" id="tab-campo-foto-moral" class="peer/foto hidden" checked>
-                  <input type="radio" name="tab-campo-moral" id="tab-campo-plano-moral" class="peer/plano hidden">
-                  <img src="/assets/images/modelos/casa-el-moral-36m2.webp"
-                    alt="Foto Casa El Moral 36 m2 para casa de campo"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
-                    loading="lazy" width="600" height="450" />
-                  <img src="/assets/images/modelos/casa-el-moral-36m2-plano.webp"
-                    alt="Plano Casa El Moral 36 m2"
-                    class="absolute inset-0 w-full h-full object-contain bg-white hidden peer-checked/plano:block"
-                    loading="lazy" width="600" height="450" />
-                  <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
-                    <label for="tab-campo-foto-moral" class="cursor-pointer px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white inline-flex items-center">
-                      <i class="fas fa-image mr-1"></i>Foto
+
+                  <!-- Inputs ocultos: controlan que imagen se muestra -->
+                  <input type="radio" name="tab-cabana-vidrio-25m2" id="tab-foto-cabana-vidrio-25m2" class="peer/foto hidden" checked>
+                  <input type="radio" name="tab-cabana-vidrio-25m2" id="tab-plano-cabana-vidrio-25m2" class="peer/plano hidden">
+
+                  <!-- Imagen FOTO (visible por default; se oculta si "plano" esta activo) -->
+                  <img src="/assets/images/modelos/cabana-vidrio-25m2-800.webp"
+                     srcset="/assets/images/modelos/cabana-vidrio-25m2-480.webp 480w, /assets/images/modelos/cabana-vidrio-25m2-800.webp 800w, /assets/images/modelos/cabana-vidrio-25m2-1200.webp 1200w"
+                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                     data-foto="/assets/images/modelos/cabana-vidrio-25m2-1200.webp"
+                     alt="Modelo real de casa prefabricada CONCASAYA Cabaña de Vidrio 25 m2"
+                     width="1200" height="896"
+                     loading="lazy" decoding="async"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
+                  />
+
+                  <!-- Imagen PLANO (oculta por default; se muestra si "plano" esta activo) -->
+                  <img
+                    src="/assets/images/modelos/cabana-vidrio-25m2-plano.webp"
+                    data-plano="/assets/images/modelos/cabana-vidrio-25m2-plano.webp"
+                    alt="Plano real del modelo de casa prefabricada CONCASAYA Cabaña de Vidrio 25 m2"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 hidden peer-checked/plano:block"
+                  />
+
+                  <!-- Badge superior izquierda: "Personalizable" -->
+                  <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    <i class="fas fa-magic mr-1"></i>Personalizable
+                  </span>
+
+                  <!-- Tag area (esquina superior derecha) -->
+                  <span class="absolute top-4 right-4 bg-white/95 text-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    25 m²
+                  </span>
+
+                  <!-- Toggle pills Foto / Plano -->
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
+                    <label
+                      for="tab-foto-cabana-vidrio-25m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white peer-checked/foto:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-image mr-1.5"></i>Foto
                     </label>
-                    <label for="tab-campo-plano-moral" class="cursor-pointer px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white inline-flex items-center">
-                      <i class="fas fa-ruler-combined mr-1"></i>Plano
+                    <label
+                      for="tab-plano-cabana-vidrio-25m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white peer-checked/plano:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-ruler-combined mr-1.5"></i>Plano
                     </label>
                   </div>
-                  <span class="absolute top-2.5 left-2.5 bg-emerald-500 text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">Para dos</span>
-                  <span class="absolute top-2.5 right-2.5 bg-white/95 text-dark text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">36 m²</span>
                 </div>
-                <div class="p-4 flex flex-col flex-1">
-                  <p class="text-[10px] uppercase tracking-wider text-primary font-bold mb-1.5">Casa · 2 Alcobas</p>
-                  <h3 class="text-sm sm:text-base font-bold text-dark mb-2">Casa El Moral 36m²</h3>
-                  <ul class="text-[11px] sm:text-xs text-gray-600 space-y-1 mb-2">
-                    <li class="flex items-start"><i class="fas fa-bed text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>2 alcobas</span></li>
-                    <li class="flex items-start"><i class="fas fa-bath text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>1 baño</span></li>
-                    <li class="flex items-start"><i class="fas fa-utensils text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>Sala, comedor y cocina</span></li>
+
+                <!-- Contenido de la card -->
+                <div class="p-5 md:p-6 flex-1 flex flex-col">
+
+                  <!-- Tipo / categoria -->
+                  <p class="text-xs uppercase tracking-wider text-primary font-bold mb-2">
+                    <i class="fas fa-cube mr-1"></i>Cabaña · Vidrio
+                  </p>
+
+                  <!-- Nombre del modelo -->
+                  <h3 class="text-xl md:text-2xl font-bold text-dark mb-3 leading-tight">
+                    Cabaña de Vidrio 25m²
+                  </h3>
+
+                  <!-- Espacios (iconos) -->
+                  <ul class="text-sm text-gray-600 space-y-1.5 mb-5">
+                    <li class="flex items-center">
+                      <i class="fas fa-bed text-primary mr-2 w-4 text-center"></i>
+                      1 habitación
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-bath text-primary mr-2 w-4 text-center"></i>
+                      1 baño
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-couch text-primary mr-2 w-4 text-center"></i>
+                      Mini sala
+                    </li>
                   </ul>
-                  <p class="text-[11px] text-gray-500 leading-relaxed mb-3">La pareja que quiere su finca sin gran inversión. Se entrega en 45 a 60 días.</p>
-                  <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por sólo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">$24.845.900</p>
-                    <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20El%20Moral%2036m2%20por%20%2424.845.900%20para%20mi%20finca%20en%20Villa%20de%20Leyva."
-                      target="_blank" rel="noopener noreferrer"
-                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-bold text-[11px] sm:text-xs transition duration-300 shadow-md">
-                      <i class="fab fa-whatsapp mr-1.5"></i>Cotizar
+
+                  <!-- Precio destacado -->
+                  <div class="mt-auto mb-4 pt-4 border-t border-gray-100">
+  <div class="mp-precio__cols">
+    <div>
+      <p class="mp-precio__label">Precio</p>
+      <p class="mp-precio__antes">$63.750.000</p>
+    </div>
+    <div>
+      <p class="mp-precio__label">Precio con descuento</p>
+      <p class="mp-precio__ahora">$59.725.900</p>
+    </div>
+  </div>
+  <p class="mp-precio__nota">Obra negra desde &middot; no incluye cimentaci&oacute;n</p>
+  <p class="mp-precio__terminos">Aplican t&eacute;rminos y condiciones</p>
+</div>
+
+                  <!-- CTAs -->
+                  <div class="flex flex-col gap-2">
+                    <a
+                      href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Caba%C3%B1a%20de%20Vidrio%2025m2.%20Hermosa%20caba%C3%B1a%20de%20vidrio%2025%20metros%2C%20pozo%20septic%20y%20terminada%20en%20tan%20solo%20%2459.725.900.%20Aplican%20t%C3%A9rminos%20y%20condiciones."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full font-bold text-sm transition duration-300 transform hover:scale-105 shadow-md"
+                    >
+                      <i class="fab fa-whatsapp mr-2 text-base"></i>Cotizar por WhatsApp
                     </a>
                   </div>
+
+                </div>
+
+              </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- MODELO 2: CASA EL MORAL DE 2 ALCOBAS 36M2     -->
+            <!-- ============================================ -->
+            <article class="modelo-card group" id="casa-el-moral-36m2">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+
+                <!-- Imagen con tabs Foto / Plano -->
+                <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
+
+                  <input type="radio" name="tab-casa-el-moral-36m2" id="tab-foto-casa-el-moral-36m2" class="peer/foto hidden" checked>
+                  <input type="radio" name="tab-casa-el-moral-36m2" id="tab-plano-casa-el-moral-36m2" class="peer/plano hidden">
+
+                  <!-- Imagen FOTO -->
+                  <img src="/assets/images/modelos/casa-el-moral-36m2-800.webp"
+                     srcset="/assets/images/modelos/casa-el-moral-36m2-480.webp 480w, /assets/images/modelos/casa-el-moral-36m2-800.webp 800w, /assets/images/modelos/casa-el-moral-36m2-1200.webp 1200w"
+                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                     data-foto="/assets/images/modelos/casa-el-moral-36m2-1200.webp"
+                     alt="Modelo real de casa prefabricada CONCASAYA Casa El Moral 36 m2"
+                     width="1200" height="896"
+                     loading="lazy" decoding="async"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
+                  />
+
+                  <!-- Imagen PLANO -->
+                  <img
+                    src="/assets/images/modelos/casa-el-moral-36m2-plano.webp"
+                    data-plano="/assets/images/modelos/casa-el-moral-36m2-plano.webp"
+                    alt="Plano real del modelo de casa prefabricada CONCASAYA Casa El Moral 36 m2"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 hidden peer-checked/plano:block"
+                  />
+
+                  <!-- Badge superior izquierda: "Personalizable" -->
+                  <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    <i class="fas fa-magic mr-1"></i>Personalizable
+                  </span>
+
+                  <!-- Tag area (esquina superior derecha) -->
+                  <span class="absolute top-4 right-4 bg-white/95 text-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    36 m²
+                  </span>
+
+                  <!-- Toggle pills Foto / Plano -->
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
+                    <label
+                      for="tab-foto-casa-el-moral-36m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white peer-checked/foto:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-image mr-1.5"></i>Foto
+                    </label>
+                    <label
+                      for="tab-plano-casa-el-moral-36m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white peer-checked/plano:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-ruler-combined mr-1.5"></i>Plano
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Contenido de la card -->
+                <div class="p-5 md:p-6 flex-1 flex flex-col">
+
+                  <!-- Tipo / categoria -->
+                  <p class="text-xs uppercase tracking-wider text-primary font-bold mb-2">
+                    <i class="fas fa-home mr-1"></i>Casa · 2 Alcobas
+                  </p>
+
+                  <!-- Nombre del modelo -->
+                  <h3 class="text-xl md:text-2xl font-bold text-dark mb-3 leading-tight">
+                    Casa El Moral 36m²
+                  </h3>
+
+                  <!-- Espacios (iconos) -->
+                  <ul class="text-sm text-gray-600 space-y-1.5 mb-5">
+                    <li class="flex items-center">
+                      <i class="fas fa-bed text-primary mr-2 w-4 text-center"></i>
+                      2 alcobas
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-couch text-primary mr-2 w-4 text-center"></i>
+                      Sala
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-utensils text-primary mr-2 w-4 text-center"></i>
+                      Comedor
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-kitchen-set text-primary mr-2 w-4 text-center"></i>
+                      Cocina
+                    </li>
+                    <li class="flex items-center">
+                      <i class="fas fa-bath text-primary mr-2 w-4 text-center"></i>
+                      1 baño
+                    </li>
+                    <li class="flex items-center"><i class="fas fa-house-chimney text-primary mr-2 w-4 text-center"></i>Teja a elegir: fibrocemento o barro</li>
+                  </ul>
+
+                  <!-- Precio destacado (Obra negra desde) -->
+                  <div class="mt-auto mb-4 pt-4 border-t border-gray-100">
+  <div class="mp-precio__cols">
+    <div>
+      <p class="mp-precio__label">Precio</p>
+      <p class="mp-precio__antes">$24.845.900</p>
+    </div>
+    <div>
+      <p class="mp-precio__label">Precio con descuento</p>
+      <p class="mp-precio__ahora">$23.127.700</p>
+    </div>
+  </div>
+  <p class="mp-precio__nota">Obra gris habitable &middot; no incluye cimentaci&oacute;n</p>
+  <p class="mp-precio__terminos">Aplican t&eacute;rminos y condiciones</p>
+</div>
+
+                  <!-- CTAs -->
+                  <div class="flex flex-col gap-2">
+                    <a
+                      href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20El%20Moral%2036m2.%20Espectacular%20casa%20de%2036%20metros%20dos%20alcobas%20sala%20comedor%20cocina%20y%20ba%C3%B1o%20por%20tan%20solo%20%2423.127.700%20en%20obra%20gris%20habitable.%20No%20incluye%20cimentaci%C3%B3n.%20Aplican%20t%C3%A9rminos%20y%20condiciones."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full font-bold text-sm transition duration-300 transform hover:scale-105 shadow-md"
+                    >
+                      <i class="fab fa-whatsapp mr-2 text-base"></i>Cotizar por WhatsApp
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- MODELO 3: CABAÑA LA VEGA 3 ALCOBAS 54M2       -->
+            <!-- ============================================ -->
+            <article class="modelo-card group" id="cabana-la-vega-54m2">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+
+                <!-- Imagen con tabs Foto / Plano -->
+                <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
+
+                  <input type="radio" name="tab-cabana-la-vega-54m2" id="tab-foto-cabana-la-vega-54m2" class="peer/foto hidden" checked>
+                  <input type="radio" name="tab-cabana-la-vega-54m2" id="tab-plano-cabana-la-vega-54m2" class="peer/plano hidden">
+
+                  <!-- Imagen FOTO -->
+                  <img src="/assets/images/modelos/cabana-la-vega-54m2-800.webp"
+                     srcset="/assets/images/modelos/cabana-la-vega-54m2-480.webp 480w, /assets/images/modelos/cabana-la-vega-54m2-800.webp 800w, /assets/images/modelos/cabana-la-vega-54m2-1200.webp 1200w"
+                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                     data-foto="/assets/images/modelos/cabana-la-vega-54m2-1200.webp"
+                     alt="Modelo real de casa prefabricada CONCASAYA Cabaña La Vega 54 m2"
+                     width="1200" height="896"
+                     loading="lazy" decoding="async"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
+                  />
+
+                  <!-- Imagen PLANO: 10 x 9 m en planta (9 + 15 + 42 m2) -->
+                  <img
+                    src="/assets/images/modelos/cabana-la-vega-54m2-plano.webp"
+                    data-plano="/assets/images/modelos/cabana-la-vega-54m2-plano.webp"
+                    alt="Plano real del modelo de casa prefabricada CONCASAYA Cabaña La Vega 54 m2: planta de 10 por 9 metros con 9 m2, 15 m2 y 42 m2"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 hidden peer-checked/plano:block"
+                  />
+
+                  <!-- Badge superior izquierda: "Personalizable" -->
+                  <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    <i class="fas fa-magic mr-1"></i>Personalizable
+                  </span>
+
+                  <!-- Tag area (esquina superior derecha) -->
+                  <span class="absolute top-4 right-4 bg-white/95 text-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    54 m²
+                  </span>
+
+                  <!-- Tabs Foto / Plano -->
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
+                    <label
+                      for="tab-foto-cabana-la-vega-54m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white peer-checked/foto:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-image mr-1.5"></i>Foto
+                    </label>
+                    <label
+                      for="tab-plano-cabana-la-vega-54m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white peer-checked/plano:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-ruler-combined mr-1.5"></i>Plano
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Contenido de la card -->
+                <div class="p-5 md:p-6 flex-1 flex flex-col">
+
+                  <!-- Tipo / categoria -->
+                  <p class="text-xs uppercase tracking-wider text-primary font-bold mb-2">
+                    <i class="fas fa-cube mr-1"></i>Cabaña · 3 Alcobas
+                  </p>
+
+                  <!-- Nombre del modelo -->
+                  <h3 class="text-xl md:text-2xl font-bold text-dark mb-3 leading-tight">
+                    Cabaña La Vega 54m²
+                  </h3>
+
+                  <!-- Espacios (iconos) -->
+                  <ul class="text-sm text-gray-600 space-y-1.5 mb-5">
+                    <li class="flex items-center">
+                      <i class="fas fa-bed text-primary mr-2 w-4 text-center"></i>
+                      3 alcobas
+                    </li>
+                    <li class="flex items-center"><i class="fas fa-house-chimney text-primary mr-2 w-4 text-center"></i>Teja a elegir: fibrocemento o barro</li>
+                  </ul>
+
+                  <!-- Precio destacado (Obra negra desde) -->
+                  <div class="mt-auto mb-4 pt-4 border-t border-gray-100">
+  <div class="mp-precio__cols">
+    <div>
+      <p class="mp-precio__label">Precio</p>
+      <p class="mp-precio__antes">$44.460.000</p>
+    </div>
+    <div>
+      <p class="mp-precio__label">Precio con descuento</p>
+      <p class="mp-precio__ahora">$41.580.690</p>
+    </div>
+  </div>
+  <p class="mp-precio__nota">Obra negra &middot; no incluye cimentaci&oacute;n</p>
+  <p class="mp-precio__terminos">Aplican t&eacute;rminos y condiciones</p>
+</div>
+
+                  <!-- CTAs -->
+                  <div class="flex flex-col gap-2">
+                    <a
+                      href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Caba%C3%B1a%20La%20Vega%2054m2.%20Espectacular%20caba%C3%B1a%20con%20altillo%20en%20obra%20negra%2C%20varias%20distribuciones%20internas%2C%20por%20tan%20solo%20%2441.580.690.%20No%20incluye%20cimentaci%C3%B3n.%20Aplican%20t%C3%A9rminos%20y%20condiciones."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full font-bold text-sm transition duration-300 transform hover:scale-105 shadow-md"
+                    >
+                      <i class="fab fa-whatsapp mr-2 text-base"></i>Cotizar por WhatsApp
+                    </a>
+                  </div>
+
+                </div>
+
+              </div>
+            </article>
+
+            <!-- ============================================ -->
+            <!-- MODELO 4: CASA FIRAVITOBA 2 ALCOBAS 70M2     -->
+            <!-- ============================================ -->
+            <article class="modelo-card group" id="casa-firavitoba-70m2">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
+
+                <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
+
+                  <input type="radio" name="tab-casa-firavitoba-70m2" id="tab-foto-casa-firavitoba-70m2" class="peer/foto hidden" checked>
+                  <input type="radio" name="tab-casa-firavitoba-70m2" id="tab-plano-casa-firavitoba-70m2" class="peer/plano hidden">
+
+                  <img src="/assets/images/modelos/casa-firavitoba-70m2-800.webp"
+                     srcset="/assets/images/modelos/casa-firavitoba-70m2-480.webp 480w, /assets/images/modelos/casa-firavitoba-70m2-800.webp 800w, /assets/images/modelos/casa-firavitoba-70m2.webp 1087w"
+                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                     data-foto="/assets/images/modelos/casa-firavitoba-70m2.webp"
+                     alt="Modelo real de casa prefabricada CONCASAYA Casa Firavitoba de 70 m2 con terraza cubierta, zona de BBQ y acceso vehicular bajo, construida sobre un terreno en pendiente"
+                     width="1087" height="1447"
+                     loading="lazy" decoding="async"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
+                  />
+
+                  <img
+                    src="/assets/images/modelos/casa-firavitoba-84m2-plano.webp"
+                    data-plano="/assets/images/modelos/casa-firavitoba-84m2-plano.webp"
+                    alt="Plano real del modelo de casa prefabricada CONCASAYA Casa Firavitoba (planta de 84 m2)"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 hidden peer-checked/plano:block"
+                  />
+
+                  <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    <i class="fas fa-magic mr-1"></i>Personalizable
+                  </span>
+                  <span class="absolute top-4 right-4 bg-white/95 text-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    70 m²
+                  </span>
+
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
+                    <label
+                      for="tab-foto-casa-firavitoba-70m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white peer-checked/foto:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-image mr-1.5"></i>Foto
+                    </label>
+                    <label
+                      for="tab-plano-casa-firavitoba-70m2"
+                      class="cursor-pointer px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white peer-checked/plano:shadow-sm inline-flex items-center"
+                    >
+                      <i class="fas fa-ruler-combined mr-1.5"></i>Plano
+                    </label>
+                  </div>
+                </div>
+
+                <div class="p-5 md:p-6 flex-1 flex flex-col">
+                  <p class="text-xs uppercase tracking-wider text-primary font-bold mb-2">
+                    <i class="fas fa-home mr-1"></i>Casa · 2 Alcobas
+                  </p>
+                  <h3 class="text-xl md:text-2xl font-bold text-dark mb-3 leading-tight">
+                    Casa Firavitoba 70m²
+                  </h3>
+
+                  <ul class="text-sm text-gray-600 space-y-1.5 mb-5">
+                    <li class="flex items-center"><i class="fas fa-bed text-primary mr-2 w-4 text-center"></i>2 alcobas</li>
+                    <li class="flex items-center"><i class="fas fa-couch text-primary mr-2 w-4 text-center"></i>Sala comedor</li>
+                    <li class="flex items-center"><i class="fas fa-shirt text-primary mr-2 w-4 text-center"></i>Patio de ropas</li>
+                    <li class="flex items-center"><i class="fas fa-umbrella-beach text-primary mr-2 w-4 text-center"></i>Terraza</li>
+                    <li class="flex items-center"><i class="fas fa-fire text-primary mr-2 w-4 text-center"></i>Zona de BBQ</li>
+                    <li class="flex items-center"><i class="fas fa-arrow-down text-primary mr-2 w-4 text-center"></i>Sótano</li>
+                    <li class="flex items-center"><i class="fas fa-house-chimney text-primary mr-2 w-4 text-center"></i>Teja a elegir: fibrocemento o barro</li>
+                  </ul>
+
+                  <div class="mt-auto mb-4 pt-4 border-t border-gray-100">
+  <div class="mp-precio__cols">
+    <div>
+      <p class="mp-precio__label">Precio</p>
+      <p class="mp-precio__antes">$62.429.500</p>
+    </div>
+    <div>
+      <p class="mp-precio__label">Precio con descuento</p>
+      <p class="mp-precio__ahora">$56.797.500</p>
+    </div>
+  </div>
+  <p class="mp-precio__nota">Aplica para terrenos inclinados &middot; no incluye cimentaci&oacute;n</p>
+  <p class="mp-precio__terminos">Aplican t&eacute;rminos y condiciones</p>
+</div>
+
+                  <div class="flex flex-col gap-2">
+                    <a
+                      href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20Firavitoba%2070m2.%20Espectacular%20casa%20de%2070%20metros%20dos%20alcobas%20sala%20comedor%20patio%20de%20ropas%2C%20terraza%2C%20zona%20de%20BBQ%2C%20s%C3%B3tano%2C%20aplica%20para%20terrenos%20inclinados%2C%20por%20tan%20solo%20%2456.797.500.%20Aplican%20t%C3%A9rminos%20y%20condiciones."
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full font-bold text-sm transition duration-300 transform hover:scale-105 shadow-md"
+                    >
+                      <i class="fab fa-whatsapp mr-2 text-base"></i>Cotizar por WhatsApp
+                    </a>
+                  </div>
+
                 </div>
               </div>
             </article>
 
-            <article class="modelo-card group flex flex-col" id="campo-casa-80m2-1piso" data-aos="fade-up">
-              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col">
-                <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
-                  <img src="/assets/images/modelos/casa-80m2-1piso.webp"
-                    alt="Foto Casa 80 m2 de un piso para casa de campo"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy" width="600" height="450" />
-                  <span class="absolute top-2.5 left-2.5 bg-primary text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">Sin escalones</span>
-                  <span class="absolute top-2.5 right-2.5 bg-white/95 text-dark text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">80 m²</span>
-                </div>
-                <div class="p-4 flex flex-col flex-1">
-                  <p class="text-[10px] uppercase tracking-wider text-primary font-bold mb-1.5">Casa · 2 Baños</p>
-                  <h3 class="text-sm sm:text-base font-bold text-dark mb-2">Casa 80m² · 1 Piso</h3>
-                  <ul class="text-[11px] sm:text-xs text-gray-600 space-y-1 mb-2">
-                    <li class="flex items-start"><i class="fas fa-bed text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>2 alcobas</span></li>
-                    <li class="flex items-start"><i class="fas fa-bath text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>2 baños</span></li>
-                    <li class="flex items-start"><i class="fas fa-utensils text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>Sala, comedor y cocina</span></li>
-                  </ul>
-                  <p class="text-[11px] text-gray-500 leading-relaxed mb-3">Un solo piso ayuda con los adultos mayores y evita escalar en terreno en pendiente.</p>
-                  <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por sólo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">$55.368.200</p>
-                    <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%2080m2%20de%20un%20piso%20por%20%2455.368.200%20para%20mi%20finca%20en%20Villa%20de%20Leyva."
-                      target="_blank" rel="noopener noreferrer"
-                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-bold text-[11px] sm:text-xs transition duration-300 shadow-md">
-                      <i class="fab fa-whatsapp mr-1.5"></i>Cotizar
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </article>
+            <!-- ============================================ -->
+            <!-- MODELO 5: CASA 80M2 1 PISO                  -->
+            <!-- ============================================ -->
+            <article class="modelo-card group" id="casa-80m2-1piso">
+              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
 
-            <article class="modelo-card group flex flex-col" id="campo-casa-firavitoba-84m2" data-aos="fade-up">
-              <div class="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100 h-full flex flex-col">
+                <!-- Imagen (sin plano en este modelo) -->
                 <div class="relative overflow-hidden aspect-[4/3] bg-gray-100">
-                  <input type="radio" name="tab-campo-fira" id="tab-campo-foto-fira" class="peer/foto hidden" checked>
-                  <input type="radio" name="tab-campo-fira" id="tab-campo-plano-fira" class="peer/plano hidden">
-                  <img src="/assets/images/modelos/casa-firavitoba-84m2.webp"
-                    alt="Foto Casa Firavitoba 84 m2 para casa de campo"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 peer-checked/plano:hidden"
-                    loading="lazy" width="600" height="450" />
-                  <img src="/assets/images/modelos/casa-firavitoba-84m2-plano.webp"
-                    alt="Plano Casa Firavitoba 84 m2"
-                    class="absolute inset-0 w-full h-full object-contain bg-white hidden peer-checked/plano:block"
-                    loading="lazy" width="600" height="450" />
-                  <div class="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20 flex bg-white/95 backdrop-blur-sm rounded-full p-1 shadow-lg border border-gray-200">
-                    <label for="tab-campo-foto-fira" class="cursor-pointer px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary peer-checked/foto:bg-primary peer-checked/foto:text-white inline-flex items-center">
-                      <i class="fas fa-image mr-1"></i>Foto
-                    </label>
-                    <label for="tab-campo-plano-fira" class="cursor-pointer px-3 py-1 rounded-full text-[11px] font-bold text-gray-600 hover:text-primary peer-checked/plano:bg-primary peer-checked/plano:text-white inline-flex items-center">
-                      <i class="fas fa-ruler-combined mr-1"></i>Plano
-                    </label>
-                  </div>
-                  <span class="absolute top-2.5 left-2.5 bg-red-500 text-white text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">Para la familia</span>
-                  <span class="absolute top-2.5 right-2.5 bg-white/95 text-dark text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full shadow-md z-10">84 m²</span>
+
+                  <img src="/assets/images/modelos/casa-80m2-1piso-800.webp"
+                     srcset="/assets/images/modelos/casa-80m2-1piso-480.webp 480w, /assets/images/modelos/casa-80m2-1piso-800.webp 800w, /assets/images/modelos/casa-80m2-1piso-1200.webp 1200w"
+                     sizes="(min-width: 1024px) 34vw, (min-width: 768px) 50vw, 100vw"
+                     alt="Modelo real de casa prefabricada CONCASAYA Casa 80 m2 de un piso"
+                     width="1200" height="896"
+                     loading="lazy" decoding="async"
+                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+
+                  <span class="absolute top-4 left-4 bg-primary text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    <i class="fas fa-magic mr-1"></i>Personalizable
+                  </span>
+                  <span class="absolute top-4 right-4 bg-white/95 text-dark text-xs font-bold px-3 py-1.5 rounded-full shadow-md z-10">
+                    80 m²
+                  </span>
                 </div>
-                <div class="p-4 flex flex-col flex-1">
-                  <p class="text-[10px] uppercase tracking-wider text-primary font-bold mb-1.5">Casa · 3 Alcobas</p>
-                  <h3 class="text-sm sm:text-base font-bold text-dark mb-2">Casa Firavitoba 84m²</h3>
-                  <ul class="text-[11px] sm:text-xs text-gray-600 space-y-1 mb-2">
-                    <li class="flex items-start"><i class="fas fa-bed text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>3 alcobas</span></li>
-                    <li class="flex items-start"><i class="fas fa-bath text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>2 baños</span></li>
-                    <li class="flex items-start"><i class="fas fa-utensils text-primary mr-1.5 mt-0.5 w-3.5 text-center flex-shrink-0"></i><span>Sala, comedor y cocina</span></li>
+
+                <div class="p-5 md:p-6 flex-1 flex flex-col">
+                  <p class="text-xs uppercase tracking-wider text-primary font-bold mb-2">
+                    <i class="fas fa-home mr-1"></i>Casa · 1 Piso · 2 Alcobas · 2 Baños
+                  </p>
+                  <h3 class="text-xl md:text-2xl font-bold text-dark mb-3 leading-tight">
+                    Casa 80m² · 1 Piso
+                  </h3>
+
+                  <ul class="text-sm text-gray-600 space-y-1.5 mb-5">
+                    <li class="flex items-center"><i class="fas fa-bed text-primary mr-2 w-4 text-center"></i>2 alcobas</li>
+                    <li class="flex items-center"><i class="fas fa-bath text-primary mr-2 w-4 text-center"></i>2 baños</li>
+                    <li class="flex items-center"><i class="fas fa-couch text-primary mr-2 w-4 text-center"></i>Sala</li>
+                    <li class="flex items-center"><i class="fas fa-utensils text-primary mr-2 w-4 text-center"></i>Comedor</li>
+                    <li class="flex items-center"><i class="fas fa-kitchen-set text-primary mr-2 w-4 text-center"></i>Cocina</li>
+                    <li class="flex items-center"><i class="fas fa-house-chimney text-primary mr-2 w-4 text-center"></i>Teja a elegir: fibrocemento o barro</li>
                   </ul>
-                  <p class="text-[11px] text-gray-500 leading-relaxed mb-3">Cuando van los nietos, o quieres recibir familia extendida los fines de semana largos.</p>
-                  <div class="mt-auto pt-2.5 border-t border-gray-100">
-                    <p class="text-[10px] text-gray-500 mb-0.5">Por sólo</p>
-                    <p class="text-lg sm:text-xl font-bold text-primary leading-none mb-2.5">$62.429.500</p>
-                    <a href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%20Firavitoba%2084m2%20por%20%2462.429.500%20para%20mi%20finca%20en%20Villa%20de%20Leyva."
-                      target="_blank" rel="noopener noreferrer"
-                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-full font-bold text-[11px] sm:text-xs transition duration-300 shadow-md">
-                      <i class="fab fa-whatsapp mr-1.5"></i>Cotizar
+
+                  <div class="mt-auto mb-4 pt-4 border-t border-gray-100">
+  <div class="mp-precio__cols">
+    <div>
+      <p class="mp-precio__label">Precio</p>
+      <p class="mp-precio__antes">$63.700.000</p>
+    </div>
+    <div>
+      <p class="mp-precio__label">Precio con descuento</p>
+      <p class="mp-precio__ahora">$55.368.200</p>
+    </div>
+  </div>
+  <p class="mp-precio__nota">Obra negra desde &middot; no incluye cimentaci&oacute;n</p>
+  <p class="mp-precio__terminos">Aplican t&eacute;rminos y condiciones</p>
+</div>
+
+                  <div class="flex flex-col gap-2">
+                    <a
+                      href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20la%20Casa%2080m2%201%20piso%20(2%20alcobas%2C%202%20ba%C3%B1os%2C%20obra%20negra%20desde%20%2455.368.200).%20%C2%BFMe%20podr%C3%ADan%20enviar%20m%C3%A1s%20informaci%C3%B3n%3F"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center bg-green-500 hover:bg-green-600 text-white px-5 py-3 rounded-full font-bold text-sm transition duration-300 transform hover:scale-105 shadow-md"
+                    >
+                      <i class="fab fa-whatsapp mr-2 text-base"></i>Cotizar por WhatsApp
                     </a>
                   </div>
+
                 </div>
               </div>
             </article>
 
           </div>
 
-          <div class="text-center mt-10" data-aos="fade-up">
-            <a href="/modelos"
-              class="inline-flex items-center justify-center bg-primary text-white px-8 py-3 rounded-full font-bold text-sm sm:text-base hover:bg-primary/90 transition-all duration-300 shadow-lg hover:scale-105">
-              <i class="fas fa-building mr-2"></i>Ver los 5 modelos del catálogo
-            </a>
-          </div>
         </div>
       </section>
 
@@ -1098,7 +1557,7 @@
                 <i class="fas fa-chevron-down flex-shrink-0"></i>
               </button>
               <div class="faq-answer px-5 pb-5 text-gray-600">
-                <p>Desde <strong>$24.845.900</strong> la Casa El Moral de 36 m² con 2 alcobas. La Casa 80 m² de un piso cuesta $55.368.200 y la Casa Firavitoba de 84 m² con 3 alcobas y 2 baños cuesta $62.429.500. Ninguno incluye placa de cimentación.</p>
+                <p>Desde <strong>$23.127.700</strong> la Casa El Moral de 36 m² con 2 alcobas. La Casa 80 m² de un piso cuesta $55.368.200 y la Casa Firavitoba de 70 m² con 3 alcobas y 2 baños cuesta $56.797.500. Ninguno incluye placa de cimentación.</p>
               </div>
             </div>
             <div class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden">
