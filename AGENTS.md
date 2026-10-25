@@ -122,6 +122,20 @@ y en el FAQ de personalización (visible + JSON-LD).
 (`assets/images/modelos/cabana-vidrio-25m2-800.webp`). Si el cliente confirma que también
 ofrece teja para ese modelo, se agrega el ítem a su card.
 
+## Banda de evidencia en el footer (2026-10-25)
+
+El footer de **las 100 páginas** del sitio lleva una banda con el concepto "Modelos reales,
+proyectos reales": 3 miniaturas de obra real (`footer-evidencia-1/2/3.webp`, 48 KB en total,
+lazy), los 3 datos verificables (93 reseñas 9.6/10, garantía 10 años, 12.000 proyectos) y un
+enlace a `/modelos#proyectos-reales`.
+
+- Se insertó con `scripts/agregar-banda-evidencia.js` (idempotente, valida antes que las 41
+  clases CSS existan en `assets/css/tailwind.css` — no hay que recompilar Tailwind).
+- Las miniaturas se generan con `scripts/generar-miniaturas-footer.mjs`.
+- **Ojo al texto**: dice "Las fotografías de **esta banda** son de casas terminadas...", NO
+  "de este sitio". La galería todavía tiene 13 renders pendientes de material nuevo, así que
+  el claim general no sería cierto hasta reemplazarlos.
+
 ## Imágenes con marca de agua de IA (2026-10-25)
 
 **32 imágenes del repo tienen la estrella de 4 puntas de Gemini en la esquina inferior derecha.**
