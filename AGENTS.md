@@ -132,9 +132,9 @@ enlace a `/modelos#proyectos-reales`.
 - Se insertó con `scripts/agregar-banda-evidencia.js` (idempotente, valida antes que las 41
   clases CSS existan en `assets/css/tailwind.css` — no hay que recompilar Tailwind).
 - Las miniaturas se generan con `scripts/generar-miniaturas-footer.mjs`.
-- **Ojo al texto**: dice "Las fotografías de **esta banda** son de casas terminadas...", NO
-  "de este sitio". La galería todavía tiene 13 renders pendientes de material nuevo, así que
-  el claim general no sería cierto hasta reemplazarlos.
+- El texto dice "Las fotografías de **este sitio** son de obras terminadas y entregadas... Son
+  fotos reales: no son renders ni imágenes generadas por IA." Es correcto porque **todas** las
+  fotos del repo son obra real (las de Gemini están retocadas, no generadas).
 
 ## Imágenes con marca de agua de IA (2026-10-25)
 
@@ -165,14 +165,14 @@ mezanine.webp      sala.webp         terminada.webp     tiniy1.webp
 Las 5 fotos del catálogo (`assets/images/modelos/*.webp`) **NO** tenían marca. `img1333.webp` es
 dudosa (revisar).
 
-**Pendiente**: el cliente va a mandar material real nuevo para reemplazar estas 32. Al llegar,
-reemplazar en `assets/data/gallery.json` (13 de las 32 están en la galería: `cabaññ1`, `img1055`,
-`cubo1`, `tiniy1`, `mezanine`, `bodega1`, `bodega2`, `bodegaaa`, `caseta`, `cass2`, `cass3`,
-`cass4`, `colonial`) y en las landings que las usan. **Si el material nuevo viene sin marca de
-agua, no hay que recortar nada.**
+**DATO CLAVE DEL CLIENTE (2026-10-25, 16:50)**: estas imágenes **son fotografías reales de obra
+entregada, retocadas con Gemini solo para mejorar la iluminación**. La estrella no era señal de
+render: delataba el retoque, y por eso el cliente recibía la queja de "esto lo hizo la IA".
+**No hay que reemplazarlas por material nuevo** — dejarlas como están. Y por eso el claim del
+footer puede ser general ("las fotografías de este sitio son de obra terminada y entregada").
 
-**Aviso**: `img214.webp` está titulando "Casa campestre con teja de barro" en la galería pero es un
-**pozo séptico**. Corregir al reemplazar.
+**Pendiente menor**: `img214.webp` está titulando "Casa campestre con teja de barro" en la galería
+pero es un **pozo séptico**. Corregir el título (no la foto).
 
 ## Ficha en directorios de terceros (2026-10-19)
 
