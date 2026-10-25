@@ -43,7 +43,7 @@ const CHECKS = [
     nuevo: [
       ['Modelos reales, proyectos reales', true],
       ['footer-evidencia-1.webp', true],
-      ['No son renders ni imágenes generadas por IA', true]
+      ['Son fotos reales: no son renders ni imágenes generadas por IA', true]
     ],
     viejo: []
   },
