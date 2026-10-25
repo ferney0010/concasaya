@@ -37,6 +37,30 @@ const CHECKS = [
     url: '/ventajas',
     nuevo: [['plaqueta', true]],
     viejo: []
+  },
+  {
+    url: '/',
+    nuevo: [
+      ['Modelos reales, proyectos reales', true],
+      ['footer-evidencia-1.webp', true],
+      ['No son renders ni imágenes generadas por IA', true]
+    ],
+    viejo: []
+  },
+  {
+    url: '/pages/chia',
+    nuevo: [
+      ['Modelos reales, proyectos reales', true],
+      ['footer-evidencia-3.webp', true]
+    ],
+    viejo: []
+  },
+  {
+    url: '/galeria',
+    nuevo: [
+      ['Modelos reales, proyectos reales', true]
+    ],
+    viejo: []
   }
 ];
 
