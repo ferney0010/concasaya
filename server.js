@@ -15,7 +15,10 @@ app.use(express.static('.'));
 // local navegue igual que produccion.
 app.use((req, res, next) => {
     if (req.method !== 'GET' || req.path.includes('.')) return next();
-    const base = path.join(__dirname, req.path);
+    // Quitar la barra final: path.join la conserva y "blog/" + ".html" daba
+    // "blog\.html" (inexistente) en vez de "blog.html" -> /blog daba 404.
+    const cleanPath = req.path.replace(/\/+$/, '') || '/';
+    const base = path.join(__dirname, cleanPath);
     const fs = require('fs');
     for (const candidate of [base + '.html', path.join(base, 'index.html')]) {
         if (fs.existsSync(candidate) && fs.statSync(candidate).isFile()) {
@@ -28,6 +31,16 @@ app.use((req, res, next) => {
 // Redirect permanente: URL antigua del cotizador
 app.get('/cotizador-encuesta.html', (req, res) => {
     res.redirect(301, '/cotizador-precios-casas-prefabricadas.html');
+});
+
+// Indice local de todas las paginas (solo dev, no se despliega)
+app.get(['/todas-las-paginas', '/todas-las-paginas.html', '/_dev-todas-las-paginas'], (req, res) => {
+    res.sendFile(path.join(__dirname, '_dev-todas-las-paginas.html'));
+});
+
+// Visor local de imagenes del repo (solo dev, no se despliega)
+app.get(['/dev-imagenes', '/_dev-imagenes'], (req, res) => {
+    res.sendFile(path.join(__dirname, '_dev-imagenes.html'));
 });
 
 // Ruta para el API del chatbot
@@ -110,7 +123,18 @@ app.post('/api/chat', async (req, res) => {
 
 // Ruta para servir archivos estáticos
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, req.path === '/' ? 'index.html' : req.path));
+    const fs = require('fs');
+    const target = path.join(__dirname, req.path === '/' ? 'index.html' : req.path);
+    fs.stat(target, (err, stat) => {
+        if (!err && stat.isDirectory()) {
+            const idx = path.join(target, 'index.html');
+            if (fs.existsSync(idx)) return res.sendFile(idx);
+            return res.status(404).send('404 - No encontrado: ' + req.path);
+        }
+        res.sendFile(target, (e) => {
+            if (e) res.status(404).send('404 - No encontrado: ' + req.path);
+        });
+    });
 });
 
 // Iniciar servidor

@@ -32,4 +32,7 @@ indexnow-payload.json
 knowledge_base.json
 verify.py
 _dev-skip-alert.html
+_dev-todas-las-paginas.html
+_dev-imagenes.html
+scripts/
 README*

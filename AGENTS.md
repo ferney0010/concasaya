@@ -81,12 +81,46 @@ porcentaje** — el descuento ya está aplicado sobre el valor.
 1. Casa 80m² sigue con el precio viejo — falta su mensaje de WhatsApp.
 2. Firavitoba 70m² usa el plano de 84m² (`casa-firavitoba-84m2-plano.webp`) — falta el plano nuevo.
 3. `pages/villadeleyva.html` desactualizada: Cabaña, El Moral y Firavitoba con precios viejos.
-4. Cimentación inconsistente: 3 cards dicen "no incluye", 2 dicen "incluida"; el FAQ de Google
-   afirma que sí. Falta confirmar la regla real del cliente.
+
+**Nota del plano de La Vega** (2026-10-25): el cliente envió un plano nuevo (10 x 9 m, con
+9 m², 15 m² y 42 m² = 66 m² de distribución) que **no cuadra con el nombre del modelo** (54 m²).
+Se puso tal cual, sin "corregir" nada. Si en el futuro alguien ve la incongruencia, el plano lo
+mandó el cliente: no cambiarlo sin volver a preguntarle. Se generó con
+`scripts/conv-plano.mjs` (2400x1792, 20% de aire abajo para la barra de tabs).
 
 Cualquier cambio de precio debe propagarse a: la card, el CTA de WhatsApp, el `price` del JSON-LD,
 el FAQ visible, el FAQ de Google y las metas OG/Twitter —incluido el rango "desde/hasta" del
 catálogo, que cambia cuando el modelo más caro deja de serlo.
+
+## Alcance del precio de catálogo (CONFIRMADO por el cliente 2026-10-25)
+
+Regla oficial, ya no hay que confirmarla:
+
+- **La placa de cimentación NO se incluye** en el precio de catálogo. Se cotiza aparte según el
+  estudio de suelos y el tipo de placa que el terreno exige.
+- **Las instalaciones eléctricas e hidráulicas NO se incluyen** tampoco (obra negra).
+- **Los muebles** (cocina, closets, detalles decorativos) tampoco forman parte del precio.
+- **Los precios NO cambian**: el catálogo ya era "obra negra" sin placa. No recalcular cifras.
+
+Esta regla está aplicada en las 5 cards de `modelos.html` (notas `mp-precio__nota` y los CTA de
+WhatsApp), en el FAQ visible + JSON-LD de `modelos.html`, en `pages/cabanas-turisticas-villa-de-leyva.html`,
+`pages/casas-de-campo-villa-de-leyva.html` y en 6 artículos de `blog/`. El script que aplicó el
+cambio es `scripts/fix-cimentacion.js` (reemplazos literales, idempotente: ya no encuentra nada).
+
+**No volver a afirmar que la placa va incluida.** Si se toca ese tema, el patrón correcto es
+"se cotiza aparte". NO tocar: la garantía de 10 años en estructura (cimentación, muros, cubierta),
+las referencias a la NSR-10 ni los pasajes que hablan del mercado en general (consejos para
+comparar cotizaciones de terceros).
+
+## Cubierta del catálogo (2026-10-25)
+
+**Dos opciones de teja disponibles: fibrocemento o barro.** Está escrito como ítem de
+especificación en las 4 cards con teja de `modelos.html` ("Teja a elegir: fibrocemento o barro")
+y en el FAQ de personalización (visible + JSON-LD).
+
+**La Cabaña de Vidrio 25m² NO lleva ese ítem**: es acristalada con techo plano
+(`assets/images/modelos/cabana-vidrio-25m2-800.webp`). Si el cliente confirma que también
+ofrece teja para ese modelo, se agrega el ítem a su card.
 
 ## Ficha en directorios de terceros (2026-10-19)
 

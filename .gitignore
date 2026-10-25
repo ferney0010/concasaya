@@ -51,3 +51,9 @@ scripts/.tmp-*
 *.bak
 /tmp-*.png
 /tmp-*.js
+
+# Indice local de paginas (solo dev, se regenera con scripts/build-dev-index.js)
+_dev-todas-las-paginas.html
+
+# Visor local de imagenes (solo dev, se regenera con scripts/build-dev-imagenes.js)
+_dev-imagenes.html
