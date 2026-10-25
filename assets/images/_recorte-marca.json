@@ -1,0 +1,358 @@
+{
+  "generado": "2026-10-25T21:21:27.591Z",
+  "dry": false,
+  "recortadas": [
+    {
+      "rel": "aislamiento.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 872,
+        "h": 765
+      }
+    },
+    {
+      "rel": "aula1.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 1147,
+        "h": 655
+      }
+    },
+    {
+      "rel": "bodega1.webp",
+      "antes": {
+        "w": 1280,
+        "h": 800
+      },
+      "despues": {
+        "w": 877,
+        "h": 653
+      }
+    },
+    {
+      "rel": "bodega2.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 1094,
+        "h": 720
+      }
+    },
+    {
+      "rel": "bodegaaa.jpg",
+      "antes": {
+        "w": 720,
+        "h": 517
+      },
+      "despues": {
+        "w": 647,
+        "h": 428
+      }
+    },
+    {
+      "rel": "cabaña18.webp",
+      "antes": {
+        "w": 896,
+        "h": 504
+      },
+      "despues": {
+        "w": 739,
+        "h": 439
+      }
+    },
+    {
+      "rel": "cabaññ1.webp",
+      "antes": {
+        "w": 864,
+        "h": 1184
+      },
+      "despues": {
+        "w": 708,
+        "h": 995
+      }
+    },
+    {
+      "rel": "campe1.webp",
+      "antes": {
+        "w": 1344,
+        "h": 768
+      },
+      "despues": {
+        "w": 1102,
+        "h": 645
+      }
+    },
+    {
+      "rel": "casa2.webp",
+      "antes": {
+        "w": 1152,
+        "h": 896
+      },
+      "despues": {
+        "w": 945,
+        "h": 753
+      }
+    },
+    {
+      "rel": "casal1.webp",
+      "antes": {
+        "w": 1248,
+        "h": 832
+      },
+      "despues": {
+        "w": 1023,
+        "h": 699
+      }
+    },
+    {
+      "rel": "casco.webp",
+      "antes": {
+        "w": 1024,
+        "h": 1024
+      },
+      "despues": {
+        "w": 840,
+        "h": 860
+      }
+    },
+    {
+      "rel": "caseta.webp",
+      "antes": {
+        "w": 1024,
+        "h": 1024
+      },
+      "despues": {
+        "w": 954,
+        "h": 981
+      }
+    },
+    {
+      "rel": "cass2.webp",
+      "antes": {
+        "w": 1088,
+        "h": 960
+      },
+      "despues": {
+        "w": 828,
+        "h": 850
+      }
+    },
+    {
+      "rel": "cass3.webp",
+      "antes": {
+        "w": 1088,
+        "h": 960
+      },
+      "despues": {
+        "w": 892,
+        "h": 806
+      }
+    },
+    {
+      "rel": "cass4.webp",
+      "antes": {
+        "w": 1056,
+        "h": 992
+      },
+      "despues": {
+        "w": 973,
+        "h": 922
+      }
+    },
+    {
+      "rel": "cocina.webp",
+      "antes": {
+        "w": 960,
+        "h": 1088
+      },
+      "despues": {
+        "w": 866,
+        "h": 995
+      }
+    },
+    {
+      "rel": "colonial.webp",
+      "antes": {
+        "w": 1344,
+        "h": 768
+      },
+      "despues": {
+        "w": 1289,
+        "h": 635
+      }
+    },
+    {
+      "rel": "cubo1.webp",
+      "antes": {
+        "w": 960,
+        "h": 1088
+      },
+      "despues": {
+        "w": 914,
+        "h": 998
+      }
+    },
+    {
+      "rel": "fondo1.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 1069,
+        "h": 712
+      }
+    },
+    {
+      "rel": "fondo2.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 971,
+        "h": 726
+      }
+    },
+    {
+      "rel": "fondo3.webp",
+      "antes": {
+        "w": 1344,
+        "h": 768
+      },
+      "despues": {
+        "w": 1256,
+        "h": 706
+      }
+    },
+    {
+      "rel": "fondo4.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 893,
+        "h": 789
+      }
+    },
+    {
+      "rel": "fondo5.webp",
+      "antes": {
+        "w": 1536,
+        "h": 672
+      },
+      "despues": {
+        "w": 1064,
+        "h": 463
+      }
+    },
+    {
+      "rel": "herocasa.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 971,
+        "h": 726
+      }
+    },
+    {
+      "rel": "herocasa1.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 971,
+        "h": 726
+      }
+    },
+    {
+      "rel": "img1055.webp",
+      "antes": {
+        "w": 1864,
+        "h": 1043
+      },
+      "despues": {
+        "w": 1799,
+        "h": 958
+      }
+    },
+    {
+      "rel": "img1304.webp",
+      "antes": {
+        "w": 893,
+        "h": 692
+      },
+      "despues": {
+        "w": 732,
+        "h": 581
+      }
+    },
+    {
+      "rel": "img1318.webp",
+      "antes": {
+        "w": 713,
+        "h": 812
+      },
+      "despues": {
+        "w": 649,
+        "h": 758
+      }
+    },
+    {
+      "rel": "mezanine.webp",
+      "antes": {
+        "w": 1184,
+        "h": 864
+      },
+      "despues": {
+        "w": 971,
+        "h": 726
+      }
+    },
+    {
+      "rel": "sala.webp",
+      "antes": {
+        "w": 960,
+        "h": 1088
+      },
+      "despues": {
+        "w": 787,
+        "h": 914
+      }
+    },
+    {
+      "rel": "terminada.webp",
+      "antes": {
+        "w": 1280,
+        "h": 573
+      },
+      "despues": {
+        "w": 1211,
+        "h": 525
+      }
+    },
+    {
+      "rel": "tiniy1.webp",
+      "antes": {
+        "w": 1248,
+        "h": 832
+      },
+      "despues": {
+        "w": 1023,
+        "h": 699
+      }
+    }
+  ]
+}
