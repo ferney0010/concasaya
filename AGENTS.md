@@ -98,6 +98,9 @@ Regla oficial, ya no hay que confirmarla:
 
 - **La placa de cimentación NO se incluye** en el precio de catálogo. Se cotiza aparte según el
   estudio de suelos y el tipo de placa que el terreno exige.
+  **Única excepción: la Cabaña de Vidrio 25 m² SÍ la incluye** (dato del cliente, 2026-10-26).
+  Su card lo dice y su CTA de WhatsApp lo menciona; el resto del catálogo y los textos
+  generales llevan la coletilla "salvo la Cabaña de Vidrio 25 m² que sí la incluye".
 - **Las instalaciones eléctricas e hidráulicas NO se incluyen** tampoco (obra negra).
 - **Los muebles** (cocina, closets, detalles decorativos) tampoco forman parte del precio.
 - **Los precios NO cambian**: el catálogo ya era "obra negra" sin placa. No recalcular cifras.
