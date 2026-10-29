@@ -44,7 +44,7 @@
     },
     'mod-1': {
       explica: [
-        'La idea que debe quedar: los componentes se fabrican en planta y se ensamblan en el terreno. No es una casa "de paquete", es una obra con proyecto.',
+        'La idea que debe quedar: las piezas se fabrican en una planta y se arman en el terreno. No deja de ser una obra con diseño, licencia y cronograma; lo que cambia es que la fábrica adelanta el trabajo.',
         'Nombre los sistemas de CONCASAYA: plaqueta de concreto, construcción en seco y construcción modular.',
         'Explique con la foto del panel cómo se ve un componente real antes de llegar a la obra.',
         'Sea explícito: no todas las casas prefabricadas son iguales; lo que define el resultado es el sistema, el acabado y el control de obra.'
