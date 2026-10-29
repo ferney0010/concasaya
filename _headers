@@ -6,3 +6,10 @@
 # que el listado este siempre al dia.
 /blog/static-posts-config.js
   Cache-Control: public, max-age=0, must-revalidate
+
+# Guia comercial de CONCASAYA: herramienta interna de asesoria.
+# No debe indexarse ni aparecer en buscadores. NO se bloquea en robots.txt
+# (un Disallow impediria a los buscadores leer la directiva noindex).
+/guia-comercial/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
