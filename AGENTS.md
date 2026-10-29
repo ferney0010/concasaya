@@ -235,9 +235,12 @@ un `Disallow` impediría a los buscadores leer la directiva `noindex`.
 - El diagnóstico del tema 9 se arma en pantalla: **sin servidor y sin persistencia** (se borra al
   recargar). No usar `localStorage` ni enviar nada a un backend.
 - **Abre en el índice**, no en una portada: el vendedor tiene que ver de entrada los 9 temas con
-  foto para identificar el punto de partida. El índice lleva un hero calcado del homepage
-  (misma foto de fondo, badge, titular con la parte en verde, beneficios y CTAs) y los enlaces
-  profundos por hash (`#indice`, `#mod-3`, …) permiten abrir un tema directo.
+  foto para identificar el punto de partida. El hero es **partido**: panel oscuro sólido a la
+  izquierda con badge, titular (la parte destacada en verde), beneficios y CTAs, y a la derecha
+  una **foto real de obra entregada** (`galeria-villa-casa-porche-verde.webp`) limpia, sin
+  degradados encima. No se usa el render del homepage (`hero-nuevo/fondo-hero-index-casa-moderna`):
+  con el recorte a sangre solo se veía el jardín borroso y además contradice el "nada de renders"
+  del tema 8. Los enlaces profundos por hash (`#indice`, `#mod-3`, …) permiten abrir un tema directo.
 - **Tema 8 = Proyectos reales**: es la respuesta a "¿qué han construido?". Lleva un **recorrido virtual
   360°** (mismo visor Pannellum y las mismas 3 panoramas que `/galeria`: `360.webp`, `segundo360.jpeg`,
   `habitaciones360.jpeg`) y una **galería de 54 fotos reales** con muro de columnas y filtros

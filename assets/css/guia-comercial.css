@@ -101,8 +101,8 @@ body.gc-body {
 }
 
 .gc-topbar__spacer { flex: 1 1 auto; }
-
-.gc-tbtools { display: flex; align-items: center; gap: 8px; }
+.gc-topbar > * { min-width: 0; }
+.gc-tbtools { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
 .gc-btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 9px;
@@ -153,9 +153,11 @@ body.gc-body {
   transition: width .35s cubic-bezier(.4, 0, .2, 1);
 }
 .gc-progress-label {
-  position: absolute; right: clamp(14px, 3vw, 34px); top: 14px;
+  position: absolute; right: clamp(14px, 3vw, 34px); top: 12px;
   font-size: .82rem; font-weight: 700; letter-spacing: .4px;
-  color: var(--gc-ink-3);
+  color: #fff; background: rgba(13, 27, 42, .78);
+  padding: 5px 13px; border-radius: 999px;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
 @media (min-width: 900px) { .gc-progress-label { top: 16px; } }
 
@@ -682,75 +684,90 @@ body.gc-body {
 .gc-ph--wide { min-height: 150px; }
 
 /* --------------------------------------------------------- HERO DEL ÍNDICE */
-/* Replica el hero del homepage (index.html): fondo a sangre, badge, titular
-   con la parte destacada en verde, beneficios y CTAs. */
+/* Hero partido: el texto va sobre un panel oscuro solido (contraste limpio)
+   y la foto real se ve entera al lado, sin degradados encima. */
 .gc-idx-slide { padding: 0 0 118px; }
 .gc-idx-slide .gc-inner { padding-top: clamp(26px, 3.6vw, 50px); }
 
 .gi-hero {
-  position: relative; overflow: hidden;
-  background-image: url('/assets/images/hero-nuevo/fondo-hero-index-casa-moderna.webp');
-  background-size: cover; background-position: 62% bottom; background-repeat: no-repeat;
-  padding: clamp(48px, 7vw, 92px) 0 clamp(44px, 6vw, 80px);
+  position: relative; overflow: hidden; background: var(--gc-navy);
+  display: grid; grid-template-columns: minmax(0, 1fr);
 }
-.gi-hero::before {
+@media (min-width: 1000px) {
+  .gi-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+}
+.gi-hero__panel, .gi-hero__photo { min-width: 0; max-width: 100%; }
+.gi-hero__panel {
+  background: linear-gradient(140deg, #0d1b2a 0%, #14304a 100%);
+  padding: clamp(32px, 4.2vw, 68px) clamp(20px, 4vw, 62px);
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; z-index: 2;
+}
+.gi-hero__panel::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+  background: linear-gradient(90deg, var(--gc-primary), var(--gc-accent));
+}
+.gi-hero__photo {
+  background-image: url('/assets/images/galeria-villa-casa-porche-verde.webp');
+  background-size: cover; background-position: center 40%; background-repeat: no-repeat;
+  min-height: clamp(230px, 34vh, 400px); position: relative;
+}
+@media (min-width: 1000px) {
+  .gi-hero__photo { min-height: clamp(440px, 64vh, 720px); }
+}
+.gi-hero__photo::after {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background:
-    linear-gradient(100deg, rgba(6, 32, 18, .74) 0%, rgba(6, 32, 18, .56) 38%, rgba(6, 32, 18, .12) 62%, rgba(6, 32, 18, 0) 100%),
-    linear-gradient(180deg, rgba(6, 32, 18, .78) 0%, rgba(6, 32, 18, .66) 55%, rgba(6, 32, 18, .5) 100%);
+  background: linear-gradient(90deg, rgba(13, 27, 42, .5) 0%, rgba(13, 27, 42, 0) 26%);
 }
-.gi-hero__inner {
-  position: relative; z-index: 2; max-width: 1720px; margin: 0 auto;
-  padding: 0 clamp(16px, 3vw, 48px);
+@media (max-width: 999px) {
+  .gi-hero__photo { order: -1; }
+  .gi-hero__photo::after {
+    background: linear-gradient(180deg, rgba(13, 27, 42, 0) 48%, rgba(13, 27, 42, .78) 100%);
+  }
 }
+
 .gi-badge {
-  display: inline-flex; align-items: center; gap: .6rem;
-  background: rgba(6, 40, 22, .55); border: 1.5px solid rgba(255, 255, 255, .9);
+  display: inline-flex; align-items: center; gap: .6rem; align-self: flex-start;
+  background: rgba(255, 255, 255, .1); border: 1.5px solid rgba(255, 255, 255, .5);
   color: #fff; border-radius: 999px; padding: .5rem 1.15rem .5rem .85rem;
   font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, .28);
 }
 .gi-badge i { font-size: .95rem; color: #b9f7c4; }
 .gi-title {
-  font-size: clamp(2rem, 4.6vw, 3.5rem); line-height: 1.05; font-weight: 900;
+  font-size: clamp(1.9rem, 3.4vw, 3rem); line-height: 1.06; font-weight: 900;
   color: #fff; letter-spacing: -.028em; margin: 1rem 0 0;
-  text-shadow: 0 3px 24px rgba(0, 0, 0, .5), 0 1px 4px rgba(0, 0, 0, .35);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
 .gi-title em {
   font-style: normal; display: block; color: #86f08f; font-weight: 900;
-  font-size: .94em; letter-spacing: -.03em; text-wrap: balance;
-  text-shadow: 0 3px 24px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 60, 20, .6);
+  font-size: .95em; letter-spacing: -.03em; text-wrap: balance;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .4);
 }
 .gi-lead {
-  margin: 1.1rem 0 0; font-size: clamp(1.02rem, 1.4vw, 1.22rem); line-height: 1.55;
-  font-weight: 500; color: #fff; max-width: 40rem;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, .55);
+  margin: 1.1rem 0 0; font-size: clamp(1rem, 1.2vw, 1.14rem); line-height: 1.6;
+  font-weight: 500; color: rgba(255, 255, 255, .88); max-width: 46ch;
+  overflow-wrap: break-word;
 }
+.gi-title { overflow-wrap: break-word; }
 .gi-perks {
-  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.2rem;
+  display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1.4rem;
   margin: 1.5rem 0 0; padding: 0; list-style: none;
 }
 .gi-perks li {
   display: flex; align-items: center; gap: .6rem; color: #fff;
-  font-size: .92rem; font-weight: 700; line-height: 1.3;
-  text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
-}
-.gi-perks li + li { position: relative; padding-left: 1.2rem; }
-.gi-perks li + li::before {
-  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-  width: 1px; height: 26px; background: rgba(255, 255, 255, .45);
+  font-size: .88rem; font-weight: 700; line-height: 1.3;
 }
 .gi-perks__ico {
-  flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .14);
+  flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .9); background: rgba(255, 255, 255, .12);
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: .95rem; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  font-size: .92rem; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
 }
-.gi-ctas { display: flex; flex-wrap: wrap; gap: .85rem; margin: 1.6rem 0 0; }
+.gi-ctas { display: flex; flex-wrap: wrap; gap: .85rem; margin: 1.7rem 0 0; }
 .gi-btn {
   display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px;
-  padding: .9rem 1.6rem; font-size: .98rem; font-weight: 700; font-family: inherit;
+  padding: .9rem 1.6rem; font-size: .96rem; font-weight: 700; font-family: inherit;
   text-decoration: none; border: 2px solid transparent; cursor: pointer;
   transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
 }
@@ -758,15 +775,13 @@ body.gc-body {
 .gi-btn--solid {
   background: linear-gradient(135deg, #35b04a 0%, #2a9d3f 50%, #15803d 100%);
   color: #fff; font-weight: 800;
-  box-shadow: 0 10px 28px rgba(21, 128, 61, .5), 0 0 0 1px rgba(255, 255, 255, .25) inset;
+  box-shadow: 0 10px 28px rgba(21, 128, 61, .45), 0 0 0 1px rgba(255, 255, 255, .25) inset;
 }
-.gi-btn--solid:hover { box-shadow: 0 14px 34px rgba(21, 128, 61, .6), 0 0 0 1px rgba(255, 255, 255, .3) inset; }
 .gi-btn--ghost {
-  background: rgba(8, 34, 20, .55); border-color: rgba(255, 255, 255, .95);
-  color: #fff; font-weight: 800;
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, .1); border-color: rgba(255, 255, 255, .75);
+  color: #fff; font-weight: 800; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
 }
-.gi-btn--ghost:hover { background: rgba(8, 34, 20, .75); }
+.gi-btn--ghost:hover { background: rgba(255, 255, 255, .2); }
 .gi-btn i { font-size: 1rem; }
 
 /* --------------------------------------------------------- HERO DEL ÍNDICE */
