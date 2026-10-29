@@ -272,6 +272,12 @@
     setGuide(t.id);
     revealIn(slides[index]);
 
+    // marca el tema actual en el menu de saltos
+    $$('.gc-jump__item').forEach(item => {
+      item.classList.toggle('is-current', t.id === 'mod-' + item.dataset.ir);
+    });
+    if (typeof closeJump === 'function') closeJump();
+
     if (!skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -294,7 +300,27 @@
 
   $('#gc-prev').addEventListener('click', () => goTo(current - 1));
   $('#gc-next').addEventListener('click', () => goTo(current + 1));
-  $('#gc-btn-indice').addEventListener('click', () => goToId('indice'));
+
+  /* Menu de saltos rapidos: desde cualquier tema se llega a cualquier otro */
+  const jumpWrap = $('#gc-jump');
+  const jumpMenu = $('#gc-jump-menu');
+  const jumpBtn = $('#gc-btn-indice');
+
+  function closeJump() {
+    jumpMenu.setAttribute('hidden', '');
+    jumpBtn.setAttribute('aria-expanded', 'false');
+  }
+  function openJump() {
+    jumpMenu.removeAttribute('hidden');
+    jumpBtn.setAttribute('aria-expanded', 'true');
+  }
+  jumpBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    jumpMenu.hasAttribute('hidden') ? openJump() : closeJump();
+  });
+  document.addEventListener('click', (e) => {
+    if (!jumpWrap.contains(e.target)) closeJump();
+  });
 
   /* Desplazamiento suave dentro de la pantalla (boton "Ver los 8 temas") */
   $$('[data-scroll]').forEach(btn => {
@@ -357,7 +383,7 @@
 
     if (e.key === 'ArrowRight' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
-    else if (e.key === 'Escape') { closeAsesor(); closeLightbox(); }
+    else if (e.key === 'Escape') { closeAsesor(); closeLightbox(); closeJump(); }
     else if (e.key === 'i' || e.key === 'I') { goToId('indice'); }
     /* Home y End se dejan al navegador: desplazan dentro del modulo actual. */
   });

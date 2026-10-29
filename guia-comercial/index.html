@@ -40,9 +40,23 @@
     <span class="gc-topbar__spacer"></span>
 
     <div class="gc-tbtools">
-      <button type="button" class="gc-btn gc-btn--ghost gc-btn--icon-sm" id="gc-btn-indice" title="Ver el índice de contenidos" aria-label="Ver el índice de contenidos">
-        <span aria-hidden="true">☰</span> <span class="gc-btn__txt">Índice</span>
-      </button>
+      <div class="gc-jump">
+        <button type="button" class="gc-btn gc-btn--ghost gc-btn--icon-sm" id="gc-btn-indice" title="Ir a un tema" aria-label="Ir a un tema" aria-expanded="false" aria-controls="gc-jump-menu">
+          <span aria-hidden="true">☰</span> <span class="gc-btn__txt">Temas</span>
+        </button>
+        <div class="gc-jump__menu" id="gc-jump-menu" hidden>
+          <div class="gc-jump__head">Saltar a un tema</div>
+          <button type="button" class="gc-jump__item" data-ir="1"><span class="gc-jump__n">1</span> ¿Qué es una casa prefabricada?</button>
+          <button type="button" class="gc-jump__item" data-ir="2"><span class="gc-jump__n">2</span> Materiales, calidad y durabilidad</button>
+          <button type="button" class="gc-jump__item" data-ir="3"><span class="gc-jump__n">3</span> Modelos y distribuciones</button>
+          <button type="button" class="gc-jump__item" data-ir="4"><span class="gc-jump__n">4</span> ¿Qué necesita el terreno?</button>
+          <button type="button" class="gc-jump__item" data-ir="5"><span class="gc-jump__n">5</span> Del terreno a la casa terminada</button>
+          <button type="button" class="gc-jump__item" data-ir="6"><span class="gc-jump__n">6</span> Precio y presupuesto total</button>
+          <button type="button" class="gc-jump__item" data-ir="7"><span class="gc-jump__n">7</span> Preguntas frecuentes</button>
+          <button type="button" class="gc-jump__item" data-ir="8"><span class="gc-jump__n">8</span> Resumen y siguiente paso</button>
+          <a class="gc-jump__foot" href="#indice">Ver el índice completo con imágenes →</a>
+        </div>
+      </div>
       <button type="button" class="gc-btn gc-btn--ghost gc-btn--icon-sm gc-topbar__tools--desktop" id="gc-btn-guia" title="Abrir las notas de venta" aria-label="Notas de venta" aria-pressed="false" aria-expanded="false">
         <span aria-hidden="true">📋</span> <span class="gc-btn__txt">Notas de venta</span>
       </button>
@@ -295,14 +309,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Le muestro los modelos?</strong>
-            <span>Son cinco, todos personalizables. Le muestro el que se parezca a lo que busca.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Materiales, calidad y durabilidad</h3>
+            <p class="gc-next__d">Con el concepto claro, veamos con qué materiales se construye y por qué duran lo que duran.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="3">Ver los 5 modelos</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="2"><span class="gc-next__chip-n">2</span> Materiales</button>
+            <button type="button" class="gc-next__chip" data-ir="3"><span class="gc-next__chip-n">3</span> Ver los 5 modelos</button>
           </div>
         </div>
       </div>
@@ -390,14 +405,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Hablamos de su terreno?</strong>
-            <span>Con fotos y el municipio le decimos qué sistema constructivo necesita.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Modelos y distribuciones</h3>
+            <p class="gc-next__d">Ahora sí: los cinco modelos del catálogo con su plano, su distribución y su precio de entrega.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="4">Ver requisitos del terreno</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="3"><span class="gc-next__chip-n">3</span> Modelos</button>
+            <button type="button" class="gc-next__chip" data-ir="5"><span class="gc-next__chip-n">5</span> El proceso de obra</button>
           </div>
         </div>
       </div>
@@ -537,14 +553,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Cuál se parece más a lo que busca?</strong>
-            <span>Le abro el plano y le muestro el precio con su alcance cerrado.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">¿Qué necesita el terreno?</h3>
+            <p class="gc-next__d">Elegido el modelo, veamos las condiciones del lote: de ahí depende el precio y el plazo.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="6">Ver precios</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="4"><span class="gc-next__chip-n">4</span> Requisitos del terreno</button>
+            <button type="button" class="gc-next__chip" data-ir="6"><span class="gc-next__chip-n">6</span> Precio</button>
           </div>
         </div>
       </div>
@@ -597,14 +614,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Ya tiene el terreno?</strong>
-            <span>Mándeme fotos y el municipio y le digo qué sistema y qué cimentación necesita.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Del terreno a la casa terminada</h3>
+            <p class="gc-next__d">Revisado el lote, veamos el camino completo hasta la entrega y en qué etapa está su proyecto.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="5">Ver el proceso de obra</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Enviar fotos del lote</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="5"><span class="gc-next__chip-n">5</span> El proceso de obra</button>
+            <button type="button" class="gc-next__chip" data-ir="6"><span class="gc-next__chip-n">6</span> Precio</button>
           </div>
         </div>
       </div>
@@ -664,14 +682,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿En qué etapa está su proyecto?</strong>
-            <span>Con eso le digo exactamente qué sigue y cuándo se entrega.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Precio y presupuesto total</h3>
+            <p class="gc-next__d">Con el proceso claro, desglosamos la cifra: qué incluye, qué no y qué la modifica.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="6">Ver el precio</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="6"><span class="gc-next__chip-n">6</span> Precio</button>
+            <button type="button" class="gc-next__chip" data-ir="7"><span class="gc-next__chip-n">7</span> Preguntas frecuentes</button>
           </div>
         </div>
       </div>
@@ -750,14 +769,15 @@
           <figcaption>El proyecto completo: la vivienda y los materiales que la componen.</figcaption>
         </figure>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Le mando la cotización por escrito?</strong>
-            <span>Con alcance cerrado: qué incluye, qué no y en cuántas cuotas.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Preguntas frecuentes</h3>
+            <p class="gc-next__d">Resueltas las dudas que más se repiten, dejamos por escrito lo que definimos juntos.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="7">Ver preguntas frecuentes</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="7"><span class="gc-next__chip-n">7</span> Preguntas frecuentes</button>
+            <button type="button" class="gc-next__chip" data-ir="8"><span class="gc-next__chip-n">8</span> Resumen y cierre</button>
           </div>
         </div>
       </div>
@@ -851,14 +871,15 @@
           </div>
         </div>
 
-        <div class="gc-cta" data-reveal>
-          <div class="gc-cta__txt">
-            <strong>¿Le queda alguna duda?</strong>
-            <span>Revisamos el resumen de lo que definimos y cerramos el siguiente paso.</span>
+        <div class="gc-next" data-reveal>
+          <div>
+            <span class="gc-next__kicker">Siguiente paso</span>
+            <h3 class="gc-next__title">Resumen y siguiente paso</h3>
+            <p class="gc-next__d">Repasamos lo que definimos y cerramos con la ruta hacia la cotización por escrito.</p>
           </div>
-          <div class="gc-cta__acts">
-            <button type="button" class="gc-btn gc-btn--primary" data-ir="8">Ir al resumen</button>
-            <a class="gc-btn gc-btn--ghost" href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20quiero%20cotizar%20una%20casa%20prefabricada" target="_blank" rel="noopener">Cotizar por WhatsApp</a>
+          <div class="gc-next__acts">
+            <button type="button" class="gc-next__chip" data-ir="8"><span class="gc-next__chip-n">8</span> Resumen y cierre</button>
+            <button type="button" class="gc-next__chip" data-ir="3"><span class="gc-next__chip-n">3</span> Volver a los modelos</button>
           </div>
         </div>
       </div>
