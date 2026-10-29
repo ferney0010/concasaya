@@ -261,8 +261,27 @@ Antes de dar por terminado un artículo nuevo en `blog/`, verificar estos 6 punt
 7. **Validar antes de commitear**:
    ```powershell
    node scripts/check-texto-corrupto.cjs "blog/<slug>.html"
+   node scripts/scan-texto-corrupto.mjs
    ```
-   Detecta caracteres CJK y mezclas de idiomas que se cuelan al escribir HTML largo en español.
+   El primero detecta caracteres CJK y mezclas de idiomas. El segundo escanea todo el
+   HTML del repo y detecta: guiones bajos dentro de palabras (`se_desvanecen`), palabras
+   pegadas (`enBoyacá`), markdown crudo sin renderizar (`**texto**`) y palabras en inglés
+   o francés sueltas (`speak con`, `témoignages`). Para revisar la redacción como la ve
+   un lector: `node scripts/extrae-texto.mjs "blog/<slug>.html" ".tmp-texto.txt"`.
+
+### La instrucción interna NUNCA se escribe como prosa (2026-10-29)
+
+Cuando a un artículo se le pide "cambiar el catálogo", "actualizar los precios" o
+"propagar el cambio a las metas", eso se aplica a los **datos**, no se escribe como frase
+dentro del texto. En el artículo `blog/casas-prefabricadas-en-bogota-guia-constructora.html`
+se coló la instrucción literal y quedó como un párrafo sin sentido:
+
+> "El catálogo lo vas a cambiar en una tarde: hay cinco modelos…"
+
+Para el lector suena a un comando de trabajo, no a contenido. **Regla**: si una frase
+del artículo se puede leer como una tarea pendiente para el equipo, es una fuga de
+contexto — reescríbela como afirmación para el lector. Revisar el artículo completo
+leyéndolo como texto plano (no como HTML) es la forma rápida de detectarlo.
 
 ### Por qué el artículo "no aparece" en el listado (2026-10-19)
 
