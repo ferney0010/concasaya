@@ -167,6 +167,26 @@
     },
     'mod-8': {
       explica: [
+        'Este es el tema de la prueba: cuando pregunten "¿qué han construido?", abra la galería y deje que miren.',
+        'Aclare antes de mostrar: todas estas fotos son obras terminadas y entregadas por CONCASAYA. No hay renders ni imágenes generadas.',
+        'Use el filtro según lo que pidan: viviendas terminadas, interiores o fotos de obra en proceso.',
+        'Haga clic en cualquier foto para abrirla en grande, así la ven bien los dos.',
+        'Si piden referencias concretas, la fuente pública es el directorio Constructoras en Colombia: 93 reseñas con 9.6/10 y respuesta pública a cada caso.'
+      ],
+      pregunta: '¿Reconocen alguna de estas casas? ¿Quieren ir a ver una entrega en obra?',
+      confirma: [
+        'Si quieren una visita a una obra específica',
+        'Si piden referencias de clientes del directorio',
+        'Municipio de la vivienda que más les gustó'
+      ],
+      dudas: [
+        '"¿Estas fotos son del modelo que me vendieron?"',
+        '"¿Puedo ir a ver una casa terminada?"'
+      ],
+      transicion: 'Visto lo que hemos construido, repasamos lo que definimos y cerramos con la ruta hacia la cotización.'
+    },
+    'mod-9': {
+      explica: [
         'Complete el diagnóstico en voz alta con el cliente. El resumen aparece en pantalla y no se guarda.',
         'Cierre con un siguiente paso concreto: revisión del modelo, validación del terreno, cotización o visita al showroom.',
         'Envíe el resumen por WhatsApp desde el botón. Eso ya es un avance real.',
@@ -419,6 +439,17 @@
   });
   $('#gc-lightbox-close').addEventListener('click', closeLightbox);
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  /* --------------------------------------------------- filtro de galeria */
+  $$('.gc-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.filter;
+      $$('.gc-filter').forEach(b => b.classList.toggle('is-on', b === btn));
+      $$('.gc-gal__item').forEach(item => {
+        item.hidden = cat !== 'todas' && item.dataset.cat !== cat;
+      });
+    });
+  });
 
   /* -------------------------------------------- pregunta interactiva (m1) */
   $$('[data-ask]').forEach(btn => {

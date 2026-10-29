@@ -217,7 +217,7 @@ nuestro sitio):
 
 ## Presentación comercial `/guia-comercial/` (2026-10-29)
 
-Presentación de 8 temas para el equipo comercial de CONCASAYA. **Es una página interna y NO debe
+Presentación de 9 temas para el equipo comercial de CONCASAYA. **Es una página interna y NO debe
 enlazarse desde el menú, el footer ni el sitemap**: está marcada `noindex` con `meta robots` y con
 `X-Robots-Tag` en `_headers` (regla `/guia-comercial/*`). En `robots.txt` **no** se bloquea la ruta:
 un `Disallow` impediría a los buscadores leer la directiva `noindex`.
@@ -232,12 +232,15 @@ un `Disallow` impediría a los buscadores leer la directiva `noindex`.
 - El cliente ve la misma pantalla durante la venta: el panel de notas se llama **"Notas de venta"**,
   arranca cerrado y el botón **"Vista cliente"** lo oculta por completo. Nada de "uso interno",
   "guía del asesor" ni "heramienta" en el texto visible.
-- El diagnóstico del tema 8 se arma en pantalla: **sin servidor y sin persistencia** (se borra al
+- El diagnóstico del tema 9 se arma en pantalla: **sin servidor y sin persistencia** (se borra al
   recargar). No usar `localStorage` ni enviar nada a un backend.
-- **Abre en el índice**, no en una portada: el vendedor tiene que ver de entrada los 8 temas con
+- **Abre en el índice**, no en una portada: el vendedor tiene que ver de entrada los 9 temas con
   foto para identificar el punto de partida. El índice lleva un hero calcado del homepage
   (misma foto de fondo, badge, titular con la parte en verde, beneficios y CTAs) y los enlaces
   profundos por hash (`#indice`, `#mod-3`, …) permiten abrir un tema directo.
+- **Tema 8 = Proyectos reales**: es la respuesta a "¿qué han construido?". Galería con muro de
+  fotos filtrable (viviendas terminadas / interiores / en obra) y cada foto se abre en grande.
+  Solo fotos reales del repo: nunca renders ni imágenes generadas.
 - Datos y fotos: se toman del catálogo real y de `assets/images/`. No inventar precios, specs,
   plazos ni certificaciones. Lo que no esté verificado va marcado como pendiente.
 
