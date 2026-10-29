@@ -11,6 +11,10 @@
   const $  = (sel, ctx) => (ctx || document).querySelector(sel);
   const $$ = (sel, ctx) => Array.from((ctx || document).querySelectorAll(sel));
 
+  /* Marca que el JS corrio: habilita las animaciones de entrada.
+     Se pone al inicio para que no haya un destello de contenido ya oculto. */
+  document.body.classList.add('gc-js');
+
   /* ------------------------------------------------- orden de las pantallas */
   const slides = $$('.gc-slide');
   const titles = slides.map(s => ({
@@ -47,7 +51,7 @@
     'mod-1': {
       explica: [
         'La idea que debe quedar: los componentes se fabrican en planta y se ensamblan en el terreno. No es una casa "de paquete", es una obra con proyecto.',
-        'Nombre los tres sistemas de CONCASAYA: plaqueta de concreto, construcción en seco y construcción modular industrializada.',
+        'Nombre los sistemas de CONCASAYA: plaqueta de concreto, construcción en seco y construcción modular.',
         'Explique con la foto del panel cómo se ve un componente real antes de llegar a la obra.',
         'Sea explícito: no todas las casas prefabricadas son iguales; lo que define el resultado es el sistema, el acabado y el control de obra.'
       ],
@@ -272,6 +276,7 @@
     markVisited(t.id);
     paintVisited();
     setGuide(t.id);
+    revealIn(slides[index]);
 
     if (!skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
   }
@@ -460,19 +465,39 @@
   paintResumen();
 
   /* ------------------------------------------------------ aparicion al scroll */
-  document.body.classList.add('gc-js');
   const revealables = $$('[data-reveal]');
+
+  function reveal(el) {
+    el.classList.add('is-in');
+  }
+
+  /* Al activar un modulo se revela de inmediato todo lo que ya esta a la
+     vista; el resto entra al hacer scroll. Hay un seguro final: si el
+     observador fallara, nada queda invisible (importante en una presentacion
+     frente al cliente). */
+  function revealIn(slide) {
+    const items = $$('[data-reveal]', slide);
+    const vh = window.innerHeight || 800;
+    items.forEach((el, i) => {
+      const top = el.getBoundingClientRect().top;
+      if (top < vh * 0.92) {
+        setTimeout(() => reveal(el), Math.min(i * 55, 260));
+      }
+    });
+    setTimeout(() => items.forEach(reveal), 2600);
+  }
+
   if ('IntersectionObserver' in window && revealables.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (!entry.isIntersecting) return;
-        setTimeout(() => entry.target.classList.add('is-in'), Math.min(i * 55, 260));
+        setTimeout(() => reveal(entry.target), Math.min(i * 55, 260));
         io.unobserve(entry.target);
       });
     }, { threshold: 0.06, rootMargin: '0px 0px -5% 0px' });
     revealables.forEach(el => io.observe(el));
   } else {
-    revealables.forEach(el => el.classList.add('is-in'));
+    revealables.forEach(reveal);
   }
 
   /* ------------------------------------------------------------- año footer */
