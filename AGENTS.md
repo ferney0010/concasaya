@@ -234,6 +234,10 @@ un `Disallow` impediría a los buscadores leer la directiva `noindex`.
   "guía del asesor" ni "heramienta" en el texto visible.
 - El diagnóstico del tema 8 se arma en pantalla: **sin servidor y sin persistencia** (se borra al
   recargar). No usar `localStorage` ni enviar nada a un backend.
+- **Abre en el índice**, no en una portada: el vendedor tiene que ver de entrada los 8 temas con
+  foto para identificar el punto de partida. El índice lleva un hero calcado del homepage
+  (misma foto de fondo, badge, titular con la parte en verde, beneficios y CTAs) y los enlaces
+  profundos por hash (`#indice`, `#mod-3`, …) permiten abrir un tema directo.
 - Datos y fotos: se toman del catálogo real y de `assets/images/`. No inventar precios, specs,
   plazos ni certificaciones. Lo que no esté verificado va marcado como pendiente.
 

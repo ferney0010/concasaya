@@ -30,23 +30,17 @@
 
   /* ------------------------------------------- guía del asesor por módulo */
   const GUIA = {
-    portada: {
+    indice: {
       explica: [
-        'Antes de empezar: ubique al cliente. ¿Viene solo a conocer o ya tiene un proyecto en mente?',
-        'Preséntese como el equipo comercial de CONCASAYA y dele el recorrido de 8 módulos para que sepa cómo va la conversación.',
+        'Esta es la pantalla de arranque: ubique al cliente y ubique el punto de partida del recorrido.',
+        'Muestre el hero en una frase: son ocho temas para explicar el proyecto de principio a fin.',
+        'Los 8 temas están en tarjetas con foto: se puede saltar directamente al que interese.',
         'Aclare que las fotos que verá son obra real terminada y entregada.'
       ],
-      pregunta: '¿Qué es lo que más le gustaría resolver hoy: el precio, el terreno o saber si esto es para usted?',
+      pregunta: '¿Sobre cuál de estos ocho temas quiere empezar a hablar?',
       confirma: ['Si ya tiene terreno y en qué municipio', 'Si viene a ver el showroom o quiere visita a obra'],
       dudas: ['"¿Y esto es más caro que una casa normal?"'],
       transicion: 'Empecemos por lo más importante: qué es exactamente una casa prefabricada.'
-    },
-    indice: {
-      explica: ['Muestre el recorrido completo en 30 segundos: los 8 módulos y qué se resuelve en cada uno.'],
-      pregunta: '¿Sobre cuál de estos quiere que empecemos a profundizar?',
-      confirma: [],
-      dudas: [],
-      transicion: 'Vamos al primero: qué es una casa prefabricada.'
     },
     'mod-1': {
       explica: [
@@ -301,6 +295,14 @@
   $('#gc-prev').addEventListener('click', () => goTo(current - 1));
   $('#gc-next').addEventListener('click', () => goTo(current + 1));
   $('#gc-btn-indice').addEventListener('click', () => goToId('indice'));
+
+  /* Desplazamiento suave dentro de la pantalla (boton "Ver los 8 temas") */
+  $$('[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.scroll);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
 
   /* --------------------------------------------------- guía del asesor (UI) */
   const asesor = $('#gc-asesor');

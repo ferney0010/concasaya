@@ -450,7 +450,95 @@ body.gc-body {
 .gc-media--21x9 { aspect-ratio: 21 / 9; }
 .gc-ph--wide { min-height: 150px; }
 
-/* --------------------------------------------------------- animaciones */
+/* --------------------------------------------------------- HERO DEL ÍNDICE */
+/* Replica el hero del homepage (index.html): fondo a sangre, badge, titular
+   con la parte destacada en verde, beneficios y CTAs. */
+.gc-idx-slide { padding: 0 0 118px; }
+.gc-idx-slide .gc-inner { padding-top: clamp(26px, 3.6vw, 50px); }
+
+.gi-hero {
+  position: relative; overflow: hidden;
+  background-image: url('/assets/images/hero-nuevo/fondo-hero-index-casa-moderna.webp');
+  background-size: cover; background-position: 62% bottom; background-repeat: no-repeat;
+  padding: clamp(48px, 7vw, 92px) 0 clamp(44px, 6vw, 80px);
+}
+.gi-hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    linear-gradient(100deg, rgba(6, 32, 18, .74) 0%, rgba(6, 32, 18, .56) 38%, rgba(6, 32, 18, .12) 62%, rgba(6, 32, 18, 0) 100%),
+    linear-gradient(180deg, rgba(6, 32, 18, .78) 0%, rgba(6, 32, 18, .66) 55%, rgba(6, 32, 18, .5) 100%);
+}
+.gi-hero__inner {
+  position: relative; z-index: 2; max-width: 1720px; margin: 0 auto;
+  padding: 0 clamp(16px, 3vw, 48px);
+}
+.gi-badge {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: rgba(6, 40, 22, .55); border: 1.5px solid rgba(255, 255, 255, .9);
+  color: #fff; border-radius: 999px; padding: .5rem 1.15rem .5rem .85rem;
+  font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .28);
+}
+.gi-badge i { font-size: .95rem; color: #b9f7c4; }
+.gi-title {
+  font-size: clamp(2rem, 4.6vw, 3.5rem); line-height: 1.05; font-weight: 900;
+  color: #fff; letter-spacing: -.028em; margin: 1rem 0 0;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, .5), 0 1px 4px rgba(0, 0, 0, .35);
+}
+.gi-title em {
+  font-style: normal; display: block; color: #86f08f; font-weight: 900;
+  font-size: .94em; letter-spacing: -.03em; text-wrap: balance;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, .55), 0 1px 3px rgba(0, 60, 20, .6);
+}
+.gi-lead {
+  margin: 1.1rem 0 0; font-size: clamp(1.02rem, 1.4vw, 1.22rem); line-height: 1.55;
+  font-weight: 500; color: #fff; max-width: 40rem;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .55);
+}
+.gi-perks {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.2rem;
+  margin: 1.5rem 0 0; padding: 0; list-style: none;
+}
+.gi-perks li {
+  display: flex; align-items: center; gap: .6rem; color: #fff;
+  font-size: .92rem; font-weight: 700; line-height: 1.3;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .5);
+}
+.gi-perks li + li { position: relative; padding-left: 1.2rem; }
+.gi-perks li + li::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 26px; background: rgba(255, 255, 255, .45);
+}
+.gi-perks__ico {
+  flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, .95); background: rgba(255, 255, 255, .14);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: .95rem; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+}
+.gi-ctas { display: flex; flex-wrap: wrap; gap: .85rem; margin: 1.6rem 0 0; }
+.gi-btn {
+  display: inline-flex; align-items: center; gap: .6rem; border-radius: 999px;
+  padding: .9rem 1.6rem; font-size: .98rem; font-weight: 700; font-family: inherit;
+  text-decoration: none; border: 2px solid transparent; cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.gi-btn:hover { transform: translateY(-2px); }
+.gi-btn--solid {
+  background: linear-gradient(135deg, #35b04a 0%, #2a9d3f 50%, #15803d 100%);
+  color: #fff; font-weight: 800;
+  box-shadow: 0 10px 28px rgba(21, 128, 61, .5), 0 0 0 1px rgba(255, 255, 255, .25) inset;
+}
+.gi-btn--solid:hover { box-shadow: 0 14px 34px rgba(21, 128, 61, .6), 0 0 0 1px rgba(255, 255, 255, .3) inset; }
+.gi-btn--ghost {
+  background: rgba(8, 34, 20, .55); border-color: rgba(255, 255, 255, .95);
+  color: #fff; font-weight: 800;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.gi-btn--ghost:hover { background: rgba(8, 34, 20, .75); }
+.gi-btn i { font-size: 1rem; }
+
+/* --------------------------------------------------------- HERO DEL ÍNDICE */
 /* Solo se activan si el JS corrio: sin JS el contenido se ve normal. */
 body.gc-js [data-reveal] {
   opacity: 0; transform: translateY(26px);

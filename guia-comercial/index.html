@@ -20,6 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <link rel="stylesheet" href="/assets/css/guia-comercial.css" />
 </head>
 
@@ -56,48 +57,51 @@
 
   <div class="gc-progress-wrap">
     <div class="gc-progress" id="gc-progress" role="progressbar" aria-label="Progreso de la presentación" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
-    <span class="gc-progress-label" id="gc-progress-label">Portada</span>
+    <span class="gc-progress-label" id="gc-progress-label">Índice de contenidos</span>
   </div>
 
   <main class="gc-deck" id="gc-contenido">
 
-    <!-- ================================ PORTADA ================================ -->
-    <section class="gc-slide gc-cover is-active" id="portada" data-modulo="Portada" data-titulo="Viviendas prefabricadas">
-      <div class="gc-cover__bg" style="background-image:url('/assets/images/modelos/cabana-la-vega-54m2-1200.webp')"></div>
-      <div class="gc-cover__body">
-        <span class="gc-cover__logochip">
-          <img class="gc-cover__logo" src="/assets/images/logocasah.webp" alt="CONCASAYA Prefabricados" />
-        </span>
-        <span class="gc-eyebrow">Catálogo 2026 · Colombia</span>
-        <h1>Viviendas<br />prefabricadas</h1>
-        <p class="gc-cover__lead">
-          Todo lo que hay que saber antes de construir: qué son, con qué materiales se hacen,
-          qué modelos existen, qué necesita el terreno y cómo se define el presupuesto.
-        </p>
-        <div class="gc-cover__cta">
-          <button type="button" class="gc-btn gc-btn--accent gc-btn--lg" data-ir="1">
-            <span aria-hidden="true">▶</span> Comenzar
-          </button>
-          <button type="button" class="gc-btn gc-btn--ondark gc-btn--lg" data-ir="indice">
-            <span aria-hidden="true">☰</span> Ver los 8 temas
-          </button>
-        </div>
-
-        <div class="gc-stats">
-          <div class="gc-stat"><b>12.000+</b><span>proyectos entregados</span></div>
-          <div class="gc-stat"><b>93</b><span>reseñas de clientes · 9.6/10</span></div>
-          <div class="gc-stat"><b>15</b><span>años de operación</span></div>
-          <div class="gc-stat"><b>825</b><span>municipios con cobertura</span></div>
-        </div>
-      </div>
-    </section>
-
     <!-- ================================= ÍNDICE ================================ -->
-    <section class="gc-slide" id="indice" data-modulo="Índice" data-titulo="Índice de contenidos">
-      <div class="gc-inner">
+    <section class="gc-slide gc-idx-slide is-active" id="indice" data-modulo="Índice" data-titulo="Índice de contenidos">
+      <!-- Hero: replica el del homepage del sitio -->
+      <section class="gi-hero">
+        <div class="gi-hero__inner">
+          <span class="gi-badge"><i class="fas fa-house" aria-hidden="true"></i> Catálogo 2026 · Colombia</span>
+          <h1 class="gi-title">Todo lo que hay que saber<em>antes de construir tu casa</em></h1>
+          <p class="gi-lead">
+            Ocho temas para explicarle el proyecto con claridad: qué es una casa prefabricada, con qué
+            materiales se hace, qué modelos hay, qué necesita el terreno y cómo se define el presupuesto.
+          </p>
+          <ul class="gi-perks">
+            <li>
+              <span class="gi-perks__ico" aria-hidden="true"><i class="fas fa-tag"></i></span>
+              Precios reales del catálogo
+            </li>
+            <li>
+              <span class="gi-perks__ico" aria-hidden="true"><i class="fas fa-camera-retro"></i></span>
+              Fotos de obra terminada y entregada
+            </li>
+            <li>
+              <span class="gi-perks__ico" aria-hidden="true"><i class="fas fa-list-check"></i></span>
+              Proceso paso a paso
+            </li>
+          </ul>
+          <div class="gi-ctas">
+            <button type="button" class="gi-btn gi-btn--solid" data-ir="1">
+              <i class="fas fa-play" aria-hidden="true"></i> Comenzar la guía
+            </button>
+            <button type="button" class="gi-btn gi-btn--ghost" data-scroll="gi-temas">
+              <i class="fas fa-grip" aria-hidden="true"></i> Ver los 8 temas
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <div class="gc-inner" id="gi-temas">
         <header class="gc-mod__head">
           <span class="gc-mod__kicker"><b>Índice</b> 8 temas</span>
-          <h1 class="gc-mod__title">Ocho temas para entender<br />la casa antes de construirla</h1>
+          <h2 class="gc-mod__title">Ocho temas para entender<br />la casa antes de construirla</h2>
           <p class="gc-mod__lead">
             Se puede recorrer en orden o saltar al tema que interese. Cada uno responde una pregunta
             distinta y termina con lo que hay que tener claro para el siguiente paso.
@@ -1035,8 +1039,8 @@
       <span aria-hidden="true">←</span> Anterior
     </button>
     <div class="gc-nav__mid">
-      <div class="gc-nav__t" id="gc-nav-title">Viviendas prefabricadas</div>
-      <div class="gc-nav__s" id="gc-nav-sub">Portada</div>
+      <div class="gc-nav__t" id="gc-nav-title">Índice de contenidos</div>
+      <div class="gc-nav__s" id="gc-nav-sub">Índice</div>
     </div>
     <button type="button" class="gc-btn gc-btn--accent" id="gc-next">
       Siguiente <span aria-hidden="true">→</span>
