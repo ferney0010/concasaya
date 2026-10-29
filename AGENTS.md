@@ -215,6 +215,28 @@ nuestro sitio):
 - `cotizador-precios-casas-prefabricadas.html` — calculadora de precios
 - `pages/<municipio>.html` — landing pages de municipios (~70 archivos)
 
+## Presentación comercial `/guia-comercial/` (2026-10-29)
+
+Presentación de 8 temas para el equipo comercial de CONCASAYA. **Es una página interna y NO debe
+enlazarse desde el menú, el footer ni el sitemap**: está marcada `noindex` con `meta robots` y con
+`X-Robots-Tag` en `_headers` (regla `/guia-comercial/*`). En `robots.txt` **no** se bloquea la ruta:
+un `Disallow` impediría a los buscadores leer la directiva `noindex`.
+
+- `guia-comercial/index.html` + `assets/css/guia-comercial.css` + `assets/js/guia-comercial.js`.
+- **CSS propio, no recompilar Tailwind.** El CSS compilado (`assets/css/tailwind.css`) no tiene las
+  utilidades responsive que la guía necesita (`lg:grid-cols-*`, `md:flex-row`, `aspect-*`), y
+  recompilarlo arriesgaría las clases que usan las páginas existentes. La guía define su propio
+  sistema de diseño con la paleta de marca (`--gc-primary: #0077b6`, `--gc-navy: #0d1b2a`) y Poppins.
+- El logo oficial `logocasah.webp` es **oscuro sobre fondo blanco**: sobre la portada (foto oscura)
+  va sobre una ficha blanca (`.gc-cover__logochip`), y la barra superior es clara, no oscura.
+- El cliente ve la misma pantalla durante la venta: el panel de notas se llama **"Notas de venta"**,
+  arranca cerrado y el botón **"Vista cliente"** lo oculta por completo. Nada de "uso interno",
+  "guía del asesor" ni "heramienta" en el texto visible.
+- El diagnóstico del tema 8 se arma en pantalla: **sin servidor y sin persistencia** (se borra al
+  recargar). No usar `localStorage` ni enviar nada a un backend.
+- Datos y fotos: se toman del catálogo real y de `assets/images/`. No inventar precios, specs,
+  plazos ni certificaciones. Lo que no esté verificado va marcado como pendiente.
+
 ## Patrón de hero de municipio (APROBADO por el cliente)
 `docs/patron-hero-municipios.md` — implementé y aprobado en `pages/villadeleyva.html` (2026-10-06).
 Antes de construir un hero nuevo en `pages/`, **leer ese archivo y replicarlo**: incluye el
