@@ -21,6 +21,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css" />
   <link rel="stylesheet" href="/assets/css/guia-comercial.css" />
 </head>
 
@@ -40,7 +41,7 @@
     <span class="gc-topbar__spacer"></span>
 
     <div class="gc-tbtools">
-      <div class="gc-jump">
+      <div class="gc-jump" id="gc-jump">
         <button type="button" class="gc-btn gc-btn--ghost gc-btn--icon-sm" id="gc-btn-indice" title="Ir a un tema" aria-label="Ir a un tema" aria-expanded="false" aria-controls="gc-jump-menu">
           <span aria-hidden="true">☰</span> <span class="gc-btn__txt">Temas</span>
         </button>
@@ -992,6 +993,30 @@
           <div class="gc-proof__item"><b>15</b><span>años de operación</span></div>
         </div>
 
+        <h2 class="gc-h3" data-reveal>Recorrido virtual 360°</h2>
+        <p class="gc-pano__intro" data-reveal>
+          Entre al interior de una casa entregada. Arrastre con el mouse o deslice con el dedo para mirar
+          alrededor, o use el botón de pantalla completa del visor.
+        </p>
+        <div class="gc-pano" data-reveal>
+          <div class="gc-pano__view" id="gc-pano"></div>
+          <div class="gc-pano__bar">
+            <button type="button" class="gc-pano__thumb is-on" data-pano="/assets/images/360.webp">
+              <img src="/assets/images/360.webp" alt="Vista 360° del primer piso" width="360" height="240" />
+              <span>Primer piso</span>
+            </button>
+            <button type="button" class="gc-pano__thumb" data-pano="/assets/images/segundo360.jpeg">
+              <img src="/assets/images/segundo360.jpeg" alt="Vista 360° del segundo piso" width="360" height="240" />
+              <span>Segundo piso</span>
+            </button>
+            <button type="button" class="gc-pano__thumb" data-pano="/assets/images/habitaciones360.jpeg">
+              <img src="/assets/images/habitaciones360.jpeg" alt="Vista 360° de la habitación con mezzanine" width="360" height="240" />
+              <span>Habitación con mezzanine</span>
+            </button>
+            <span class="gc-pano__hint">Arrastre para mirar alrededor</span>
+          </div>
+        </div>
+
         <div class="gc-filters" role="group" aria-label="Filtrar la galería de proyectos">
           <button type="button" class="gc-filter is-on" data-filter="todas">Todas</button>
           <button type="button" class="gc-filter" data-filter="exteriores">Viviendas terminadas</button>
@@ -1126,6 +1151,204 @@
             <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/casco.webp" data-cap="En obra — revisión técnica con planos en sitio" data-alt="Profesional revisando planos en el sitio de la obra">
               <img src="/assets/images/casco.webp" alt="Profesional revisando planos en el sitio de la obra" width="840" height="860" loading="lazy" decoding="async" />
               <span class="gc-gal__cap">En obra · revisión técnica en sitio</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/casa2.webp" data-cap="Vivienda terminada · fachada blanca iluminada — obra real de CONCASAYA" data-alt="Vivienda blanca moderna iluminada al anochecer">
+              <img src="/assets/images/casa2.webp" alt="Vivienda blanca moderna iluminada al anochecer" width="945" height="753" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · fachada blanca iluminada</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/casal1.webp" data-cap="Vivienda terminada · pérgola y teja — obra real de CONCASAYA" data-alt="Vivienda con estructura de madera, pérgola y cubierta de teja">
+              <img src="/assets/images/casal1.webp" alt="Vivienda con estructura de madera, pérgola y cubierta de teja" width="1023" height="699" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · pérgola y teja</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cassa1.webp" data-cap="Vivienda terminada · driveway y teja — obra real de CONCASAYA" data-alt="Vivienda blanca con driveway y cubierta de teja">
+              <img src="/assets/images/cassa1.webp" alt="Vivienda blanca con driveway y cubierta de teja" width="992" height="1056" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · driveway y teja</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cass2.webp" data-cap="Vivienda terminada · portón de madera — obra real de CONCASAYA" data-alt="Vivienda con portón de madera y cerca">
+              <img src="/assets/images/cass2.webp" alt="Vivienda con portón de madera y cerca" width="828" height="850" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · portón de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cass3.webp" data-cap="Vivienda terminada · dos pisos — obra real de CONCASAYA" data-alt="Vivienda de dos pisos con cubierta de teja y base de piedra">
+              <img src="/assets/images/cass3.webp" alt="Vivienda de dos pisos con cubierta de teja y base de piedra" width="892" height="806" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · dos pisos</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cass4.webp" data-cap="Vivienda terminada · jardín — obra real de CONCASAYA" data-alt="Vivienda de un piso con jardín y cubierta de teja">
+              <img src="/assets/images/cass4.webp" alt="Vivienda de un piso con jardín y cubierta de teja" width="973" height="922" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · jardín</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/colonial.webp" data-cap="Vivienda terminada · balcón de madera — obra real de CONCASAYA" data-alt="Vivienda de dos pisos con balcón de madera">
+              <img src="/assets/images/colonial.webp" alt="Vivienda de dos pisos con balcón de madera" width="1289" height="635" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · balcón de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cubo1.webp" data-cap="Vivienda terminada · cabaña en el bosque — obra real de CONCASAYA" data-alt="Cabina oscura con ventanal en el bosque">
+              <img src="/assets/images/cubo1.webp" alt="Cabina oscura con ventanal en el bosque" width="914" height="998" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · cabaña en el bosque</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/fondo1.webp" data-cap="Vivienda terminada · deck de madera — obra real de CONCASAYA" data-alt="Vivienda blanca con deck de madera y jardín">
+              <img src="/assets/images/fondo1.webp" alt="Vivienda blanca con deck de madera y jardín" width="1069" height="712" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · deck de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/fondo2.webp" data-cap="Vivienda terminada · dos pisos con montaña — obra real de CONCASAYA" data-alt="Vivienda de dos pisos con las montañas al fondo">
+              <img src="/assets/images/fondo2.webp" alt="Vivienda de dos pisos con las montañas al fondo" width="971" height="726" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · dos pisos con montaña</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/fondo3.webp" data-cap="Vivienda terminada · jardín — obra real de CONCASAYA" data-alt="Vivienda con estructura de madera y jardín">
+              <img src="/assets/images/fondo3.webp" alt="Vivienda con estructura de madera y jardín" width="1256" height="706" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · jardín</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/fondo4.webp" data-cap="Vivienda terminada · ventanal — obra real de CONCASAYA" data-alt="Vivienda con ventanales amplios de piso a techo">
+              <img src="/assets/images/fondo4.webp" alt="Vivienda con ventanales amplios de piso a techo" width="893" height="789" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · ventanal</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/fondo5.webp" data-cap="Vivienda terminada · pérgola — obra real de CONCASAYA" data-alt="Vivienda con pérgola de madera en la ladera">
+              <img src="/assets/images/fondo5.webp" alt="Vivienda con pérgola de madera en la ladera" width="1064" height="463" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · pérgola</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cabaña.webp" data-cap="Vivienda terminada · cabaña con porche — obra real de CONCASAYA" data-alt="Cabaña de madera con porche y jardín">
+              <img src="/assets/images/cabaña.webp" alt="Cabaña de madera con porche y jardín" width="1344" height="768" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · cabaña con porche</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cabaña18.webp" data-cap="Vivienda terminada · cabaña en la ladera — obra real de CONCASAYA" data-alt="Cabaña pequeña con cubierta de teja en la ladera">
+              <img src="/assets/images/cabaña18.webp" alt="Cabaña pequeña con cubierta de teja en la ladera" width="739" height="439" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · cabaña en la ladera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cabaññ1.webp" data-cap="Vivienda terminada · cabaña con ventanal — obra real de CONCASAYA" data-alt="Cabaña con ventanal inclinado y techo a dos aguas">
+              <img src="/assets/images/cabaññ1.webp" alt="Cabaña con ventanal inclinado y techo a dos aguas" width="708" height="995" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · cabaña con ventanal</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/campe.jpg" data-cap="Vivienda terminada · lodge de teja — obra real de CONCASAYA" data-alt="Vivienda con cubierta de teja y acceso de gravilla">
+              <img src="/assets/images/campe.jpg" alt="Vivienda con cubierta de teja y acceso de gravilla" width="1280" height="720" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · lodge de teja</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/campe1.webp" data-cap="Vivienda terminada · lodge con jardín — obra real de CONCASAYA" data-alt="Vivienda con teja y jardín gradeado">
+              <img src="/assets/images/campe1.webp" alt="Vivienda con teja y jardín gradeado" width="1102" height="645" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · lodge con jardín</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/tiniy1.webp" data-cap="Vivienda terminada · cubierta metálica — obra real de CONCASAYA" data-alt="Vivienda de un piso con cubierta metálica roja">
+              <img src="/assets/images/tiniy1.webp" alt="Vivienda de un piso con cubierta metálica roja" width="1023" height="699" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · cubierta metálica</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/aula1.webp" data-cap="Vivienda modular · volumen en obra — obra real de CONCASAYA" data-alt="Vivienda modular de un piso con volumen azul verdoso">
+              <img src="/assets/images/aula1.webp" alt="Vivienda modular de un piso con volumen azul verdoso" width="1147" height="655" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda modular · volumen en obra</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="exteriores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/caseta.webp" data-cap="Vivienda terminada · terraza y pérgola — obra real de CONCASAYA" data-alt="Vivienda blanca con terraza y pérgola de madera">
+              <img src="/assets/images/caseta.webp" alt="Vivienda blanca con terraza y pérgola de madera" width="954" height="981" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Vivienda terminada · terraza y pérgola</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/cocina.webp" data-cap="Interior · cocina con mesón de piedra — obra real de CONCASAYA" data-alt="Cocina con mesón de piedra y campana extractora">
+              <img src="/assets/images/cocina.webp" alt="Cocina con mesón de piedra y campana extractora" width="866" height="995" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · cocina con mesón de piedra</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/sala.webp" data-cap="Interior · cocina y sala — obra real de CONCASAYA" data-alt="Interior de cocina y sala con isla central">
+              <img src="/assets/images/sala.webp" alt="Interior de cocina y sala con isla central" width="787" height="914" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · cocina y sala</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/bodega1.webp" data-cap="Interior · cocina con techo de madera — obra real de CONCASAYA" data-alt="Cocina con techo de madera">
+              <img src="/assets/images/bodega1.webp" alt="Cocina con techo de madera" width="877" height="653" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · cocina con techo de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/oficina.jpg" data-cap="Interior · estructura de madera — obra real de CONCASAYA" data-alt="Interior con postes y vigas de madera">
+              <img src="/assets/images/oficina.jpg" alt="Interior con postes y vigas de madera" width="545" height="307" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · estructura de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img1304.webp" data-cap="Interior · cerchas a la vista — obra real de CONCASAYA" data-alt="Interior con cerchas de madera a la vista">
+              <img src="/assets/images/img1304.webp" alt="Interior con cerchas de madera a la vista" width="732" height="581" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · cerchas a la vista</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img1318.webp" data-cap="Interior · cocina terminada — obra real de CONCASAYA" data-alt="Cocina terminada con muebles claros">
+              <img src="/assets/images/img1318.webp" alt="Cocina terminada con muebles claros" width="649" height="758" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · cocina terminada</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img1352.webp" data-cap="Interior · ventana de madera — obra real de CONCASAYA" data-alt="Detalle de una ventana con marco de madera">
+              <img src="/assets/images/img1352.webp" alt="Detalle de una ventana con marco de madera" width="760" height="1013" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · ventana de madera</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img1360.webp" data-cap="Detalle · instalación — obra real de CONCASAYA" data-alt="Detalle de un interruptor instalado">
+              <img src="/assets/images/img1360.webp" alt="Detalle de un interruptor instalado" width="914" height="648" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Detalle · instalación</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="interiores">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img1369.webp" data-cap="Interior · persianas — obra real de CONCASAYA" data-alt="Interior con persianas de madera">
+              <img src="/assets/images/img1369.webp" alt="Interior con persianas de madera" width="975" height="968" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">Interior · persianas</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="obra">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/bodega2.webp" data-cap="En obra · módulo largo en montaje — obra real de CONCASAYA" data-alt="Módulo largo prefabricado en obra sobre la losa">
+              <img src="/assets/images/bodega2.webp" alt="Módulo largo prefabricado en obra sobre la losa" width="1094" height="720" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">En obra · módulo largo en montaje</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="obra">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/bodegaaa.jpg" data-cap="En obra · módulo en el terreno — obra real de CONCASAYA" data-alt="Módulo prefabricado ya descendido en el terreno">
+              <img src="/assets/images/bodegaaa.jpg" alt="Módulo prefabricado ya descendido en el terreno" width="647" height="428" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">En obra · módulo en el terreno</span>
+            </button>
+          </figure>
+          <figure class="gc-gal__item" data-cat="obra">
+            <button type="button" class="gc-gal__btn" data-lightbox="/assets/images/img218.webp" data-cap="En obra · interior en construcción — obra real de CONCASAYA" data-alt="Interior de obra con concretos y estructura">
+              <img src="/assets/images/img218.webp" alt="Interior de obra con concretos y estructura" width="810" height="425" loading="lazy" decoding="async" />
+              <span class="gc-gal__cap">En obra · interior en construcción</span>
             </button>
           </figure>
         </div>
@@ -1369,6 +1592,7 @@
     </div>
   </template>
 
+  <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
   <script src="/assets/js/guia-comercial.js"></script>
 </body>
 </html>

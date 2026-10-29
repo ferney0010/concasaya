@@ -238,9 +238,12 @@ un `Disallow` impediría a los buscadores leer la directiva `noindex`.
   foto para identificar el punto de partida. El índice lleva un hero calcado del homepage
   (misma foto de fondo, badge, titular con la parte en verde, beneficios y CTAs) y los enlaces
   profundos por hash (`#indice`, `#mod-3`, …) permiten abrir un tema directo.
-- **Tema 8 = Proyectos reales**: es la respuesta a "¿qué han construido?". Galería con muro de
-  fotos filtrable (viviendas terminadas / interiores / en obra) y cada foto se abre en grande.
-  Solo fotos reales del repo: nunca renders ni imágenes generadas.
+- **Tema 8 = Proyectos reales**: es la respuesta a "¿qué han construido?". Lleva un **recorrido virtual
+  360°** (mismo visor Pannellum y las mismas 3 panoramas que `/galeria`: `360.webp`, `segundo360.jpeg`,
+  `habitaciones360.jpeg`) y una **galería de 54 fotos reales** con muro de columnas y filtros
+  (viviendas terminadas / interiores / en obra); cada foto se abre en grande. Solo fotos reales del
+  repo: nunca renders ni imágenes generadas. El visor 360 se monta al abrir el tema (el panorama pesa
+  1,4 MB) y se destruye al salir.
 - Datos y fotos: se toman del catálogo real y de `assets/images/`. No inventar precios, specs,
   plazos ni certificaciones. Lo que no esté verificado va marcado como pendiente.
 

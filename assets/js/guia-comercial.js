@@ -298,6 +298,18 @@
     });
     if (typeof closeJump === 'function') closeJump();
 
+    // el visor 360 se monta solo al abrir el tema 8 y se libera al salir
+    if (slides[index].id === 'mod-8') {
+      setTimeout(() => {
+        if (current === index) {
+          const on = $('.gc-pano__thumb.is-on');
+          mountPano(on ? on.dataset.pano : '/assets/images/360.webp');
+        }
+      }, 350);
+    } else {
+      destroyPano();
+    }
+
     if (!skipScroll) window.scrollTo({ top: 0, behavior: 'auto' });
   }
 
@@ -439,6 +451,59 @@
   });
   $('#gc-lightbox-close').addEventListener('click', closeLightbox);
   lb.addEventListener('click', (e) => { if (e.target === lb) closeLightbox(); });
+
+  /* ------------------------------------------------------------- visor 360 */
+  /* Reutiliza el mismo visor Pannellum y las mismas 3 panoramas del sitio
+     (/galeria). Se inicializa solo al abrir el tema 8: el panorama pesa 1,4 MB
+     y no tiene sentido cargarlo si el vendedor no llega a ese tema. */
+  let panoViewer = null;
+
+  const PANO_OPTS = {
+    type: 'equirectangular',
+    autoLoad: true,
+    autoRotate: 0,
+    showControls: true,
+    showFullscreenCtrl: true,
+    showZoomCtrl: true,
+    hfov: 100,
+    minHfov: 60,
+    maxHfov: 120,
+    mouseZoom: true,
+    draggable: true,
+    compass: false,
+    preview: false
+  };
+
+  function destroyPano() {
+    if (panoViewer && typeof panoViewer.destroy === 'function') {
+      try { panoViewer.destroy(); } catch (e) { /* destructor defensivo */ }
+    }
+    panoViewer = null;
+  }
+
+  function mountPano(url) {
+    const box = $('#gc-pano');
+    if (!box) return;
+    destroyPano();
+    if (typeof pannellum === 'undefined') {
+      box.innerHTML = '<div class="gc-pano__err">No se pudo cargar el recorrido 360°.<br />Verifique la conexión e intente de nuevo.</div>';
+      return;
+    }
+    box.innerHTML = '';
+    try {
+      panoViewer = pannellum.viewer(box, Object.assign({ panorama: url }, PANO_OPTS));
+    } catch (e) {
+      box.innerHTML = '<div class="gc-pano__err">No se pudo cargar el recorrido 360°.</div>';
+    }
+  }
+
+  $$('.gc-pano__thumb').forEach(thumb => {
+    thumb.addEventListener('click', () => {
+      $$('.gc-pano__thumb').forEach(t => t.classList.remove('is-on'));
+      thumb.classList.add('is-on');
+      mountPano(thumb.dataset.pano);
+    });
+  });
 
   /* --------------------------------------------------- filtro de galeria */
   $$('.gc-filter').forEach(btn => {
