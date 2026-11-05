@@ -12,7 +12,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT_DIR = join(__dirname, "..", ".tmp-capturas");
-const URL_TARGET = process.argv[2] || "http://localhost:3000/plaqueta-de-concreto";
+const URL_TARGET = process.argv[2] || "http://localhost:3000/materiales#cotizador";
 const CHROME =
   "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe";
 const PORT = 9333;

@@ -1,0 +1,421 @@
+/* ==========================================================================
+   MATERIALES — COTIZADOR DE PLAQUETA + INFOGRAFÍAS
+   --------------------------------------------------------------------------
+   CSS propio de la sección de plaqueta dentro de /materiales.
+
+   No se recompila Tailwind para esto: el CSS compilado
+   (assets/css/tailwind.css) lo comparten ~200 archivos y recompilarlo
+   arriesga las clases que ya usan las paginas existentes. Por eso todo lo
+   especifico vive aqui, con los prefijos "pq-" (cotizador) y "ig-"
+   (infografias de producto).
+
+   El cotizador conserva el prefijo "pq-" porque su JS
+   (assets/js/plaqueta-cotizador.js) lo consulta por id.
+   ========================================================================== */
+
+:root {
+  --pq-primary: #0077b6;
+  --pq-primary-dark: #005f8f;
+  --pq-navy: #0d1b2a;
+  --pq-green: #86f08f;
+  --pq-green-dark: #1a7434;
+  --pq-green-soft: #eaf7ee;
+  --pq-green-line: #bfe3c9;
+  --pq-line: #e5e7eb;
+}
+
+/* ==========================================================================
+   COTIZADOR
+   ========================================================================== */
+
+.pq-cotizador {
+  background: linear-gradient(160deg, #f8fafc 0%, #eef6fb 100%);
+  border: 1px solid var(--pq-line);
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(13, 27, 42, 0.08);
+  overflow: hidden;
+}
+
+.pq-cotizador__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.pq-cotizador__form {
+  padding: 1.75rem 1.5rem;
+}
+.pq-cotizador__result {
+  padding: 1.75rem 1.5rem;
+  background: var(--pq-navy);
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .pq-cotizador__grid { grid-template-columns: 1.15fr 0.85fr; }
+  .pq-cotizador__form { padding: 2.25rem 2rem; }
+  .pq-cotizador__result { padding: 2.25rem 2rem; }
+}
+
+.pq-field-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #52606d;
+  margin-bottom: 0.5rem;
+}
+
+.pq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.pq-chip {
+  border: 1.5px solid var(--pq-line);
+  background: #ffffff;
+  color: var(--pq-navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.pq-chip:hover { border-color: var(--pq-primary); color: var(--pq-primary); }
+.pq-chip.is-active {
+  background: var(--pq-primary);
+  border-color: var(--pq-primary);
+  color: #ffffff;
+}
+
+.pq-input-wrap { position: relative; }
+.pq-input {
+  width: 100%;
+  border: 2px solid var(--pq-line);
+  border-radius: 12px;
+  padding: 0.85rem 4rem 0.85rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pq-navy);
+  background: #ffffff;
+  font-family: inherit;
+}
+.pq-input:focus {
+  outline: none;
+  border-color: var(--pq-primary);
+}
+.pq-input.is-error { border-color: #dc2626; }
+.pq-input-unit {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #7b8794;
+  pointer-events: none;
+}
+
+.pq-error {
+  display: none;
+  margin-top: 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #dc2626;
+}
+.pq-error.is-visible { display: block; }
+
+.pq-hint {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: #52606d;
+  line-height: 1.6;
+}
+
+.pq-calc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+  font-size: 0.88rem;
+}
+.pq-calc-row:last-of-type { border-bottom: none; }
+.pq-calc-row__label { color: rgba(255, 255, 255, 0.75); }
+.pq-calc-row__value { font-weight: 700; color: #ffffff; text-align: right; }
+
+.pq-total-label {
+  margin-top: 1.25rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+}
+.pq-total {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--pq-green);
+  line-height: 1.1;
+  margin-top: 0.25rem;
+  word-break: break-word;
+}
+.pq-total-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.55;
+}
+
+.pq-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 0.95rem 1.25rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  font-family: inherit;
+}
+.pq-wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
+.pq-wa-btn.is-disabled {
+  background: #9aa5b1;
+  cursor: not-allowed;
+  transform: none;
+}
+.pq-wa-btn.is-disabled:hover { background: #9aa5b1; transform: none; }
+
+.pq-condiciones {
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.pq-condiciones ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pq-condiciones li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
+  margin-bottom: 0.5rem;
+}
+.pq-condiciones li:last-child { margin-bottom: 0; }
+.pq-condiciones i { color: var(--pq-green); margin-top: 0.18rem; flex: none; }
+
+/* ==========================================================================
+   TABLA DE PRECIOS
+   ========================================================================== */
+
+.pq-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--pq-line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+.pq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  min-width: 520px;
+}
+.pq-table th,
+.pq-table td {
+  padding: 0.95rem 1.15rem;
+  text-align: left;
+  border-bottom: 1px solid var(--pq-line);
+}
+.pq-table thead th {
+  background: var(--pq-navy);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.pq-table tbody tr:last-child td { border-bottom: none; }
+.pq-table tbody tr:hover { background: #f8fafc; }
+.pq-table td.pq-table__total {
+  font-weight: 700;
+  color: var(--pq-primary);
+  white-space: nowrap;
+}
+.pq-table tbody tr.is-selected {
+  background: var(--pq-green-soft);
+}
+.pq-table tbody tr.is-selected td.pq-table__total { color: var(--pq-green-dark); }
+
+/* ==========================================================================
+   INFOGRAFÍAS DE PRODUCTO
+   --------------------------------------------------------------------------
+   Las dos fichas que envio el cliente (plaqueta de concreto y teja de barro
+   tipo C) se muestran como imagen + texto al lado. La imagen es el
+   complemento: el texto repite en HTML lo que la ficha dice, para que
+   tambien lo lea un buscador.
+   ========================================================================== */
+
+.ig-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .ig-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+  /* La teja va al lado contrario para que las dos secciones no se vean
+     calcadas: se alterna con :nth-of-type. */
+  .ig-grid--reverse .ig-media { order: 2; }
+}
+
+.ig-media {
+  position: relative;
+}
+.ig-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 18px;
+  box-shadow: 0 20px 50px rgba(13, 27, 42, 0.16);
+  border: 1px solid var(--pq-line);
+}
+
+.ig-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--pq-green-soft);
+  border: 1px solid var(--pq-green-line);
+  color: var(--pq-green-dark);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+}
+.ig-badge i { font-size: 0.8rem; }
+
+.ig-title {
+  font-size: 1.7rem;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--pq-navy);
+  margin: 0.9rem 0 0;
+}
+@media (min-width: 768px) {
+  .ig-title { font-size: 2.15rem; }
+}
+.ig-title em { font-style: normal; color: var(--pq-primary); }
+
+.ig-lead {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #41525f;
+  margin: 0.9rem 0 0;
+}
+
+.ig-specs {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+.ig-spec {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  background: #ffffff;
+  border: 1px solid var(--pq-line);
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+}
+.ig-spec__ico {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--pq-green-soft);
+  color: var(--pq-green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.ig-spec strong {
+  display: block;
+  color: var(--pq-navy);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+.ig-spec span {
+  display: block;
+  color: #5b6b77;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin-top: 0.15rem;
+}
+
+/* Franja de resumen al pie de la infografía (3 datos clave). */
+.ig-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--pq-navy);
+  border-radius: 14px;
+}
+.ig-strip__item {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+.ig-strip__item i { color: var(--pq-green); font-size: 1rem; }
+
+.ig-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-top: 1.75rem;
+  background: var(--pq-primary);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+.ig-cta:hover { background: var(--pq-primary-dark); transform: translateY(-2px); }
+.ig-cta--wa { background: #25d366; }
+.ig-cta--wa:hover { background: #1ebe5a; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pq-chip,
+  .pq-wa-btn,
+  .ig-cta { transition: none; }
+}

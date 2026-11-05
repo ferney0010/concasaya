@@ -23,7 +23,7 @@ for (const name of readdirSync(BLOG).filter((f) => f.endsWith(".html"))) {
   for (const caja of cajas) {
     for (const m of caja.matchAll(/href="([^"]+)"/g)) {
       const href = m[1];
-      if (href === "/plaqueta-de-concreto") {
+      if (href === "/materiales#cotizador") {
         placas.push(`${name} -> ${href}`);
         continue;
       }
@@ -36,7 +36,7 @@ for (const name of readdirSync(BLOG).filter((f) => f.endsWith(".html"))) {
 }
 
 console.log(`Enlaces /blog/ revisados: ${revisados}`);
-console.log(`Enlaces a /plaqueta-de-concreto: ${placas.length}`);
+console.log(`Enlaces a /materiales#cotizador: ${placas.length}`);
 console.log(`Rotos: ${rotos.length}`);
 for (const r of rotos) console.log("  ROTO " + r);
 
@@ -50,7 +50,7 @@ for (const name of files) {
   );
   if (!caja) continue;
   const n = [...caja[0].matchAll(/href="\/blog\//g)].length;
-  const pq = caja[0].includes('/plaqueta-de-concreto') ? " +pq" : "";
+  const pq = caja[0].includes('/materiales#cotizador') ? " +pq" : "";
   if (n < 2) console.log(`  ${name}: solo ${n} enlaces de articulo${pq}`);
 }
 console.log("  (sin avisos arriba = todos con 3 o mas)");

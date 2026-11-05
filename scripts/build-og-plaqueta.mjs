@@ -1,4 +1,4 @@
-// Genera la OG image de /plaqueta-de-concreto con la misma estetica de los
+// Genera la OG image de /materiales#cotizador con la misma estetica de los
 // OG del sitio (ver scripts/build-og-index.mjs):
 // - Fondo con degradado azul corporativo CONCASAYA
 // - Titulo en blanco bold, centrado, con la parte clave en verde

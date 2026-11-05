@@ -30,7 +30,7 @@ for (const file of htmlFiles(ROOT)) {
   if (rel === "plaqueta-de-concreto.html") continue;
   const c = readFileSync(file, "utf8");
   if (!c.includes("nav-desktop-primary")) continue;
-  if (c.includes('href="/plaqueta-de-concreto"')) {
+  if (c.includes('href="/materiales#cotizador"')) {
     resumen["ya tiene"] = (resumen["ya tiene"] || 0) + 1;
     continue;
   }

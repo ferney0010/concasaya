@@ -19,9 +19,9 @@ const APPLY = process.argv.includes("--apply");
 // --- Textos de los enlaces -----------------------------------------------
 // Escritorio: una palabra, como "Modelos" / "Materiales" / "Empresa".
 // El nav de escritorio esta justo de espacio a 1024px: por eso es corto.
-const DESKTOP_HTML = `<a href="/plaqueta-de-concreto" class="text-dark hover:text-primary transition duration-300">Plaqueta</a>`;
+const DESKTOP_HTML = `<a href="/materiales#cotizador" class="text-dark hover:text-primary transition duration-300">Plaqueta</a>`;
 // Tablet: hay mas espacio, se puede ser explicito.
-const TABLET_HTML = `<a href="/plaqueta-de-concreto" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-layer-group mr-3 text-primary"></i>Plaqueta de concreto</a>`;
+const TABLET_HTML = `<a href="/materiales#cotizador" class="tablet-menu-item block py-3 px-6 text-base font-medium text-dark"><i class="fas fa-layer-group mr-3 text-primary"></i>Plaqueta de concreto</a>`;
 
 // --- Recorrer el repo ----------------------------------------------------
 function htmlFiles(dir, acc = []) {
@@ -110,7 +110,7 @@ for (const file of files) {
   let html = readFileSync(file, "utf8");
   const original = html;
 
-  if (html.includes('href="/plaqueta-de-concreto"')) {
+  if (html.includes('href="/materiales#cotizador"')) {
     saltados++;
     continue;
   }
@@ -148,7 +148,7 @@ for (const file of files) {
 
   // Verificacion: el numero de enlaces nuevos debe ser el esperado y no debe
   // haber quedado ningun anchor de Materiales duplicado.
-  const nuevos = (html.match(/href="\/plaqueta-de-concreto"/g) || []).length;
+  const nuevos = (html.match(/href="\/materiales#cotizador"/g) || []).length;
   const esperados = cambios.length;
   if (nuevos !== esperados) {
     problemas.push(`${rel}: esperaba ${esperados} enlaces, quedaron ${nuevos}`);

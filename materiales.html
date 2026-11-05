@@ -45,6 +45,9 @@
 <link rel="stylesheet" href="/assets/css/nav-shared.css" />
 <link rel="stylesheet" href="/assets/css/social-bottom-bar.css" />
 <link rel="stylesheet" href="/assets/css/whatsapp-modal.css" />
+<!-- CSS propio del cotizador de plaqueta y de las secciones de infografia.
+     No se recompila Tailwind: el CSS compilado lo comparten ~200 paginas. -->
+<link rel="stylesheet" href="/assets/css/materiales-plaqueta.css" />
 <style>
   /* ============================================================
      HERO — patrón aprobado (docs/patron-hero-municipios.md).
@@ -66,6 +69,9 @@
 
   .hero-mat__inner { position: relative; z-index: 2; }
   .hero-mat__text { max-width: 640px; }
+  /* Foto de escritorio: es la mitad derecha, a color pleno. En movil no se
+     usa (ahi la foto va en la banda de arriba). */
+  .hero-mat__photo { display: none; }
 
   .mat-badge {
     display: inline-flex;
@@ -174,51 +180,118 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  /* --- Escritorio: tema oscuro, foto a sangre y blur con caída --- */
+  /* --- Escritorio: dos columnas, con el patron visual de modelos.html.
+         ---
+         2026-11-05 (Ferney): el hero toma el mismo lenguaje que el de
+         modelos.html: la foto ocupa la mitad derecha a color pleno y un
+         velo CLARO se abre de izquierda a derecha sobre la mitad
+         izquierda, donde va el texto en oscuro. El velo llega hasta la
+         mitad del hero y ahi se apaga, asi que la foto nunca se ve
+         apagada. El texto va centrado dentro de su mitad para aprovechar
+         el espacio. */
   @media (min-width: 768px) {
     .hero-mat {
-      min-height: 600px;
-      padding: 96px 0 104px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+      min-height: 620px;
+      padding: 0;
+      background-color: #0d1b2a;
+      background-image: none;
+    }
+
+    /* --- Mitad derecha: la foto a color pleno, sin veladura ni blur --- */
+    .hero-mat__photo {
+      display: block;
+      order: 2;
       background-image: url('/assets/images/hero-nuevo/hero-materiales-pc.webp');
       background-size: cover;
       background-position: center 62%;
       background-repeat: no-repeat;
-    }
-    /* El desenfoque NO se puede desvanecer con un degradado normal:
-       backdrop-filter se aplica uniforme. Se resuelve enmascarándolo con
-       mask-image en degradado, que sí controla su visibilidad.
-       2026-10-07: la veladura oscura y el blur terminaban en el 50% y se
-       cruzaban sobre la casa, apagándola a partir del 32%. Ahora ambos
-       degradados se cierran en el 32%, justo antes de que empiece el alero,
-       así que la casa se ve limpia: sin oscurecer y sin desenfocar.
-       El texto llega hasta el 27%, asi que sigue entrando de sobra. */
-    .hero-mat::before {
-      display: block;
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(100deg,
-        rgba(4, 26, 44, 0.86) 0%, rgba(4, 26, 44, 0.78) 20%,
-        rgba(4, 26, 44, 0.45) 30%, rgba(4, 26, 44, 0) 35%);
-      -webkit-mask-image: linear-gradient(100deg,
-        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
-      mask-image: linear-gradient(100deg,
-        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
-      backdrop-filter: blur(8px) saturate(1.04);
-      -webkit-backdrop-filter: blur(8px) saturate(1.04);
-      pointer-events: none;
+      position: relative;
       z-index: 1;
     }
-    .mat-title { font-size: 3rem; text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5); }
-    .mat-lead { font-size: 1.05rem; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
-    /* Sin veladura oscura sobre la foto, el halo es lo que sostiene el
-       contraste del texto en los bordes donde el degradado ya se apago. */
-    .mat-perk { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
-    .mat-note { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
-    /* Columna de texto mas estrecha: tiene que caber DENTRO de la zona
-       oscura del degradado (que cierra en el 35%). Si el texto se pasa, el
-       parrafo cae sobre la pared blanca de la casa y deja de leerse. */
-    .hero-mat__text { max-width: 480px; }
+
+    /* --- Mitad izquierda: velo claro que acompaña hasta la mitad --- */
+    .hero-mat__inner {
+      order: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 104px 48px;
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.90) 40%,
+        rgba(255, 255, 255, 0.78) 62%, rgba(255, 255, 255, 0.52) 84%,
+        rgba(255, 255, 255, 0.30) 100%);
+    }
+    /* Se apoya contra el borde de la foto: una sombra suave para que el
+       corte entre las dos mitades no se vea duro. */
+    .hero-mat__inner::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -56px;
+      bottom: 0;
+      width: 112px;
+      background: linear-gradient(90deg, rgba(13, 27, 42, 0.16) 0%, rgba(13, 27, 42, 0) 100%);
+      pointer-events: none;
+    }
+
+    /* --- Texto en oscuro: es el fondo claro, no el oscuro --- */
+    .mat-title {
+      font-size: 2.85rem;
+      color: #0d1b2a;
+      text-shadow: none;
+    }
+    .mat-lead {
+      font-size: 1.05rem;
+      color: #41525f;
+      text-shadow: none;
+    }
+    .mat-perk {
+      color: #334155;
+      text-shadow: none;
+    }
+    .mat-perk__ico {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(13, 27, 42, 0.14);
+      color: #2e7d32;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .mat-badge {
+      background: rgba(232, 245, 233, 0.94);
+      border-color: rgba(46, 125, 50, 0.18);
+      color: #2e7d32;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .mat-note {
+      color: #52606d;
+      text-shadow: none;
+    }
+    .mat-btn--ghost {
+      border-color: #0077b6;
+      color: #0077b6;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    .mat-btn--ghost:hover { background: #0077b6; color: #ffffff; }
+
+    /* --- Texto centrado dentro de su mitad --- */
+    .hero-mat__inner .container { max-width: none; padding: 0; width: 100%; }
+    .hero-mat__text {
+      max-width: 540px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .mat-perks { justify-content: center; gap: 1rem 1.5rem; margin-top: 1.9rem; }
+    .mat-ctas { justify-content: center; }
+    .mat-badge { margin: 0 auto; }
+    .mat-note { text-align: center; }
   }
 
   /* --- Móvil: APROBADO. Foto en banda propia arriba + texto sobre blanco.
@@ -587,8 +660,20 @@
       "@id": "https://www.concasaya.com/materiales#catalog",
       "name": "Catálogo de materiales de construcción",
       "itemListElement": [
-        { "@type": "Offer", "position": 1, "itemOffered": { "@type": "Product", "name": "Plaqueta de concreto", "description": "Placa de concreto prefabricada para muros, tabiques y cerramientos de sistemas constructivos." } },
-        { "@type": "Offer", "position": 2, "itemOffered": { "@type": "Product", "name": "Teja de barro", "description": "Teja de barro cocido color terracota para cubiertas, cotizada por el número de unidades que requiere el proyecto." } }
+        {
+          "@type": "Offer",
+          "position": 1,
+          "priceCurrency": "COP",
+          "price": "27500",
+          "priceValidUntil": "2027-12-31",
+          "availability": "https://schema.org/InStock",
+          "itemOffered": {
+            "@type": "Product",
+            "name": "Plaqueta de concreto",
+            "description": "Placa de concreto prefabricada de 3.500 PSI con refuerzo en grafita, para muros, tabiques y cerramientos de sistemas constructivos. Precio de venta $27.500 COP por metro cuadrado, con pedido mínimo de 30 m². El transporte no está incluido y el producto se entrega cargado en planta."
+          }
+        },
+        { "@type": "Offer", "position": 2, "itemOffered": { "@type": "Product", "name": "Teja de barro", "description": "Teja de barro cocido tipo C color terracota para cubiertas, cotizada por el número de unidades que requiere el proyecto." } }
       ]
     },
     {
@@ -621,7 +706,12 @@
         {
           "@type": "Question",
           "name": "¿Los materiales tienen precio en el catálogo?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No publicamos precios de materiales en el catálogo porque cambian según la cantidad, el acabado y la zona de entrega. Cotiza por WhatsApp con la referencia del material y te respondemos con el valor de tu pedido." }
+          "acceptedAnswer": { "@type": "Answer", "text": "La plaqueta de concreto sí tiene precio publicado: $27.500 COP por metro cuadrado con pedido mínimo de 30 m². Puedes calcular el valor de tu pedido en el cotizador de plaqueta y enviarlo por WhatsApp. La teja de barro se cotiza a medida según el número de unidades que requiere el proyecto." }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El precio de la plaqueta incluye el transporte?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. El precio de $27.500 por metro cuadrado es del material: el transporte no está incluido y debe ser asumido por el comprador. El producto se entrega cargado en planta y el valor del flete se cotiza aparte según el municipio de destino y el volumen del pedido." }
         },
         {
           "@type": "Question",
@@ -1512,6 +1602,9 @@
 <section class="hero-mat">
   <!-- Solo visible en movil; en escritorio queda display:none -->
   <div class="hero-mat__bg" aria-hidden="true"></div>
+  <!-- Mitad derecha en escritorio: la foto a color pleno. En movil se oculta
+       (la foto va en la banda de arriba, .hero-mat__bg). -->
+  <div class="hero-mat__photo" aria-hidden="true"></div>
   <div class="hero-mat__inner">
     <div class="container mx-auto px-6">
       <div class="hero-mat__text">
@@ -1552,6 +1645,12 @@
           <i class="fas fa-truck mr-2" aria-hidden="true"></i>
           Suministro en Bogotá, Cundinamarca, Boyacá y Santander
         </p>
+        <p class="mat-note" style="margin-top: 0.6rem;">
+          <a href="#cotizador" style="color: #0077b6; font-weight: 700; text-decoration: underline;">
+            <i class="fas fa-calculator mr-1" aria-hidden="true"></i>
+            Cotiza tu plaqueta de concreto al instante
+          </a>
+        </p>
       </div>
     </div>
   </div>
@@ -1574,7 +1673,7 @@
       <p class="text-gray-600 leading-relaxed">
         La <strong>plaqueta de concreto</strong> ya tiene precio publicado: <strong>$27.500 COP por m²</strong>
         con pedido mínimo de 30 m², y la cotizas al instante en nuestro
-        <a href="/plaqueta-de-concreto">cotizador de plaqueta</a>. La <strong>teja de barro</strong> se pide
+        <a href="/materiales#cotizador">cotizador de plaqueta</a>. La <strong>teja de barro</strong> se pide
         <strong>a cotizar</strong>: su valor cambia según cantidad, acabado y zona de entrega.
         Escríbenos por WhatsApp con la referencia que necesitas y te respondemos el valor de tu pedido,
         sin compromiso y sin llamadas de venta.
@@ -1606,7 +1705,7 @@
         <span class="mc-icon"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
         <h3 class="mc-title">Plaqueta de concreto</h3>
         <p class="mc-text">La placa de concreto prefabricada que usamos en los muros de nuestro sistema constructivo. Se entrega lista para instalar y reduce el tiempo de obra frente al muro convencional. Concreto reforzado de 3.500 PSI con refuerzo en grafita, a $27.500 el m² con pedido mínimo de 30 m².</p>
-        <a href="/plaqueta-de-concreto#cotizador"
+        <a href="#cotizador"
            class="mc-cta">
           <i class="fas fa-calculator" aria-hidden="true"></i> Cotizar plaqueta
         </a>
@@ -1656,6 +1755,238 @@
         </a>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAFÍA PLAQUETA + COTIZADOR -->
+<section id="plaqueta" class="py-16 md:py-20 bg-white">
+  <div class="container mx-auto px-6">
+
+    <!-- Ficha técnica del producto -->
+    <div class="ig-grid mb-16 md:mb-20" data-aos="fade-up">
+      <div class="ig-media">
+        <img src="/assets/images/materiales/infografia-plaqueta-concreto.webp"
+             alt="Ficha técnica de la plaqueta de concreto CONCASAYA: 3.500 PSI, concreto reforzado con grafita, mayor durabilidad y medidas disponibles 8x8, 6x8, 4x8, 2x8 y 2x8x4"
+             width="1200" height="1200" loading="lazy" decoding="async">
+      </div>
+      <div>
+        <span class="ig-badge"><i class="fas fa-layer-group" aria-hidden="true"></i>Plaqueta de concreto</span>
+        <h2 class="ig-title">Todo lo que trae la <em>plaqueta de concreto</em> de CONCASAYA</h2>
+        <p class="ig-lead">
+          Elementos prefabricados de alta resistencia, ideales para construcciones eficientes, seguras y
+          duraderas. Vienen listos para instalar: reduces el tiempo de obra frente al muro convencional
+          sin que tengas que vaciar concreto en sitio.
+        </p>
+        <ul class="ig-specs">
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-shield-alt" aria-hidden="true"></i></span>
+            <span>
+              <strong>Alta resistencia: 3.500 PSI</strong>
+              <span>Concreto de alta resistencia para muros y cerramientos.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-layer-group" aria-hidden="true"></i></span>
+            <span>
+              <strong>Concreto reforzado con grafita</strong>
+              <span>El grafita es lo que le da la resistencia y la durabilidad al elemento.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-shield-halved" aria-hidden="true"></i></span>
+            <span>
+              <strong>Mayor durabilidad y vida útil</strong>
+              <span>Un elemento pensado para el largo plazo, no para reponer cada pocos años.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-bricks" aria-hidden="true"></i></span>
+            <span>
+              <strong>Versátil y eficiente</strong>
+              <span>Se adapta a distintos proyectos de construcción y reduce los tiempos de montaje.</span>
+            </span>
+          </li>
+        </ul>
+        <div class="ig-strip">
+          <span class="ig-strip__item"><i class="fas fa-box" aria-hidden="true"></i>Calidad certificada</span>
+          <span class="ig-strip__item"><i class="fas fa-leaf" aria-hidden="true"></i>Procesos eficientes</span>
+          <span class="ig-strip__item"><i class="fas fa-helmet-safety" aria-hidden="true"></i>Ideal para obras y proyectos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cotizador -->
+    <div id="cotizador" class="scroll-mt-24">
+      <div class="text-center mb-10 md:mb-12" data-aos="fade-up">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-dark mb-4">
+          Cotiza tu <span class="text-primary">plaqueta de concreto</span> al instante
+        </h2>
+        <p class="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
+          Escribe la cantidad de metros cuadrados que necesitas y mira el valor total de tu pedido.
+          El precio es el mismo para toda la tabla: <strong>$27.500 COP por m²</strong>, con pedido
+          mínimo de 30 m².
+        </p>
+      </div>
+
+      <div class="pq-cotizador" data-aos="fade-up">
+        <div class="pq-cotizador__grid">
+
+          <!-- Formulario -->
+          <div class="pq-cotizador__form">
+            <label class="pq-field-label" for="pq-m2">Metros cuadrados que necesitas</label>
+            <div class="pq-input-wrap">
+              <input type="number" id="pq-m2" class="pq-input" min="30" max="5000" step="1" value="30"
+                     inputmode="numeric" aria-describedby="pq-error pq-hint" />
+              <span class="pq-input-unit">m²</span>
+            </div>
+            <p class="pq-error" id="pq-error" role="alert"></p>
+
+            <p class="pq-field-label" style="margin-top: 1.5rem;">Cantidades de nuestra tabla de precios</p>
+            <div class="pq-chips" id="pq-chips" role="group" aria-label="Cantidades sugeridas"></div>
+
+            <p class="pq-hint" id="pq-hint">
+              <i class="fas fa-circle-info mr-1" aria-hidden="true"></i>
+              Pedido mínimo de 30 m² ($825.000 COP). Si necesitas más de 5.000 m², escríbenos por
+              WhatsApp y te cotizamos el volumen. El valor mostrado es el precio del material:
+              el transporte se cotiza aparte.
+            </p>
+          </div>
+
+          <!-- Resultado -->
+          <div class="pq-cotizador__result">
+            <div class="pq-calc-row">
+              <span class="pq-calc-row__label">Cantidad cotizada</span>
+              <span class="pq-calc-row__value" id="pq-opciones">30 m²</span>
+            </div>
+            <div class="pq-calc-row">
+              <span class="pq-calc-row__label">Precio por m²</span>
+              <span class="pq-calc-row__value">$27.500</span>
+            </div>
+            <div class="pq-calc-row">
+              <span class="pq-calc-row__label">Valor total estimado</span>
+              <span class="pq-calc-row__value" id="pq-opciones-valor">$825.000</span>
+            </div>
+
+            <p class="pq-total-label">Total del pedido</p>
+            <p class="pq-total" id="pq-total">$825.000</p>
+            <p class="pq-total-note">
+              <span id="pq-total-m2">30 m²</span> <span id="pq-total-unit">Valor mínimo del pedido</span>.
+              Transporte no incluido, a cargo del comprador.
+            </p>
+
+            <a href="https://wa.me/573142891018" class="pq-wa-btn" id="pq-wa" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp" aria-hidden="true"></i>
+              Quiero comprar por WhatsApp
+            </a>
+
+            <div class="pq-condiciones">
+              <p class="pq-field-label" style="color: rgba(255,255,255,0.65); margin-bottom: 0.75rem;">Condiciones comerciales</p>
+              <ul>
+                <li><i class="fas fa-check" aria-hidden="true"></i><span>Pedido mínimo: 30 m².</span></li>
+                <li><i class="fas fa-truck" aria-hidden="true"></i><span>Transporte: no está incluido en el precio y debe ser asumido por el comprador.</span></li>
+                <li><i class="fas fa-warehouse" aria-hidden="true"></i><span>Entrega: el producto se entrega cargado en planta.</span></li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Tabla de precios -->
+      <div id="tabla-precios" class="mt-14 md:mt-16 scroll-mt-24">
+        <div class="text-center mb-10" data-aos="fade-up">
+          <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-dark mb-3">
+            Tabla de <span class="text-primary">precios</span>
+          </h3>
+          <p class="text-base text-gray-600 max-w-3xl mx-auto">
+            El precio por metro cuadrado es el mismo en todos los pedidos: <strong>$27.500 COP</strong>.
+            Estos son los valores totales de las cantidades de referencia.
+          </p>
+        </div>
+
+        <div class="pq-table-wrap" data-aos="fade-up">
+          <table class="pq-table">
+            <caption class="sr-only">Precios de venta de plaqueta de concreto de 3.500 PSI por cantidad y valor total</caption>
+            <thead>
+              <tr>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio por m²</th>
+                <th scope="col">Valor total</th>
+              </tr>
+            </thead>
+            <tbody id="pq-table-body"></tbody>
+          </table>
+        </div>
+
+        <p class="text-center text-gray-600 mt-8 text-base" data-aos="fade-up">
+          ¿Necesitas otra cantidad?
+          <a href="#cotizador" class="text-primary font-semibold hover:underline">Cotízala aquí al instante</a>
+          o <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20plaqueta%20de%20concreto%20para%20mi%20obra" class="text-primary font-semibold hover:underline" target="_blank" rel="noopener">pregunta por WhatsApp</a>.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INFOGRAFÍA TEJA DE BARRO -->
+<section id="teja" class="py-16 md:py-20 bg-gray-50">
+  <div class="container mx-auto px-6">
+    <div class="ig-grid ig-grid--reverse" data-aos="fade-up">
+      <div class="ig-media">
+        <img src="/assets/images/materiales/infografia-teja-barro-tipo-c.webp"
+             alt="Ficha técnica de la teja de barro tipo C de CONCASAYA: alta resistencia y larga vida útil, baja absorción de agua, aislamiento térmico natural y diseño tipo C clásico y funcional"
+             width="1200" height="1200" loading="lazy" decoding="async">
+      </div>
+      <div>
+        <span class="ig-badge"><i class="fas fa-house" aria-hidden="true"></i>Teja de barro tipo C</span>
+        <h2 class="ig-title">La teja <em>tipo C</em> para tu cubierta</h2>
+        <p class="ig-lead">
+          Cobertura tradicional, resistente y estética, ideal para proyectos residenciales, comerciales
+          e institucionales. Es la teja que usamos en nuestros techos: se cotiza por el número de
+          unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real.
+        </p>
+        <ul class="ig-specs">
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-link" aria-hidden="true"></i></span>
+            <span>
+              <strong>Alta resistencia y larga vida útil</strong>
+              <span>Soporta el clima colombiano sin degradarse con el tiempo.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-droplet" aria-hidden="true"></i></span>
+            <span>
+              <strong>Baja absorción de agua</strong>
+              <span>No se empapa: es clave en zonas de lluvia alta.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-temperature-half" aria-hidden="true"></i></span>
+            <span>
+              <strong>Aislamiento térmico natural</strong>
+              <span>El barro cocido regula la temperatura interior de la casa.</span>
+            </span>
+          </li>
+          <li class="ig-spec">
+            <span class="ig-spec__ico"><i class="fas fa-trowel" aria-hidden="true"></i></span>
+            <span>
+              <strong>Diseño tipo C clásico y funcional</strong>
+              <span>La curva que todo maestro de obra reconoce y sabe instalar.</span>
+            </span>
+          </li>
+        </ul>
+        <div class="ig-strip">
+          <span class="ig-strip__item"><i class="fas fa-layer-group" aria-hidden="true"></i>Material 100% natural</span>
+          <span class="ig-strip__item"><i class="fas fa-leaf" aria-hidden="true"></i>Estética tradicional</span>
+          <span class="ig-strip__item"><i class="fas fa-helmet-safety" aria-hidden="true"></i>Ideal para cubiertas y techos</span>
+        </div>
+        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJA%20DE%20BARRO%20para%20cubierta" class="ig-cta ig-cta--wa" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp" aria-hidden="true"></i>
+          Cotizar teja de barro
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -1834,9 +2165,30 @@
         </summary>
         <div class="px-5 sm:px-6 pb-5 text-gray-600 leading-relaxed">
           <p>
-            No publicamos precios de materiales en el catálogo porque cambian según la cantidad,
-            el acabado y la zona de entrega. Cotiza por WhatsApp con la referencia del material y te
-            respondemos con el valor de tu pedido.
+            La <strong>plaqueta de concreto</strong> sí tiene precio publicado:
+            <strong>$27.500 COP por m²</strong> con pedido mínimo de 30 m². Puedes calcular el valor
+            de tu pedido en el <a href="#cotizador" class="text-primary font-semibold hover:underline">cotizador
+            de plaqueta</a> y enviarlo por WhatsApp con un solo clic.
+          </p>
+          <p class="mt-3">
+            La <strong>teja de barro</strong> se cotiza <strong>a medida</strong>: su valor cambia
+            según el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y
+            el área real del techo. Escríbenos por WhatsApp con la referencia y te respondemos el
+            valor de tu pedido.
+          </p>
+        </div>
+      </details>
+
+      <details class="bg-white rounded-xl shadow-md border border-gray-100 overflow-hidden group">
+        <summary class="faq-question cursor-pointer flex justify-between items-center p-5 sm:p-6 font-bold text-dark">
+          <span>¿El precio de la plaqueta incluye el transporte?</span>
+          <i class="fas fa-chevron-down text-primary transition-transform group-open:rotate-180" aria-hidden="true"></i>
+        </summary>
+        <div class="px-5 sm:px-6 pb-5 text-gray-600 leading-relaxed">
+          <p>
+            No. El precio de $27.500 por m² es del material: el <strong>transporte no está incluido</strong>
+            y debe ser asumido por el comprador. El producto <strong>se entrega cargado en planta</strong>
+            y el valor del flete se cotiza aparte, según el municipio de destino y el volumen del pedido.
           </p>
         </div>
       </details>
@@ -2628,6 +2980,9 @@
     <script src="/assets/js/nav-menu.js"></script>
 
     <script src="/assets/js/whatsapp-modal.js"></script>
+
+    <!-- Cotizador de plaqueta de concreto (seccion #cotizador de esta pagina) -->
+    <script src="/assets/js/plaqueta-cotizador.js"></script>
 
   
 </body>

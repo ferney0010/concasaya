@@ -62,11 +62,11 @@ async function main() {
   const INJECT = `(() => {
     const nav = document.querySelector('.nav-desktop-primary');
     if (!nav) return 'sin-nav';
-    if (nav.querySelector('a[href="/plaqueta-de-concreto"]')) return 'ya-existe';
+    if (nav.querySelector('a[href="/materiales#cotizador"]')) return 'ya-existe';
     const mat = Array.from(nav.children).find(a => a.getAttribute && a.getAttribute('href') === '/materiales');
     if (!mat) return 'sin-materiales';
     const a = document.createElement('a');
-    a.href = '/plaqueta-de-concreto';
+    a.href = '/materiales#cotizador';
     a.className = 'text-primary font-bold transition duration-300';
     a.textContent = 'Plaqueta';
     mat.after(a);

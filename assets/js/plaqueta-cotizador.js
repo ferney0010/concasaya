@@ -1,7 +1,7 @@
 /* ==========================================================================
    COTIZADOR DE PLAQUETA DE CONCRETO
    --------------------------------------------------------------------------
-   Logica del cotizador de /plaqueta-de-concreto.
+   Logica del cotizador de /materiales#cotizador.
 
    Datos comerciales (los suministro el cliente, no se inventan):
    - Plaquetas de concreto reforzado de 3.500 PSI con refuerzo en grafita.

@@ -73,8 +73,8 @@
   // === INTENCIONES (PASO 1) ===
   // Cambio 2026-11-05 (Ferney): la opcion "Todavia busco lote" se reemplaza
   // en TODO el sitio por "Quiero comprar plaqueta de concreto", que lleva al
-  // cotizador de /plaqueta-de-concreto#cotizador (NO al flujo de WhatsApp).
-  var PLAQUETA_COTIZADOR_URL = '/plaqueta-de-concreto#cotizador';
+  // cotizador de /materiales#cotizador (NO al flujo de WhatsApp).
+  var PLAQUETA_COTIZADOR_URL = '/materiales#cotizador';
 
   var INTENTIONS = [
     {

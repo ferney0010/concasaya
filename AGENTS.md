@@ -129,28 +129,47 @@ concreto** como suministro, no una casa.
 - Tabla de referencia: 30 / 50 / 70 / 100 / 150 m².
 
 **Archivos de la página:**
-- `plaqueta-de-concreto.html` — hero, cotizador, tabla, especificaciones, FAQ, CTA.
-- `assets/css/plaqueta-de-concreto.css` — CSS propio (prefijo `pq-`). **No recompilar Tailwind**:
-  el CSS compilado lo comparten ~200 páginas. Este archivo también lleva las reglas de los
-  dropdowns del nav, porque cada página del sitio replica ese bloque y esta usa CSS propio.
+- **`materiales.html`** — el cotizador, la ficha técnica y la tabla viven AQUÍ, dentro de la página
+  de materiales (sección `#cotizador`). Decisión del cliente (2026-11-05): es mejor que una página
+  aparte para la venta.
+- `plaqueta-de-concreto.html` — **ya no es una página**: es un puente que redirige a
+  `/materiales#cotizador` (meta refresh + `location.replace` + `noindex`). Existe para que las URLs
+  ya publicadas (nav, blog, WhatsApp) no se rompan y para que los buscadores convergjan en una sola
+  página. No volver a convertirla en página con contenido.
+- `assets/css/materiales-plaqueta.css` — CSS propio (prefijos `pq-` cotizador, `ig-` infografías).
+  **No recompilar Tailwind**: el CSS compilado lo comparten ~200 páginas.
 - `assets/js/plaqueta-cotizador.js` — el cálculo (m² × 27.500, mínimo 30, chips de la tabla,
   botón de WhatsApp con el mensaje ya armado). La tabla de precios se arma desde JS para que
   el precio nunca se desincronice del cotizador.
 - `scripts/build-og-plaqueta.mjs` — genera `assets/images/og-plaqueta-de-concreto.webp` (1200×630).
+- `scripts/convertir-infografias.mjs` — convierte las fichas del cliente a WebP (1200×1200, q82).
 - `scripts/captura-plaqueta.mjs` — capturas reales (móvil/escritorio) vía CDP, porque
   `chrome --headless --screenshot` miente en móvil (ver `docs/patron-hero-municipios.md`).
+
+**Las dos fichas del cliente** (`assets/images/materiales/infografia-plaqueta-concreto.webp` y
+`infografia-teja-barro-tipo-c.webp`) son sections de apoyo dentro de `materiales.html`: la de
+plaqueta va arriba de la sección `#plaqueta` (ficha + cotizador) y la de teja tipo C en la sección
+`#teja`. El texto al lado de cada imagen repite en HTML lo que dice la ficha, para que también lo
+lea un buscador.
+
+**El hero de `materiales.html`** (2026-11-05) usa el mismo patrón visual que el hero de
+`modelos.html`: grid de 2 columnas, la **foto a color pleno en la mitad derecha** y un **velo claro
+que se abre de izquierda a derecha sobre la mitad izquierda**, donde va el texto en oscuro y
+centrado. El velo llega hasta la mitad y ahí se apaga. En móvil sigue el patrón aprobado (foto en
+banda arriba + texto sobre blanco).
 
 **El botón del modal de WhatsApp (cambio GLOBAL):** en `assets/js/whatsapp-modal.js` la
 intención `"Todavia busco lote"` **se reemplazó** por `"Quiero comprar plaqueta de concreto"`
 (id `plaqueta`). No entra al flujo de WhatsApp: cierra el modal y lleva a
-`/plaqueta-de-concreto#cotizador`. Decisión del cliente (2026-11-05) cuando se le preguntó:
+`/materiales#cotizador`. Decisión del cliente (2026-11-05) cuando se le preguntó:
 reemplazo en todo el sitio. Para revertirlo basta devolver la intención original en
 `INTENTIONS` y quitar las dos ramas `id === 'plaqueta'`.
 
 **Enlaces:** el nav de **89 páginas** lleva "Plaqueta" (escritorio) y "Plaqueta de concreto"
 (tablet). Lo insertó `scripts/agregar-nav-plaqueta.mjs` (idempotente, dry-run por defecto,
 verifica el balance de tags antes de escribir). El footer de todas las páginas tiene
-"Enlaces Rápidos → Plaqueta de Concreto".
+"Enlaces Rápidos → Plaqueta de Concreto". Todos esos enlaces apuntan a `/materiales#cotizador`
+(los reescribió `scripts/actualizar-enlaces-plaqueta.mjs`).
 
 **Ojo con el formateo del repo:** el HTML tiene saltos de línea dentro de los tags y cierres
 como `</a          >`. Un regex que busque `</a>` a secas NO encuentra nada. Para contar

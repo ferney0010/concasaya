@@ -401,7 +401,7 @@ function cajaCrosslink(slug) {
   if (ARTICULOS_CON_PLAQUETA.has(slug)) {
     lineas.push(
       '          <li class="pq-entry">' +
-        '<a href="/plaqueta-de-concreto">Venta de plaqueta de concreto</a> ' +
+        '<a href="/materiales#cotizador">Venta de plaqueta de concreto</a> ' +
         "— si ya tienes tu obra y solo necesitas el material: 3.500 PSI con refuerzo en grafita, " +
         "$27.500 por m² y pedido mínimo de 30 m², con cotizador en línea.</li>"
     );
