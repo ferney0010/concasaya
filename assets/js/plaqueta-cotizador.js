@@ -83,9 +83,14 @@
     });
   }
 
+  // El mensaje que llega a WhatsApp es el RESUMEN de la cotizacion: el
+  // asesor recibe que quiere, cuantos m2, a que valor y con que condiciones,
+  // sin tener que preguntar nada. Por eso este boton abre WhatsApp de
+  // directo (data-wm-direct="1") y no pasa por el modal de intencion.
   function mensajeWhatsApp(m2, total) {
     return 'Hola, quiero comprar ' + m2 + ' m² de plaqueta de concreto de 3.500 PSI. ' +
-      'Valor total estimado: ' + formatCOP(total) + '. Quiero cotizar.';
+      'Valor total estimado: ' + formatCOP(total) + ' (' + formatCOP(PRECIO_M2) + ' por m²). ' +
+      'Entrega cargada en planta; el transporte lo asumo yo. Quiero cotizar.';
   }
 
   function render() {

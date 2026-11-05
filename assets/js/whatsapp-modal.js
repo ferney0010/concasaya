@@ -971,11 +971,20 @@
   // Si tiene data-wm-msg, ese texto se antepone al mensaje final para que el
   // asesor sepa QUE pidio el cliente (videollamada, terrenos, etc.), que es
   // informacion que se perdia al pasar por el modal.
+  //
+  // EXCEPCION: data-wm-direct="1" -> el enlace NO se intercepta y abre
+  // WhatsApp de una vez con el mensaje que ya trae en su href. Se usa en los
+  // botones que ya traen el resumen listo (el cotizador de plaqueta, por
+  // ejemplo): preguntar de nuevo si tiene lote o que quiere seria redundante
+  // porque el usuario ya escribio su pedido y el resumen ya va en el mensaje.
   function interceptWhatsAppLinks() {
     var links = document.querySelectorAll('a[href^="https://wa.me/"]');
     links.forEach(function (a) {
       if (a.__wmBound) return;
       a.__wmBound = true;
+      // Enlace directo: se deja que el navegador lo abra tal cual, con el
+      // mensaje que ya trae en el href.
+      if (a.getAttribute('data-wm-direct') === '1') return;
       a.addEventListener('click', function (e) {
         e.preventDefault();
         var intent   = a.getAttribute('data-wm-intent');

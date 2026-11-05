@@ -69,9 +69,6 @@
 
   .hero-mat__inner { position: relative; z-index: 2; }
   .hero-mat__text { max-width: 640px; }
-  /* Foto de escritorio: es la mitad derecha, a color pleno. En movil no se
-     usa (ahi la foto va en la banda de arriba). */
-  .hero-mat__photo { display: none; }
 
   .mat-badge {
     display: inline-flex;
@@ -180,118 +177,51 @@
     color: rgba(255, 255, 255, 0.8);
   }
 
-  /* --- Escritorio: dos columnas, con el patron visual de modelos.html.
-         ---
-         2026-11-05 (Ferney): el hero toma el mismo lenguaje que el de
-         modelos.html: la foto ocupa la mitad derecha a color pleno y un
-         velo CLARO se abre de izquierda a derecha sobre la mitad
-         izquierda, donde va el texto en oscuro. El velo llega hasta la
-         mitad del hero y ahi se apaga, asi que la foto nunca se ve
-         apagada. El texto va centrado dentro de su mitad para aprovechar
-         el espacio. */
+  /* --- Escritorio: tema oscuro, foto a sangre y blur con caída --- */
   @media (min-width: 768px) {
     .hero-mat {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: stretch;
-      min-height: 620px;
-      padding: 0;
-      background-color: #0d1b2a;
-      background-image: none;
-    }
-
-    /* --- Mitad derecha: la foto a color pleno, sin veladura ni blur --- */
-    .hero-mat__photo {
-      display: block;
-      order: 2;
+      min-height: 600px;
+      padding: 96px 0 104px;
       background-image: url('/assets/images/hero-nuevo/hero-materiales-pc.webp');
       background-size: cover;
       background-position: center 62%;
       background-repeat: no-repeat;
-      position: relative;
-      z-index: 1;
     }
-
-    /* --- Mitad izquierda: velo claro que acompaña hasta la mitad --- */
-    .hero-mat__inner {
-      order: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 104px 48px;
-      position: relative;
-      z-index: 2;
-      background: linear-gradient(90deg,
-        rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.90) 40%,
-        rgba(255, 255, 255, 0.78) 62%, rgba(255, 255, 255, 0.52) 84%,
-        rgba(255, 255, 255, 0.30) 100%);
-    }
-    /* Se apoya contra el borde de la foto: una sombra suave para que el
-       corte entre las dos mitades no se vea duro. */
-    .hero-mat__inner::after {
+    /* El desenfoque NO se puede desvanecer con un degradado normal:
+       backdrop-filter se aplica uniforme. Se resuelve enmascarándolo con
+       mask-image en degradado, que sí controla su visibilidad.
+       2026-10-07: la veladura oscura y el blur terminaban en el 50% y se
+       cruzaban sobre la casa, apagándola a partir del 32%. Ahora ambos
+       degradados se cierran en el 32%, justo antes de que empiece el alero,
+       así que la casa se ve limpia: sin oscurecer y sin desenfocar.
+       El texto llega hasta el 27%, asi que sigue entrando de sobra. */
+    .hero-mat::before {
+      display: block;
       content: "";
       position: absolute;
-      top: 0;
-      right: -56px;
-      bottom: 0;
-      width: 112px;
-      background: linear-gradient(90deg, rgba(13, 27, 42, 0.16) 0%, rgba(13, 27, 42, 0) 100%);
+      inset: 0;
+      background: linear-gradient(100deg,
+        rgba(4, 26, 44, 0.86) 0%, rgba(4, 26, 44, 0.78) 20%,
+        rgba(4, 26, 44, 0.45) 30%, rgba(4, 26, 44, 0) 35%);
+      -webkit-mask-image: linear-gradient(100deg,
+        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
+      mask-image: linear-gradient(100deg,
+        #000 0%, #000 20%, rgba(0, 0, 0, 0.6) 27%, rgba(0, 0, 0, 0) 34%);
+      backdrop-filter: blur(8px) saturate(1.04);
+      -webkit-backdrop-filter: blur(8px) saturate(1.04);
       pointer-events: none;
+      z-index: 1;
     }
-
-    /* --- Texto en oscuro: es el fondo claro, no el oscuro --- */
-    .mat-title {
-      font-size: 2.85rem;
-      color: #0d1b2a;
-      text-shadow: none;
-    }
-    .mat-lead {
-      font-size: 1.05rem;
-      color: #41525f;
-      text-shadow: none;
-    }
-    .mat-perk {
-      color: #334155;
-      text-shadow: none;
-    }
-    .mat-perk__ico {
-      background: rgba(255, 255, 255, 0.9);
-      border-color: rgba(13, 27, 42, 0.14);
-      color: #2e7d32;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-    .mat-badge {
-      background: rgba(232, 245, 233, 0.94);
-      border-color: rgba(46, 125, 50, 0.18);
-      color: #2e7d32;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-    .mat-note {
-      color: #52606d;
-      text-shadow: none;
-    }
-    .mat-btn--ghost {
-      border-color: #0077b6;
-      color: #0077b6;
-      background: rgba(255, 255, 255, 0.8);
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-    }
-    .mat-btn--ghost:hover { background: #0077b6; color: #ffffff; }
-
-    /* --- Texto centrado dentro de su mitad --- */
-    .hero-mat__inner .container { max-width: none; padding: 0; width: 100%; }
-    .hero-mat__text {
-      max-width: 540px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .mat-perks { justify-content: center; gap: 1rem 1.5rem; margin-top: 1.9rem; }
-    .mat-ctas { justify-content: center; }
-    .mat-badge { margin: 0 auto; }
-    .mat-note { text-align: center; }
+    .mat-title { font-size: 3rem; text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5); }
+    .mat-lead { font-size: 1.05rem; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+    /* Sin veladura oscura sobre la foto, el halo es lo que sostiene el
+       contraste del texto en los bordes donde el degradado ya se apago. */
+    .mat-perk { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
+    .mat-note { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
+    /* Columna de texto mas estrecha: tiene que caber DENTRO de la zona
+       oscura del degradado (que cierra en el 35%). Si el texto se pasa, el
+       parrafo cae sobre la pared blanca de la casa y deja de leerse. */
+    .hero-mat__text { max-width: 480px; }
   }
 
   /* --- Móvil: APROBADO. Foto en banda propia arriba + texto sobre blanco.
@@ -1602,9 +1532,7 @@
 <section class="hero-mat">
   <!-- Solo visible en movil; en escritorio queda display:none -->
   <div class="hero-mat__bg" aria-hidden="true"></div>
-  <!-- Mitad derecha en escritorio: la foto a color pleno. En movil se oculta
-       (la foto va en la banda de arriba, .hero-mat__bg). -->
-  <div class="hero-mat__photo" aria-hidden="true"></div>
+
   <div class="hero-mat__inner">
     <div class="container mx-auto px-6">
       <div class="hero-mat__text">
@@ -1631,7 +1559,7 @@
         </ul>
         <div class="mat-ctas">
           <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20materiales%20de%20construcci%C3%B3n%20prefabricada%20con%20CONCASAYA"
-             class="mat-btn mat-btn--solid" target="_blank" rel="noopener">
+             class="mat-btn mat-btn--solid" target="_blank" rel="noopener" data-wm-direct="1">
             <i class="fab fa-whatsapp" aria-hidden="true"></i>
             Cotizar mi proyecto
             <i class="fas fa-arrow-right mat-btn__arrow" aria-hidden="true"></i>
@@ -1646,7 +1574,7 @@
           Suministro en Bogotá, Cundinamarca, Boyacá y Santander
         </p>
         <p class="mat-note" style="margin-top: 0.6rem;">
-          <a href="#cotizador" style="color: #0077b6; font-weight: 700; text-decoration: underline;">
+          <a href="#cotizador" style="color: #86f08f; font-weight: 700; text-decoration: underline;">
             <i class="fas fa-calculator mr-1" aria-hidden="true"></i>
             Cotiza tu plaqueta de concreto al instante
           </a>
@@ -1721,7 +1649,7 @@
         <h3 class="mc-title">Teja de barro</h3>
         <p class="mc-text">Teja de barro cocido color terracota para cubierta. Es la que usamos en nuestros techos: se cotiza por el número de unidades que necesita tu proyecto, ya calculadas según la pendiente y el área real del techo.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJA%20DE%20BARRO%20para%20cubierta"
-           class="mc-cta" target="_blank" rel="noopener">
+           class="mc-cta" target="_blank" rel="noopener" data-wm-direct="1">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Cotizar teja de barro
         </a>
       </article>
@@ -1750,7 +1678,7 @@
         <h3 class="mc-title">¿Buscas lote para construir?</h3>
         <p class="mc-text">Estamos habilitando el catálogo de lotes de CONCASAYA. Te enviamos la información completa —ubicación, área, precio y condiciones de pago— directo por WhatsApp, sin compromiso.</p>
         <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20informaci%C3%B3n%20de%20LOS%20LOTES%20que%20tienen%20disponibles"
-           class="mc-cta mc-cta--wa" target="_blank" rel="noopener">
+           class="mc-cta mc-cta--wa" target="_blank" rel="noopener" data-wm-direct="1">
           <i class="fab fa-whatsapp" aria-hidden="true"></i> Quiero ver los lotes
         </a>
       </article>
@@ -1875,7 +1803,11 @@
               Transporte no incluido, a cargo del comprador.
             </p>
 
-            <a href="https://wa.me/573142891018" class="pq-wa-btn" id="pq-wa" target="_blank" rel="noopener">
+            <!-- data-wm-direct="1": este boton ya lleva el resumen de la
+                 cotizacion en su mensaje, asi que abre WhatsApp de una vez.
+                 No tiene sentido volver a preguntar si tiene lote o que
+                 quiere: el usuario ya escribio su pedido. -->
+            <a href="https://wa.me/573142891018" class="pq-wa-btn" id="pq-wa" target="_blank" rel="noopener" data-wm-direct="1">
               <i class="fab fa-whatsapp" aria-hidden="true"></i>
               Quiero comprar por WhatsApp
             </a>
@@ -1922,7 +1854,7 @@
         <p class="text-center text-gray-600 mt-8 text-base" data-aos="fade-up">
           ¿Necesitas otra cantidad?
           <a href="#cotizador" class="text-primary font-semibold hover:underline">Cotízala aquí al instante</a>
-          o <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20plaqueta%20de%20concreto%20para%20mi%20obra" class="text-primary font-semibold hover:underline" target="_blank" rel="noopener">pregunta por WhatsApp</a>.
+          o <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20plaqueta%20de%20concreto%20para%20mi%20obra" class="text-primary font-semibold hover:underline" target="_blank" rel="noopener" data-wm-direct="1">pregunta por WhatsApp</a>.
         </p>
       </div>
     </div>
@@ -1982,7 +1914,7 @@
           <span class="ig-strip__item"><i class="fas fa-leaf" aria-hidden="true"></i>Estética tradicional</span>
           <span class="ig-strip__item"><i class="fas fa-helmet-safety" aria-hidden="true"></i>Ideal para cubiertas y techos</span>
         </div>
-        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJA%20DE%20BARRO%20para%20cubierta" class="ig-cta ig-cta--wa" target="_blank" rel="noopener">
+        <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20precio%20de%20TEJA%20DE%20BARRO%20para%20cubierta" class="ig-cta ig-cta--wa" target="_blank" rel="noopener" data-wm-direct="1">
           <i class="fab fa-whatsapp" aria-hidden="true"></i>
           Cotizar teja de barro
         </a>
@@ -2236,7 +2168,7 @@
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a href="https://wa.me/573142891018?text=Hola%2C%20quiero%20cotizar%20materiales%20de%20construcci%C3%B3n%20prefabricada%20con%20CONCASAYA"
          class="bg-white text-primary inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-base hover:scale-105 transition shadow-lg"
-         target="_blank" rel="noopener">
+         target="_blank" rel="noopener" data-wm-direct="1">
         <i class="fab fa-whatsapp text-2xl" aria-hidden="true"></i>
         Cotizar por WhatsApp
       </a>
@@ -2725,8 +2657,7 @@
 
         <!-- Botón WhatsApp -->
 
-        <a
-
+        <a 
           href="https://wa.me/573142891018?text=Hola%20CONCASAYA%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20los%20sistemas%20constructivos%20de%20casas%20prefabricadas."
 
           target="_blank"
@@ -2735,7 +2666,7 @@
 
           class="cta-attention cta-attention-whatsapp w-11 h-11 rounded-full flex items-center justify-center bg-white border border-green-400/60 text-green-600 shadow-md transition-all duration-300 hover:bg-white hover:border-green-500 hover:-translate-y-0.5 hover:scale-110 relative"
 
-        >
+         data-wm-direct="1">
 
           <span
 
