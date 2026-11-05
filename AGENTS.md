@@ -156,6 +156,45 @@ verifica el balance de tags antes de escribir). El footer de todas las páginas 
 como `</a          >`. Un regex que busque `</a>` a secas NO encuentra nada. Para contar
 tags usar `</a\s*>`.
 
+## Cross-linking del blog (2026-11-05)
+
+Los **32 artículos** del blog (`blog/*.html`) cierran con una caja de relacionados
+(`<div class="crosslink-box" data-crosslinks="1">`) que enlaza a los artículos de su
+mismo cluster. 97 enlaces internos, ninguno roto.
+
+**Clusters:** precios, licencias, sistemas constructivos, zona geográfica y compra desde
+el exterior. Cada artículo tiene 3 o más enlaces de artículos.
+
+**Entrada comercial de plaqueta:** los **20 artículos** que hablan del sistema plaqueta
+incluyen además, como primer elemento de la caja, el enlace a `/plaqueta-de-concreto`
+con el dato de $27.500/m² y mínimo de 30 m². Va marcada con `class="pq-entry"` (verde)
+porque NO es un artículo del blog, es la página de venta del material.
+
+**Archivos:**
+- `assets/css/blog-crosslinks.css` — CSS de la caja. **No recompilar Tailwind**: el CSS
+  compilado lo comparten ~200 páginas. Es el mismo estilo que ya traían 3 artículos
+  escrito en su `<style>` inline.
+- `scripts/agregar-crosslinks.mjs` — inserta las cajas. Idempotente (marca
+  `data-crosslinks="1"`), dry-run por defecto, `--apply` para escribir. El mapa de
+  clusters y los textos están al principio del archivo.
+- `scripts/validar-crosslinks.mjs` — comprueba que ningún enlace apunte a un artículo
+  inexistente y que cada artículo tenga 3 o más enlaces.
+
+**Alas de inserción** (las usa el script, en este orden): 1) el párrafo que promete
+"te dejo los artículos…", 2) el bloque "Volver al Blog", 3) el último `<p>` del
+contenido. Ojo: el bloque "Volver al Blog" puede quedar FUERA del `<article>` (varias
+páginas lo usan para las tarjetas de contenido), así que la validación se hace contra
+`<main>`, no contra `<article>`.
+
+**Cinco artículos prometen una lista y no la entregaban** (casa-prefabricada-para-finca,
+casas-prefabricadas-economicas, errores-comprar, multa-construir-sin-licencia y
+plazo-construccion): ya la cumplen.
+
+**Cuidado con las cajas que NO son de relacionados:** 3 artículos ya tenían un
+`crosslink-box` de otro tipo (fuentes externas, cluster geográfico de Villa de Leyva,
+lista de actos que no requieren licencia). El script NO las confunde porque busca la
+marca `data-crosslinks="1"`, no el nombre de la clase.
+
 ## Cubierta del catálogo (2026-10-25)
 
 **Dos opciones de teja disponibles: fibrocemento o barro.** Está escrito como ítem de
