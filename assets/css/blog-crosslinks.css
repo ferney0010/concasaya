@@ -1,0 +1,81 @@
+/* ==========================================================================
+   BLOG — CAJA DE RELATED LINKS (crosslink-box)
+   --------------------------------------------------------------------------
+   CSS compartido para el bloque "sigue leyendo estos artículos" que ahora
+   aparece en todos los artículos del blog.
+
+   Por que un archivo propio y no el CSS compilado: el Tailwind compilado
+   (assets/css/tailwind.css) lo comparten todas las paginas del sitio y
+   recompilarlo arriesga las clases que ya usan las paginas existentes.
+   Este bloque es identico al que ya tenian 3 articulos escrito en su <style>
+   inline, asi que el resultado visual es el mismo en todo el blog.
+
+   Prefijo: .crosslink-box (mismo nombre que ya usaba el bloque existente).
+   ========================================================================== */
+
+.crosslink-box {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.crosslink-box strong {
+  color: #075985;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.crosslink-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.crosslink-box ul li {
+  padding-left: 1.3rem;
+  position: relative;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #0c4a6e;
+}
+
+.crosslink-box ul li:last-child { margin-bottom: 0; }
+
+.crosslink-box ul li::before {
+  content: "\2192";
+  position: absolute;
+  left: 0;
+  color: #0284c7;
+  font-weight: 800;
+}
+
+.crosslink-box a {
+  color: #0369a1;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.crosslink-box a:hover {
+  color: #075985;
+  border-bottom-color: #7dd3fc;
+}
+
+.crosslink-box p {
+  margin: 0.75rem 0 0 0;
+  color: #0c4a6e;
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+/* Entrada del bloque "plaqueta de concreto" dentro de la caja: es una
+   entrada comercial (no un articulo), asi que se marca aparte. */
+.crosslink-box li.pq-entry a {
+  color: #1a7434;
+}
+.crosslink-box li.pq-entry::before { color: #16a34a; }
+.crosslink-box li.pq-entry a:hover { border-bottom-color: #86f08f; }
