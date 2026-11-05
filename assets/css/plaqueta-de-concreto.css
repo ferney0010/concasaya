@@ -1,0 +1,685 @@
+/* ==========================================================================
+   PLAQUETA DE CONCRETO — hoja de estilos propia de /plaqueta-de-concreto
+   --------------------------------------------------------------------------
+   No se recompila Tailwind para esta pagina: el CSS compilado
+   (assets/css/tailwind.css) lo comparten ~200 archivos y recompilarlo
+   arriesga las clases que ya usan las paginas existentes. Por eso todo lo
+   especifico de esta pagina vive aqui, con el prefijo "pq-".
+
+   Patron de hero: docs/patron-hero-municipios.md (aprobado por el cliente).
+   Regla obligatoria: el tema oscuro vive en min-width 768px y el movil en
+   max-width 767px. Son rangos excluyentes.
+   ========================================================================== */
+
+:root {
+  --pq-primary: #0077b6;
+  --pq-primary-dark: #005f8f;
+  --pq-navy: #0d1b2a;
+  --pq-green: #86f08f;
+  --pq-green-dark: #1a7434;
+  --pq-green-soft: #eaf7ee;
+  --pq-green-line: #bfe3c9;
+  --pq-line: #e5e7eb;
+}
+
+/* ==========================================================================
+   NAVEGACION
+   --------------------------------------------------------------------------
+   El sitio replica por pagina el bloque CSS de los dropdowns. Como aqui no
+   hay <style> inline, estas reglas van en este archivo: sin ellas los
+   desplegables de "Cobertura" y "Empresa" quedan abiertos siempre.
+   ========================================================================== */
+
+.dropdown:hover .dropdown-menu {
+  display: grid;
+}
+
+.dropdown-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  display: grid;
+  border-radius: 12px;
+  padding: 0.5rem 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  column-gap: 0.5rem;
+}
+
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    grid-template-columns: repeat(2, 1fr);
+    min-width: auto !important;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.25rem 0;
+  }
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.pq-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  overflow: hidden;
+  padding: 64px 0 72px;
+}
+
+/* Solo visible en movil. En escritorio queda display:none. */
+.pq-hero__bg { display: none; }
+
+.pq-hero__inner { position: relative; z-index: 2; }
+.pq-hero__text { max-width: 640px; }
+
+.pq-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.pq-badge i { font-size: 0.78rem; }
+
+.pq-title {
+  font-size: 2.15rem;
+  line-height: 1.18;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 1.1rem 0 0;
+  text-wrap: balance;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.45);
+}
+.pq-title em { font-style: normal; color: var(--pq-green); }
+
+.pq-lead {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.93);
+  margin: 1rem 0 0;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Precio grande en el hero */
+.pq-price-tag {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.pq-price-tag__label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 600;
+}
+.pq-price-tag__value {
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: var(--pq-green);
+  line-height: 1;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+.pq-price-tag__unit {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.pq-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+  margin: 1.9rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+.pq-perk {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #ffffff;
+  font-size: 0.78rem;
+  line-height: 1.25;
+  font-weight: 500;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
+}
+.pq-perk__ico {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--pq-green);
+}
+
+.pq-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.6rem;
+}
+
+.pq-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 0.9rem 1.5rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
+}
+.pq-btn--solid { background: var(--pq-green); color: #06240f; border: 2px solid transparent; }
+.pq-btn--solid:hover { transform: translateY(-2px); background: #9df79f; }
+.pq-btn--ghost {
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  color: #ffffff;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.pq-btn--ghost:hover { background: #ffffff; color: #06240f; transform: translateY(-2px); }
+.pq-btn__arrow { transition: transform 0.25s ease; }
+.pq-btn:hover .pq-btn__arrow { transform: translateX(4px); }
+
+.pq-note {
+  margin-top: 1.35rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* --- Escritorio: tema oscuro, foto a sangre y blur con caída espacial --- */
+@media (min-width: 768px) {
+  .pq-hero {
+    min-height: 620px;
+    padding: 96px 0 104px;
+    background-image: url('/assets/images/materiales/mat-plaqueta-concreto.webp');
+    background-size: cover;
+    background-position: center 55%;
+    background-repeat: no-repeat;
+  }
+  /* El desenfoque NO se puede desvanecer con un degradado normal:
+     backdrop-filter se aplica uniforme. Se resuelve enmascarándolo con
+     mask-image en degradado, que sí controla su visibilidad. */
+  .pq-hero::before {
+    display: block;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg,
+      rgba(4, 26, 44, 0.9) 0%, rgba(4, 26, 44, 0.86) 26%,
+      rgba(4, 26, 44, 0.6) 40%, rgba(4, 26, 44, 0.12) 52%, rgba(4, 26, 44, 0) 60%);
+    -webkit-mask-image: linear-gradient(100deg,
+      #000 0%, #000 26%, rgba(0, 0, 0, 0.72) 40%, rgba(0, 0, 0, 0.15) 52%, rgba(0, 0, 0, 0) 60%);
+    mask-image: linear-gradient(100deg,
+      #000 0%, #000 26%, rgba(0, 0, 0, 0.72) 40%, rgba(0, 0, 0, 0.15) 52%, rgba(0, 0, 0, 0) 60%);
+    backdrop-filter: blur(7px) saturate(1.05);
+    -webkit-backdrop-filter: blur(7px) saturate(1.05);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .pq-title { font-size: 3rem; text-shadow: 0 3px 22px rgba(0, 0, 0, 0.5); }
+  .pq-lead { font-size: 1.05rem; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6); }
+  .pq-perk { text-shadow: 0 1px 10px rgba(0, 0, 0, 0.65); }
+  .pq-note { text-shadow: 0 1px 12px rgba(0, 0, 0, 0.85); }
+  /* El texto tiene que caber DENTRO de la zona oscura del degradado. */
+  .pq-hero__text { max-width: 540px; }
+}
+
+/* --- Móvil: APROBADO. Foto en banda propia arriba + texto sobre blanco. --- */
+@media (max-width: 767px) {
+  .pq-hero {
+    min-height: 0;
+    background-image: none;
+    background-color: #ffffff;
+    padding-top: 0;
+    padding-bottom: 34px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pq-hero::before { display: none; }
+  .pq-hero__bg {
+    display: block;
+    height: 44vh;
+    min-height: 230px;
+    /* El header es fixed: sin este margen la banda queda debajo. */
+    margin-top: 64px;
+    background-image: url('/assets/images/materiales/mat-plaqueta-concreto.webp');
+    background-size: cover;
+    background-position: center 45%;
+  }
+  .pq-hero__inner { padding-top: 1.35rem; }
+  .pq-hero__text { max-width: 100%; }
+
+  .pq-badge {
+    color: var(--pq-green-dark);
+    background: var(--pq-green-soft);
+    border-color: var(--pq-green-line);
+    font-size: 0.62rem;
+    letter-spacing: 0.07em;
+    padding: 0.45rem 0.8rem;
+  }
+  .pq-badge i { font-size: 0.72rem; }
+
+  .pq-title {
+    color: var(--pq-navy);
+    font-size: 1.85rem;
+    line-height: 1.22;
+    margin-top: 0.9rem;
+  }
+  .pq-title em { color: var(--pq-green-dark); }
+
+  .pq-lead { color: #41525f; font-size: 0.95rem; margin-top: 0.85rem; }
+
+  .pq-price-tag {
+    background: var(--pq-green-soft);
+    border-color: var(--pq-green-line);
+    margin-top: 1.25rem;
+    padding: 0.8rem 1rem;
+  }
+  .pq-price-tag__label { color: var(--pq-green-dark); }
+  .pq-price-tag__value { color: var(--pq-green-dark); font-size: 1.6rem; text-shadow: none; }
+  .pq-price-tag__unit { color: #41525f; }
+
+  .pq-perks { gap: 0.9rem 1.15rem; margin-top: 1.5rem; }
+  .pq-perk {
+    color: var(--pq-navy);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-shadow: none;
+    gap: 0.5rem;
+  }
+  .pq-perk__ico {
+    width: 36px;
+    height: 36px;
+    font-size: 0.82rem;
+    background: var(--pq-green-soft);
+    border-color: var(--pq-green-line);
+    color: var(--pq-green-dark);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .pq-ctas { flex-direction: column; align-items: stretch; margin-top: 1.35rem; }
+  .pq-btn { width: 100%; font-size: 0.95rem; padding: 0.95rem 1.25rem; }
+  .pq-btn--solid { background: var(--pq-primary); color: #ffffff; }
+  .pq-btn--solid:hover { background: var(--pq-primary-dark); }
+  .pq-btn--ghost { border-color: var(--pq-primary); color: var(--pq-primary); background: #ffffff; }
+  .pq-btn--ghost:hover { background: var(--pq-primary); color: #ffffff; }
+
+  .pq-note { color: #5b6b77; font-size: 0.78rem; }
+
+  /* Sobre blanco el halo blanco solo emborronaría el texto. */
+  .pq-title,
+  .pq-lead,
+  .pq-perk { text-shadow: none; }
+}
+
+/* ==========================================================================
+   COTIZADOR
+   ========================================================================== */
+
+.pq-cotizador {
+  background: linear-gradient(160deg, #f8fafc 0%, #eef6fb 100%);
+  border: 1px solid var(--pq-line);
+  border-radius: 20px;
+  box-shadow: 0 18px 45px rgba(13, 27, 42, 0.08);
+  overflow: hidden;
+}
+
+.pq-cotizador__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.pq-cotizador__form {
+  padding: 1.75rem 1.5rem;
+}
+.pq-cotizador__result {
+  padding: 1.75rem 1.5rem;
+  background: var(--pq-navy);
+  color: #ffffff;
+}
+
+@media (min-width: 768px) {
+  .pq-cotizador__grid { grid-template-columns: 1.15fr 0.85fr; }
+  .pq-cotizador__form { padding: 2.25rem 2rem; }
+  .pq-cotizador__result { padding: 2.25rem 2rem; }
+}
+
+.pq-field-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #52606d;
+  margin-bottom: 0.5rem;
+}
+
+.pq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+.pq-chip {
+  border: 1.5px solid var(--pq-line);
+  background: #ffffff;
+  color: var(--pq-navy);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+.pq-chip:hover { border-color: var(--pq-primary); color: var(--pq-primary); }
+.pq-chip.is-active {
+  background: var(--pq-primary);
+  border-color: var(--pq-primary);
+  color: #ffffff;
+}
+
+.pq-input-wrap { position: relative; }
+.pq-input {
+  width: 100%;
+  border: 2px solid var(--pq-line);
+  border-radius: 12px;
+  padding: 0.85rem 4rem 0.85rem 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--pq-navy);
+  background: #ffffff;
+  font-family: inherit;
+}
+.pq-input:focus {
+  outline: none;
+  border-color: var(--pq-primary);
+}
+.pq-input.is-error { border-color: #dc2626; }
+.pq-input-unit {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #7b8794;
+  pointer-events: none;
+}
+
+.pq-error {
+  display: none;
+  margin-top: 0.6rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #dc2626;
+}
+.pq-error.is-visible { display: block; }
+
+.pq-hint {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: #52606d;
+  line-height: 1.6;
+}
+
+.pq-calc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.18);
+  font-size: 0.88rem;
+}
+.pq-calc-row:last-of-type { border-bottom: none; }
+.pq-calc-row__label { color: rgba(255, 255, 255, 0.75); }
+.pq-calc-row__value { font-weight: 700; color: #ffffff; text-align: right; }
+
+.pq-total-label {
+  margin-top: 1.25rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 700;
+}
+.pq-total {
+  font-size: 2.35rem;
+  font-weight: 800;
+  color: var(--pq-green);
+  line-height: 1.1;
+  margin-top: 0.25rem;
+  word-break: break-word;
+}
+.pq-total-note {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.55;
+}
+
+.pq-wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.98rem;
+  padding: 0.95rem 1.25rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  font-family: inherit;
+}
+.pq-wa-btn:hover { background: #1ebe5a; transform: translateY(-2px); }
+.pq-wa-btn.is-disabled {
+  background: #9aa5b1;
+  cursor: not-allowed;
+  transform: none;
+}
+.pq-wa-btn.is-disabled:hover { background: #9aa5b1; transform: none; }
+
+.pq-condiciones {
+  margin-top: 1.25rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+.pq-condiciones ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pq-condiciones li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
+  margin-bottom: 0.5rem;
+}
+.pq-condiciones li:last-child { margin-bottom: 0; }
+.pq-condiciones i { color: var(--pq-green); margin-top: 0.18rem; flex: none; }
+
+/* ==========================================================================
+   TARJETA DE RESPUESTA DIRECTA (AEO)
+   ========================================================================== */
+
+.pq-answer {
+  border-left: 4px solid var(--pq-primary);
+  background: #f8fafc;
+  border-radius: 0 12px 12px 0;
+}
+
+/* ==========================================================================
+   TABLA DE PRECIOS
+   ========================================================================== */
+
+.pq-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--pq-line);
+  border-radius: 14px;
+  background: #ffffff;
+}
+.pq-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.94rem;
+  min-width: 520px;
+}
+.pq-table th,
+.pq-table td {
+  padding: 0.95rem 1.15rem;
+  text-align: left;
+  border-bottom: 1px solid var(--pq-line);
+}
+.pq-table thead th {
+  background: var(--pq-navy);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.pq-table tbody tr:last-child td { border-bottom: none; }
+.pq-table tbody tr:hover { background: #f8fafc; }
+.pq-table td.pq-table__total {
+  font-weight: 700;
+  color: var(--pq-primary);
+  white-space: nowrap;
+}
+.pq-table tbody tr.is-selected {
+  background: var(--pq-green-soft);
+}
+.pq-table tbody tr.is-selected td.pq-table__total { color: var(--pq-green-dark); }
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.pq-faq-item {
+  border: 1px solid var(--pq-line);
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 1.35rem 1.5rem;
+}
+.pq-faq-item h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--pq-navy);
+  margin: 0 0 0.6rem;
+}
+.pq-faq-item p {
+  margin: 0;
+  color: #52606d;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CTA FINAL
+   ========================================================================== */
+
+.pq-cta {
+  background: linear-gradient(135deg, #0d1b2a 0%, #14304a 100%);
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 2.5rem 1.75rem;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .pq-cta { padding: 3.25rem 3rem; }
+}
+.pq-cta h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.85rem;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .pq-cta h2 { font-size: 2.3rem; }
+}
+.pq-cta p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 auto 1.75rem;
+  max-width: 640px;
+}
+.pq-cta .pq-btn--solid { background: var(--pq-green); color: #06240f; }
+.pq-cta .pq-btn--ghost { border-color: rgba(255, 255, 255, 0.75); color: #ffffff; }
+.pq-cta .pq-btn--ghost:hover { background: #ffffff; color: var(--pq-navy); }
+.pq-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: stretch;
+  justify-content: center;
+}
+@media (min-width: 640px) {
+  .pq-cta__actions { flex-direction: row; align-items: center; }
+  .pq-cta__actions .pq-btn { width: auto; }
+}
+
+.pq-cta__note {
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pq-btn,
+  .pq-wa-btn,
+  .pq-chip { transition: none; }
+}

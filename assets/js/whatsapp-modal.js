@@ -71,6 +71,11 @@
   ];
 
   // === INTENCIONES (PASO 1) ===
+  // Cambio 2026-11-05 (Ferney): la opcion "Todavia busco lote" se reemplaza
+  // en TODO el sitio por "Quiero comprar plaqueta de concreto", que lleva al
+  // cotizador de /plaqueta-de-concreto#cotizador (NO al flujo de WhatsApp).
+  var PLAQUETA_COTIZADOR_URL = '/plaqueta-de-concreto#cotizador';
+
   var INTENTIONS = [
     {
       id: 'lote',
@@ -79,10 +84,10 @@
       message: 'Ya tengo lote propio y quiero cotizar una casa prefabricada'
     },
     {
-      id: 'buscar',
-      icon: 'fa-map-location-dot',
-      label: 'Todavia busco lote, que me recomiendan',
-      message: 'Todavia no tengo lote. ¿Que me recomiendan para construir una casa prefabricada?'
+      id: 'plaqueta',
+      icon: 'fa-layer-group',
+      label: 'Quiero comprar plaqueta de concreto',
+      message: 'Quiero comprar plaqueta de concreto'
     },
     {
       id: 'exterior',
@@ -155,8 +160,8 @@
     var body = '';
     if (intentionId === 'lote') {
       body = 'Ya tengo lote propio y quiero cotizar una casa prefabricada';
-    } else if (intentionId === 'buscar') {
-      body = 'Todavia no tengo lote. ¿Que me recomiendan para construir una casa prefabricada?';
+    } else if (intentionId === 'plaqueta') {
+      body = 'Quiero comprar plaqueta de concreto';
     } else if (intentionId === 'exterior') {
       body = 'Estoy en el exterior y quiero cotizar una casa prefabricada en Colombia';
     }
@@ -717,6 +722,17 @@
     showUserBubble(intention.label);
     // 2) Ocultar las opciones del paso 1 (se reemplazan por la burbuja)
     intentionActionsEl.style.display = 'none';
+    // Plaqueta de concreto: esta opcion NO va a WhatsApp. El cliente quiere
+    // comprar material, asi que lo llevamos al cotizador de plaqueta, que le
+    // da el valor de su pedido al instante y el boton de WhatsApp con el
+    // mensaje ya armado.
+    if (id === 'plaqueta') {
+      agentSpeak('Te llevo al <strong>cotizador de plaqueta de concreto</strong> para que veas el valor de tu pedido.', 650, function () {
+        close();
+        window.location.href = PLAQUETA_COTIZADOR_URL;
+      });
+      return;
+    }
     // Exterior: ya esta claro que no hay lote local, va directo a WhatsApp
     if (id === 'exterior') {
       setTimeout(function () { sendToWhatsApp(); }, 700);
@@ -793,7 +809,7 @@
   // === OPEN / CLOSE ===
   // intentionId (opcional): si viene de un enlace con data-wm-intent, se
   // pre-selecciona la intencion y se salta el paso 1 para no volver a
-  // preguntar lo mismo. Valores validos: 'lote' | 'buscar' | 'exterior'.
+  // preguntar lo mismo. Valores validos: 'lote' | 'plaqueta' | 'exterior'.
   function open(intentionId) {
     if (!backdrop) return;
     currentAdvisor = pickAdvisor();
@@ -842,7 +858,14 @@
     void backdrop.offsetWidth;
     requestAnimationFrame(function () { backdrop.classList.add('wm-open'); });
     // Decidir paso inicial
-    if (intentionId === 'exterior') {
+    if (intentionId === 'plaqueta') {
+      // La compra de plaqueta se cotiza en su propio cotizador, no en
+      // WhatsApp. Llevamos al cliente alla sin preguntas de por medio.
+      agentSpeak('Te llevo al <strong>cotizador de plaqueta de concreto</strong> para que veas el valor de tu pedido.', 650, function () {
+        close();
+        window.location.href = PLAQUETA_COTIZADOR_URL;
+      });
+    } else if (intentionId === 'exterior') {
       // Exterior ya segmentado: salta directo a WhatsApp
       sendToWhatsApp();
     } else if (intentionId && state.detectedInfo) {

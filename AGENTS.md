@@ -115,6 +115,47 @@ cambio es `scripts/fix-cimentacion.js` (reemplazos literales, idempotente: ya no
 las referencias a la NSR-10 ni los pasajes que hablan del mercado en general (consejos para
 comparar cotizaciones de terceros).
 
+## Venta de plaqueta de concreto (2026-11-05)
+
+Nueva página comercial **`/plaqueta-de-concreto`** (HTML en la raíz, se sirve sin extensión).
+Es la venta del material suelto, distinta del catálogo de casas: aquí se vende **plaqueta de
+concreto** como suministro, no una casa.
+
+**Datos comerciales (los suministró el cliente; no inventar otros):**
+- Concreto reforzado de **3.500 PSI**, con refuerzo en grafita.
+- **$27.500 COP por m²**, pedido mínimo **30 m²** (valor mínimo $825.000 COP).
+- **El transporte NO está incluido** y debe ser asumido por el comprador.
+- La entrega es **con el producto cargado en planta**.
+- Tabla de referencia: 30 / 50 / 70 / 100 / 150 m².
+
+**Archivos de la página:**
+- `plaqueta-de-concreto.html` — hero, cotizador, tabla, especificaciones, FAQ, CTA.
+- `assets/css/plaqueta-de-concreto.css` — CSS propio (prefijo `pq-`). **No recompilar Tailwind**:
+  el CSS compilado lo comparten ~200 páginas. Este archivo también lleva las reglas de los
+  dropdowns del nav, porque cada página del sitio replica ese bloque y esta usa CSS propio.
+- `assets/js/plaqueta-cotizador.js` — el cálculo (m² × 27.500, mínimo 30, chips de la tabla,
+  botón de WhatsApp con el mensaje ya armado). La tabla de precios se arma desde JS para que
+  el precio nunca se desincronice del cotizador.
+- `scripts/build-og-plaqueta.mjs` — genera `assets/images/og-plaqueta-de-concreto.webp` (1200×630).
+- `scripts/captura-plaqueta.mjs` — capturas reales (móvil/escritorio) vía CDP, porque
+  `chrome --headless --screenshot` miente en móvil (ver `docs/patron-hero-municipios.md`).
+
+**El botón del modal de WhatsApp (cambio GLOBAL):** en `assets/js/whatsapp-modal.js` la
+intención `"Todavia busco lote"` **se reemplazó** por `"Quiero comprar plaqueta de concreto"`
+(id `plaqueta`). No entra al flujo de WhatsApp: cierra el modal y lleva a
+`/plaqueta-de-concreto#cotizador`. Decisión del cliente (2026-11-05) cuando se le preguntó:
+reemplazo en todo el sitio. Para revertirlo basta devolver la intención original en
+`INTENTIONS` y quitar las dos ramas `id === 'plaqueta'`.
+
+**Enlaces:** el nav de **89 páginas** lleva "Plaqueta" (escritorio) y "Plaqueta de concreto"
+(tablet). Lo insertó `scripts/agregar-nav-plaqueta.mjs` (idempotente, dry-run por defecto,
+verifica el balance de tags antes de escribir). El footer de todas las páginas tiene
+"Enlaces Rápidos → Plaqueta de Concreto".
+
+**Ojo con el formateo del repo:** el HTML tiene saltos de línea dentro de los tags y cierres
+como `</a          >`. Un regex que busque `</a>` a secas NO encuentra nada. Para contar
+tags usar `</a\s*>`.
+
 ## Cubierta del catálogo (2026-10-25)
 
 **Dos opciones de teja disponibles: fibrocemento o barro.** Está escrito como ítem de
